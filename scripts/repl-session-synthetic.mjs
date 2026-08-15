@@ -2,6 +2,8 @@ import { QueryEngine } from '@comunica/query-sparql';
 import { DataFactory, Store } from 'n3';
 import { initializeLinkedDataSession } from '../lib/repl-linked-data-session.mjs';
 
+// Deterministic CLI fixture only; it is never evidence of persistent REPL state.
+
 const { namedNode, literal, quad } = DataFactory;
 const group = namedNode('https://example.test/group');
 const quads = Array.from({ length: 120 }, (_, index) => quad(

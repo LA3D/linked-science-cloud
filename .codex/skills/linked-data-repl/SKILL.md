@@ -19,6 +19,26 @@ Use this project-local experimental workflow for synthetic, read-only SPARQL wor
 3. If it does not resolve, stop and report the missing local dependency. Do not change `~/.codex/config.toml`, sandbox mode, or global module paths without approval.
 4. Keep all test triples synthetic and in REPL memory. Do not contact an endpoint unless the user explicitly approves that endpoint for the current task.
 
+## Persistent REPL preflight — hard gate
+
+Before claiming materialization, handle reuse, recovery, or any resident state, verify that the persistent JS REPL tool is available and make an **actual JS REPL call** that emits a state receipt. The receipt must name the tool/capability, explicit execution mode `persistent-js-repl`, Communica module resolution, session and map binding states, and actual operation IDs. A compact shape is:
+
+```js
+{
+  tool: 'mcp__node_repl__js',
+  capability: 'persistent-js-repl',
+  executionMode: 'persistent-js-repl',
+  moduleResolution: { '@comunica/query-sparql': '...' },
+  bindings: {
+    session: { state: 'present' | 'absent', name: '...' },
+    map: { state: 'present' | 'absent', name: '...' },
+  },
+  operations: [{ id: '...', kind: 'materialize' | 'handle-inspection' | 'recover' | 'rematerialize', handle: '...', actual: true }],
+}
+```
+
+If the tool is unavailable, stop with `missing-persistent-repl`. Do not fall back to a terminal/CLI script, and do not infer retained state from repository source, a fixture, or conversation history. CLI scripts such as `npm run session:synthetic` are deterministic fixtures only, never evidence of a retained session. Every stateful claim must cite a prior operation ID from an actual REPL-state receipt; a coordinator must reject uncited claims.
+
 ## Persistent session pattern
 
 Run the initialization cell once. Use top-level `var` so a later call can reuse or replace the bindings without declaration conflicts.
@@ -67,7 +87,7 @@ Run `npm run experiment:context-map` for the one-step recovery slice, `npm run e
 
 ## Persistent result handles
 
-For local synthetic navigation, initialize `LinkedDataReplSession` once in the persistent REPL and materialize a result under a symbolic handle. Put only `checkpoint()` metadata in a context map: handles, profile, bounded sample, provenance, and lineage—not table rows or query text. Use bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy`; never dump a handle's full result. A visualization, table, or export is a future consumer: build it only from an explicit bounded page or derived view, retaining its source handle and provenance. Never pass a whole endpoint result to a visualization or coordinator context. A REPL reset invalidates resident handles, so call `recover(checkpoint)` only to recognize what must be rematerialized. Run `npm run session:synthetic` for the local demonstration.
+For local synthetic navigation, initialize `LinkedDataReplSession` once in the persistent REPL and materialize a result under a symbolic handle. Put only `checkpoint()` metadata in a context map: handles, profile, bounded sample, provenance, and lineage—not table rows or query text. Use bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy`; never dump a handle's full result. A visualization, table, or export is a future consumer: build it only from an explicit bounded page or derived view, retaining its source handle and provenance. Never pass a whole endpoint result to a visualization or coordinator context. A REPL reset invalidates resident handles, so call `recover(checkpoint)` only to recognize what must be rematerialized. `npm run session:synthetic` is a deterministic CLI fixture, not a persistent-state demonstration.
 
 For an explicitly approved live-table demonstration, create a retention-only session (`sources: []`, `maxRows: 20`), execute exactly one `queryBindingsGuarded` call with `identifiersOrgLiveTable`, then pass its already-guarded bindings to `materializeBindings`. Do not call session query materialization for a live endpoint. In a second REPL call, reuse that same handle for `profile` and a page of at most 10 rows; it must not query again.
 
@@ -79,7 +99,7 @@ For future large-result export, require explicit user authorization and stream a
 
 For every navigation turn, follow this loop and make it visible in the compact worker report:
 
-1. **Orient:** inspect the compact map and session state first (`checkpoint`, `recognize`, `profile`, or an equivalent bounded state view).
+1. **Orient:** satisfy the persistent-REPL preflight before any stateful claim, then inspect compact map and session state (`checkpoint`, `recognize`, `profile`, or an equivalent bounded state view).
 2. **Justify one action:** name one bounded next action and cite the map fields, handle status, and remaining query/result budget that permit it.
 3. **Act:** perform only that action through the applicable local or guarded path.
 4. **Update:** record the resulting handle/session status, budget consumption, compact provenance/evidence, and any invalidation or rematerialization need.

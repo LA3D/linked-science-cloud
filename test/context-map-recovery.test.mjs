@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   CONTEXT_MAP_STEP_ID,
+  PERSISTENT_REPL_RECEIPT_TOOL,
+  assertPersistentReplReceipt,
   assertMapSafety,
+  assertStatefulClaimEvidence,
   buildReceipt,
   compactContextMap,
   createContextMap,
@@ -12,6 +15,18 @@ import {
 } from '../lib/context-map-recovery.mjs';
 
 const goal = 'Evaluate compact-map recovery for one guarded namespace check.';
+
+function replReceipt(overrides = {}) {
+  return {
+    tool: PERSISTENT_REPL_RECEIPT_TOOL,
+    capability: 'persistent-js-repl',
+    executionMode: 'persistent-js-repl',
+    moduleResolution: { '@comunica/query-sparql': 'file:///project/node_modules/@comunica/query-sparql/...' },
+    bindings: { session: { state: 'present', name: 'replSession' }, map: { state: 'present', name: 'contextMap' } },
+    operations: [{ id: 'inspect-items', kind: 'handle-inspection', handle: 'items', actual: true }],
+    ...overrides,
+  };
+}
 
 test('scope and budgets are evaluated without a live transport', () => {
   const map = createContextMap({ goal, maxLiveQueries: 1 });
@@ -95,4 +110,13 @@ test('a known failure blocks the same step instead of repeating it', () => {
     failureCode: 'schema-pattern-empty',
     query: 'SELECT ?s WHERE { ?s ?p ?o } LIMIT 1',
   }));
+});
+
+test('stateful claims require an actual persistent-REPL receipt and cited operation', () => {
+  const receipt = replReceipt();
+  assert.equal(assertPersistentReplReceipt(receipt), true);
+  assert.equal(assertStatefulClaimEvidence({ kind: 'reused', handle: 'items', replOperationId: 'inspect-items' }, receipt), true);
+  assert.throws(() => assertPersistentReplReceipt(replReceipt({ executionMode: 'cli-fixture' })));
+  assert.throws(() => assertStatefulClaimEvidence({ kind: 'reused', handle: 'items', replOperationId: 'missing' }, receipt));
+  assert.throws(() => assertStatefulClaimEvidence({ kind: 'reused', handle: 'other', replOperationId: 'inspect-items' }, receipt));
 });

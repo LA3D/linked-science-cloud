@@ -47,7 +47,7 @@ For the tested REPL initialization and persistence check, use the project-local 
 - **Guarded live table:** the separate Identifiers.org demonstration profile pins one SPARQL endpoint and permits only bounded read-only registry tables through Communica. It is not a general endpoint client.
 - **Presentation handoff:** a retained handle can yield a typed, bounded table model with source handle and compact provenance. It is not HTML, a full result, or a UniProt record browser.
 
-Read the living [roadmap](docs/ROADMAP.md), the [experiment dossiers](docs/experiments/), and generated [context-map receipts](artifacts/context-map-runs/) for scope and evidence. The planned [blind clean-worker map evaluation](docs/experiments/clean-worker-map-evaluation.md) comes before export work; the [large-result export protocol](docs/experiments/large-result-export.md) remains documentation only, with no exporter or generated export artifact.
+Read the living [roadmap](docs/ROADMAP.md), dated [work logs](docs/journal/), [experiment dossiers](docs/experiments/), and generated [context-map receipts](artifacts/context-map-runs/) for scope and evidence. The planned [blind clean-worker map evaluation](docs/experiments/clean-worker-map-evaluation.md) requires an actual persistent-REPL state receipt before any retention claim and comes before export work; the [large-result export protocol](docs/experiments/large-result-export.md) remains documentation only, with no exporter or generated export artifact.
 
 ## Current live-navigation boundary
 
