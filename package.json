@@ -10,7 +10,8 @@
     "experiment:context-map": "node scripts/context-map-recovery.mjs",
     "experiment:context-map-two-turn": "node scripts/context-map-two-turn-turn1.mjs",
     "experiment:context-map-two-turn-turn2": "node scripts/context-map-two-turn-turn2.mjs",
-    "session:synthetic": "node scripts/repl-session-synthetic.mjs"
+    "session:synthetic": "node scripts/repl-session-synthetic.mjs",
+    "affordances:demo": "node scripts/affordance-catalog-demo.mjs"
   },
   "dependencies": {
     "@comunica/query-sparql": "^5.3.0",

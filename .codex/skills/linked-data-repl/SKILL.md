@@ -83,6 +83,23 @@ GET and POST are both accepted only for a syntactically valid `SELECT`, `ASK`, `
 
 The approved `uniprotRheaWikidataFederation` profile starts at `https://sparql.uniprot.org/sparql` and permits only `SELECT` with `LIMIT 1-10`. Its only permitted `SERVICE` targets are exactly `https://sparql.rhea-db.org/sparql` and `https://query.wikidata.org/sparql`; all three endpoints are exact HTTPS path pins. `SERVICE SILENT`, variables in `SERVICE`, every other host/path, updates, and unbounded queries remain blocked. Treat each federated query as a single bounded navigation turn and return per-request transport provenance. Do not add another endpoint, dereference provider URLs, or enable federation under another profile without explicit approval.
 
+## Schema affordances before query construction
+
+For UniProt/Rhea/Wikidata work, consult `lib/linked-data-affordances.mjs` before composing a query. In the persistent REPL, bind one catalog module and checkpoint:
+
+```js
+var affordanceModule = await import('./lib/linked-data-affordances.mjs');
+var affordances = affordanceModule.uniprotRheaWikidataAffordances;
+var affordanceCheckpoint = affordances.catalogCheckpoint();
+var lookup = affordances.lookupAffordances({ tags: ['protein', 'rhea', 'wikidata', 'drug', 'federated'] });
+var plan = affordances.createAffordancePlan({ motifId: lookup.motifs[0].id, limit: 5 });
+affordances.validateAffordancePlan(plan);
+```
+
+Treat prefixes as typed affordances: each has a namespace, endpoint role, terms, and official-source provenance. Select a motif by task concepts, cite its source URL, and retain only pack ID/version, motif ID, prefixes, service targets, and limit in the compact map. A plan is documentation guidance, not a query result or authorization to execute. Write the actual query only after plan validation, then pass it through the guarded transport. Do not invent a `SERVICE` target or use catalog contents as proof of live ontology behavior.
+
+The planning surface is resource-neutral. `UNIPROT_RHEA_WIKIDATA_AFFORDANCE_PACK` is an exemplar passed to `createAffordanceCatalog`; it is not built into generic lookup, planning, or validation. Add a new Linked Data resource through a reviewed versioned pack plus an explicit endpoint profile, then use the same workflow. Read [the affordance experiment](../../../docs/experiments/affordance-catalog.md) for the pack contract and initial motifs.
+
 ## Context-map recovery experiment
 
 Run `npm run experiment:context-map` for the one-step recovery slice, `npm run experiment:context-map-two-turn` for turn one, or `npm run experiment:context-map-two-turn-turn2` after a coordinator records a selection from the saved frontier. They preserve the guarded profile, write timestamped receipts under `artifacts/context-map-runs/`, and record only the assigned goal, bounded worker report, transport provenance, compact checkpoint, and explicit coordinator decision—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
