@@ -75,6 +75,18 @@ For inline presentation, call `displayTable({ handle, title, columns, offset, li
 
 For future large-result export, require explicit user authorization and stream a retained handle only to a controlled project artifact area, never coordinator context. Avoid overwrite by default and keep the export distinct from the in-memory handle. Its context-map entry must record artifact path and format, schema, row count, hash, provenance, and lineage. This skill does not implement or perform exports.
 
+## Mandatory navigation-turn loop
+
+For every navigation turn, follow this loop and make it visible in the compact worker report:
+
+1. **Orient:** inspect the compact map and session state first (`checkpoint`, `recognize`, `profile`, or an equivalent bounded state view).
+2. **Justify one action:** name one bounded next action and cite the map fields, handle status, and remaining query/result budget that permit it.
+3. **Act:** perform only that action through the applicable local or guarded path.
+4. **Update:** record the resulting handle/session status, budget consumption, compact provenance/evidence, and any invalidation or rematerialization need.
+5. **Report:** state handle reuse or rematerialization, budget, observed evidence, uncertainty, and a symbolic frontier for the coordinator.
+
+Conversation memory is not map state. Raw result dumps are not map state. The map contains only compact profile, handle, count/sample, provenance, lineage, safe-operation, and budget metadata; it never substitutes for an explicit session check.
+
 ## Verification
 
 Run `npm run smoke` for the disposable command-line check. It queries the same kind of in-memory synthetic graph and must return `synthetic Communica SELECT passed: Alex`.
