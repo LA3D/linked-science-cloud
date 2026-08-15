@@ -1,0 +1,17 @@
+{
+  "format": "linked-data-evaluation-pack/v1",
+  "id": "local-protein-annotation-eval",
+  "version": "1.0.0",
+  "source": "test/fixtures/prior-grounding/schema.ttl",
+  "prefixes": {
+    "ex": "https://example.test/eval/"
+  },
+  "affordances": [
+    {
+      "id": "protein-catalytic-annotation",
+      "path": ["ex:Protein", "ex:annotation", "ex:Annotation", "ex:catalyticActivity", "ex:CatalyticActivity"],
+      "operationHint": "ASK",
+      "purpose": "Check whether one named protein has a catalytic-annotation path."
+    }
+  ]
+}

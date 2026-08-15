@@ -73,6 +73,8 @@ nodeRepl.write({ engineRetained: typeof engine?.queryBindings === 'function', na
 
 Treat a REPL reset as destructive to these bindings; initialize again afterward.
 
+For any quantitative or resident-state claim, inspect the live binding in the same REPL call. Do not infer a store count, handle count, or retention state from how a session was initialized.
+
 ## Guarded Identifiers.org SPARQL
 
 Use `lib/guarded-sparql-transport.mjs` for live queries. It is the enforcement point: it parses one bounded read query, rejects updates, pins the endpoint profile, blocks redirects, sets timeout/retry controls, and records provenance. Pass its options directly to `QueryEngine`; do not nest them under `context`.
@@ -100,6 +102,18 @@ Treat prefixes as typed affordances: each has a namespace, endpoint role, terms,
 
 The planning surface is resource-neutral. `UNIPROT_RHEA_WIKIDATA_AFFORDANCE_PACK` is an exemplar passed to `createAffordanceCatalog`; it is not built into generic lookup, planning, or validation. Add a new Linked Data resource through a reviewed versioned pack plus an explicit endpoint profile, then use the same workflow. Read [the affordance experiment](../../../docs/experiments/affordance-catalog.md) for the pack contract and initial motifs.
 
+## Documentation-source discovery
+
+Documentation retrieval is a separate capability from SPARQL. Use `lib/guarded-documentation-fetch.mjs` only with an explicitly approved documentation profile. For the current UniProt schema experiment, `uniprotRdfSchema` pins only `https://purl.uniprot.org/html/index-en.html`, with GET, HTML-only content, no redirects, 8-second timeout, 2 MB maximum, and SHA-256 provenance. Keep the full document resident in the REPL; record only source, hash, byte length, selected terms, operation IDs, and plan metadata in the compact map. Do not treat a documentation profile as permission to query data. Read [the schema-discovery protocol](../../../docs/experiments/uniprot-schema-discovery.md) before a live documentation run.
+
+## Minimal invariants for goal-directed navigation
+
+Treat remembered prefixes, terms, paths, and endpoint behavior as candidate hypotheses. Confirm, correct, reject, or leave them unresolved against a pinned source before they support a bounded `ASK`, `SELECT`, `CONSTRUCT`, or carefully qualified `DESCRIBE` plan. Keep prior belief, source evidence, query-result evidence, and synthesis distinct.
+
+Do not infer global absence from an empty result, or factual absence from an unavailable schema. A failed schema acquisition leaves schema state unavailable; it cannot justify a schema-derived query or frontier. Stateful claims must cite a tool-generated session/handle operation. Keep bulk documents and results behind handles, reporting only bounded metadata/views.
+
+Let the existing Codex goal and current evidence choose the next action: acquire/index/search a source, validate a plan, use an appropriate read operation, inspect a handle, or stop/request approval. Do not force a fixed narration sequence. The project must not replace Codex's goal lifecycle; its future layer records only Linked Data evidence/session state attached to that goal. The current project has transitional map/receipt helpers but not this target layer; read [the goal-loop dossier](../../../docs/experiments/goal-loop-state-graph.md) before extending this surface.
+
 ## Context-map recovery experiment
 
 Run `npm run experiment:context-map` for the one-step recovery slice, `npm run experiment:context-map-two-turn` for turn one, or `npm run experiment:context-map-two-turn-turn2` after a coordinator records a selection from the saved frontier. They preserve the guarded profile, write timestamped receipts under `artifacts/context-map-runs/`, and record only the assigned goal, bounded worker report, transport provenance, compact checkpoint, and explicit coordinator decision—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
@@ -114,17 +128,9 @@ For inline presentation, call `displayTable({ handle, title, columns, offset, li
 
 For future large-result export, require explicit user authorization and stream a retained handle only to a controlled project artifact area, never coordinator context. Avoid overwrite by default and keep the export distinct from the in-memory handle. Its context-map entry must record artifact path and format, schema, row count, hash, provenance, and lineage. This skill does not implement or perform exports.
 
-## Mandatory navigation-turn loop
+## Transitional map/receipt helpers
 
-For every navigation turn, follow this loop and make it visible in the compact worker report:
-
-1. **Orient:** satisfy the persistent-REPL preflight before any stateful claim, then inspect compact map and session state (`checkpoint`, `recognize`, `profile`, or an equivalent bounded state view).
-2. **Justify one action:** name one bounded next action and cite the map fields, handle status, and remaining query/result budget that permit it.
-3. **Act:** perform only that action through the applicable local or guarded path.
-4. **Update:** record the resulting handle/session status, budget consumption, compact provenance/evidence, and any invalidation or rematerialization need.
-5. **Report:** state handle reuse or rematerialization, budget, observed evidence, uncertainty, and a symbolic frontier for the coordinator.
-
-Conversation memory is not map state. Raw result dumps are not map state. The map contains only compact profile, handle, count/sample, provenance, lineage, safe-operation, and budget metadata; it never substitutes for an explicit session check.
+The existing map and receipt helpers are experimental instrumentation, not an agent program. Use them to preserve compact provenance and state evidence where useful, but do not manufacture map fields or narrate a fixed loop merely to satisfy a form. Conversation memory is not map state, and a raw result dump is not map state. Until the target state graph exists, inspect live bindings before asserting any session/handle state.
 
 ## Verification
 

@@ -1,0 +1,14 @@
+@prefix ex: <https://example.test/eval/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:Protein a rdfs:Class .
+ex:Annotation a rdfs:Class .
+ex:CatalyticActivity a rdfs:Class .
+
+ex:annotation a rdfs:Property ;
+  rdfs:domain ex:Protein ;
+  rdfs:range ex:Annotation .
+
+ex:catalyticActivity a rdfs:Property ;
+  rdfs:domain ex:Annotation ;
+  rdfs:range ex:CatalyticActivity .

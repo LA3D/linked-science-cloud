@@ -7,6 +7,7 @@ This repository is an experimental persistent Linked Data REPL surface, not a ge
 - Use the project guard for approved live SPARQL work. Preserve its read-only, bounded, pinned-endpoint, redirect, timeout, retry, provenance, result-handle, and presentation constraints.
 - Do not change global Codex configuration or install packages without approval. Export only with explicit user authorization, to a controlled project artifact area, without overwriting by default.
 - Preserve unrelated work. Do not make implicit commits, remotes, configuration changes, or external writes.
+- Treat the current map/receipt workflow as transitional instrumentation, not a required reasoning script. Codex owns the goal and worker lifecycle; this project may add only a goal-attached Linked Data evidence/session layer. Follow the minimal invariants in `docs/experiments/goal-loop-state-graph.md` when extending agent behavior.
 
 Before handing off changes, run:
 

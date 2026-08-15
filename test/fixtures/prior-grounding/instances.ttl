@@ -1,0 +1,11 @@
+@prefix ex: <https://example.test/eval/> .
+
+ex:P123 a ex:Protein ;
+  ex:annotation ex:annotation-123 .
+
+ex:annotation-123 a ex:Annotation ;
+  ex:catalyticActivity ex:activity-123 .
+
+ex:activity-123 a ex:CatalyticActivity .
+
+ex:P999 a ex:Protein .
