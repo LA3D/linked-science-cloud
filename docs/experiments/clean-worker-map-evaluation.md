@@ -6,7 +6,9 @@ Can a fresh worker, given only this repository, its root `AGENTS.md`, and the pr
 
 ## Status and boundary
 
-**Future evaluation only.** This protocol creates no worker, dataset, receipt, or network activity in the current documentation update. The evaluation worker uses a fresh Codex task and local synthetic RDF only; it receives no endpoint approval. Prior open clean-worker trajectories are **informative failed/inconclusive preflights**, not passing evaluations: one lacked an actual persistent-JS-REPL state receipt and the newest trace answered from repository source rather than execution.
+**One constrained local evaluation passed on 2026-08-15.** A fresh task received this repository and the bounded local goal, then performed actual persistent-JS-REPL calls. It did not access a network, change files, install packages, or use an endpoint. This is evidence for the narrow coordinator/worker loop below, not a claim of general autonomous Linked Data navigation.
+
+Prior open clean-worker trajectories remain **informative failed/inconclusive preflights**, not passing evaluations: one lacked an actual persistent-JS-REPL state receipt and another answered from repository source rather than execution.
 
 ## Hard preflight
 
@@ -39,6 +41,23 @@ The worker must first pass the hard preflight, then use local synthetic state, c
 | External boundary | Trace shows no endpoint, provider, REST, package, config, or other unauthorized external access. | Any such access occurs. |
 
 The evaluator withholds the expected balance from the worker and checks the final bounded evidence independently.
+
+## Recorded constrained run — 2026-08-15
+
+The first qualifying run used the fresh task **Clean REPL Execution Evaluation**. Its prompt required a persistent-JS-REPL execution-backed characterization of local RDF categories, prohibited network and repository changes, and did not provide a query, expected result shape, expected answer, handle name, or frontier.
+
+### Observed trace
+
+1. **Preflight:** actual persistent-REPL operations `preflight-op-001` and `preflight-op-002` resolved local Communica/N3 modules, queried a small in-memory preflight store, and confirmed the engine/store bindings remained present in a second REPL call.
+2. **First bounded finding:** `rdf-op-001` materialized 120 local synthetic item bindings under `rdf-items`; `rdf-op-002` derived `category-counts`; `rdf-op-003` rendered a two-row typed table from that retained derived handle. The observed counts were `even: 60` and `odd: 60`.
+3. **Coordinator-steered second turn:** the coordinator selected the worker's bounded membership-page option specifically because the source-query budget was exhausted. `rdf-op-004` re-oriented from the resident handles and compact map. `rdf-op-005` derived `even-members` from `rdf-items` and displayed five rows without a new source query or rematerialization.
+4. **Reset honesty:** a deliberate REPL reset was followed by operations `rdf-op-006` through `rdf-op-008`, which recognized all former handles as missing and not recoverable. The worker made no source query and explicitly stated that it could no longer claim the earlier results as resident.
+
+### Evaluation interpretation
+
+The trace satisfies the protocol's persistent-REPL preflight, execution-backed conclusion, map/session orientation, cited handle reuse, bounded display, local provenance, exhausted source-query budget, and reset-honesty criteria. The coordinator's second action genuinely depended on the returned frontier and budget state.
+
+It remains a constrained synthetic evaluation: the initial goal explicitly required the REPL, the worker was shown the project skill and `AGENTS.md`, and only one simple local category derivation was needed. The experiment does not establish open-ended frontier generation, semantic endpoint navigation, long-result export, or general decision quality.
 
 ## Coordinator audit
 

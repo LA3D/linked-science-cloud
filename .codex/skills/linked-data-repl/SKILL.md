@@ -75,11 +75,13 @@ Treat a REPL reset as destructive to these bindings; initialize again afterward.
 
 ## Guarded Identifiers.org SPARQL
 
-Use `lib/guarded-sparql-transport.mjs` for live registry queries. It is the enforcement point: it parses one bounded read query, rejects updates and `SERVICE`, pins the endpoint profile, blocks redirects, sets timeout/retry controls, and records provenance. Pass its options directly to `QueryEngine`; do not nest them under `context`.
+Use `lib/guarded-sparql-transport.mjs` for live queries. It is the enforcement point: it parses one bounded read query, rejects updates, pins the endpoint profile, blocks redirects, sets timeout/retry controls, and records provenance. Pass its options directly to `QueryEngine`; do not nest them under `context`.
 
 The standard `identifiersOrg` profile pins `https://sparql.api.identifiers.org/sparql`. The separate `identifiersOrgLiveTable` demonstration profile pins the same endpoint but permits only `SELECT` and caps materialization at 20 rows. It is not a replacement for the standard profile. Run the UniProt example with `npm run query:identifiers-uniprot`; it uses Communica only. Read [the Identifiers.org schema reference](references/identifiers-org-sparql.md) before changing its query.
 
 GET and POST are both accepted only for a syntactically valid `SELECT`, `ASK`, `CONSTRUCT`, or `DESCRIBE` query. Keep results at the profile cap and report its provenance; a transport attempt or empty result is not proof of registry semantics.
+
+The approved `uniprotRheaWikidataFederation` profile starts at `https://sparql.uniprot.org/sparql` and permits only `SELECT` with `LIMIT 1-10`. Its only permitted `SERVICE` targets are exactly `https://sparql.rhea-db.org/sparql` and `https://query.wikidata.org/sparql`; all three endpoints are exact HTTPS path pins. `SERVICE SILENT`, variables in `SERVICE`, every other host/path, updates, and unbounded queries remain blocked. Treat each federated query as a single bounded navigation turn and return per-request transport provenance. Do not add another endpoint, dereference provider URLs, or enable federation under another profile without explicit approval.
 
 ## Context-map recovery experiment
 
