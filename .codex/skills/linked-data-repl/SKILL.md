@@ -21,7 +21,7 @@ Use this project-local experimental workflow for synthetic, read-only SPARQL wor
 
 ## Persistent REPL preflight — hard gate
 
-Before claiming materialization, handle reuse, recovery, or any resident state, verify that the persistent JS REPL tool is available and make an **actual JS REPL call** that emits a state receipt. The receipt must name the tool/capability, explicit execution mode `persistent-js-repl`, Communica module resolution, session and map binding states, and actual operation IDs. A compact shape is:
+Any task that invokes this agentic-REPL workflow must begin with this preflight **before source-level analysis, a fixture, or repository prose can satisfy the goal**. Verify that the persistent JS REPL tool is available and make an **actual JS REPL call** that emits a state receipt. The receipt must name the tool/capability, explicit execution mode `persistent-js-repl`, Communica module resolution, session and map binding states, and actual operation IDs. A compact shape is:
 
 ```js
 {
@@ -37,7 +37,7 @@ Before claiming materialization, handle reuse, recovery, or any resident state, 
 }
 ```
 
-If the tool is unavailable, stop with `missing-persistent-repl`. Do not fall back to a terminal/CLI script, and do not infer retained state from repository source, a fixture, or conversation history. CLI scripts such as `npm run session:synthetic` are deterministic fixtures only, never evidence of a retained session. Every stateful claim must cite a prior operation ID from an actual REPL-state receipt; a coordinator must reject uncited claims.
+If the tool is unavailable, stop with `missing-persistent-repl`. Do not fall back to a terminal/CLI script, and do not infer an execution-backed conclusion or retained state from repository source, a fixture, or conversation history. Source/fixture inspection may satisfy a goal only when the user explicitly requests **static source inspection**. CLI scripts such as `npm run session:synthetic` are deterministic fixtures only, never evidence of a retained session. Every stateful claim must cite a prior operation ID from an actual REPL-state receipt; a coordinator must reject uncited claims and source-only conclusions for an agentic-REPL task.
 
 ## Persistent session pattern
 
