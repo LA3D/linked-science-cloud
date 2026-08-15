@@ -1,0 +1,96 @@
+{
+  "coordinator": {
+    "decision": {
+      "candidateId": "inspect-uniprot-resource-relationship",
+      "rationale": "Establish declared registry resources before inspecting resource-level provider metadata."
+    },
+    "priorReceipt": "artifacts/context-map-runs/two-turn-turn-1-2026-08-15T11-53-16-471Z.json"
+  },
+  "limitations": [
+    "The receipt records an assigned goal and worker report, not the parent coordinator conversation or decision process.",
+    "The context map is a bounded checkpoint aid and does not establish semantic correctness from an empty result."
+  ],
+  "observed": {
+    "assignedGoal": "Orient to how Identifiers.org represents the UniProt namespace and identify the most useful next safe registry question.",
+    "transportProvenance": [
+      {
+        "at": "2026-08-15T11:54:52.603Z",
+        "endpoint": "https://sparql.api.identifiers.org/sparql",
+        "method": "GET",
+        "ok": true,
+        "queryLimit": 1,
+        "querySha256": "798d5409dede664da85df432d67c2dc7081c270cae0a7cf9d6703e924923b0a5",
+        "queryType": "SELECT",
+        "redirect": "error",
+        "retries": 0,
+        "status": 200,
+        "timeoutMs": 8000
+      }
+    ],
+    "workerReport": {
+      "interpretation": "A declared resource relationship is observed for this exact bounded query.",
+      "resultBindings": [
+        {
+          "resource": "http://identifiers.org/miriam.resource:MIR%3A00100164"
+        }
+      ],
+      "rowsObserved": 1,
+      "status": "stopped-after-turn-2",
+      "stepId": "inspect-uniprot-resource-relationship"
+    }
+  },
+  "synthesized": {
+    "compactContextMap": {
+      "budget": {
+        "liveQueriesUsed": 2,
+        "maxLiveQueries": 2,
+        "maxRows": 1
+      },
+      "checkpoints": [
+        {
+          "outcome": "success",
+          "querySha256": "2f1a252204ab8233fb4559c623c4a81adcf6d0ad5be927043310742d95417f04",
+          "rowsObserved": 1,
+          "stepId": "uniprot-namespace-identity",
+          "transportCount": 1
+        },
+        {
+          "outcome": "success",
+          "querySha256": "798d5409dede664da85df432d67c2dc7081c270cae0a7cf9d6703e924923b0a5",
+          "rowsObserved": 1,
+          "stepId": "inspect-uniprot-resource-relationship",
+          "transportCount": 1
+        }
+      ],
+      "frontier": [
+        {
+          "id": "inspect-uniprot-provider-pattern",
+          "question": "Which provider-code and URL-pattern metadata are declared for UniProt resources?",
+          "stepLabel": "inspect provider-pattern metadata"
+        }
+      ],
+      "goal": "Orient to how Identifiers.org represents the UniProt namespace and identify the most useful next safe registry question.",
+      "knownFailures": {},
+      "scope": {
+        "profile": "identifiersOrg",
+        "readOnly": true,
+        "sourceCount": 1
+      },
+      "steps": [
+        {
+          "id": "uniprot-namespace-identity",
+          "status": "success"
+        },
+        {
+          "id": "inspect-uniprot-resource-relationship",
+          "label": "inspect linked registry resources",
+          "status": "success"
+        }
+      ],
+      "version": 1
+    },
+    "recovery": "complete"
+  },
+  "timestamp": "2026-08-15T11:54:52.829Z",
+  "version": 1
+}

@@ -63,7 +63,7 @@ GET and POST are both accepted only for a syntactically valid `SELECT`, `ASK`, `
 
 ## Context-map recovery experiment
 
-Run `npm run experiment:context-map` for the one-step coordinator-worker recovery slice. It preserves the guarded profile, writes a timestamped receipt under `artifacts/context-map-runs/`, and records only the assigned goal, bounded worker report, transport provenance, and compact checkpoint—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
+Run `npm run experiment:context-map` for the one-step recovery slice, `npm run experiment:context-map-two-turn` for turn one, or `npm run experiment:context-map-two-turn-turn2` after a coordinator records a selection from the saved frontier. They preserve the guarded profile, write timestamped receipts under `artifacts/context-map-runs/`, and record only the assigned goal, bounded worker report, transport provenance, compact checkpoint, and explicit coordinator decision—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
 
 ## Verification
 
