@@ -65,6 +65,31 @@ test('retains externally guarded bindings under a hard materialization cap', asy
   await assert.rejects(() => session.materialize({ handle: 'not-local', query: 'SELECT * WHERE { ?s ?p ?o }' }));
 });
 
+test('retains boolean and graph results as typed bounded handles', () => {
+  const { engine } = fixture();
+  const session = initializeLinkedDataSession({ engine, sources: [], maxRows: 10 });
+  const booleanProfile = session.materializeBoolean({
+    handle: 'boolean-result',
+    value: true,
+    query: 'ASK WHERE { ?s ?p ?o }',
+  });
+  assert.equal(booleanProfile.kind, 'boolean');
+  assert.deepEqual(session.page('boolean-result', { limit: 1 }).rows, [{ value: true }]);
+
+  const graphProfile = session.materializeQuads({
+    handle: 'graph-result',
+    quads: [DataFactory.quad(
+      DataFactory.namedNode('https://example.test/s'),
+      DataFactory.namedNode('https://example.test/p'),
+      DataFactory.literal('value', 'en'),
+    )],
+    query: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o } LIMIT 1',
+  });
+  assert.equal(graphProfile.kind, 'quads');
+  assert.equal(graphProfile.count, 1);
+  assert.equal(session.page('graph-result', { limit: 1 }).rows[0].objectLanguage, 'en');
+});
+
 test('emits a bounded typed table display with compact provenance and safe scalar cells', async() => {
   const { engine, store, query } = fixture();
   const session = initializeLinkedDataSession({ engine, sources: [store] });

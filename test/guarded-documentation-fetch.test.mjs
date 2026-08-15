@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { createGuardedDocumentationFetch, getDocumentationProfile } from '../lib/guarded-documentation-fetch.mjs';
+import { createDocumentationClient, createGuardedDocumentationFetch, getDocumentationProfile } from '../lib/guarded-documentation-fetch.mjs';
 
 const profile = getDocumentationProfile();
 
@@ -11,13 +11,22 @@ function htmlResponse(body = '<html><body>schema</body></html>') {
 test('retrieves only the pinned UniProt schema document with provenance', async() => {
   let received;
   const guard = createGuardedDocumentationFetch({ fetchImpl: async(url, init) => { received = { url: String(url), init }; return htmlResponse(); } });
-  const response = await guard.fetchDocument(profile.sources[0]);
+  const { response, receipt } = await guard.fetchDocument(profile.sources[0]);
   assert.equal(await response.text(), '<html><body>schema</body></html>');
   assert.equal(received.init.method, 'GET');
   assert.equal(received.init.redirect, 'error');
-  assert.equal(guard.provenance()[0].source, profile.sources[0]);
-  assert.equal(guard.provenance()[0].contentType, 'text/html');
-  assert.match(guard.provenance()[0].sha256, /^[a-f0-9]{64}$/);
+  assert.equal(receipt.source, profile.sources[0]);
+  assert.equal(receipt.contentType, 'text/html');
+  assert.match(receipt.sha256, /^[a-f0-9]{64}$/);
+  assert.deepEqual(guard.provenance(), [receipt]);
+});
+
+test('convenience client selects the named profile and returns response with receipt', async() => {
+  const client = createDocumentationClient({ fetchImpl: async() => htmlResponse() });
+  const { response, receipt } = await client.fetch('uniprotRdfSchema');
+  assert.equal(await response.text(), '<html><body>schema</body></html>');
+  assert.equal(receipt.source, profile.sources[0]);
+  assert.equal(receipt.status, 200);
 });
 
 test('rejects redirects by policy, other sources, wrong types, and oversized documents', async() => {

@@ -1,0 +1,12 @@
+{
+  "apiVersion": "linked-data-repl/v1",
+  "kind": "EvidencePack",
+  "metadata": { "id": "uniprot", "version": "2026-08-15", "title": "UniProt Linked Data" },
+  "resources": [
+    { "id": "ontology", "role": "ontology", "uri": "https://purl.uniprot.org/html/index-en.html", "authority": "canonical", "retrievalPolicy": "uniprotRdfSchema", "mediaTypes": ["text/html"] },
+    { "id": "examples", "role": "query-examples", "uri": "https://sparql.uniprot.org/.well-known/sparql-examples/", "authority": "official", "retrievalPolicy": "user-approved-web", "mediaTypes": ["text/html"] },
+    { "id": "graph-description", "role": "dataset-description", "uri": "https://sparql.uniprot.org/uniprot", "authority": "canonical", "retrievalPolicy": "user-approved-web", "mediaTypes": ["text/html"] }
+  ],
+  "access": { "queryPolicy": "uniprotRheaWikidataFederation", "endpointRole": "primary" },
+  "declarations": { "namedGraphs": [{ "iri": "http://sparql.uniprot.org/uniprot", "evidence": { "resource": "graph-description", "locator": "Named graph" } }] }
+}

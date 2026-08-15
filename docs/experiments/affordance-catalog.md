@@ -1,6 +1,10 @@
-# Schema-derived affordance catalog experiment
+# Legacy schema-derived affordance catalog experiment
 
-## Question
+## Status
+
+**Legacy experimental surface.** The catalog is retained as a record and compatibility code, but it is no longer agent-facing. It over-combined evidence locations, terms, example motifs, and trajectory selection. Its replacement is the minimal evidence manifest described in [the goal-loop dossier](goal-loop-state-graph.md).
+
+## Original question
 
 Can a worker shorten its query-construction trajectory by consulting a compact, source-backed catalog of ontology prefixes, terms, endpoint roles, and official query motifs before generating a SPARQL query?
 

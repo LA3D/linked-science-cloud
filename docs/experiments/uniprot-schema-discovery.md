@@ -15,7 +15,7 @@ It is the canonical rendered form reached from the UniProt RDF ontology IRI. Ret
 ## Proposed REPL procedure
 
 1. Satisfy persistent-REPL preflight.
-2. Use `createGuardedDocumentationFetch` and `uniprotRdfSchema` to retrieve the source once.
+2. Use `createDocumentationClient().fetch('uniprotRdfSchema')` to retrieve the source once. It returns `{ response, receipt }`: retain `response` in the REPL and use `receipt` for compact provenance.
 3. Keep the full source text resident only in the REPL; retain a compact view with source URL, hash, byte length, known term names, and operation ID in the context map.
 4. Derive the navigation path `up:Protein → up:annotation → up:catalyticActivity` from the retrieved schema view and create an affordance plan. Do not run SPARQL.
 5. In a second REPL call, reuse the retained schema view and plan; report the cited operation IDs and a compact explanation.

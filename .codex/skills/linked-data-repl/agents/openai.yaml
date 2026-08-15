@@ -1,4 +1,4 @@
 interface:
   display_name: "Linked Data REPL"
-  short_description: "Run safe persistent RDF and SPARQL experiments"
-  default_prompt: "Use $linked-data-repl to run a read-only in-memory SPARQL experiment."
+  short_description: "Explore Linked Data with guarded persistent state"
+  default_prompt: "Use $linked-data-repl to answer a Linked Data question from authoritative evidence with bounded read operations."

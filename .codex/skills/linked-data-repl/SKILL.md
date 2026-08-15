@@ -1,139 +1,105 @@
 ---
 name: linked-data-repl
-description: Run small, read-only RDF and SPARQL experiments with a persistent Node JavaScript REPL and local Communica dependencies. Use when an in-memory synthetic graph must be queried across multiple REPL calls, or when verifying that local Communica resolution and REPL state persist.
+description: Explore RDF, ontologies, and approved public SPARQL sources through a persistent Node JavaScript REPL with Communica. Use for evidence-grounded Linked Data questions, schema discovery, bounded read queries, retained result handles, and compact presentation of large results.
 ---
 
 # Linked Data REPL
 
-Use this project-local experimental workflow for synthetic, read-only SPARQL work. It is not an endpoint client, a data-import workflow, or a write mechanism.
+Use this experimental project as a goal-directed, read-only Linked Data workspace. Let the user's goal and current evidence determine the route; do not impose a fixed reasoning or narration sequence.
 
-## Preconditions
+## Invariants
 
-1. Work from this project directory.
-2. Before changing configuration, check local resolution in the persistent REPL:
+- Work from this repository and preserve unrelated changes.
+- Treat remembered terms, prefixes, graph paths, and endpoint behavior as hypotheses until supported by retrieved source evidence.
+- Distinguish prior belief, source evidence, query-result evidence, and synthesis.
+- Never interpret an unavailable source or empty result as proof of global absence.
+- Use only an endpoint or documentation profile explicitly approved for the current task. Do not substitute hosts, paths, provider URLs, REST routes, or federation targets.
+- Keep live operations read-only, bounded, pinned, redirect-free, timed out, and provenance-bearing through the project guard.
+- Keep large documents and results in the REPL behind named bindings or handles. Return only compact metadata, bounded pages or aggregates, provenance, and uncertainty.
+- Do not change global Codex configuration, install packages, export data, commit, push, or write externally unless the user separately authorizes it.
 
-   ```js
-   await import.meta.resolve('@comunica/query-sparql')
-   ```
+## Persistent REPL
 
-3. If it does not resolve, stop and report the missing local dependency. Do not change `~/.codex/config.toml`, sandbox mode, or global module paths without approval.
-4. Keep all test triples synthetic and in REPL memory. Do not contact an endpoint unless the user explicitly approves that endpoint for the current task.
+Use the persistent JavaScript REPL whenever the task needs resident documents, engines, results, or derived state. Verify the capability with an actual REPL call before making a persistence claim; do not substitute terminal output, repository prose, or conversation memory for live state.
 
-## Persistent REPL preflight — hard gate
-
-Any task that invokes this agentic-REPL workflow must begin with this preflight **before source-level analysis, a fixture, or repository prose can satisfy the goal**. Verify that the persistent JS REPL tool is available and make an **actual JS REPL call** that emits a state receipt. The receipt must name the tool/capability, explicit execution mode `persistent-js-repl`, Communica module resolution, session and map binding states, and actual operation IDs. A compact shape is:
-
-```js
-{
-  tool: 'mcp__node_repl__js',
-  capability: 'persistent-js-repl',
-  executionMode: 'persistent-js-repl',
-  moduleResolution: { '@comunica/query-sparql': '...' },
-  bindings: {
-    session: { state: 'present' | 'absent', name: '...' },
-    map: { state: 'present' | 'absent', name: '...' },
-  },
-  operations: [{ id: '...', kind: 'materialize' | 'handle-inspection' | 'recover' | 'rematerialize', handle: '...', actual: true }],
-}
-```
-
-If the tool is unavailable, stop with `missing-persistent-repl`. Do not fall back to a terminal/CLI script, and do not infer an execution-backed conclusion or retained state from repository source, a fixture, or conversation history. Source/fixture inspection may satisfy a goal only when the user explicitly requests **static source inspection**. CLI scripts such as `npm run session:synthetic` are deterministic fixtures only, never evidence of a retained session. Every stateful claim must cite a prior operation ID from an actual REPL-state receipt; a coordinator must reject uncited claims and source-only conclusions for an agentic-REPL task.
-
-## Persistent session pattern
-
-Run the initialization cell once. Use top-level `var` so a later call can reuse or replace the bindings without declaration conflicts.
+Resolve project dependencies in the REPL with:
 
 ```js
-var comunica = await import('@comunica/query-sparql');
-var n3 = await import('n3');
-var engine = new comunica.QueryEngine();
-var store = new n3.Store([
-  n3.DataFactory.quad(
-    n3.DataFactory.namedNode('https://example.test/alex'),
-    n3.DataFactory.namedNode('https://example.test/name'),
-    n3.DataFactory.literal('Alex'),
-  ),
-]);
-var rows = await (await engine.queryBindings(
-  'SELECT ?name WHERE { <https://example.test/alex> <https://example.test/name> ?name }',
-  { sources: [store] },
-)).toArray();
-nodeRepl.write(rows[0]?.get('name')?.value);
+await import.meta.resolve('@comunica/query-sparql')
 ```
 
-Make a second REPL call that uses the existing `engine` and `store`; do not reinitialize them. Verify both the retained state and a query result before claiming persistence.
+Use dynamic imports and top-level `var` for reusable bindings. Inspect a binding again in a later REPL call before claiming it persisted. A reset destroys resident state.
+
+Documentation-only or static-source tasks do not require a REPL preflight unless they claim REPL execution or retention.
+
+## Evidence resources
+
+For UniProt work, `resources/uniprot.evidence-pack.json` is a minimal evidence manifest. It identifies the authoritative ontology documentation, official query examples, dataset description, named graph declaration, and query-policy reference. It does not supply query plans, term inventories, motifs, or fallback answers.
+
+Choose and retrieve resources according to the goal. If authoritative evidence cannot be acquired, keep the relevant claim unresolved rather than falling back to the legacy affordance planner.
+
+## Documentation retrieval
+
+Use the ergonomic guarded client:
 
 ```js
-var persistedRows = await (await engine.queryBindings(
-  'SELECT ?name WHERE { <https://example.test/alex> <https://example.test/name> ?name }',
-  { sources: [store] },
-)).toArray();
-nodeRepl.write({ engineRetained: typeof engine?.queryBindings === 'function', name: persistedRows[0]?.get('name')?.value });
+var documentationModule = await import('./lib/guarded-documentation-fetch.mjs');
+var documentationClient = documentationModule.createDocumentationClient();
+var { response, receipt } = await documentationClient.fetch('uniprotRdfSchema');
 ```
 
-Treat a REPL reset as destructive to these bindings; initialize again afterward.
+Keep `response` or its text resident in the REPL. Use `receipt` directly for source, status, content type, byte length, SHA-256, redirect policy, and timeout. The `uniprotRdfSchema` profile authorizes only the pinned UniProt ontology documentation GET; it does not authorize a SPARQL request.
 
-For any quantitative or resident-state claim, inspect the live binding in the same REPL call. Do not infer a store count, handle count, or retention state from how a session was initialized.
+## Guarded SPARQL
 
-## Guarded Identifiers.org SPARQL
+Use `lib/guarded-sparql-transport.mjs` for approved live queries. It is the enforcement point for syntax, read operation, endpoint, bounds, redirects, timeouts, retries, federation targets, and provenance. Pass its Communica options at the top level, not nested under `context`.
 
-Use `lib/guarded-sparql-transport.mjs` for live queries. It is the enforcement point: it parses one bounded read query, rejects updates, pins the endpoint profile, blocks redirects, sets timeout/retry controls, and records provenance. Pass its options directly to `QueryEngine`; do not nest them under `context`.
-
-The standard `identifiersOrg` profile pins `https://sparql.api.identifiers.org/sparql`. The separate `identifiersOrgLiveTable` demonstration profile pins the same endpoint but permits only `SELECT` and caps materialization at 20 rows. It is not a replacement for the standard profile. Run the UniProt example with `npm run query:identifiers-uniprot`; it uses Communica only. Read [the Identifiers.org schema reference](references/identifiers-org-sparql.md) before changing its query.
-
-GET and POST are both accepted only for a syntactically valid `SELECT`, `ASK`, `CONSTRUCT`, or `DESCRIBE` query. Keep results at the profile cap and report its provenance; a transport attempt or empty result is not proof of registry semantics.
-
-The approved `uniprotRheaWikidataFederation` profile starts at `https://sparql.uniprot.org/sparql` and permits only `SELECT` with `LIMIT 1-10`. Its only permitted `SERVICE` targets are exactly `https://sparql.rhea-db.org/sparql` and `https://query.wikidata.org/sparql`; all three endpoints are exact HTTPS path pins. `SERVICE SILENT`, variables in `SERVICE`, every other host/path, updates, and unbounded queries remain blocked. Treat each federated query as a single bounded navigation turn and return per-request transport provenance. Do not add another endpoint, dereference provider URLs, or enable federation under another profile without explicit approval.
-
-## Schema affordances before query construction
-
-For UniProt/Rhea/Wikidata work, consult `lib/linked-data-affordances.mjs` before composing a query. In the persistent REPL, bind one catalog module and checkpoint:
+For a live read result that should remain available, use the typed atomic worker-facing operation:
 
 ```js
-var affordanceModule = await import('./lib/linked-data-affordances.mjs');
-var affordances = affordanceModule.uniprotRheaWikidataAffordances;
-var affordanceCheckpoint = affordances.catalogCheckpoint();
-var lookup = affordances.lookupAffordances({ tags: ['protein', 'rhea', 'wikidata', 'drug', 'federated'] });
-var plan = affordances.createAffordancePlan({ motifId: lookup.motifs[0].id, limit: 5 });
-affordances.validateAffordancePlan(plan);
+var sessionModule = await import('./lib/repl-linked-data-session.mjs');
+var transportModule = await import('./lib/guarded-sparql-transport.mjs');
+var engine = new (await import('@comunica/query-sparql')).QueryEngine();
+var session = sessionModule.initializeLinkedDataSession({ engine, sources: [], maxRows: profile.maxResults });
+var { handle, receipt } = await transportModule.queryToHandleGuarded({ session, handle: 'result-name', query, profile });
 ```
 
-Treat prefixes as typed affordances: each has a namespace, endpoint role, terms, and official-source provenance. Select a motif by task concepts, cite its source URL, and retain only pack ID/version, motif ID, prefixes, service targets, and limit in the compact map. A plan is documentation guidance, not a query result or authorization to execute. Write the actual query only after plan validation, then pass it through the guarded transport. Do not invent a `SERVICE` target or use catalog contents as proof of live ontology behavior.
+This validates the session, handle, query type, and result cap before network access; performs the guarded query once; retains the typed result; and returns one receipt containing all transport attempts and metadata-only result shape. It deliberately returns no automatic row or quad sample: explicitly page the handle when bounded values are needed, because literals can be large. The transport also enforces a response-byte ceiling, because a SPARQL `LIMIT` does not necessarily bound the size of a graph response. `SELECT` yields a bindings handle, `ASK` a boolean handle, and `CONSTRUCT` or `DESCRIBE` a quad handle. The installed Communica engine handles `SELECT`, `ASK`, and `CONSTRUCT`; endpoint-native `DESCRIBE` uses the same guarded transport and parses its bounded RDF response with N3 because this engine build has no DESCRIBE operation actor. If an operation fails, inspect the thrown error's `receipt` instead of repeating the query blindly.
 
-The planning surface is resource-neutral. `UNIPROT_RHEA_WIKIDATA_AFFORDANCE_PACK` is an exemplar passed to `createAffordanceCatalog`; it is not built into generic lookup, planning, or validation. Add a new Linked Data resource through a reviewed versioned pack plus an explicit endpoint profile, then use the same workflow. Read [the affordance experiment](../../../docs/experiments/affordance-catalog.md) for the pack contract and initial motifs.
+Available profiles include:
 
-## Documentation-source discovery
+- `identifiersOrg`: bounded read operations against the pinned Identifiers.org SPARQL endpoint.
+- `identifiersOrgLiveTable`: `SELECT` only, capped at 20 rows for a live-table demonstration.
+- `uniprotRead`: bounded `ASK`, `SELECT`, `CONSTRUCT`, and carefully qualified `DESCRIBE` against UniProt only; no `SERVICE`.
+- `uniprotRheaWikidataFederation`: starts at the pinned UniProt endpoint, allows bounded `SELECT`, and permits only the pinned Rhea and Wikidata `SERVICE` targets.
 
-Documentation retrieval is a separate capability from SPARQL. Use `lib/guarded-documentation-fetch.mjs` only with an explicitly approved documentation profile. For the current UniProt schema experiment, `uniprotRdfSchema` pins only `https://purl.uniprot.org/html/index-en.html`, with GET, HTML-only content, no redirects, 8-second timeout, 2 MB maximum, and SHA-256 provenance. Keep the full document resident in the REPL; record only source, hash, byte length, selected terms, operation IDs, and plan metadata in the compact map. Do not treat a documentation profile as permission to query data. Read [the schema-discovery protocol](../../../docs/experiments/uniprot-schema-discovery.md) before a live documentation run.
+Choose `ASK`, `SELECT`, `CONSTRUCT`, or carefully qualified `DESCRIBE` according to the information need. Do not default to `SELECT` merely because it is familiar. A transport receipt proves the request occurred; it does not by itself prove a semantic interpretation.
 
-## Minimal invariants for goal-directed navigation
+Read `references/identifiers-org-sparql.md` only for Identifiers.org schema work. Read `docs/experiments/goal-loop-state-graph.md` only when changing the evidence/session architecture.
 
-Treat remembered prefixes, terms, paths, and endpoint behavior as candidate hypotheses. Confirm, correct, reject, or leave them unresolved against a pinned source before they support a bounded `ASK`, `SELECT`, `CONSTRUCT`, or carefully qualified `DESCRIBE` plan. Keep prior belief, source evidence, query-result evidence, and synthesis distinct.
+## Retained results and presentation
 
-Do not infer global absence from an empty result, or factual absence from an unavailable schema. A failed schema acquisition leaves schema state unavailable; it cannot justify a schema-derived query or frontier. Stateful claims must cite a tool-generated session/handle operation. Keep bulk documents and results behind handles, reporting only bounded metadata/views.
+Use `lib/repl-linked-data-session.mjs` when results should survive across REPL calls. For live results, prefer `queryToHandleGuarded`; use direct materialization methods only for values already obtained through another verified guard. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy` operations rather than rerunning or dumping the source result.
 
-Let the existing Codex goal and current evidence choose the next action: acquire/index/search a source, validate a plan, use an appropriate read operation, inspect a handle, or stop/request approval. Do not force a fixed narration sequence. The project must not replace Codex's goal lifecycle; its future layer records only Linked Data evidence/session state attached to that goal. The current project has transitional map/receipt helpers but not this target layer; read [the goal-loop dossier](../../../docs/experiments/goal-loop-state-graph.md) before extending this surface.
+Use `displayTable` for an inline table model of at most 10 scalar rows. A display model is a bounded projection, not the result itself. Export requires separate user authorization and is not implemented by this skill.
 
-## Context-map recovery experiment
+## Reporting
 
-Run `npm run experiment:context-map` for the one-step recovery slice, `npm run experiment:context-map-two-turn` for turn one, or `npm run experiment:context-map-two-turn-turn2` after a coordinator records a selection from the saved frontier. They preserve the guarded profile, write timestamped receipts under `artifacts/context-map-runs/`, and record only the assigned goal, bounded worker report, transport provenance, compact checkpoint, and explicit coordinator decision—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
+Return the answer at the scale the user needs. Include enough compact evidence to distinguish:
 
-## Persistent result handles
+- what source or query was actually used;
+- what remains resident in the REPL;
+- what the bounded result supports;
+- what remains uncertain or would require another source or permission.
 
-For local synthetic navigation, initialize `LinkedDataReplSession` once in the persistent REPL and materialize a result under a symbolic handle. Put only `checkpoint()` metadata in a context map: handles, profile, bounded sample, provenance, and lineage—not table rows or query text. Use bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy`; never dump a handle's full result. A visualization, table, or export is a future consumer: build it only from an explicit bounded page or derived view, retaining its source handle and provenance. Never pass a whole endpoint result to a visualization or coordinator context. A REPL reset invalidates resident handles, so call `recover(checkpoint)` only to recognize what must be rematerialized. `npm run session:synthetic` is a deterministic CLI fixture, not a persistent-state demonstration.
+Do not manufacture a map, receipt, frontier, or operation narrative merely to satisfy a template. Codex owns the task and worker lifecycle; this project contributes only Linked Data evidence and session state.
 
-For an explicitly approved live-table demonstration, create a retention-only session (`sources: []`, `maxRows: 20`), execute exactly one `queryBindingsGuarded` call with `identifiersOrgLiveTable`, then pass its already-guarded bindings to `materializeBindings`. Do not call session query materialization for a live endpoint. In a second REPL call, reuse that same handle for `profile` and a page of at most 10 rows; it must not query again.
+## Verification after code changes
 
-For inline presentation, call `displayTable({ handle, title, columns, offset, limit })` on a retained handle. It emits a typed table model—not HTML—with `kind`, selected column descriptors, at most 10 scalar-only rows, page metadata, and `source.handle` plus a compact provenance summary. It excludes query text, hashes, and all unpaged rows. Keep chart kinds as a future extension; any future display/export consumer must start from the same bounded handle page or derived view.
+Run:
 
-For future large-result export, require explicit user authorization and stream a retained handle only to a controlled project artifact area, never coordinator context. Avoid overwrite by default and keep the export distinct from the in-memory handle. Its context-map entry must record artifact path and format, schema, row count, hash, provenance, and lineage. This skill does not implement or perform exports.
-
-## Transitional map/receipt helpers
-
-The existing map and receipt helpers are experimental instrumentation, not an agent program. Use them to preserve compact provenance and state evidence where useful, but do not manufacture map fields or narrate a fixed loop merely to satisfy a form. Conversation memory is not map state, and a raw result dump is not map state. Until the target state graph exists, inspect live bindings before asserting any session/handle state.
-
-## Verification
-
-Run `npm run smoke` for the disposable command-line check. It queries the same kind of in-memory synthetic graph and must return `synthetic Communica SELECT passed: Alex`.
-
-This baseline was verified in this project on 2026-08-15 with the local `@comunica/query-sparql` and `n3` packages, an in-memory `SELECT`, and a second REPL call that retained the engine and store. Reconfirm in a new session before relying on it.
+```sh
+npm test
+npm run smoke
+git diff --check
+```
