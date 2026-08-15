@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "recordType": "trace-derived-open-goal-run",
+  "recordedDate": "2026-08-15",
+  "sourceTask": {
+    "threadId": "01a00632-679c-7e63-be22-983dd57ecabd",
+    "turnId": "01a00632-6832-70f0-a5e2-18274b862690",
+    "goal": "Find one human protein with a documented catalytic activity and explain its protein, annotation, activity, and reaction relationship using authoritative UniProt evidence."
+  },
+  "evidenceBasis": {
+    "kind": "coordinator-audited-task-trace",
+    "residentReceiptAudit": "unavailable",
+    "note": "The worker verified resident handles at run completion, but the later no-network audit found the REPL bindings unavailable. Missing receipt fields were not reconstructed."
+  },
+  "documentation": {
+    "source": "https://purl.uniprot.org/html/index-en.html",
+    "status": 200,
+    "contentType": "text/html",
+    "byteLength": 501448,
+    "sha256": "12235b4c56c5b36642bc2816adbd3ced6b49a71251e29ae8721fe575b103c998",
+    "timestamp": null
+  },
+  "operations": [
+    {
+      "toolCallId": "exec-45de5b45-60b6-43d2-9a81-1c404580efd6",
+      "handle": "human-catalytic-protein",
+      "queryType": "SELECT",
+      "limit": 10,
+      "querySha256": null,
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "method": null,
+      "timestamp": null,
+      "status": 200,
+      "result": { "kind": "bindings", "count": 1 }
+    },
+    {
+      "toolCallId": "exec-ce6f9bba-3752-4b7a-9f9a-d3deefd8663c",
+      "handle": "catalytic-annotation-details",
+      "queryType": "SELECT",
+      "limit": 10,
+      "querySha256": null,
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "method": null,
+      "timestamp": null,
+      "status": 200,
+      "result": { "kind": "bindings", "count": 10 }
+    },
+    {
+      "toolCallId": "exec-be4fd2b1-5123-4d2a-a8cf-0b5e92595782",
+      "handle": "catalyzed-reaction-equation",
+      "queryType": "SELECT",
+      "limit": 1,
+      "querySha256": null,
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "method": null,
+      "timestamp": null,
+      "status": 200,
+      "result": { "kind": "bindings", "count": 1 }
+    }
+  ],
+  "observed": {
+    "protein": "http://purl.uniprot.org/uniprot/P00338",
+    "mnemonic": "LDHA_HUMAN",
+    "fullName": "L-lactate dehydrogenase A chain",
+    "annotation": "http://purl.uniprot.org/uniprot/P00338#SIP3D6CA33E74DCF341",
+    "activity": "http://purl.uniprot.org/uniprot/P00338#SIP46777A9C52228B65",
+    "reaction": "http://rdf.rhea-db.org/23444",
+    "equation": "(S)-lactate + NAD(+) = pyruvate + NADH + H(+)"
+  },
+  "retainedState": {
+    "atRunCompletion": [
+      { "handle": "human-catalytic-protein", "status": "ready" },
+      { "handle": "catalytic-annotation-details", "status": "ready" },
+      { "handle": "catalyzed-reaction-equation", "status": "ready" }
+    ],
+    "atArtifactCapture": "unavailable"
+  },
+  "trajectory": {
+    "candidateBasis": "pretrained exact-accession hypothesis, then verified",
+    "operationSequence": ["SELECT", "SELECT", "SELECT"],
+    "otherEndpointsContacted": []
+  },
+  "limitations": [
+    "Per-query transport timestamps, methods, retry values, and query hashes were not available after resident state was lost.",
+    "P00338 was a verified candidate, not the result of an exhaustive human-protein survey.",
+    "The 10-row node-detail operation reached its cap and is not a complete node inventory.",
+    "Rhea vocabulary data was served by UniProt; no Rhea endpoint was contacted."
+  ]
+}

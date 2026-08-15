@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "recordType": "resident-audited-open-goal-run",
+  "recordedDate": "2026-08-15",
+  "sourceTask": {
+    "threadId": "01a00678-64be-7531-8073-b15a6d760efb",
+    "turnId": "01a00678-654d-71c3-a514-5d213514c88e",
+    "goal": "Produce an authoritative UniProt relationship subgraph for one human protein, its catalytic-activity annotation, catalytic activity, and catalyzed reaction."
+  },
+  "evidenceBasis": {
+    "kind": "resident-repl-audit",
+    "residentAtCapture": true,
+    "note": "A later no-network REPL call re-inspected the existing documentation receipt, operation receipts, bounded pages, and handle status."
+  },
+  "documentation": {
+    "source": "https://purl.uniprot.org/html/index-en.html",
+    "timestamp": "2026-08-15T17:29:40.346Z",
+    "method": "GET",
+    "status": 200,
+    "contentType": "text/html",
+    "byteLength": 501448,
+    "sha256": "12235b4c56c5b36642bc2816adbd3ced6b49a71251e29ae8721fe575b103c998",
+    "redirect": "error",
+    "timeoutMs": 8000
+  },
+  "operations": [
+    {
+      "handle": "human-egfr-catalytic-subgraph",
+      "queryType": "CONSTRUCT",
+      "limit": 1,
+      "querySha256": "804fbb7953beafffe0faa4d6224f3cd3f1a1d40f3387182e71d437c74cf71f98",
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "timestamp": "2026-08-15T17:30:38.274Z",
+      "method": "POST",
+      "status": 200,
+      "timeoutMs": 8000,
+      "retries": 0,
+      "result": {
+        "kind": "quads",
+        "count": 6,
+        "columns": ["graph", "object", "objectDatatype", "objectLanguage", "objectType", "predicate", "subject"]
+      }
+    },
+    {
+      "handle": "human-p00533-identity",
+      "queryType": "SELECT",
+      "limit": 1,
+      "querySha256": "5b490a7464f6e0117cb4aca9f899536d359f34bfd9e8f4aacced9bfa04948794",
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "timestamp": "2026-08-15T17:30:59.868Z",
+      "method": "GET",
+      "status": 200,
+      "timeoutMs": 8000,
+      "retries": 0,
+      "result": {
+        "kind": "bindings",
+        "count": 1,
+        "columns": ["fullName", "mnemonic"]
+      }
+    }
+  ],
+  "observed": {
+    "graphPage": { "offset": 0, "limit": 10, "total": 6 },
+    "graph": [
+      { "subject": "http://purl.uniprot.org/uniprot/P00533", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://purl.uniprot.org/core/Protein" },
+      { "subject": "http://purl.uniprot.org/uniprot/P00533", "predicate": "http://purl.uniprot.org/core/organism", "object": "http://purl.uniprot.org/taxonomy/9606" },
+      { "subject": "http://purl.uniprot.org/uniprot/P00533", "predicate": "http://purl.uniprot.org/core/annotation", "object": "http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6" },
+      { "subject": "http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://purl.uniprot.org/core/Catalytic_Activity_Annotation" },
+      { "subject": "http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6", "predicate": "http://purl.uniprot.org/core/catalyticActivity", "object": "http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A" },
+      { "subject": "http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A", "predicate": "http://purl.uniprot.org/core/catalyzedReaction", "object": "http://rdf.rhea-db.org/10596" }
+    ],
+    "identityPage": { "offset": 0, "limit": 1, "total": 1 },
+    "identity": { "mnemonic": "EGFR_HUMAN", "fullName": "Epidermal growth factor receptor" }
+  },
+  "retainedState": [
+    { "handle": "human-egfr-catalytic-subgraph", "status": "ready", "recoverable": true, "kind": "quads", "count": 6 },
+    { "handle": "human-p00533-identity", "status": "ready", "recoverable": true, "kind": "bindings", "count": 1 }
+  ],
+  "trajectory": {
+    "candidateBasis": "pretrained exact-accession hypothesis, then verified",
+    "operationSequence": ["CONSTRUCT", "SELECT"],
+    "operationPrompted": false,
+    "otherEndpointsContacted": []
+  },
+  "limitations": [
+    "One deliberately selected LIMIT 1 catalytic path; not an exhaustive annotation inventory.",
+    "Rhea 10596 was observed only as an IRI in UniProt RDF; no Rhea source was contacted.",
+    "Reaction equation, participants, direction, and physiological status were not established.",
+    "Resident handles and documents are lost if the REPL resets.",
+    "The worker claimed the evidence manifest confirmed the sources, but its visible trajectory did not contain a manifest read."
+  ]
+}
