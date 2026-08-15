@@ -41,8 +41,14 @@ npm run smoke
 
 For the tested REPL initialization and persistence check, use the project-local [Linked Data REPL skill](.codex/skills/linked-data-repl/SKILL.md).
 
+## Capability map and next work
+
+- **Synthetic session:** local in-memory RDF is materialized under a symbolic handle and can be profiled, paged, or derived without printing the full result.
+- **Guarded live table:** the separate Identifiers.org demonstration profile pins one SPARQL endpoint and permits only bounded read-only registry tables through Communica. It is not a general endpoint client.
+- **Presentation handoff:** a retained handle can yield a typed, bounded table model with source handle and compact provenance. It is not HTML, a full result, or a UniProt record browser.
+
+Read the living [roadmap](docs/ROADMAP.md), the [experiment dossiers](docs/experiments/), and generated [context-map receipts](artifacts/context-map-runs/) for scope and evidence. The planned [large-result export protocol](docs/experiments/large-result-export.md) is documentation only: no exporter or generated export artifact exists yet.
+
 ## Current live-navigation boundary
 
-The first approved live endpoint trial is **Identifiers.org only**. It permits narrowly bounded, read-only navigation: the resolver route for `taxonomy:9606` and the registry route for the `taxonomy` namespace. It does not authorize Wikidata, UniProt, WikiPathways, PubChem, any other endpoint, or any mutation-capable method or SPARQL form.
-
-The current REPL trial reached neither Identifiers.org host because DNS lookup failed before HTTP. Its exact requests, controls, and limitation are recorded in [the trial provenance](docs/identifiers-org-readonly-trial.md). Do not substitute another endpoint or runtime without explicit approval.
+Live use remains explicitly approved and profile-bound. The guarded demonstration profile is limited to the exact Identifiers.org SPARQL endpoint, bounded read-only queries, and recorded transport provenance. It does not authorize provider URLs, REST access, other endpoints, federation, mutation-capable methods, or unbounded result handling. Do not substitute another endpoint or runtime without explicit approval.

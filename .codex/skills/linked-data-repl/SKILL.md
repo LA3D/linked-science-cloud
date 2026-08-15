@@ -57,13 +57,23 @@ Treat a REPL reset as destructive to these bindings; initialize again afterward.
 
 Use `lib/guarded-sparql-transport.mjs` for live registry queries. It is the enforcement point: it parses one bounded read query, rejects updates and `SERVICE`, pins the endpoint profile, blocks redirects, sets timeout/retry controls, and records provenance. Pass its options directly to `QueryEngine`; do not nest them under `context`.
 
-The only initial profile is `https://sparql.api.identifiers.org/sparql`. Run the UniProt example with `npm run query:identifiers-uniprot`; it uses Communica only. Read [the Identifiers.org schema reference](references/identifiers-org-sparql.md) before changing its query.
+The standard `identifiersOrg` profile pins `https://sparql.api.identifiers.org/sparql`. The separate `identifiersOrgLiveTable` demonstration profile pins the same endpoint but permits only `SELECT` and caps materialization at 20 rows. It is not a replacement for the standard profile. Run the UniProt example with `npm run query:identifiers-uniprot`; it uses Communica only. Read [the Identifiers.org schema reference](references/identifiers-org-sparql.md) before changing its query.
 
 GET and POST are both accepted only for a syntactically valid `SELECT`, `ASK`, `CONSTRUCT`, or `DESCRIBE` query. Keep results at the profile cap and report its provenance; a transport attempt or empty result is not proof of registry semantics.
 
 ## Context-map recovery experiment
 
 Run `npm run experiment:context-map` for the one-step recovery slice, `npm run experiment:context-map-two-turn` for turn one, or `npm run experiment:context-map-two-turn-turn2` after a coordinator records a selection from the saved frontier. They preserve the guarded profile, write timestamped receipts under `artifacts/context-map-runs/`, and record only the assigned goal, bounded worker report, transport provenance, compact checkpoint, and explicit coordinator decision—not coordinator conversation history. Read [the experiment protocol](../../../docs/experiments/coordinator-worker-context-map.md) before extending its scenario.
+
+## Persistent result handles
+
+For local synthetic navigation, initialize `LinkedDataReplSession` once in the persistent REPL and materialize a result under a symbolic handle. Put only `checkpoint()` metadata in a context map: handles, profile, bounded sample, provenance, and lineage—not table rows or query text. Use bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy`; never dump a handle's full result. A visualization, table, or export is a future consumer: build it only from an explicit bounded page or derived view, retaining its source handle and provenance. Never pass a whole endpoint result to a visualization or coordinator context. A REPL reset invalidates resident handles, so call `recover(checkpoint)` only to recognize what must be rematerialized. Run `npm run session:synthetic` for the local demonstration.
+
+For an explicitly approved live-table demonstration, create a retention-only session (`sources: []`, `maxRows: 20`), execute exactly one `queryBindingsGuarded` call with `identifiersOrgLiveTable`, then pass its already-guarded bindings to `materializeBindings`. Do not call session query materialization for a live endpoint. In a second REPL call, reuse that same handle for `profile` and a page of at most 10 rows; it must not query again.
+
+For inline presentation, call `displayTable({ handle, title, columns, offset, limit })` on a retained handle. It emits a typed table model—not HTML—with `kind`, selected column descriptors, at most 10 scalar-only rows, page metadata, and `source.handle` plus a compact provenance summary. It excludes query text, hashes, and all unpaged rows. Keep chart kinds as a future extension; any future display/export consumer must start from the same bounded handle page or derived view.
+
+For future large-result export, require explicit user authorization and stream a retained handle only to a controlled project artifact area, never coordinator context. Avoid overwrite by default and keep the export distinct from the in-memory handle. Its context-map entry must record artifact path and format, schema, row count, hash, provenance, and lineage. This skill does not implement or perform exports.
 
 ## Verification
 

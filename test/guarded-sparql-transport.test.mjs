@@ -4,6 +4,7 @@ import { QueryEngine } from '@comunica/query-sparql';
 import { createGuardedFetch, getEndpointProfile, queryBindingsGuarded, validateReadQuery } from '../lib/guarded-sparql-transport.mjs';
 
 const profile = getEndpointProfile();
+const liveTableProfile = getEndpointProfile('identifiersOrgLiveTable');
 const readQuery = 'SELECT ?s WHERE { ?s ?p ?o } LIMIT 1';
 
 function response() {
@@ -37,6 +38,12 @@ test('rejects updates, SERVICE delegation, malformed syntax, and other endpoints
   assert.throws(() => validateReadQuery('SELECT * WHERE { SERVICE <https://example.test/sparql> { ?s ?p ?o } } LIMIT 1'));
   assert.throws(() => validateReadQuery('SELECT WHERE {'));
   return assert.rejects(() => guard.fetch('https://example.test/sparql?query=' + encodeURIComponent(readQuery), { method: 'GET' }));
+});
+
+test('live-table profile permits only bounded SELECT queries with a 20-row cap', () => {
+  assert.equal(validateReadQuery('SELECT ?s WHERE { ?s ?p ?o } LIMIT 20', liveTableProfile).queryType, 'SELECT');
+  assert.throws(() => validateReadQuery('ASK { ?s ?p ?o }', liveTableProfile));
+  assert.throws(() => validateReadQuery('SELECT ?s WHERE { ?s ?p ?o } LIMIT 21', liveTableProfile));
 });
 
 test('installed Communica uses the guarded top-level fetch option without bypass', async() => {
