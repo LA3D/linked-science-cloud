@@ -1,0 +1,17 @@
+{
+  "name": "linked-data-repl-experiment",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "smoke": "node scripts/smoke.mjs",
+    "test": "node --test",
+    "query:identifiers-uniprot": "node scripts/identifiers-org-uniprot.mjs",
+    "experiment:context-map": "node scripts/context-map-recovery.mjs"
+  },
+  "dependencies": {
+    "@comunica/query-sparql": "^5.3.0",
+    "n3": "^2.2.0",
+    "sparqljs": "^3.7.4"
+  }
+}

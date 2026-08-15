@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linked Data REPL"
+  short_description: "Run safe persistent RDF and SPARQL experiments"
+  default_prompt: "Use $linked-data-repl to run a read-only in-memory SPARQL experiment."

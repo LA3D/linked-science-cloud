@@ -1,0 +1,65 @@
+{
+  "limitations": [
+    "The receipt records an assigned goal and worker report, not the parent coordinator conversation or decision process.",
+    "The context map is a bounded checkpoint aid and does not establish semantic correctness from an empty result."
+  ],
+  "observed": {
+    "assignedGoal": "Evaluate compact-map recovery for one guarded UniProt namespace identity check.",
+    "transportProvenance": [
+      {
+        "at": "2026-08-15T11:46:20.319Z",
+        "endpoint": "https://sparql.api.identifiers.org/sparql",
+        "method": "GET",
+        "ok": true,
+        "queryLimit": 1,
+        "querySha256": "2f1a252204ab8233fb4559c623c4a81adcf6d0ad5be927043310742d95417f04",
+        "queryType": "SELECT",
+        "redirect": "error",
+        "retries": 0,
+        "status": 200,
+        "timeoutMs": 8000
+      }
+    ],
+    "workerReport": {
+      "interpretation": "Bounded namespace evidence was returned.",
+      "rowsObserved": 1,
+      "status": "completed",
+      "stepId": "uniprot-namespace-identity"
+    }
+  },
+  "synthesized": {
+    "compactContextMap": {
+      "budget": {
+        "liveQueriesUsed": 1,
+        "maxLiveQueries": 1,
+        "maxRows": 1
+      },
+      "checkpoints": [
+        {
+          "outcome": "success",
+          "querySha256": "2f1a252204ab8233fb4559c623c4a81adcf6d0ad5be927043310742d95417f04",
+          "rowsObserved": 1,
+          "stepId": "uniprot-namespace-identity",
+          "transportCount": 1
+        }
+      ],
+      "goal": "Evaluate compact-map recovery for one guarded UniProt namespace identity check.",
+      "knownFailures": {},
+      "scope": {
+        "profile": "identifiersOrg",
+        "readOnly": true,
+        "sourceCount": 1
+      },
+      "steps": [
+        {
+          "id": "uniprot-namespace-identity",
+          "status": "success"
+        }
+      ],
+      "version": 1
+    },
+    "recovery": "complete"
+  },
+  "timestamp": "2026-08-15T11:46:20.605Z",
+  "version": 1
+}
