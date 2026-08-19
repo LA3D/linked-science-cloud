@@ -2,30 +2,11 @@
 
 This is a small Codex Desktop experiment for running in-memory RDF/SPARQL work with a persistent Node JavaScript REPL. The local Communica engine and RDF store belong to a worker task; a conversational coordinator delegates a bounded task and receives its evidence-backed result.
 
-## Required Codex Desktop setup
+## Current Codex runtime boundary
 
-Edit `~/.codex/config.toml` yourself. Add or update these settings for live network or browser-style REPL work:
+The Node REPL is supplied by the Codex client; this repository does not package or register it as an MCP server. Tool exposure, project filesystem access, dependency resolution, cross-call persistence, sandbox behavior, and guarded network reachability are separate runtime properties and must be observed rather than inferred from one another.
 
-```toml
-sandbox_mode = "danger-full-access"
-
-[features]
-js_repl = true
-```
-
-After changing the configuration, restart Codex Desktop **and create a fresh worker task**. Existing sessions and workers do not pick up the changed REPL or sandbox settings.
-
-## Danger, danger, Will Robinson
-
-`sandbox_mode = "danger-full-access"` is a **global, unrestricted sandbox setting**. It affects new Codex sessions beyond this project, not just this repository. Enable it only for the short, approved live experiment; never treat it as a project-local permission.
-
-When finished, revert the configuration:
-
-```toml
-sandbox_mode = "workspace-write"
-```
-
-Then restart Codex Desktop again and create a fresh worker task before doing ordinary work.
+The project's historical unrestricted-sandbox and legacy feature-flag recipe is no longer current setup guidance. Do not change global Codex configuration to make this experiment run. A high-priority [read-only diagnosis task](docs/tasks/node-repl-permission-reverification.md) will re-verify coordinator-versus-worker behavior against current official documentation and the current permission model before any fix is proposed.
 
 ## Worker pattern
 
@@ -39,7 +20,7 @@ Run the disposable local check with:
 npm run smoke
 ```
 
-For the tested REPL initialization and persistence check, use the project-local [Linked Data REPL skill](.codex/skills/linked-data-repl/SKILL.md).
+For the tested REPL initialization and persistence check, use the project-local [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md).
 
 ## Capability map and next work
 
@@ -58,7 +39,7 @@ For the tested REPL initialization and persistence check, use the project-local 
 - **Codex-goal-compatible evidence state:** the earlier checklist-style worker guidance is transitional. Codex owns goals and worker lifecycle; the first project-local slice now attaches guarded acquisition and symbolic orientation events to retained Linked Data state. See the [decision and experiment dossier](docs/experiments/goal-loop-state-graph.md).
 - **Presentation handoff:** a retained handle can yield a typed, bounded table model with source handle and compact provenance. It is not HTML, a full result, or a UniProt record browser.
 
-Read the living [roadmap](docs/ROADMAP.md), dated [work logs](docs/journal/), [experiment dossiers](docs/experiments/), and generated [context-map receipts](artifacts/context-map-runs/) for scope and evidence. The [clean-worker map evaluation](docs/experiments/clean-worker-map-evaluation.md) now has one successful constrained local run: a real REPL preflight, retained-handle reuse under coordinator steering, and reset honesty. It does not establish open-ended or endpoint navigation. The [large-result export protocol](docs/experiments/large-result-export.md) remains documentation only, with no exporter or generated export artifact.
+Use the [agent context router](docs/agent/context-routing.md) to load project guidance by task type. Read the living [roadmap](docs/ROADMAP.md), [active task queue](docs/tasks/README.md), dated [work logs](docs/journal/), [experiment dossiers](docs/experiments/), and generated [context-map receipts](artifacts/context-map-runs/) for scope and evidence. The [clean-worker map evaluation](docs/experiments/clean-worker-map-evaluation.md) now has one successful constrained local run: a real REPL preflight, retained-handle reuse under coordinator steering, and reset honesty. It does not establish open-ended or endpoint navigation. The [large-result export protocol](docs/experiments/large-result-export.md) remains documentation only, with no exporter or generated export artifact.
 
 ## Current live-navigation boundary
 
