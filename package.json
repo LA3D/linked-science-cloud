@@ -1,0 +1,11 @@
+{
+  "name": "node-repl-network-probe",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/probe.mjs && node -e \"import('./src/probe.mjs').then(m => { if (typeof m.probeNetwork !== 'function') process.exit(1) })\"",
+    "probe": "node src/probe.mjs",
+    "test": "node --test"
+  }
+}
