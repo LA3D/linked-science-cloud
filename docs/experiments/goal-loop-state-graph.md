@@ -10,7 +10,7 @@ The replacement hypothesis is:
 
 > Given a Codex goal, a worker should use a project-local, tool-generated evidence/session layer to pursue it. Skills enforce invariants and expose useful affordances; they do not prescribe a universal reasoning sequence or replace Codex's goal loop.
 
-This is a design decision and an experimental hypothesis, not an implemented runtime surface.
+The direction remains experimental. A first runtime slice now implements guarded source acquisition, typed retained evidence/failure handles, and a bounded symbolic orientation cache; broader claim, schema-index, and plan state remains proposed.
 
 ## Evidence that motivated the change
 
@@ -46,6 +46,14 @@ Examples of available actions include acquiring a source, searching/indexing a s
 
 The skill should require an evidence-backed transition and an honest outcome—not a fixed narration order.
 
+## Symbolic orientation cache
+
+The first implemented slice follows the RLM/PEEK separation: bulk source and result state stays resident behind REPL handles, while a bounded prompt-visible map preserves reusable orientation. The map has five sections—context roadmap, context understanding, domain constants, parsing schema, and reusable results—and stable symbolic entries with evidence-handle links and priority eviction. It excludes raw source text, result rows, SPARQL, task answers, and goal lifecycle state.
+
+Guarded acquisition content-sniffs approved sources instead of trusting a URL suffix or HTTP content type. Success creates an evidence handle and source/parsing entries. A request failure creates a typed attempt handle and failure entry. Preflight rejection creates neither. Thus a broken route can inform replanning without being mistaken for evidence of absence.
+
+This design is informed by [Recursive Language Models](https://arxiv.org/abs/2512.24601) and [PEEK](https://arxiv.org/abs/2605.19932), but the project-local contract is intentionally smaller and enforcement-oriented.
+
 ## Target evidence/session state
 
 Tools, rather than the worker's prose, should own these states. Each checkpoint references the existing Codex task/goal; it does not duplicate its lifecycle.
@@ -63,12 +71,13 @@ Tools, rather than the worker's prose, should own these states. Each checkpoint 
 
 The worker reports its local evidence state and stop reason back to Codex. Codex retains authority to decide whether the overall goal is satisfied, remains active, or is delegated.
 
-## Proposed tool surface
+## Tool surface
 
 Implement small stateful operations that return verified transitions:
 
-- `inspectSession()`
-- `acquireSource()`
+- retained session `profile()`, `inspectEvidence()`, `page()`, and `checkpoint()` operations
+- implemented `acquireEvidenceToHandleGuarded()` with source/failure receipts
+- implemented orientation-map recording for acquisition and result handles
 - `indexSchema()`, `searchSchema()`, `neighbors()`, `findPaths()`
 - `validatePlan()`
 - typed `ask`, `select`, `construct`, and cautious `describe`
@@ -79,13 +88,13 @@ Reviewed affordance packs remain optional accelerators. They can propose candida
 
 ## Next experiments
 
-1. Build the smallest Codex-goal-compatible evidence/session layer with `inspectSession`, source/schema state, and verified handle events.
-2. Compare the current checklist skill against minimal-invariants/state-graph guidance on the same open local goal.
-3. Add perturbations: source retrieval failure, stale/contradicted prior, ambiguous schema, empty exact query, large result, and REPL reset.
-4. Only after that, retry real UniProt schema-to-query navigation in an environment where the approved documentation profile is transport-verified.
+1. Forward-test a fresh worker against the adaptive skill with a misleading content type and a failed preferred route.
+2. Add schema indexing/search over an acquired evidence handle using Communica/N3 rather than a second query engine.
+3. Add perturbations for stale/contradicted prior, ambiguity, empty exact query, large result, and REPL reset.
+4. Retry real multi-source schema-to-query navigation only under explicitly approved source profiles.
 
 Score actual tool events, evidence scope, adaptation, unnecessary calls, and honest outcomes—not compliance with a prose checklist.
 
 ## Limits
 
-No Codex-goal-compatible evidence/session layer has been implemented. This document does not authorize live requests, exports, configuration changes, commits, or endpoint expansion.
+The implemented slice is project-local and tested with injected fetch responses. It does not itself authorize any live source, export, configuration change, commit, or endpoint expansion.

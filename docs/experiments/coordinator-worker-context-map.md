@@ -1,5 +1,7 @@
 # Coordinator-worker context-map recovery experiment
 
+> Historical compatibility experiment. The fixed two-turn Identifiers.org map remains tested, but new agent-facing work uses the bounded PEEK-aligned orientation cache in `lib/context-map-recovery.mjs` rather than prescribing this frontier workflow.
+
 ## Question
 
 Can a persistent Linked Data worker hand off a bounded second-turn frontier from a compact symbolic checkpoint rather than raw query history?

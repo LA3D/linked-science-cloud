@@ -8,7 +8,12 @@ import {
   assertStatefulClaimEvidence,
   buildReceipt,
   compactContextMap,
+  compactOrientationMap,
   createContextMap,
+  createOrientationMap,
+  recordAcquisitionOrientation,
+  recordOrientation,
+  recordResultOrientation,
   recordWorkerOutcome,
   recoverContextMap,
   selectFrontierCandidate,
@@ -119,4 +124,42 @@ test('stateful claims require an actual persistent-REPL receipt and cited operat
   assert.throws(() => assertPersistentReplReceipt(replReceipt({ executionMode: 'cli-fixture' })));
   assert.throws(() => assertStatefulClaimEvidence({ kind: 'reused', handle: 'items', replOperationId: 'missing' }, receipt));
   assert.throws(() => assertStatefulClaimEvidence({ kind: 'reused', handle: 'other', replOperationId: 'inspect-items' }, receipt));
+});
+
+test('the PEEK-aligned orientation cache stores bounded symbolic navigation state', () => {
+  const receipt = {
+    kind: 'guarded-evidence-acquisition', handle: 'wp-ontology', profile: 'wikipathways-ontology',
+    source: 'https://vocabularies.wikipathways.org/wp.owl', status: 'retrieved', stage: 'complete',
+    declaredContentType: 'application/rdf+xml', detectedFormat: 'turtle', metadataMismatch: true, sha256: 'a'.repeat(64),
+  };
+  let map = createOrientationMap({ contextId: 'wikipathways-demo', maxItems: 5 });
+  map = recordAcquisitionOrientation(map, { handle: 'wp-ontology', receipt });
+  map = recordResultOrientation(map, { profile: { handle: 'pathway-hits', kind: 'bindings', count: 12 }, role: 'candidate-pathways' });
+  const compact = compactOrientationMap(map);
+  assert.match(compact, /metadata-mismatch/);
+  assert.match(compact, /pathway-hits/);
+  assert.doesNotMatch(compact, /SELECT|CONSTRUCT|SERVICE/i);
+});
+
+test('failed acquisition remains an orientation event and does not imply absence', () => {
+  const receipt = {
+    kind: 'guarded-evidence-acquisition', handle: 'wp-attempt', profile: 'wikipathways-ontology',
+    source: 'https://vocabularies.wikipathways.org/wp.owl', status: 'failed', stage: 'acquisition',
+  };
+  const map = recordAcquisitionOrientation(createOrientationMap({ contextId: 'recovery' }), { handle: 'wp-attempt', receipt });
+  const failure = map.sections['context-understanding'][0];
+  assert.equal(failure.kind, 'failure');
+  assert.equal(failure.value.status, 'failed');
+  assert.equal(failure.value.source, receipt.source);
+});
+
+test('orientation entries upsert stably, evict by priority, and reject raw query text', () => {
+  let map = createOrientationMap({ contextId: 'bounded', maxItems: 5 });
+  for (let index = 0; index < 5; index += 1) {
+    map = recordOrientation(map, { section: 'domain-constants', key: `constant-${index}`, kind: 'constant', value: { iri: `https://example.test/${index}` }, priority: index });
+  }
+  map = recordOrientation(map, { section: 'domain-constants', key: 'retained', kind: 'constant', value: { iri: 'https://example.test/retained' }, priority: 100 });
+  assert.equal(map.sections['domain-constants'].length, 5);
+  assert.equal(map.sections['domain-constants'].some(entry => entry.key === 'constant-0'), false);
+  assert.throws(() => recordOrientation(map, { section: 'context-understanding', key: 'unsafe', kind: 'relation', value: { text: 'SELECT * WHERE { ?s ?p ?o }' } }));
 });

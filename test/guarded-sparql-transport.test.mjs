@@ -7,6 +7,7 @@ import { initializeLinkedDataSession } from '../lib/repl-linked-data-session.mjs
 const profile = getEndpointProfile();
 const liveTableProfile = getEndpointProfile('identifiersOrgLiveTable');
 const uniprotReadProfile = getEndpointProfile('uniprotRead');
+const wikiPathwaysReadProfile = getEndpointProfile('wikiPathwaysRead');
 const federationProfile = getEndpointProfile('uniprotRheaWikidataFederation');
 const readQuery = 'SELECT ?s WHERE { ?s ?p ?o } LIMIT 1';
 
@@ -125,6 +126,14 @@ test('single-endpoint UniProt read profile permits all bounded read query forms 
   assert.equal(validateReadQuery('DESCRIBE <https://example.test/s> WHERE { <https://example.test/s> ?p ?o } LIMIT 1', uniprotReadProfile).queryType, 'DESCRIBE');
   assert.throws(() => validateReadQuery('ASK WHERE { SERVICE <https://sparql.rhea-db.org/sparql> { ?s ?p ?o } }', uniprotReadProfile));
   assert.throws(() => validateReadQuery('ASK WHERE { ?s ?p ?o }', federationProfile));
+});
+
+test('WikiPathways read profile permits bounded graph exploration but no federation', () => {
+  assert.equal(wikiPathwaysReadProfile.endpoint, 'https://sparql.wikipathways.org/sparql');
+  assert.equal(validateReadQuery('SELECT ?pathway ?chebi WHERE { ?node <http://vocabularies.wikipathways.org/wp#bdbChEBI> ?chebi ; <http://purl.org/dc/terms/isPartOf> ?pathway } LIMIT 20', wikiPathwaysReadProfile).queryType, 'SELECT');
+  assert.equal(validateReadQuery('ASK WHERE { ?node <http://vocabularies.wikipathways.org/wp#bdbChEBI> ?chebi }', wikiPathwaysReadProfile).queryType, 'ASK');
+  assert.throws(() => validateReadQuery('SELECT ?s WHERE { SERVICE <https://www.ebi.ac.uk/chebi/sparql> { ?s ?p ?o } } LIMIT 1', wikiPathwaysReadProfile));
+  assert.throws(() => validateReadQuery('SELECT ?s WHERE { ?s ?p ?o } LIMIT 21', wikiPathwaysReadProfile));
 });
 
 test('installed Communica uses the guarded top-level fetch option without bypass', async() => {
