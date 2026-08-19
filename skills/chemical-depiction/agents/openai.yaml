@@ -1,0 +1,5 @@
+interface:
+  display_name: "Chemical Depiction"
+  short_description: "Render validated molecules as safe static SVG"
+  default_prompt: "Use $chemical-depiction to render validated chemical structure state as sanitized SVG."
+

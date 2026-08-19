@@ -1,0 +1,5 @@
+interface:
+  display_name: "RDKit Workbench"
+  short_description: "Parse molecules into validated structure state"
+  default_prompt: "Use $rdkit-workbench to parse this bounded SMILES into validated structure state."
+
