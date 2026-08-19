@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "routes": [
+    "bootstrap",
+    "discovery",
+    "graphs.load",
+    "schema.search",
+    "query.select",
+    "query.run",
+    "results.derive",
+    "results.profile",
+    "results.page",
+    "results.table",
+    "graph.neighbors",
+    "orientation",
+    "reset",
+    "recovery",
+    "security",
+    "compatibility"
+  ],
+  "aliases": {
+    "ontology": "schema.search",
+    "neighbors": "graph.neighbors",
+    "page": "results.page",
+    "table": "results.table",
+    "stale-handle": "reset"
+  }
+}

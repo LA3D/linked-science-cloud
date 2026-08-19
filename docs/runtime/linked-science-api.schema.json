@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "runtime": "linked-science",
+  "version": "1.0.0",
+  "globalBindings": [
+    "linkedScience",
+    "ls"
+  ],
+  "bootstrap": "await (async () => { const { setupLinkedScience } = await import(`${process.cwd()}/lib/linked-science-runtime.mjs`); return setupLinkedScience({ nodeRepl: globalThis }); })()",
+  "discovery": [
+    "documentation",
+    "documentation.get",
+    "capabilities",
+    "examples",
+    "open"
+  ],
+  "workspace": {
+    "graphs": [
+      "load"
+    ],
+    "schema": [
+      "search"
+    ],
+    "query": [
+      "run",
+      "select"
+    ],
+    "results": [
+      "derive",
+      "profile",
+      "page",
+      "table"
+    ],
+    "graph": [
+      "neighbors"
+    ],
+    "orientation": [
+      "bootstrap",
+      "current",
+      "commit",
+      "status"
+    ]
+  },
+  "compatibility": [
+    "initializeSession",
+    "createTableDisplay",
+    "queryToHandleGuarded",
+    "queryBindingsToHandleGuarded",
+    "acquireEvidenceToHandleGuarded",
+    "getEndpointProfile"
+  ],
+  "documentationRoutes": [
+    "bootstrap",
+    "discovery",
+    "graphs.load",
+    "schema.search",
+    "query.select",
+    "query.run",
+    "results.derive",
+    "results.profile",
+    "results.page",
+    "results.table",
+    "graph.neighbors",
+    "orientation",
+    "reset",
+    "recovery",
+    "security",
+    "compatibility"
+  ]
+}

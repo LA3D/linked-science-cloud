@@ -8,8 +8,10 @@ linked information in Linked Science Cloud
   → bounded table from a retained result handle
 ```
 
-The stable boundaries are split into three short notes:
+The stable boundaries are split into focused notes:
 
+- [CodeAct Linked Science runtime](codeact-linked-science-runtime.md)
+- [Ontology and schema objects](ontology-and-schema-objects.md)
 - [Persistent Communica session and symbolic handles](persistent-session-and-handles.md)
 - [PEEK-aligned orientation cache, stale state, and reset](orientation-cache-and-reset.md)
 - [Bounded presentation and visualization handoff](bounded-presentation-handoff.md)

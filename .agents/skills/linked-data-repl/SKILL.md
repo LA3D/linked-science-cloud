@@ -22,6 +22,7 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 ## Route only to relevant detail
 
 - **Documentation-only or static-source work:** inspect repository files directly. It does not require a REPL preflight unless the result claims REPL execution, retention, or live connectivity.
+- **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), bootstrap exactly once with the documented expression, and then use the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. After reset, inspect orientation status and reject old-epoch handles; the PEEK map is not restored evidence.
 - **Any persistent-REPL execution:** first read and follow [REPL environment and persistence](references/repl-environment.md). A terminal script is not proof of REPL retention.
 - **Documentation acquisition, live querying, source selection, or profiles:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for the exact profile remains mandatory.
 - **Retained results, orientation, reset, or presentation:** read [retained state and bounded presentation](references/retained-state-and-presentation.md).
@@ -29,6 +30,14 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 - **Evidence/session architecture changes:** read the repository's [goal-loop state dossier](../../../docs/experiments/goal-loop-state-graph.md) and [architecture routes](../../../docs/architecture/README.md).
 
 Use `resources/index.md` only as routed by the evidence-acquisition reference when a goal crosses sources or the starting source is unclear. Neither that index nor a skill is scientific evidence.
+
+The exact runtime bootstrap is:
+
+```js
+await (async () => { const { setupLinkedScience } = await import(`${process.cwd()}/lib/linked-science-runtime.mjs`); return setupLinkedScience({ nodeRepl: globalThis }); })()
+```
+
+Run it once per persistent kernel, then reuse `linkedScience`. The complete runtime surface belongs in generated documentation and `docs/runtime/`, not in this skill.
 
 ## Outcome
 

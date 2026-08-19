@@ -1,6 +1,6 @@
 # Orientation cache, stale state, and reset
 
-`lib/context-map-recovery.mjs` implements a bounded PEEK-aligned orientation cache beside the REPL's bulk state. Its five sections record compact reusable orientation:
+`lib/orientation-map.mjs` implements a bounded PEEK-aligned orientation cache beside the REPL's bulk state. `lib/context-map-recovery.mjs` re-exports that API for compatibility while keeping its older goal/step/frontier workflow separate. The map's five sections record compact reusable orientation:
 
 - `context-roadmap`: available or attempted sources;
 - `context-understanding`: grounded relations and known failures;

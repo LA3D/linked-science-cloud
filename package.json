@@ -11,6 +11,7 @@
     "experiment:context-map-two-turn": "node scripts/context-map-two-turn-turn1.mjs",
     "experiment:context-map-two-turn-turn2": "node scripts/context-map-two-turn-turn2.mjs",
     "session:synthetic": "node scripts/repl-session-synthetic.mjs",
+    "runtime:synthetic": "node scripts/linked-science-runtime-synthetic.mjs",
     "affordances:demo": "node scripts/affordance-catalog-demo.mjs"
   },
   "dependencies": {

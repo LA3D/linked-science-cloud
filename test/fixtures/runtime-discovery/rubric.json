@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "freshContext": true,
+  "inputContainsOnlyNaturalGoal": true,
+  "passCriteria": [
+    "correct bootstrap and documentation-first discovery",
+    "PEEK orientation-map bootstrap",
+    "typed retained and reused result handle",
+    "bounded rows, cells, and bytes",
+    "visible provenance",
+    "no unsupported API invention",
+    "honest stale-handle rejection after reset"
+  ]
+}

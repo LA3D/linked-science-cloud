@@ -8,7 +8,7 @@ A handle name is not residency evidence. Cite current tool-generated operations 
 
 ## Symbolic orientation cache
 
-Use `createOrientationMap`, `recordAcquisitionOrientation`, `recordResultOrientation`, and `recordOrientation` from `lib/context-map-recovery.mjs` when a task needs a compact context map. This is the PEEK-style orientation cache beside the REPL's bulk state:
+Use `createOrientationMap`, `recordAcquisitionOrientation`, `recordResultOrientation`, and `recordOrientation` from `lib/orientation-map.mjs` when a task needs a compact context map. `lib/context-map-recovery.mjs` re-exports them for older callers. This is the PEEK-style orientation cache beside the REPL's bulk state:
 
 - `context-roadmap`: available or attempted sources;
 - `context-understanding`: grounded relations and known failures;

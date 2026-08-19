@@ -22,9 +22,14 @@ npm run smoke
 
 For the tested REPL initialization and persistence check, use the project-local [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md).
 
+## Linked Science runtime
+
+The production-oriented local v1 adapter is `lib/linked-science-runtime.mjs`. It installs one stable CodeAct-style JavaScript facade, keeps Communica private as the query kernel, retains ontology/schema/SHACL/instance graphs and results behind epoch-bearing handles, and exposes bounded provenance-bearing discovery and presentation. Start with [runtime discovery](docs/agent/runtime-discovery.md); the checked-in [machine API schema](docs/runtime/linked-science-api.schema.json) supports fresh-agent lookup. V1 adds no live endpoint or recursive model access.
+
 ## Capability map and next work
 
 - **Synthetic session:** local in-memory RDF is materialized under a symbolic handle and can be profiled, paged, or derived without printing the full result.
+- **CodeAct runtime:** persistent model-written JavaScript uses the stable `linkedScience` facade for local graph objects, schema search, Communica queries, generic derivation, bounded views, PEEK orientation, and explicit stale-handle recovery.
 - **Guarded live table:** the separate Identifiers.org demonstration profile pins one SPARQL endpoint and permits only bounded read-only registry tables through Communica.
 - **Atomic typed live retention:** `queryToHandleGuarded` preflights the session and handle before network access, runs one guarded read operation, retains bindings, boolean, or quad results, and returns one compact receipt containing all transport attempts and the result shape.
 - **Open-goal operation choice:** two fresh live UniProt workers used the same guarded surface without query templates. A factual goal produced bounded `SELECT` handles; a graph-shaped goal independently produced a six-quad `CONSTRUCT` handle. See the [operation-selection experiment](docs/experiments/open-goal-uniprot-operation-selection.md) and its [compact receipts](artifacts/open-goal-runs/).

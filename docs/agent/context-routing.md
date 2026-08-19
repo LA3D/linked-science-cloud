@@ -6,6 +6,7 @@ Root `AGENTS.md` supplies the always-on contract. Read the [project README](../.
 
 | Task type | Read next |
 | --- | --- |
+| Use or change the Linked Science CodeAct runtime | [Runtime discovery](runtime-discovery.md), then [CodeAct runtime architecture](../architecture/codeact-linked-science-runtime.md) and [ontology/schema objects](../architecture/ontology-and-schema-objects.md). |
 | Run or diagnose the persistent REPL | The [Linked Data REPL skill](../../.agents/skills/linked-data-repl/SKILL.md), then its environment reference; use [persistent session and handles](../architecture/persistent-session-and-handles.md) for the stable state model. |
 | Acquire documentation, query live Linked Data, or add a source profile | The skill's evidence-acquisition reference, the relevant section of [the source orientation index](../../resources/index.md), and the source-specific experiment dossier or tests. Current explicit approval for the exact profile is still required. |
 | Change session, evidence, cache, or reset behavior | [Persistent session and handles](../architecture/persistent-session-and-handles.md), [orientation cache and reset](../architecture/orientation-cache-and-reset.md), and the [goal-loop state dossier](../experiments/goal-loop-state-graph.md). |
