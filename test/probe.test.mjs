@@ -1,7 +1,24 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import test from "node:test";
 
 import { probeNetwork, sanitizeError } from "../src/probe.mjs";
+
+test("module imports when the global process object is unavailable", () => {
+  const probeUrl = new URL("../src/probe.mjs", import.meta.url).href;
+  const script = `
+    const originalProcess = globalThis.process;
+    delete globalThis.process;
+    const probeModule = await import(${JSON.stringify(probeUrl)});
+    originalProcess.stdout.write(typeof probeModule.probeNetwork);
+  `;
+  const result = spawnSync(process.execPath, ["--input-type=module", "--eval", script], {
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, "function");
+});
 
 test("probe output stays bounded and has all four stages", async () => {
   const adapters = {

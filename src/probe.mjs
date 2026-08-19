@@ -164,8 +164,12 @@ export async function probeNetwork({
   };
 }
 
-const invokedPath = process.argv[1] ? pathToFileURL(process.argv[1]).href : null;
-if (invokedPath === import.meta.url) {
+const isDirectExecution =
+  typeof process !== "undefined"
+  && typeof process.argv?.[1] === "string"
+  && pathToFileURL(process.argv[1]).href === import.meta.url;
+
+if (isDirectExecution) {
   const result = await probeNetwork();
   process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
 }

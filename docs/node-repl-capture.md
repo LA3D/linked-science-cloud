@@ -21,8 +21,8 @@ Second call, before importing the probe:
 
 ```js
 nodeRepl.write(JSON.stringify({
-  persistenceToken: globalThis.probePersistenceToken ?? null,
-  persistedAcrossCalls: typeof globalThis.probePersistenceToken === "string",
+  persistenceToken: typeof probePersistenceToken === "string" ? probePersistenceToken : null,
+  persistedAcrossCalls: typeof probePersistenceToken === "string",
 }, null, 2));
 ```
 

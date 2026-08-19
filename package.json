@@ -1,10 +1,10 @@
 {
   "name": "node-repl-network-probe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check src/probe.mjs && node -e \"import('./src/probe.mjs').then(m => { if (typeof m.probeNetwork !== 'function') process.exit(1) })\"",
+    "check": "node --check src/probe.mjs && node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node -e \"Promise.all([import('./src/probe.mjs'), import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs')]).then(([probe, mcp, peek]) => { if (typeof probe.probeNetwork !== 'function' || typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function') process.exit(1) })\"",
     "probe": "node src/probe.mjs",
     "test": "node --test"
   }
