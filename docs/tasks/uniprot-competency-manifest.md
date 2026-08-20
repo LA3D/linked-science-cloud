@@ -1,7 +1,7 @@
 # Task: Build the UniProt competency evaluation manifest
 
 - **Status:** Blocked after repository-local contract implementation
-- **Owner/task:** `codex/uniprot-eval-hardening`
+- **Owner/task:** Repository-local slice completed; evaluator-private completion unassigned
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the evaluation or a live SPARQL query.
 - **Authorization boundary:** Repository documentation/data-fixture edits only. Any official catalog acquisition needs current approval for that exact documentation source. No SPARQL, federation, export, package, configuration, remote, or push authorization is implied.
 - **Starting point:** Begin from the then-current clean local `main` and record its commit.
@@ -52,7 +52,7 @@ After current explicit approval for `https://sparql.uniprot.org/.well-known/spar
 
 ## Handoff state
 
-- **Git:** Repository-local contract is committed on `codex/uniprot-eval-hardening` in `bc3b7a3`; integration to local `main` is pending final verification.
-- **Verification:** Focused manifest tests pass; full repository verification is recorded in the current task completion after integration.
+- **Git:** Repository-local contract begins at `bc3b7a3`; the hardening series was fast-forwarded into local `main` after verification. Nothing was pushed.
+- **Verification:** `npm test` passed 76/76, `npm run smoke` passed, `npm run evaluation:uniprot:validate` passed, all relative Markdown links resolved, stale-contract search was empty, and `git diff --check` passed.
 - **Ephemeral state:** None; no REPL state or live result is claimed.
 - **Durable artifacts/receipts:** None yet.
