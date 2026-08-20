@@ -50,6 +50,6 @@ Obtain explicit approval for one more bounded, non-following GET to `https://pur
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `fd22d9a`; integration status is recorded when verification completes. Nothing was pushed.
-- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer verification is pending for the new receipt and schema update.
-- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, and three failed core-source attempts now have durable records. None is a competency answer. No exact machine-readable core source has been established.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `fd22d9a`; result commit `7645682` is reachable from consumer local `main`. Nothing was pushed.
+- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 21 registered runs, both new JSON files parsed, and `git diff --check` passed.
+- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, three prior failed core-source attempts, and one successful metadata-only redirect inspection now have durable records. None is a competency answer. No exact machine-readable core source has been established.
