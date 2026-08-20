@@ -1,9 +1,9 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Evaluator-private selection complete; blocked on reviewed orientation profiles before dispatch
-- **Owner/task:** Repository and evaluator-private freeze completed in the current task; profile review remains unassigned
+- **Status:** Evaluator-private selection complete; blocked on the machine-readable UniProt core profile before dispatch
+- **Owner/task:** Repository/private freeze and VoID/GO profile review completed; core-source discovery remains unassigned
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
-- **Authorization boundary:** The user authorized repository modifications, the exact official catalog acquisition, durable evaluator-private construction, and one exact bounded UniProt `ASK` transport preflight. No competency-case query, federation, package, configuration, remote, push, or other source access was authorized or performed.
+- **Authorization boundary:** The user authorized repository modifications, the exact official catalog acquisition, durable evaluator-private construction, one exact bounded UniProt `ASK` transport preflight, the three-source orientation preflight, and the two exact core-source discovery GETs recorded in the result registry. No competency-case query, unlisted source access, federation, package, configuration, remote, or push was authorized or performed.
 - **Starting point:** Begin from the then-current clean local `main` and record its commit.
 
 ## Outcome and acceptance evidence
@@ -26,6 +26,8 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - The synthetic evaluator bundle is created only in an OS temporary directory during tests. Honeytoken injection is detected, and a merely separate directory without a broker read-denial receipt fails the audit.
 - A real worker export and broker-enforced evaluator-private probe passed the leakage audit; an independent attempt from the active clean-room child also failed with `ERR_ACCESS_DENIED`.
 - A separately approved broker-owned endpoint-existence `ASK` returned HTTP 200 and a native boolean handle in one attempt with no retry. It is activation evidence, not a competency result.
+- Exact VoID-description and GO-orientation acquisitions succeeded and their immutable external profiles are on the external checkout's local `main` at `2cbbd98`.
+- The proposed FTP `core.owl` and RDF-directory paths returned HTTP 404. The exact core PURL redirected, and the zero-redirect guard correctly stopped without following or substituting it. Both rounds have durable machine records in the result registry.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -39,18 +41,18 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Establish exact immutable VoID, machine-readable UniProt core, and GO orientation acquisition profiles under current source-specific approvals.
-- Replace the pending orientation profile names, revalidate the public/private correspondence, and only then change the public manifest to `ready`.
+- Establish the exact immutable machine-readable UniProt core acquisition profile under a new source-specific approval.
+- Replace all pending orientation profile names with the already validated VoID/GO profiles and the future core profile, revalidate the public/private correspondence, and only then change the public manifest to `ready`.
 - Run the actual competency cases only in separately approved fresh tasks under the frozen commit, runtime, profiles, and evaluation protocol.
 
 ### Exact next action
 
-Review the exact source URL, expected media type, byte ceiling, redirect policy, and parsing contract for each of the VoID, machine-readable UniProt core, and GO orientation resources. Obtain separate current approval before acquiring any of them or adding their immutable external broker profiles.
+Obtain explicit approval for one bounded, non-following redirect-metadata inspection of `https://purl.uniprot.org/core/`, or for another exact official machine-readable core URL supplied by the user. Record the canonical target without following it, then request separate approval before acquiring that target, adding its immutable profile, and promoting the public manifest.
 
 ### Blockers or required decisions
 
-- The draft VoID and GO profile names are placeholders, not reviewed or executable profiles.
-- The existing `uniprotRdfSchema` repository profile retrieves rendered HTML and has not yet been accepted as the machine-readable core-orientation profile required by the competency protocol.
+- The checked-in worker draft still uses pending VoID/GO names even though the external profiles now exist; promotion waits until the full three-profile set can be changed and validated together.
+- The existing `uniprotRdfSchema` repository profile retrieves rendered HTML and has not been accepted as the machine-readable core-orientation profile required by the competency protocol.
 
 ## Handoff state
 

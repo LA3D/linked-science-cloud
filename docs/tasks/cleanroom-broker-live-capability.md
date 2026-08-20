@@ -1,9 +1,9 @@
 # Task: Enforce the Linked Science live capability in the clean-room broker
 
-- **Status:** Runtime boundary verified; blocked only on reviewed acquisition profiles
-- **Owner/task:** External implementation and fresh-task activation verification completed; source-profile review remains unassigned
+- **Status:** Runtime boundary and two orientation profiles verified; blocked on a machine-readable UniProt core profile
+- **Owner/task:** External implementation, activation, VoID, and GO profile verification completed; core-source discovery remains unassigned
 - **Scope:** Implement and verify the broker half of the checked-in Linked Science named-profile capability in the separately saved `node-repl-network-probe` project. Keep live operations exact, bounded, explicitly approved, and broker-owned.
-- **Authorization boundary:** The user authorized the completed external checkout modifications, the exact catalog acquisition, and one exact bounded UniProt endpoint-existence `ASK` preflight. No competency query, other source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
+- **Authorization boundary:** The user authorized the completed external checkout modifications, the exact catalog acquisition, one exact bounded UniProt endpoint-existence `ASK` preflight, the three-source orientation preflight, and the two exact bounded core-source discovery GETs recorded below. No competency query, unlisted source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
 
 ## Outcome and acceptance evidence
 
@@ -34,15 +34,17 @@ Offline tests must establish:
 - The restarted child preserved JavaScript state and denied raw HTTP, DNS, sockets, filesystem writes, and evaluator-private reads with `ERR_ACCESS_DENIED`.
 - One separately authorized `ASK` against the exact `uniprot-read` profile returned HTTP 200, boolean `true`, a 41-byte response, one attempt, no retry, redirect-error policy, an 8-second timeout, broker receipt `lsb-000001`, and native boolean handle `h-000001`. This proves parent-broker connectivity and retention only.
 - The first authorized acquisition-profile preflight succeeded for `https://sparql.uniprot.org/uniprot` and `https://geneontology.org/docs/ontology-documentation/`. The proposed `https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/core.owl` source returned HTTP 404 on its only attempt and was not retried or substituted; the [machine receipt](../../artifacts/experiment-results/2026-08-20-orientation-profile-preflight-attempt-1.json) preserves all three outcomes.
+- External local commit `2cbbd98` (`feat: add validated competency acquisition profiles`) places the validated `uniprot-void-description` and `go-orientation` profiles on the external checkout's local `main` and removes the failed core source from the defaults.
+- A second authorized discovery run made one guarded GET each to the exact FTP RDF directory and HTTPS core PURL. The directory returned HTTP 404, while the zero-redirect guard refused the PURL redirect and surfaced `BROKER_TRANSPORT_ERROR`. The [machine receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-source-discovery.json) records the fixed one-attempt, zero-retry, eight-second policy. No redirect was followed and no replacement source was inferred or contacted.
 
 ### Remaining work
 
-- Add immutable, reviewed VoID, machine-readable UniProt core, and GO acquisition profiles only after their exact sources and formats are established under current approval.
+- Establish an exact machine-readable UniProt core source and immutable acquisition profile under a new source-specific approval.
 - Perform any real profile operation only after current approval for that exact source or endpoint. A checked-in profile is capability metadata, not authorization to use it.
 
 ### Exact next action
 
-Review the exact source URLs, expected media types, bounds, redirect policy, and parsing contracts for the VoID, machine-readable UniProt core, and GO orientation resources. Obtain separate current approval before acquiring them or adding immutable profiles.
+Obtain explicit approval for one bounded, non-following redirect-metadata inspection of `https://purl.uniprot.org/core/`, or for another exact official machine-readable core URL supplied by the user. Record the canonical target without following it, then request separate approval before acquiring that target or adding its immutable profile.
 
 ## Handoff state
 

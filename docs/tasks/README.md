@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on orientation profiles | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Review and separately approve exact VoID, machine-readable UniProt core, and GO orientation acquisition profiles; replace the pending names only after those profiles exist. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on acquisition profiles | Extend the verified broker-owned live boundary with the exact orientation sources required by the frozen competency cases. | Review the exact source, media type, bounds, redirect, and parsing contracts for the VoID, UniProt core, and GO orientation resources before any acquisition or profile addition. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on core ontology profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Separately approve a bounded redirect-metadata inspection of the exact core PURL or supply another exact official machine-readable core URL; acquire the eventual target only under its own approval. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on core acquisition profile | Complete the verified broker-owned orientation surface with the machine-readable UniProt core source required by the frozen competency cases. | Establish the canonical core source under a newly approved non-following metadata inspection, then separately approve its guarded acquisition and immutable profile. |
 
 ## When to create or update a task brief
 

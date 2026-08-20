@@ -220,6 +220,17 @@
       "recordPaths": ["artifacts/experiment-results/2026-08-20-orientation-profile-preflight-attempt-1.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
       "missingEvidence": ["successful machine-readable UniProt core ontology source receipt"]
+    },
+    {
+      "id": "uniprot-core-source-discovery-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Guarded UniProt core ontology source discovery",
+      "outcome": "failed",
+      "evidenceLevel": "machine-audit",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-core-source-discovery.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
+      "missingEvidence": []
     }
   ],
   "documents": [

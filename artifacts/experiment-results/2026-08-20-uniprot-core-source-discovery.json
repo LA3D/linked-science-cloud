@@ -1,0 +1,26 @@
+{
+  "kind": "authorized-core-source-discovery",
+  "recordedAt": "2026-08-20T23:26:00.407Z",
+  "policy": {
+    "attemptsPerSource": 1,
+    "retries": 0,
+    "redirects": "error",
+    "timeoutMs": 8000
+  },
+  "requests": {
+    "uniprotRdfDirectory": {
+      "ok": false,
+      "error": {
+        "code": "BROKER_HTTP_ERROR",
+        "message": "Acquisition failed with HTTP 404"
+      }
+    },
+    "uniprotCorePurl": {
+      "ok": false,
+      "error": {
+        "code": "BROKER_TRANSPORT_ERROR",
+        "message": "Acquisition transport failed"
+      }
+    }
+  }
+}
