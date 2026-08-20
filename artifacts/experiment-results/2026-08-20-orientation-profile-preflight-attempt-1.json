@@ -1,0 +1,89 @@
+{
+  "format": "linked-science-orientation-profile-preflight/v1",
+  "id": "orientation-profile-preflight-attempt-1-2026-08-20",
+  "recordedAt": "2026-08-20T23:19:59.950Z",
+  "authorization": {
+    "sources": [
+      "https://sparql.uniprot.org/uniprot",
+      "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/core.owl",
+      "https://geneontology.org/docs/ontology-documentation/"
+    ],
+    "redirects": 0,
+    "retries": 0
+  },
+  "results": [
+    {
+      "profile": "uniprot-void-description",
+      "status": "ready",
+      "receipt": {
+        "kind": "linked-science-broker-operation",
+        "status": "ready",
+        "operation": "acquire",
+        "operationId": "lsb-000001",
+        "profile": "uniprot-void-description",
+        "profileSha256": "b72596b9ec170fbfb6d8baac1559530a74931e1ec6625b2bce550822c259b653",
+        "inputSha256": "53d8a723c6f01b2abfab3766a1bd56d23e0679228b0b3729a1c282e403a63f3e",
+        "payloadSha256": "543eba2fd685ee53975faad1a4d0477808b0058be3e432e99e296c147bc3d2d3",
+        "source": "https://sparql.uniprot.org/uniprot",
+        "attempts": [{
+          "source": "https://sparql.uniprot.org/uniprot",
+          "at": "2026-08-20T23:19:58.880Z",
+          "method": "GET",
+          "redirect": "error",
+          "timeoutMs": 8000,
+          "responseByteLimit": 2000000,
+          "retries": 0,
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "byteLength": 105630
+        }]
+      },
+      "orientationChecks": [
+        {"pattern": "named graph", "observed": true},
+        {"pattern": "void", "observed": false},
+        {"pattern": "uniprot", "observed": true}
+      ]
+    },
+    {
+      "profile": "uniprot-core-ontology",
+      "status": "failed",
+      "error": {"code": "BROKER_HTTP_ERROR", "message": "Acquisition failed with HTTP 404"}
+    },
+    {
+      "profile": "go-orientation",
+      "status": "ready",
+      "receipt": {
+        "kind": "linked-science-broker-operation",
+        "status": "ready",
+        "operation": "acquire",
+        "operationId": "lsb-000002",
+        "profile": "go-orientation",
+        "profileSha256": "08b5337097613ac34682fc26521a33d6d3321b0dcd39fc72dbace5f9603ab7e0",
+        "inputSha256": "ab1c0e7d96370dc985118311fb66f8ef854a9da1a17d3460de6123d8af68cd2c",
+        "payloadSha256": "b8db1ca7d6f36c4c78b378dc3be81434dddb2692908899ce5fb21f1035040634",
+        "source": "https://geneontology.org/docs/ontology-documentation/",
+        "attempts": [{
+          "source": "https://geneontology.org/docs/ontology-documentation/",
+          "at": "2026-08-20T23:19:59.804Z",
+          "method": "GET",
+          "redirect": "error",
+          "timeoutMs": 8000,
+          "responseByteLimit": 2000000,
+          "retries": 0,
+          "status": 200,
+          "ok": true,
+          "contentType": "text/html",
+          "byteLength": 28890
+        }]
+      },
+      "orientationChecks": [
+        {"pattern": "biological process", "observed": true},
+        {"pattern": "molecular function", "observed": true},
+        {"pattern": "cellular component", "observed": true}
+      ]
+    }
+  ],
+  "outcome": "partial",
+  "claimBoundary": "The exact dataset-description and GO orientation profiles validated. The proposed UniProt core ontology source returned HTTP 404 and was not retried or substituted."
+}

@@ -36,8 +36,9 @@ This is the durable index of executed experiment results. Methodology dossiers d
 | 2026-08-20 | Fresh-task broker activation and UniProt `ASK` preflight | Passed | Complete | [Resident-audited receipt](../../artifacts/experiment-results/2026-08-20-cleanroom-broker-preflight.json) |
 | 2026-08-20 | Approved UniProt official-example catalog capture | Passed | Complete | [Capture receipt](../../artifacts/experiment-results/2026-08-20-uniprot-catalog-capture.json) |
 | 2026-08-20 | Evaluator-private boundary and leakage audit | Passed | Complete | [Audit receipt](../../artifacts/experiment-results/2026-08-20-uniprot-evaluator-boundary-audit.json) |
+| 2026-08-20 | First guarded UniProt and GO orientation-profile preflight | Partial | Partial | [Machine receipt](../../artifacts/experiment-results/2026-08-20-orientation-profile-preflight-attempt-1.json) |
 
-The current inventory therefore contains 18 executed run records: six complete compact artifacts, one partial artifact, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry.
+The current inventory therefore contains 19 executed run records: six complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry.
 
 ## Confirmed loss and recovery limits
 

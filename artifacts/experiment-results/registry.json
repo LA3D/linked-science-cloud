@@ -209,6 +209,17 @@
       "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-evaluator-boundary-audit.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
       "missingEvidence": []
+    },
+    {
+      "id": "orientation-profile-preflight-attempt-1-2026-08-20",
+      "date": "2026-08-20",
+      "title": "First guarded UniProt and GO orientation-profile preflight",
+      "outcome": "partial",
+      "evidenceLevel": "machine-audit",
+      "durability": "partial",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-orientation-profile-preflight-attempt-1.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
+      "missingEvidence": ["successful machine-readable UniProt core ontology source receipt"]
     }
   ],
   "documents": [
