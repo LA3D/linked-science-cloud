@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked | Freeze the exact official three-case selection in evaluator-private state and prove the worker export is leakage-free before any live evaluation. | After exact catalog-source approval and an actual broker filesystem boundary exist, acquire the official snapshot into evaluator-private storage, replace the non-dispatchable draft questions, and run the honeytoken audit. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked | Inject immutable named acquisition/query profiles into the clean-room child while denying raw child networking and evaluator-private filesystem reads. | Obtain explicit authorization to change the separate `node-repl-network-probe` checkout, then implement the checked-in broker contract and offline denial tests without contacting a live source. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked | Freeze the exact official three-case selection in evaluator-private state and prove the worker export is leakage-free before any live evaluation. | After exact catalog-source approval and fresh-task observation of the implemented broker filesystem boundary, acquire the official snapshot into evaluator-private storage, replace the non-dispatchable draft questions, and run the honeytoken audit. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on activation evidence | Observe the completed broker capability and child denial boundary in a fresh Desktop task before any live evaluation claim. | Fully restart Desktop, open a fresh trusted-project task in the separate `node-repl-network-probe` checkout, and run only the offline capability/persistence/denial checks. |
 
 ## When to create or update a task brief
 

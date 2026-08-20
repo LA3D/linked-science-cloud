@@ -42,12 +42,12 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Exact next action
 
-After current explicit approval for `https://sparql.uniprot.org/.well-known/sparql-examples/` and after the external broker can deny evaluator-private reads, capture the official catalog snapshot directly into evaluator-private storage, freeze the three references and hashes, update the public draft, and run `npm run evaluation:uniprot:validate` plus the private honeytoken audit. Do not execute SPARQL.
+After current explicit approval for `https://sparql.uniprot.org/.well-known/sparql-examples/` and after a fresh Desktop task observes the implemented external broker read-denial attestation, capture the official catalog snapshot directly into evaluator-private storage, freeze the three references and hashes, update the public draft, and run `npm run evaluation:uniprot:validate` plus the private honeytoken audit. Do not execute SPARQL.
 
 ### Blockers or required decisions
 
 - Current approval does not authorize acquiring the exact official catalog source.
-- The current `cleanroom_node_repl` broker has not exposed a filesystem read-denial attestation surface, so evaluator-private authority is not yet proven.
+- External commit `a18934f` implements a real child honeytoken read-denial attestation, but a fresh Desktop task has not yet observed that saved MCP surface; activation evidence is still missing.
 - The draft VoID and GO profile names are placeholders, not reviewed or executable profiles.
 
 ## Handoff state

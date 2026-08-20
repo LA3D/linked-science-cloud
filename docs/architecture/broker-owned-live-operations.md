@@ -24,8 +24,8 @@ The same epoch, reset, PEEK, bounded page/table, and second-turn reuse contracts
 
 ## Enforced and unenforced boundaries
 
-Repository tests inject an offline broker and establish the child-facing contract, native retention, hash and result-bound checks, denial of profile-object injection, and no-requery derivation for the first three competency shapes. They make no network request.
+Repository tests inject an offline broker and establish the child-facing contract, native retention, hash and result-bound checks, denial of profile-object injection, and no-requery derivation for the first three competency shapes. External broker tests add parent-owned immutable profiles, receipt and transport bounds, denial of raw child HTTP/DNS/sockets and filesystem writes, per-kernel IPC authorization, and an actual evaluator-private honeytoken read-denial attestation. A cross-repository synthetic check confirms that external broker results reach native runtime handles. These checks make no network request.
 
-The current separately saved `cleanroom_node_repl` MCP must still implement and inject this capability, retain the immutable real profiles, deny raw child networking, and issue filesystem read-denial attestations for evaluator-private state. Until a fresh task observes those broker features, the runtime reports `brokerOwnedLive: false`, live calls fail with `LS_BROKER_UNAVAILABLE`, and no secure live evaluation is claimed.
+The separately saved `cleanroom_node_repl` MCP implements this boundary at local commit `a18934f`. A full Desktop restart and fresh trusted-project task must still observe the capability before it is treated as active runtime evidence. Until that observation, this runtime may still report `brokerOwnedLive: false`, and no secure live evaluation is claimed.
 
 Reviewed real VoID, machine-readable UniProt core, and GO acquisition profiles also remain separate work. Repository names or draft manifests do not authorize them.
