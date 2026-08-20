@@ -1,10 +1,12 @@
 import { createRequire, registerHooks } from "node:module";
+import { readFile } from "node:fs/promises";
 import repl from "node:repl";
 import { PassThrough } from "node:stream";
 import { inspect } from "node:util";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
+const sendToParent = process.send.bind(process);
 const MAX_TEXT_BYTES = 256 * 1024;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const MAX_CONTEXT_BYTES = 2 * 1024 * 1024;
@@ -12,6 +14,7 @@ const roots = [];
 const contexts = new Map();
 const pendingHostCalls = new Map();
 let hostCallSequence = 0;
+let hostCapabilityToken;
 let currentRequestMeta = Object.freeze({});
 let writes = [];
 let images = [];
@@ -74,8 +77,16 @@ function hostCall(method, args) {
   const id = ++hostCallSequence;
   return new Promise((resolveCall, rejectCall) => {
     pendingHostCalls.set(id, { resolve: resolveCall, reject: rejectCall });
-    process.send({ type: "host_call", id, method, args });
+    sendToParent({ type: "host_call", token: hostCapabilityToken, id, method, args });
   });
+}
+
+async function hostCallStrict(method, args) {
+  const result = await hostCall(method, args);
+  if (result?.ok === false && result.error) {
+    throw Object.assign(new Error(result.error.message ?? "Host call failed"), result.error);
+  }
+  return result;
 }
 
 function validateContextId(contextId) {
@@ -134,6 +145,12 @@ const peek = Object.freeze({
   restore: (path) => hostCall("peek.restore", { path }),
 });
 
+const linkedScienceBroker = Object.freeze({
+  capabilities: () => hostCallStrict("linked-science.capabilities", {}),
+  acquire: (options = {}) => hostCallStrict("linked-science.acquire", options),
+  query: (options = {}) => hostCallStrict("linked-science.query", options),
+});
+
 function createKernel() {
   const input = new PassThrough();
   const output = new PassThrough();
@@ -149,6 +166,7 @@ function createKernel() {
     requestMeta: { enumerable: true, get: () => currentRequestMeta },
     rlm: { enumerable: true, value: rlm },
     peek: { enumerable: true, value: peek },
+    linkedScienceBroker: { enumerable: true, value: linkedScienceBroker },
   });
   Object.defineProperties(nodeRepl, {
     write: {
@@ -195,6 +213,10 @@ function sanitizeError(error) {
 }
 
 process.on("message", async (message) => {
+  if (message?.type === "host_capability_init" && hostCapabilityToken === undefined && typeof message.token === "string") {
+    hostCapabilityToken = message.token;
+    return;
+  }
   if (message?.type === "host_result") {
     const pending = pendingHostCalls.get(message.id);
     if (!pending) return;
@@ -205,7 +227,20 @@ process.on("message", async (message) => {
   }
   if (message?.type === "add_root") {
     if (!roots.includes(message.path)) roots.push(message.path);
-    process.send({ type: "response", id: message.id, ok: true, value: { path: message.path, roots: roots.length } });
+    sendToParent({ type: "response", id: message.id, ok: true, value: { path: message.path, roots: roots.length } });
+    return;
+  }
+  if (message?.type === "probe_read") {
+    try {
+      await readFile(message.path);
+      sendToParent({ type: "response", id: message.id, ok: true, value: { status: "readable" } });
+    } catch (error) {
+      if (error?.code === "ERR_ACCESS_DENIED") {
+        sendToParent({ type: "response", id: message.id, ok: true, value: { status: "denied", code: error.code } });
+      } else {
+        sendToParent({ type: "response", id: message.id, ok: false, error: sanitizeError(error) });
+      }
+    }
     return;
   }
   if (message?.type !== "eval") return;
@@ -215,10 +250,10 @@ process.on("message", async (message) => {
   try {
     await evaluate(message.code);
     const content = [...writes, ...images];
-    process.send({ type: "response", id: message.id, ok: true, value: { content } });
+    sendToParent({ type: "response", id: message.id, ok: true, value: { content } });
   } catch (error) {
-    process.send({ type: "response", id: message.id, ok: false, error: sanitizeError(error) });
+    sendToParent({ type: "response", id: message.id, ok: false, error: sanitizeError(error) });
   }
 });
 
-process.send({ type: "ready" });
+sendToParent({ type: "ready" });

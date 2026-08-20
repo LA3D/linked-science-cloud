@@ -1,11 +1,12 @@
 # Clean-room Node REPL and network probe
 
-This dependency-free project now contains two related experiments:
+This dependency-free project now contains three related experiments:
 
 1. A bounded network probe comparing DNS, TCP, TLS, and HTTPS `HEAD` against `example.com` only.
 2. A separately named, clean-room MCP implementing the observed `js`, `js_reset`, and `js_add_node_module_dir` contract of Desktop's persistent Node REPL.
+3. A parent-owned Linked Science capability that accepts immutable profile names while keeping endpoints, transport policy, and network authority outside the evaluator child.
 
-The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. Nothing imports or modifies Linked Science.
+The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. `nodeRepl.linkedScienceBroker` exposes only `capabilities`, `acquire`, and `query`; it does not expose endpoints, fetch, credentials, redirects, retries, or byte/result policy.
 
 Start every row in a **fresh task opened from the intended project context**. Codex loads project configuration and establishes the REPL sandbox at task startup; this repository's profile cannot be proven by a task that started elsewhere.
 
@@ -47,6 +48,8 @@ An HTTP proxy can also make allowed HTTPS work while raw DNS or sockets remain u
 
 Record the context label, fresh-task status, trust status, working directory, task source, sandbox implementation, sandbox mode/profile, cross-call persistence result, shell exit code, and all four probe stages for both surfaces. Do not record opaque runtime IDs.
 
-The fixture has no dependencies, credentials, Linked Science imports, alternate network hosts, or mutation requests. The network probe uses short bounded timeouts and reports sanitized JSON. The clean-room broker scrubs the child environment and supports opt-in, root-constrained PEEK checkpoints; checkpoints are disabled by default. It does not invoke an internal sandbox bypass, change global Codex configuration, install packages, create remotes, or run unrestricted access automatically.
+The fixture has no dependencies or credentials. The network probe uses short bounded timeouts and reports sanitized JSON. The clean-room broker scrubs the child environment, starts the child with Node's permission model, grants reads only within the worker root and the kernel entry file, grants no raw network or filesystem-write authority, and supports opt-in, root-constrained PEEK checkpoints; checkpoints are disabled by default. It does not invoke an internal sandbox bypass, change global Codex configuration, install packages, create remotes, or run unrestricted access automatically.
+
+The checked-in Linked Science query profile is a capability definition, not approval to contact its endpoint. Live acquisition or query still requires current, explicit approval for the exact operation. Acquisition profiles are intentionally absent until their exact sources and formats have been reviewed. All automated broker tests use injected synthetic responses and make no live requests.
 
 The disabled `.codex/config.restricted-profile.toml.disabled` file preserves the former `:workspace` permission profile for reference; it is not active configuration. The clean-room MCP experiment uses an MCP-only project config and does not add project network permissions. Selecting or trusting this folder in ChatGPT Desktop is a user action; configuration files do not establish trust by themselves.

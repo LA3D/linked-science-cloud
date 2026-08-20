@@ -133,7 +133,7 @@ test("reset clears bindings while preserving module roots and broker PEEK state"
   await writeFile(join(packageRoot, "package.json"), JSON.stringify({ name: "toy-package", type: "module", exports: "./index.mjs" }));
   await writeFile(join(packageRoot, "index.mjs"), "export const value = 73;\n");
 
-  const broker = new KernelBroker();
+  const broker = new KernelBroker({ cwd: fixture });
   t.after(() => broker.close());
   const handle = createRequestHandler({ broker });
   await handle(request(1, "js_add_node_module_dir", { path: moduleRoot }));

@@ -1,13 +1,16 @@
 import { fork } from "node:child_process";
+import { randomBytes } from "node:crypto";
+import { realpathSync } from "node:fs";
 import { stat } from "node:fs/promises";
 import { basename, resolve, sep } from "node:path";
 import { createInterface } from "node:readline";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { PeekRegistry } from "./peek-runtime.mjs";
+import { LinkedScienceNetworkBroker } from "./linked-science-broker.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
-export const SERVER_VERSION = "0.2.0";
+export const SERVER_VERSION = "0.3.0";
 
 const KERNEL_PATH = fileURLToPath(new URL("./repl-kernel-child.mjs", import.meta.url));
 const MAX_REQUEST_BYTES = 512 * 1024;
@@ -18,7 +21,7 @@ const MAX_TIMEOUT_MS = 120_000;
 const TOOLS = Object.freeze([
   {
     name: "js",
-    description: "Execute JavaScript in a persistent REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, and nodeRepl.peek for the PEEK-compatible orientation-map runtime.",
+    description: "Execute JavaScript in a persistent, network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation-map runtime, and nodeRepl.linkedScienceBroker for optional broker-owned named-profile operations.",
     inputSchema: {
       type: "object",
       required: ["code"],
@@ -88,18 +91,35 @@ function within(root, candidate) {
 }
 
 export class KernelBroker {
-  constructor({ cwd = process.cwd(), provider = null, peekPolicy = null, checkpointRoot = null, maxOldSpaceMb = 256 } = {}) {
-    this.cwd = resolve(cwd);
+  constructor({
+    cwd = process.cwd(),
+    provider = null,
+    peekPolicy = null,
+    checkpointRoot = null,
+    maxOldSpaceMb = 256,
+    linkedScienceProfiles,
+    linkedScienceFetch,
+    linkedScienceParseQuery,
+    linkedScienceBroker,
+  } = {}) {
+    this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
     this.checkpointRoot = checkpointRoot ? resolve(checkpointRoot) : null;
     this.maxOldSpaceMb = maxOldSpaceMb;
     this.peek = new PeekRegistry({ policy: peekPolicy });
+    this.linkedScience = linkedScienceBroker ?? new LinkedScienceNetworkBroker({
+      profiles: linkedScienceProfiles,
+      fetchImpl: linkedScienceFetch,
+      parseQuery: linkedScienceParseQuery,
+      moduleRoot: this.cwd,
+    });
     this.moduleRoots = [];
     this.child = null;
     this.ready = null;
     this.pending = new Map();
     this.sequence = 0;
     this.epoch = 0;
+    this.hostCapabilityToken = null;
     this.queue = Promise.resolve();
   }
 
@@ -112,10 +132,17 @@ export class KernelBroker {
   async _spawn() {
     if (this.child) return this.ready;
     this.epoch += 1;
+    const hostCapabilityToken = randomBytes(32).toString("hex");
+    this.hostCapabilityToken = hostCapabilityToken;
     const child = fork(KERNEL_PATH, [], {
       cwd: this.cwd,
       env: safeChildEnvironment(Boolean(this.provider)),
-      execArgv: [`--max-old-space-size=${this.maxOldSpaceMb}`],
+      execArgv: [
+        `--max-old-space-size=${this.maxOldSpaceMb}`,
+        "--permission",
+        `--allow-fs-read=${this.cwd}`,
+        `--allow-fs-read=${KERNEL_PATH}`,
+      ],
       serialization: "advanced",
       stdio: ["ignore", "ignore", "pipe", "ipc"],
     });
@@ -127,7 +154,10 @@ export class KernelBroker {
       child.on("message", (message) => {
         if (message?.type === "ready") {
           child.off("error", onError);
-          resolveReady();
+          child.send({ type: "host_capability_init", token: hostCapabilityToken }, (error) => {
+            if (error) rejectReady(error);
+            else resolveReady();
+          });
         } else if (message?.type === "response") {
           const pending = this.pending.get(message.id);
           if (!pending) return;
@@ -135,7 +165,7 @@ export class KernelBroker {
           if (message.ok) pending.resolve(message.value);
           else pending.reject(Object.assign(new Error(message.error?.message ?? "Kernel operation failed"), message.error));
         } else if (message?.type === "host_call") {
-          this._handleHostCall(message).catch(() => {});
+          this._handleHostCall(message, child).catch(() => {});
         }
       });
     });
@@ -162,8 +192,8 @@ export class KernelBroker {
     });
   }
 
-  async _handleHostCall(message) {
-    const child = this.child;
+  async _handleHostCall(message, child) {
+    if (child !== this.child || message.token !== this.hostCapabilityToken) return;
     const respond = (ok, value, error) => {
       if (child?.connected) child.send({ type: "host_result", id: message.id, ok, value, error });
     };
@@ -171,6 +201,9 @@ export class KernelBroker {
       const { method, args = {} } = message;
       let value;
       if (method === "rlm.query") value = await this._recursiveQuery(args);
+      else if (method === "linked-science.capabilities") value = this.linkedScience.capabilities();
+      else if (method === "linked-science.acquire") value = await this.linkedScience.acquire(args);
+      else if (method === "linked-science.query") value = await this.linkedScience.query(args);
       else if (method === "peek.begin") value = this.peek.begin(args.contextId, args.options);
       else if (method === "peek.current") value = this.peek.current(args.contextId);
       else if (method === "peek.edit") value = this.peek.edit(args.contextId, args.edits);
@@ -238,6 +271,7 @@ export class KernelBroker {
     const child = this.child;
     if (!child) return;
     this.child = null;
+    this.hostCapabilityToken = null;
     if (child.exitCode === null && child.signalCode === null) {
       await new Promise((resolveExit) => {
         child.once("exit", resolveExit);
@@ -277,11 +311,42 @@ export class KernelBroker {
         throw Object.assign(new Error("Path must be an absolute node_modules directory"), { code: "INVALID_MODULE_DIR" });
       }
       const root = resolve(path);
+      if (!within(this.cwd, root)) {
+        throw Object.assign(new Error("Module path is outside the worker root"), { code: "MODULE_DIR_OUTSIDE_WORKER_ROOT" });
+      }
       const metadata = await stat(root);
       if (!metadata.isDirectory()) throw Object.assign(new Error("Module path is not a directory"), { code: "INVALID_MODULE_DIR" });
       if (!this.moduleRoots.includes(root)) this.moduleRoots.push(root);
       if (this.child) await this._send("add_root", { path: root });
       return { ok: true, path: root, moduleDirCount: this.moduleRoots.length };
+    });
+  }
+
+  attestFilesystemBoundary({ workerRoot, evaluatorRoot, probePath } = {}) {
+    return this._enqueue(async () => {
+      const worker = realpathSync(resolve(workerRoot ?? ""));
+      const evaluator = realpathSync(resolve(evaluatorRoot ?? ""));
+      const probe = realpathSync(resolve(probePath ?? ""));
+      if (worker !== this.cwd) throw Object.assign(new Error("Worker root does not match the broker kernel root"), { code: "WORKER_ROOT_MISMATCH" });
+      if (within(worker, evaluator) || within(evaluator, worker)) {
+        throw Object.assign(new Error("Evaluator-private and worker roots must not overlap"), { code: "PRIVATE_ROOT_OVERLAP" });
+      }
+      if (!within(evaluator, probe)) throw Object.assign(new Error("Probe path is outside evaluator-private root"), { code: "PRIVATE_PROBE_PATH_DENIED" });
+      const metadata = await stat(probe);
+      if (!metadata.isFile()) throw Object.assign(new Error("Evaluator-private probe must be a file"), { code: "PRIVATE_PROBE_INVALID" });
+      const observed = await this._send("probe_read", { path: probe });
+      if (observed?.status !== "denied") {
+        throw Object.assign(new Error("Child could read evaluator-private state"), { code: "PRIVATE_BOUNDARY_FAILED" });
+      }
+      return Object.freeze({
+        kind: "cleanroom-filesystem-boundary",
+        enforcer: "cleanroom-broker",
+        privateReadProbe: "denied",
+        workerRoot: worker,
+        evaluatorRoot: evaluator,
+        permissionModel: "node-permission",
+        probeCode: observed.code,
+      });
     });
   }
 
@@ -307,7 +372,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; bootstrap it explicitly with await nodeRepl.peek.current(contextId).",
+        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. Optional Linked Science work is available only through immutable profiles exposed by nodeRepl.linkedScienceBroker. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; bootstrap it explicitly with await nodeRepl.peek.current(contextId).",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});
