@@ -321,7 +321,7 @@ test("redirect denial receipts cross the child boundary without exposing a respo
     linkedScienceParseQuery: parseQuery,
     linkedScienceFetch: async (url, options) => {
       calls.push({ url, options });
-      return new Response(null, { status: 302, headers: { location: "https://fixtures.invalid/core.owl" } });
+      return new Response(null, { status: 302, headers: { location: "https://fixtures.invalid/core.owl#" } });
     },
   });
   t.after(() => broker.close());

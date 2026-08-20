@@ -75,6 +75,7 @@ function redirectLocation(value, source) {
     if (url.href.length > 2_048 || url.protocol !== "https:" || url.username || url.password || url.hash) {
       return freezeDeep({ status: "redacted-invalid" });
     }
+    if (url.href.endsWith("#")) url.hash = "";
     return freezeDeep({ status: "exact-https", value: url.href });
   } catch {
     return freezeDeep({ status: "redacted-invalid" });
