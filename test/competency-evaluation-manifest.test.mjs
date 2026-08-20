@@ -47,7 +47,10 @@ function privateBundle() {
   const bundle = {
     format: 'linked-science-competency-evaluator/v1',
     version: 'synthetic-test-v1',
-    corpus: { source: 'https://evaluator.invalid/catalog', retrievedAt: '2026-08-20T00:00:00Z', sha256: sha256('synthetic-corpus') },
+    corpus: {
+      source: 'https://evaluator.invalid/catalog', retrievedAt: '2026-08-20T00:00:00Z', sha256: sha256('synthetic-corpus'),
+      httpStatus: 200, contentType: 'text/html', byteLength: 16, redirects: 0, etag: 'synthetic-v1', sourceRelease: 'test-release',
+    },
     selectionSha256: '0'.repeat(64),
     cases
   };
@@ -61,6 +64,10 @@ test('draft worker manifest contains only opaque public cases and cannot be disp
   assert.deepEqual(validated.cases.map(item => item.tier), [0, 1, 2]);
   assert.throws(() => validateWorkerManifest(workerManifest, { requireDispatchable: true }), /not dispatchable/);
   assert.throws(() => validateWorkerManifest({ ...workerManifest, officialQuery: 'SELECT * WHERE {}' }), /evaluator-private fields/);
+  assert.throws(
+    () => validateWorkerManifest({ ...workerManifest, status: 'ready', corpusSnapshotDigest: '0'.repeat(64) }),
+    /pending or unreviewed profile names/,
+  );
 });
 
 test('private evaluator schema verifies hashes, semantic invariants, applicability, and honeytokens', () => {
@@ -69,6 +76,10 @@ test('private evaluator schema verifies hashes, semantic invariants, applicabili
   const corrupted = structuredClone(bundle);
   corrupted.cases[0].officialQuery += ' ';
   assert.throws(() => validateEvaluatorBundle(corrupted), /querySha256/);
+  const redirected = structuredClone(bundle);
+  redirected.corpus.redirects = 1;
+  redirected.selectionSha256 = computeEvaluatorSelectionSha256(redirected);
+  assert.throws(() => validateEvaluatorBundle(redirected), /corpus.redirects/);
 });
 
 test('worker export policy excludes evaluator, traces, legacy affordances, tests, and repository metadata', () => {

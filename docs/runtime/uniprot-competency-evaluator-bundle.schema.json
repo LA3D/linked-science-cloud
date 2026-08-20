@@ -12,11 +12,17 @@
     "corpus": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["source", "retrievedAt", "sha256"],
+      "required": ["source", "retrievedAt", "sha256", "httpStatus", "contentType", "byteLength", "redirects"],
       "properties": {
         "source": { "type": "string", "format": "uri" },
         "retrievedAt": { "type": "string", "minLength": 1 },
-        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "httpStatus": { "type": "integer", "minimum": 100, "maximum": 599 },
+        "contentType": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "byteLength": { "type": "integer", "minimum": 1, "maximum": 10000000 },
+        "redirects": { "const": 0 },
+        "etag": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "sourceRelease": { "type": "string", "minLength": 1, "maxLength": 128 }
       }
     },
     "selectionSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },

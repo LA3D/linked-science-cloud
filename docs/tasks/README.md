@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked | Freeze the exact official three-case selection in evaluator-private state and prove the worker export is leakage-free before any live evaluation. | After exact catalog-source approval and fresh-task observation of the implemented broker filesystem boundary, acquire the official snapshot into evaluator-private storage, replace the non-dispatchable draft questions, and run the honeytoken audit. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on activation evidence | Observe the completed broker capability and child denial boundary in a fresh Desktop task before any live evaluation claim. | Fully restart Desktop, open a fresh trusted-project task in the separate `node-repl-network-probe` checkout, and run only the offline capability/persistence/denial checks. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on orientation profiles | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Review and separately approve exact VoID, machine-readable UniProt core, and GO orientation acquisition profiles; replace the pending names only after those profiles exist. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on acquisition profiles | Extend the verified broker-owned live boundary with the exact orientation sources required by the frozen competency cases. | Review the exact source, media type, bounds, redirect, and parsing contracts for the VoID, UniProt core, and GO orientation resources before any acquisition or profile addition. |
 
 ## When to create or update a task brief
 

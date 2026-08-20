@@ -16,9 +16,9 @@ The following are source facts observed from official UniProt resources on **202
 
 - The official [SPARQL example catalog](https://sparql.uniprot.org/.well-known/sparql-examples/) publishes human-readable questions together with reference SPARQL. Its examples cover, among other shapes, release discovery through the service VoID description, fixed-accession name/domain/component navigation, GO process/function/component grouping, disease and cellular-location navigation, aggregation, and federated questions.
 - The [UniProt RDF core ontology](https://purl.uniprot.org/core/) documents the UniProt-defined classes and predicates used to describe entries and associated data, and routes readers to the UniProt SPARQL service and official examples.
-- `https://sparql.uniprot.org/sparql` is the canonical UniProt SPARQL service target already pinned by the project `uniprotRead` profile. Its identity is recorded here; it was not queried or probed for this methodology task.
+- `https://sparql.uniprot.org/sparql` is the canonical UniProt SPARQL service target pinned by the repository `uniprotRead` profile and the external broker's `uniprot-read` profile.
 
-Everything below is **project evaluation methodology**, not a claim made by UniProt. No catalog snapshot, evaluation manifest, live answer, or endpoint receipt was created in this task.
+Everything below is **project evaluation methodology**, not a claim made by UniProt. Under separate exact approvals on 2026-08-20, the coordinator captured the catalog with HTTP 200, zero redirects, a 51,696-byte `text/html;charset=UTF-8` body, `X-Release: 2026_02`, ETag `W/"2026_02"`, and SHA-256 `9b9cccf7d5863c0c6a2a79385790a11720ea7e9fa4f2266cb0d802f69ad48f38`. It also ran one bounded endpoint-existence `ASK` through the broker-owned `uniprot-read` profile; the HTTP 200 boolean result was retained behind a native handle with one attempt and no retry. These receipts establish source capture and transport activation only. They are not live answers to any competency case.
 
 ## Corpus model and leakage controls
 
@@ -129,11 +129,11 @@ Select representative official questions across operation shapes and semantic di
 
 The evaluator-private selection maps these shapes to canonical official catalog records. Worker-visible IDs remain opaque. Later stages should add at least one genuine ambiguity, empty-result, stale-assumption, or correction case. Complex federation examples remain advanced, separately authorized cases and must match exact implemented profiles; an official query's use of a service does not grant that service permission.
 
-The repository-local split schemas, non-dispatchable worker draft, allowlisted export policy, semantic-invariant/applicability validation, and synthetic honeytoken audit were implemented on 2026-08-20. The audit deliberately rejects path separation without a broker read-denial attestation. Exact official reference capture remains blocked until the catalog source is currently approved and evaluator-private filesystem authority exists. No live query is part of that next action.
+The repository-local split schemas, non-dispatchable worker draft, allowlisted export policy, semantic-invariant/applicability validation, and synthetic honeytoken audit were implemented on 2026-08-20. The same day, exact source approval and observed evaluator-private filesystem authority allowed the three references to be frozen outside the worker checkout. The private selection digest is `5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616`; the public draft exposes only the corpus digest, exact human-readable questions, opaque case IDs, resource roles, and bounds. The active child and the real exported-worker broker probe both returned `ERR_ACCESS_DENIED` for evaluator-private state. Dispatch remains blocked until exact VoID, machine-readable UniProt core, and GO orientation profiles are reviewed and replace the pending names.
 
 ## Limits and non-claims
 
-- Current clean-room execution evidence remains local synthetic. The completed context-recovery run proves persistence and reset honesty, not live UniProt navigation.
+- Current clean-room evidence now includes broker activation, raw-network denial, evaluator-private read denial, and one approved endpoint-existence preflight. It does not include a competency-case execution or scientific answer.
 - Prior live UniProt runs used older execution surfaces and cannot substitute for a clean-room competency trace.
 - Passing the initial subset would establish only bounded performance on those cases, not open-ended Linked Science Cloud navigation, corpus-wide generalization, federation competence, or production reliability.
 - The official examples are authoritative external references, but their queries are not necessarily optimal, minimal, immutable, guard-compatible, or the only semantically correct solution.

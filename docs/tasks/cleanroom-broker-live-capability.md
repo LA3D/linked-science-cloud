@@ -1,9 +1,9 @@
 # Task: Enforce the Linked Science live capability in the clean-room broker
 
-- **Status:** Offline implementation complete; blocked on fresh-task activation evidence and source-specific approvals
-- **Owner/task:** External implementation completed in the current task; fresh-task verification unassigned
-- **Scope:** Implement the broker half of the checked-in Linked Science named-profile capability in the separately saved `node-repl-network-probe` project. Keep all verification offline. Do not execute live requests, install packages, change global Codex configuration, or push.
-- **Authorization boundary:** The user authorized the external checkout modifications completed here. Source-specific profile acquisition and live trials still require separate current approval for each exact source or endpoint. No live request, package installation, global configuration change, push, or export was authorized or performed.
+- **Status:** Runtime boundary verified; blocked only on reviewed acquisition profiles
+- **Owner/task:** External implementation and fresh-task activation verification completed; source-profile review remains unassigned
+- **Scope:** Implement and verify the broker half of the checked-in Linked Science named-profile capability in the separately saved `node-repl-network-probe` project. Keep live operations exact, bounded, explicitly approved, and broker-owned.
+- **Authorization boundary:** The user authorized the completed external checkout modifications, the exact catalog acquisition, and one exact bounded UniProt endpoint-existence `ASK` preflight. No competency query, other source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
 
 ## Outcome and acceptance evidence
 
@@ -30,19 +30,21 @@ Offline tests must establish:
 - The child is launched under Node's permission model with reads limited to the worker root and kernel entry file; raw HTTP, DNS, sockets, filesystem writes, and evaluator-private reads are denied. Parent host calls also require a random per-kernel capability token, preventing imported modules from forging IPC requests.
 - Offline external tests establish bounded acquisition/query receipts, descriptor non-disclosure, pre-transport injection denial, timeout/redirect/body/result bounds without retry, and a real honeytoken `ERR_ACCESS_DENIED` attestation.
 - A cross-repository offline check used the real external broker with injected synthetic responses and confirmed that this runtime retained native evidence and bindings handles with broker-owned provenance.
+- After a full Desktop restart, a fresh trusted-project task observed exactly the `js`, `js_add_node_module_dir`, and `js_reset` tools; `linkedScienceBroker.capabilities()` exposed exactly `acquire`, `capabilities`, and `query`; and bootstrap reported `brokerOwnedLive: true`.
+- The restarted child preserved JavaScript state and denied raw HTTP, DNS, sockets, filesystem writes, and evaluator-private reads with `ERR_ACCESS_DENIED`.
+- One separately authorized `ASK` against the exact `uniprot-read` profile returned HTTP 200, boolean `true`, a 41-byte response, one attempt, no retry, redirect-error policy, an 8-second timeout, broker receipt `lsb-000001`, and native boolean handle `h-000001`. This proves parent-broker connectivity and retention only.
 
 ### Remaining work
 
 - Add immutable, reviewed VoID, machine-readable UniProt core, and GO acquisition profiles only after their exact sources and formats are established under current approval.
-- Fully restart Desktop and reverify the saved MCP in a fresh Codex task; checked-in configuration and process-local unit tests are not activation evidence.
 - Perform any real profile operation only after current approval for that exact source or endpoint. A checked-in profile is capability metadata, not authorization to use it.
 
 ### Exact next action
 
-After a full Desktop restart, open a fresh trusted-project task for `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe`; verify the separately named MCP still lists exactly three tools, then inspect `nodeRepl.linkedScienceBroker.capabilities()` and repeat only the offline persistence and denial checks. Do not invoke a live profile during activation verification.
+Review the exact source URLs, expected media types, bounds, redirect policy, and parsing contracts for the VoID, machine-readable UniProt core, and GO orientation resources. Obtain separate current approval before acquiring them or adding immutable profiles.
 
 ## Handoff state
 
 - **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains `a18934f`; the focused task branch is retained and nothing was pushed. The consumer handoff update starts from local `main` at `9e612a5`.
-- **Verification:** External `npm run check` passed, external `npm test` passed 20/20, and the real external broker-to-consumer native-handle integration check passed with injected synthetic responses. Fresh Desktop task activation remains unverified.
-- **Live evidence:** None; no endpoint or documentation request occurred.
+- **Verification:** External `npm run check` passed, external `npm test` passed 20/20, the synthetic cross-repository native-handle integration passed, and fresh-task activation, denial, bounded live-query, active-child private-read denial, and exported-worker boundary checks were observed.
+- **Live evidence:** One endpoint-existence `ASK` receipt proves the exact broker transport path. No competency answer or source-orientation acquisition is claimed.
