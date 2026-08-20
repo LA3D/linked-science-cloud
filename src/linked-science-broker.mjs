@@ -193,6 +193,28 @@ function parseSparqlJson(bytes, parsed, profile) {
 export function createDefaultLinkedScienceProfiles() {
   return Object.freeze([
     Object.freeze({
+      id: "uniprot-void-description",
+      operation: "acquire",
+      sources: Object.freeze(["https://sparql.uniprot.org/uniprot"]),
+      accept: "text/html",
+      allowedContentTypes: Object.freeze(["text/html"]),
+      timeoutMs: 8_000,
+      maxBytes: 2_000_000,
+      maxItems: 1,
+      maxTransports: 1,
+    }),
+    Object.freeze({
+      id: "go-orientation",
+      operation: "acquire",
+      sources: Object.freeze(["https://geneontology.org/docs/ontology-documentation/"]),
+      accept: "text/html",
+      allowedContentTypes: Object.freeze(["text/html"]),
+      timeoutMs: 8_000,
+      maxBytes: 2_000_000,
+      maxItems: 1,
+      maxTransports: 1,
+    }),
+    Object.freeze({
       id: "uniprot-read",
       operation: "query",
       endpoint: "https://sparql.uniprot.org/sparql",

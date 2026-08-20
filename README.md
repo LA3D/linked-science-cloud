@@ -8,6 +8,8 @@ This dependency-free project now contains three related experiments:
 
 The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. `nodeRepl.linkedScienceBroker` exposes only `capabilities`, `acquire`, and `query`; it does not expose endpoints, fetch, credentials, redirects, retries, or byte/result policy.
 
+The default broker profiles support the validated portion of the staged UniProt competency boundary: exact single-source acquisitions for the UniProt dataset description and GO orientation documentation, plus the bounded `uniprot-read` query profile. The proposed machine-readable UniProt core source returned HTTP 404 and is not configured pending a separately approved replacement. Profile descriptors exposed to the child contain only IDs, operation kinds, digests, and ceilings. A configured profile is not authorization to invoke its source; each live run still requires current approval for the exact profile.
+
 Start every row in a **fresh task opened from the intended project context**. Codex loads project configuration and establishes the REPL sandbox at task startup; this repository's profile cannot be proven by a task that started elsewhere.
 
 ## Test matrix

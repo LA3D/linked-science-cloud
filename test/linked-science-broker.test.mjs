@@ -5,7 +5,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import { KernelBroker } from "../src/cleanroom-mcp.mjs";
-import { LinkedScienceNetworkBroker } from "../src/linked-science-broker.mjs";
+import { createDefaultLinkedScienceProfiles, LinkedScienceNetworkBroker } from "../src/linked-science-broker.mjs";
 
 const ACQUIRE_SOURCE = "https://fixtures.invalid/orientation.ttl";
 const QUERY_ENDPOINT = "https://fixtures.invalid/sparql";
@@ -92,6 +92,21 @@ test("immutable profile descriptors disclose only IDs, operation kinds, digests,
   assert.equal(JSON.stringify(capability).includes("fixtures.invalid"), false);
   assert.equal(Object.isFrozen(capability), true);
   assert.equal(Object.isFrozen(capability.profiles[0].limits), true);
+});
+
+test("default Linked Science profiles pin the reviewed competency sources without disclosing them", () => {
+  const profiles = createDefaultLinkedScienceProfiles();
+  assert.deepEqual(profiles.map(({ id, operation }) => ({ id, operation })), [
+    { id: "uniprot-void-description", operation: "acquire" },
+    { id: "go-orientation", operation: "acquire" },
+    { id: "uniprot-read", operation: "query" },
+  ]);
+  assert.deepEqual(profiles.map((profile) => profile.maxTransports), [1, 1, 1]);
+  const broker = new LinkedScienceNetworkBroker({ profiles, fetchImpl: async () => new Response(), parseQuery });
+  const capability = broker.capabilities();
+  assert.deepEqual(capability.profiles.map((profile) => profile.id), profiles.map((profile) => profile.id));
+  assert.equal(JSON.stringify(capability).includes("sparql.uniprot.org"), false);
+  assert.equal(JSON.stringify(capability).includes("geneontology.org"), false);
 });
 
 test("broker-owned acquisition and query return bounded payloads with attributable receipts", async () => {
