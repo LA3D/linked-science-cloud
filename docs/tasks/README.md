@@ -4,7 +4,9 @@ This directory holds a small queue of material work that is ready, active, or de
 
 ## Queue
 
-No active tasks.
+| Task | Status | Outcome sought | Exact next action |
+| --- | --- | --- | --- |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Ready | Split worker questions from evaluator-only official query references and prove the worker view is leakage-free before any live evaluation. | Draft the public/private manifest schemas and leakage-test fixture for the three staged competency shapes without executing a live query. |
 
 ## When to create or update a task brief
 
