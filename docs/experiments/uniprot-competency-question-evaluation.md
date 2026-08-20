@@ -129,7 +129,7 @@ Select representative official questions across operation shapes and semantic di
 
 The evaluator-private selection maps these shapes to canonical official catalog records. Worker-visible IDs remain opaque. Later stages should add at least one genuine ambiguity, empty-result, stale-assumption, or correction case. Complex federation examples remain advanced, separately authorized cases and must match exact implemented profiles; an official query's use of a service does not grant that service permission.
 
-The next action is to implement the split worker/evaluator manifest and leakage-audit procedure for this three-case subset. That task must not execute a live query.
+The repository-local split schemas, non-dispatchable worker draft, allowlisted export policy, semantic-invariant/applicability validation, and synthetic honeytoken audit were implemented on 2026-08-20. The audit deliberately rejects path separation without a broker read-denial attestation. Exact official reference capture remains blocked until the catalog source is currently approved and evaluator-private filesystem authority exists. No live query is part of that next action.
 
 ## Limits and non-claims
 

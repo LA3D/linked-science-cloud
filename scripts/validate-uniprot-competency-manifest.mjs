@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
   auditWorkerExport,
@@ -7,7 +8,7 @@ import {
   validateWorkerManifest,
 } from '../lib/competency-evaluation-manifest.mjs';
 
-const projectRoot = resolve(new URL('..', import.meta.url).pathname);
+const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 
 function argument(name) {
   const index = process.argv.indexOf(name);
