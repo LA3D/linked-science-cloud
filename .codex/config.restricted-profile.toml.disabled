@@ -1,0 +1,23 @@
+default_permissions = "science-tools-linked-data"
+
+[features]
+network_proxy = true
+
+[permissions.science-tools-linked-data]
+description = "Workspace-only science-tools access with guarded Linked Data network hosts."
+extends = ":workspace"
+
+[permissions.science-tools-linked-data.filesystem]
+"/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/**/.env" = "deny"
+"/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/**/.env.*" = "deny"
+
+[permissions.science-tools-linked-data.network]
+enabled = true
+
+[permissions.science-tools-linked-data.network.domains]
+"sparql.api.identifiers.org" = "allow"
+"sparql.uniprot.org" = "allow"
+"sparql.wikipathways.org" = "allow"
+"sparql.rhea-db.org" = "allow"
+"query.wikidata.org" = "allow"
+"purl.uniprot.org" = "allow"

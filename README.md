@@ -1,18 +1,18 @@
 # Linked Data REPL experiment
 
-This is a small Codex Desktop experiment for running in-memory RDF/SPARQL work with a persistent Node JavaScript REPL. The local Communica engine and RDF store belong to a worker task; a conversational coordinator delegates a bounded task and receives its evidence-backed result.
+This is a small Codex Desktop experiment for running in-memory RDF/SPARQL work with a user-owned persistent JavaScript REPL. The local Communica engine and RDF store belong to a worker task; a conversational coordinator delegates a bounded task and receives its evidence-backed result.
 
 ## Current Codex runtime boundary
 
-The Node REPL is supplied by the Codex client; this repository does not package or register it as an MCP server. Tool exposure, project filesystem access, dependency resolution, cross-call persistence, sandbox behavior, and guarded network reachability are separate runtime properties and must be observed rather than inferred from one another.
+The active project configuration registers the separately saved `cleanroom_node_repl` MCP from `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe`. It is a user-owned CodeAct runtime with persistent JavaScript, RLM context operations, broker-owned PEEK orientation, and the observed three-tool contract. This project does not use or configure Codex Desktop's bundled `node_repl`.
 
-The project's historical unrestricted-sandbox and legacy feature-flag recipe is no longer current setup guidance. Do not change global Codex configuration to make this experiment run. A high-priority [read-only diagnosis task](docs/tasks/node-repl-permission-reverification.md) will re-verify coordinator-versus-worker behavior against current official documentation and the current permission model before any fix is proposed.
+The former restricted network profile remains disabled at `.codex/config.restricted-profile.toml.disabled` for historical reference. It is not active configuration and must not be re-enabled to grant the bundled REPL network access. Tool exposure, project-root selection, module resolution, persistence, RLM state, PEEK state, and guarded network reachability remain separate properties that must be observed rather than inferred.
 
 ## Worker pattern
 
 1. The coordinator keeps the conversation, scope, and approval boundary.
-2. A worker opens the persistent JavaScript REPL from this project directory, initializes the local Communica engine and synthetic RDF state once, then reuses that state across calls.
-3. The worker verifies a query in a second REPL call and reports only what was actually observed. Resetting the REPL discards that state.
+2. A fresh Local task loads the project-scoped `cleanroom_node_repl`, verifies its cwd, and bootstraps the Linked Science facade once per kernel.
+3. The worker verifies a query in a second REPL call and reports only what was actually observed. Kernel reset discards bindings, RLM context, and resident handles while broker PEEK orientation remains advisory.
 
 Run the disposable local check with:
 
@@ -24,7 +24,7 @@ For the tested REPL initialization and persistence check, use the project-local 
 
 ## Linked Science runtime
 
-The production-oriented local v1 adapter is `lib/linked-science-runtime.mjs`. It installs one stable CodeAct-style JavaScript facade, keeps Communica private as the query kernel, retains ontology/schema/SHACL/instance graphs and results behind epoch-bearing handles, and exposes bounded provenance-bearing discovery and presentation. Start with [runtime discovery](docs/agent/runtime-discovery.md); the checked-in [machine API schema](docs/runtime/linked-science-api.schema.json) supports fresh-agent lookup. V1 adds no live endpoint or recursive model access.
+The production-oriented local adapter is bootstrapped by `lib/cleanroom-linked-science-bootstrap.mjs` and implemented by `lib/linked-science-runtime.mjs`. It installs one stable CodeAct-style JavaScript facade, validates this checkout and its declared dependency root, registers discovery material with clean-room RLM context, keeps Communica private as the query kernel, delegates compact orientation to broker-owned PEEK, and retains ontology/schema/SHACL/instance graphs and results behind epoch-bearing handles. Start with [runtime discovery](docs/agent/runtime-discovery.md); the checked-in [machine API schema](docs/runtime/linked-science-api.schema.json) supports fresh-agent lookup. The local slice adds no live endpoint or recursive model access.
 
 ## Capability map and next work
 

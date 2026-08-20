@@ -8,7 +8,7 @@ A handle name is not residency evidence. Cite current tool-generated operations 
 
 ## Symbolic orientation cache
 
-Use `createOrientationMap`, `recordAcquisitionOrientation`, `recordResultOrientation`, and `recordOrientation` from `lib/orientation-map.mjs` when a task needs a compact context map. `lib/context-map-recovery.mjs` re-exports them for older callers. This is the PEEK-style orientation cache beside the REPL's bulk state:
+The active Linked Science facade uses the clean-room broker's `nodeRepl.peek` operations through `workspace.orientation`; do not also instantiate `lib/orientation-map.mjs` for the same runtime context. The library map and its `context-map-recovery.mjs` re-export remain for compatibility and offline standalone work. Both use these sections:
 
 - `context-roadmap`: available or attempted sources;
 - `context-understanding`: grounded relations and known failures;
@@ -20,7 +20,7 @@ The map is bounded, stable-ID, JSON-compatible symbolic state. It may point to e
 
 ## Reset and stale state
 
-Reset destroys JavaScript bindings and resident handles. A pre-reset orientation entry may retain lineage or a known failed route, but it cannot prove that a handle remains available. Check the current session and report a referenced handle as missing or invalidated when appropriate.
+Clean-room `js_reset` destroys JavaScript bindings, RLM contexts, Linked Science workspaces, and resident handles while broker-owned PEEK orientation survives. Bootstrap again before inspecting the map. A pre-reset orientation entry may retain lineage or a known failed route, but it cannot prove that a handle remains available. Check the current workspace and report the reference stale or missing.
 
 Rematerialization is a new guarded operation, not reuse or automatic recovery. It requires the original source path to remain authorized and yields new provenance. If the source, approval, or tool is unavailable, stop honestly rather than reconstructing state from the map.
 

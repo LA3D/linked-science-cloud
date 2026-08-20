@@ -1,5 +1,7 @@
 # Linked Science CodeAct runtime v1
 
+> Historical implementation milestone. The facade is now integrated with the user-owned clean-room MCP through the [clean-room bootstrap task](linked-science-cleanroom-bootstrap.md); its former in-process orientation path remains only for compatibility and offline standalone tests.
+
 ## Status
 
 Implemented and verified on `codex/linked-science-runtime-v1`; the local commit is recorded in the task handoff.

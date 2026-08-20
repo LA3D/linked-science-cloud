@@ -1,14 +1,34 @@
-# Linked Science runtime discovery
+# Linked Science clean-room runtime discovery
 
-## Bootstrap once
+## Fresh-task preflight
 
-From the repository root in the persistent Node JavaScript REPL, evaluate this expression exactly once:
+The active `.codex/config.toml` registers the user-owned `cleanroom_node_repl` server with this checkout as its explicit cwd. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. Configuration text alone is not activation evidence.
+
+Require the MCP to expose exactly `js`, `js_reset`, and `js_add_node_module_dir`. In `js`, verify:
 
 ```js
-await (async () => { const { setupLinkedScience } = await import(`${process.cwd()}/lib/linked-science-runtime.mjs`); return setupLinkedScience({ nodeRepl: globalThis }); })()
+nodeRepl.write({ cwd: nodeRepl.cwd, mode: nodeRepl.rlm.mode })
 ```
 
-It installs the stable global bindings `linkedScience` and `ls`. Setup is idempotent for the same global object, but normal use should bootstrap once and reuse those globals across calls.
+The cwd must be `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl` and the mode must be `codeact`. Create a top-level `var` binding and inspect it in a second call before claiming persistence.
+
+## Bootstrap once per kernel
+
+Use this exact clean-room bootstrap. It does not rely on `process`, `process.cwd()`, a shell directory, or an undocumented bundled-REPL global:
+
+```js
+var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+await bootstrapLinkedScience({
+  host: globalThis,
+  cleanroom: nodeRepl,
+  projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',
+  moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',
+});
+```
+
+The bootstrap validates the clean-room cwd, the exact project and module roots, and module-scoped resolution of every declared dependency. It installs the stable global bindings `linkedScience` and `ls`, delegates orientation to broker-owned `nodeRepl.peek`, and registers compact discovery state as the RLM context `linked-science:runtime`. Normal use bootstraps once and reuses the globals across calls.
+
+The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 
 ## Discover before acting
 
@@ -18,6 +38,7 @@ Start with:
 linkedScience.documentation()
 linkedScience.capabilities()
 linkedScience.examples()
+nodeRepl.rlm.inspect('linked-science:runtime', { start: 0, end: 2048 })
 ```
 
 Fetch conditional detail only when needed:
@@ -32,32 +53,32 @@ The checked-in [API schema](../runtime/linked-science-api.schema.json) and [rout
 
 ## Open a goal workspace
 
-Use a compact context key, bootstrap the PEEK map, then retain local graph objects:
+Use a compact context key and explicitly start its broker PEEK map before retaining local graph objects:
 
 ```js
-const ws = linkedScience.open({ contextKey: 'measurement-goal' })
-ws.orientation.bootstrap()
+var ws = linkedScience.open({ contextKey: 'measurement-goal' })
+await ws.orientation.bootstrap()
 ```
 
-Follow the generated method documentation for loading graphs, searching ontology terms, querying, deriving, and viewing. Keep ontology/schema/SHACL graphs behind their handles. PEEK is orientation only. Return bounded views with their provenance rather than dumping resident graphs or results.
+Follow generated method documentation. `graphs.load` is asynchronous because successful retention also records a compact broker-owned orientation reference. Keep ontology/schema/SHACL graphs behind handles. PEEK is orientation only, RLM holds external discovery context, and neither is a result store or Codex goal state.
 
 ## Reset recovery
 
-Before a planned recreation, `ws.orientation.commit()` returns a compact checkpoint. `linkedScience.reset({ contextKey })` advances the epoch and retains the in-process map. A recreated setup may receive `{ orientationCheckpoints: { [contextKey]: checkpoint } }`.
+`await ws.orientation.commit()` returns a compact receipt for the broker map; it is not an artifact or a second checkpoint store. `linkedScience.reset({ contextKey })` advances only the Linked Science workspace epoch while retaining broker orientation.
 
-After either reset path:
+`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, and resident handles. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
 
 ```js
-const recovered = linkedScience.open({ contextKey: 'measurement-goal' })
-recovered.orientation.status()
+var recovered = linkedScience.open({ contextKey: 'measurement-goal' })
+await recovered.orientation.status()
 ```
 
-Old handles must fail as stale. The map can guide explicit rematerialization, but it cannot prove residency and does not authorize a source. Read `linkedScience.documentation.get('reset')` and the recovery document named by any runtime error.
+Old references must report stale and old handles must not be reused. PEEK may guide explicit rematerialization but cannot prove residency or authorize a source.
 
 ## Invariants
 
-- Use persistent model-written JavaScript as the action space.
+- Use only `cleanroom_node_repl`; the bundled `node_repl` is obsolete for this project.
 - Keep output bounded by rows/cells or nodes/edges and bytes.
 - Preserve provenance and operation IDs through query, derivation, and view.
-- Use only local-synthetic data in runtime v1; compatibility guards retain their existing explicit live-approval contract.
-- Do not treat the present JavaScript guard as a security sandbox or expose a raw network-capable Communica engine to arbitrary child code.
+- Use only local-synthetic data in the current facade; compatibility guards retain their explicit live-approval contract.
+- Keep REPL-resident handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct.

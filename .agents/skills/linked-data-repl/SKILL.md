@@ -22,7 +22,7 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 ## Route only to relevant detail
 
 - **Documentation-only or static-source work:** inspect repository files directly. It does not require a REPL preflight unless the result claims REPL execution, retention, or live connectivity.
-- **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), bootstrap exactly once with the documented expression, and then use the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. After reset, inspect orientation status and reject old-epoch handles; the PEEK map is not restored evidence.
+- **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), use only `cleanroom_node_repl`, bootstrap exactly once with the documented absolute module and roots, and then reuse the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. Broker-owned PEEK orientation survives kernel replacement, but resident handles and RLM kernel context do not; bootstrap again and reject old-epoch handles.
 - **Any persistent-REPL execution:** first read and follow [REPL environment and persistence](references/repl-environment.md). A terminal script is not proof of REPL retention.
 - **Documentation acquisition, live querying, source selection, or profiles:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for the exact profile remains mandatory.
 - **Retained results, orientation, reset, or presentation:** read [retained state and bounded presentation](references/retained-state-and-presentation.md).
@@ -34,10 +34,16 @@ Use `resources/index.md` only as routed by the evidence-acquisition reference wh
 The exact runtime bootstrap is:
 
 ```js
-await (async () => { const { setupLinkedScience } = await import(`${process.cwd()}/lib/linked-science-runtime.mjs`); return setupLinkedScience({ nodeRepl: globalThis }); })()
+var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+await bootstrapLinkedScience({
+  host: globalThis,
+  cleanroom: nodeRepl,
+  projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',
+  moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',
+});
 ```
 
-Run it once per persistent kernel, then reuse `linkedScience`. The complete runtime surface belongs in generated documentation and `docs/runtime/`, not in this skill.
+Run it once per persistent clean-room kernel, then reuse `linkedScience`. Do not substitute the bundled `node_repl`, `process.cwd()`, an inferred root, or a package entrypoint under `node_modules`. The complete runtime surface belongs in generated documentation and `docs/runtime/`, not in this skill.
 
 ## Outcome
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "Linked Data REPL"
-  short_description: "Explore Linked Data with guarded persistent state"
-  default_prompt: "Use $linked-data-repl to answer a Linked Data question from authoritative evidence with bounded read operations."
+  short_description: "Explore Linked Data in the clean-room persistent REPL"
+  default_prompt: "Use $linked-data-repl and the project-registered cleanroom_node_repl to answer a Linked Data question from authoritative evidence with bounded read operations."

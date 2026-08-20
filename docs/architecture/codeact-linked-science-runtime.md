@@ -2,24 +2,24 @@
 
 ## Decision
 
-Linked Science v1 uses persistent model-written JavaScript as its primary action space. `lib/linked-science-runtime.mjs` injects one stable `linkedScience` facade (with the short alias `ls`) into the persistent Node JavaScript global object. Communica remains the RDF/SPARQL query kernel behind the facade; the agent receives graph, query, derivation, inspection, orientation, and recovery affordances rather than a set of fixed scientific-domain tools.
+Linked Science uses the user-owned `cleanroom_node_repl` and persistent model-written JavaScript as its primary action space. `lib/cleanroom-linked-science-bootstrap.mjs` validates the saved project and dependency roots, registers RLM discovery context, and injects the `linkedScience` facade (with short alias `ls`) from `lib/linked-science-runtime.mjs`. Communica remains the RDF/SPARQL query kernel behind the facade.
 
 The one-time bootstrap, generated documentation, machine schema, conditional lookup, examples, stable globals, and explicit reset follow the public adapter shape described in [runtime discovery](../agent/runtime-discovery.md). This repository does not imitate a private Browser or Chrome bridge.
 
 ## Runtime shape
 
-`setupLinkedScience({ nodeRepl, ... })` is idempotent for one global object. It installs non-writable `linkedScience` and `ls` properties and returns the same frozen facade on a repeated setup call. `open({ contextKey })` returns a stable workspace for the current context epoch.
+`bootstrapLinkedScience({ host, cleanroom, projectRoot, moduleRoot })` is the authoritative clean-room entrypoint. Its explicit roots replace the earlier `process.cwd()` assumption. The lower-level `setupLinkedScience` remains available for offline tests and standalone scripts. Both install non-writable `linkedScience` and `ls` properties idempotently for one global object.
 
 The facade exposes generated documentation, capabilities, examples, context open/reset, and a compatibility namespace for the existing guarded query/evidence and legacy profile/page/table primitives. Compatibility access does not grant endpoint approval or alter the guards.
 
 A workspace owns private Communica state and opaque retained handles. It supports:
 
-- local ontology, schema, SHACL, inferred-graph, and instance-data graph materialization;
+- asynchronous local ontology, schema, SHACL, inferred-graph, and instance-data graph materialization;
 - bounded schema search and RDF-neighborhood inspection;
 - bounded local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica;
 - one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
 - bounded profiles, pages, and tables with lineage, operation IDs, source fingerprints, and provenance; and
-- explicit PEEK orientation bootstrap/current/commit/status operations.
+- asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations.
 
 Recursion and model-provider calls are outside v1.
 
@@ -29,7 +29,17 @@ Handles are frozen branded tokens carrying only an ID, type, label, and runtime 
 
 Every operation records an operation ID. Graphs receive an ordered, duplicate-aware fingerprint. Query and derived results retain source fingerprints, source handles, query or callback hashes, and lineage.
 
-Reset advances the context epoch, destroys the workspace registry, and retains only its compact orientation map. A handle from another epoch produces a recovery-shaped `LS_STALE_HANDLE` error. Restoring an orientation checkpoint in a recreated runtime makes the map usable but leaves every referenced old handle stale until explicitly rematerialized.
+Facade reset advances the context epoch and destroys the workspace registry while the clean-room broker retains its compact PEEK map. Kernel reset additionally removes the facade and RLM contexts; bootstrap recreates them while the same broker PEEK map remains. A handle from another epoch produces a recovery-shaped `LS_STALE_HANDLE` error. PEEK references to pre-reset handles are explicitly stale until authorized rematerialization creates new evidence.
+
+## State ownership
+
+- Linked Science workspaces own bulk RDF and result handles inside one JavaScript kernel.
+- `nodeRepl.rlm` owns kernel-resident external discovery context registered at bootstrap.
+- The clean-room MCP broker owns bounded PEEK orientation across kernel replacement.
+- Codex owns task goals and worker lifecycle.
+- Durable artifacts require a separate authorized write and are not created by reset or orientation commit.
+
+The runtime does not instantiate a competing PEEK cache when the clean-room backend is present. `lib/orientation-map.mjs` remains for compatibility code and offline standalone tests.
 
 ## Bounds and observation contract
 
@@ -39,7 +49,7 @@ Resident graphs and results have hard item ceilings. Prompt-visible pages/tables
 
 V1 accepts only explicitly labeled local-synthetic graph inputs. Its workspace exposes neither the Communica engine nor `fetch`. It adds no endpoint, profile, redirect, or network permission.
 
-The current JavaScript guard is not a security sandbox. In an eventual broker architecture, arbitrary child JavaScript must receive only the stable capability facade. The broker must retain the network-capable raw Communica engine, fetch implementation, approved profiles, credentials, timeout/retry policy, and transport receipts. The checked-in compatibility adapter exists for today’s trusted project runtime; it is not the eventual untrusted-child boundary.
+The clean-room VM context is a compatibility boundary, not a security sandbox. The current local facade exposes neither `fetch` nor its raw Communica engine. Existing guarded live adapters remain compatibility access under their own approval and transport contracts; registration of the clean-room MCP does not authorize a live source.
 
 ## Recovery errors
 

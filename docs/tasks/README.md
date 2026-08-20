@@ -6,7 +6,6 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [Re-verify Node REPL permissions](node-repl-permission-reverification.md) | Ready · high priority | Current evidence for coordinator-versus-worker sandbox and guarded network behavior under the present Codex permission model. | Verify the present official Codex documentation, record its URLs and access date, then run the brief's no-network capability preflights; do not probe Identifiers.org until current approval is confirmed. |
 | [Multi-turn context recovery sanity check](context-recovery-sanity-check.md) | Ready | Fresh-worker evidence for ambiguity, bounded reuse, stale state, and reset honesty before the curated demo. | Launch one fresh local-only Codex task with the evaluator prompt in the brief and capture its preflight receipt before any scenario conclusion. |
 
 ## When to create or update a task brief

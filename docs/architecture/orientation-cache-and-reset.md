@@ -1,6 +1,6 @@
 # Orientation cache, stale state, and reset
 
-`lib/orientation-map.mjs` implements a bounded PEEK-aligned orientation cache beside the REPL's bulk state. `lib/context-map-recovery.mjs` re-exports that API for compatibility while keeping its older goal/step/frontier workflow separate. The map's five sections record compact reusable orientation:
+The active Linked Science runtime delegates its bounded orientation map to the clean-room MCP broker through `nodeRepl.peek`. `lib/orientation-map.mjs` remains the compatibility and offline implementation, and `lib/context-map-recovery.mjs` re-exports it for older callers. Both use the same five sections:
 
 - `context-roadmap`: available or attempted sources;
 - `context-understanding`: grounded relations and known failures;
@@ -12,7 +12,7 @@ Entries use stable IDs, remain JSON-compatible, and are priority-evicted to stay
 
 The cache is orientation, not authority. Before reusing an entry, a worker checks the current session for the referenced handle and verifies its type and state through an operation receipt. A cache entry that predates a reset or conflicts with current session evidence is stale; it may preserve lineage or a known failed route, but it cannot support a claim that the handle is resident.
 
-After REPL reset, JavaScript bindings and resident handles are missing. Recovery must report invalidation or absence honestly. Rematerialization is a new operation through the original authorized source path, with new provenance, and must be refused when the source or current authorization is unavailable. Module search roots added to the MCP server may survive a kernel reset, but that does not restore scientific state.
+After clean-room `js_reset`, JavaScript bindings, RLM contexts, and resident handles are missing; broker-owned PEEK orientation remains. Recovery bootstraps the facade and RLM context again, then reports pre-reset handle references stale. Rematerialization is a new operation through the original authorized source path, with new provenance, and must be refused when the source or current authorization is unavailable. A surviving module root or PEEK entry does not restore scientific state.
 
 Source failures can remain useful orientation only at their exact scope. A failed route is not evidence that a fact is globally absent, and an empty result describes one exact bounded query over the queried graph.
 

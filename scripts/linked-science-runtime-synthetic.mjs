@@ -10,12 +10,12 @@ import {
 const host = {};
 const linkedScience = await setupLinkedScience({ nodeRepl: host });
 const workspace = linkedScience.open({ contextKey: 'synthetic-acceptance' });
-workspace.orientation.bootstrap();
+await workspace.orientation.bootstrap();
 
-const ontology = workspace.graphs.load({ name: 'ontology', kind: 'ontology', quads: ontologyQuads, source: { kind: 'local-synthetic', id: 'ontology' } });
-const shacl = workspace.graphs.load({ name: 'shacl', kind: 'shacl', quads: shaclQuads, source: { kind: 'local-synthetic', id: 'shacl' } });
-const sourceA = workspace.graphs.load({ name: 'source-a', kind: 'instance-data', quads: sourceAQuads, source: { kind: 'local-synthetic', id: 'source-a' } });
-const sourceB = workspace.graphs.load({ name: 'source-b', kind: 'instance-data', quads: sourceBQuads, source: { kind: 'local-synthetic', id: 'source-b' } });
+const ontology = await workspace.graphs.load({ name: 'ontology', kind: 'ontology', quads: ontologyQuads, source: { kind: 'local-synthetic', id: 'ontology' } });
+const shacl = await workspace.graphs.load({ name: 'shacl', kind: 'shacl', quads: shaclQuads, source: { kind: 'local-synthetic', id: 'shacl' } });
+const sourceA = await workspace.graphs.load({ name: 'source-a', kind: 'instance-data', quads: sourceAQuads, source: { kind: 'local-synthetic', id: 'source-a' } });
+const sourceB = await workspace.graphs.load({ name: 'source-b', kind: 'instance-data', quads: sourceBQuads, source: { kind: 'local-synthetic', id: 'source-b' } });
 
 const discovery = workspace.schema.search(ontology, { text: 'measurement', limit: 5 });
 workspace.schema.search(shacl, { text: 'datatype', limit: 5 });
@@ -27,9 +27,9 @@ const aboveFive = await workspace.results.derive(measurements, ({ rows }) => ({
 const resultProfile = workspace.results.profile(aboveFive);
 const table = workspace.results.table(aboveFive, { title: 'Measurements above five', limit: 5 });
 const neighborhood = workspace.graph.neighbors(sourceB, { term: 'https://example.test/science/sample-b', maxNodes: 5, maxEdges: 5 });
-const checkpoint = workspace.orientation.commit();
+const checkpoint = await workspace.orientation.commit();
 linkedScience.reset({ contextKey: 'synthetic-acceptance' });
-const resetStatus = linkedScience.open({ contextKey: 'synthetic-acceptance' }).orientation.status();
+const resetStatus = await linkedScience.open({ contextKey: 'synthetic-acceptance' }).orientation.status();
 
 console.log(JSON.stringify({
   runtime: linkedScience.version,

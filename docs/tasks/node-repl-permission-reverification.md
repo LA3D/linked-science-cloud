@@ -1,11 +1,13 @@
 # Task: Re-verify Node REPL sandbox and network permissions
 
-- **Status:** Ready
+- **Status:** Superseded by the user-owned clean-room REPL direction
 - **Priority:** High
 - **Owner/task:** Unassigned
 - **Scope:** Read-only diagnosis of current coordinator-versus-worker Node REPL behavior under the current Codex permission model. Do not implement a permission fix in this task's diagnosis phase.
 - **Authorization boundary:** Local repository and configuration inspection is read-only. Any live check requires current explicit approval for the exact existing Identifiers.org profile. Use only the project guard; never use direct HTTP as a bypass. Do not change configuration, install packages, add an MCP server, export, or write externally.
 - **Starting point:** Begin from the then-current local `main`; record its commit and the Codex app/version context available to the task.
+
+> Historical brief only. The project no longer targets or repairs Codex Desktop's bundled `node_repl`. Current runtime work uses the separately saved `cleanroom_node_repl`; see [runtime discovery](../agent/runtime-discovery.md).
 
 ## Why this must be re-measured
 

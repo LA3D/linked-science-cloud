@@ -1,8 +1,6 @@
 import assert from 'node:assert/strict';
-import { execFile } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { promisify } from 'node:util';
 import { QueryEngine } from '@comunica/query-sparql';
 import { Store } from 'n3';
 import {
@@ -20,17 +18,15 @@ import {
   sourceBQuads,
 } from './fixtures/linked-science-runtime/synthetic-science.mjs';
 
-const execFileAsync = promisify(execFile);
-
 async function runtimeFixture({ contextKey = 'measurement-goal', budgets } = {}) {
   const nodeRepl = {};
   const linkedScience = await setupLinkedScience({ nodeRepl, budgets });
   const workspace = linkedScience.open({ contextKey });
-  workspace.orientation.bootstrap();
-  const ontology = workspace.graphs.load({ name: 'science-ontology', kind: 'ontology', quads: ontologyQuads, source: { kind: 'local-synthetic', id: 'ontology' } });
-  const shacl = workspace.graphs.load({ name: 'measurement-shacl', kind: 'shacl', quads: shaclQuads, source: { kind: 'local-synthetic', id: 'shacl' } });
-  const sourceA = workspace.graphs.load({ name: 'source-a', kind: 'instance-data', quads: sourceAQuads, source: { kind: 'local-synthetic', id: 'source-a' } });
-  const sourceB = workspace.graphs.load({ name: 'source-b', kind: 'instance-data', quads: sourceBQuads, source: { kind: 'local-synthetic', id: 'source-b' } });
+  await workspace.orientation.bootstrap();
+  const ontology = await workspace.graphs.load({ name: 'science-ontology', kind: 'ontology', quads: ontologyQuads, source: { kind: 'local-synthetic', id: 'ontology' } });
+  const shacl = await workspace.graphs.load({ name: 'measurement-shacl', kind: 'shacl', quads: shaclQuads, source: { kind: 'local-synthetic', id: 'shacl' } });
+  const sourceA = await workspace.graphs.load({ name: 'source-a', kind: 'instance-data', quads: sourceAQuads, source: { kind: 'local-synthetic', id: 'source-a' } });
+  const sourceB = await workspace.graphs.load({ name: 'source-b', kind: 'instance-data', quads: sourceBQuads, source: { kind: 'local-synthetic', id: 'source-b' } });
   return { nodeRepl, linkedScience, workspace, ontology, shacl, sourceA, sourceB };
 }
 
@@ -61,10 +57,10 @@ test('retains first-class graph objects with RDF term, duplicate, order, named-g
   assert.equal(sourceProfile.fingerprints.length, 1);
   assert.equal(sourceProfile.provenance.source.id, 'source-a');
 
-  const reversed = workspace.graphs.load({ name: 'source-a-reversed', kind: 'instance-data', quads: [ ...sourceAQuads ].reverse(), source: { kind: 'local-synthetic', id: 'source-a-reversed' } });
+  const reversed = await workspace.graphs.load({ name: 'source-a-reversed', kind: 'instance-data', quads: [ ...sourceAQuads ].reverse(), source: { kind: 'local-synthetic', id: 'source-a-reversed' } });
   assert.notEqual(workspace.results.profile(reversed).fingerprints[0], sourceProfile.fingerprints[0], 'ordered duplicate-aware source fingerprint changes when order changes');
-  const schema = workspace.graphs.load({ name: 'schema-object', kind: 'schema', quads: ontologyQuads.slice(0, 2), source: { kind: 'local-synthetic', id: 'schema-object' } });
-  const inferred = workspace.graphs.load({ name: 'inferred-object', kind: 'inferred-graph', quads: [], source: { kind: 'local-synthetic', id: 'inferred-object' } });
+  const schema = await workspace.graphs.load({ name: 'schema-object', kind: 'schema', quads: ontologyQuads.slice(0, 2), source: { kind: 'local-synthetic', id: 'schema-object' } });
+  const inferred = await workspace.graphs.load({ name: 'inferred-object', kind: 'inferred-graph', quads: [], source: { kind: 'local-synthetic', id: 'inferred-object' } });
   assert.equal(workspace.results.profile(schema).type, 'schema');
   assert.equal(workspace.results.profile(inferred).type, 'inferred-graph');
 
@@ -153,12 +149,12 @@ test('generic derivation and views preserve lineage and enforce row, cell, edge,
 test('reset retains PEEK orientation but rejects old-epoch handles in reset and recreated sessions', async () => {
   const { linkedScience, workspace, ontology, sourceA, sourceB } = await runtimeFixture({ contextKey: 'reset-goal' });
   const result = await workspace.query.select({ sources: [ ontology, sourceA, sourceB ], sparql: measurementQuery, role: 'measurements' });
-  const committed = workspace.orientation.commit();
+  const committed = await workspace.orientation.commit();
   assert.equal(committed.entries > 0, true);
   const reset = linkedScience.reset({ contextKey: 'reset-goal' });
   assert.equal(reset.orientationRetained, true);
   const recovered = linkedScience.open({ contextKey: 'reset-goal' });
-  const status = recovered.orientation.status();
+  const status = await recovered.orientation.status();
   assert.equal(status.status, 'ready');
   assert.equal(status.handles.some(item => item.status === 'stale'), true);
   assert.throws(() => recovered.results.profile(result), error => error.code === 'LS_STALE_HANDLE' && error.recoveryDocument === 'reset' && error.retryable === false);
@@ -166,7 +162,7 @@ test('reset retains PEEK orientation but rejects old-epoch handles in reset and 
   const recreatedHost = {};
   const recreatedFacade = await setupLinkedScience({ nodeRepl: recreatedHost, orientationCheckpoints: { 'reset-goal': committed } });
   const recreated = recreatedFacade.open({ contextKey: 'reset-goal' });
-  assert.equal(recreated.orientation.status().entries, committed.entries);
+  assert.equal((await recreated.orientation.status()).entries, committed.entries);
   assert.throws(() => recreated.results.profile(result), error => error.code === 'LS_STALE_HANDLE');
 });
 
@@ -178,7 +174,7 @@ test('errors are recovery-shaped and no raw network-capable engine is present on
     sources: [ ontology ],
     sparql: `SELECT ?s WHERE { GRAPH ?g { ?s ?p ?o } }`,
   }), error => error instanceof LinkedScienceRuntimeError && error.code === 'LS_QUERY_PREFLIGHT' && error.stage === 'query-preflight' && error.receipt && error.recoveryDocument === 'recovery');
-  assert.throws(() => workspace.graphs.load({ name: 'remote', kind: 'ontology', quads: ontologyQuads, source: { kind: 'remote', id: 'https://example.test/ontology' } }), error => error.code === 'LS_LOCAL_ONLY');
+  await assert.rejects(() => workspace.graphs.load({ name: 'remote', kind: 'ontology', quads: ontologyQuads, source: { kind: 'remote', id: 'https://example.test/ontology' } }), error => error.code === 'LS_LOCAL_ONLY');
 });
 
 test('machine-readable schema routes match runtime documentation and examples', async () => {
@@ -191,7 +187,8 @@ test('machine-readable schema routes match runtime documentation and examples', 
   for (const topic of facade.examples().topics) assert.equal(typeof facade.examples(topic).code, 'string');
 
   const bootstrap = facade.examples('bootstrap').code;
-  await execFileAsync(process.execPath, [ '--input-type=module', '-e', `${bootstrap}; if (!globalThis.linkedScience || globalThis.linkedScience !== globalThis.ls) throw new Error('bootstrap example failed')` ], { cwd: new URL('..', import.meta.url).pathname });
+  assert.match(bootstrap, /bootstrapLinkedScience/u);
+  assert.match(bootstrap, /cleanroom: nodeRepl/u);
 
   const { workspace, ontology, sourceA, sourceB } = await runtimeFixture({ contextKey: 'example-goal' });
   const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
@@ -209,7 +206,7 @@ test('fresh-agent discovery fixture passes the documented behavioral rubric usin
   const docs = linkedScience.documentation();
   const result = await workspace.query.select({ sources: [ ontology, sourceA, sourceB ], sparql: measurementQuery, role: 'measurements' });
   const page = workspace.results.page(result, { limit: 2, maxCells: 4 });
-  const checkpoint = workspace.orientation.commit();
+  const checkpoint = await workspace.orientation.commit();
   linkedScience.reset({ contextKey: 'fresh-agent-goal' });
   const fresh = linkedScience.open({ contextKey: 'fresh-agent-goal' });
   let staleRejected = false;
