@@ -56,7 +56,7 @@ Obtain explicit approval for one bounded, non-following redirect-metadata inspec
 
 ## Handoff state
 
-- **Git:** This continuation started from clean local `main` at `a1830a0` on branch `codex/uniprot-private-bundle`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Full repository verification is recorded in the completion commit handoff.
+- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The core-source discovery continuation began at `618773f`; result milestone `10b80bd` is on `codex/uniprot-core-source-discovery` pending verified fast-forward integration. Nothing was pushed.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. After recording the latest discovery result, `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 20 registered runs, and `git diff --check` passed.
 - **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.

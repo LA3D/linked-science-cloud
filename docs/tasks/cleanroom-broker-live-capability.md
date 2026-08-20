@@ -48,6 +48,6 @@ Obtain explicit approval for one bounded, non-following redirect-metadata inspec
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains `a18934f`; the focused task branch is retained and nothing was pushed. The consumer handoff update starts from local `main` at `9e612a5`.
-- **Verification:** External `npm run check` passed, external `npm test` passed 20/20, the synthetic cross-repository native-handle integration passed, and fresh-task activation, denial, bounded live-query, active-child private-read denial, and exported-worker boundary checks were observed.
-- **Live evidence:** One endpoint-existence `ASK` receipt proves the exact broker transport path. No competency answer or source-orientation acquisition is claimed.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `2cbbd98`. This discovery continuation began from consumer local `main` at `618773f`; result milestone `10b80bd` is on `codex/uniprot-core-source-discovery` pending verified fast-forward integration. Nothing was pushed.
+- **Verification:** External profile tests passed before `2cbbd98` was integrated. For this consumer result milestone, `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 20 registered runs, and `git diff --check` passed.
+- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, and three failed core-source attempts now have durable records. None is a competency answer. No exact machine-readable core source has been established.
