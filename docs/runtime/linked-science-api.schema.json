@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -23,7 +23,8 @@
   ],
   "workspace": {
     "graphs": [
-      "load"
+      "load",
+      "fromEvidence"
     ],
     "schema": [
       "search"
@@ -31,6 +32,14 @@
     "query": [
       "run",
       "select"
+    ],
+    "live": [
+      "acquire",
+      "query"
+    ],
+    "evidence": [
+      "inspect",
+      "search"
     ],
     "results": [
       "derive",
@@ -50,19 +59,20 @@
   },
   "compatibility": [
     "initializeSession",
-    "createTableDisplay",
-    "queryToHandleGuarded",
-    "queryBindingsToHandleGuarded",
-    "acquireEvidenceToHandleGuarded",
-    "getEndpointProfile"
+    "createTableDisplay"
   ],
   "documentationRoutes": [
     "bootstrap",
     "discovery",
     "graphs.load",
+    "graphs.fromEvidence",
     "schema.search",
     "query.select",
     "query.run",
+    "live.acquire",
+    "live.query",
+    "evidence.inspect",
+    "evidence.search",
     "results.derive",
     "results.profile",
     "results.page",

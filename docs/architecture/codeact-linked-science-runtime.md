@@ -10,7 +10,7 @@ The one-time bootstrap, generated documentation, machine schema, conditional loo
 
 `bootstrapLinkedScience({ host, cleanroom, projectRoot, moduleRoot })` is the authoritative clean-room entrypoint. Its explicit roots replace the earlier `process.cwd()` assumption. The lower-level `setupLinkedScience` remains available for offline tests and standalone scripts. Both install non-writable `linkedScience` and `ls` properties idempotently for one global object.
 
-The facade exposes generated documentation, capabilities, examples, context open/reset, and a compatibility namespace for the existing guarded query/evidence and legacy profile/page/table primitives. Compatibility access does not grant endpoint approval or alter the guards.
+The facade exposes generated documentation, capabilities, examples, context open/reset, and local retained-session/table compatibility helpers. Raw guarded transport helpers are not exposed on the facade. When the clean-room MCP injects an external `linkedScienceBroker`, the workspace gains named-profile acquisition and query operations whose results are retained in the same native state model.
 
 A workspace owns private Communica state and opaque retained handles. It supports:
 
@@ -19,7 +19,8 @@ A workspace owns private Communica state and opaque retained handles. It support
 - bounded local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica;
 - one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
 - bounded profiles, pages, and tables with lineage, operation IDs, source fingerprints, and provenance; and
-- asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations.
+- asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations; and
+- optional broker-owned evidence acquisition and typed read queries with native evidence/result handles.
 
 Recursion and model-provider calls are outside v1.
 
@@ -47,9 +48,9 @@ Resident graphs and results have hard item ceilings. Prompt-visible pages/tables
 
 ## Security and broker boundary
 
-V1 accepts only explicitly labeled local-synthetic graph inputs. Its workspace exposes neither the Communica engine nor `fetch`. It adds no endpoint, profile, redirect, or network permission.
+Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor `fetch`. The optional live surface accepts only immutable broker profile IDs; endpoints, profiles, credentials, and transport policy remain broker-owned.
 
-The clean-room VM context is a compatibility boundary, not a security sandbox. The current local facade exposes neither `fetch` nor its raw Communica engine. Existing guarded live adapters remain compatibility access under their own approval and transport contracts; registration of the clean-room MCP does not authorize a live source.
+The clean-room VM context is a compatibility boundary, not a security sandbox. Repository code verifies the capability and receipt contract, but only the external MCP broker can deny raw child networking and evaluator-private filesystem reads. Registration of the clean-room MCP does not authorize a live source, and the current runtime reports live unavailable unless that broker is actually injected. See [broker-owned live operations](broker-owned-live-operations.md).
 
 ## Recovery errors
 

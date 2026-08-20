@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://linked-science.local/schema/linked-science-broker-capability-v1.json",
+  "title": "Linked Science clean-room broker capability",
+  "$defs": {
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxBytes", "maxItems", "maxTransports"],
+      "properties": {
+        "maxBytes": { "type": "integer", "minimum": 1, "maximum": 10000000 },
+        "maxItems": { "type": "integer", "minimum": 1, "maximum": 5000 },
+        "maxTransports": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "maxQueryChars": { "type": "integer", "minimum": 1, "maximum": 100000 }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "operation", "sha256", "limits"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9.-]{1,127}$" },
+        "operation": { "enum": ["acquire", "query"] },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "limits": { "$ref": "#/$defs/limits" }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "profiles"],
+      "properties": {
+        "kind": { "const": "linked-science-network-broker" },
+        "version": { "type": "string", "minLength": 1 },
+        "profiles": { "type": "array", "items": { "$ref": "#/$defs/profile" } }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "required": ["kind", "status", "operation", "operationId", "profile", "profileSha256", "inputSha256", "payloadSha256", "attempts"],
+      "properties": {
+        "kind": { "const": "linked-science-broker-operation" },
+        "status": { "const": "ready" },
+        "operation": { "enum": ["acquire", "query"] },
+        "operationId": { "type": "string", "minLength": 1 },
+        "profile": { "type": "string", "minLength": 1 },
+        "profileSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "inputSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "payloadSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "source": { "type": "string" },
+        "attempts": { "type": "array", "maxItems": 3, "items": { "type": "object" } }
+      }
+    }
+  }
+}

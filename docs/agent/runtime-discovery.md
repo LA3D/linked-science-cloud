@@ -30,6 +30,8 @@ The bootstrap validates the clean-room cwd, the exact project and module roots, 
 
 The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 
+The bootstrap also detects an optional broker-injected `nodeRepl.linkedScienceBroker`. Do not infer it from configuration text. `linkedScience.capabilities().brokerOwnedLive` must be `true`, and the returned broker profile descriptors must match the intended immutable profiles before any live method is considered available.
+
 ## Discover before acting
 
 Start with:
@@ -80,5 +82,6 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 - Use only `cleanroom_node_repl`; the bundled `node_repl` is obsolete for this project.
 - Keep output bounded by rows/cells or nodes/edges and bytes.
 - Preserve provenance and operation IDs through query, derivation, and view.
-- Use only local-synthetic data in the current facade; compatibility guards retain their explicit live-approval contract.
+- Without an observed broker capability, use only local-synthetic data; `workspace.live.*` must fail with `LS_BROKER_UNAVAILABLE`.
+- Even with an observed broker capability, each exact live profile still requires current explicit approval and a broker receipt.
 - Keep REPL-resident handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct.
