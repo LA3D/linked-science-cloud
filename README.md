@@ -10,6 +10,8 @@ The clean-room server is CodeAct-style: the model writes JavaScript and manipula
 
 The default broker profiles support the validated portion of the staged UniProt competency boundary: exact single-source acquisitions for the UniProt dataset description and GO orientation documentation, plus the bounded `uniprot-read` query profile. The proposed machine-readable UniProt core source returned HTTP 404 and is not configured pending a separately approved replacement. Profile descriptors exposed to the child contain only IDs, operation kinds, digests, and ceilings. A configured profile is not authorization to invoke its source; each live run still requires current approval for the exact profile.
 
+Acquisition GETs use manual redirect handling so the broker can refuse a 3xx response before reading its body while preserving a compact failure receipt. That receipt records the status, zero followed redirects, and either one normalized exact HTTPS `Location` or a missing/redacted-invalid classification. It never follows the target, retries the request, or promotes the discovered URL into an approved profile. SPARQL query redirects remain fetch-level errors.
+
 Start every row in a **fresh task opened from the intended project context**. Codex loads project configuration and establishes the REPL sandbox at task startup; this repository's profile cannot be proven by a task that started elsewhere.
 
 ## Test matrix

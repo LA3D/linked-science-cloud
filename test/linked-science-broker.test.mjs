@@ -138,7 +138,7 @@ test("broker-owned acquisition and query return bounded payloads with attributab
   assert.match(queried.receipt.inputSha256, /^[a-f0-9]{64}$/);
   assert.match(queried.receipt.payloadSha256, /^[a-f0-9]{64}$/);
   assert.deepEqual(calls.map(({ url }) => url), [ACQUIRE_SOURCE, QUERY_ENDPOINT]);
-  assert.equal(calls[0].options.redirect, "error");
+  assert.equal(calls[0].options.redirect, "manual");
   assert.equal(calls[1].options.method, "POST");
   assert.equal(calls[1].options.body, SELECT_QUERY);
   assert.equal(calls[1].options.redirect, "error");
@@ -262,6 +262,77 @@ test("byte, result, and timeout failures stay bounded and never retry", async ()
     (error) => error.code === "BROKER_TRANSPORT_ERROR" && error.message === "SPARQL query transport failed",
   );
   assert.equal(failureCalls, 1);
+});
+
+test("acquisition redirects are not followed and return a bounded failure receipt", async () => {
+  const calls = [];
+  const broker = new LinkedScienceNetworkBroker({
+    profiles: profiles(),
+    parseQuery,
+    clock: () => "2026-08-20T12:00:00.000Z",
+    fetchImpl: async (url, options) => {
+      calls.push({ url, options });
+      return new Response(null, {
+        status: 303,
+        headers: {
+          "content-type": "text/html",
+          location: "/canonical/core.owl",
+        },
+      });
+    },
+  });
+
+  await assert.rejects(
+    () => broker.acquire({ profile: "fixture-orientation" }),
+    (error) => {
+      assert.equal(error.code, "BROKER_REDIRECT_DENIED");
+      assert.equal(error.receipt.status, "failed");
+      assert.equal(error.receipt.operation, "acquire");
+      assert.equal(error.receipt.failure.code, "BROKER_REDIRECT_DENIED");
+      assert.equal(Object.isFrozen(error.receipt), true);
+      assert.deepEqual(error.receipt.attempts, [{
+        source: ACQUIRE_SOURCE,
+        at: "2026-08-20T12:00:00.000Z",
+        method: "GET",
+        redirect: "manual",
+        followedRedirects: 0,
+        timeoutMs: 200,
+        responseByteLimit: 1_024,
+        retries: 0,
+        status: 303,
+        ok: false,
+        contentType: "text/html",
+        bodyRead: false,
+        redirectLocation: { status: "exact-https", value: "https://fixtures.invalid/canonical/core.owl" },
+      }]);
+      return true;
+    },
+  );
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].options.redirect, "manual");
+});
+
+test("redirect denial receipts cross the child boundary without exposing a response body", async (t) => {
+  const workerRoot = await mkdtemp(join(tmpdir(), "cleanroom-redirect-worker-"));
+  const calls = [];
+  const broker = new KernelBroker({
+    cwd: workerRoot,
+    linkedScienceProfiles: profiles(),
+    linkedScienceParseQuery: parseQuery,
+    linkedScienceFetch: async (url, options) => {
+      calls.push({ url, options });
+      return new Response(null, { status: 302, headers: { location: "https://fixtures.invalid/core.owl" } });
+    },
+  });
+  t.after(() => broker.close());
+
+  const result = await broker.execute("nodeRepl.write(JSON.stringify(await nodeRepl.linkedScienceBroker.acquire({profile:'fixture-orientation'}).then(()=>({unexpected:true}), error=>({code:error.code, receipt:error.receipt}))))");
+  const observed = JSON.parse(output(result));
+  assert.equal(observed.code, "BROKER_REDIRECT_DENIED");
+  assert.equal(observed.receipt.status, "failed");
+  assert.equal(observed.receipt.attempts[0].bodyRead, false);
+  assert.equal(observed.receipt.attempts[0].redirectLocation.value, "https://fixtures.invalid/core.owl");
+  assert.equal(calls.length, 1);
 });
 
 test("child receives only the named broker capability while raw network and evaluator-private reads are denied", async (t) => {

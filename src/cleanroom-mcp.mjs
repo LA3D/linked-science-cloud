@@ -214,10 +214,15 @@ export class KernelBroker {
       else throw Object.assign(new Error("Unknown host capability"), { code: "UNKNOWN_HOST_CAPABILITY" });
       respond(true, value);
     } catch (error) {
+      const receipt = error?.receipt?.kind === "linked-science-broker-operation" &&
+        Buffer.byteLength(JSON.stringify(error.receipt), "utf8") <= 16_384
+        ? error.receipt
+        : undefined;
       respond(false, undefined, {
         code: typeof error?.code === "string" ? error.code.slice(0, 96) : "HOST_CALL_ERROR",
         name: typeof error?.name === "string" ? error.name.slice(0, 96) : "Error",
         message: typeof error?.message === "string" ? error.message.slice(0, 2_000) : "Host call failed",
+        ...(receipt ? { receipt } : {}),
       });
     }
   }

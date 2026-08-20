@@ -33,8 +33,10 @@ function freezeDeep(value) {
   return value;
 }
 
-function brokerError(code, message) {
-  return Object.assign(new Error(message), { code });
+function brokerError(code, message, receipt) {
+  const error = Object.assign(new Error(message), { code });
+  if (receipt !== undefined) error.receipt = receipt;
+  return error;
 }
 
 function transportError(error, controller, operation) {
@@ -63,6 +65,20 @@ function exactHttps(value, label) {
     throw brokerError("INVALID_BROKER_PROFILE", `${label} must be an exact HTTPS URL without credentials or a fragment`);
   }
   return url.href;
+}
+
+function redirectLocation(value, source) {
+  if (typeof value !== "string" || value.length < 1) return freezeDeep({ status: "missing" });
+  if (value.length > 2_048) return freezeDeep({ status: "redacted-invalid" });
+  try {
+    const url = new URL(value, source);
+    if (url.href.length > 2_048 || url.protocol !== "https:" || url.username || url.password || url.hash) {
+      return freezeDeep({ status: "redacted-invalid" });
+    }
+    return freezeDeep({ status: "exact-https", value: url.href });
+  } catch {
+    return freezeDeep({ status: "redacted-invalid" });
+  }
 }
 
 function normalizeProfile(input) {
@@ -262,7 +278,7 @@ export class LinkedScienceNetworkBroker {
   capabilities() {
     return freezeDeep({
       kind: BROKER_KIND,
-      version: "1.0.0",
+      version: "1.1.0",
       profiles: [...this.#profiles.values()].map(publicProfile),
     });
   }
@@ -301,6 +317,21 @@ export class LinkedScienceNetworkBroker {
     });
   }
 
+  _failureReceipt({ operation, profile, inputSha256, source, attempts, code }) {
+    return freezeDeep({
+      kind: OPERATION_KIND,
+      status: "failed",
+      operation,
+      operationId: `lsb-${String(++this.#sequence).padStart(6, "0")}`,
+      profile: profile.id,
+      profileSha256: sha256(profile),
+      inputSha256,
+      source,
+      attempts,
+      failure: { code },
+    });
+  }
+
   async acquire(options = {}) {
     if (!plainObject(options) || !exactKeys(options, new Set(["profile", "source"]))) {
       throw brokerError("BROKER_ARGUMENT_DENIED", "Acquisition accepts only profile and exact source");
@@ -322,7 +353,8 @@ export class LinkedScienceNetworkBroker {
       source: normalizedSource,
       at: this.#clock(),
       method: "GET",
-      redirect: "error",
+      redirect: "manual",
+      followedRedirects: 0,
       timeoutMs: profile.timeoutMs,
       responseByteLimit: profile.maxBytes,
       retries: 0,
@@ -331,10 +363,29 @@ export class LinkedScienceNetworkBroker {
       const response = await this.#fetchImpl(normalizedSource, {
         method: "GET",
         headers: { accept: profile.accept },
-        redirect: "error",
+        redirect: "manual",
         signal: controller.signal,
       });
       const contentType = response.headers.get("content-type")?.split(";", 1)[0].toLowerCase() ?? "";
+      if (response.status >= 300 && response.status < 400) {
+        const attempts = [freezeDeep({
+          ...attempt,
+          status: response.status,
+          ok: false,
+          contentType,
+          bodyRead: false,
+          redirectLocation: redirectLocation(response.headers.get("location"), normalizedSource),
+        })];
+        const receipt = this._failureReceipt({
+          operation: "acquire",
+          profile,
+          inputSha256: sha256({ profile: profile.id, source: options.source }),
+          source: normalizedSource,
+          attempts,
+          code: "BROKER_REDIRECT_DENIED",
+        });
+        throw brokerError("BROKER_REDIRECT_DENIED", "Acquisition redirect was refused without reading a response body", receipt);
+      }
       if (!response.ok) throw brokerError("BROKER_HTTP_ERROR", `Acquisition failed with HTTP ${response.status}`);
       if (!profile.allowedContentTypes.includes(contentType)) throw brokerError("BROKER_CONTENT_TYPE_DENIED", `Content type is not approved: ${contentType || "missing"}`);
       const bytes = await readBounded(response, profile.maxBytes);
