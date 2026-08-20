@@ -58,7 +58,7 @@ Obtain explicit approval for one guarded GET to the exact discovered UniProt SPA
 
 ## Handoff state
 
-- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The RDF-redirect result continuation began at `93fae76`; integration status is recorded after verification. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Consumer verification is pending for the new RDF-negotiation receipt.
+- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The RDF-redirect result continuation began at `93fae76`; result commit `4c3ca4e` is reachable from consumer local `main`. Nothing was pushed.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 22 registered runs, the new receipt parsed as JSON, and `git diff --check` passed.
 - **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.

@@ -51,6 +51,6 @@ Obtain explicit approval for one guarded GET to the exact discovered target `htt
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `93fae76`; integration status is recorded after verification. Nothing was pushed.
-- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer verification is pending for the new RDF-negotiation receipt.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `93fae76`; result commit `4c3ca4e` is reachable from consumer local `main`. Nothing was pushed.
+- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 22 registered runs, the new receipt parsed as JSON, and `git diff --check` passed.
 - **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, three prior failed core-source attempts, and two successful metadata-only redirect inspections now have durable records. None is a competency answer. An exact RDF-negotiated target is now known but has not been contacted or validated as a machine-readable core source.
