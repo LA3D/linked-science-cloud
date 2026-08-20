@@ -1,10 +1,10 @@
 # Task: Sanity-check multi-turn context recovery before the demo
 
-- **Status:** Ready
-- **Owner/task:** Unassigned
+- **Status:** Complete
+- **Owner/task:** Evaluate clean-room context recovery
 - **Scope:** One fresh-worker, local-synthetic evaluation of orientation, bounded handle reuse, ambiguity, stale state, and reset recognition. No new runtime feature is implied.
 - **Authorization boundary:** Repository reads and persistent local REPL execution only. No network, live endpoint, export, package installation, configuration change, or repository edit during the evaluation.
-- **Starting point:** Begin from the then-current local `main`; record its commit in the run receipt.
+- **Starting point:** Local `main` at `65f4284f48dcafae8db0e43d77906b588bc46164`.
 
 ## Outcome and acceptance evidence
 
@@ -17,6 +17,8 @@ Establish whether a fresh worker can recover useful context across turns without
 5. an ambiguous candidate or identifier represented as bounded alternatives or an explicit request for clarification, not an invented resolution;
 6. a stale cache reference after deliberate reset, followed by a current session check that reports the handle missing or invalidated; and
 7. no network, full-result dump, export, file mutation, or unsupported residency claim.
+
+**Result:** Passed all seven criteria on 2026-08-20. The detailed trace and interpretation are recorded in the [clean-worker evaluation](../experiments/clean-worker-map-evaluation.md#recorded-multi-turn-context-recovery-run--2026-08-20).
 
 Use actual tool-event IDs and compact receipts. Score the trace against the existing [clean-worker evaluation](../experiments/clean-worker-map-evaluation.md) and the reset/stale-state contract in [orientation cache and reset](../architecture/orientation-cache-and-reset.md). A failure is useful evidence if its scope is recorded honestly.
 
@@ -32,8 +34,12 @@ After the worker returns its first bounded result, ask it to derive one narrower
 
 ### Completed evidence
 
-- The constrained 120-item clean-worker experiment already proves one narrow multi-turn reuse and reset-honesty path under coordinator steering.
-- Offline tests cover stable orientation entries, eviction, raw-query exclusion, guarded acquisition failures, and bounded display models.
+- The worker passed the actual `cleanroom_node_repl` preflight, including exact cwd, CodeAct mode, cross-call persistence, declared dependency resolution, Linked Science bootstrap, and initial RLM, PEEK, and session state.
+- Phase one retained one local-synthetic source and one two-candidate result behind handles. Its two-row table preserved the ambiguity between otherwise equal scientific records from different source batches.
+- Phase two reused the resident candidate handle across a genuine task turn and derived a two-row comparison without reloading the graph, rerunning the query, or rematerializing a handle.
+- The final `js_reset` replaced the kernel. JavaScript bindings, RLM discovery, workspaces, and resident handles disappeared; broker-owned PEEK survived, and the reopened workspace classified all three old handle references as stale.
+- No network, full-result dump, export, file mutation, package installation, configuration change, or unsupported residency claim occurred during the evaluation.
+- Offline tests continue to cover stable orientation entries, eviction, raw-query exclusion, guarded acquisition failures, and bounded display models.
 
 ### Decisions
 
@@ -43,14 +49,11 @@ After the worker returns its first bounded result, ask it to derive one narrower
 
 ### Remaining work
 
-- Choose or generate the local synthetic fixture in REPL memory without changing repository files.
-- Run the first-turn prompt in a fresh task and capture chronological tool evidence.
-- Run the bounded second turn, ambiguity check, and deliberate reset challenge.
-- Record a compact evaluator result in the appropriate experiment dossier; update the roadmap status only if the evidence changes it.
+- None for this evaluation.
 
 ### Exact next action
 
-Launch one fresh local-only Codex task with the evaluator prompt above. Before accepting any scenario conclusion, capture its REPL tool name, cwd, module-resolution result, persistence proof, and initial session/cache binding state.
+None. Any broader open-ended or live-source evaluation is a separately selected task with its own authorization.
 
 ### Blockers or required decisions
 
@@ -58,7 +61,7 @@ Launch one fresh local-only Codex task with the evaluator prompt above. Before a
 
 ## Handoff state
 
-- **Git:** Not started; use a named `codex/<task>` branch only if the evaluation produces authorized repository changes.
-- **Verification:** Protocol review only. No new evaluation run has occurred.
-- **Ephemeral state:** None; no REPL handles are claimed resident.
-- **Durable artifacts/receipts:** Existing evidence is linked above; the new run has none yet.
+- **Git:** The evaluation itself changed no files; its completion record is included in the accompanying focused documentation commit on local `main`.
+- **Verification:** The recorded trace passed all seven acceptance criteria. Repository documentation checks are recorded with the completion commit.
+- **Ephemeral state:** The clean-room kernel was reset. The former source, candidate, and derived handles are not resident; their surviving PEEK references are stale orientation only.
+- **Durable artifacts/receipts:** No artifact was created. Durable evidence is summarized in the linked experiment record.

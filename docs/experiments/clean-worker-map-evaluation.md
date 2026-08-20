@@ -59,6 +59,20 @@ The trace satisfies the protocol's persistent-REPL preflight, execution-backed c
 
 It remains a constrained synthetic evaluation: the initial goal explicitly required the REPL, the worker was shown the project skill and `AGENTS.md`, and only one simple local category derivation was needed. The experiment does not establish open-ended frontier generation, semantic endpoint navigation, long-result export, or general decision quality.
 
+## Recorded multi-turn context-recovery run — 2026-08-20
+
+A fresh Local task started from local `main` at `65f4284f48dcafae8db0e43d77906b588bc46164` with one natural scientific goal: decide whether bounded local-synthetic records supported one unambiguous demo row or left multiple candidates. The task used only the project-registered `cleanroom_node_repl`, made no network request or repository change, and received the narrower derivation and reset challenges as separate turns.
+
+### Observed trace
+
+1. **Preflight and first result:** the worker observed the exact clean-room tool surface, checkout cwd, CodeAct mode, persistence across two calls, declared dependency resolutions, Linked Science bootstrap, bounded RLM discovery, and an initially empty broker PEEK map. It retained the 32-quad fixture as `h-000001`, retained two eligible bindings as `h-000002` through query operation `op-000002`, and rendered a two-row table through `op-000003`. Both records described sample `LSC-017`, compound Q, absorbance `0.42 AU`, and curated status; only the record identity and source batch differed, so the worker refused to select one.
+2. **Genuine second-turn reuse:** the worker first re-profiled `h-000001` and `h-000002` in the unchanged workspace epoch. It derived comparison handle `h-000003` directly from `h-000002` through `op-000004` and rendered two bounded comparison rows through `op-000005`. It did not reload the graph, rerun the source query, or rematerialize either source handle. The comparison confirmed that the evidence supplied no ranking, quality, timestamp, or identity rule that resolved the two batches.
+3. **Actual kernel reset:** `mcp__cleanroom_node_repl__js_reset` returned `{ "ok": true, "epoch": 2 }`. In the replacement kernel, all prior JavaScript bindings were undefined and RLM inspection returned `CONTEXT_NOT_FOUND`, while broker PEEK still contained compact references to `h-000001`, `h-000002`, and `h-000003`. After the exact documented bootstrap and reopening the same context, current orientation status classified all three old-epoch references as `stale`. The worker did not reload, query, derive, rematerialize, or reconstruct the former answer.
+
+### Evaluation interpretation
+
+The trace passed all seven criteria in the [context-recovery task brief](../tasks/context-recovery-sanity-check.md): real persistent-REPL preflight, map-first orientation, bounded local retention and display, genuine cross-turn handle reuse, explicit ambiguity, stale-state recognition after actual reset, and no external or mutation boundary violation. It strengthens the earlier constrained run with natural ambiguity and broker-versus-kernel recovery evidence. It still does not establish open-ended source navigation, live endpoint behavior, rematerialization, export, or general scientific decision quality.
+
 ## Coordinator audit
 
 Audit the fresh-task trace in chronological order: persistent-REPL availability and actual state receipt before any source-level conclusion; initial repository/skill orientation; first map/session inspection; each named action and its stated budget; session-handle reuse or explicit rematerialization; final execution-backed model/report; and all tool/transport attempts. Match every stateful claim and the final conclusion to cited REPL operations; reject unsupported claims and any source-only conclusion. Record observed trace evidence separately from an evaluator's interpretation. A missing trace segment is a failed criterion, not evidence of compliance.

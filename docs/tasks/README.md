@@ -4,9 +4,7 @@ This directory holds a small queue of material work that is ready, active, or de
 
 ## Queue
 
-| Task | Status | Outcome sought | Exact next action |
-| --- | --- | --- | --- |
-| [Multi-turn context recovery sanity check](context-recovery-sanity-check.md) | Ready | Fresh-worker evidence for ambiguity, bounded reuse, stale state, and reset honesty before the curated demo. | Launch one fresh local-only Codex task with the evaluator prompt in the brief and capture its preflight receipt before any scenario conclusion. |
+No active tasks.
 
 ## When to create or update a task brief
 
