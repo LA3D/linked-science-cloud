@@ -15,8 +15,8 @@ async function registry() {
 test('experiment result registry grades every run and every dossier', async () => {
   const result = await validateExperimentResultRepository({ projectRoot, registry: await registry() });
   assert.equal(result.status, 'passed');
-  assert.equal(result.runs, 20);
-  assert.equal(result.complete, 7);
+  assert.equal(result.runs, 21);
+  assert.equal(result.complete, 8);
   assert.equal(result.partial, 2);
   assert.equal(result.summaryOnly, 11);
   assert.equal(result.experimentDocuments, 10);

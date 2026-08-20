@@ -1,0 +1,53 @@
+{
+  "format": "linked-science-redirect-inspection/v1",
+  "id": "uniprot-core-redirect-inspection-2026-08-20",
+  "recordedAt": "2026-08-20T23:36:00.275Z",
+  "authorization": {
+    "source": "https://purl.uniprot.org/core/",
+    "method": "GET",
+    "followedRedirects": 0,
+    "retries": 0,
+    "timeoutMs": 8000,
+    "responseBodyRead": false
+  },
+  "outcome": "redirect-observed-and-refused",
+  "error": {
+    "code": "BROKER_REDIRECT_DENIED",
+    "message": "Acquisition redirect was refused without reading a response body"
+  },
+  "receipt": {
+    "kind": "linked-science-broker-operation",
+    "status": "failed",
+    "operation": "acquire",
+    "operationId": "lsb-000001",
+    "profile": "uniprot-core-redirect-inspection",
+    "profileSha256": "c994529acb568c0669dd5ccb9abccb1a997a2db47e6a8efd0b75311c28dbfcc2",
+    "inputSha256": "760face1d503509eab3a90052ceb64a2931493796436ab0f2af333ce238544ca",
+    "source": "https://purl.uniprot.org/core/",
+    "attempts": [
+      {
+        "source": "https://purl.uniprot.org/core/",
+        "at": "2026-08-20T23:36:00.276Z",
+        "method": "GET",
+        "redirect": "manual",
+        "followedRedirects": 0,
+        "timeoutMs": 8000,
+        "responseByteLimit": 1,
+        "retries": 0,
+        "status": 303,
+        "ok": false,
+        "contentType": "text/html",
+        "bodyRead": false,
+        "redirectLocation": {
+          "status": "exact-https",
+          "value": "https://purl.uniprot.org/html/index-en.html#"
+        }
+      }
+    ],
+    "failure": {
+      "code": "BROKER_REDIRECT_DENIED"
+    }
+  },
+  "requestCount": 1,
+  "claimBoundary": "This records only redirect metadata from one exact GET. The redirect target was not contacted, no response body was read, and the target is not thereby approved. The inspection used a deliberately non-matching Accept value to prevent an unexpected non-redirect response from being acquired, so it does not establish the RDF-negotiated redirect target."
+}

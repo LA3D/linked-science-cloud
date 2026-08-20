@@ -37,10 +37,10 @@
     },
     "receipt": {
       "type": "object",
-      "required": ["kind", "status", "operation", "operationId", "profile", "profileSha256", "inputSha256", "payloadSha256", "attempts"],
+      "required": ["kind", "status", "operation", "operationId", "profile", "profileSha256", "inputSha256", "attempts"],
       "properties": {
         "kind": { "const": "linked-science-broker-operation" },
-        "status": { "const": "ready" },
+        "status": { "enum": ["ready", "failed"] },
         "operation": { "enum": ["acquire", "query"] },
         "operationId": { "type": "string", "minLength": 1 },
         "profile": { "type": "string", "minLength": 1 },
@@ -48,8 +48,18 @@
         "inputSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "payloadSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "source": { "type": "string" },
-        "attempts": { "type": "array", "maxItems": 3, "items": { "type": "object" } }
-      }
+        "attempts": { "type": "array", "maxItems": 3, "items": { "type": "object" } },
+        "failure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code"],
+          "properties": { "code": { "type": "string", "minLength": 1, "maxLength": 96 } }
+        }
+      },
+      "oneOf": [
+        { "properties": { "status": { "const": "ready" } }, "required": ["payloadSha256"] },
+        { "properties": { "status": { "const": "failed" } }, "required": ["failure"] }
+      ]
     }
   }
 }

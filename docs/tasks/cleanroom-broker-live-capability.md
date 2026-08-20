@@ -36,6 +36,8 @@ Offline tests must establish:
 - The first authorized acquisition-profile preflight succeeded for `https://sparql.uniprot.org/uniprot` and `https://geneontology.org/docs/ontology-documentation/`. The proposed `https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/core.owl` source returned HTTP 404 on its only attempt and was not retried or substituted; the [machine receipt](../../artifacts/experiment-results/2026-08-20-orientation-profile-preflight-attempt-1.json) preserves all three outcomes.
 - External local commit `2cbbd98` (`feat: add validated competency acquisition profiles`) places the validated `uniprot-void-description` and `go-orientation` profiles on the external checkout's local `main` and removes the failed core source from the defaults.
 - A second authorized discovery run made one guarded GET each to the exact FTP RDF directory and HTTPS core PURL. The directory returned HTTP 404, while the zero-redirect guard refused the PURL redirect and surfaced `BROKER_TRANSPORT_ERROR`. The [machine receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-source-discovery.json) records the fixed one-attempt, zero-retry, eight-second policy. No redirect was followed and no replacement source was inferred or contacted.
+- External commits `ba6f710` and `d4bec58` make acquisition redirects observable without following them: 3xx bodies remain unread, compact failure receipts cross the child boundary, and future empty fragment markers are normalized away. Offline checks and all 23 external tests pass.
+- The approved metadata-only PURL inspection observed HTTP 303 to `https://purl.uniprot.org/html/index-en.html#` with one request, no retry, no followed redirect, and no body read. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) preserves the exact observation. Its deliberately non-matching `Accept` makes this fallback-route evidence, not RDF content-negotiation evidence.
 
 ### Remaining work
 
@@ -44,10 +46,10 @@ Offline tests must establish:
 
 ### Exact next action
 
-Obtain explicit approval for one bounded, non-following redirect-metadata inspection of `https://purl.uniprot.org/core/`, or for another exact official machine-readable core URL supplied by the user. Record the canonical target without following it, then request separate approval before acquiring that target or adding its immutable profile.
+Obtain explicit approval for one more bounded, non-following GET to `https://purl.uniprot.org/core/` using the RDF `Accept` header (`application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7`). Configure a deliberately non-matching allowed response type so any unexpected HTTP 200 is rejected before body reading. Record only redirect metadata, then request separate approval before acquiring any newly discovered target.
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `2cbbd98`. This discovery continuation began from consumer local `main` at `618773f`; result milestone `10b80bd` is on `codex/uniprot-core-source-discovery` pending verified fast-forward integration. Nothing was pushed.
-- **Verification:** External profile tests passed before `2cbbd98` was integrated. For this consumer result milestone, `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 20 registered runs, and `git diff --check` passed.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `fd22d9a`; integration status is recorded when verification completes. Nothing was pushed.
+- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer verification is pending for the new receipt and schema update.
 - **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, and three failed core-source attempts now have durable records. None is a competency answer. No exact machine-readable core source has been established.
