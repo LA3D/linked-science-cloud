@@ -38,6 +38,7 @@ Offline tests must establish:
 - A second authorized discovery run made one guarded GET each to the exact FTP RDF directory and HTTPS core PURL. The directory returned HTTP 404, while the zero-redirect guard refused the PURL redirect and surfaced `BROKER_TRANSPORT_ERROR`. The [machine receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-source-discovery.json) records the fixed one-attempt, zero-retry, eight-second policy. No redirect was followed and no replacement source was inferred or contacted.
 - External commits `ba6f710` and `d4bec58` make acquisition redirects observable without following them: 3xx bodies remain unread, compact failure receipts cross the child boundary, and future empty fragment markers are normalized away. Offline checks and all 23 external tests pass.
 - The approved metadata-only PURL inspection observed HTTP 303 to `https://purl.uniprot.org/html/index-en.html#` with one request, no retry, no followed redirect, and no body read. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) preserves the exact observation. Its deliberately non-matching `Accept` makes this fallback-route evidence, not RDF content-negotiation evidence.
+- A separately approved repeat with the exact RDF `Accept` header observed HTTP 303 to `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json) records one request, no retry, no followed redirect, and no body read. The newly discovered target was not contacted.
 
 ### Remaining work
 
@@ -46,10 +47,10 @@ Offline tests must establish:
 
 ### Exact next action
 
-Obtain explicit approval for one more bounded, non-following GET to `https://purl.uniprot.org/core/` using the RDF `Accept` header (`application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7`). Configure a deliberately non-matching allowed response type so any unexpected HTTP 200 is rejected before body reading. Record only redirect metadata, then request separate approval before acquiring any newly discovered target.
+Obtain explicit approval for one guarded GET to the exact discovered target `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:` using the RDF `Accept` header (`application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7`), an eight-second timeout, a 10 MB byte ceiling, zero retries, and zero followed redirects. If it succeeds, record its media type, byte length, hash, detected RDF format, and bounded ontology markers before adding an immutable profile.
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `fd22d9a`; result commit `7645682` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 21 registered runs, both new JSON files parsed, and `git diff --check` passed.
-- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, three prior failed core-source attempts, and one successful metadata-only redirect inspection now have durable records. None is a competency answer. No exact machine-readable core source has been established.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `93fae76`; integration status is recorded after verification. Nothing was pushed.
+- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer verification is pending for the new RDF-negotiation receipt.
+- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, three prior failed core-source attempts, and two successful metadata-only redirect inspections now have durable records. None is a competency answer. An exact RDF-negotiated target is now known but has not been contacted or validated as a machine-readable core source.

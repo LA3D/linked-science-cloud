@@ -29,6 +29,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - Exact VoID-description and GO-orientation acquisitions succeeded and their immutable external profiles are on the external checkout's local `main` at `2cbbd98`.
 - The proposed FTP `core.owl` and RDF-directory paths returned HTTP 404. The exact core PURL redirected, and the zero-redirect guard correctly stopped without following or substituting it. Both rounds have durable machine records in the result registry.
 - A metadata-only retry preserved the PURL's HTTP 303 fallback target as `https://purl.uniprot.org/html/index-en.html#`, with no body read or redirect followed. Because the safety probe deliberately requested a non-matching media type, it did not establish the RDF-negotiated target and did not unblock the core profile.
+- A separately approved RDF-`Accept` metadata inspection identified the exact target as `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The target was not contacted, so it is source-discovery evidence rather than a validated acquisition profile.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -48,7 +49,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Exact next action
 
-Obtain explicit approval for one bounded, non-following redirect-metadata GET to `https://purl.uniprot.org/core/` with the exact RDF `Accept` header and a deliberately non-matching allowed response type that prevents body acquisition. Request separate approval before acquiring any discovered target, adding its immutable profile, and promoting the public manifest.
+Obtain explicit approval for one guarded GET to the exact discovered UniProt SPARQL `DESCRIBE` URL recorded above, with the RDF `Accept` header, an eight-second timeout, a 10 MB ceiling, zero retries, and zero followed redirects. Validate the response media type, RDF format, hash, and bounded ontology markers before adding its immutable profile and promoting the public manifest.
 
 ### Blockers or required decisions
 
@@ -57,7 +58,7 @@ Obtain explicit approval for one bounded, non-following redirect-metadata GET to
 
 ## Handoff state
 
-- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The redirect-result continuation began at `fd22d9a`; result commit `7645682` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 21 registered runs, both new JSON files parsed, and `git diff --check` passed.
+- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The RDF-redirect result continuation began at `93fae76`; integration status is recorded after verification. Nothing was pushed.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Consumer verification is pending for the new RDF-negotiation receipt.
 - **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.

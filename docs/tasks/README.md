@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on core ontology profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Separately approve one RDF-`Accept`, metadata-only inspection of the exact core PURL; acquire any discovered target only under its own approval. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on core acquisition profile | Complete the verified broker-owned orientation surface with the machine-readable UniProt core source required by the frozen competency cases. | Repeat the non-following core-PURL inspection with the exact RDF `Accept` header, then separately approve any discovered target and immutable profile. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on core ontology profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Separately approve one guarded acquisition of the exact RDF-negotiated UniProt SPARQL `DESCRIBE` URL; validate it before adding the profile. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on core acquisition profile | Complete the verified broker-owned orientation surface with the machine-readable UniProt core source required by the frozen competency cases. | Acquire the exact discovered `DESCRIBE` URL only under new approval, then validate media type, RDF format, hash, and bounded markers. |
 
 ## When to create or update a task brief
 

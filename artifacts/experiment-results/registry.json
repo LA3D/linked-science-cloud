@@ -242,6 +242,17 @@
       "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
       "missingEvidence": []
+    },
+    {
+      "id": "uniprot-core-rdf-redirect-inspection-2026-08-20",
+      "date": "2026-08-20",
+      "title": "RDF-negotiated UniProt core PURL redirect inspection",
+      "outcome": "passed",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
+      "missingEvidence": []
     }
   ],
   "documents": [

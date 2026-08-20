@@ -1,0 +1,54 @@
+{
+  "format": "linked-science-rdf-redirect-inspection/v1",
+  "id": "uniprot-core-rdf-redirect-inspection-2026-08-20",
+  "recordedAt": "2026-08-20T23:47:46.235Z",
+  "authorization": {
+    "source": "https://purl.uniprot.org/core/",
+    "method": "GET",
+    "accept": "application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7",
+    "followedRedirects": 0,
+    "retries": 0,
+    "timeoutMs": 8000,
+    "responseBodyRead": false
+  },
+  "outcome": "rdf-negotiated-redirect-observed-and-refused",
+  "error": {
+    "code": "BROKER_REDIRECT_DENIED",
+    "message": "Acquisition redirect was refused without reading a response body"
+  },
+  "receipt": {
+    "kind": "linked-science-broker-operation",
+    "status": "failed",
+    "operation": "acquire",
+    "operationId": "lsb-000001",
+    "profile": "uniprot-core-rdf-redirect-inspection",
+    "profileSha256": "ef3bd2946c6839454f7fcd1d12ffded60d9428e438d33b7bd6cae411b8c4b557",
+    "inputSha256": "3aaeb634578ca1cd547fc441f1d7f4a909ff97ec1bb87ff1547e8e1af49c41eb",
+    "source": "https://purl.uniprot.org/core/",
+    "attempts": [
+      {
+        "source": "https://purl.uniprot.org/core/",
+        "at": "2026-08-20T23:47:46.236Z",
+        "method": "GET",
+        "redirect": "manual",
+        "followedRedirects": 0,
+        "timeoutMs": 8000,
+        "responseByteLimit": 1,
+        "retries": 0,
+        "status": 303,
+        "ok": false,
+        "contentType": "text/html",
+        "bodyRead": false,
+        "redirectLocation": {
+          "status": "exact-https",
+          "value": "https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:"
+        }
+      }
+    ],
+    "failure": {
+      "code": "BROKER_REDIRECT_DENIED"
+    }
+  },
+  "requestCount": 1,
+  "claimBoundary": "This records only redirect metadata from one exact GET using the stated RDF Accept header. The redirect target was not contacted, no response body was read, and the target is not thereby approved."
+}

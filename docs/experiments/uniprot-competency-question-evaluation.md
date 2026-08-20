@@ -135,6 +135,8 @@ Two later guarded acquisition rounds established the exact VoID-description and 
 
 A separately approved metadata-only repeat then observed HTTP 303 from the exact core PURL to `https://purl.uniprot.org/html/index-en.html#`. The broker recorded one request, zero followed redirects, zero retries, and `bodyRead: false`; the [redirect receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) is durable. Because this safety probe used a deliberately non-matching `Accept` value to prevent any unexpected non-redirect body acquisition, it establishes only the fallback rendered-documentation route. It does not establish the RDF-negotiated target, approve the redirect target, or satisfy the machine-readable core prerequisite.
 
+A further separately approved metadata-only GET used the exact RDF `Accept` header and observed HTTP 303 to `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The [RDF-negotiation receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json) records one request, zero retries, zero followed redirects, and no body read. This establishes the exact source selected by the PURL's RDF negotiation at that time, but the target was not contacted and remains unapproved. A successful bounded acquisition and format check are still required before it can become the machine-readable core profile.
+
 ## Limits and non-claims
 
 - Current clean-room evidence now includes broker activation, raw-network denial, evaluator-private read denial, and one approved endpoint-existence preflight. It does not include a competency-case execution or scientific answer.
