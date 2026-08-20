@@ -1,0 +1,37 @@
+{
+  "format": "linked-science-worker-export-policy/v1",
+  "version": "2026-08-20.1",
+  "include": [
+    "AGENTS.md",
+    "README.md",
+    "package.json",
+    "package-lock.json",
+    ".agents/skills/linked-data-repl",
+    "lib/cleanroom-linked-science-bootstrap.mjs",
+    "lib/competency-evaluation-manifest.mjs",
+    "lib/guarded-documentation-fetch.mjs",
+    "lib/guarded-evidence-acquisition.mjs",
+    "lib/guarded-sparql-transport.mjs",
+    "lib/linked-data-source-profiles.mjs",
+    "lib/linked-science-runtime.mjs",
+    "lib/orientation-map.mjs",
+    "lib/repl-linked-data-session.mjs",
+    "docs/agent/runtime-discovery.md",
+    "docs/architecture",
+    "docs/runtime",
+    "resources/index.md",
+    "resources/uniprot.evidence-pack.json",
+    "evaluation/uniprot/worker-manifest.draft.json"
+  ],
+  "deny": [
+    ".git",
+    ".codex",
+    "artifacts",
+    "docs/experiments",
+    "docs/journal",
+    "docs/tasks",
+    "lib/linked-data-affordances.mjs",
+    "scripts",
+    "test"
+  ]
+}

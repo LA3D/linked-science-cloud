@@ -1,0 +1,43 @@
+{
+  "format": "linked-science-competency-worker/v1",
+  "status": "draft",
+  "version": "2026-08-20.1",
+  "corpusSnapshotDigest": "pending",
+  "accessDate": "2026-08-20",
+  "cases": [
+    {
+      "id": "uq-1c8e5b2074a9",
+      "tier": 0,
+      "question": "Determine the current UniProt release from the approved service description.",
+      "resources": [
+        { "role": "dataset-description", "profile": "uniprot-void-description-pending-review", "authorizationRequired": true },
+        { "role": "bounded-query", "profile": "uniprotRead", "authorizationRequired": true }
+      ],
+      "bounds": { "maxTransports": 2, "maxRows": 1, "maxCells": 4, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "secondTurn": "question-neutral-retained-handle-reuse"
+    },
+    {
+      "id": "uq-5a930fd241be",
+      "tier": 1,
+      "question": "For the fixed accession supplied by the evaluator, distinguish the entry name from its domain and component names.",
+      "resources": [
+        { "role": "core-ontology", "profile": "uniprotRdfSchema", "authorizationRequired": true },
+        { "role": "bounded-query", "profile": "uniprotRead", "authorizationRequired": true }
+      ],
+      "bounds": { "maxTransports": 2, "maxRows": 10, "maxCells": 40, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "secondTurn": "question-neutral-retained-handle-reuse"
+    },
+    {
+      "id": "uq-c4276e91ad53",
+      "tier": 2,
+      "question": "Classify the GO annotations for the bounded accession set into process, function, and component categories.",
+      "resources": [
+        { "role": "core-ontology", "profile": "uniprotRdfSchema", "authorizationRequired": true },
+        { "role": "go-orientation", "profile": "go-orientation-pending-review", "authorizationRequired": true },
+        { "role": "bounded-query", "profile": "uniprotRead", "authorizationRequired": true }
+      ],
+      "bounds": { "maxTransports": 3, "maxRows": 10, "maxCells": 50, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "secondTurn": "question-neutral-retained-handle-reuse"
+    }
+  ]
+}
