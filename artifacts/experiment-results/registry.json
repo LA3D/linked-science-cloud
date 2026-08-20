@@ -1,0 +1,226 @@
+{
+  "format": "linked-science-experiment-result-registry/v1",
+  "version": "2026-08-20.1",
+  "recordedAt": "2026-08-20",
+  "runs": [
+    {
+      "id": "context-map-single-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Single-turn Identifiers.org context-map recovery",
+      "outcome": "passed",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/context-map-runs/context-map-2026-08-15T11-46-20-605Z.json"],
+      "documentationPaths": ["docs/experiments/coordinator-worker-context-map.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "context-map-two-turn-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Coordinator-selected two-turn Identifiers.org context-map recovery",
+      "outcome": "passed",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": [
+        "artifacts/context-map-runs/two-turn-turn-1-2026-08-15T11-53-16-471Z.json",
+        "artifacts/context-map-runs/two-turn-turn-2-2026-08-15T11-54-52-829Z.json"
+      ],
+      "documentationPaths": ["docs/experiments/coordinator-worker-context-map.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "open-goal-p00338-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Open-goal UniProt P00338 SELECT navigation",
+      "outcome": "partial",
+      "evidenceLevel": "trace-derived-partial",
+      "durability": "partial",
+      "recordPaths": ["artifacts/open-goal-runs/2026-08-15-p00338-select.json"],
+      "documentationPaths": ["docs/experiments/open-goal-uniprot-operation-selection.md"],
+      "missingEvidence": [
+        "resident REPL state at artifact capture",
+        "per-query transport timestamps",
+        "per-query HTTP methods",
+        "per-query retry values",
+        "per-query query hashes"
+      ]
+    },
+    {
+      "id": "open-goal-p00533-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Open-goal UniProt P00533 CONSTRUCT navigation",
+      "outcome": "passed",
+      "evidenceLevel": "resident-audited",
+      "durability": "complete",
+      "recordPaths": ["artifacts/open-goal-runs/2026-08-15-p00533-construct.json"],
+      "documentationPaths": ["docs/experiments/open-goal-uniprot-operation-selection.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "clean-worker-balanced-groups-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Constrained clean-worker balanced-groups evaluation",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/clean-worker-map-evaluation.md", "docs/journal/2026-08-15.md"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "cleanroom-context-recovery-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Multi-turn clean-room context recovery and reset",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/clean-worker-map-evaluation.md", "docs/tasks/context-recovery-sanity-check.md"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "pre-reset resident handles"]
+    },
+    {
+      "id": "prior-grounding-baseline-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Prior-grounding baseline arm",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/prior-grounding-tool-surface-evaluation.md"],
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "prior-grounding-method-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Prior-grounding method arm",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/prior-grounding-tool-surface-evaluation.md"],
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "prior-grounding-method-pack-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Prior-grounding method-plus-pack arm",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/prior-grounding-tool-surface-evaluation.md"],
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "uniprot-schema-discovery-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Guarded UniProt rendered-schema discovery",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/uniprot-schema-discovery.md", "docs/journal/2026-08-15.md"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete HTTP receipt object", "resident schema handle"]
+    },
+    {
+      "id": "uniprot-schema-fetch-failure-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Fresh real-UniProt schema-fetch failure trial",
+      "outcome": "failed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/goal-loop-state-graph.md", "docs/journal/2026-08-15.md"],
+      "missingEvidence": ["transport failure receipt", "chronological tool transcript", "worker terminal receipt"]
+    },
+    {
+      "id": "clean-worker-preflight-missing-repl-receipt-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Clean-worker preflight without persistent-REPL receipt",
+      "outcome": "inconclusive",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/clean-worker-map-evaluation.md", "docs/journal/2026-08-15.md"],
+      "missingEvidence": ["persistent-REPL state receipt", "chronological tool transcript", "run-specific machine artifact"]
+    },
+    {
+      "id": "clean-worker-preflight-source-only-2026-08-15",
+      "date": "2026-08-15",
+      "title": "Clean-worker preflight answered from repository source",
+      "outcome": "inconclusive",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/experiments/clean-worker-map-evaluation.md", "docs/journal/2026-08-15.md"],
+      "missingEvidence": ["execution-backed result receipt", "chronological tool transcript", "run-specific machine artifact"]
+    },
+    {
+      "id": "historical-node-repl-permission-comparison-pre-2026-08-20",
+      "date": "pre-2026-08-20",
+      "title": "Historical coordinator-versus-worker Node REPL permission comparison",
+      "outcome": "inconclusive",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/tasks/node-repl-permission-reverification.md"],
+      "missingEvidence": ["original run receipts", "exact run date and version context", "complete chronological tool transcripts"]
+    },
+    {
+      "id": "cleanroom-bootstrap-fresh-task-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Fresh Local clean-room bootstrap, persistence, and reset verification",
+      "outcome": "passed",
+      "evidenceLevel": "retrospective-summary",
+      "durability": "summary-only",
+      "recordPaths": ["artifacts/experiment-results/retrospective-runs.json"],
+      "documentationPaths": ["docs/tasks/linked-science-cleanroom-bootstrap.md", "docs/journal/2026-08-20.md"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "pre-reset resident handles"]
+    },
+    {
+      "id": "cleanroom-broker-preflight-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Fresh-task clean-room broker activation and UniProt ASK preflight",
+      "outcome": "passed",
+      "evidenceLevel": "resident-audited",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-cleanroom-broker-preflight.json"],
+      "documentationPaths": ["docs/architecture/broker-owned-live-operations.md", "docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "uniprot-catalog-capture-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Approved UniProt official-example catalog capture",
+      "outcome": "passed",
+      "evidenceLevel": "machine-audit",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-catalog-capture.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "uniprot-evaluator-boundary-audit-2026-08-20",
+      "date": "2026-08-20",
+      "title": "Evaluator-private clean-room boundary and leakage audit",
+      "outcome": "passed",
+      "evidenceLevel": "machine-audit",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-evaluator-boundary-audit.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "missingEvidence": []
+    }
+  ],
+  "documents": [
+    {"path": "docs/experiments/affordance-catalog.md", "status": "offline-contract-only", "note": "Offline tests and a deterministic demo exist; no clean-worker or live federation run is claimed."},
+    {"path": "docs/experiments/clean-worker-map-evaluation.md", "status": "results-recorded", "note": "Two passing runs and two inconclusive preflights are registered; their original machine receipts were not retained."},
+    {"path": "docs/experiments/coordinator-worker-context-map.md", "status": "results-recorded", "note": "Committed machine-readable receipts cover the single-turn and two-turn demonstrations."},
+    {"path": "docs/experiments/goal-loop-state-graph.md", "status": "decision-record", "note": "Architecture decision dossier informed by registered runs; it is not itself a run."},
+    {"path": "docs/experiments/jsmol-static-render.md", "status": "fixture-only", "note": "The checked-in static fixture is documented; no interactive render receipt is claimed."},
+    {"path": "docs/experiments/large-result-export.md", "status": "planned-only", "note": "The dossier explicitly records that no exporter or experimental run exists."},
+    {"path": "docs/experiments/open-goal-uniprot-operation-selection.md", "status": "results-recorded", "note": "Two run artifacts exist; P00338 is explicitly partial and P00533 is resident-audited."},
+    {"path": "docs/experiments/prior-grounding-tool-surface-evaluation.md", "status": "results-recorded", "note": "Three arms are preserved as retrospective summaries because original receipts were not committed."},
+    {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "preparation-only", "note": "Catalog, broker preflight, and isolation audit are recorded; no competency case has run."},
+    {"path": "docs/experiments/uniprot-schema-discovery.md", "status": "results-recorded", "note": "The successful trial is preserved as a retrospective summary; the original resident state is unavailable."}
+  ]
+}

@@ -13,6 +13,7 @@
     "session:synthetic": "node scripts/repl-session-synthetic.mjs",
     "runtime:synthetic": "node scripts/linked-science-runtime-synthetic.mjs",
     "runtime:cleanroom-synthetic": "node scripts/cleanroom-linked-science-synthetic.mjs",
+    "evaluation:results:validate": "node scripts/validate-experiment-results.mjs",
     "affordances:demo": "node scripts/affordance-catalog-demo.mjs",
     "evaluation:uniprot:validate": "node scripts/validate-uniprot-competency-manifest.mjs"
   },

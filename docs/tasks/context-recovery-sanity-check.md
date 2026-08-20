@@ -64,4 +64,4 @@ None. Any broader open-ended or live-source evaluation is a separately selected 
 - **Git:** The evaluation itself changed no files; its completion record is included in the accompanying focused documentation commit on local `main`.
 - **Verification:** The recorded trace passed all seven acceptance criteria. Repository documentation checks are recorded with the completion commit.
 - **Ephemeral state:** The clean-room kernel was reset. The former source, candidate, and derived handles are not resident; their surviving PEEK references are stale orientation only.
-- **Durable artifacts/receipts:** No artifact was created. Durable evidence is summarized in the linked experiment record.
+- **Durable artifacts/receipts:** No contemporaneous artifact was created. A later [retrospective summary record](../../artifacts/experiment-results/retrospective-runs.json) preserves the documented outcome and explicitly lists the unavailable original evidence; it is not a replacement for the missing machine receipt.

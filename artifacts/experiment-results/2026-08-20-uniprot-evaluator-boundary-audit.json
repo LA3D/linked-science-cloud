@@ -1,0 +1,23 @@
+{
+  "format": "linked-science-experiment-result/v1",
+  "id": "uniprot-evaluator-boundary-audit-2026-08-20",
+  "recordedAt": "2026-08-20",
+  "evidenceBasis": "machine-audit",
+  "evaluatorSelectionSha256": "5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616",
+  "workerManifestSha256": "168b95a37e706a451b5d0511041a6724e408a191203fff82b516815b2ee2ce83",
+  "boundary": {
+    "rootsDistinct": true,
+    "evaluatorOutsideWorker": true,
+    "authorityAttested": true,
+    "enforcer": "cleanroom-broker",
+    "permissionModel": "node-permission",
+    "probeCode": "ERR_ACCESS_DENIED"
+  },
+  "leakageAudit": {
+    "status": "passed",
+    "filesScanned": 36,
+    "bytesScanned": 555527,
+    "findings": []
+  },
+  "claimBoundary": "This proves the audited worker export did not contain the private leakage markers and could not read evaluator-private storage. It does not score or execute a competency case."
+}

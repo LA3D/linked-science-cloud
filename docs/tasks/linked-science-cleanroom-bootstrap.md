@@ -28,3 +28,7 @@ Replace the obsolete bundled-REPL path with one active project MCP registration,
 ## Exact next action
 
 No implementation work remains. Preserve the verification evidence above when using or revising the clean-room bootstrap; any live source work still requires separate exact-profile approval.
+
+## Result preservation
+
+No contemporaneous machine receipt was committed for the fresh Local task. Its documented outcome now has a [retrospective result record](../../artifacts/experiment-results/retrospective-runs.json) that explicitly preserves this limitation. Future intentional runs must follow the [result-registry capture rule](../experiments/RESULTS.md#capture-rule-for-future-experiments).

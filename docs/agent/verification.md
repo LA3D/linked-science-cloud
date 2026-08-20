@@ -21,6 +21,8 @@ For documentation or skill routing changes, also:
 
 For runtime changes, add the narrowest meaningful tests for the changed invariant and run the relevant direct script or fixture when one exists. Network success is never part of the default verification: live trials require current approval for the exact profile.
 
+For an intentional experiment run or a change to its result record, also run `npm run evaluation:results:validate`. Capture the compact machine receipt before resetting or closing resident state. A later prose reconstruction must remain labeled `retrospective-summary` with every unavailable field or trace segment named explicitly.
+
 ## Evidence to record
 
 A completion or task-handoff record states:

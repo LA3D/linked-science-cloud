@@ -112,4 +112,4 @@ Open the current official Codex documentation for Node REPL/tool availability an
 - **Git:** Not started; use a named `codex/<task>` branch only if a later authorized documentation or implementation change is made.
 - **Verification:** Protocol review only. No current official-doc audit or runtime comparison has occurred.
 - **Ephemeral state:** None; no coordinator or worker REPL binding is claimed resident.
-- **Durable artifacts/receipts:** Historical observations are summarized from the read-only archive; no current run receipt exists.
+- **Durable artifacts/receipts:** Historical observations are summarized from the read-only archive; no original run receipt exists. A later [retrospective result record](../../artifacts/experiment-results/retrospective-runs.json) now makes that limitation machine-readable without treating the archive summary as current proof.

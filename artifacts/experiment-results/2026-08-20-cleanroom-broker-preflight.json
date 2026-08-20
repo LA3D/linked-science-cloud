@@ -1,0 +1,42 @@
+{
+  "format": "linked-science-experiment-result/v1",
+  "id": "cleanroom-broker-preflight-2026-08-20",
+  "recordedAt": "2026-08-20",
+  "evidenceBasis": "resident-audited",
+  "residentAudit": {
+    "handle": {"id": "h-000001", "type": "boolean", "label": "transport-preflight", "status": "resident"},
+    "operationId": "op-000001",
+    "brokerOperationId": "lsb-000001",
+    "profile": "uniprot-read",
+    "profileSha256": "9963b75e4141c8c4b1d972b400aa0b9eaa7fa683801517acc8b124add9907791",
+    "queryType": "ASK",
+    "querySha256": "720ca56979ad91cd84a42aa3e84c21128090126acea855e8c928d42dcc7aea01",
+    "payloadSha256": "7095789583a9258ce81762ed6444e3dec52734d1353223d2ef6a39578af75a39",
+    "boundedResult": {"value": true, "rows": 1, "cells": 1, "truncated": false},
+    "attempt": {
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "at": "2026-08-20T22:29:14.934Z",
+      "method": "POST",
+      "queryLimit": 1,
+      "redirect": "error",
+      "timeoutMs": 8000,
+      "responseByteLimit": 1000000,
+      "retries": 0,
+      "status": 200,
+      "ok": true,
+      "contentType": "application/sparql-results+json",
+      "byteLength": 41
+    }
+  },
+  "boundaryObservations": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "brokerOwnedLive": true,
+    "rawChildNetwork": "denied",
+    "rawChildDns": "denied",
+    "rawChildSockets": "denied",
+    "filesystemWrites": "denied",
+    "evaluatorPrivateRead": "ERR_ACCESS_DENIED"
+  },
+  "claimBoundary": "This proves the exact broker-owned transport and resident boolean preflight only; it is not a UniProt competency result or scientific answer."
+}

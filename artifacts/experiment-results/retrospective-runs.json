@@ -1,0 +1,89 @@
+{
+  "format": "linked-science-retrospective-experiment-results/v1",
+  "recordedAt": "2026-08-20",
+  "sourceCommit": "b779ac41caeea21c030c0e5e67d4bf70bdfc04da",
+  "warning": "These records were reconstructed from committed prose after the original run state or receipt was unavailable. They are not substitutes for contemporaneous machine receipts.",
+  "runs": [
+    {
+      "id": "clean-worker-balanced-groups-2026-08-15",
+      "outcome": "passed",
+      "sources": ["docs/experiments/clean-worker-map-evaluation.md#recorded-constrained-run--2026-08-15", "docs/journal/2026-08-15.md"],
+      "observedSummary": "A fresh worker retained 120 local synthetic bindings, derived two category counts of 60 and 60, reused the source for a five-row membership view, then correctly reported all handles unavailable after reset.",
+      "knownOperationIds": ["preflight-op-001", "preflight-op-002", "rdf-op-001", "rdf-op-002", "rdf-op-003", "rdf-op-004", "rdf-op-005", "rdf-op-006", "rdf-op-007", "rdf-op-008"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "cleanroom-context-recovery-2026-08-20",
+      "outcome": "passed",
+      "sources": ["docs/experiments/clean-worker-map-evaluation.md#recorded-multi-turn-context-recovery-run--2026-08-20", "docs/tasks/context-recovery-sanity-check.md"],
+      "observedSummary": "The clean-room worker retained one 32-quad fixture and two ambiguous candidate bindings, derived a two-row comparison without re-querying, then reset the kernel and classified all old PEEK handle references as stale.",
+      "knownOperationIds": ["op-000002", "op-000003", "op-000004", "op-000005"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "pre-reset resident handles"]
+    },
+    {
+      "id": "prior-grounding-baseline-2026-08-15",
+      "outcome": "passed",
+      "sources": ["docs/experiments/prior-grounding-tool-surface-evaluation.md#recorded-first-local-run--2026-08-15"],
+      "observedSummary": "The baseline arm performed persistent-REPL preflight, grounded the local schema and instance path, executed one bounded ASK, and reported true with a completed outcome.",
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "prior-grounding-method-2026-08-15",
+      "outcome": "passed",
+      "sources": ["docs/experiments/prior-grounding-tool-surface-evaluation.md#recorded-first-local-run--2026-08-15"],
+      "observedSummary": "The grounding-method arm kept prior, evidence, reconciliation, and plan distinct, executed one bounded ASK returning true, validated its receipt, and checked retained state in a second call.",
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "prior-grounding-method-pack-2026-08-15",
+      "outcome": "passed",
+      "sources": ["docs/experiments/prior-grounding-tool-surface-evaluation.md#recorded-first-local-run--2026-08-15"],
+      "observedSummary": "The method-plus-pack arm verified the pack path against the schema, corrected an assumed store count after inspection, and executed one bounded ASK returning true.",
+      "missingEvidence": ["validated arm receipt", "chronological tool transcript", "resident REPL state"]
+    },
+    {
+      "id": "uniprot-schema-discovery-2026-08-15",
+      "outcome": "passed",
+      "sources": ["docs/experiments/uniprot-schema-discovery.md#recorded-result--2026-08-15", "docs/journal/2026-08-15.md"],
+      "observedSummary": "One guarded GET retained a 501448-byte rendered UniProt schema page with SHA-256 12235b4c56c5b36642bc2816adbd3ced6b49a71251e29ae8721fe575b103c998, derived a compact Protein-to-annotation-to-catalyticActivity view, and reused it without a second request.",
+      "knownOperationIds": ["schema-repl-preflight-1", "schema-document-fetch-1", "schema-view-reuse-2"],
+      "missingEvidence": ["contemporaneous machine receipt", "complete HTTP receipt object", "resident schema handle"]
+    },
+    {
+      "id": "uniprot-schema-fetch-failure-2026-08-15",
+      "outcome": "failed",
+      "sources": ["docs/experiments/goal-loop-state-graph.md#trial-evidence", "docs/journal/2026-08-15.md"],
+      "observedSummary": "A fresh worker stopped before a data query when its approved schema fetch failed, but it also preselected schema terms, reported an unbound session, proposed a SELECT without schema evidence, and bypassed the receipt helper.",
+      "missingEvidence": ["transport failure receipt", "chronological tool transcript", "worker terminal receipt"]
+    },
+    {
+      "id": "clean-worker-preflight-missing-repl-receipt-2026-08-15",
+      "outcome": "inconclusive",
+      "sources": ["docs/experiments/clean-worker-map-evaluation.md#status-and-boundary", "docs/journal/2026-08-15.md"],
+      "observedSummary": "The trajectory lacked an actual persistent-JavaScript-REPL state receipt, so it was excluded as retained-state evidence.",
+      "missingEvidence": ["persistent-REPL state receipt", "chronological tool transcript", "run-specific machine artifact"]
+    },
+    {
+      "id": "clean-worker-preflight-source-only-2026-08-15",
+      "outcome": "inconclusive",
+      "sources": ["docs/experiments/clean-worker-map-evaluation.md#status-and-boundary", "docs/journal/2026-08-15.md"],
+      "observedSummary": "The trajectory avoided unsupported residency claims but answered from repository source instead of persistent-REPL execution, so it was excluded as an execution-backed result.",
+      "missingEvidence": ["execution-backed result receipt", "chronological tool transcript", "run-specific machine artifact"]
+    },
+    {
+      "id": "historical-node-repl-permission-comparison-pre-2026-08-20",
+      "outcome": "inconclusive",
+      "sources": ["docs/tasks/node-repl-permission-reverification.md#why-this-must-be-re-measured"],
+      "observedSummary": "The pre-reinstall archive reported one coordinator guarded Identifiers.org SELECT with HTTP 200, while an independently spawned workspace-write worker failed before HTTP with separately recorded DNS ENOTFOUND and socket EPERM observations. The brief treats these as historical hypotheses, not current proof.",
+      "missingEvidence": ["original run receipts", "exact run date and version context", "complete chronological tool transcripts"]
+    },
+    {
+      "id": "cleanroom-bootstrap-fresh-task-2026-08-20",
+      "outcome": "passed",
+      "sources": ["docs/tasks/linked-science-cleanroom-bootstrap.md#current-evidence", "docs/journal/2026-08-20.md"],
+      "sourceThreadIds": ["01a01fa3-4f31-7f72-8b3c-6d8d4694c733"],
+      "observedSummary": "A fresh Local task observed the exact three-tool clean-room surface, correct cwd and CodeAct mode, cross-call persistence, declared dependency resolution, idempotent bootstrap, a bounded two-row local result, bounded RLM discovery, four PEEK references, reset epoch 2, cleared bindings and RLM, surviving PEEK, re-bootstrap, and all old references classified stale.",
+      "missingEvidence": ["contemporaneous machine receipt", "complete chronological tool transcript", "pre-reset resident handles"]
+    }
+  ]
+}
