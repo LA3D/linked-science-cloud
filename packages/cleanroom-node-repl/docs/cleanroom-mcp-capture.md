@@ -38,16 +38,20 @@ The project `.codex/config.toml` already contains the registration. Fully restar
    nodeRepl.write(await nodeRepl.peek.current("demo"));
    ```
 8. Call `js_reset`, verify `nodeRepl.write(typeof sentinel)` emits `undefined`, then verify `nodeRepl.write(await nodeRepl.peek.current("demo"))` still contains `alpha`.
-9. Inspect the optional Linked Science boundary without performing a live operation:
+9. Bootstrap and inspect the optional Linked Science boundary without performing a live operation:
 
    ```js
-   nodeRepl.write(JSON.stringify({
-     methods: Object.keys(nodeRepl.linkedScienceTraversal).sort(),
-     capability: await nodeRepl.linkedScienceTraversal.capabilities(),
-   }, null, 2));
+   var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+   await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+   nodeRepl.write({
+     mcpSurface: ['js', 'js_reset', 'js_add_node_module_dir'],
+     traversalBridge: typeof nodeRepl.linkedScienceTraversal,
+     rawFetch: typeof fetch,
+     capability: linkedScience.capabilities().traversal,
+   });
    ```
 
-   The methods must be exactly `abortTraversal`, `beginTraversal`, `capabilities`, `createFetch`, `finishTraversal`, and `request`. The capability describes only the versioned mediator contract and default/max budgets; it must not contain credentials, cookies, endpoint allowlists, hidden evaluation paths, or transport objects.
+   The bridge and raw Fetch must both be `undefined`. The capability must report protocol 3.0.0, authority `anonymous-linked-data-read` 1.0.0, standard Fetch, zero retries, and default/hard budgets. It must not contain capability tokens, credentials, cookies, endpoint allowlists, hidden evaluation paths, or a callable transport object.
 
 ## Semantics and limits
 
@@ -59,7 +63,7 @@ Registered `node_modules` roots participate only in locating package entry impor
 
 The REPL context alone is not treated as a security sandbox. The child process is separately confined with Node's permission model: it may read the worker root and kernel entry file, but receives no raw network, child-process, worker-thread, native-addon, or filesystem-write authority. Parent host calls also require a random per-kernel capability token held only by the broker facade's closed-over IPC path, so an imported module cannot forge a host request with `process.send`. The broker scrubs inherited environment variables, caps code/output/image sizes and memory, serializes execution, and kills a child that exceeds its timeout.
 
-Linked Science traversal is parent-mediated. The child begins a token/epoch-bound session, and its Communica fetch adapter serializes each dynamically discovered HTTPS RDF or SPARQL read to the parent one hop at a time. The parent rejects credentials and mutations, strips ambient identity, validates and pins public DNS answers, manually validates every redirect, applies traversal-wide time/fan-out/concurrency/byte/item bounds, and returns sanitized responses with attributable hop and aggregate receipts. A reset, timeout, crash, or replacement aborts the former kernel's sessions. Do not invoke live traversal without current explicit approval for its scientific scope and effective budgets.
+Linked Science traversal is parent-mediated. A module-private bridge begins a token/epoch-bound session, and the private Communica Fetch adapter serializes each dynamically discovered HTTP/HTTPS RDF or SPARQL read to the parent. The parent rejects URL credentials, arbitrary POST, and mutations; strips ambient identity; applies traversal-wide request/time/fan-out/concurrency/byte/item bounds; and returns sanitized responses with attributable exchange and aggregate receipts. Standard Fetch owns DNS, TLS, sockets, certificates, and redirects; receipts record requested URL, final URL, and the redirected flag rather than inventing intermediate hops. A reset, timeout, crash, or replacement aborts the former kernel's sessions. Do not invoke live traversal without current explicit approval for its scientific scope and effective budgets.
 
 Evaluator-private filesystem attestation is a parent-side API, not an MCP tool. `KernelBroker.attestFilesystemBoundary({workerRoot, evaluatorRoot, probePath})` verifies non-overlap, asks the real child to read a pre-created honeytoken, and emits an attestation only when the permission layer returns `ERR_ACCESS_DENIED`.
 

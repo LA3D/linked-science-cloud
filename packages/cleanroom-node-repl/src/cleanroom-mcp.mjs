@@ -2,7 +2,7 @@ import { fork } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { realpathSync } from "node:fs";
 import { stat } from "node:fs/promises";
-import { basename, resolve, sep } from "node:path";
+import { basename, dirname, resolve, sep } from "node:path";
 import { createInterface } from "node:readline";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -10,9 +10,10 @@ import { PeekRegistry } from "./peek-runtime.mjs";
 import { MediatedTraversalBroker } from "./mediated-traversal.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
-export const SERVER_VERSION = "0.3.0";
+export const SERVER_VERSION = "0.4.0";
 
 const KERNEL_PATH = fileURLToPath(new URL("./repl-kernel-child.mjs", import.meta.url));
+const KERNEL_ROOT = dirname(KERNEL_PATH);
 const MAX_REQUEST_BYTES = 512 * 1024;
 const MAX_CODE_BYTES = 256 * 1024;
 const DEFAULT_TIMEOUT_MS = 30_000;
@@ -21,7 +22,7 @@ const MAX_TIMEOUT_MS = 120_000;
 const TOOLS = Object.freeze([
   {
     name: "js",
-    description: "Execute JavaScript in a persistent, network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation-map runtime, and nodeRepl.linkedScienceTraversal for broker-mediated public HTTPS RDF/SPARQL reads.",
+    description: "Execute JavaScript in a persistent, raw-network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation map, and the consumer-owned linkedScience Communica/RDF/JS facade for bounded anonymous Linked Data reads.",
     inputSchema: {
       type: "object",
       required: ["code"],
@@ -135,7 +136,7 @@ export class KernelBroker {
         `--max-old-space-size=${this.maxOldSpaceMb}`,
         "--permission",
         `--allow-fs-read=${this.cwd}`,
-        `--allow-fs-read=${KERNEL_PATH}`,
+        `--allow-fs-read=${KERNEL_ROOT}`,
       ],
       serialization: "advanced",
       stdio: ["ignore", "ignore", "pipe", "ipc"],
@@ -376,7 +377,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. Public HTTPS RDF/SPARQL reads are available only through bounded traversal sessions exposed by nodeRepl.linkedScienceTraversal. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; bootstrap it explicitly with await nodeRepl.peek.current(contextId).",
+        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. The only live authority is a private, token-bound anonymous Linked Data Fetch injected inside the consumer-owned linkedScience Communica/RDF/JS runtime; it is not exposed on nodeRepl. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime and retrieved RDF is never promoted into it automatically.",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});

@@ -11,6 +11,8 @@ import { createRequestHandler, KernelBroker } from "../src/cleanroom-mcp.mjs";
 import { PeekRegistry } from "../src/peek-runtime.mjs";
 
 const serverPath = fileURLToPath(new URL("../src/cleanroom-mcp.mjs", import.meta.url));
+const linkedScienceBootstrapUrl = new URL("../../../lib/cleanroom-linked-science-bootstrap.mjs", import.meta.url).href;
+const linkedScienceProjectRoot = fileURLToPath(new URL("../../..", import.meta.url));
 
 function startStdioClient(t) {
   const child = spawn(process.execPath, [serverPath], { stdio: ["pipe", "pipe", "pipe"] });
@@ -160,21 +162,18 @@ test("reset clears bindings while preserving module roots and broker PEEK state"
 });
 
 test("kernel reset aborts token-bound traversal sessions", async (t) => {
-  const broker = new KernelBroker({
-    traversalOptions: {
-      resolveAddresses: async () => [ { address: "93.184.216.34", family: 4 } ],
-      transport: async () => ({ status: 200, headers: { "content-type": "text/turtle" }, body: Buffer.from("@prefix ex: <https://example.test/> .") }),
-    },
-  });
+  const broker = new KernelBroker();
   t.after(() => broker.close());
   const handle = createRequestHandler({ broker });
-  const started = await handle(request(1, "js", { code: "var traversal = await nodeRepl.linkedScienceTraversal.beginTraversal({maxDurationMs:1000}); nodeRepl.write(traversal.traversalId)" }));
-  assert.match(text(started), /trv-/u);
+  const exposed = await handle(request(1, "js", { code: "nodeRepl.write(typeof nodeRepl.linkedScienceTraversal)" }));
+  assert.equal(text(exposed), "undefined");
+  const owner = { token: broker.hostCapabilityToken, epoch: broker.epoch };
+  const started = broker.traversal.beginTraversal({ maxDurationMs: 1_000 }, owner);
+  assert.match(started.traversalId, /^traversal-/u);
   assert.equal(broker.traversal.sessions.size, 1);
   await handle(request(2, "js_reset", {}));
   assert.equal(broker.traversal.sessions.size, 0);
-  const capabilities = await handle(request(3, "js", { code: "nodeRepl.write(await nodeRepl.linkedScienceTraversal.capabilities())" }));
-  assert.match(text(capabilities), /public-https-dns-pinned/u);
+  assert.equal(broker.traversal.capabilities().authority.class, "anonymous-linked-data-read");
 });
 
 test("oversized JavaScript requests are denied before entering the child IPC channel", async (t) => {
@@ -187,25 +186,57 @@ test("oversized JavaScript requests are denied before entering the child IPC cha
   assert.equal(broker.child, null);
 });
 
-test("oversized traversal host calls are denied before crossing child IPC", async (t) => {
+test("raw Fetch, Response, traversal bridge, and direct network imports are absent while permission denies computed raw network effects", async (t) => {
   const broker = new KernelBroker();
   t.after(() => broker.close());
   const handle = createRequestHandler({ broker });
-  const response = await handle(request(1, "js", { code: `
-    var oversizedTraversal = await nodeRepl.linkedScienceTraversal.beginTraversal();
+  const globals = await handle(request(1, "js", { code: "nodeRepl.write([typeof fetch,typeof Request,typeof Response,typeof nodeRepl.linkedScienceTraversal].join(','))" }));
+  assert.equal(text(globals), "undefined,undefined,undefined,undefined");
+  for (const specifier of [ "node:http", "node:https", "node:net", "node:tls", "node:dns", "undici" ]) {
+    const response = await handle(request(2, "js", { code: `await import('${specifier}')` }));
+    assert.equal(response.result.isError, true);
+    assert.match(text(response), /MODULE_BLOCKED/u);
+  }
+  const permissionBoundary = await handle(request(3, "js", { timeout_ms: 2_000, code: `
+    var computedNetworkModule = 'node:' + 'http';
+    var rawHttp = await import(computedNetworkModule);
     try {
-      await nodeRepl.linkedScienceTraversal.request(oversizedTraversal.traversalId, {
-        url: 'https://data.example/sparql', method: 'POST',
-        headers: {'content-type': 'application/sparql-query'}, body: 'x'.repeat(400000)
+      await new Promise((resolveCall, rejectCall) => {
+        var rawRequest = rawHttp.get('http://127.0.0.1:1/', resolveCall);
+        rawRequest.on('error', rejectCall);
       });
     } catch (error) {
       nodeRepl.write(error.code);
     }
   ` }));
-  assert.equal(text(response), "HOST_CALL_LIMIT");
-  assert.equal(broker.traversal.sessions.size, 1);
-  await handle(request(2, "js_reset", {}));
+  assert.equal(text(permissionBoundary), "ERR_ACCESS_DENIED");
   assert.equal(broker.traversal.sessions.size, 0);
+});
+
+test("consumer-owned bootstrap privately injects anonymous-read authority without expanding the MCP or nodeRepl surface", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    var facade = await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var workspace = facade.open({ contextKey: 'private-authority-smoke' });
+    nodeRepl.write({
+      version: facade.version,
+      authority: facade.capabilities().traversal.authority.class,
+      transport: facade.capabilities().traversal.transport.implementation,
+      traversalMethod: typeof workspace.traversal.query,
+      exposedBridge: typeof nodeRepl.linkedScienceTraversal,
+      exposedFetch: typeof fetch
+    });
+  ` }));
+  assert.equal(response.result.isError, undefined);
+  assert.match(text(response), /version: '3\.0\.0'/u);
+  assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
+  assert.match(text(response), /transport: 'standard-fetch'/u);
+  assert.match(text(response), /traversalMethod: 'function'/u);
+  assert.match(text(response), /exposedBridge: 'undefined'/u);
+  assert.match(text(response), /exposedFetch: 'undefined'/u);
 });
 
 test("registered package entrypoints use ESM import conditions", async (t) => {

@@ -6,6 +6,8 @@ import { inspect } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve, sep } from "node:path";
 
+import { registerLinkedSciencePrivateTraversal } from "./private-linked-science-traversal.mjs";
+
 const sendToParent = process.send.bind(process);
 const MAX_TEXT_BYTES = 256 * 1024;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
@@ -165,16 +167,12 @@ const peek = Object.freeze({
   restore: (path) => hostCall("peek.restore", { path }),
 });
 
-function serializedRequest(input, init = {}) {
-  const source = typeof input === "string" || input instanceof URL ? { url: String(input) } : input;
-  const url = source?.url;
-  const method = String(init.method ?? source?.method ?? "GET").toUpperCase();
-  const headers = Object.fromEntries(new Headers(init.headers ?? source?.headers ?? {}).entries());
-  const rawBody = init.body;
-  if (rawBody !== undefined && typeof rawBody !== "string" && !(rawBody instanceof URLSearchParams)) {
-    throw Object.assign(new Error("Mediated fetch accepts only string or URLSearchParams bodies"), { code: "MEDIATED_BODY_UNSUPPORTED" });
-  }
-  return { url, method, headers, ...(rawBody === undefined ? {} : { body: String(rawBody) }) };
+async function serializedRequest(input, init = {}) {
+  const request = new Request(input, init);
+  const method = request.method.toUpperCase();
+  const headers = Object.fromEntries(request.headers.entries());
+  const body = method === "GET" || method === "HEAD" ? undefined : await request.text();
+  return { url: request.url, method, headers, ...(body === undefined ? {} : { body }) };
 }
 
 const linkedScienceTraversal = Object.freeze({
@@ -186,9 +184,14 @@ const linkedScienceTraversal = Object.freeze({
   createFetch(traversalId) {
     return async (input, init = {}) => {
       if (init.signal?.aborted) throw init.signal.reason ?? Object.assign(new Error("Fetch aborted"), { code: "ABORT_ERR" });
-      const result = await hostCallStrict("traversal.request", { traversalId, request: serializedRequest(input, init) });
+      const result = await hostCallStrict("traversal.request", { traversalId, request: await serializedRequest(input, init) });
       if (init.signal?.aborted) throw init.signal.reason ?? Object.assign(new Error("Fetch aborted"), { code: "ABORT_ERR" });
-      return new Response(Buffer.from(result.bodyBase64, "base64"), { status: result.status, headers: result.headers });
+      const response = new Response(Buffer.from(result.bodyBase64, "base64"), { status: result.status, statusText: result.statusText, headers: result.headers });
+      Object.defineProperties(response, {
+        url: { value: result.url, enumerable: true },
+        redirected: { value: Boolean(result.redirected), enumerable: true },
+      });
+      return response;
     };
   },
 });
@@ -200,6 +203,10 @@ function createKernel() {
   const server = repl.start({ prompt: "", terminal: false, input, output, ignoreUndefined: false });
   delete server.context.process;
   delete server.context.require;
+  delete server.context.fetch;
+  delete server.context.Request;
+  delete server.context.Response;
+  delete server.context.Headers;
   const nodeRepl = {};
   Object.defineProperties(nodeRepl, {
     cwd: { enumerable: true, value: process.cwd() },
@@ -208,7 +215,6 @@ function createKernel() {
     requestMeta: { enumerable: true, get: () => currentRequestMeta },
     rlm: { enumerable: true, value: rlm },
     peek: { enumerable: true, value: peek },
-    linkedScienceTraversal: { enumerable: true, value: linkedScienceTraversal },
   });
   Object.defineProperties(nodeRepl, {
     write: {
@@ -228,6 +234,7 @@ function createKernel() {
     },
   });
   Object.freeze(nodeRepl);
+  registerLinkedSciencePrivateTraversal(nodeRepl, linkedScienceTraversal);
   server.context.nodeRepl = nodeRepl;
   return server;
 }
@@ -235,8 +242,8 @@ function createKernel() {
 const kernel = createKernel();
 
 function evaluate(code) {
-  if (/\bimport\s*\(\s*(["'])(?:node:)?process\1\s*\)/.test(code)) {
-    return Promise.reject(Object.assign(new Error("The process module is unavailable in this REPL"), { code: "MODULE_BLOCKED" }));
+  if (/\bimport\s*\(\s*(["'])(?:node:)?(?:process|http|https|http2|net|tls|dns|dgram|undici)\1\s*\)/.test(code)) {
+    return Promise.reject(Object.assign(new Error("Raw process and network modules are unavailable in this REPL"), { code: "MODULE_BLOCKED" }));
   }
   return new Promise((resolveEval, rejectEval) => {
     kernel.eval(code, kernel.context, "cleanroom-repl", (error, value) => {

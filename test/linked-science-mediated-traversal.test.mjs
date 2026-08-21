@@ -5,8 +5,6 @@ import { setupLinkedScience } from '../lib/linked-science-runtime.mjs';
 import { MediatedTraversalBroker } from '../packages/cleanroom-node-repl/src/mediated-traversal.mjs';
 
 const owner = { token: 'b'.repeat(64), epoch: 1 };
-const publicDns = async hostname => [ { address: hostname.endsWith('.example') ? '93.184.216.34' : '1.1.1.1', family: 4 } ];
-
 function traversalAdapter(broker) {
   return {
     capabilities: () => broker.capabilities(),
@@ -20,46 +18,51 @@ function traversalAdapter(broker) {
         const headers = Object.fromEntries(new Headers(init.headers ?? input?.headers ?? {}).entries());
         const body = init.body === undefined ? undefined : String(init.body);
         const result = await broker.request({ traversalId, request: { url, method: init.method ?? input?.method ?? 'GET', headers, ...(body === undefined ? {} : { body }) } }, owner);
-        return new Response(Buffer.from(result.bodyBase64, 'base64'), { status: result.status, headers: result.headers });
+        const response = new Response(Buffer.from(result.bodyBase64, 'base64'), { status: result.status, statusText: result.statusText, headers: result.headers });
+        Object.defineProperties(response, { url: { value: result.url }, redirected: { value: result.redirected } });
+        return response;
       };
     },
   };
 }
 
-function rdfTransport(calls) {
+function rdfFetch(calls) {
   const documents = {
     '/source-a.ttl': '@prefix ex: <https://example.test/> . ex:item1 ex:kind ex:Protein .',
     '/source-b.ttl': '@prefix ex: <https://example.test/> . ex:item1 ex:label "Alpha" .',
     '/empty.ttl': '@prefix ex: <https://example.test/> .',
     '/many.ttl': '@prefix ex: <https://example.test/> . ex:a ex:p ex:o . ex:b ex:p ex:o .',
   };
-  return async options => {
-    calls.push({ url: options.url.href, method: options.method, headers: options.headers, body: options.body });
-    if (documents[options.url.pathname]) return { status: 200, headers: { 'content-type': 'text/turtle' }, body: Buffer.from(documents[options.url.pathname]) };
-    if (options.url.hostname === 'service-a.example') {
-      return { status: 200, headers: { 'content-type': 'application/sparql-results+json' }, body: Buffer.from(JSON.stringify({
+  return async (input, init = {}) => {
+    const url = new URL(input);
+    const headers = Object.fromEntries(new Headers(init.headers));
+    calls.push({ url: url.href, method: init.method, headers, body: init.body });
+    if (documents[url.pathname]) return new Response(documents[url.pathname], { status: 200, headers: { 'content-type': 'text/turtle' } });
+    if (url.hostname === 'service-a.example') {
+      return new Response(JSON.stringify({
         head: { vars: [ 'item' ] }, results: { bindings: [ { item: { type: 'uri', value: 'https://example.test/item1' } } ] },
-      })) };
+      }), { status: 200, headers: { 'content-type': 'application/sparql-results+json' } });
     }
-    if (options.url.hostname === 'service-b.example') {
-      return { status: 200, headers: { 'content-type': 'application/sparql-results+json' }, body: Buffer.from(JSON.stringify({
+    if (url.hostname === 'service-b.example') {
+      return new Response(JSON.stringify({
         head: { vars: [ 'item', 'label' ] }, results: { bindings: [ {
           item: { type: 'uri', value: 'https://example.test/item1' },
           label: { type: 'literal', value: 'Alpha' },
         } ] },
-      })) };
+      }), { status: 200, headers: { 'content-type': 'application/sparql-results+json' } });
     }
-    throw new Error(`Unexpected synthetic request: ${options.url.href}`);
+    throw new Error(`Unexpected synthetic request: ${url.href}`);
   };
 }
 
 test('local Communica dereferences two RDF sources through the mediator and retains complete lineage', async () => {
   const calls = [];
-  const broker = new MediatedTraversalBroker({ resolveAddresses: publicDns, transport: rdfTransport(calls) });
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
   assert.equal(linkedScience.capabilities().mediatedTraversal, true);
   assert.equal(linkedScience.capabilities().brokerOwnedLive, false);
-  assert.equal(linkedScience.capabilities().traversal.networkPolicy, 'public-https-dns-pinned');
+  assert.equal(linkedScience.capabilities().traversal.authority.class, 'anonymous-linked-data-read');
+  assert.equal(linkedScience.capabilities().traversal.transport.implementation, 'standard-fetch');
   const workspace = linkedScience.open({ contextKey: 'two-source-traversal' });
   const handle = await workspace.traversal.query({
     sources: [ 'https://data.example/source-a.ttl', 'https://data.example/source-b.ttl' ],
@@ -70,13 +73,62 @@ test('local Communica dereferences two RDF sources through the mediator and reta
   const profile = workspace.results.profile(handle);
   assert.equal(profile.lineage.kind, 'communica-mediated-traversal');
   assert.equal(profile.provenance.traversalReceipt.status, 'complete');
-  assert.equal(profile.provenance.traversalReceipt.hops.length >= 2, true);
+  assert.equal(profile.provenance.traversalReceipt.exchanges.length >= 2, true);
   assert.equal(calls.every(call => call.headers.authorization === undefined && call.headers.cookie === undefined), true);
+});
+
+test('complete RDF document acquisition uses Communica queryQuads and native retained quads without a new facade or automatic PEEK projection', async () => {
+  const calls = [];
+  const edits = [];
+  const peek = {
+    begin: async contextId => ({ contextId, entries: [] }),
+    current: async contextId => ({ contextId, entries: [] }),
+    edit: async (_contextId, value) => { edits.push(value); return { entries: [] }; },
+    commit: async contextId => ({ contextId, entries: [] }),
+  };
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker), peek })).open({ contextKey: 'ontology-document' });
+  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'epoch', 'graph', 'graphs', 'orientation', 'query', 'results', 'schema', 'traversal' ]);
+  const handle = await workspace.traversal.query({
+    sources: [ 'http://data.example/many.ttl' ],
+    sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
+    role: 'complete-ontology-document',
+    budgets: { maxResultItems: 10 },
+  });
+  const profile = workspace.results.profile(handle);
+  assert.equal(profile.type, 'quads');
+  assert.equal(profile.count, 2);
+  assert.equal(profile.provenance.sources[0], 'http://data.example/many.ttl');
+  assert.equal(profile.provenance.traversalReceipt.exchanges[0].mediaType, 'text/turtle');
+  assert.equal(edits.length, 0);
+  const nativeShape = await workspace.results.derive(handle, ({ dataset, quads }) => ({
+    kind: 'rows', rows: [ { datasetCore: typeof dataset.match === 'function', size: dataset.size, termType: quads[0].subject.termType } ],
+  }));
+  assert.deepEqual(workspace.results.page(nativeShape, { limit: 1 }).rows[0], { datasetCore: true, size: 2, termType: 'NamedNode' });
+});
+
+test('the private Communica path preserves ASK booleans and DESCRIBE native quads', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'read-query-forms' });
+  const asked = await workspace.traversal.query({
+    sources: [ 'https://data.example/source-a.ttl' ],
+    sparql: 'PREFIX ex: <https://example.test/> ASK { ex:item1 ex:kind ex:Protein }',
+  });
+  assert.equal(workspace.results.profile(asked).type, 'boolean');
+  assert.equal(workspace.results.page(asked, { limit: 1 }).rows[0].value, true);
+  const described = await workspace.traversal.query({
+    sources: [ 'https://data.example/source-a.ttl', 'https://data.example/source-b.ttl' ],
+    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE ex:item1',
+    budgets: { maxResultItems: 10 },
+  });
+  assert.equal(workspace.results.profile(described).type, 'quads');
+  assert.equal(workspace.results.profile(described).count, 2);
 });
 
 test('local Communica governs two SERVICE targets through the same traversal mediator', async () => {
   const calls = [];
-  const broker = new MediatedTraversalBroker({ resolveAddresses: publicDns, transport: rdfTransport(calls) });
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'two-service-traversal' });
   const handle = await workspace.traversal.query({
     sources: [ 'https://data.example/empty.ttl' ],
@@ -85,18 +137,18 @@ test('local Communica governs two SERVICE targets through the same traversal med
       SERVICE <https://service-b.example/sparql> { ?item <https://example.test/label> ?label }
     } LIMIT 10`,
     role: 'two-service-result',
-    budgets: { maxFanOut: 4, maxHops: 12 },
+    budgets: { maxFanOut: 4, maxRequests: 12 },
   });
   assert.equal(workspace.results.page(handle, { limit: 2 }).rows[0].label.value, 'Alpha');
   const receipt = workspace.results.profile(handle).provenance.traversalReceipt;
-  assert.equal(receipt.hops.some(hop => hop.url.startsWith('https://service-a.example/')), true);
-  assert.equal(receipt.hops.some(hop => hop.url.startsWith('https://service-b.example/')), true);
+  assert.equal(receipt.exchanges.some(exchange => exchange.requestedUrl.startsWith('https://service-a.example/')), true);
+  assert.equal(receipt.exchanges.some(exchange => exchange.requestedUrl.startsWith('https://service-b.example/')), true);
   assert.equal(calls.filter(call => call.url.includes('service-')).length >= 2, true);
 });
 
 test('a dynamically selected SPARQL source descriptor remains mediator-governed', async () => {
   const calls = [];
-  const broker = new MediatedTraversalBroker({ resolveAddresses: publicDns, transport: rdfTransport(calls) });
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'typed-service-source' });
   const handle = await workspace.traversal.query({
     sources: [ { type: 'sparql', value: 'https://service-a.example/sparql' } ],
@@ -106,17 +158,17 @@ test('a dynamically selected SPARQL source descriptor remains mediator-governed'
   assert.equal(calls.every(call => call.url.startsWith('https://service-a.example/')), true);
 });
 
-test('traversal stays unavailable without the parent mediator and rejects unsafe source IRIs before transport', async () => {
+test('traversal stays unavailable without the parent mediator and rejects non-HTTP or credentialed source IRIs before transport', async () => {
   const workspace = (await setupLinkedScience({ nodeRepl: {} })).open({ contextKey: 'no-traversal' });
   await assert.rejects(
     workspace.traversal.query({ sources: [ 'https://data.example/a.ttl' ], sparql: 'ASK { ?s ?p ?o }' }),
     error => error.code === 'LS_TRAVERSAL_UNAVAILABLE' && error.retryable === true,
   );
   const calls = [];
-  const broker = new MediatedTraversalBroker({ resolveAddresses: publicDns, transport: rdfTransport(calls) });
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const guarded = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'unsafe-source' });
   await assert.rejects(
-    guarded.traversal.query({ sources: [ 'http://127.0.0.1/private' ], sparql: 'ASK { ?s ?p ?o }' }),
+    guarded.traversal.query({ sources: [ 'file:///tmp/private' ], sparql: 'ASK { ?s ?p ?o }' }),
     error => error.code === 'LS_TRAVERSAL_PREFLIGHT',
   );
   assert.equal(calls.length, 0);
@@ -124,7 +176,7 @@ test('traversal stays unavailable without the parent mediator and rejects unsafe
 
 test('traversal aborts and retains no handle when the result item budget is exceeded', async () => {
   const calls = [];
-  const broker = new MediatedTraversalBroker({ resolveAddresses: publicDns, transport: rdfTransport(calls) });
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'result-item-bound' });
   await assert.rejects(
     workspace.traversal.query({
