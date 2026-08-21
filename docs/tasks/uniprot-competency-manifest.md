@@ -49,12 +49,13 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
+- Run one separately authorized bounded live preflight through the restarted consumer-owned traversal mediator; preserve its receipt without running a competency case.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
-- Run the first competency case only in a separately authorized fresh task. Record the baseline before any prompt or transport tuning and stop before additional cases.
+- Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
 
 ### Exact next action
 
-Keep the worker manifest `draft` until a future task freezes the implementation and receives explicit authorization for the first live baseline. Neither 25-quad DESCRIBE serialization is a substitute for the live core named graph, and neither is a prerequisite for generic schema navigation.
+Run one authorized bounded live preflight without a competency query. If it passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
 
 ### Blockers or required decisions
 

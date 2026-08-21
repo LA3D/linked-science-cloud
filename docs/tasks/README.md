@@ -6,7 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Offline implementation complete; baseline not run | Preserve the leakage-audited three-case public/private split while workers use only generic mediated traversal budgets and resource roles. | Freeze and review the implementation, then seek separate authorization for exactly one fresh-worker live baseline. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Post-restart ownership verified; live preflight next | Preserve the leakage-audited three-case public/private split while workers use only generic mediated traversal budgets and resource roles. | Run one separately authorized bounded live preflight, then freeze the implementation and run exactly one fresh-worker baseline with private evaluation. |
+| [Durable dataset persistence](durable-dataset-persistence.md) | Deferred until the first frozen baseline is assessed | Let explicitly saved RDF datasets survive kernel reset and reload as fresh epoch-bound handles without granting the child ambient filesystem access. | Do not start yet; after the UniProt preflight and first baseline, design the versioned host API and artifact schema for review. |
 | [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Superseded historical evidence | Preserve the fixed-profile experiments and source receipts without treating them as the production transport architecture. | Consult only when interpreting historical receipts; current transport work starts from the mediated-traversal architecture. |
 
 ## When to create or update a task brief
