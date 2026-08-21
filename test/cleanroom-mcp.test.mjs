@@ -53,6 +53,16 @@ function text(response) {
   return response.result.content.find((item) => item.type === "text")?.text;
 }
 
+async function writePackage(packageRoot, manifest, files) {
+  await mkdir(packageRoot, { recursive: true });
+  await writeFile(join(packageRoot, "package.json"), JSON.stringify(manifest));
+  await Promise.all(Object.entries(files).map(async ([path, source]) => {
+    const target = join(packageRoot, path);
+    await mkdir(join(target, ".."), { recursive: true });
+    await writeFile(target, source);
+  }));
+}
+
 test("MCP lists the observed three-tool Node REPL contract", async (t) => {
   const broker = new KernelBroker();
   t.after(() => broker.close());
@@ -147,6 +157,100 @@ test("reset clears bindings while preserving module roots and broker PEEK state"
   assert.equal(text(binding), "undefined");
   assert.equal(text(imported), "73");
   assert.match(text(map), /alpha/);
+});
+
+test("registered package entrypoints use ESM import conditions", async (t) => {
+  const fixture = await mkdtemp(join(tmpdir(), "cleanroom-repl-conditions-"));
+  const moduleRoot = join(fixture, "node_modules");
+  await writePackage(join(moduleRoot, "conditional-entry"), {
+    name: "conditional-entry",
+    type: "module",
+    exports: {
+      ".": {
+        import: "./import-entry.mjs",
+        require: "./require-entry.cjs",
+      },
+    },
+  }, {
+    "import-entry.mjs": "export const selected = 'import';\n",
+    "require-entry.cjs": "module.exports = { selected: 'require' };\n",
+  });
+
+  const broker = new KernelBroker({ cwd: fixture });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  await handle(request(1, "js_add_node_module_dir", { path: moduleRoot }));
+  const imported = await handle(request(2, "js", {
+    code: "nodeRepl.write((await import('conditional-entry')).selected)",
+  }));
+
+  assert.equal(text(imported), "import");
+});
+
+test("registered deep ESM graphs keep nested and package-local resolution context", async (t) => {
+  const fixture = await mkdtemp(join(tmpdir(), "cleanroom-repl-deep-modules-"));
+  const moduleRoot = join(fixture, "node_modules");
+  const graphRoot = join(moduleRoot, "graph-entry");
+  const nestedModules = join(graphRoot, "node_modules");
+  const scale = 24;
+
+  await writePackage(join(moduleRoot, "shared-dependency"), {
+    name: "shared-dependency",
+    type: "module",
+    exports: "./index.mjs",
+  }, { "index.mjs": "export const selected = 'flattened-top-level';\n" });
+  await writePackage(join(nestedModules, "shared-dependency"), {
+    name: "shared-dependency",
+    type: "module",
+    exports: {
+      ".": {
+        import: "./import-entry.mjs",
+        require: "./require-entry.cjs",
+      },
+    },
+  }, {
+    "import-entry.mjs": "export const selected = 'nested-import';\n",
+    "require-entry.cjs": "module.exports = { selected: 'nested-require' };\n",
+  });
+  for (let index = 0; index < scale; index += 1) {
+    await writePackage(join(nestedModules, `scale-dependency-${index}`), {
+      name: `scale-dependency-${index}`,
+      type: "module",
+      exports: "./index.mjs",
+    }, { "index.mjs": `export default ${index};\n` });
+  }
+
+  const scaleImports = Array.from({ length: scale }, (_, index) =>
+    `import value${index} from 'scale-dependency-${index}';`).join("\n");
+  const scaleValues = Array.from({ length: scale }, (_, index) => `value${index}`).join(", ");
+  await writePackage(graphRoot, {
+    name: "graph-entry",
+    type: "module",
+    exports: "./index.mjs",
+    imports: { "#package-local": "./package-local.mjs" },
+  }, {
+    "package-local.mjs": "export const local = 'package-local';\n",
+    "index.mjs": `import { selected } from 'shared-dependency';\nimport { local } from '#package-local';\n${scaleImports}\nexport const result = { selected, local, values: [${scaleValues}] };\n`,
+  });
+
+  const broker = new KernelBroker({ cwd: fixture });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  await handle(request(1, "js_add_node_module_dir", { path: moduleRoot }));
+  const imported = await handle(request(2, "js", {
+    code: "nodeRepl.write(JSON.stringify((await import('graph-entry')).result))",
+    timeout_ms: 5_000,
+  }));
+  const direct = await handle(request(3, "js", {
+    code: "nodeRepl.write((await import('shared-dependency')).selected)",
+  }));
+
+  assert.deepEqual(JSON.parse(text(imported)), {
+    selected: "nested-import",
+    local: "package-local",
+    values: Array.from({ length: scale }, (_, index) => index),
+  });
+  assert.equal(text(direct), "flattened-top-level");
 });
 
 test("a synchronous infinite loop times out and the broker replaces the kernel", async (t) => {

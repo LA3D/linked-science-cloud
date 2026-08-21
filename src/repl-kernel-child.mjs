@@ -1,10 +1,10 @@
-import { createRequire, registerHooks } from "node:module";
+import { isBuiltin, registerHooks } from "node:module";
 import { readFile } from "node:fs/promises";
 import repl from "node:repl";
 import { PassThrough } from "node:stream";
 import { inspect } from "node:util";
-import { pathToFileURL } from "node:url";
-import { resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { resolve, sep } from "node:path";
 
 const sendToParent = process.send.bind(process);
 const MAX_TEXT_BYTES = 256 * 1024;
@@ -19,23 +19,39 @@ let currentRequestMeta = Object.freeze({});
 let writes = [];
 let images = [];
 
-function bareSpecifier(specifier) {
+function packageSpecifier(specifier) {
   return typeof specifier === "string"
+    && specifier.length > 0
     && !specifier.startsWith(".")
     && !specifier.startsWith("/")
+    && !specifier.startsWith("#")
     && !specifier.startsWith("file:")
-    && !specifier.startsWith("data:");
+    && !specifier.startsWith("data:")
+    && !specifier.includes(":")
+    && !isBuiltin(specifier);
+}
+
+function parentWithinRegisteredRoot(parentURL) {
+  if (typeof parentURL !== "string" || !parentURL.startsWith("file:")) return false;
+  let parentPath;
+  try {
+    parentPath = fileURLToPath(parentURL);
+  } catch {
+    return false;
+  }
+  return roots.some((root) => parentPath === root || parentPath.startsWith(`${root}${sep}`));
 }
 
 registerHooks({
   resolve(specifier, context, nextResolve) {
-    if (bareSpecifier(specifier)) {
+    if (packageSpecifier(specifier) && !parentWithinRegisteredRoot(context.parentURL)) {
       for (const root of roots) {
         try {
-          const requireFromRoot = createRequire(resolve(root, "__cleanroom_repl__.cjs"));
-          return { url: pathToFileURL(requireFromRoot.resolve(specifier)).href, shortCircuit: true };
-        } catch {
-          // Try the next registered root, then normal resolution.
+          const parentURL = pathToFileURL(resolve(root, "..", "__cleanroom_repl__.mjs")).href;
+          return nextResolve(specifier, { ...context, parentURL });
+        } catch (error) {
+          if (error?.code !== "ERR_MODULE_NOT_FOUND") throw error;
+          // Try the next registered root, then the importing module's native resolution.
         }
       }
     }
