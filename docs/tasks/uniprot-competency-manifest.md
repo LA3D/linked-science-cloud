@@ -1,6 +1,6 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Neutral live preflight failed at the DNS-pinned HTTPS handoff; baseline gate closed
+- **Status:** Standard-Fetch mediator replacement verified offline; Desktop restart and new neutral preflight pending; baseline gate closed
 - **Owner/task:** Repository/private freeze, leakage boundary, and offline mediated-traversal verification completed; a future baseline requires a fresh authorization and frozen commit
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
 - **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. One separately authorized neutral live infrastructure preflight ran on 2026-08-21; no competency query, baseline worker, evaluator-private access, remote write, or push was performed.
@@ -18,7 +18,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 - The [methodology dossier](../experiments/uniprot-competency-question-evaluation.md) defines the corpus split, staged capabilities, rubric, protocol, selection principles, limits, and source boundary.
 - The official catalog and core ontology roles were reviewed on 2026-08-20 without executing a SPARQL query.
-- `evaluation/uniprot/worker-manifest.draft.json` records three opaque, explicitly non-dispatchable tier shapes with the same generic mediated-public-HTTPS access class and traversal budgets. It contains no task-specific endpoint or profile name.
+- `evaluation/uniprot/worker-manifest.draft.json` records three opaque, explicitly non-dispatchable tier shapes with the generic `mediated-anonymous-linked-data-read` authority and traversal budgets. It contains no task-specific endpoint or profile name.
 - The exact catalog snapshot is frozen in evaluator-private storage with HTTP metadata and SHA-256 `9b9cccf7d5863c0c6a2a79385790a11720ea7e9fa4f2266cb0d802f69ad48f38`.
 - The three exact official questions are exposed in the public draft while the official locators, queries, query hashes, semantic invariants, rubric applicability, and leakage markers remain evaluator-private. The private selection digest is `5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616`.
 - Public worker and evaluator-private JSON schemas now separate exact questions/bounds from official locators, queries, hashes, semantic invariants, rubric applicability, and leakage markers.
@@ -35,7 +35,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - The official dataset description exposes a core-term schema, while official GitHub inspection found documentation and derived VoID/SHACL tooling but no authoritative ontology file or public build pipeline. UniProt's maintained manual links the external `core.owl` release artifact, whose official HTTPS URL currently returns 404.
 - A broader public search found no inspected direct question or first-party answer resolving the missing artifact. Bioregistry repeats the unavailable official URL, BioPortal exposes a 2026 upload of the historical `v2012-10-03` ontology, Archivo records a failed 2025 versioning attempt, and a 2011 SIB tutorial points to an obsolete `core.rdf` URL. None is authoritative current-source evidence.
 - One historical marker-only query against the core graph timed out before a result or broker receipt crossed the clean-room boundary. It was not retried and does not support a term-absence claim. Its proposed fixed-profile replacement was rejected and is preserved only as superseded design history.
-- The production clean-room runtime now exposes behavior-bounded mediated traversal: local Communica can dereference dynamically discovered public HTTPS RDF sources and govern `SERVICE` federation one request at a time. Synthetic two-source and two-service fixtures prove retained handles and complete lineage without live access.
+- The production clean-room runtime now exposes behavior-bounded mediated traversal beneath the unchanged three-tool MCP: consumer-owned Communica can dereference dynamically discovered anonymous HTTP/HTTPS RDF sources, materialize complete RDF documents within byte/item bounds, and govern `SERVICE` federation one exchange at a time. The Fetch closure and traversal bridge remain private. Offline two-source, two-service, and ontology-document fixtures prove native handles and lineage without live access.
 - The first separately authorized neutral live preflight used the W3C Tim Berners-Lee FOAF card and DBpedia Ada Lovelace Turtle document. Its single attempt failed before any HTTP hop with `ERR_INVALID_IP_ADDRESS`; the [machine receipt](../../artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json) records two scheduled origins, zero hops, zero bytes, zero retries, abort/closure, and no retained handle. No competency question, worker, baseline, or evaluator-private material ran.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
@@ -50,18 +50,18 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Diagnose and fix the DNS-pinned HTTPS transport handoff offline. Do not infer successful live traversal from the offline fixture suite.
-- After a verified fix, obtain separate authorization for one new neutral bounded live preflight; preserve its receipt without running a competency case.
+- Fully restart Desktop so the running MCP loads protocol 3.0.0, then verify the owner/authority attestation without a live request. Do not infer successful live traversal from the offline fixture suite.
+- Obtain separate authorization for one new neutral bounded live preflight; preserve its receipt without running a competency case.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
 - Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
 
 ### Exact next action
 
-Diagnose the failed neutral preflight without rerunning it. After a fix and separately authorized new neutral preflight pass, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
+Restart Desktop and verify protocol 3.0.0 activation. After a separately authorized new neutral preflight passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
 
 ### Blockers or required decisions
 
-- The DNS-pinned HTTPS handoff is an implementation blocker. Diagnose and fix it offline; a new user decision is then required before another live preflight, and the baseline remains separately authorization-bound.
+- The former DNS-pinned HTTPS handoff is superseded by the offline-verified standard-Fetch transport. Activation and live behavior remain unproven until Desktop restarts and the user separately authorizes a new preflight; the baseline remains separately authorization-bound.
 
 ## Handoff state
 

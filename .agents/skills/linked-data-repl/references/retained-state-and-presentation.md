@@ -2,7 +2,7 @@
 
 ## Results behind handles
 
-Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, run live reads through `workspace.traversal.query`, which binds local Communica to one parent-mediated traversal session and retains the typed result with aggregate lineage. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy` operations rather than rerunning or dumping the source result.
+Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, run live reads through `workspace.traversal.query`, which privately binds consumer-owned Communica to one parent-mediated anonymous-read session and retains native RDF/JS values with aggregate lineage. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy` operations rather than rerunning or dumping the source result. Retrieval does not automatically add a PEEK entry.
 
 A handle name is not residency evidence. Cite current tool-generated operations for its type, count, and state. Keep raw documents, full rows, and quads resident; return only the bounded evidence needed for the task.
 

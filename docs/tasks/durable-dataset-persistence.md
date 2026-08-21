@@ -15,7 +15,7 @@ An explicitly saved dataset version must preserve:
 - canonical RDF serialization suitable for named graphs and datasets, such as canonical N-Quads or TriG;
 - immutable content-addressed identity and hashes, plus optional human aliases;
 - media type, graph/quad/byte counts, runtime and artifact-schema versions;
-- retrieved source and per-hop receipts; and
+- retrieved source and per-exchange receipts; and
 - construction, query, and derivation lineage.
 
 Reset semantics are explicit: transient variables, native handles, workspaces, RLM context, and the facade clear on `js_reset`; saved dataset versions survive; loading creates fresh epoch-bound handles; and all pre-reset handles remain stale and invalid.

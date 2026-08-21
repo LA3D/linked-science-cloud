@@ -285,6 +285,7 @@
       "durability": "complete",
       "recordPaths": ["artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json"],
       "documentationPaths": ["docs/experiments/RESULTS.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "currentInterpretation": "Immutable failed preflight from the superseded custom DNS-pinned connector; protocol 3.0.0 removes that connector, but no replacement live preflight has run.",
       "missingEvidence": []
     }
   ],

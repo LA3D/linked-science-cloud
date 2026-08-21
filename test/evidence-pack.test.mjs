@@ -8,7 +8,7 @@ test('exposes only authoritative resource locations and access policy', () => {
   const manifest = createEvidenceManifest(pack);
   assert.equal(manifest.identity.id, 'uniprot');
   assert.equal(manifest.resources.length, 3);
-  assert.equal(manifest.access.mode, 'mediated-public-https-linked-data');
+  assert.equal(manifest.access.mode, 'mediated-anonymous-linked-data-read');
   assert.equal(manifest.access.endpointAllowlist, false);
   assert.equal(manifest.declarations.namedGraphs[0].iri, 'http://sparql.uniprot.org/uniprot');
   assert.match(manifest.note, /not schema evidence/);

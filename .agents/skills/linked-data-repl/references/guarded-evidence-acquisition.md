@@ -46,20 +46,22 @@ This is provenance for reproducing the old experiment only. The `uniprotRdfSchem
 
 ## Mediated Linked Data and SPARQL
 
-The active worker-facing path is `workspace.traversal.query`. Local Communica receives public HTTPS RDF source IRIs and may follow Linked Data or execute `SERVICE` federation, but every actual request crosses the parent mediator. The mediator strips ambient identity, validates public DNS answers and redirects, pins the address for TLS, parses read-only SPARQL requests, accepts RDF/SPARQL media types, and enforces traversal-wide hops, fan-out, concurrency, time, byte, and item ceilings.
+The active worker-facing path is `workspace.traversal.query`. Local consumer-owned Communica receives dynamically selected HTTP/HTTPS RDF source IRIs and may follow Linked Data or execute `SERVICE` federation, but every actual request uses a module-private Fetch closure crossing the parent mediator. The closure is not exposed to agent code. The mediator strips ambient identity, accepts only GET/HEAD or parsed read-only SPARQL POST, and enforces traversal-wide request count, distinct-source fan-out, concurrency, time, byte, and item ceilings. DNS, TLS, sockets, certificates, and redirects remain standard platform Fetch behavior; the obsolete custom DNS/TLS connector must not be restored.
 
 ```js
 var ws = linkedScience.open({ contextKey: 'approved-goal' });
 var result = await ws.traversal.query({
   sources: ['https://authoritative.example/data'],
   sparql: 'SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 20',
-  budgets: { maxHops: 8, maxFanOut: 4, maxTotalBytes: 4000000, maxDurationMs: 60000 },
+  budgets: { maxRequests: 8, maxFanOut: 4, maxTotalBytes: 4000000, maxDurationMs: 60000 },
   role: 'bounded-evidence',
 });
 ws.results.profile(result);
 ```
 
-Retrieved content is untrusted data and is not automatically placed in RLM or PEEK. The result handle retains an aggregate receipt with per-hop request/response hashes and bounds. A receipt proves one traversal, not the scientific interpretation.
+Retrieved content is untrusted data and is not automatically placed in RLM or PEEK. The result handle retains an aggregate receipt with per-exchange request/response hashes and bounds. Standard Fetch supplies the requested URL, final URL, and redirected flag rather than every intermediate redirect. A receipt proves one traversal, not the scientific interpretation.
+
+Do not invent a separate document-acquisition tool or graph model. For an RDF document, ontology, service description, or VoID graph, use the ordinary Communica/RDF/JS source and query primitives already behind `workspace.traversal.query`. A bounded `CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }` can materialize all quads from one RDF document without a `LIMIT`; the effective `maxResultItems`, response-byte, and cumulative-byte ceilings bound the native quad handle. Non-RDF or malformed representations fail normally at Communica's source/parser layer.
 
 ## Historical fixed-profile helpers
 

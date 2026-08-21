@@ -30,7 +30,9 @@ The bootstrap validates the clean-room cwd, the exact project and module roots, 
 
 The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 
-The bootstrap also detects the parent-injected `nodeRepl.linkedScienceTraversal`. Do not infer it from configuration text. `linkedScience.capabilities().mediatedTraversal` must be `true`, and the returned capability must report `public-https-dns-pinned`, zero automatic retries, read-only query forms, and hard traversal ceilings before `workspace.traversal.query` is considered available.
+The bootstrap detects the module-private parent traversal registration without exposing the bridge or Fetch closure on `nodeRepl`. Do not infer activation from configuration text. `nodeRepl.linkedScienceTraversal`, `fetch`, `Request`, and `Response` must remain unavailable to agent code. `linkedScience.capabilities().mediatedTraversal` must be `true`; its traversal receipt must report runtime protocol 3.0.0, authority `anonymous-linked-data-read` 1.0.0, `standard-fetch`, zero retries, HTTP/HTTPS plus read-only query effects, and hard traversal ceilings before `workspace.traversal.query` is considered available.
+
+The MCP and workspace routes do not gain a document-fetch tool. Ordinary RDF documents, ontologies, service descriptions, and VoID metadata use the same private Communica path. Use `CONSTRUCT`/`queryQuads` or another appropriate standard read query over an HTTP/HTTPS RDF source and retain the native RDF/JS quad handle. A result is complete only within the effective byte and item bounds.
 
 ## Discover before acting
 
@@ -80,8 +82,9 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 ## Invariants
 
 - Use only `cleanroom_node_repl`; the bundled `node_repl` is obsolete for this project.
+- Require exactly the three MCP tools above; never invent a document-acquisition MCP tool or a parallel graph/dataset facade.
 - Keep output bounded by rows/cells or nodes/edges and bytes.
 - Preserve provenance and operation IDs through query, derivation, and view.
 - Without an observed traversal capability, use only local-synthetic data; `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
 - Even with an observed traversal capability, live use requires current explicit approval for the traversal scope and effective budgets, plus an aggregate mediator receipt.
-- Keep REPL-resident handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct.
+- Keep REPL-resident native RDF/JS handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct. Live retrieval never updates PEEK automatically.

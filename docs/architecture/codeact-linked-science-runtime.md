@@ -48,7 +48,7 @@ Resident graphs and results have hard item ceilings. Prompt-visible pages/tables
 
 ## Security and broker boundary
 
-Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor raw `fetch`. The optional traversal surface accepts public HTTPS source IRIs and effective budgets; the child-local fetch adapter routes every dereference and federated request to the parent mediator. Credentials, DNS, redirects, TLS address pinning, concurrency, time, and byte policy remain parent-owned.
+Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor raw Fetch. The optional traversal surface accepts credential-free HTTP/HTTPS source IRIs and tighter effective budgets; a module-private adapter routes every Communica dereference and federated request to the parent mediator. Standard Fetch owns DNS/TLS/socket/redirect behavior, while identity, read-only method/query, concurrency, time, request, and byte policy remain parent-owned.
 
 The clean-room VM context is a compatibility boundary, not a security sandbox. The consumer-owned parent MCP broker denies raw child networking and evaluator-private filesystem reads; the Linked Science facade independently verifies its traversal capability and aggregate receipt. Registration of the clean-room MCP does not authorize a live traversal, and the runtime reports traversal unavailable unless that mediator is injected. See [broker-mediated traversal](broker-owned-live-operations.md).
 

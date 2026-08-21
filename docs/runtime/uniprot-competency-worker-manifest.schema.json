@@ -31,7 +31,7 @@
               "required": ["role", "access", "authorizationRequired"],
               "properties": {
                 "role": { "type": "string", "minLength": 1 },
-                "access": { "const": "mediated-public-https-linked-data" },
+                "access": { "const": "mediated-anonymous-linked-data-read" },
                 "authorizationRequired": { "const": true }
               }
             }
@@ -39,9 +39,9 @@
           "bounds": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["maxHops", "maxFanOut", "maxConcurrency", "maxRows", "maxCells", "maxResponseBytes", "maxTotalBytes", "maxDurationMs", "maxResultItems", "maxQueryChars"],
+            "required": ["maxRequests", "maxFanOut", "maxConcurrency", "maxRows", "maxCells", "maxResponseBytes", "maxTotalBytes", "maxDurationMs", "maxResultItems", "maxQueryChars"],
             "properties": {
-              "maxHops": { "type": "integer", "minimum": 1, "maximum": 32 },
+              "maxRequests": { "type": "integer", "minimum": 1, "maximum": 32 },
               "maxFanOut": { "type": "integer", "minimum": 1, "maximum": 16 },
               "maxConcurrency": { "type": "integer", "minimum": 1, "maximum": 6 },
               "maxRows": { "type": "integer", "minimum": 1, "maximum": 10 },
