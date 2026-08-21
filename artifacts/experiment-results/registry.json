@@ -1,7 +1,7 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-20.1",
-  "recordedAt": "2026-08-20",
+  "version": "2026-08-21.1",
+  "recordedAt": "2026-08-21",
   "runs": [
     {
       "id": "context-map-single-2026-08-15",
@@ -274,6 +274,17 @@
       "durability": "complete",
       "recordPaths": ["artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "missingEvidence": []
+    },
+    {
+      "id": "neutral-mediated-traversal-preflight-2026-08-21",
+      "date": "2026-08-21",
+      "title": "Neutral consumer-owned mediated traversal live preflight",
+      "outcome": "failed",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json"],
+      "documentationPaths": ["docs/experiments/RESULTS.md", "docs/tasks/uniprot-competency-manifest.md"],
       "missingEvidence": []
     }
   ],

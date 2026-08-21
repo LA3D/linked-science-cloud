@@ -1,0 +1,141 @@
+{
+  "format": "linked-science-neutral-mediated-traversal-preflight/v1",
+  "id": "neutral-mediated-traversal-preflight-2026-08-21",
+  "recordedAt": "2026-08-21T15:51:25.422Z",
+  "classification": "infrastructure-only neutral non-competency preflight",
+  "outcome": "failed",
+  "attempts": 1,
+  "authorization": {
+    "liveTraversalAttempts": 1,
+    "retries": 0,
+    "competencyQueries": 0,
+    "baselineWorkers": 0,
+    "privateEvaluatorMaterialAccessed": false
+  },
+  "runtimeAttestation": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules",
+    "mediatedTraversal": true,
+    "brokerOwnedLive": false,
+    "traversalMediator": {
+      "kind": "linked-science-traversal-mediator",
+      "version": "2.0.0",
+      "owner": "cleanroom-broker",
+      "networkPolicy": "public-https-dns-pinned",
+      "retries": 0
+    },
+    "resolvedDependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/@comunica/query-sparql/lib/index.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/n3/lib/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/sparqljs/sparql.js"
+    }
+  },
+  "design": {
+    "purpose": "Prove real public RDF dereferencing and a local Communica join across two neutral sources through one mediated traversal without touching the held-out competency domain.",
+    "sources": [
+      "https://www.w3.org/People/Berners-Lee/card",
+      "https://dbpedia.org/data/Ada_Lovelace.ttl"
+    ],
+    "sourceRoles": [
+      "W3C FOAF card requiring RDF content negotiation",
+      "DBpedia Turtle document"
+    ],
+    "queryType": "SELECT",
+    "query": "SELECT ?personName ?subjectLabel WHERE {\n  <http://www.w3.org/People/Berners-Lee/card#i> <http://xmlns.com/foaf/0.1/name> ?personName .\n  <http://dbpedia.org/resource/Ada_Lovelace> <http://www.w3.org/2000/01/rdf-schema#label> ?subjectLabel .\n  FILTER(LANG(?subjectLabel) = \"en\")\n} LIMIT 5",
+    "role": "neutral-two-source-infrastructure-preflight"
+  },
+  "effectiveBudgets": {
+    "maxQueryChars": 16384,
+    "maxRequestBodyBytes": 65536,
+    "maxDurationMs": 30000,
+    "maxRequestMs": 15000,
+    "maxRedirects": 2,
+    "maxHops": 4,
+    "maxFanOut": 2,
+    "maxConcurrency": 2,
+    "maxResponseBytes": 1048576,
+    "maxTotalBytes": 2097152,
+    "maxResultItems": 20
+  },
+  "aggregateReceipt": {
+    "kind": "linked-science-traversal-receipt",
+    "version": "2.0.0",
+    "status": "failed",
+    "traversalId": "trv-000001-c1c296ec98f8",
+    "startedAt": 1787327485341,
+    "finishedAt": 1787327485422,
+    "elapsedMs": 81,
+    "budgets": {
+      "maxQueryChars": 16384,
+      "maxRequestBodyBytes": 65536,
+      "maxDurationMs": 30000,
+      "maxRequestMs": 15000,
+      "maxRedirects": 2,
+      "maxHops": 4,
+      "maxFanOut": 2,
+      "maxConcurrency": 2,
+      "maxResponseBytes": 1048576,
+      "maxTotalBytes": 2097152,
+      "maxResultItems": 20
+    },
+    "usage": {
+      "hops": 0,
+      "fanOut": 2,
+      "bytes": 0,
+      "retries": 0
+    },
+    "hops": [],
+    "failure": {
+      "runtimeCode": "LS_TRAVERSAL_QUERY",
+      "mediatorCode": "ERR_INVALID_IP_ADDRESS",
+      "message": "Invalid IP address: undefined",
+      "cause": "TypeError: Invalid IP address: undefined"
+    }
+  },
+  "retainedState": {
+    "resultHandleRetained": false,
+    "resultRows": 0,
+    "datasetHandleRetained": false,
+    "perHopReceipts": 0,
+    "aggregateLineageRetainedOnHandle": false
+  },
+  "termination": {
+    "postAbortFinishProbe": {
+      "code": "MEDIATOR_TRAVERSAL_UNKNOWN",
+      "message": "Traversal session is unknown or finished",
+      "interpretation": "The failed traversal session was no longer active after the runtime aborted it."
+    },
+    "kernelReset": {
+      "ok": true,
+      "newEpoch": 3
+    }
+  },
+  "offlinePostflight": {
+    "repositoryBoundaryValidator": "passed",
+    "productionFilesChecked": 34,
+    "startingBranch": "main",
+    "startingCommit": "5b3b90aa3953a48042c23758d7df0265a2f97a6a",
+    "checkoutWasCleanBeforeRecording": true
+  },
+  "assessment": {
+    "proven": [
+      "The restarted consumer-owned runtime exposed mediator version 2.0.0 with project-local dependencies.",
+      "Exactly one traversal session accepted the requested tighter budgets.",
+      "Local Communica scheduled both neutral source origins through the mediator.",
+      "The failure receipt attributed zero completed hops, zero bytes, and zero retries.",
+      "The failed session was aborted, became unavailable, and the clean-room kernel reset successfully."
+    ],
+    "notProven": [
+      "successful public RDF dereferencing or content negotiation",
+      "successful two-source federation result",
+      "sanitized per-hop HTTP request and response metadata",
+      "retained native result or dataset handles",
+      "aggregate query/result lineage attached to a retained handle"
+    ],
+    "suspectedDefectBoundary": "The mediator failed in the DNS-pinned HTTPS transport handoff before an HTTP hop completed; read-only source inspection shows the custom lookup callback is the immediate boundary to diagnose.",
+    "secondAttemptPerformed": false,
+    "baselineGate": "closed-pending-fix-and-separately-authorized-new-preflight"
+  }
+}

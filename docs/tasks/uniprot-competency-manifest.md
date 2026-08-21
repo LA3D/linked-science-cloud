@@ -1,9 +1,9 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Evaluator-private selection and generic traversal manifest complete; live baseline deliberately not run
+- **Status:** Neutral live preflight failed at the DNS-pinned HTTPS handoff; baseline gate closed
 - **Owner/task:** Repository/private freeze, leakage boundary, and offline mediated-traversal verification completed; a future baseline requires a fresh authorization and frozen commit
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
-- **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. The current transport migration was offline-only: no live request, competency query, baseline worker, remote write, or push was performed.
+- **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. One separately authorized neutral live infrastructure preflight ran on 2026-08-21; no competency query, baseline worker, evaluator-private access, remote write, or push was performed.
 - **Starting point:** Begin from the then-current clean local `main` and record its commit.
 
 ## Outcome and acceptance evidence
@@ -36,6 +36,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - A broader public search found no inspected direct question or first-party answer resolving the missing artifact. Bioregistry repeats the unavailable official URL, BioPortal exposes a 2026 upload of the historical `v2012-10-03` ontology, Archivo records a failed 2025 versioning attempt, and a 2011 SIB tutorial points to an obsolete `core.rdf` URL. None is authoritative current-source evidence.
 - One historical marker-only query against the core graph timed out before a result or broker receipt crossed the clean-room boundary. It was not retried and does not support a term-absence claim. Its proposed fixed-profile replacement was rejected and is preserved only as superseded design history.
 - The production clean-room runtime now exposes behavior-bounded mediated traversal: local Communica can dereference dynamically discovered public HTTPS RDF sources and govern `SERVICE` federation one request at a time. Synthetic two-source and two-service fixtures prove retained handles and complete lineage without live access.
+- The first separately authorized neutral live preflight used the W3C Tim Berners-Lee FOAF card and DBpedia Ada Lovelace Turtle document. Its single attempt failed before any HTTP hop with `ERR_INVALID_IP_ADDRESS`; the [machine receipt](../../artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json) records two scheduled origins, zero hops, zero bytes, zero retries, abort/closure, and no retained handle. No competency question, worker, baseline, or evaluator-private material ran.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -49,21 +50,22 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Run one separately authorized bounded live preflight through the restarted consumer-owned traversal mediator; preserve its receipt without running a competency case.
+- Diagnose and fix the DNS-pinned HTTPS transport handoff offline. Do not infer successful live traversal from the offline fixture suite.
+- After a verified fix, obtain separate authorization for one new neutral bounded live preflight; preserve its receipt without running a competency case.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
 - Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
 
 ### Exact next action
 
-Run one authorized bounded live preflight without a competency query. If it passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
+Diagnose the failed neutral preflight without rerunning it. After a fix and separately authorized new neutral preflight pass, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
 
 ### Blockers or required decisions
 
-- No implementation blocker remains. A new user decision is required only before the first live baseline because this migration explicitly prohibited live network operations and worker dispatch.
+- The DNS-pinned HTTPS handoff is an implementation blocker. Diagnose and fix it offline; a new user decision is then required before another live preflight, and the baseline remains separately authorization-bound.
 
 ## Handoff state
 
 - **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. This provenance continuation began from consumer local `main` at `b3a5021`; result commit `bc53651` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 24 registered runs, the new receipt parsed as JSON, all three registry tests passed, and `git diff --check` passed.
-- **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. The 2026-08-21 neutral live preflight failed before an HTTP hop and is durably recorded as the 25th registered run; postflight verification for that receipt is recorded in its result commit.
+- **Ephemeral state:** The failed neutral preflight retained no result handle. Its traversal session was aborted and unavailable before the clean-room kernel reset to epoch 3.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.
