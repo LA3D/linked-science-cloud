@@ -253,6 +253,17 @@
       "recordPaths": ["artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md"],
       "missingEvidence": []
+    },
+    {
+      "id": "uniprot-core-acquisition-2026-08-21",
+      "date": "2026-08-21",
+      "title": "Guarded UniProt core RDF acquisition and marker validation",
+      "outcome": "partial",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "missingEvidence": []
     }
   ],
   "documents": [

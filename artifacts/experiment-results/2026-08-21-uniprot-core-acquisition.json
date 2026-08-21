@@ -1,0 +1,64 @@
+{
+  "format": "linked-science-uniprot-core-acquisition/v1",
+  "id": "uniprot-core-acquisition-2026-08-21",
+  "recordedAt": "2026-08-21T13:25:25.593Z",
+  "authorization": {
+    "source": "https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:",
+    "method": "GET",
+    "accept": "application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7",
+    "followedRedirects": 0,
+    "retries": 0,
+    "timeoutMs": 8000,
+    "maxBytes": 10000000
+  },
+  "outcome": "partial",
+  "transportOutcome": "passed",
+  "promotionDecision": "blocked-missing-term-markers",
+  "receipt": {
+    "kind": "linked-science-broker-operation",
+    "status": "ready",
+    "operation": "acquire",
+    "operationId": "lsb-000001",
+    "profile": "uniprot-core-ontology",
+    "profileSha256": "60858fbc2952a8bddac5c47784a45e682f427ed5455ffa28c7a6828cc7231886",
+    "inputSha256": "0923a8287af0f518c8e23b856eec58415c9b0609e21e785da0bb33ae9d5a6e01",
+    "payloadSha256": "da31ab55135f0864b47d95d9943dc44fd406a6cfc7fcb886e5ba7854d872cc86",
+    "source": "https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:",
+    "attempts": [
+      {
+        "source": "https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:",
+        "at": "2026-08-21T13:25:25.595Z",
+        "method": "GET",
+        "redirect": "manual",
+        "followedRedirects": 0,
+        "timeoutMs": 8000,
+        "responseByteLimit": 10000000,
+        "retries": 0,
+        "status": 200,
+        "ok": true,
+        "contentType": "application/rdf+xml",
+        "byteLength": 3876
+      }
+    ]
+  },
+  "validation": {
+    "contentType": "application/rdf+xml",
+    "detectedFormat": "rdfxml",
+    "byteLength": 3876,
+    "contentSha256": "da31ab55135f0864b47d95d9943dc44fd406a6cfc7fcb886e5ba7854d872cc86",
+    "parseComplete": true,
+    "quadCount": 25,
+    "coreNamespaceTermCount": 31,
+    "markers": {
+      "owlOntology": true,
+      "Protein": false,
+      "structuredName": false,
+      "catalyticActivity": false,
+      "domain": false,
+      "component": false
+    },
+    "markerGatePassed": false
+  },
+  "requestCount": 1,
+  "claimBoundary": "This receipt validates one exact guarded source acquisition and bounded ontology markers. It is not a competency query result, and the bulk RDF response is not persisted in the repository artifact. The transport and RDF parse passed; the term-level profile promotion gate did not."
+}

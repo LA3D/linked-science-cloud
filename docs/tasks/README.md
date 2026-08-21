@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on core ontology profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Separately approve one guarded acquisition of the exact RDF-negotiated UniProt SPARQL `DESCRIBE` URL; validate it before adding the profile. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on core acquisition profile | Complete the verified broker-owned orientation surface with the machine-readable UniProt core source required by the frozen competency cases. | Acquire the exact discovered `DESCRIBE` URL only under new approval, then validate media type, RDF format, hash, and bounded markers. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on term-bearing core profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Review the failed marker gate and select a different exact official term-bearing source or bounded query before any new approval. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on term-bearing core evidence | Complete the verified broker-owned orientation surface with the machine-readable UniProt terms required by the frozen competency cases. | Keep the validated 25-quad ontology metadata out of the profile; choose the next exact source/query without broadening live access implicitly. |
 
 ## When to create or update a task brief
 

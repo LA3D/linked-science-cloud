@@ -1,9 +1,9 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Evaluator-private selection complete; blocked on the machine-readable UniProt core profile before dispatch
-- **Owner/task:** Repository/private freeze and VoID/GO profile review completed; core-source discovery remains unassigned
+- **Status:** Evaluator-private selection complete; blocked because the validated core RDF response lacks term-level orientation evidence
+- **Owner/task:** Repository/private freeze, VoID/GO review, and exact core-source validation completed; next source/query selection remains unassigned
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
-- **Authorization boundary:** The user authorized repository modifications, the exact official catalog acquisition, durable evaluator-private construction, one exact bounded UniProt `ASK` transport preflight, the three-source orientation preflight, and the two exact core-source discovery GETs recorded in the result registry. No competency-case query, unlisted source access, federation, package, configuration, remote, or push was authorized or performed.
+- **Authorization boundary:** The user authorized repository modifications, exact official catalog acquisition, durable evaluator-private construction, bounded UniProt transport preflight, orientation and core-source discovery, redirect inspection, and the exact bounded core RDF acquisition recorded in the result registry. No competency-case query, unlisted source access, federation, package, configuration, remote, or push was authorized or performed.
 - **Starting point:** Begin from the then-current clean local `main` and record its commit.
 
 ## Outcome and acceptance evidence
@@ -30,6 +30,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - The proposed FTP `core.owl` and RDF-directory paths returned HTTP 404. The exact core PURL redirected, and the zero-redirect guard correctly stopped without following or substituting it. Both rounds have durable machine records in the result registry.
 - A metadata-only retry preserved the PURL's HTTP 303 fallback target as `https://purl.uniprot.org/html/index-en.html#`, with no body read or redirect followed. Because the safety probe deliberately requested a non-matching media type, it did not establish the RDF-negotiated target and did not unblock the core profile.
 - A separately approved RDF-`Accept` metadata inspection identified the exact target as `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The target was not contacted, so it is source-discovery evidence rather than a validated acquisition profile.
+- The subsequently approved exact acquisition returned valid RDF/XML ontology metadata (3,876 bytes, 25 parsed quads, matching broker/content hash) but lacked every term-level marker required by tiers 1 and 2. The profile and worker manifest were therefore not promoted.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -43,13 +44,13 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Establish the exact immutable machine-readable UniProt core acquisition profile under a new source-specific approval.
+- Select and validate a different exact, bounded term-bearing UniProt core source or query under a new source-specific approval.
 - Replace all pending orientation profile names with the already validated VoID/GO profiles and the future core profile, revalidate the public/private correspondence, and only then change the public manifest to `ready`.
 - Run the actual competency cases only in separately approved fresh tasks under the frozen commit, runtime, profiles, and evaluation protocol.
 
 ### Exact next action
 
-Obtain explicit approval for one guarded GET to the exact discovered UniProt SPARQL `DESCRIBE` URL recorded above, with the RDF `Accept` header, an eight-second timeout, a 10 MB ceiling, zero retries, and zero followed redirects. Validate the response media type, RDF format, hash, and bounded ontology markers before adding its immutable profile and promoting the public manifest.
+Review the failed term-marker gate and select the next exact official source or bounded query. Keep the worker manifest `draft`; do not substitute the 25-quad ontology-metadata response for the term-bearing core profile.
 
 ### Blockers or required decisions
 
@@ -58,7 +59,7 @@ Obtain explicit approval for one guarded GET to the exact discovered UniProt SPA
 
 ## Handoff state
 
-- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. The RDF-redirect result continuation began at `93fae76`; result commit `4c3ca4e` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 22 registered runs, the new receipt parsed as JSON, and `git diff --check` passed.
+- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. This result continuation began from consumer local `main` at `081ba81`; integration status is recorded after verification. Nothing was pushed.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. Consumer repository verification is pending for the durable result update.
 - **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.

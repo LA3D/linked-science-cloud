@@ -1,9 +1,9 @@
 # Task: Enforce the Linked Science live capability in the clean-room broker
 
-- **Status:** Runtime boundary and two orientation profiles verified; blocked on a machine-readable UniProt core profile
-- **Owner/task:** External implementation, activation, VoID, and GO profile verification completed; core-source discovery remains unassigned
+- **Status:** Exact core RDF transport verified; blocked because the acquired graph lacks required term-level orientation evidence
+- **Owner/task:** External implementation, activation, VoID/GO profiles, and exact core-source validation completed; a new source/query decision remains unassigned
 - **Scope:** Implement and verify the broker half of the checked-in Linked Science named-profile capability in the separately saved `node-repl-network-probe` project. Keep live operations exact, bounded, explicitly approved, and broker-owned.
-- **Authorization boundary:** The user authorized the completed external checkout modifications, the exact catalog acquisition, one exact bounded UniProt endpoint-existence `ASK` preflight, the three-source orientation preflight, and the two exact bounded core-source discovery GETs recorded below. No competency query, unlisted source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
+- **Authorization boundary:** The user authorized the completed external checkout modifications, exact catalog acquisition, bounded UniProt endpoint-existence `ASK`, orientation preflight, core-source discovery and redirect inspections, and the exact bounded core RDF acquisition recorded below. No competency query, unlisted source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
 
 ## Outcome and acceptance evidence
 
@@ -39,18 +39,19 @@ Offline tests must establish:
 - External commits `ba6f710` and `d4bec58` make acquisition redirects observable without following them: 3xx bodies remain unread, compact failure receipts cross the child boundary, and future empty fragment markers are normalized away. Offline checks and all 23 external tests pass.
 - The approved metadata-only PURL inspection observed HTTP 303 to `https://purl.uniprot.org/html/index-en.html#` with one request, no retry, no followed redirect, and no body read. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) preserves the exact observation. Its deliberately non-matching `Accept` makes this fallback-route evidence, not RDF content-negotiation evidence.
 - A separately approved repeat with the exact RDF `Accept` header observed HTTP 303 to `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json) records one request, no retry, no followed redirect, and no body read. The newly discovered target was not contacted.
+- A separately approved guarded GET to that exact target returned HTTP 200, 3,876 bytes of `application/rdf+xml`, and SHA-256 `da31ab55135f0864b47d95d9943dc44fd406a6cfc7fcb886e5ba7854d872cc86` in one attempt with no retry or followed redirect. It parsed completely into 25 quads. The [receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json) records that `owl:Ontology` was present but all required term-level markers were absent, so no immutable core profile was added.
 
 ### Remaining work
 
-- Establish an exact machine-readable UniProt core source and immutable acquisition profile under a new source-specific approval.
+- Decide whether to approve a different exact, bounded term-bearing UniProt core source or query. The validated `DESCRIBE up:` response is machine-readable ontology metadata but is insufficient for the staged term-grounding cases.
 - Perform any real profile operation only after current approval for that exact source or endpoint. A checked-in profile is capability metadata, not authorization to use it.
 
 ### Exact next action
 
-Obtain explicit approval for one guarded GET to the exact discovered target `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:` using the RDF `Accept` header (`application/rdf+xml, text/turtle;q=0.9, application/xml;q=0.8, text/xml;q=0.7`), an eight-second timeout, a 10 MB byte ceiling, zero retries, and zero followed redirects. If it succeeds, record its media type, byte length, hash, detected RDF format, and bounded ontology markers before adding an immutable profile.
+Review the failed term-marker gate and choose the next exact official source or bounded query before any further live request. Do not promote the current 25-quad response into `uniprot-core-ontology`, because it cannot ground the predicates and classes required by tiers 1 and 2.
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` local `main` contains the broker implementation through `d4bec58`. This result continuation began from consumer local `main` at `93fae76`; result commit `4c3ca4e` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** External `npm run check` and all 23 external tests passed after both redirect-receipt commits. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 22 registered runs, the new receipt parsed as JSON, and `git diff --check` passed.
-- **Live evidence:** One endpoint-existence `ASK`, two successful orientation acquisitions, three prior failed core-source attempts, and two successful metadata-only redirect inspections now have durable records. None is a competency answer. An exact RDF-negotiated target is now known but has not been contacted or validated as a machine-readable core source.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` remains unmodified on local `main` at `c0ab57e`. This result continuation began from consumer local `main` at `081ba81`; integration status is recorded after verification. Nothing was pushed.
+- **Verification:** The live transport, response hash, RDF/XML parse, and bounded marker audit passed except for the explicit term-marker promotion gate. Consumer repository verification is pending for the durable result update.
+- **Live evidence:** The exact RDF-negotiated target has now been contacted once under approval and produced valid ontology metadata. It did not produce the term descriptions needed for a core-orientation profile. None of this evidence is a competency answer.
