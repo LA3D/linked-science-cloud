@@ -1,7 +1,7 @@
 {
-  "format": "linked-science-competency-worker/v1",
+  "format": "linked-science-competency-worker/v2",
   "status": "draft",
-  "version": "2026-08-20.2",
+  "version": "2026-08-21.1",
   "corpusSnapshotDigest": "9b9cccf7d5863c0c6a2a79385790a11720ea7e9fa4f2266cb0d802f69ad48f38",
   "accessDate": "2026-08-20",
   "cases": [
@@ -10,10 +10,9 @@
       "tier": 0,
       "question": "Find the release number of the UniProt data that is currently being queried",
       "resources": [
-        { "role": "dataset-description", "profile": "uniprot-void-description-pending-review", "authorizationRequired": true },
-        { "role": "bounded-query", "profile": "uniprot-read", "authorizationRequired": true }
+        { "role": "authoritative-public-linked-data", "access": "mediated-public-https-linked-data", "authorizationRequired": true }
       ],
-      "bounds": { "maxTransports": 2, "maxRows": 1, "maxCells": 4, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "bounds": { "maxHops": 12, "maxFanOut": 6, "maxConcurrency": 3, "maxRows": 10, "maxCells": 50, "maxResponseBytes": 2000000, "maxTotalBytes": 8000000, "maxDurationMs": 60000, "maxResultItems": 500, "maxQueryChars": 16384 },
       "secondTurn": "question-neutral-retained-handle-reuse"
     },
     {
@@ -21,10 +20,9 @@
       "tier": 1,
       "question": "Find all names associated with UniProtKB entry P05067, and if the name is associated with the entry it's domains or its components",
       "resources": [
-        { "role": "core-ontology", "profile": "uniprotRdfSchema", "authorizationRequired": true },
-        { "role": "bounded-query", "profile": "uniprot-read", "authorizationRequired": true }
+        { "role": "authoritative-public-linked-data", "access": "mediated-public-https-linked-data", "authorizationRequired": true }
       ],
-      "bounds": { "maxTransports": 2, "maxRows": 10, "maxCells": 40, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "bounds": { "maxHops": 12, "maxFanOut": 6, "maxConcurrency": 3, "maxRows": 10, "maxCells": 50, "maxResponseBytes": 2000000, "maxTotalBytes": 8000000, "maxDurationMs": 60000, "maxResultItems": 500, "maxQueryChars": 16384 },
       "secondTurn": "question-neutral-retained-handle-reuse"
     },
     {
@@ -32,11 +30,9 @@
       "tier": 2,
       "question": "For two accession numbers (ACs) find the GO term labels and group them into GO process,function and component",
       "resources": [
-        { "role": "core-ontology", "profile": "uniprotRdfSchema", "authorizationRequired": true },
-        { "role": "go-orientation", "profile": "go-orientation-pending-review", "authorizationRequired": true },
-        { "role": "bounded-query", "profile": "uniprot-read", "authorizationRequired": true }
+        { "role": "authoritative-public-linked-data", "access": "mediated-public-https-linked-data", "authorizationRequired": true }
       ],
-      "bounds": { "maxTransports": 3, "maxRows": 10, "maxCells": 50, "maxBytes": 1000000, "timeoutMs": 8000, "maxQueryChars": 4096 },
+      "bounds": { "maxHops": 12, "maxFanOut": 6, "maxConcurrency": 3, "maxRows": 10, "maxCells": 50, "maxResponseBytes": 2000000, "maxTotalBytes": 8000000, "maxDurationMs": 60000, "maxResultItems": 500, "maxQueryChars": 16384 },
       "secondTurn": "question-neutral-retained-handle-reuse"
     }
   ]

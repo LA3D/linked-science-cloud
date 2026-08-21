@@ -64,10 +64,7 @@ test('draft worker manifest contains only opaque public cases and cannot be disp
   assert.deepEqual(validated.cases.map(item => item.tier), [0, 1, 2]);
   assert.throws(() => validateWorkerManifest(workerManifest, { requireDispatchable: true }), /not dispatchable/);
   assert.throws(() => validateWorkerManifest({ ...workerManifest, officialQuery: 'SELECT * WHERE {}' }), /evaluator-private fields/);
-  assert.throws(
-    () => validateWorkerManifest({ ...workerManifest, status: 'ready', corpusSnapshotDigest: '0'.repeat(64) }),
-    /pending or unreviewed profile names/,
-  );
+  assert.equal(validateWorkerManifest({ ...workerManifest, status: 'ready', corpusSnapshotDigest: '0'.repeat(64) }).status, 'ready');
 });
 
 test('private evaluator schema verifies hashes, semantic invariants, applicability, and honeytokens', () => {

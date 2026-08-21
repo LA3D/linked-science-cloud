@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://linked-science.local/schema/uniprot-competency-worker-manifest-v1.json",
+  "$id": "https://linked-science.local/schema/uniprot-competency-worker-manifest-v2.json",
   "title": "Worker-visible UniProt competency manifest",
   "type": "object",
   "additionalProperties": false,
   "required": ["format", "status", "version", "corpusSnapshotDigest", "accessDate", "cases"],
   "properties": {
-    "format": { "const": "linked-science-competency-worker/v1" },
+    "format": { "const": "linked-science-competency-worker/v2" },
     "status": { "enum": ["draft", "ready"] },
     "version": { "type": "string", "minLength": 1 },
     "corpusSnapshotDigest": { "type": "string", "pattern": "^(pending|[a-f0-9]{64})$" },
@@ -28,10 +28,10 @@
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["role", "profile", "authorizationRequired"],
+              "required": ["role", "access", "authorizationRequired"],
               "properties": {
                 "role": { "type": "string", "minLength": 1 },
-                "profile": { "type": "string", "minLength": 1 },
+                "access": { "const": "mediated-public-https-linked-data" },
                 "authorizationRequired": { "const": true }
               }
             }
@@ -39,13 +39,17 @@
           "bounds": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["maxTransports", "maxRows", "maxCells", "maxBytes", "timeoutMs", "maxQueryChars"],
+            "required": ["maxHops", "maxFanOut", "maxConcurrency", "maxRows", "maxCells", "maxResponseBytes", "maxTotalBytes", "maxDurationMs", "maxResultItems", "maxQueryChars"],
             "properties": {
-              "maxTransports": { "type": "integer", "minimum": 1, "maximum": 3 },
+              "maxHops": { "type": "integer", "minimum": 1, "maximum": 32 },
+              "maxFanOut": { "type": "integer", "minimum": 1, "maximum": 16 },
+              "maxConcurrency": { "type": "integer", "minimum": 1, "maximum": 6 },
               "maxRows": { "type": "integer", "minimum": 1, "maximum": 10 },
               "maxCells": { "type": "integer", "minimum": 1, "maximum": 100 },
-              "maxBytes": { "type": "integer", "minimum": 1, "maximum": 2000000 },
-              "timeoutMs": { "type": "integer", "minimum": 1, "maximum": 30000 },
+              "maxResponseBytes": { "type": "integer", "minimum": 1, "maximum": 4000000 },
+              "maxTotalBytes": { "type": "integer", "minimum": 1, "maximum": 20000000 },
+              "maxDurationMs": { "type": "integer", "minimum": 1, "maximum": 120000 },
+              "maxResultItems": { "type": "integer", "minimum": 1, "maximum": 5000 },
               "maxQueryChars": { "type": "integer", "minimum": 1, "maximum": 16384 }
             }
           },
