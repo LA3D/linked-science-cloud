@@ -347,6 +347,32 @@ test("a synchronous infinite loop times out and the broker replaces the kernel",
   assert.ok(broker.epoch >= 2);
 });
 
+test("post-reset RLM inspection errors return without replacing the kernel", async (t) => {
+  const broker = new KernelBroker();
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+
+  await handle(request(1, "js", { code: "nodeRepl.rlm.registerContext('temporary', 'value')" }));
+  await handle(request(2, "js_reset", {}));
+  const resetEpoch = broker.epoch;
+  const missing = await handle(request(3, "js", {
+    code: "nodeRepl.rlm.inspect('temporary', { start: 0, end: 64 })",
+    timeout_ms: 1_000,
+  }));
+  const rejected = await handle(request(4, "js", {
+    code: "await Promise.reject(Object.assign(new Error('async failure'), { code: 'ASYNC_FAILURE' }))",
+    timeout_ms: 1_000,
+  }));
+  const recovered = await handle(request(5, "js", { code: "nodeRepl.write(1 + 1)" }));
+
+  assert.equal(missing.result.isError, true);
+  assert.match(text(missing), /CONTEXT_NOT_FOUND/u);
+  assert.equal(rejected.result.isError, true);
+  assert.match(text(rejected), /ASYNC_FAILURE/u);
+  assert.equal(broker.epoch, resetEpoch);
+  assert.equal(text(recovered), "2");
+});
+
 test("CodeAct mode provides symbolic contexts and reports recursion unavailable", async (t) => {
   const broker = new KernelBroker();
   t.after(() => broker.close());

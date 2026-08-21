@@ -246,10 +246,27 @@ function evaluate(code) {
     return Promise.reject(Object.assign(new Error("Raw process and network modules are unavailable in this REPL"), { code: "MODULE_BLOCKED" }));
   }
   return new Promise((resolveEval, rejectEval) => {
-    kernel.eval(code, kernel.context, "cleanroom-repl", (error, value) => {
-      if (error) rejectEval(error);
-      else resolveEval(value);
-    });
+    // Node 26 routes runtime and top-level-await failures through the REPL
+    // error handler without invoking the direct eval callback. Translate that
+    // path back into this child's structured response contract.
+    const previousHandleError = kernel._handleError;
+    let settled = false;
+    const finish = (settle, value) => {
+      if (settled) return;
+      settled = true;
+      if (kernel._handleError === handleError) kernel._handleError = previousHandleError;
+      settle(value);
+    };
+    const handleError = (error) => finish(rejectEval, error);
+    kernel._handleError = handleError;
+    try {
+      kernel.eval(code, kernel.context, "cleanroom-repl", (error, value) => {
+        if (error) finish(rejectEval, error);
+        else finish(resolveEval, value);
+      });
+    } catch (error) {
+      handleError(error);
+    }
   });
 }
 
