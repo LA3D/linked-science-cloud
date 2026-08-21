@@ -1,6 +1,6 @@
 # Clean-room Node REPL capture
 
-The project-scoped `cleanroom_node_repl` server is an observed-contract compatibility implementation of Desktop's bundled Node REPL. It is separately named and user-owned; it neither replaces nor configures the Desktop-managed server.
+The project-scoped `cleanroom_node_repl` server is the Linked Science-owned observed-contract compatibility implementation of Desktop's bundled Node REPL. It is separately named and neither replaces nor configures the Desktop-managed server.
 
 The MCP broker exposes only:
 
@@ -42,12 +42,12 @@ The project `.codex/config.toml` already contains the registration. Fully restar
 
    ```js
    nodeRepl.write(JSON.stringify({
-     methods: Object.keys(nodeRepl.linkedScienceBroker).sort(),
-     capability: await nodeRepl.linkedScienceBroker.capabilities(),
+     methods: Object.keys(nodeRepl.linkedScienceTraversal).sort(),
+     capability: await nodeRepl.linkedScienceTraversal.capabilities(),
    }, null, 2));
    ```
 
-   The methods must be exactly `acquire`, `capabilities`, and `query`. Profile descriptors may contain only an ID, operation kind, SHA-256 digest, and ceilings; they must not contain endpoints, sources, credentials, or transport objects.
+   The methods must be exactly `abortTraversal`, `beginTraversal`, `capabilities`, `createFetch`, `finishTraversal`, and `request`. The capability describes only the versioned mediator contract and default/max budgets; it must not contain credentials, cookies, endpoint allowlists, hidden evaluation paths, or transport objects.
 
 ## Semantics and limits
 
@@ -59,7 +59,7 @@ Registered `node_modules` roots participate only in locating package entry impor
 
 The REPL context alone is not treated as a security sandbox. The child process is separately confined with Node's permission model: it may read the worker root and kernel entry file, but receives no raw network, child-process, worker-thread, native-addon, or filesystem-write authority. Parent host calls also require a random per-kernel capability token held only by the broker facade's closed-over IPC path, so an imported module cannot forge a host request with `process.send`. The broker scrubs inherited environment variables, caps code/output/image sizes and memory, serializes execution, and kills a child that exceeds its timeout.
 
-Linked Science acquisition and SPARQL are parent-owned operations. The child supplies only an immutable profile ID, an optional exact source selector for acquisition, or bounded SPARQL for query. The parent validates the operation before transport, uses redirect mode `error`, applies one-attempt timeout and byte/result ceilings, and returns a payload plus attributable receipt. Do not invoke a live profile without current explicit approval for that exact source or endpoint.
+Linked Science traversal is parent-mediated. The child begins a token/epoch-bound session, and its Communica fetch adapter serializes each dynamically discovered HTTPS RDF or SPARQL read to the parent one hop at a time. The parent rejects credentials and mutations, strips ambient identity, validates and pins public DNS answers, manually validates every redirect, applies traversal-wide time/fan-out/concurrency/byte/item bounds, and returns sanitized responses with attributable hop and aggregate receipts. A reset, timeout, crash, or replacement aborts the former kernel's sessions. Do not invoke live traversal without current explicit approval for its scientific scope and effective budgets.
 
 Evaluator-private filesystem attestation is a parent-side API, not an MCP tool. `KernelBroker.attestFilesystemBoundary({workerRoot, evaluatorRoot, probePath})` verifies non-overlap, asks the real child to read a pre-created honeytoken, and emits an attestation only when the permission layer returns `ERR_ACCESS_DENIED`.
 

@@ -7,54 +7,24 @@ This dependency-free package contains the clean-room execution boundary:
 1. A clean-room MCP implementing the observed `js`, `js_reset`, and `js_add_node_module_dir` contract of Desktop's persistent Node REPL.
 2. A parent-owned Linked Science capability that keeps transport policy and network authority outside the evaluator child.
 
-The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. `nodeRepl.linkedScienceBroker` exposes only `capabilities`, `acquire`, and `query`; it does not expose endpoints, fetch, credentials, redirects, retries, or byte/result policy.
+The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. `nodeRepl.linkedScienceTraversal` supplies token/epoch-bound traversal sessions and a child-local fetch adapter; it grants no raw network authority.
 
-The default broker profiles support the validated portion of the staged UniProt competency boundary: exact single-source acquisitions for the UniProt dataset description and GO orientation documentation, plus the bounded `uniprot-read` query profile. The proposed machine-readable UniProt core source returned HTTP 404 and is not configured pending a separately approved replacement. Profile descriptors exposed to the child contain only IDs, operation kinds, digests, and ceilings. A configured profile is not authorization to invoke its source; each live run still requires current approval for the exact profile.
+The parent mediator accepts dynamically discovered public HTTPS RDF and SPARQL targets without an endpoint allowlist. It validates all DNS answers and every redirect, pins a public address into TLS while preserving hostname verification, strips ambient identity, parses read-only SPARQL requests, enforces traversal-wide resource budgets, and returns per-hop plus aggregate receipts. Communica runs in the isolated child and routes dereferences and federation through that adapter.
 
-Acquisition GETs use manual redirect handling so the broker can refuse a 3xx response before reading its body while preserving a compact failure receipt. That receipt records the status, zero followed redirects, and either one normalized exact HTTPS `Location` or a missing/redacted-invalid classification. It never follows the target, retries the request, or promotes the discovered URL into an approved profile. SPARQL query redirects remain fetch-level errors.
+Retrieved content remains untrusted RDF/SPARQL data. It is not automatically promoted into instructions, RLM, PEEK, or evaluator state. Kernel timeout, reset, crash, or replacement aborts all sessions owned by the former capability token and epoch.
 
-Start every row in a **fresh task opened from the intended project context**. Codex loads project configuration and establishes the REPL sandbox at task startup; this repository's profile cannot be proven by a task that started elsewhere.
+Start verification in a fresh task opened from this checkout after changing Desktop configuration. The project registration is production-owned and names only this package's MCP entrypoint.
 
-## Test matrix
+## Offline verification
 
-| Context | Shell control | Node REPL | Purpose |
-| --- | --- | --- | --- |
-| Projectless interactive chat | `npm run probe` only if the fixture is readable | metadata + imported probe | Negative control; no project profile expected |
-| Trusted project, local checkout | `npm run probe` | metadata + imported probe | Profile loading in the saved project |
-| Trusted project, worktree task | `npm run probe` | metadata + imported probe | Task/worktree policy propagation |
-| Codex CLI (optional) | `npm run probe` | same capture if the tool is exposed | Desktop-versus-CLI comparison |
-| Full access (optional, last) | `npm run probe` | same capture | Explicit user-chosen policy diagnostic only |
+Run `npm test` and `npm run check`. The suites use injected DNS and HTTPS transports plus synthetic RDF and SPARQL fixtures; they do not contact a live source. They cover child isolation, persistence, reset/replacement, module resolution, capability-token IPC, traversal budgets, address and redirect validation, identity-header stripping, read-only SPARQL parsing, receipts, and cancellation.
 
-In each task, first run `npm test` and `npm run check` (offline checks), then follow [the Node REPL capture](docs/node-repl-capture.md) and run `npm run probe` for the shell control. Save a copy of [the result template](results/template.json) outside Git or under an ignored `results/*.json` filename.
-
-For the separately launched, user-owned local MCP experiment, follow [the clean-room MCP capture](docs/cleanroom-mcp-capture.md) in a fresh trusted-project task. Its project config registers only `cleanroom_node_repl`; the former restricted permission profile remains disabled and the Desktop-managed `node_repl` registration is not modified.
-
-## Interpretation
-
-- **Both fail:** the project profile may be absent, untrusted, not loaded, or denied at a shared layer.
-- **Shell succeeds / REPL fails:** the Node REPL wrapper may not have received the task's network policy.
-- **HTTP succeeds / raw sockets fail:** likely proxy-mediated HTTP with direct DNS/socket access intentionally blocked.
-- **Local succeeds / worktree fails:** task or worktree metadata/policy propagation is the likely difference.
-- **Only full access succeeds:** Seatbelt or permission-profile translation is the likely boundary. Full access is an optional last diagnostic requiring explicit user choice, never the default fix.
-
-These are classifications, not proof of root cause. Preserve exact stage and sanitized error code and compare otherwise-identical fresh tasks.
-
-## Enforcement layers
-
-Network behavior can differ across three independent layers:
-
-1. Codex policy selects the permission profile, workspace boundary, proxy feature, and domain allowlist.
-2. On macOS, Seatbelt enforces the command sandbox supplied by Codex.
-3. The platform's Node REPL MCP wrapper receives per-turn metadata and establishes or resets its persistent kernel sandbox.
-
-An HTTP proxy can also make allowed HTTPS work while raw DNS or sockets remain unavailable. Tool exposure, filesystem access, persistence, and network reachability must be recorded separately.
+Follow [the clean-room MCP capture](docs/cleanroom-mcp-capture.md) for a fresh-task contract check. Live traversal is never part of the default verification and still requires current user approval for its scientific scope and effective budgets.
 
 ## Evidence and boundaries
 
-Record the context label, fresh-task status, trust status, working directory, task source, sandbox implementation, sandbox mode/profile, cross-call persistence result, shell exit code, and all four probe stages for both surfaces. Do not record opaque runtime IDs.
+Record the fresh-task status, working directory, capability version, effective traversal budgets, retained-handle metadata, and sanitized per-hop and aggregate receipts. Never record capability tokens, credentials, cookies, or opaque runtime identifiers.
 
-The fixture has no dependencies or credentials. The network probe uses short bounded timeouts and reports sanitized JSON. The clean-room broker scrubs the child environment, starts the child with Node's permission model, grants reads only within the worker root and the kernel entry file, grants no raw network or filesystem-write authority, and supports opt-in, root-constrained PEEK checkpoints; checkpoints are disabled by default. It does not invoke an internal sandbox bypass, change global Codex configuration, install packages, create remotes, or run unrestricted access automatically.
+The clean-room broker scrubs the child environment, starts the child with Node's permission model, grants reads only within the worker root and kernel entry file, grants no raw network or filesystem-write authority, and supports opt-in, root-constrained PEEK checkpoints. The HTTPS mediator is the only live transport seam. It does not invoke a sandbox bypass, change global Codex configuration, install packages, create remotes, or grant unrestricted networking.
 
-The checked-in Linked Science query profile is a capability definition, not approval to contact its endpoint. Live acquisition or query still requires current, explicit approval for the exact operation. Acquisition profiles are intentionally absent until their exact sources and formats have been reviewed. All automated broker tests use injected synthetic responses and make no live requests.
-
-The disabled `.codex/config.restricted-profile.toml.disabled` file preserves the former `:workspace` permission profile for reference; it is not active configuration. The clean-room MCP experiment uses an MCP-only project config and does not add project network permissions. Selecting or trusting this folder in ChatGPT Desktop is a user action; configuration files do not establish trust by themselves.
+Evaluation isolation is enforced separately from transport safety. Evaluator-private paths, reference queries, expected bindings, and contamination honeytokens never cross into this package's worker-visible traversal contract.

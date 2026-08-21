@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://linked-science.local/schema/linked-science-traversal-capability-v2.json",
+  "title": "Linked Science mediated traversal capability",
+  "$defs": {
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxQueryChars", "maxRequestBodyBytes", "maxDurationMs", "maxRequestMs", "maxRedirects", "maxHops", "maxFanOut", "maxConcurrency", "maxResponseBytes", "maxTotalBytes", "maxResultItems"],
+      "properties": {
+        "maxQueryChars": { "type": "integer", "minimum": 1 },
+        "maxRequestBodyBytes": { "type": "integer", "minimum": 1 },
+        "maxDurationMs": { "type": "integer", "minimum": 1 },
+        "maxRequestMs": { "type": "integer", "minimum": 1 },
+        "maxRedirects": { "type": "integer", "minimum": 1 },
+        "maxHops": { "type": "integer", "minimum": 1 },
+        "maxFanOut": { "type": "integer", "minimum": 1 },
+        "maxConcurrency": { "type": "integer", "minimum": 1 },
+        "maxResponseBytes": { "type": "integer", "minimum": 1 },
+        "maxTotalBytes": { "type": "integer", "minimum": 1 },
+        "maxResultItems": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "hop": {
+      "type": "object",
+      "required": ["kind", "index", "url", "method", "status", "address", "requestSha256", "responseSha256", "bytes", "mediaType"],
+      "properties": {
+        "kind": { "const": "linked-science-traversal-hop" },
+        "index": { "type": "integer", "minimum": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "method": { "enum": ["GET", "HEAD", "POST"] },
+        "status": { "type": "integer" },
+        "address": { "type": "string" },
+        "requestSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "responseSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "mediaType": { "type": "string" },
+        "queryType": { "enum": ["SELECT", "ASK", "CONSTRUCT", "DESCRIBE"] },
+        "querySha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    }
+  },
+  "type": "object",
+  "required": ["kind", "version", "status", "traversalId", "budgets", "usage", "hops"],
+  "properties": {
+    "kind": { "const": "linked-science-traversal-receipt" },
+    "version": { "const": "2.0.0" },
+    "status": { "enum": ["complete", "failed", "aborted"] },
+    "traversalId": { "type": "string", "minLength": 1 },
+    "budgets": { "$ref": "#/$defs/budgets" },
+    "usage": {
+      "type": "object",
+      "required": ["hops", "fanOut", "bytes", "retries"],
+      "properties": {
+        "hops": { "type": "integer", "minimum": 0 },
+        "fanOut": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "retries": { "const": 0 }
+      }
+    },
+    "hops": { "type": "array", "items": { "$ref": "#/$defs/hop" } },
+    "failure": { "type": "object", "properties": { "code": { "type": "string" } }, "required": ["code"] }
+  }
+}

@@ -7,7 +7,7 @@ import { createInterface } from "node:readline";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { PeekRegistry } from "./peek-runtime.mjs";
-import { LinkedScienceNetworkBroker } from "./linked-science-broker.mjs";
+import { MediatedTraversalBroker } from "./mediated-traversal.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
 export const SERVER_VERSION = "0.3.0";
@@ -21,7 +21,7 @@ const MAX_TIMEOUT_MS = 120_000;
 const TOOLS = Object.freeze([
   {
     name: "js",
-    description: "Execute JavaScript in a persistent, network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation-map runtime, and nodeRepl.linkedScienceBroker for optional broker-owned named-profile operations.",
+    description: "Execute JavaScript in a persistent, network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation-map runtime, and nodeRepl.linkedScienceTraversal for broker-mediated public HTTPS RDF/SPARQL reads.",
     inputSchema: {
       type: "object",
       required: ["code"],
@@ -97,22 +97,15 @@ export class KernelBroker {
     peekPolicy = null,
     checkpointRoot = null,
     maxOldSpaceMb = 256,
-    linkedScienceProfiles,
-    linkedScienceFetch,
-    linkedScienceParseQuery,
-    linkedScienceBroker,
+    traversalBroker,
+    traversalOptions,
   } = {}) {
     this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
     this.checkpointRoot = checkpointRoot ? resolve(checkpointRoot) : null;
     this.maxOldSpaceMb = maxOldSpaceMb;
     this.peek = new PeekRegistry({ policy: peekPolicy });
-    this.linkedScience = linkedScienceBroker ?? new LinkedScienceNetworkBroker({
-      profiles: linkedScienceProfiles,
-      fetchImpl: linkedScienceFetch,
-      parseQuery: linkedScienceParseQuery,
-      moduleRoot: this.cwd,
-    });
+    this.traversal = traversalBroker ?? new MediatedTraversalBroker(traversalOptions);
     this.moduleRoots = [];
     this.child = null;
     this.ready = null;
@@ -132,6 +125,7 @@ export class KernelBroker {
   async _spawn() {
     if (this.child) return this.ready;
     this.epoch += 1;
+    const kernelEpoch = this.epoch;
     const hostCapabilityToken = randomBytes(32).toString("hex");
     this.hostCapabilityToken = hostCapabilityToken;
     const child = fork(KERNEL_PATH, [], {
@@ -170,6 +164,7 @@ export class KernelBroker {
       });
     });
     child.once("exit", (code, signal) => {
+      this.traversal.abortOwner({ token: hostCapabilityToken, epoch: kernelEpoch }, "kernel-exit");
       if (this.child === child) this.child = null;
       const error = Object.assign(new Error(`Kernel exited (${code ?? signal ?? "unknown"})`), { code: "KERNEL_EXIT" });
       for (const pending of this.pending.values()) pending.reject(error);
@@ -201,9 +196,11 @@ export class KernelBroker {
       const { method, args = {} } = message;
       let value;
       if (method === "rlm.query") value = await this._recursiveQuery(args);
-      else if (method === "linked-science.capabilities") value = this.linkedScience.capabilities();
-      else if (method === "linked-science.acquire") value = await this.linkedScience.acquire(args);
-      else if (method === "linked-science.query") value = await this.linkedScience.query(args);
+      else if (method === "traversal.capabilities") value = this.traversal.capabilities();
+      else if (method === "traversal.begin") value = this.traversal.beginTraversal(args.budgets, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "traversal.request") value = await this.traversal.request(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "traversal.finish") value = this.traversal.finishTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "traversal.abort") value = this.traversal.abortTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "peek.begin") value = this.peek.begin(args.contextId, args.options);
       else if (method === "peek.current") value = this.peek.current(args.contextId);
       else if (method === "peek.edit") value = this.peek.edit(args.contextId, args.edits);
@@ -214,8 +211,8 @@ export class KernelBroker {
       else throw Object.assign(new Error("Unknown host capability"), { code: "UNKNOWN_HOST_CAPABILITY" });
       respond(true, value);
     } catch (error) {
-      const receipt = error?.receipt?.kind === "linked-science-broker-operation" &&
-        Buffer.byteLength(JSON.stringify(error.receipt), "utf8") <= 16_384
+      const receipt = typeof error?.receipt?.kind === "string" && error.receipt.kind.startsWith("linked-science-traversal-") &&
+        Buffer.byteLength(JSON.stringify(error.receipt), "utf8") <= 64_000
         ? error.receipt
         : undefined;
       respond(false, undefined, {
@@ -275,8 +272,10 @@ export class KernelBroker {
   async _terminate() {
     const child = this.child;
     if (!child) return;
+    const owner = { token: this.hostCapabilityToken, epoch: this.epoch };
     this.child = null;
     this.hostCapabilityToken = null;
+    this.traversal.abortOwner(owner, "kernel-replaced");
     if (child.exitCode === null && child.signalCode === null) {
       await new Promise((resolveExit) => {
         child.once("exit", resolveExit);
@@ -377,7 +376,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. Optional Linked Science work is available only through immutable profiles exposed by nodeRepl.linkedScienceBroker. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; bootstrap it explicitly with await nodeRepl.peek.current(contextId).",
+        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. Public HTTPS RDF/SPARQL reads are available only through bounded traversal sessions exposed by nodeRepl.linkedScienceTraversal. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; bootstrap it explicitly with await nodeRepl.peek.current(contextId).",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -23,8 +23,7 @@
   ],
   "workspace": {
     "graphs": [
-      "load",
-      "fromEvidence"
+      "load"
     ],
     "schema": [
       "search"
@@ -33,13 +32,8 @@
       "run",
       "select"
     ],
-    "live": [
-      "acquire",
+    "traversal": [
       "query"
-    ],
-    "evidence": [
-      "inspect",
-      "search"
     ],
     "results": [
       "derive",
@@ -65,14 +59,10 @@
     "bootstrap",
     "discovery",
     "graphs.load",
-    "graphs.fromEvidence",
     "schema.search",
     "query.select",
     "query.run",
-    "live.acquire",
-    "live.query",
-    "evidence.inspect",
-    "evidence.search",
+    "traversal.query",
     "results.derive",
     "results.profile",
     "results.page",

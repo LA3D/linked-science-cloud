@@ -1,31 +1,37 @@
-# Broker-owned live operations
+# Broker-mediated open-world traversal
 
 ## Decision
 
-The clean-room child may request live work only through an injected `linkedScienceBroker` capability. The child names an immutable profile and supplies either an exact source selector or bounded SPARQL. It cannot supply an endpoint, profile object, `fetch`, network-capable query engine, credentials, redirect policy, or retry policy.
+The clean-room JavaScript kernel remains unable to open raw sockets, perform DNS resolution, or write files. It may ask the consumer-owned parent broker to begin one bounded traversal. Local Communica receives a custom fetch adapter whose every dereference and federated SPARQL request crosses that parent boundary.
 
-The broker owns those values and returns a typed payload plus a compact receipt. `lib/linked-science-runtime.mjs` independently checks the broker capability descriptor, profile digest, input and payload hashes, operation kind, attempt count, and retained bounds before creating a native epoch-bearing handle.
+The mediator governs behavior rather than endpoint identity. A traversal may follow dynamically discovered public HTTPS RDF resources and SPARQL services without a host allowlist. It cannot contact credential-bearing URLs, private infrastructure, cloud metadata, or mutation-capable routes.
 
-## Capability contract
+## Cross-process contract
 
-The optional broker exposes exactly:
+`nodeRepl.linkedScienceTraversal` exposes:
 
-- `capabilities()` — immutable profile IDs, operation kinds, profile SHA-256 values, and ceilings;
-- `acquire({ profile, source? })` — bounded source content plus a broker receipt; and
-- `query({ profile, sparql })` — typed RDF bindings, boolean, or quads plus a broker receipt.
+- `capabilities()` — protocol version, read methods/query forms, media types, hard ceilings, and network policy;
+- `beginTraversal(effectiveBudgets)` — create a session bound to the current kernel capability token and epoch;
+- `request(traversalId, serializedRequest)` — perform one governed HTTPS hop;
+- `finishTraversal(traversalId)` — return the aggregate lineage receipt; and
+- `abortTraversal(traversalId, reason)` — cancel outstanding work and preserve a bounded partial receipt.
 
-The checked-in [broker capability schema](../runtime/linked-science-broker-capability.schema.json) documents the serializable boundary. The native facade exposes the corresponding `workspace.live.acquire`, `workspace.live.query`, `workspace.evidence.inspect`, `workspace.evidence.search`, and `workspace.graphs.fromEvidence` operations. Raw guarded transport helpers are no longer exposed under `linkedScience.compatibility`.
+`createFetch(traversalId)` is a child-local adapter around `request`; it grants no direct network authority. Kernel reset, timeout, crash, or replacement aborts all sessions owned by the former token/epoch.
 
-## Native retention
+## Network and resource controls
 
-Successful acquisition creates an `evidence` handle containing the bounded response and broker provenance. A supported RDF document can be parsed once into an ontology, schema, SHACL, inferred, or instance graph with `graphs.fromEvidence`; the graph lineage cites the evidence handle and source fingerprint. Successful query results create native `bindings`, `boolean`, or `quads` handles with broker operation ID, immutable profile digest, query digest, payload fingerprint, and attempt receipt.
+The parent accepts credential-free HTTPS only. It strips ambient identity headers, forces identity content encoding, permits GET/HEAD and parsed read-only SPARQL POST, and accepts only RDF or SPARQL-result media types. All A and AAAA answers must be public. Mixed public/private answers, loopback, private, carrier-grade NAT, link-local, ULA, multicast, unspecified, documentation/reserved ranges, metadata addresses, and within-session DNS answer changes are rejected. The validated address is pinned into the TLS connection while the original hostname remains the SNI and certificate-verification name.
 
-The same epoch, reset, PEEK, bounded page/table, and second-turn reuse contracts apply to these handles. A broker receipt proves one transport operation; it does not prove a scientific interpretation.
+Redirects are manual and every destination repeats URL and DNS validation. Traversal-wide ceilings cover request/query bytes, duration, per-request time, redirects, hops, fan-out, concurrency, per-response bytes, cumulative bytes, and retained result items. The implementation performs zero automatic retries. Response headers are reduced to a small data/provenance allowlist.
 
-## Enforced and unenforced boundaries
+Retrieved bytes are untrusted RDF/SPARQL data. They are never promoted into instructions, RLM context, PEEK orientation, or evaluator state. Only the Linked Science runtime may retain a bounded typed result handle after Communica completes and the aggregate receipt validates.
 
-Repository tests inject an offline broker and establish the child-facing contract, native retention, hash and result-bound checks, denial of profile-object injection, and no-requery derivation for the first three competency shapes. External broker tests add parent-owned immutable profiles, receipt and transport bounds, denial of raw child HTTP/DNS/sockets and filesystem writes, per-kernel IPC authorization, and an actual evaluator-private honeytoken read-denial attestation. A cross-repository synthetic check confirms that external broker results reach native runtime handles. These checks make no network request.
+## Federation and provenance
 
-The consumer-owned `packages/cleanroom-node-repl` package now implements this boundary. Its history includes sibling commit `a18934f`, imported without squashing to preserve the provenance of the original clean-room experiment. After a full Desktop restart on 2026-08-20, before that ownership cutover, a fresh trusted-project task observed the exact three-tool MCP surface, `brokerOwnedLive: true`, persistent state, raw child DNS/network/socket/write denials, and evaluator-private `ERR_ACCESS_DENIED`. One separately authorized bounded `ASK` through the immutable `uniprot-read` profile returned a broker receipt and native boolean handle. This historical observation establishes activation and broker-owned transport, not a secure competency-evaluation result.
+Communica runs locally. RDF source dereferences and `SERVICE` requests both use the same mediated fetch adapter, so federation is not delegated opaquely to a remote endpoint. Each hop records URL, method, status, pinned address, request/response hashes, byte count, media type, and parsed query form when applicable. The aggregate receipt records effective budgets, usage, zero retries, all hops, and terminal status. A receipt proves transport lineage, not a scientific interpretation.
 
-Reviewed real VoID, machine-readable UniProt core, and GO acquisition profiles also remain separate work. Repository names or draft manifests do not authorize them.
+Offline tests cover public/unsafe IPv4 and IPv6 ranges, mixed DNS, rebinding, redirect-to-private, credential/header stripping, SPARQL mutations and malformed bodies, media/content-encoding denial, request/response/cumulative bounds, fan-out, concurrency, timeouts, forged/stale owners, reset cancellation, and partial receipts. Synthetic Communica fixtures cover two RDF sources and two federated SPARQL services without live network access.
+
+## Historical boundary
+
+Earlier immutable endpoint/source profiles, whole-query broker execution, SELECT/ASK-only codecs, blanket `SERVICE` denial, and fixed eight-second assumptions are superseded. Their committed receipts remain immutable historical observations. They do not authorize current traversal and are not current worker guidance.

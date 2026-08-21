@@ -10,6 +10,7 @@ const sendToParent = process.send.bind(process);
 const MAX_TEXT_BYTES = 256 * 1024;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const MAX_CONTEXT_BYTES = 2 * 1024 * 1024;
+const MAX_HOST_CALL_BYTES = 384 * 1024;
 const roots = [];
 const contexts = new Map();
 const pendingHostCalls = new Map();
@@ -90,6 +91,9 @@ function normalizeImage(image) {
 }
 
 function hostCall(method, args) {
+  if (Buffer.byteLength(JSON.stringify({ method, args }), "utf8") > MAX_HOST_CALL_BYTES) {
+    return Promise.reject(Object.assign(new Error("Host capability request is too large"), { code: "HOST_CALL_LIMIT" }));
+  }
   const id = ++hostCallSequence;
   return new Promise((resolveCall, rejectCall) => {
     pendingHostCalls.set(id, { resolve: resolveCall, reject: rejectCall });
@@ -161,10 +165,32 @@ const peek = Object.freeze({
   restore: (path) => hostCall("peek.restore", { path }),
 });
 
-const linkedScienceBroker = Object.freeze({
-  capabilities: () => hostCallStrict("linked-science.capabilities", {}),
-  acquire: (options = {}) => hostCallStrict("linked-science.acquire", options),
-  query: (options = {}) => hostCallStrict("linked-science.query", options),
+function serializedRequest(input, init = {}) {
+  const source = typeof input === "string" || input instanceof URL ? { url: String(input) } : input;
+  const url = source?.url;
+  const method = String(init.method ?? source?.method ?? "GET").toUpperCase();
+  const headers = Object.fromEntries(new Headers(init.headers ?? source?.headers ?? {}).entries());
+  const rawBody = init.body;
+  if (rawBody !== undefined && typeof rawBody !== "string" && !(rawBody instanceof URLSearchParams)) {
+    throw Object.assign(new Error("Mediated fetch accepts only string or URLSearchParams bodies"), { code: "MEDIATED_BODY_UNSUPPORTED" });
+  }
+  return { url, method, headers, ...(rawBody === undefined ? {} : { body: String(rawBody) }) };
+}
+
+const linkedScienceTraversal = Object.freeze({
+  capabilities: () => hostCallStrict("traversal.capabilities", {}),
+  beginTraversal: (budgets = {}) => hostCallStrict("traversal.begin", { budgets }),
+  request: (traversalId, request) => hostCallStrict("traversal.request", { traversalId, request }),
+  finishTraversal: (traversalId) => hostCallStrict("traversal.finish", { traversalId }),
+  abortTraversal: (traversalId, reason) => hostCallStrict("traversal.abort", { traversalId, reason }),
+  createFetch(traversalId) {
+    return async (input, init = {}) => {
+      if (init.signal?.aborted) throw init.signal.reason ?? Object.assign(new Error("Fetch aborted"), { code: "ABORT_ERR" });
+      const result = await hostCallStrict("traversal.request", { traversalId, request: serializedRequest(input, init) });
+      if (init.signal?.aborted) throw init.signal.reason ?? Object.assign(new Error("Fetch aborted"), { code: "ABORT_ERR" });
+      return new Response(Buffer.from(result.bodyBase64, "base64"), { status: result.status, headers: result.headers });
+    };
+  },
 });
 
 function createKernel() {
@@ -182,7 +208,7 @@ function createKernel() {
     requestMeta: { enumerable: true, get: () => currentRequestMeta },
     rlm: { enumerable: true, value: rlm },
     peek: { enumerable: true, value: peek },
-    linkedScienceBroker: { enumerable: true, value: linkedScienceBroker },
+    linkedScienceTraversal: { enumerable: true, value: linkedScienceTraversal },
   });
   Object.defineProperties(nodeRepl, {
     write: {

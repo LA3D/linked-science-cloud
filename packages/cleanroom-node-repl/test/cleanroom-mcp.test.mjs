@@ -159,6 +159,55 @@ test("reset clears bindings while preserving module roots and broker PEEK state"
   assert.match(text(map), /alpha/);
 });
 
+test("kernel reset aborts token-bound traversal sessions", async (t) => {
+  const broker = new KernelBroker({
+    traversalOptions: {
+      resolveAddresses: async () => [ { address: "93.184.216.34", family: 4 } ],
+      transport: async () => ({ status: 200, headers: { "content-type": "text/turtle" }, body: Buffer.from("@prefix ex: <https://example.test/> .") }),
+    },
+  });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const started = await handle(request(1, "js", { code: "var traversal = await nodeRepl.linkedScienceTraversal.beginTraversal({maxDurationMs:1000}); nodeRepl.write(traversal.traversalId)" }));
+  assert.match(text(started), /trv-/u);
+  assert.equal(broker.traversal.sessions.size, 1);
+  await handle(request(2, "js_reset", {}));
+  assert.equal(broker.traversal.sessions.size, 0);
+  const capabilities = await handle(request(3, "js", { code: "nodeRepl.write(await nodeRepl.linkedScienceTraversal.capabilities())" }));
+  assert.match(text(capabilities), /public-https-dns-pinned/u);
+});
+
+test("oversized JavaScript requests are denied before entering the child IPC channel", async (t) => {
+  const broker = new KernelBroker();
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { code: "x".repeat(256 * 1024 + 1) }));
+  assert.equal(response.result.isError, true);
+  assert.match(text(response), /INVALID_ARGUMENT/u);
+  assert.equal(broker.child, null);
+});
+
+test("oversized traversal host calls are denied before crossing child IPC", async (t) => {
+  const broker = new KernelBroker();
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { code: `
+    var oversizedTraversal = await nodeRepl.linkedScienceTraversal.beginTraversal();
+    try {
+      await nodeRepl.linkedScienceTraversal.request(oversizedTraversal.traversalId, {
+        url: 'https://data.example/sparql', method: 'POST',
+        headers: {'content-type': 'application/sparql-query'}, body: 'x'.repeat(400000)
+      });
+    } catch (error) {
+      nodeRepl.write(error.code);
+    }
+  ` }));
+  assert.equal(text(response), "HOST_CALL_LIMIT");
+  assert.equal(broker.traversal.sessions.size, 1);
+  await handle(request(2, "js_reset", {}));
+  assert.equal(broker.traversal.sessions.size, 0);
+});
+
 test("registered package entrypoints use ESM import conditions", async (t) => {
   const fixture = await mkdtemp(join(tmpdir(), "cleanroom-repl-conditions-"));
   const moduleRoot = join(fixture, "node_modules");

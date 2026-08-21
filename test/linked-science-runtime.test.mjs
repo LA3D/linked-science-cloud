@@ -48,7 +48,7 @@ test('bootstraps exactly once with stable facade bindings and generated discover
   assert.equal(LINKED_SCIENCE_API_SCHEMA.bootstrap, first.documentation.get('bootstrap').usage);
   assert.equal(typeof first.compatibility.queryToHandleGuarded, 'undefined');
   assert.equal(typeof first.compatibility.initializeSession, 'function');
-  assert.equal(typeof first.open({ contextKey: 'broker-discovery' }).live.query, 'function');
+  assert.equal(typeof first.open({ contextKey: 'traversal-discovery' }).traversal.query, 'function');
 });
 
 test('retains first-class graph objects with RDF term, duplicate, order, named-graph, and source fidelity', async () => {
