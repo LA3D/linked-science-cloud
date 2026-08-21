@@ -1,6 +1,6 @@
 [mcp_servers.cleanroom_node_repl]
 command = "node"
-args = ["/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe/src/cleanroom-mcp.mjs"]
+args = ["/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs"]
 cwd = "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl"
 experimental_environment = "local"
 enabled = true

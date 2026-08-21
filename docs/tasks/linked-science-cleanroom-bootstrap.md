@@ -1,7 +1,7 @@
 # Linked Science clean-room bootstrap
 
 - **Status:** Complete; implemented and verified in the saved checkout
-- **Scope:** Project-local registration and bootstrap for the separately saved `cleanroom_node_repl`; local-synthetic verification only.
+- **Scope:** Project-local registration and bootstrap for the consumer-owned `cleanroom_node_repl`; local-synthetic verification only.
 - **Authorization boundary:** No live endpoints, network probes, package changes, global configuration, exports, pushes, remote changes, or edits to the clean-room repository.
 
 ## Outcome
@@ -10,11 +10,11 @@ Replace the obsolete bundled-REPL path with one active project MCP registration,
 
 ## Decisions
 
-- The MCP launches the clean-room server by absolute source path with the Linked Science checkout as its cwd.
+- The MCP launches `packages/cleanroom-node-repl/src/cleanroom-mcp.mjs` by an absolute path inside the Linked Science checkout, with that checkout as its cwd.
 - The facade bootstrap imports by absolute module URL and validates all declared dependency resolutions from the exact project `node_modules` root.
 - Linked Science workspaces own bulk handles; RLM owns kernel-resident external discovery context; the clean-room broker owns PEEK orientation; Codex owns goals.
 - The disabled restricted network profile remains tracked only as reference.
-- The clean-room repository was not changed. Its registered module-root hook timed out on the real Communica graph, but Linked Science does not require that hook: native module-scoped ESM resolution from the absolute facade import is validated and succeeds.
+- The clean-room runtime was later imported with its original Git ancestry into this repository. Its registered module-root hook is retained for interactive package imports, while native module-scoped ESM resolution from the absolute facade import remains the validated Linked Science path.
 
 ## Current evidence
 

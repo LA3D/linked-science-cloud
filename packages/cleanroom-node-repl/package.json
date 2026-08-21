@@ -1,11 +1,12 @@
 {
-  "name": "node-repl-network-probe",
+  "name": "@linked-science/cleanroom-node-repl",
   "version": "0.3.0",
   "private": true,
+  "description": "Consumer-owned clean-room JavaScript runtime and mediated Linked Science transport",
+  "linkedScienceRepositoryRole": "production-runtime",
   "type": "module",
   "scripts": {
-    "check": "node --check src/probe.mjs && node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node --check src/linked-science-broker.mjs && node -e \"Promise.all([import('./src/probe.mjs'), import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs'), import('./src/linked-science-broker.mjs')]).then(([probe, mcp, peek, linkedScience]) => { if (typeof probe.probeNetwork !== 'function' || typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function' || typeof linkedScience.LinkedScienceNetworkBroker !== 'function') process.exit(1) })\"",
-    "probe": "node src/probe.mjs",
+    "check": "node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node --check src/linked-science-broker.mjs && node -e \"Promise.all([import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs'), import('./src/linked-science-broker.mjs')]).then(([mcp, peek, linkedScience]) => { if (typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function' || typeof linkedScience.LinkedScienceNetworkBroker !== 'function') process.exit(1) })\"",
     "test": "node --test"
   }
 }

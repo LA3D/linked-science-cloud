@@ -1,3 +1,0 @@
-results/*.json
-!results/template.json
-!results/schema.json

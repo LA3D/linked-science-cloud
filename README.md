@@ -4,7 +4,7 @@ This is a small Codex Desktop experiment for running in-memory RDF/SPARQL work w
 
 ## Current Codex runtime boundary
 
-The active project configuration registers the separately saved `cleanroom_node_repl` MCP from `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe`. It is a user-owned CodeAct runtime with persistent JavaScript, RLM context operations, broker-owned PEEK orientation, and the observed three-tool contract. This project does not use or configure Codex Desktop's bundled `node_repl`.
+The active project configuration registers the consumer-owned `cleanroom_node_repl` MCP from `packages/cleanroom-node-repl`. It is the canonical CodeAct runtime for this checkout, with persistent JavaScript, RLM context operations, broker-owned PEEK orientation, and the observed three-tool contract. This project does not use or configure Codex Desktop's bundled `node_repl` or the sibling experimental probe repository.
 
 The former restricted network profile remains disabled at `.codex/config.restricted-profile.toml.disabled` for historical reference. It is not active configuration and must not be re-enabled to grant the bundled REPL network access. Tool exposure, project-root selection, module resolution, persistence, RLM state, PEEK state, and guarded network reachability remain separate properties that must be observed rather than inferred.
 
@@ -24,7 +24,7 @@ For the tested REPL initialization and persistence check, use the project-local 
 
 ## Linked Science runtime
 
-The production-oriented local adapter is bootstrapped by `lib/cleanroom-linked-science-bootstrap.mjs` and implemented by `lib/linked-science-runtime.mjs`. It installs one stable CodeAct-style JavaScript facade, validates this checkout and its declared dependency root, registers discovery material with clean-room RLM context, keeps Communica private as the query kernel, delegates compact orientation to broker-owned PEEK, and retains ontology/schema/SHACL/instance graphs and results behind epoch-bearing handles. Start with [runtime discovery](docs/agent/runtime-discovery.md); the checked-in [machine API schema](docs/runtime/linked-science-api.schema.json) supports fresh-agent lookup. The local slice owns no network transport or recursive model access; optional live operations are supplied only by the separately saved parent broker through immutable named profiles.
+The production-oriented local adapter is bootstrapped by `lib/cleanroom-linked-science-bootstrap.mjs` and implemented by `lib/linked-science-runtime.mjs`. It installs one stable CodeAct-style JavaScript facade, validates this checkout and its declared dependency root, registers discovery material with clean-room RLM context, keeps Communica private as the query kernel, delegates compact orientation to broker-owned PEEK, and retains ontology/schema/SHACL/instance graphs and results behind epoch-bearing handles. Start with [runtime discovery](docs/agent/runtime-discovery.md); the checked-in [machine API schema](docs/runtime/linked-science-api.schema.json) supports fresh-agent lookup. The consumer-owned clean-room package supplies the isolated execution and broker boundary.
 
 ## Capability map and next work
 

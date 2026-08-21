@@ -50,7 +50,7 @@ Resident graphs and results have hard item ceilings. Prompt-visible pages/tables
 
 Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor `fetch`. The optional live surface accepts only immutable broker profile IDs; endpoints, profiles, credentials, and transport policy remain broker-owned.
 
-The clean-room VM context is a compatibility boundary, not a security sandbox. Repository code verifies the capability and receipt contract, but only the external MCP broker can deny raw child networking and evaluator-private filesystem reads. Registration of the clean-room MCP does not authorize a live source, and the current runtime reports live unavailable unless that broker is actually injected. See [broker-owned live operations](broker-owned-live-operations.md).
+The clean-room VM context is a compatibility boundary, not a security sandbox. The consumer-owned parent MCP broker denies raw child networking and evaluator-private filesystem reads; the Linked Science facade independently verifies its capability and receipt contract. Registration of the clean-room MCP does not authorize a live source, and the current runtime reports live unavailable unless that broker is actually injected. See [broker-owned live operations](broker-owned-live-operations.md).
 
 ## Recovery errors
 

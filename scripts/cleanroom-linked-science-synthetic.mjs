@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { dirname, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
+import { fileURLToPath } from 'node:url';
 
-const projectRoot = '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl';
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const moduleRoot = `${projectRoot}/node_modules`;
-const serverPath = '/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe/src/cleanroom-mcp.mjs';
+const serverPath = `${projectRoot}/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs`;
 const bootstrapPath = `${projectRoot}/lib/cleanroom-linked-science-bootstrap.mjs`;
 const fixturePath = `${projectRoot}/test/fixtures/linked-science-runtime/synthetic-science.mjs`;
 

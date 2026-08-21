@@ -1,10 +1,11 @@
-# Clean-room Node REPL and network probe
+# Linked Science clean-room Node REPL
 
-This dependency-free project now contains three related experiments:
+> **Production ownership:** This package is owned by the Linked Science repository. Its source history was imported without squashing from the experimental network-probe repository. Production configuration must use this package and must never depend on that sibling checkout.
 
-1. A bounded network probe comparing DNS, TCP, TLS, and HTTPS `HEAD` against `example.com` only.
-2. A separately named, clean-room MCP implementing the observed `js`, `js_reset`, and `js_add_node_module_dir` contract of Desktop's persistent Node REPL.
-3. A parent-owned Linked Science capability that accepts immutable profile names while keeping endpoints, transport policy, and network authority outside the evaluator child.
+This dependency-free package contains the clean-room execution boundary:
+
+1. A clean-room MCP implementing the observed `js`, `js_reset`, and `js_add_node_module_dir` contract of Desktop's persistent Node REPL.
+2. A parent-owned Linked Science capability that keeps transport policy and network authority outside the evaluator child.
 
 The clean-room server is CodeAct-style: the model writes JavaScript and manipulates persistent state and external context inside the REPL. `nodeRepl.rlm` supplies context registration, slicing, and an optional broker-mediated recursive-call seam; recursion is unavailable by default. `nodeRepl.peek` supplies a context-scoped, bounded PEEK-compatible orientation map. `nodeRepl.linkedScienceBroker` exposes only `capabilities`, `acquire`, and `query`; it does not expose endpoints, fetch, credentials, redirects, retries, or byte/result policy.
 

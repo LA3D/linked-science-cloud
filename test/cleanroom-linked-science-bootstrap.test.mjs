@@ -54,12 +54,13 @@ function cleanroomFixture(peek = new MemoryBrokerPeek()) {
   };
 }
 
-test('active project config registers only the saved clean-room MCP with an explicit Linked Science cwd', async () => {
+test('active project config registers only the consumer-owned clean-room MCP with an explicit Linked Science cwd', async () => {
   const config = await readFile(new URL('../.codex/config.toml', import.meta.url), 'utf8');
   const disabled = await readFile(new URL('../.codex/config.restricted-profile.toml.disabled', import.meta.url), 'utf8');
   assert.match(config, /^\[mcp_servers\.cleanroom_node_repl\]/u);
   assert.match(config, new RegExp(`cwd = "${LINKED_SCIENCE_PROJECT_ROOT}"`));
-  assert.match(config, /node-repl-network-probe\/src\/cleanroom-mcp\.mjs/u);
+  assert.match(config, /codex-repl\/packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u);
+  assert.doesNotMatch(config, /node-repl-network-probe/u);
   assert.doesNotMatch(config, /default_permissions|network_proxy|mcp_servers\.node_repl/u);
   assert.match(disabled, /default_permissions = "science-tools-linked-data"/u);
 });

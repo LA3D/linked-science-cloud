@@ -1,8 +1,8 @@
 # Task: Enforce the Linked Science live capability in the clean-room broker
 
-- **Status:** Exact core RDF transport verified; blocked because the acquired graph lacks required term-level orientation evidence
-- **Owner/task:** External implementation, activation, VoID/GO profiles, and exact core-source validation completed; a new source/query decision remains unassigned
-- **Scope:** Implement and verify the broker half of the checked-in Linked Science named-profile capability in the separately saved `node-repl-network-probe` project. Keep live operations exact, bounded, explicitly approved, and broker-owned.
+- **Status:** Historical external implementation milestone; production ownership migrated into Linked Science
+- **Owner/task:** The external implementation and activation evidence remain historical; all current production work belongs to `packages/cleanroom-node-repl` in this repository.
+- **Scope:** Preserve the evidence from the former named-profile broker implementation and its guarded live checks. The sibling `node-repl-network-probe` repository is no longer a production authority or runtime dependency.
 - **Authorization boundary:** The user authorized the completed external checkout modifications, exact catalog acquisition, bounded UniProt endpoint-existence `ASK`, orientation preflight, core-source discovery and redirect inspections, and the exact bounded core RDF acquisition recorded below. No competency query, unlisted source acquisition, federation, package installation, global configuration change, push, or other external write was authorized or performed.
 
 ## Outcome and acceptance evidence
@@ -46,14 +46,15 @@ Offline tests must establish:
 - Public issue/forum/archive discovery found no inspected direct question or first-party relocation answer. The closest registry and archive records repeat the stale URL, expose historical ontology snapshots, or record archival failure; they do not justify adding a mirror-backed broker profile.
 - One approved marker-only `SELECT` used `FROM <http://purl.uniprot.org/core/>`, the exact five marker IRIs, an `rdf:type`/`rdfs:label` allowlist, and `LIMIT 10`. The kernel timed out before a result or receipt crossed back and was not retried. The [provenance receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) records the unavailable outcome without an absence claim.
 
-### Remaining work
+### Supersession
 
-- Decide whether to approve one exact retry of the fixed marker-only core-graph query under a dedicated immutable profile. The validated DESCRIBE responses are ontology metadata but are insufficient for the staged term-grounding cases.
-- Perform any real profile operation only after current approval for that exact source or endpoint. A checked-in profile is capability metadata, not authorization to use it.
+- The fixed-profile transport described here remains historical evidence while the consumer-owned runtime is redesigned around behavior-bounded, open-world mediation.
+- No future implementation or production configuration belongs in the sibling repository.
+- Any real operation still requires separate current authorization; this historical task grants none.
 
 ### Exact next action
 
-Review the marker-only query timeout and decide whether to authorize one exact retry through a dedicated `uniprot-core-term-orientation` profile. Do not promote either 25-quad DESCRIBE response into `uniprot-core-ontology`; neither bounds the core graph or grounds all required terms.
+Use the consumer-owned clean-room package for all implementation and offline verification. Preserve the receipts below as immutable historical observations and do not reinterpret them as open-world traversal evidence.
 
 ## Handoff state
 
