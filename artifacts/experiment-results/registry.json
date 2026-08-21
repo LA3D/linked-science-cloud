@@ -264,6 +264,17 @@
       "recordPaths": ["artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json"],
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md", "docs/tasks/uniprot-competency-manifest.md"],
       "missingEvidence": []
+    },
+    {
+      "id": "uniprot-core-provenance-discovery-2026-08-21",
+      "date": "2026-08-21",
+      "title": "UniProt core graph provenance and Turtle negotiation discovery",
+      "outcome": "partial",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/cleanroom-broker-live-capability.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "missingEvidence": []
     }
   ],
   "documents": [

@@ -41,8 +41,9 @@ This is the durable index of executed experiment results. Methodology dossiers d
 | 2026-08-20 | Guarded UniProt core PURL redirect inspection | Passed | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) |
 | 2026-08-20 | RDF-negotiated UniProt core PURL redirect inspection | Passed | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json) |
 | 2026-08-21 | Guarded UniProt core RDF acquisition and marker validation | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json) |
+| 2026-08-21 | UniProt core graph provenance and Turtle negotiation discovery | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) |
 
-The current inventory therefore contains 23 executed run records: ten complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
+The current inventory therefore contains 24 executed run records: eleven complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
 
 ## Confirmed loss and recovery limits
 

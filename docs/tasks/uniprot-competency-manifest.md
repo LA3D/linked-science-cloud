@@ -31,6 +31,10 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - A metadata-only retry preserved the PURL's HTTP 303 fallback target as `https://purl.uniprot.org/html/index-en.html#`, with no body read or redirect followed. Because the safety probe deliberately requested a non-matching media type, it did not establish the RDF-negotiated target and did not unblock the core profile.
 - A separately approved RDF-`Accept` metadata inspection identified the exact target as `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The target was not contacted, so it is source-discovery evidence rather than a validated acquisition profile.
 - The subsequently approved exact acquisition returned valid RDF/XML ontology metadata (3,876 bytes, 25 parsed quads, matching broker/content hash) but lacked every term-level marker required by tiers 1 and 2. The profile and worker manifest were therefore not promoted.
+- The graph-model correction is now durable: `http://purl.uniprot.org/core/` is the core ontology named graph. `FROM up:` selected it as the active default graph, but `DESCRIBE up:` described only the ontology IRI; the 25-quad RDF/XML and Turtle results do not bound the graph. The [provenance receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) records the distinction.
+- The official dataset description exposes a core-term schema, while official GitHub inspection found documentation and derived VoID/SHACL tooling but no authoritative ontology file or public build pipeline. UniProt's maintained manual links the external `core.owl` release artifact, whose official HTTPS URL currently returns 404.
+- A broader public search found no inspected direct question or first-party answer resolving the missing artifact. Bioregistry repeats the unavailable official URL, BioPortal exposes a 2026 upload of the historical `v2012-10-03` ontology, Archivo records a failed 2025 versioning attempt, and a 2011 SIB tutorial points to an obsolete `core.rdf` URL. None is authoritative current-source evidence.
+- One marker-only query against the core graph timed out before a result or broker receipt crossed the clean-room boundary. It was not retried and does not support a term-absence claim. The proposed replacement is a fixed, immutable term-orientation query profile; it has not been implemented or promoted.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -44,13 +48,13 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Select and validate a different exact, bounded term-bearing UniProt core source or query under a new source-specific approval.
+- Validate the fixed, bounded marker-only core-graph query under a retry-specific approval or resolve the documented `core.owl` artifact's current 404.
 - Replace all pending orientation profile names with the already validated VoID/GO profiles and the future core profile, revalidate the public/private correspondence, and only then change the public manifest to `ready`.
 - Run the actual competency cases only in separately approved fresh tasks under the frozen commit, runtime, profiles, and evaluation protocol.
 
 ### Exact next action
 
-Review the failed term-marker gate and select the next exact official source or bounded query. Keep the worker manifest `draft`; do not substitute the 25-quad ontology-metadata response for the term-bearing core profile.
+Review the marker-only query timeout and decide whether to authorize one exact retry through a fixed `uniprot-core-term-orientation` profile. Keep the worker manifest `draft`; neither 25-quad DESCRIBE serialization is a substitute for term-bearing core-graph evidence.
 
 ### Blockers or required decisions
 

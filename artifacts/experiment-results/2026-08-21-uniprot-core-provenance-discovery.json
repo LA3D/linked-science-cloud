@@ -1,0 +1,264 @@
+{
+  "format": "linked-science-uniprot-core-provenance-discovery/v1",
+  "id": "uniprot-core-provenance-discovery-2026-08-21",
+  "recordedAt": "2026-08-21T13:41:16.000Z",
+  "outcome": "partial",
+  "authorization": {
+    "purpose": "Bounded provenance discovery, Turtle-only content negotiation, and one marker-only core-graph source query; no competency or instance-data query",
+    "followedRedirects": 0,
+    "retriesPerSource": 0,
+    "timeoutMs": 8000
+  },
+  "findings": {
+    "graphModel": {
+      "datasetGraph": "http://sparql.uniprot.org/uniprot",
+      "datasetDescription": "https://sparql.uniprot.org/uniprot",
+      "coreOntologyGraph": "http://purl.uniprot.org/core/",
+      "interpretation": "UniProt is explicitly named-graph structured. The core ontology IRI is also the core ontology named graph. A DESCRIBE result does not bound that graph's contents."
+    },
+    "datasetDescription": {
+      "classification": "named-graph dataset/schema description, not an ontology serialization",
+      "httpStatus": 200,
+      "contentType": "text/html",
+      "byteLength": 105630,
+      "sha256": "543eba2fd685ee53975faad1a4d0477808b0058be3e432e99e296c147bc3d2d3",
+      "namedGraphDeclared": "http://sparql.uniprot.org/uniprot",
+      "graphStatistics": {
+        "uniqueTriples": 35996409564,
+        "distinctSubjects": 7693641689,
+        "distinctPredicates": 124,
+        "distinctObjects": 6997873219,
+        "distinctClasses": 121
+      },
+      "coreTermSchemaObserved": [
+        "http://purl.uniprot.org/core/Protein",
+        "http://purl.uniprot.org/core/catalyticActivity",
+        "http://purl.uniprot.org/core/domain",
+        "http://purl.uniprot.org/core/component"
+      ],
+      "coreOwlLinkFound": false,
+      "officialDownloadLink": "https://www.uniprot.org/downloads"
+    },
+    "humanDocumentation": {
+      "source": "https://purl.uniprot.org/html/index-en.html",
+      "generatorMarkers": {
+        "widoco": true,
+        "owlDoc": true
+      },
+      "directOntologyDownloadLinkFound": false
+    },
+    "competencyCatalog": {
+      "source": "https://sparql.uniprot.org/.well-known/sparql-examples/",
+      "classification": "competency-corpus-not-ontology-serialization",
+      "coreNamespace": "http://purl.uniprot.org/core/",
+      "officialDownloadLink": "https://www.uniprot.org/downloads",
+      "queryTextOrQueryBearingLinksPersisted": false
+    },
+    "turtleNegotiation": {
+      "namespaceIri": "http://purl.uniprot.org/core/",
+      "retrievalSource": "https://purl.uniprot.org/core/",
+      "metadataStatus": 303,
+      "location": "https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:",
+      "locationMatchesPreviouslyKnownTarget": true,
+      "describeResponse": {
+        "httpStatus": 200,
+        "contentType": "text/turtle",
+        "detectedFormat": "turtle",
+        "byteLength": 2697,
+        "sha256": "57a9fa32ec0fd480836e04abd82eae534c817908225771dd6b53f30add3dc04e",
+        "syntaxValidation": "passed",
+        "quadCount": 25
+      },
+      "fullOntologyOrNamedGraphInventoryClaim": false
+    },
+    "describeInterpretation": {
+      "queryTarget": "http://purl.uniprot.org/core/",
+      "fromRole": "FROM selects the core named graph as the query's active default graph; it does not enumerate or bound named graphs.",
+      "resultGraphRole": "DESCRIBE asks for an endpoint-selected description of the single target ontology IRI. Valid Turtle serializes one RDF result graph and carries no named-graph labels.",
+      "rawPayloadRetained": false,
+      "distinctSubjectInventoryAvailable": false,
+      "predicateInventoryAvailable": false,
+      "knownMarkerEvidence": {
+        "owlOntology": true,
+        "requestedTermMarkersPresentInDescribe": false
+      }
+    },
+    "markerOnlySourceQuery": {
+      "profile": "uniprot-read",
+      "profileSha256": "9963b75e4141c8c4b1d972b400aa0b9eaa7fa683801517acc8b124add9907791",
+      "sourceGraph": "http://purl.uniprot.org/core/",
+      "termIris": [
+        "http://purl.uniprot.org/core/Protein",
+        "http://purl.uniprot.org/core/structuredName",
+        "http://purl.uniprot.org/core/catalyticActivity",
+        "http://purl.uniprot.org/core/domain",
+        "http://purl.uniprot.org/core/component"
+      ],
+      "predicateAllowlist": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "limit": 10,
+      "outcome": "kernel-timeout-before-result-or-receipt",
+      "retryPerformed": false,
+      "absenceClaim": false
+    },
+    "canonicalDownloadArtifact": {
+      "source": "https://ftp.uniprot.org/pub/databases/uniprot/current_release/rdf/core.owl",
+      "identity": "UniProt RDF schema ontology OWL release artifact",
+      "expectedFormat": "OWL serialized as RDF/XML",
+      "expectedSize": "approximately 270 KiB",
+      "officialDocumentationSource": "https://github.com/ebi-uniprot/uniprot-manual/blob/main/help/downloads.md",
+      "officialDocumentationBlobSha": "b2dc6408d5836a93d64cd7faf57bb397216bc065",
+      "officialHttpsMetadataCheck": {
+        "status": 404,
+        "contentType": "text/html",
+        "contentLength": 196,
+        "responseBodyRead": false
+      },
+      "acquired": false,
+      "classification": "documented generated release artifact currently unavailable at its official HTTPS URL"
+    },
+    "officialGithubTrace": {
+      "organizations": [
+        "ebi-uniprot",
+        "sib-swiss"
+      ],
+      "authoritativeOntologyFileFound": false,
+      "ontologyBuildPipelineFound": false,
+      "repositories": [
+        {
+          "repository": "ebi-uniprot/uniprot-manual",
+          "ownerType": "Organization",
+          "archived": false,
+          "classification": "documentation source",
+          "evidence": "help/technical.md and help/downloads.md link the external core.owl release artifact"
+        },
+        {
+          "repository": "ebi-uniprot/uniprot-core",
+          "ownerType": "Organization",
+          "archived": false,
+          "classification": "Java domain model, parsers, serializers, and controlled-vocabulary code; not the RDF core ontology source"
+        },
+        {
+          "repository": "sib-swiss/sparql-examples",
+          "ownerType": "Organization",
+          "archived": false,
+          "classification": "competency query corpus"
+        },
+        {
+          "repository": "sib-swiss/sparql-llm",
+          "ownerType": "Organization",
+          "archived": false,
+          "classification": "VoID-derived orientation tooling",
+          "evidence": "config.py comments the external core.owl URL; get_owl_onto_from_void_profile.ipynb constructs derived SHACL from endpoint metadata"
+        },
+        {
+          "repository": "sib-swiss/void-generator",
+          "ownerType": "Organization",
+          "archived": false,
+          "classification": "VoID generation tooling, not the UniProt ontology source"
+        }
+      ],
+      "codeSearchSummary": "Across ebi-uniprot, core.owl matches occur in uniprot-manual documentation and release notes, not as an ontology file. No Widoco match or core.owl commit was found. Across sib-swiss, core.owl occurs only as a configured external URL; no authoritative ontology file was found.",
+      "strongestInference": "The public evidence supports core.owl being generated and distributed by the UniProt release pipeline outside the inspected public GitHub repositories. The live core named graph is distinct from that stale/unavailable download artifact."
+    },
+    "publicProvenanceDiscussionTrace": {
+      "directQuestionFound": false,
+      "searchBoundary": "Public issue trackers, GitHub issues and commits, UniProt help pages, Stack Overflow, BioStars, Semantic Web/RDF communities, papers, notebooks, and cached ontology documentation were searched for the exact core.owl/PURL location problem. No directly relevant first-party answer or public question was found in the inspected results.",
+      "closestIncidents": [
+        {
+          "source": "https://bioregistry.io/registry/uniprot.core",
+          "classification": "third-party registry metadata",
+          "observedState": "The registry reports version 2025_03 and still returns the same official current-release core.owl URL as its OWL download link.",
+          "implication": "Independent registry metadata propagates the official URL but does not establish that the artifact is currently retrievable."
+        },
+        {
+          "source": "https://bioportal.bioontology.org/ontologies/UNIPROT",
+          "classification": "third-party ontology catalog snapshot",
+          "observedState": "BioPortal exposes an OWL submission uploaded 2026-01-22 but identifies its ontology version as v2012-10-03.",
+          "implication": "This is a catalog-hosted historical snapshot or workaround, not evidence of the current UniProt release artifact or build provenance."
+        },
+        {
+          "source": "https://archivo.dbpedia.org/list",
+          "classification": "third-party automated ontology archive",
+          "observedState": "Archivo lists the UniProt RDF schema ontology with a 2025-06-23 attempt and the error that it cannot build a new semantic version because the last is broken; its displayed prior date is 2020-05-07.",
+          "implication": "An independent archiver encountered a concrete ongoing versioning/retrieval problem, but supplies no first-party explanation of where the current source lives."
+        },
+        {
+          "source": "https://github.com/linkeddata/ontology-archiver/blob/master/list",
+          "classification": "third-party archival target list",
+          "observedState": "The ontology archiver's source list contains http://purl.uniprot.org/core/.",
+          "implication": "The namespace has long been treated as an archival dereference target, not as a documented public build-source location."
+        },
+        {
+          "source": "https://www.swat4ls.org/wp-content/uploads/2012/01/Tutorial_UniProt.rdfLondonSwat4Ls2011_12.pdf",
+          "classification": "historical first-party-adjacent SIB tutorial",
+          "observedState": "A 2011 SIB tutorial instructed users to save http://www.uniprot.org/owl/core.rdf as core.owl and described it as UniProt RDF schema data.",
+          "implication": "The ontology previously had a direct machine-readable location, but that historical URL does not establish the current release source."
+        }
+      ],
+      "conclusion": "The closest public evidence shows repeated reliance on stale, archived, or mirrored locations rather than a public explanation of the current source. It reinforces the distinction between the live core named graph, the currently unavailable official core.owl release URL, and third-party historical copies."
+    },
+    "proposedSmallestProfile": {
+      "id": "uniprot-core-term-orientation",
+      "operation": "query",
+      "endpoint": "https://sparql.uniprot.org/sparql",
+      "datasetClause": "FROM <http://purl.uniprot.org/core/>",
+      "inputContract": "fixed query template with only an allowlisted VALUES set of approved core IRIs and rdf:type/rdfs:label metadata",
+      "limits": {
+        "timeoutMs": 8000,
+        "maxBytes": 1000000,
+        "maxItems": 10,
+        "maxTransports": 1,
+        "retries": 0,
+        "followedRedirects": 0
+      },
+      "promotionStatus": "proposal-only-pending-successful-term-evidence-and-profile-gate"
+    }
+  },
+  "receipts": {
+    "humanDocumentation": {
+      "status": 200,
+      "contentType": "text/html",
+      "byteLength": 501448,
+      "sha256": "12235b4c56c5b36642bc2816adbd3ced6b49a71251e29ae8721fe575b103c998"
+    },
+    "competencyCatalog": {
+      "status": 200,
+      "contentType": "text/html",
+      "byteLength": 51696,
+      "sha256": "9b9cccf7d5863c0c6a2a79385790a11720ea7e9fa4f2266cb0d802f69ad48f38"
+    },
+    "datasetDescription": {
+      "status": 200,
+      "contentType": "text/html",
+      "byteLength": 105630,
+      "sha256": "543eba2fd685ee53975faad1a4d0477808b0058be3e432e99e296c147bc3d2d3"
+    },
+    "turtleNamespaceMetadata": {
+      "status": 303,
+      "responseBodyRead": false
+    },
+    "turtleDescribeAcquisition": {
+      "status": 200,
+      "contentType": "text/turtle",
+      "byteLength": 2697,
+      "sha256": "57a9fa32ec0fd480836e04abd82eae534c817908225771dd6b53f30add3dc04e",
+      "maxBytes": 10485760
+    },
+    "canonicalCandidateMetadata": {
+      "status": 404,
+      "contentType": "text/html",
+      "contentLength": 196,
+      "responseBodyRead": false
+    }
+  },
+  "requestPolicy": {
+    "followedRedirects": 0,
+    "retries": 0,
+    "competencyQueries": 0,
+    "instanceDataQueries": 0
+  },
+  "claimBoundary": "This compact receipt preserves bounded provenance and negotiation findings, not full HTML, catalog query text, the DESCRIBE payload, core.owl, or GitHub repository contents. The one marker-only query produced no visible receipt or result because the clean-room kernel timed out; this is not evidence of term absence. No profile or manifest was promoted."
+}

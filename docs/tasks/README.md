@@ -6,8 +6,8 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
-| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on term-bearing core profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Review the failed marker gate and select a different exact official term-bearing source or bounded query before any new approval. |
-| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on term-bearing core evidence | Complete the verified broker-owned orientation surface with the machine-readable UniProt terms required by the frozen competency cases. | Keep the validated 25-quad ontology metadata out of the profile; choose the next exact source/query without broadening live access implicitly. |
+| [UniProt competency evaluation manifest](uniprot-competency-manifest.md) | Blocked on term-bearing core profile | Promote the frozen, leakage-audited three-case public/private split to a dispatchable manifest without exposing held-out references. | Decide whether to authorize one exact retry of the timed-out marker-only core-graph query through a fixed immutable profile. |
+| [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Blocked on term-bearing core evidence | Complete the verified broker-owned orientation surface with the machine-readable UniProt terms required by the frozen competency cases. | Keep both 25-quad DESCRIBE serializations out of the profile; review the fixed marker-only query profile proposal and timeout. |
 
 ## When to create or update a task brief
 

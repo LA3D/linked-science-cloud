@@ -40,15 +40,20 @@ Offline tests must establish:
 - The approved metadata-only PURL inspection observed HTTP 303 to `https://purl.uniprot.org/html/index-en.html#` with one request, no retry, no followed redirect, and no body read. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-redirect-inspection.json) preserves the exact observation. Its deliberately non-matching `Accept` makes this fallback-route evidence, not RDF content-negotiation evidence.
 - A separately approved repeat with the exact RDF `Accept` header observed HTTP 303 to `https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:`. The [receipt](../../artifacts/experiment-results/2026-08-20-uniprot-core-rdf-redirect-inspection.json) records one request, no retry, no followed redirect, and no body read. The newly discovered target was not contacted.
 - A separately approved guarded GET to that exact target returned HTTP 200, 3,876 bytes of `application/rdf+xml`, and SHA-256 `da31ab55135f0864b47d95d9943dc44fd406a6cfc7fcb886e5ba7854d872cc86` in one attempt with no retry or followed redirect. It parsed completely into 25 quads. The [receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json) records that `owl:Ontology` was present but all required term-level markers were absent, so no immutable core profile was added.
+- A Turtle-only check observed the HTTPS core namespace redirect to the same exact DESCRIBE target and retrieved 2,697 bytes of valid `text/turtle`, again parsing to 25 quads. `FROM up:` selects the core ontology named graph as the active default graph; `DESCRIBE up:` returns an endpoint-selected description of the ontology IRI and does not enumerate or bound that graph.
+- A bounded repeat of the official `https://sparql.uniprot.org/uniprot` dataset description reproduced the existing 105,630-byte payload hash and exposed the main named graph's statistics plus core classes and predicates. It is a dataset/schema description, not the ontology serialization.
+- Official GitHub inspection found the maintained manual pages that link the external `core.owl` release artifact, but no checked-in ontology file, WIDOCO input, or public build pipeline. The active `ebi-uniprot/uniprot-core` repository is Java domain-model/parser code; active SIB repositories hold the competency corpus and VoID-derived orientation tooling. The exact official `core.owl` HTTPS URL returned 404, and no mirror was acquired.
+- Public issue/forum/archive discovery found no inspected direct question or first-party relocation answer. The closest registry and archive records repeat the stale URL, expose historical ontology snapshots, or record archival failure; they do not justify adding a mirror-backed broker profile.
+- One approved marker-only `SELECT` used `FROM <http://purl.uniprot.org/core/>`, the exact five marker IRIs, an `rdf:type`/`rdfs:label` allowlist, and `LIMIT 10`. The kernel timed out before a result or receipt crossed back and was not retried. The [provenance receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) records the unavailable outcome without an absence claim.
 
 ### Remaining work
 
-- Decide whether to approve a different exact, bounded term-bearing UniProt core source or query. The validated `DESCRIBE up:` response is machine-readable ontology metadata but is insufficient for the staged term-grounding cases.
+- Decide whether to approve one exact retry of the fixed marker-only core-graph query under a dedicated immutable profile. The validated DESCRIBE responses are ontology metadata but are insufficient for the staged term-grounding cases.
 - Perform any real profile operation only after current approval for that exact source or endpoint. A checked-in profile is capability metadata, not authorization to use it.
 
 ### Exact next action
 
-Review the failed term-marker gate and choose the next exact official source or bounded query before any further live request. Do not promote the current 25-quad response into `uniprot-core-ontology`, because it cannot ground the predicates and classes required by tiers 1 and 2.
+Review the marker-only query timeout and decide whether to authorize one exact retry through a dedicated `uniprot-core-term-orientation` profile. Do not promote either 25-quad DESCRIBE response into `uniprot-core-ontology`; neither bounds the core graph or grounds all required terms.
 
 ## Handoff state
 
