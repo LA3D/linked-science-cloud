@@ -63,7 +63,7 @@ Review the marker-only query timeout and decide whether to authorize one exact r
 
 ## Handoff state
 
-- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. This result continuation began from consumer local `main` at `081ba81`; result commit `b4b9863` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 23 registered runs, the new receipt parsed as JSON, the three registry tests passed after the final artifact classification, and `git diff --check` passed.
+- **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. This provenance continuation began from consumer local `main` at `b3a5021`; result commit `bc53651` is reachable from consumer local `main`. Nothing was pushed.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 24 registered runs, the new receipt parsed as JSON, all three registry tests passed, and `git diff --check` passed.
 - **Ephemeral state:** The endpoint preflight's native handle belongs to the restarted clean-room kernel and is not a durable scientific result.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.

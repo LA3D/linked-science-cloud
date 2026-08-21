@@ -57,6 +57,6 @@ Review the marker-only query timeout and decide whether to authorize one exact r
 
 ## Handoff state
 
-- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` remains unmodified on local `main` at `c0ab57e`. This result continuation began from consumer local `main` at `081ba81`; result commit `b4b9863` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** The live transport, response hash, RDF/XML parse, and bounded marker audit passed except for the explicit term-marker promotion gate. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 23 registered runs, the new receipt parsed as JSON, the three registry tests passed after the final artifact classification, and `git diff --check` passed.
+- **Git:** External checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` remains unmodified on local `main` at `c0ab57e`. This provenance continuation began from consumer local `main` at `b3a5021`; result commit `bc53651` is reachable from consumer local `main`. Nothing was pushed.
+- **Verification:** The guarded acquisitions, graph-model correction, GitHub/public provenance trace, and timeout boundary are durable. Consumer `npm test` passed 79/79, `npm run smoke` passed, `npm run evaluation:results:validate` passed with 24 registered runs, the new receipt parsed as JSON, all three registry tests passed, and `git diff --check` passed.
 - **Live evidence:** The exact RDF-negotiated target has now been contacted once under approval and produced valid ontology metadata. It did not produce the term descriptions needed for a core-orientation profile. None of this evidence is a competency answer.
