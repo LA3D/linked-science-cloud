@@ -19,7 +19,7 @@ For documentation or skill routing changes, also:
 - run the current Codex skill creator's `scripts/quick_validate.py` against each changed skill, when that validator is available; and
 - inspect the complete diff for accidental history rewrites, duplicated contracts, and unrelated files.
 
-For runtime changes, add the narrowest meaningful tests for the changed invariant and run the relevant direct script or fixture when one exists. Network success is never part of the default verification: live trials require current approval for the exact profile.
+For runtime changes, add the narrowest meaningful tests for the changed invariant and run the relevant direct script or fixture when one exists. Network success is never part of the default verification: live traversal requires current approval for its scientific scope and effective budgets. Synthetic transport fixtures must prove each actual Communica request crosses the mediator.
 
 For an intentional experiment run or a change to its result record, also run `npm run evaluation:results:validate`. Capture the compact machine receipt before resetting or closing resident state. A later prose reconstruction must remain labeled `retrospective-summary` with every unavailable field or trace segment named explicitly.
 

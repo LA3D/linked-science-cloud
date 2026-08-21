@@ -2,7 +2,7 @@
 
 ## Results behind handles
 
-Use `lib/repl-linked-data-session.mjs` when results should survive across REPL calls. For live results, prefer `queryToHandleGuarded`; use direct materialization methods only for values already obtained through another verified guard. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy` operations rather than rerunning or dumping the source result.
+Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, run live reads through `workspace.traversal.query`, which binds local Communica to one parent-mediated traversal session and retains the typed result with aggregate lineage. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, `deriveFilter`, or `deriveCountBy` operations rather than rerunning or dumping the source result.
 
 A handle name is not residency evidence. Cite current tool-generated operations for its type, count, and state. Keep raw documents, full rows, and quads resident; return only the bounded evidence needed for the task.
 
@@ -22,7 +22,7 @@ The map is bounded, stable-ID, JSON-compatible symbolic state. It may point to e
 
 Clean-room `js_reset` destroys JavaScript bindings, RLM contexts, Linked Science workspaces, and resident handles while broker-owned PEEK orientation survives. Bootstrap again before inspecting the map. A pre-reset orientation entry may retain lineage or a known failed route, but it cannot prove that a handle remains available. Check the current workspace and report the reference stale or missing.
 
-Rematerialization is a new guarded operation, not reuse or automatic recovery. It requires the original source path to remain authorized and yields new provenance. If the source, approval, or tool is unavailable, stop honestly rather than reconstructing state from the map.
+Rematerialization is a new mediated operation, not reuse or automatic recovery. It requires current traversal authorization and yields new provenance. If the source, approval, or mediator is unavailable, stop honestly rather than reconstructing state from the map.
 
 ## Presentation
 

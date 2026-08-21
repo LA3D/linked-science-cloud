@@ -9,7 +9,6 @@
     "boundaries:validate": "node scripts/validate-repository-boundaries.mjs",
     "cleanroom:check": "npm --prefix packages/cleanroom-node-repl run check",
     "cleanroom:test": "npm --prefix packages/cleanroom-node-repl test",
-    "query:identifiers-uniprot": "node scripts/identifiers-org-uniprot.mjs",
     "experiment:context-map": "node scripts/context-map-recovery.mjs",
     "experiment:context-map-two-turn": "node scripts/context-map-two-turn-turn1.mjs",
     "experiment:context-map-two-turn-turn2": "node scripts/context-map-two-turn-turn2.mjs",

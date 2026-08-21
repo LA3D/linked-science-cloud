@@ -16,3 +16,8 @@ test('boundary validation rejects an experimental sibling MCP path without movin
     /experimental sibling repository|outside the Linked Science checkout/u,
   );
 });
+
+test('production configuration cannot reactivate a retired fixed-profile transport', async () => {
+  const config = `[mcp_servers.cleanroom_node_repl]\ncommand = "node"\nargs = ["/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs"]\n# guarded-sparql-transport\n`;
+  await assert.rejects(validateRepositoryBoundaries({ configText: config }), /retired fixed-profile transport/u);
+});

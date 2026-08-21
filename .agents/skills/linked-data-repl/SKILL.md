@@ -14,8 +14,8 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 - Distinguish prior belief, source evidence, query-result evidence, and synthesis.
 - Pursue the information goal, not a preferred source or memorized graph path. Change routes when evidence or failures warrant it.
 - Never interpret an unavailable source or empty result as proof of global absence.
-- Use only an endpoint or documentation profile explicitly approved for the current task. Do not substitute hosts, paths, provider URLs, REST routes, or federation targets.
-- Keep live operations read-only, bounded, pinned, redirect-free, timed out, retry-limited, and provenance-bearing through the project guard.
+- Use live traversal only when the current task explicitly authorizes its scope and effective budgets. Linked Data destinations may be discovered dynamically; do not bypass the mediator or invent a raw-network route.
+- Keep live operations read-only, public-HTTPS-only, identity-free, hop/fan-out/concurrency/time/byte/item bounded, zero-retry by default, and provenance-bearing through the project mediator.
 - Keep large documents and results in the REPL behind named bindings or handles. Return only compact metadata, bounded pages or aggregates, provenance, and uncertainty.
 - Do not change global Codex configuration, install packages, export data, commit, push, or write externally unless the user separately authorizes that action. Export is not implemented by this skill.
 
@@ -24,9 +24,9 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 - **Documentation-only or static-source work:** inspect repository files directly. It does not require a REPL preflight unless the result claims REPL execution, retention, or live connectivity.
 - **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), use only `cleanroom_node_repl`, bootstrap exactly once with the documented absolute module and roots, and then reuse the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. Broker-owned PEEK orientation survives kernel replacement, but resident handles and RLM kernel context do not; bootstrap again and reject old-epoch handles.
 - **Any persistent-REPL execution:** first read and follow [REPL environment and persistence](references/repl-environment.md). A terminal script is not proof of REPL retention.
-- **Documentation acquisition, live querying, source selection, or profiles:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for the exact profile remains mandatory.
+- **Documentation acquisition, live querying, or source selection:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for a bounded traversal remains mandatory.
 - **Retained results, orientation, reset, or presentation:** read [retained state and bounded presentation](references/retained-state-and-presentation.md).
-- **Identifiers.org schema work only:** also read [the Identifiers.org SPARQL profile](references/identifiers-org-sparql.md).
+- **Reproducing historical Identifiers.org experiments only:** also read [the retired Identifiers.org SPARQL profile](references/identifiers-org-sparql.md); never treat it as current production authority.
 - **Evidence/session architecture changes:** read the repository's [goal-loop state dossier](../../../docs/experiments/goal-loop-state-graph.md) and [architecture routes](../../../docs/architecture/README.md).
 
 Use `resources/index.md` only as routed by the evidence-acquisition reference when a goal crosses sources or the starting source is unclear. Neither that index nor a skill is scientific evidence.

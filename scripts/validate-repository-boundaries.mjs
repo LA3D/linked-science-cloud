@@ -13,6 +13,15 @@ const productionRoots = Object.freeze([
   'packages/cleanroom-node-repl/src',
 ]);
 const inspectedExtensions = new Set([ '.cjs', '.js', '.json', '.mjs', '.toml' ]);
+const retiredTransportModules = [
+  'guarded-sparql-transport', 'guarded-documentation-fetch', 'guarded-evidence-acquisition',
+  'linked-data-source-profiles', 'linked-data-affordances',
+];
+const activeTransportFiles = [
+  '.codex/config.toml', 'package.json', 'lib/cleanroom-linked-science-bootstrap.mjs',
+  'lib/linked-science-runtime.mjs', 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',
+  'packages/cleanroom-node-repl/src/repl-kernel-child.mjs', 'packages/cleanroom-node-repl/src/mediated-traversal.mjs',
+];
 
 function within(root, candidate) {
   const path = relative(root, candidate);
@@ -81,6 +90,12 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
       if (info.isSymbolicLink()) failures.push(`MCP executable argument must not be a symlink: ${value}`);
     } catch (error) {
       failures.push(`MCP executable argument is unavailable: ${value} (${error.code ?? 'unknown'})`);
+    }
+  }
+  for (const path of activeTransportFiles) {
+    const text = path === '.codex/config.toml' && configText !== undefined ? configText : await readFile(resolve(root, path), 'utf8');
+    for (const retired of retiredTransportModules) {
+      if (text.includes(retired)) failures.push(`${path} references retired fixed-profile transport ${retired}`);
     }
   }
   if (failures.length > 0) throw new Error(`Repository boundary validation failed:\n- ${failures.join('\n- ')}`);

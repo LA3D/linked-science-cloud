@@ -27,7 +27,7 @@ Replace the obsolete bundled-REPL path with one active project MCP registration,
 
 ## Exact next action
 
-No implementation work remains. Preserve the verification evidence above when using or revising the clean-room bootstrap; any live source work still requires separate exact-profile approval.
+No implementation work remains. Preserve the verification evidence above when using or revising the clean-room bootstrap; any live source work still requires separate authorization for a bounded mediated traversal scope and effective budgets.
 
 ## Result preservation
 

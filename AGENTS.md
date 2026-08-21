@@ -5,8 +5,8 @@ This repository is an experimental persistent Linked Data REPL surface, not a ge
 ## Always-on contract
 
 - Keep source code and documentation, generated receipts or artifacts, and REPL-resident state distinct. A handle is not an artifact; a bounded display model is not a full result.
-- Default to local synthetic RDF. Live work requires current, explicit user approval for the exact endpoint or documentation profile. Never substitute hosts, provider URLs, REST routes, or federation targets.
-- Route approved live SPARQL and evidence acquisition through the project guards. Preserve read-only operations, explicit bounds, pinned sources, redirect and timeout policy, retry limits, provenance, retained handles, and bounded presentation.
+- Default to local synthetic RDF. Live work requires current, explicit user approval for a bounded traversal scope and effective budgets. Destinations may be discovered dynamically through Linked Data; approval is not an endpoint allowlist.
+- Route every approved live RDF/SPARQL request through the consumer-owned traversal mediator. Preserve read-only operations, HTTPS/public-network enforcement, redirect/hop/fan-out/concurrency/time/byte/item bounds, per-hop provenance, retained handles, and bounded presentation.
 - Separate prior belief, retrieved source evidence, query-result evidence, and synthesis. An unavailable source or empty result is not evidence of global absence.
 - Keep bulk documents and results behind REPL handles; expose only bounded views, metadata, provenance, and calibrated uncertainty.
 - Do not change global Codex configuration, install packages, export data, push, change remotes, or make other external writes without explicit authorization. Authorized exports use a controlled project artifact area and do not overwrite by default.

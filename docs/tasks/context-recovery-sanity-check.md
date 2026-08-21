@@ -57,7 +57,7 @@ None. Any broader open-ended or live-source evaluation is a separately selected 
 
 ### Blockers or required decisions
 
-- None for the local evaluation. Any proposal to use live Linked Science Cloud sources is a separate task requiring current approval for exact profiles.
+- None for the local evaluation. Any proposal to use live Linked Science sources is a separate task requiring current approval for a bounded mediated traversal scope and effective budgets.
 
 ## Handoff state
 
