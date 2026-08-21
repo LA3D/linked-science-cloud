@@ -149,6 +149,8 @@ A broader public provenance search found no inspected first-party answer, issue,
 
 One newly approved marker-only query used the immutable `uniprot-read` profile, `FROM <http://purl.uniprot.org/core/>`, a five-IRI `VALUES` list, an `rdf:type`/`rdfs:label` predicate allowlist, and `LIMIT 10`. The clean-room kernel timed out and was replaced before a result or broker receipt crossed back, so no term-absence claim is made and no retry was attempted. The [provenance receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) preserves these boundaries. The smallest proposed next profile is an immutable query template limited to approved core term IRIs and type/label metadata with the existing one-transport, ten-row, one-megabyte, eight-second ceilings. It remains proposal-only until successful term evidence passes the orientation gate. No competency query ran and no worker manifest was promoted.
 
+The later baseline-preparation attempt stopped before execution. Its [neutral capability snapshot](../../artifacts/audits/2026-08-21-stopped-baseline-capability-snapshot.json) preserves the runtime and broker descriptors that were actually observed and records that the sibling repository was inspected read-only. No worker was dispatched, no baseline prompt was created, and no live request or competency query ran. The per-task schema-profile proposal drafted during that attempt was rejected and is not part of the current architecture or task routing.
+
 ## Limits and non-claims
 
 - Current clean-room evidence now includes broker activation, raw-network denial, evaluator-private read denial, and one approved endpoint-existence preflight. It does not include a competency-case execution or scientific answer.

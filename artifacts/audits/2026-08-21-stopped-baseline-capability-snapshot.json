@@ -1,0 +1,78 @@
+{
+  "format": "linked-science-stopped-baseline-capability-snapshot/v1",
+  "recordedAt": "2026-08-21T14:05:03Z",
+  "startingCommit": "bcd05722b1f00ebc8d16744ab797420de66311b0",
+  "status": "superseded-design-audit",
+  "purpose": "Preserve the runtime capability facts observed before the stopped UniProt baseline-preparation attempt without retaining its rejected profile design.",
+  "runtimePreflight": {
+    "surface": [
+      "js",
+      "js_add_node_module_dir",
+      "js_reset"
+    ],
+    "cwd": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
+    "mode": "codeact",
+    "crossCallPersistence": true,
+    "bootstrap": "passed",
+    "brokerOwnedLive": true,
+    "declaredDependenciesResolved": [
+      "@comunica/query-sparql",
+      "n3",
+      "sparqljs"
+    ],
+    "rlmDiscoveryRegistered": true
+  },
+  "observedBroker": {
+    "kind": "linked-science-network-broker",
+    "version": "1.1.0",
+    "profiles": [
+      {
+        "id": "uniprot-void-description",
+        "operation": "acquire",
+        "sha256": "b72596b9ec170fbfb6d8baac1559530a74931e1ec6625b2bce550822c259b653",
+        "limits": {
+          "maxBytes": 2000000,
+          "maxItems": 1,
+          "maxTransports": 1
+        }
+      },
+      {
+        "id": "go-orientation",
+        "operation": "acquire",
+        "sha256": "08b5337097613ac34682fc26521a33d6d3321b0dcd39fc72dbace5f9603ab7e0",
+        "limits": {
+          "maxBytes": 2000000,
+          "maxItems": 1,
+          "maxTransports": 1
+        }
+      },
+      {
+        "id": "uniprot-read",
+        "operation": "query",
+        "sha256": "9963b75e4141c8c4b1d972b400aa0b9eaa7fa683801517acc8b124add9907791",
+        "limits": {
+          "maxBytes": 1000000,
+          "maxItems": 10,
+          "maxTransports": 1,
+          "maxQueryChars": 4096
+        }
+      }
+    ]
+  },
+  "sourceInspection": {
+    "repository": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe",
+    "mode": "read-only",
+    "modified": false
+  },
+  "executionBoundary": {
+    "baselineDispatched": false,
+    "workerPromptCreated": false,
+    "competencyQueries": 0,
+    "liveNetworkRequests": 0
+  },
+  "supersession": {
+    "rejectedDesignRetained": false,
+    "note": "The drafted per-task schema profile, fixed graph/query shape, blanket SERVICE restriction, and eight-second gate were rejected and are not current architecture, task routing, or authorization."
+  },
+  "claimBoundary": "This audit preserves observed runtime capabilities and non-execution facts only. It is not a live-source receipt, competency result, or authorization for a future operation."
+}
