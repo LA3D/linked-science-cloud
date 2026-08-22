@@ -51,7 +51,7 @@ The project `.codex/config.toml` already contains the registration. Fully restar
    });
    ```
 
-   The bridge and raw Fetch must both be `undefined`. The capability must report protocol 3.1.0, authority `anonymous-linked-data-read` 1.0.0, standard Fetch, zero retries, bounded HTTP navigation evidence, and default/hard budgets. It must not contain capability tokens, credentials, cookies, endpoint allowlists, hidden evaluation paths, or a callable transport object.
+   The bridge and raw Fetch must both be `undefined`. The capability must report protocol 3.2.0, authority `anonymous-linked-data-read` 1.0.0, standard Fetch, zero retries, cumulative goal-exploration receipts, bounded HTTP navigation evidence, and default/hard budgets. It must not contain capability tokens, credentials, cookies, endpoint allowlists, hidden evaluation paths, or a callable transport object.
 
 ## Semantics and limits
 

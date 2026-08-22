@@ -179,6 +179,7 @@ const linkedScienceTraversal = Object.freeze({
   capabilities: () => hostCallStrict("traversal.capabilities", {}),
   beginTraversal: (budgets = {}) => hostCallStrict("traversal.begin", { budgets }),
   request: (traversalId, request) => hostCallStrict("traversal.request", { traversalId, request }),
+  snapshotTraversal: (traversalId) => hostCallStrict("traversal.snapshot", { traversalId }),
   finishTraversal: (traversalId) => hostCallStrict("traversal.finish", { traversalId }),
   abortTraversal: (traversalId, reason) => hostCallStrict("traversal.abort", { traversalId, reason }),
   createFetch(traversalId) {

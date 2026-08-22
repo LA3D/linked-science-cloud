@@ -10,6 +10,7 @@ function traversalAdapter(broker) {
     capabilities: () => broker.capabilities(),
     beginTraversal: budgets => broker.beginTraversal(budgets, owner),
     request: (traversalId, request) => broker.request({ traversalId, request }, owner),
+    snapshotTraversal: traversalId => broker.snapshotTraversal({ traversalId }, owner),
     finishTraversal: traversalId => broker.finishTraversal({ traversalId }, owner),
     abortTraversal: (traversalId, reason) => broker.abortTraversal({ traversalId, reason }, owner),
     createFetch(traversalId) {
@@ -33,15 +34,18 @@ function rdfFetch(calls) {
     '/empty.ttl': '@prefix ex: <https://example.test/> .',
     '/many.ttl': '@prefix ex: <https://example.test/> . ex:a ex:p ex:o . ex:b ex:p ex:o .',
     '/schema': '@prefix ex: <https://example.test/> . @prefix owl: <http://www.w3.org/2002/07/owl#> . ex:Term a owl:Class .',
+    '/landing': '<html><title>Vocabulary</title></html>',
+    '/broken': '@prefix ex: <https://example.test/> . ex:s ex:p [',
   };
   return async (input, init = {}) => {
     const url = new URL(input);
     const headers = Object.fromEntries(new Headers(init.headers));
     calls.push({ url: url.href, method: init.method, headers, body: init.body });
-    if (documents[url.pathname]) return new Response(documents[url.pathname], { status: 200, headers: {
-      'content-type': 'text/turtle; profile="https://example.test/profile/core"',
-      link: '<./schema>; rel="describedby", <https://example.test/profile/link>; rel="profile"',
-    } });
+    if (documents[url.pathname]) return new Response(documents[url.pathname], { status: 200, headers: url.pathname === '/landing' ? {
+      'content-type': 'text/html', link: '<./schema>; rel="alternate describedby"; type="text/turtle"',
+    } : url.pathname === '/broken' ? {
+      'content-type': 'text/turtle', link: '<./schema>; rel="alternate describedby"; type="text/turtle"',
+    } : { 'content-type': 'text/turtle; profile="https://example.test/profile/core"', link: '<./schema>; rel="describedby", <https://example.test/profile/link>; rel="profile"' } });
     if (url.hostname === 'service-a.example') {
       return new Response(JSON.stringify({
         head: { vars: [ 'item' ] }, results: { bindings: [ { item: { type: 'uri', value: 'https://example.test/item1' } } ] },
@@ -94,15 +98,14 @@ test('complete RDF document acquisition uses Communica queryQuads and native ret
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker), peek })).open({ contextKey: 'ontology-document' });
   assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'epoch', 'graph', 'graphs', 'orientation', 'query', 'results', 'schema', 'traversal' ]);
   const handle = await workspace.traversal.query({
-    sources: [ 'http://data.example/many.ttl' ],
-    sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
-    role: 'complete-ontology-document',
-    budgets: { maxResultItems: 10 },
-    negotiation: {
+    sources: [ { value: 'http://data.example/many.ttl', negotiation: {
       accept: 'text/turtle; profile="https://example.test/profile/request"',
       acceptProfile: 'https://example.test/profile/request',
       prefer: 'return=representation',
-    },
+    } } ],
+    sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
+    role: 'complete-ontology-document',
+    budgets: { maxResultItems: 10 },
   });
   const profile = workspace.results.profile(handle);
   assert.equal(profile.type, 'quads');
@@ -113,11 +116,11 @@ test('complete RDF document acquisition uses Communica queryQuads and native ret
   assert.equal(calls[0].headers.prefer, 'return=representation');
   assert.equal(profile.provenance.navigation.instructionAuthority, false);
   assert.equal(profile.provenance.navigation.candidates[0].target, 'http://data.example/schema');
-  assert.deepEqual(profile.provenance.navigation.profiles, [
-    'https://example.test/profile/core',
-    'https://example.test/profile/link',
+  assert.deepEqual(profile.provenance.navigation.profileDeclarations.map(item => [ item.profile, item.mechanism ]), [
+    [ 'https://example.test/profile/core', 'content-type' ],
+    [ 'https://example.test/profile/link', 'link' ],
   ]);
-  assert.match(profile.provenance.navigation.use, /subsequent mediated traversal/u);
+  assert.match(profile.provenance.navigation.use, /subsequent mediated action/u);
   assert.equal(edits.length, 0);
   const nativeShape = await workspace.results.derive(handle, ({ dataset, quads }) => ({
     kind: 'rows', rows: [ { datasetCore: typeof dataset.match === 'function', size: dataset.size, termType: quads[0].subject.termType } ],
@@ -166,6 +169,72 @@ test('a later agentic turn can select a relevant HTTP relation without automatic
   assert.equal(calls[1].url, candidate.target);
 });
 
+test('failed RDF parsing exposes advertised navigation directly and remains recoverable inside one goal exploration', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'failure-navigation' });
+  const begun = await workspace.traversal.begin({ budgets: { maxRequests: 4, maxResultItems: 4 } });
+  await assert.rejects(workspace.traversal.query({
+    sources: [ 'https://data.example/broken' ],
+    sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
+  }), error => {
+    assert.equal(error.receipt.navigation.candidates[0].target, 'https://data.example/schema');
+    assert.equal(error.receipt.navigation.candidates[0].evidenceStatus, 'advertised-untried');
+    assert.equal(error.receipt.navigation.candidates[0].executionAuthority, false);
+    return true;
+  });
+  const status = await workspace.traversal.status();
+  assert.equal(status.status, 'active');
+  assert.equal(status.traversalId, begun.traversalId);
+  const schema = await workspace.traversal.query({
+    sources: [ status.navigation.candidates[0].target ],
+    sparql: 'ASK { <https://example.test/Term> a <http://www.w3.org/2002/07/owl#Class> }',
+  });
+  assert.equal(workspace.results.page(schema, { limit: 1 }).rows[0].value, true);
+  const receipt = await workspace.traversal.finish();
+  assert.equal(receipt.status, 'complete');
+  assert.equal(receipt.traversalId, begun.traversalId);
+  assert.equal(receipt.usage.requests, 2);
+  assert.equal(receipt.operations, 1);
+  assert.equal(receipt.resultItems, 1);
+});
+
+test('goal exploration budgets accumulate across agent decisions instead of resetting per query', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'cumulative-budgets' });
+  await workspace.traversal.begin({ budgets: { maxRequests: 1, maxResultItems: 2 } });
+  await workspace.traversal.query({ sources: [ 'https://data.example/source-a.ttl' ], sparql: 'ASK { ?s ?p ?o }' });
+  await assert.rejects(
+    workspace.traversal.query({ sources: [ 'https://data.example/source-b.ttl' ], sparql: 'ASK { ?s ?p ?o }' }),
+    error => error.receipt.traversalReceipt.usage.requests === 1,
+  );
+  assert.equal((await workspace.traversal.status()).usage.requests, 1);
+  await workspace.traversal.abort('budget-test-complete');
+});
+
+test('workspace reset aborts its active goal exploration and stale workspace state cannot continue it', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
+  const workspace = linkedScience.open({ contextKey: 'reset-exploration' });
+  await workspace.traversal.begin({ budgets: { maxRequests: 2 } });
+  assert.equal(broker.sessions.size, 1);
+  linkedScience.reset({ contextKey: 'reset-exploration' });
+  assert.equal(broker.sessions.size, 0);
+  await assert.rejects(workspace.traversal.status(), error => error.code === 'LS_STALE_WORKSPACE');
+});
+
+test('document negotiation is rejected when every initial source is a SPARQL service', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'service-negotiation' });
+  await assert.rejects(workspace.traversal.query({
+    sources: [ { type: 'sparql', value: 'https://service-a.example/sparql' } ],
+    sparql: 'ASK { ?s ?p ?o }',
+    negotiation: { acceptProfile: 'https://example.test/profile/document-only' },
+  }), error => error.code === 'LS_TRAVERSAL_PREFLIGHT' && /do not inherit/u.test(error.message));
+  assert.equal(broker.sessions.size, 0);
+});
+
 test('local Communica governs two SERVICE targets through the same traversal mediator', async () => {
   const calls = [];
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
@@ -178,12 +247,15 @@ test('local Communica governs two SERVICE targets through the same traversal med
     } LIMIT 10`,
     role: 'two-service-result',
     budgets: { maxFanOut: 4, maxRequests: 12 },
+    negotiation: { acceptProfile: 'https://example.test/profile/document-only' },
   });
   assert.equal(workspace.results.page(handle, { limit: 2 }).rows[0].label.value, 'Alpha');
   const receipt = workspace.results.profile(handle).provenance.traversalReceipt;
   assert.equal(receipt.exchanges.some(exchange => exchange.requestedUrl.startsWith('https://service-a.example/')), true);
   assert.equal(receipt.exchanges.some(exchange => exchange.requestedUrl.startsWith('https://service-b.example/')), true);
   assert.equal(calls.filter(call => call.url.includes('service-')).length >= 2, true);
+  assert.equal(calls.filter(call => call.url.includes('service-')).every(call => call.headers['accept-profile'] === undefined), true);
+  assert.equal(calls.find(call => call.url.includes('/empty.ttl')).headers['accept-profile'], 'https://example.test/profile/document-only');
 });
 
 test('a dynamically selected SPARQL source descriptor remains mediator-governed', async () => {

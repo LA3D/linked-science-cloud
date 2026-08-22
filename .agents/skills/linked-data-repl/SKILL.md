@@ -15,7 +15,7 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 - Pursue the information goal, not a preferred source or memorized graph path. Change routes when evidence or failures warrant it.
 - Never interpret an unavailable source or empty result as proof of global absence.
 - Use live traversal only when the current task explicitly authorizes its scope and effective budgets. Linked Data destinations may be discovered dynamically; do not bypass the mediator or invent a raw-network route.
-- Keep live operations read-only, public-HTTPS-only, identity-free, hop/fan-out/concurrency/time/byte/item bounded, zero-retry by default, and provenance-bearing through the project mediator.
+- Keep live operations read-only, public HTTP/HTTPS, identity-free, request/fan-out/concurrency/time/byte/item bounded, zero-retry by default, and provenance-bearing through the project mediator.
 - Keep large documents and results in the REPL behind named bindings or handles. Return only compact metadata, bounded pages or aggregates, provenance, and uncertainty.
 - Do not change global Codex configuration, install packages, export data, commit, push, or write externally unless the user separately authorizes that action. Export is not implemented by this skill.
 

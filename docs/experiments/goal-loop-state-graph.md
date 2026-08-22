@@ -28,7 +28,7 @@ Keep these as enforcement or tool-verified requirements:
 
 1. **Evidence separation:** retain prior belief, retrieved source evidence, query-result evidence, and agent synthesis as distinct kinds.
 2. **Verified state:** claims about session, handle, count, residency, or reset must cite a tool-generated operation/event—not a name invented in a report.
-3. **Read boundary:** live actions require an explicitly approved traversal scope and remain public-HTTPS-only, read-only, behavior-bounded, and provenance-bearing through the mediator.
+3. **Read boundary:** live actions require an explicitly approved traversal scope and remain public HTTP/HTTPS, read-only, behavior-bounded, and provenance-bearing through the mediator.
 4. **Large-context boundary:** bulk source documents and result tables stay behind REPL handles; reports expose only bounded views, metadata, and provenance.
 5. **Epistemic scope:** an empty result means no binding for one exact query over one queried graph; a failed/unretrieved schema means schema state is unavailable, not that the requested fact is false or absent.
 6. **Prerequisites:** a plan or frontier action may use only the evidence it actually has. Failed schema acquisition cannot yield a schema-derived operation choice.

@@ -221,22 +221,30 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
     var facade = await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
     var workspace = facade.open({ contextKey: 'private-authority-smoke' });
+    var exploration = await workspace.traversal.begin({ budgets: { maxRequests: 2 } });
+    var explorationStatus = await workspace.traversal.status();
+    await workspace.traversal.abort('offline-smoke-complete');
     nodeRepl.write({
       version: facade.version,
       authority: facade.capabilities().traversal.authority.class,
       transport: facade.capabilities().traversal.transport.implementation,
       traversalMethod: typeof workspace.traversal.query,
+      explorationStatus: explorationStatus.status,
+      sameTraversal: exploration.traversalId === explorationStatus.traversalId,
       exposedBridge: typeof nodeRepl.linkedScienceTraversal,
       exposedFetch: typeof fetch
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '3\.1\.0'/u);
+  assert.match(text(response), /version: '3\.2\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /traversalMethod: 'function'/u);
+  assert.match(text(response), /explorationStatus: 'active'/u);
+  assert.match(text(response), /sameTraversal: true/u);
   assert.match(text(response), /exposedBridge: 'undefined'/u);
   assert.match(text(response), /exposedFetch: 'undefined'/u);
+  assert.equal(broker.traversal.sessions.size, 0);
 });
 
 test("registered package entrypoints use ESM import conditions", async (t) => {

@@ -24,13 +24,17 @@ async function localServer(handler) {
 test("attests one immutable anonymous-read authority over standard Fetch", () => {
   const capability = new MediatedTraversalBroker().capabilities();
   assert.equal(capability.kind, "linked-science-anonymous-read-mediator");
-  assert.equal(capability.version, "3.1.0");
+  assert.equal(capability.version, "3.2.0");
   assert.equal(capability.authority.class, "anonymous-linked-data-read");
   assert.deepEqual(capability.authority.schemes, [ "http", "https" ]);
   assert.deepEqual(capability.authority.methods, [ "GET", "HEAD", "SPARQL_POST" ]);
   assert.equal(capability.transport.implementation, "standard-fetch");
   assert.equal(capability.transport.dnsTls, "platform");
   assert.equal(capability.retries, 0);
+  assert.equal(capability.defaultBudgets.maxDurationMs, 300_000);
+  assert.equal(capability.hardBudgets.maxDurationMs, 900_000);
+  assert.equal(capability.defaultBudgets.maxRequestMs, 20_000);
+  assert.equal(capability.hardBudgets.maxRequestMs, 30_000);
   assert.equal(Object.isFrozen(capability.authority), true);
 });
 
@@ -85,6 +89,7 @@ test("uses real standard Fetch for HTTP, strips identity, follows redirects, and
   assert.equal(receipt.exchanges[0].requestedUrl, `${fixture.url}/start`);
   assert.equal(receipt.exchanges[0].finalUrl, `${fixture.url}/ontology.ttl`);
   assert.equal(receipt.exchanges[0].redirected, true);
+  assert.equal(receipt.exchanges[0].responseHeadersTruncated, false);
   assert.equal(receipt.exchanges[0].navigation.links[0].target, `${fixture.url}/schema`);
   assert.deepEqual(receipt.exchanges[0].navigation.links[0].relations, [ "describedby", "alternate" ]);
   assert.deepEqual(receipt.exchanges[0].navigation.profiles, [
@@ -92,6 +97,7 @@ test("uses real standard Fetch for HTTP, strips identity, follows redirects, and
     "https://example.test/profiles/response",
     "https://example.test/profiles/link",
   ]);
+  assert.deepEqual(receipt.exchanges[0].navigation.profileDeclarations.map(item => item.mechanism), [ "content-type", "content-profile", "link" ]);
   assert.equal(receipt.exchanges[0].navigation.preferenceApplied, "return=representation");
   assert.equal(receipt.exchanges[0].navigation.trust, "untrusted-candidate-evidence");
   assert.equal(receipt.usage.bytes, ttl.length);
@@ -214,4 +220,32 @@ test("binds sessions to token and epoch and aborts them on owner replacement", a
   assert.equal(receipts.length, 2);
   assert.equal(receipts.every(receipt => receipt.status === "aborted" && receipt.failure.code === "kernel-replaced"), true);
   assert.throws(() => broker.finishTraversal({ traversalId: second.traversalId }, owner), error => error.code === "MEDIATOR_TRAVERSAL_INVALID");
+});
+
+test("snapshots one active traversal without resetting cumulative budgets", async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: async () => new Response(ttl, { headers: { "content-type": "text/turtle" } }) });
+  const traversal = begin(broker, { maxRequests: 2 });
+  await broker.request({ traversalId: traversal.traversalId, request: { url: "https://a.example/one" } }, owner);
+  const first = broker.snapshotTraversal({ traversalId: traversal.traversalId }, owner);
+  assert.equal(first.status, "active");
+  assert.equal(typeof first.observedAt, "string");
+  assert.equal(first.finishedAt, undefined);
+  assert.equal(first.usage.requests, 1);
+  await broker.request({ traversalId: traversal.traversalId, request: { url: "https://a.example/two" } }, owner);
+  const finished = broker.finishTraversal({ traversalId: traversal.traversalId }, owner);
+  assert.equal(finished.usage.requests, 2);
+  assert.equal(typeof finished.finishedAt, "string");
+  assert.equal(finished.observedAt, undefined);
+});
+
+test("retains semantic navigation relations when the bounded Link projection is saturated", async () => {
+  const generic = Array.from({ length: 24 }, (_, index) => `<https://data.example/item-${index}>; rel="item"`);
+  const link = [ ...generic, '<https://data.example/schema>; rel="describedby"' ].join(', ');
+  const broker = new MediatedTraversalBroker({ fetchImpl: async () => new Response(ttl, { headers: { "content-type": "text/turtle", link } }) });
+  const traversal = begin(broker);
+  await broker.request({ traversalId: traversal.traversalId, request: { url: "https://data.example/root" } }, owner);
+  const receipt = broker.finishTraversal({ traversalId: traversal.traversalId }, owner);
+  assert.equal(receipt.exchanges[0].navigation.links.length, 24);
+  assert.equal(receipt.exchanges[0].navigation.links[0].target, "https://data.example/schema");
+  assert.equal(receipt.exchanges[0].navigation.truncated, true);
 });

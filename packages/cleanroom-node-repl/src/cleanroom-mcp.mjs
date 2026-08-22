@@ -200,6 +200,7 @@ export class KernelBroker {
       else if (method === "traversal.capabilities") value = this.traversal.capabilities();
       else if (method === "traversal.begin") value = this.traversal.beginTraversal(args.budgets, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.request") value = await this.traversal.request(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "traversal.snapshot") value = this.traversal.snapshotTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.finish") value = this.traversal.finishTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.abort") value = this.traversal.abortTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "peek.begin") value = this.peek.begin(args.contextId, args.options);

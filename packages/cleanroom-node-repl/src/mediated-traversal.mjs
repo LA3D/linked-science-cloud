@@ -7,7 +7,7 @@ const KIND = "linked-science-anonymous-read-mediator";
 const RECEIPT_KIND = "linked-science-traversal-receipt";
 const EXCHANGE_KIND = "linked-science-fetch-exchange";
 const AUTHORITY_CLASS = "anonymous-linked-data-read";
-const PROTOCOL_VERSION = "3.1.0";
+const PROTOCOL_VERSION = "3.2.0";
 const AUTHORITY_VERSION = "1.0.0";
 const READ_QUERY_TYPES = new Set([ "SELECT", "ASK", "CONSTRUCT", "DESCRIBE" ]);
 const IDENTITY_HEADERS = new Set([
@@ -22,11 +22,12 @@ const SAFE_RESPONSE_HEADERS = new Set([
 const MAX_HEADER_VALUE_CHARS = 8_192;
 const MAX_NAVIGATION_LINKS = 24;
 const MAX_LINK_PARAMETERS = 8;
+const NAVIGATION_RELATION_PRIORITY = new Set([ "profile", "describedby", "alternate", "http://www.w3.org/ns/json-ld#context", "service-desc", "canonical" ]);
 const DEFAULT_ACCEPT = "application/trig, application/n-quads;q=0.95, text/turtle;q=0.9, application/ld+json;q=0.8, application/rdf+xml;q=0.7, application/sparql-results+json;q=0.6, application/sparql-results+xml;q=0.5";
 const HARD_BUDGETS = Object.freeze({
   maxQueryChars: 100_000,
   maxRequestBodyBytes: 256_000,
-  maxDurationMs: 120_000,
+  maxDurationMs: 900_000,
   maxRequestMs: 30_000,
   maxRequests: 32,
   maxFanOut: 16,
@@ -38,7 +39,7 @@ const HARD_BUDGETS = Object.freeze({
 const DEFAULT_BUDGETS = Object.freeze({
   maxQueryChars: 16_384,
   maxRequestBodyBytes: 64_000,
-  maxDurationMs: 60_000,
+  maxDurationMs: 300_000,
   maxRequestMs: 20_000,
   maxRequests: 16,
   maxFanOut: 8,
@@ -115,16 +116,19 @@ function parseContentTypeProfiles(contentType) {
   return profiles.slice(0, MAX_NAVIGATION_LINKS);
 }
 
-function parseNavigation(headers, responseUrl) {
+function parseProfileHeader(value) {
+  return String(value ?? "").match(/<[^>]+>|"[^"]+"|[^,\s]+/gu)?.map(item => item.replace(/^<|>$/gu, "").replace(/^"|"$/gu, "")).filter(Boolean) ?? [];
+}
+
+function parseNavigation(headers, responseUrl, headersTruncated = false) {
   const links = [];
   const linkIndexes = new Map();
   let malformedLinkHeader = false;
-  let truncated = false;
+  let truncated = headersTruncated;
   if (headers.link) {
     try {
       const parsed = httpLinkHeader.parse(headers.link);
-      truncated = parsed.refs.length > MAX_NAVIGATION_LINKS;
-      for (const ref of parsed.refs.slice(0, MAX_NAVIGATION_LINKS)) {
+      for (const ref of parsed.refs) {
         const target = resolveLinkIri(ref.uri, responseUrl);
         if (!target) continue;
         const parameters = {};
@@ -144,17 +148,26 @@ function parseNavigation(headers, responseUrl) {
       }
     } catch { malformedLinkHeader = true; }
   }
-  const profiles = [];
-  for (const profile of [
-    ...parseContentTypeProfiles(headers["content-type"]),
-    ...String(headers["content-profile"] ?? "").split(/\s+/u).filter(Boolean),
-    ...links.filter(link => link.relations.includes("profile")).map(link => link.target),
-  ]) if (!profiles.includes(profile)) profiles.push(profile);
+  const preferred = links.filter(link => link.relations.some(relation => NAVIGATION_RELATION_PRIORITY.has(relation)));
+  const remaining = links.filter(link => !preferred.includes(link));
+  const selectedPreferred = preferred.slice(0, MAX_NAVIGATION_LINKS);
+  const selectedLinks = [ ...selectedPreferred, ...remaining.slice(0, MAX_NAVIGATION_LINKS - selectedPreferred.length) ];
+  truncated = truncated || links.length > selectedLinks.length;
+  const profileDeclarations = [];
+  for (const [ mechanism, declared ] of [
+    [ "content-type", parseContentTypeProfiles(headers["content-type"]) ],
+    [ "content-profile", parseProfileHeader(headers["content-profile"]) ],
+    [ "link", selectedLinks.filter(link => link.relations.includes("profile")).map(link => link.target) ],
+  ]) for (const profile of declared) {
+    const resolved = resolveLinkIri(profile, responseUrl) ?? profile;
+    if (!profileDeclarations.some(item => item.profile === resolved && item.mechanism === mechanism)) profileDeclarations.push(Object.freeze({ profile: resolved, mechanism }));
+  }
   return Object.freeze({
     kind: "linked-data-navigation-evidence",
     responseUrl,
-    links: Object.freeze(links.map(link => Object.freeze({ ...link, relations: Object.freeze(link.relations), ...(link.parameters ? { parameters: Object.freeze(link.parameters) } : {}) }))),
-    profiles: Object.freeze(profiles.slice(0, MAX_NAVIGATION_LINKS)),
+    links: Object.freeze(selectedLinks.map(link => Object.freeze({ ...link, relations: Object.freeze(link.relations), ...(link.parameters ? { parameters: Object.freeze(link.parameters) } : {}) }))),
+    profiles: Object.freeze([ ...new Set(profileDeclarations.map(item => item.profile)) ].slice(0, MAX_NAVIGATION_LINKS)),
+    profileDeclarations: Object.freeze(profileDeclarations.slice(0, MAX_NAVIGATION_LINKS)),
     preferenceApplied: headers["preference-applied"],
     malformedLinkHeader,
     truncated,
@@ -164,8 +177,13 @@ function parseNavigation(headers, responseUrl) {
 
 function sanitizeResponseHeaders(headers) {
   const result = {};
-  for (const [ name, value ] of headers.entries()) if (SAFE_RESPONSE_HEADERS.has(name.toLowerCase())) result[name.toLowerCase()] = value;
-  return Object.freeze(result);
+  let truncated = false;
+  for (const [ name, value ] of headers.entries()) if (SAFE_RESPONSE_HEADERS.has(name.toLowerCase())) {
+    const bounded = String(value);
+    if (bounded.length > MAX_HEADER_VALUE_CHARS) truncated = true;
+    result[name.toLowerCase()] = bounded.slice(0, MAX_HEADER_VALUE_CHARS);
+  }
+  return Object.freeze({ headers: Object.freeze(result), truncated });
 }
 
 function parseReadQuery(body, maxQueryChars) {
@@ -330,7 +348,8 @@ export class MediatedTraversalBroker {
         signal: controller.signal,
         credentials: "omit",
       });
-      const headers = sanitizeResponseHeaders(response.headers);
+      const sanitizedHeaders = sanitizeResponseHeaders(response.headers);
+      const headers = sanitizedHeaders.headers;
       const bytes = await readBoundedBody(response, session.budgets.maxResponseBytes, session.budgets.maxTotalBytes - session.bytes, controller.signal);
       session.bytes += bytes.length;
       const finalUrl = response.url || validated.url.href;
@@ -338,12 +357,13 @@ export class MediatedTraversalBroker {
       const completedOrigins = new Set(session.origins).add(finalOrigin);
       if (completedOrigins.size > session.budgets.maxFanOut) throw mediatorError("MEDIATOR_FANOUT_LIMIT", "Redirected traversal destination exceeds the distinct-source bound");
       session.origins = completedOrigins;
-      const navigation = parseNavigation(headers, finalUrl);
+      const navigation = parseNavigation(headers, finalUrl, sanitizedHeaders.truncated);
       const exchange = Object.freeze({
         kind: EXCHANGE_KIND, version: PROTOCOL_VERSION, index, status: response.ok ? "success" : "http-error",
         requestedUrl: validated.url.href, finalUrl, redirected: Boolean(response.redirected), method: validated.method,
         httpStatus: response.status, requestSha256, responseSha256: sha256(bytes), bytes: bytes.length,
-        mediaType: String(headers["content-type"] ?? "").split(";", 1)[0].trim().toLowerCase(), headers, navigation,
+        mediaType: String(headers["content-type"] ?? "").split(";", 1)[0].trim().toLowerCase(), headers,
+        responseHeadersTruncated: sanitizedHeaders.truncated, navigation,
         queryType: validated.query?.type, querySha256: validated.query?.sha256, startedAt, finishedAt: this.now(), retries: 0,
       });
       session.exchanges.push(exchange);
@@ -374,14 +394,20 @@ export class MediatedTraversalBroker {
   }
 
   #receipt(session, status, failureCode) {
+    const timestamp = this.now();
     return Object.freeze({
       kind: RECEIPT_KIND, version: PROTOCOL_VERSION, authority: this.capabilities().authority, status,
-      traversalId: session.id, startedAt: session.startedAt, finishedAt: this.now(), budgets: session.budgets,
+      traversalId: session.id, startedAt: session.startedAt, ...(status === "active" ? { observedAt: timestamp } : { finishedAt: timestamp }), budgets: session.budgets,
       usage: Object.freeze({ requests: session.requests, fanOut: session.origins.size, bytes: session.bytes, retries: 0 }),
       exchanges: Object.freeze([ ...session.exchanges ]),
       redirectEvidence: "requested-final-and-redirected-flag",
       ...(failureCode ? { failure: Object.freeze({ code: failureCode }) } : {}),
     });
+  }
+
+  snapshotTraversal({ traversalId }, owner = {}) {
+    const session = this.#session(traversalId, owner);
+    return this.#receipt(session, "active");
   }
 
   finishTraversal({ traversalId }, owner = {}) {

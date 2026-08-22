@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -33,7 +33,11 @@
       "select"
     ],
     "traversal": [
-      "query"
+      "begin",
+      "query",
+      "status",
+      "finish",
+      "abort"
     ],
     "results": [
       "derive",
@@ -63,6 +67,7 @@
     "query.select",
     "query.run",
     "traversal.query",
+    "traversal.exploration",
     "results.derive",
     "results.profile",
     "results.page",

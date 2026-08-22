@@ -1,6 +1,6 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Protocol 3.0.0 replacement preflight partial; baseline gate closed
+- **Status:** Protocol 3.2.0 offline implementation complete; restart/live gate closed
 - **Owner/task:** Repository/private freeze, leakage boundary, and offline mediated-traversal verification completed; a future baseline requires a fresh authorization and frozen commit
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
 - **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. Separately authorized neutral live infrastructure preflights ran once on 2026-08-21 and once on 2026-08-22; neither ran a competency query, baseline worker, evaluator-private access, remote write, or push.
@@ -52,13 +52,13 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 ### Remaining work
 
 - Preserve the completed restart, owner/authority attestation, and post-reset error-propagation verification as activation evidence distinct from the partial live result.
-- Review the partial protocol 3.0.0 preflight and decide whether one differently sourced neutral attempt is required; any new live attempt needs separate authorization.
+- Restart Desktop and verify protocol 3.2.0 ownership, failure navigation, and cumulative exploration without a live request. Then review the historical partial protocol 3.0.0 preflight and decide whether one differently sourced neutral attempt is required; any new live attempt needs separate authorization.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
 - Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
 
 ### Exact next action
 
-Review the partial protocol 3.0.0 preflight. Do not retry or substitute a source under the existing authorization. If a separately authorized neutral preflight later passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
+Restart and verify protocol 3.2.0 offline. Review the partial protocol 3.0.0 preflight, but do not retry or substitute a source under the old authorization. If a separately authorized neutral preflight later passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
 
 ### Blockers or required decisions
 
