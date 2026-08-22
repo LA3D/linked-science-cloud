@@ -43,10 +43,11 @@ This is the durable index of executed experiment results. Methodology dossiers d
 | 2026-08-21 | Guarded UniProt core RDF acquisition and marker validation | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-acquisition.json) |
 | 2026-08-21 | UniProt core graph provenance and Turtle negotiation discovery | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) |
 | 2026-08-21 | Neutral consumer-owned mediated traversal live preflight | Failed | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json) |
+| 2026-08-22 | Neutral protocol 3.0.0 standard-Fetch live preflight | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-22-neutral-standard-fetch-preflight.json) |
 
-The neutral preflight remains an immutable failed result. Its `ERR_INVALID_IP_ADDRESS` cause belongs to the now-removed custom DNS/TLS connector. Protocol 3.0.0 is verified offline with standard Fetch, but no replacement live preflight or competency baseline has run.
+The first neutral preflight remains an immutable failed result whose `ERR_INVALID_IP_ADDRESS` cause belongs to the removed custom DNS/TLS connector. The protocol 3.0.0 replacement preflight completed one W3C Turtle exchange through standard Fetch, but the DBpedia exchange failed before a response completed. It therefore proves one real public RDF dereference and bounded exchange provenance, not a two-source join. No competency baseline ran.
 
-The current inventory therefore contains 25 executed run records: twelve complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
+The current inventory therefore contains 26 executed run records: thirteen complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
 
 ## Confirmed loss and recovery limits
 

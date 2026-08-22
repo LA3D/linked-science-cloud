@@ -1,0 +1,174 @@
+{
+  "format": "linked-science-neutral-standard-fetch-preflight/v1",
+  "id": "neutral-standard-fetch-preflight-2026-08-22",
+  "recordedAt": "2026-08-22T12:26:21.467Z",
+  "classification": "infrastructure-only neutral non-competency preflight",
+  "outcome": "partial",
+  "attempts": 1,
+  "authorization": {
+    "liveTraversalAttempts": 1,
+    "retries": 0,
+    "competencyQueries": 0,
+    "baselineWorkers": 0,
+    "privateEvaluatorMaterialAccessed": false
+  },
+  "runtimeAttestation": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "commit": "a8a92ad78072ae1153ef01c9a658a9bef9dd25e6",
+    "protocol": "3.0.0",
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules",
+    "authority": {
+      "class": "anonymous-linked-data-read",
+      "version": "1.0.0"
+    },
+    "transport": {
+      "implementation": "standard-fetch",
+      "dnsTls": "platform",
+      "retries": 0
+    },
+    "rawFetchExposed": false,
+    "legacyTraversalBridgeExposed": false
+  },
+  "design": {
+    "purpose": "Prove real public RDF dereferencing and a local Communica join across two neutral sources through protocol 3.0.0 without touching the held-out competency domain.",
+    "sources": [
+      "https://www.w3.org/People/Berners-Lee/card",
+      "https://dbpedia.org/data/Ada_Lovelace.ttl"
+    ],
+    "sourceRoles": [
+      "W3C FOAF card requiring RDF content negotiation",
+      "DBpedia Turtle document"
+    ],
+    "queryType": "SELECT",
+    "query": "SELECT ?personName ?subjectLabel WHERE {\n  <http://www.w3.org/People/Berners-Lee/card#i> <http://xmlns.com/foaf/0.1/name> ?personName .\n  <http://dbpedia.org/resource/Ada_Lovelace> <http://www.w3.org/2000/01/rdf-schema#label> ?subjectLabel .\n  FILTER(LANG(?subjectLabel) = \"en\")\n} LIMIT 5",
+    "role": "neutral-two-source-infrastructure-preflight"
+  },
+  "effectiveBudgets": {
+    "maxQueryChars": 16384,
+    "maxRequestBodyBytes": 65536,
+    "maxDurationMs": 30000,
+    "maxRequestMs": 15000,
+    "maxRequests": 4,
+    "maxFanOut": 2,
+    "maxConcurrency": 2,
+    "maxResponseBytes": 1048576,
+    "maxTotalBytes": 2097152,
+    "maxResultItems": 20
+  },
+  "aggregateReceipt": {
+    "kind": "linked-science-traversal-receipt",
+    "version": "3.0.0",
+    "authority": {
+      "class": "anonymous-linked-data-read",
+      "version": "1.0.0",
+      "anonymous": true,
+      "schemes": ["http", "https"],
+      "methods": ["GET", "HEAD", "SPARQL_POST"],
+      "queryTypes": ["SELECT", "ASK", "CONSTRUCT", "DESCRIBE"],
+      "effects": ["rdf-document-read", "sparql-read", "linked-data-dereference", "local-communica-federation"],
+      "prohibited": ["ambient-identity", "url-credentials", "sparql-update", "arbitrary-post", "filesystem-write", "authority-expansion", "automatic-context-promotion"]
+    },
+    "status": "failed",
+    "traversalId": "traversal-d624e492e9a6fb3de729e716",
+    "startedAt": "2026-08-22T12:26:10.904Z",
+    "finishedAt": "2026-08-22T12:26:21.467Z",
+    "budgets": {
+      "maxQueryChars": 16384,
+      "maxRequestBodyBytes": 65536,
+      "maxDurationMs": 30000,
+      "maxRequestMs": 15000,
+      "maxRequests": 4,
+      "maxFanOut": 2,
+      "maxConcurrency": 2,
+      "maxResponseBytes": 1048576,
+      "maxTotalBytes": 2097152,
+      "maxResultItems": 20
+    },
+    "usage": {
+      "requests": 2,
+      "fanOut": 2,
+      "bytes": 5895,
+      "retries": 0
+    },
+    "exchanges": [
+      {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.0.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://www.w3.org/People/Berners-Lee/card",
+        "finalUrl": "https://www.w3.org/People/Berners-Lee/card",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "b7fafe147708415821b9598462b974a2574d94b1ce08b12f5b7d8edbee9b7b14",
+        "responseSha256": "5a5532a3192010478a2aadb3e31a8e27a8a6714e5f1c404636aec6ec18b39ca2",
+        "bytes": 5895,
+        "mediaType": "text/turtle",
+        "headers": {
+          "content-type": "text/turtle",
+          "etag": "W/\"1707-6437049b6f558\"",
+          "last-modified": "Thu, 13 Nov 2025 02:03:32 GMT",
+          "vary": "Origin,Accept,Accept-Encoding"
+        },
+        "startedAt": "2026-08-22T12:26:10.938Z",
+        "finishedAt": "2026-08-22T12:26:11.129Z",
+        "retries": 0
+      },
+      {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.0.0",
+        "index": 2,
+        "status": "failure",
+        "requestedUrl": "https://dbpedia.org/data/Ada_Lovelace.ttl",
+        "method": "GET",
+        "requestSha256": "69d1915fd1391b009f841c9acfebb4dc7b962cefc9377bd499d354879a719f2a",
+        "bytes": 0,
+        "startedAt": "2026-08-22T12:26:10.956Z",
+        "finishedAt": "2026-08-22T12:26:21.467Z",
+        "retries": 0,
+        "failure": {
+          "code": "MEDIATOR_FETCH_FAILED"
+        }
+      }
+    ],
+    "redirectEvidence": "requested-final-and-redirected-flag",
+    "failure": {
+      "code": "MEDIATOR_FETCH_FAILED"
+    }
+  },
+  "retainedState": {
+    "resultHandleRetained": false,
+    "resultRows": 0,
+    "perExchangeReceipts": 2,
+    "aggregateLineageRetainedOnHandle": false,
+    "automaticPeekPromotion": false
+  },
+  "termination": {
+    "kernelReset": {
+      "ok": true,
+      "newEpoch": 3
+    },
+    "interpretation": "The compact receipt was written before reset; no result handle existed to preserve."
+  },
+  "assessment": {
+    "proven": [
+      "The restarted consumer-owned runtime loaded commit a8a92ad and protocol 3.0.0.",
+      "One real standard-Fetch request completed against the W3C source with HTTP 200 and a Turtle representation.",
+      "The W3C exchange retained bounded request and response hashes, media type, byte count, timing, and sanitized response metadata.",
+      "Both neutral origins crossed the same anonymous-read mediator under one aggregate budget.",
+      "The aggregate receipt records two requests, two distinct origins, 5,895 bytes, and zero retries."
+    ],
+    "notProven": [
+      "successful retrieval of the DBpedia Turtle source",
+      "successful two-source Communica join",
+      "retained native result handle or result lineage",
+      "general availability of DBpedia or any other Linked Data source"
+    ],
+    "failureBoundary": "The W3C exchange succeeded through standard Fetch. The DBpedia exchange failed before a response completed with the sanitized mediator code MEDIATOR_FETCH_FAILED; the receipt does not establish whether the cause was remote availability, timeout, or another platform Fetch failure.",
+    "secondAttemptPerformed": false,
+    "baselineGate": "closed-pending-review-of-partial-preflight-and-separate-authorization-for-any-new-live-attempt"
+  }
+}

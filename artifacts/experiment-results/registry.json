@@ -1,7 +1,7 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-21.1",
-  "recordedAt": "2026-08-21",
+  "version": "2026-08-22.1",
+  "recordedAt": "2026-08-22",
   "runs": [
     {
       "id": "context-map-single-2026-08-15",
@@ -285,7 +285,19 @@
       "durability": "complete",
       "recordPaths": ["artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json"],
       "documentationPaths": ["docs/experiments/RESULTS.md", "docs/tasks/uniprot-competency-manifest.md"],
-      "currentInterpretation": "Immutable failed preflight from the superseded custom DNS-pinned connector; protocol 3.0.0 removes that connector, but no replacement live preflight has run.",
+      "currentInterpretation": "Immutable failed preflight from the superseded custom DNS-pinned connector; protocol 3.0.0 removed that connector, and the replacement preflight is recorded separately.",
+      "missingEvidence": []
+    },
+    {
+      "id": "neutral-standard-fetch-preflight-2026-08-22",
+      "date": "2026-08-22",
+      "title": "Neutral protocol 3.0.0 standard-Fetch live preflight",
+      "outcome": "partial",
+      "evidenceLevel": "machine-receipt",
+      "durability": "complete",
+      "recordPaths": ["artifacts/experiment-results/2026-08-22-neutral-standard-fetch-preflight.json"],
+      "documentationPaths": ["docs/experiments/RESULTS.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "currentInterpretation": "The W3C RDF exchange succeeded through standard Fetch, while the DBpedia exchange failed before a response completed; no two-source result handle or competency baseline was produced.",
       "missingEvidence": []
     }
   ],

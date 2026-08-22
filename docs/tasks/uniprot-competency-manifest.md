@@ -1,9 +1,9 @@
 # Task: Build the UniProt competency evaluation manifest
 
-- **Status:** Standard-Fetch mediator replacement verified offline; Desktop restart and new neutral preflight pending; baseline gate closed
+- **Status:** Protocol 3.0.0 replacement preflight partial; baseline gate closed
 - **Owner/task:** Repository/private freeze, leakage boundary, and offline mediated-traversal verification completed; a future baseline requires a fresh authorization and frozen commit
 - **Scope:** Implement the split worker-visible and evaluator-private manifest for the first three staged UniProt competency shapes, plus leakage validation. Do not execute the competency evaluation.
-- **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. One separately authorized neutral live infrastructure preflight ran on 2026-08-21; no competency query, baseline worker, evaluator-private access, remote write, or push was performed.
+- **Authorization boundary:** Historical source-discovery operations are recorded in the result registry. Separately authorized neutral live infrastructure preflights ran once on 2026-08-21 and once on 2026-08-22; neither ran a competency query, baseline worker, evaluator-private access, remote write, or push.
 - **Starting point:** Begin from the then-current clean local `main` and record its commit.
 
 ## Outcome and acceptance evidence
@@ -37,6 +37,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - One historical marker-only query against the core graph timed out before a result or broker receipt crossed the clean-room boundary. It was not retried and does not support a term-absence claim. Its proposed fixed-profile replacement was rejected and is preserved only as superseded design history.
 - The production clean-room runtime now exposes behavior-bounded mediated traversal beneath the unchanged three-tool MCP: consumer-owned Communica can dereference dynamically discovered anonymous HTTP/HTTPS RDF sources, materialize complete RDF documents within byte/item bounds, and govern `SERVICE` federation one exchange at a time. The Fetch closure and traversal bridge remain private. Offline two-source, two-service, and ontology-document fixtures prove native handles and lineage without live access.
 - The first separately authorized neutral live preflight used the W3C Tim Berners-Lee FOAF card and DBpedia Ada Lovelace Turtle document. Its single attempt failed before any HTTP hop with `ERR_INVALID_IP_ADDRESS`; the [machine receipt](../../artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json) records two scheduled origins, zero hops, zero bytes, zero retries, abort/closure, and no retained handle. No competency question, worker, baseline, or evaluator-private material ran.
+- After restart and the Node 26 evaluation-error fix, one separately authorized protocol 3.0.0 replacement preflight used the same neutral sources and budgets migrated to `maxRequests`. The W3C exchange returned HTTP 200 Turtle with 5,895 bytes and complete bounded provenance; the DBpedia exchange failed before a response completed with sanitized code `MEDIATOR_FETCH_FAILED`. The [machine receipt](../../artifacts/experiment-results/2026-08-22-neutral-standard-fetch-preflight.json) records two requests, two origins, 5,895 bytes, zero retries, no retained result handle, and no competency or evaluator activity.
 - Local commit `bc3b7a3` (`feat: add isolated competency manifest contract`) contains the repository-local manifest milestone.
 
 ### Decisions
@@ -50,22 +51,22 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 
 ### Remaining work
 
-- Fully restart Desktop so the running MCP loads protocol 3.0.0, then verify the owner/authority attestation without a live request. Do not infer successful live traversal from the offline fixture suite.
-- Obtain separate authorization for one new neutral bounded live preflight; preserve its receipt without running a competency case.
+- Preserve the completed restart, owner/authority attestation, and post-reset error-propagation verification as activation evidence distinct from the partial live result.
+- Review the partial protocol 3.0.0 preflight and decide whether one differently sourced neutral attempt is required; any new live attempt needs separate authorization.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
 - Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
 
 ### Exact next action
 
-Restart Desktop and verify protocol 3.0.0 activation. After a separately authorized new neutral preflight passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
+Review the partial protocol 3.0.0 preflight. Do not retry or substitute a source under the existing authorization. If a separately authorized neutral preflight later passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
 
 ### Blockers or required decisions
 
-- The former DNS-pinned HTTPS handoff is superseded by the offline-verified standard-Fetch transport. Activation and live behavior remain unproven until Desktop restarts and the user separately authorizes a new preflight; the baseline remains separately authorization-bound.
+- Standard Fetch is now proven for one real public W3C RDF exchange with bounded provenance. The intended two-source join remains unproven because DBpedia failed before response completion; the baseline remains separately authorization-bound.
 
 ## Handoff state
 
 - **Git:** The private-bundle milestone originated from clean local `main` at `a1830a0`. This provenance continuation began from consumer local `main` at `b3a5021`; result commit `bc53651` is reachable from consumer local `main`. Nothing was pushed.
-- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. The 2026-08-21 neutral live preflight failed before an HTTP hop and is durably recorded as the 25th registered run; postflight verification for that receipt is recorded in its result commit.
-- **Ephemeral state:** The failed neutral preflight retained no result handle. Its traversal session was aborted and unavailable before the clean-room kernel reset to epoch 3.
+- **Verification:** Targeted manifest tests, private bundle validation, active-child read denial, and the real exported-worker leakage audit passed previously. The 2026-08-22 replacement preflight is durably recorded as the 26th registered run; postflight verification is recorded with its result commit.
+- **Ephemeral state:** The partial replacement preflight retained no result handle. Its W3C exchange receipt and aggregate failure receipt are durable; no retry ran.
 - **Durable artifacts/receipts:** Evaluator-private bundle, catalog snapshot/headers, provenance receipt, and filesystem-boundary attestation live under `/Users/cvardema/dev/git/LA3D/linked-science-cloud/evaluator-private/uniprot-competency/2026-08-20-223052Z`; the private official mappings and queries must not be copied into the worker checkout.
