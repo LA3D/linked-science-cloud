@@ -34,12 +34,40 @@
         "prohibited": { "type": "array", "items": { "type": "string" } }
       }
     },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "responseUrl", "links", "profiles", "malformedLinkHeader", "truncated", "trust"],
+      "properties": {
+        "kind": { "const": "linked-data-navigation-evidence" },
+        "responseUrl": { "type": "string", "format": "uri" },
+        "links": {
+          "type": "array",
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "required": ["target", "relations"],
+            "properties": {
+              "target": { "type": "string", "format": "uri" },
+              "relations": { "type": "array", "items": { "type": "string" } },
+              "anchor": { "type": "string", "format": "uri" },
+              "parameters": { "type": "object", "maxProperties": 8 }
+            }
+          }
+        },
+        "profiles": { "type": "array", "maxItems": 24, "items": { "type": "string" } },
+        "preferenceApplied": { "type": "string" },
+        "malformedLinkHeader": { "type": "boolean" },
+        "truncated": { "type": "boolean" },
+        "trust": { "const": "untrusted-candidate-evidence" }
+      }
+    },
     "exchange": {
       "type": "object",
       "required": ["kind", "version", "index", "status", "requestedUrl", "method", "requestSha256", "bytes", "startedAt", "finishedAt", "retries"],
       "properties": {
         "kind": { "const": "linked-science-fetch-exchange" },
-        "version": { "const": "3.0.0" },
+        "version": { "const": "3.1.0" },
         "index": { "type": "integer", "minimum": 1 },
         "status": { "enum": ["success", "http-error", "failure"] },
         "requestedUrl": { "type": "string", "format": "uri" },
@@ -52,6 +80,7 @@
         "bytes": { "type": "integer", "minimum": 0 },
         "mediaType": { "type": "string" },
         "headers": { "type": "object" },
+        "navigation": { "$ref": "#/$defs/navigation" },
         "queryType": { "enum": ["SELECT", "ASK", "CONSTRUCT", "DESCRIBE"] },
         "querySha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "startedAt": { "type": "string" },
@@ -65,7 +94,7 @@
   "required": ["kind", "version", "authority", "status", "traversalId", "budgets", "usage", "exchanges", "redirectEvidence"],
   "properties": {
     "kind": { "const": "linked-science-traversal-receipt" },
-    "version": { "const": "3.0.0" },
+    "version": { "const": "3.1.0" },
     "authority": { "$ref": "#/$defs/authority" },
     "status": { "enum": ["complete", "failed", "aborted"] },
     "traversalId": { "type": "string", "minLength": 1 },

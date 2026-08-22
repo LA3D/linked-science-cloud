@@ -1,22 +1,27 @@
 import { createHash, randomBytes } from "node:crypto";
 
 import { Parser as SparqlParser } from "sparqljs";
+import httpLinkHeader from "http-link-header";
 
 const KIND = "linked-science-anonymous-read-mediator";
 const RECEIPT_KIND = "linked-science-traversal-receipt";
 const EXCHANGE_KIND = "linked-science-fetch-exchange";
 const AUTHORITY_CLASS = "anonymous-linked-data-read";
-const PROTOCOL_VERSION = "3.0.0";
+const PROTOCOL_VERSION = "3.1.0";
 const AUTHORITY_VERSION = "1.0.0";
 const READ_QUERY_TYPES = new Set([ "SELECT", "ASK", "CONSTRUCT", "DESCRIBE" ]);
 const IDENTITY_HEADERS = new Set([
   "authorization", "cookie", "origin", "proxy-authorization", "referer", "sec-fetch-site",
   "x-api-key", "x-forwarded-for", "x-forwarded-host", "x-real-ip",
 ]);
-const SAFE_REQUEST_HEADERS = new Set([ "accept", "content-type", "user-agent" ]);
+const SAFE_REQUEST_HEADERS = new Set([ "accept", "accept-profile", "content-type", "prefer", "user-agent" ]);
 const SAFE_RESPONSE_HEADERS = new Set([
-  "content-encoding", "content-length", "content-type", "etag", "last-modified", "link", "location", "vary",
+  "content-encoding", "content-length", "content-profile", "content-type", "etag", "last-modified", "link", "location",
+  "preference-applied", "vary",
 ]);
+const MAX_HEADER_VALUE_CHARS = 8_192;
+const MAX_NAVIGATION_LINKS = 24;
+const MAX_LINK_PARAMETERS = 8;
 const DEFAULT_ACCEPT = "application/trig, application/n-quads;q=0.95, text/turtle;q=0.9, application/ld+json;q=0.8, application/rdf+xml;q=0.7, application/sparql-results+json;q=0.6, application/sparql-results+xml;q=0.5";
 const HARD_BUDGETS = Object.freeze({
   maxQueryChars: 100_000,
@@ -88,11 +93,73 @@ function normalizeHeaders(input = {}) {
     const name = String(rawName).toLowerCase();
     if (IDENTITY_HEADERS.has(name)) continue;
     if (!SAFE_REQUEST_HEADERS.has(name)) continue;
-    result.set(name, String(rawValue));
+    const value = String(rawValue);
+    if (value.length > MAX_HEADER_VALUE_CHARS || /[\r\n]/u.test(value)) throw mediatorError("MEDIATOR_HEADER_INVALID", `Request header ${name} is malformed or exceeds the bound`);
+    result.set(name, value);
   }
   if (!result.has("accept")) result.set("accept", DEFAULT_ACCEPT);
   result.set("accept-encoding", "identity");
   return result;
+}
+
+function resolveLinkIri(value, base) {
+  try { return new URL(value, base).href; } catch { return undefined; }
+}
+
+function parseContentTypeProfiles(contentType) {
+  if (!contentType) return [];
+  const profiles = [];
+  for (const match of String(contentType).matchAll(/(?:^|;)\s*profile\s*=\s*(?:"([^"]*)"|([^;\s]+))/giu)) {
+    for (const value of String(match[1] ?? match[2] ?? "").trim().split(/\s+/u)) if (value && !profiles.includes(value)) profiles.push(value);
+  }
+  return profiles.slice(0, MAX_NAVIGATION_LINKS);
+}
+
+function parseNavigation(headers, responseUrl) {
+  const links = [];
+  const linkIndexes = new Map();
+  let malformedLinkHeader = false;
+  let truncated = false;
+  if (headers.link) {
+    try {
+      const parsed = httpLinkHeader.parse(headers.link);
+      truncated = parsed.refs.length > MAX_NAVIGATION_LINKS;
+      for (const ref of parsed.refs.slice(0, MAX_NAVIGATION_LINKS)) {
+        const target = resolveLinkIri(ref.uri, responseUrl);
+        if (!target) continue;
+        const parameters = {};
+        for (const [ key, value ] of Object.entries(ref).filter(([ key ]) => ![ "uri", "rel" ].includes(key)).slice(0, MAX_LINK_PARAMETERS)) {
+          parameters[key] = String(value).slice(0, 256);
+        }
+        const anchor = ref.anchor && resolveLinkIri(ref.anchor, responseUrl) ? resolveLinkIri(ref.anchor, responseUrl) : undefined;
+        const key = JSON.stringify([ target, anchor, parameters ]);
+        const relations = String(ref.rel ?? "").split(/\s+/u).filter(Boolean);
+        if (linkIndexes.has(key)) {
+          const existing = links[linkIndexes.get(key)];
+          for (const relation of relations) if (!existing.relations.includes(relation)) existing.relations.push(relation);
+        } else {
+          linkIndexes.set(key, links.length);
+          links.push({ target, relations, ...(anchor ? { anchor } : {}), ...(Object.keys(parameters).length ? { parameters } : {}) });
+        }
+      }
+    } catch { malformedLinkHeader = true; }
+  }
+  const profiles = [];
+  for (const profile of [
+    ...parseContentTypeProfiles(headers["content-type"]),
+    ...String(headers["content-profile"] ?? "").split(/\s+/u).filter(Boolean),
+    ...links.filter(link => link.relations.includes("profile")).map(link => link.target),
+  ]) if (!profiles.includes(profile)) profiles.push(profile);
+  return Object.freeze({
+    kind: "linked-data-navigation-evidence",
+    responseUrl,
+    links: Object.freeze(links.map(link => Object.freeze({ ...link, relations: Object.freeze(link.relations), ...(link.parameters ? { parameters: Object.freeze(link.parameters) } : {}) }))),
+    profiles: Object.freeze(profiles.slice(0, MAX_NAVIGATION_LINKS)),
+    preferenceApplied: headers["preference-applied"],
+    malformedLinkHeader,
+    truncated,
+    trust: "untrusted-candidate-evidence",
+  });
 }
 
 function sanitizeResponseHeaders(headers) {
@@ -197,7 +264,7 @@ export class MediatedTraversalBroker {
       retries: 0,
       hardBudgets: HARD_BUDGETS,
       defaultBudgets: DEFAULT_BUDGETS,
-      receipts: Object.freeze({ exchange: EXCHANGE_KIND, aggregate: RECEIPT_KIND }),
+      receipts: Object.freeze({ exchange: EXCHANGE_KIND, aggregate: RECEIPT_KIND, navigation: "linked-data-navigation-evidence" }),
     });
   }
 
@@ -271,11 +338,12 @@ export class MediatedTraversalBroker {
       const completedOrigins = new Set(session.origins).add(finalOrigin);
       if (completedOrigins.size > session.budgets.maxFanOut) throw mediatorError("MEDIATOR_FANOUT_LIMIT", "Redirected traversal destination exceeds the distinct-source bound");
       session.origins = completedOrigins;
+      const navigation = parseNavigation(headers, finalUrl);
       const exchange = Object.freeze({
         kind: EXCHANGE_KIND, version: PROTOCOL_VERSION, index, status: response.ok ? "success" : "http-error",
         requestedUrl: validated.url.href, finalUrl, redirected: Boolean(response.redirected), method: validated.method,
         httpStatus: response.status, requestSha256, responseSha256: sha256(bytes), bytes: bytes.length,
-        mediaType: String(headers["content-type"] ?? "").split(";", 1)[0].trim().toLowerCase(), headers,
+        mediaType: String(headers["content-type"] ?? "").split(";", 1)[0].trim().toLowerCase(), headers, navigation,
         queryType: validated.query?.type, querySha256: validated.query?.sha256, startedAt, finishedAt: this.now(), retries: 0,
       });
       session.exchanges.push(exchange);

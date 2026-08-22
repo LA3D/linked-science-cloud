@@ -70,7 +70,7 @@ test('bootstrap validates roots and declared dependency resolution before instal
   const inspected = await inspectLinkedScienceBootstrap({ cleanroom, projectRoot: LINKED_SCIENCE_PROJECT_ROOT, moduleRoot: LINKED_SCIENCE_MODULE_ROOT });
   assert.equal(inspected.runtime, 'cleanroom_node_repl');
   assert.equal(inspected.mode, 'codeact');
-  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'n3', 'sparqljs' ]);
+  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'sparqljs' ]);
   assert.equal(Object.values(inspected.dependencies).every(url => url.startsWith('file:') && url.includes('/node_modules/')), true);
 
   const host = {};

@@ -32,12 +32,16 @@ function rdfFetch(calls) {
     '/source-b.ttl': '@prefix ex: <https://example.test/> . ex:item1 ex:label "Alpha" .',
     '/empty.ttl': '@prefix ex: <https://example.test/> .',
     '/many.ttl': '@prefix ex: <https://example.test/> . ex:a ex:p ex:o . ex:b ex:p ex:o .',
+    '/schema': '@prefix ex: <https://example.test/> . @prefix owl: <http://www.w3.org/2002/07/owl#> . ex:Term a owl:Class .',
   };
   return async (input, init = {}) => {
     const url = new URL(input);
     const headers = Object.fromEntries(new Headers(init.headers));
     calls.push({ url: url.href, method: init.method, headers, body: init.body });
-    if (documents[url.pathname]) return new Response(documents[url.pathname], { status: 200, headers: { 'content-type': 'text/turtle' } });
+    if (documents[url.pathname]) return new Response(documents[url.pathname], { status: 200, headers: {
+      'content-type': 'text/turtle; profile="https://example.test/profile/core"',
+      link: '<./schema>; rel="describedby", <https://example.test/profile/link>; rel="profile"',
+    } });
     if (url.hostname === 'service-a.example') {
       return new Response(JSON.stringify({
         head: { vars: [ 'item' ] }, results: { bindings: [ { item: { type: 'uri', value: 'https://example.test/item1' } } ] },
@@ -94,12 +98,26 @@ test('complete RDF document acquisition uses Communica queryQuads and native ret
     sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
     role: 'complete-ontology-document',
     budgets: { maxResultItems: 10 },
+    negotiation: {
+      accept: 'text/turtle; profile="https://example.test/profile/request"',
+      acceptProfile: 'https://example.test/profile/request',
+      prefer: 'return=representation',
+    },
   });
   const profile = workspace.results.profile(handle);
   assert.equal(profile.type, 'quads');
   assert.equal(profile.count, 2);
   assert.equal(profile.provenance.sources[0], 'http://data.example/many.ttl');
   assert.equal(profile.provenance.traversalReceipt.exchanges[0].mediaType, 'text/turtle');
+  assert.equal(calls[0].headers['accept-profile'], 'https://example.test/profile/request');
+  assert.equal(calls[0].headers.prefer, 'return=representation');
+  assert.equal(profile.provenance.navigation.instructionAuthority, false);
+  assert.equal(profile.provenance.navigation.candidates[0].target, 'http://data.example/schema');
+  assert.deepEqual(profile.provenance.navigation.profiles, [
+    'https://example.test/profile/core',
+    'https://example.test/profile/link',
+  ]);
+  assert.match(profile.provenance.navigation.use, /subsequent mediated traversal/u);
   assert.equal(edits.length, 0);
   const nativeShape = await workspace.results.derive(handle, ({ dataset, quads }) => ({
     kind: 'rows', rows: [ { datasetCore: typeof dataset.match === 'function', size: dataset.size, termType: quads[0].subject.termType } ],
@@ -124,6 +142,28 @@ test('the private Communica path preserves ASK booleans and DESCRIBE native quad
   });
   assert.equal(workspace.results.profile(described).type, 'quads');
   assert.equal(workspace.results.profile(described).count, 2);
+});
+
+test('a later agentic turn can select a relevant HTTP relation without automatic following', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'http-navigation' });
+  const document = await workspace.traversal.query({
+    sources: [ 'https://data.example/many.ttl' ],
+    sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }',
+    budgets: { maxResultItems: 10 },
+  });
+  assert.equal(calls.length, 1);
+  const candidate = workspace.results.profile(document).provenance.navigation.candidates
+    .find(item => item.relations.includes('describedby'));
+  assert.equal(candidate.target, 'https://data.example/schema');
+  const schema = await workspace.traversal.query({
+    sources: [ candidate.target ],
+    sparql: 'ASK { <https://example.test/Term> a <http://www.w3.org/2002/07/owl#Class> }',
+  });
+  assert.equal(workspace.results.page(schema, { limit: 1 }).rows[0].value, true);
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].url, candidate.target);
 });
 
 test('local Communica governs two SERVICE targets through the same traversal mediator', async () => {

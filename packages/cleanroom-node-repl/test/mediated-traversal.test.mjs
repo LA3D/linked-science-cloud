@@ -24,7 +24,7 @@ async function localServer(handler) {
 test("attests one immutable anonymous-read authority over standard Fetch", () => {
   const capability = new MediatedTraversalBroker().capabilities();
   assert.equal(capability.kind, "linked-science-anonymous-read-mediator");
-  assert.equal(capability.version, "3.0.0");
+  assert.equal(capability.version, "3.1.0");
   assert.equal(capability.authority.class, "anonymous-linked-data-read");
   assert.deepEqual(capability.authority.schemes, [ "http", "https" ]);
   assert.deepEqual(capability.authority.methods, [ "GET", "HEAD", "SPARQL_POST" ]);
@@ -46,8 +46,10 @@ test("uses real standard Fetch for HTTP, strips identity, follows redirects, and
       return;
     }
     response.writeHead(200, {
-      "content-type": "text/turtle", etag: '"fixture-v1"',
-      link: '<https://example.test/schema>; rel="describedby"', "set-cookie": "secret=1",
+      "content-type": 'text/turtle; profile="https://example.test/profiles/core"', etag: '"fixture-v1"',
+      "content-profile": "https://example.test/profiles/response",
+      "preference-applied": "return=representation",
+      link: '<schema>; rel="describedby alternate"; type="text/turtle", <https://example.test/profiles/link>; rel="profile"', "set-cookie": "secret=1",
     });
     response.end(ttl);
     });
@@ -62,13 +64,19 @@ test("uses real standard Fetch for HTTP, strips identity, follows redirects, and
   const broker = new MediatedTraversalBroker();
   const traversal = begin(broker);
   const result = await broker.request({ traversalId: traversal.traversalId, request: {
-    url: `${fixture.url}/start`, headers: { Authorization: "secret", Cookie: "a=b", Origin: "https://private.example" },
+    url: `${fixture.url}/start`, headers: {
+      Authorization: "secret", Cookie: "a=b", Origin: "https://private.example",
+      Accept: 'text/turtle; profile="https://example.test/profiles/request"',
+      "Accept-Profile": "https://example.test/profiles/request", Prefer: "return=representation",
+    },
   } }, owner);
   assert.equal(result.status, 200);
   assert.equal(result.redirected, true);
   assert.equal(result.url, `${fixture.url}/ontology.ttl`);
   assert.equal(result.headers.etag, '"fixture-v1"');
   assert.match(result.headers.link, /describedby/u);
+  assert.equal(seen[0].headers["accept-profile"], "https://example.test/profiles/request");
+  assert.equal(seen[0].headers.prefer, "return=representation");
   assert.equal(result.headers["set-cookie"], undefined);
   assert.equal(seen.every(call => call.headers.authorization === undefined && call.headers.cookie === undefined && call.headers.origin === undefined), true);
   assert.equal(seen[0].headers["accept-encoding"], "identity");
@@ -77,6 +85,15 @@ test("uses real standard Fetch for HTTP, strips identity, follows redirects, and
   assert.equal(receipt.exchanges[0].requestedUrl, `${fixture.url}/start`);
   assert.equal(receipt.exchanges[0].finalUrl, `${fixture.url}/ontology.ttl`);
   assert.equal(receipt.exchanges[0].redirected, true);
+  assert.equal(receipt.exchanges[0].navigation.links[0].target, `${fixture.url}/schema`);
+  assert.deepEqual(receipt.exchanges[0].navigation.links[0].relations, [ "describedby", "alternate" ]);
+  assert.deepEqual(receipt.exchanges[0].navigation.profiles, [
+    "https://example.test/profiles/core",
+    "https://example.test/profiles/response",
+    "https://example.test/profiles/link",
+  ]);
+  assert.equal(receipt.exchanges[0].navigation.preferenceApplied, "return=representation");
+  assert.equal(receipt.exchanges[0].navigation.trust, "untrusted-candidate-evidence");
   assert.equal(receipt.usage.bytes, ttl.length);
   assert.equal(receipt.usage.retries, 0);
 });

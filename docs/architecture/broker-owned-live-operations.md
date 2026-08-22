@@ -12,6 +12,8 @@ The MCP surface remains exactly `js`, `js_reset`, and `js_add_node_module_dir`. 
 
 An RDF document, ontology, service description, or VoID graph is acquired through standard Communica source and query primitives. For example, a bounded `CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }` over an RDF document materializes its quad stream into the existing N3 `Store`, an RDF/JS `DatasetCore`, behind the native quad-result handle. Typed SPARQL sources, heterogeneous sources, and `SERVICE` use the same path. Complete means complete within the effective byte and quad/item ceilings; exceeding either is an attributable bounded failure.
 
+The same operation accepts bounded `accept`, `acceptProfile`, and `prefer` representation-negotiation values. They become ordinary identity-free headers on the private Communica Fetch path; they do not create a second retrieval API. The final response preserves full `Content-Type` parameters, `Content-Profile`, `Preference-Applied`, and RFC 8288 `Link` values for both parser behavior and provenance.
+
 ## Private cross-process authority
 
 The parent owns standard Fetch. The child contains a token/epoch-bound serialized bridge, but that bridge and its Fetch closure are registered in module-private state. They are absent from `nodeRepl`, the REPL global, query context returned to the agent, capabilities tokens, and MCP tools. Only the consumer-owned bootstrap can install the private closure into its private Communica query context.
@@ -29,6 +31,8 @@ The thin wrapper enforces only the authority and accounting properties above Com
 - identity content encoding, request and traversal deadlines, cancellation, no retries, concurrency, request count, distinct-source fan-out, request/query bytes, per-response decoded bytes, cumulative decoded bytes, and retained item bounds;
 - a response-header allowlist plus representation media type, body hash, byte count, requested URL, final URL, status, and the standard `redirected` flag; and
 - per-exchange receipts plus an aggregate lineage receipt.
+
+Each completed exchange also contains a bounded `linked-data-navigation-evidence` observation. RFC 8288 links are parsed, relative targets are resolved against the final response URL, relation types and bounded parameters are retained, and representation/profile declarations are collected. `workspace.results.profile(handle).provenance.navigation` projects those observations to the agentic task as untrusted candidates. They carry no instruction authority and are never followed, promoted to PEEK/RLM/wiki memory, or treated as proof of what a target contains. An agent may use relation semantics and its current information gap to justify a subsequent mediated traversal.
 
 Standard Fetch does not expose every intermediate redirect hop. Receipts state that limitation as `requested-final-and-redirected-flag`; the runtime does not rebuild a redirect engine to manufacture unavailable evidence. HTTP errors, non-RDF content, negotiation failures, malformed RDF, timeouts, and oversize representations remain attributable outcomes. Communica, rather than the transport wrapper, decides whether a representation satisfies the requested RDF/query operation.
 
