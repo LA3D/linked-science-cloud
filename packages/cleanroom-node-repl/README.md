@@ -11,6 +11,8 @@ The clean-room server is CodeAct-style: the model writes JavaScript and manipula
 
 The parent mediator implements the sole current authority class, `anonymous-linked-data-read`. It accepts dynamically discovered credential-free HTTP/HTTPS RDF and SPARQL targets without an endpoint allowlist, strips ambient identity, parses read-only SPARQL POST, enforces traversal-wide resource budgets, and returns per-exchange plus aggregate receipts. Platform standard Fetch owns DNS, TLS, sockets, certificates, and redirects. Consumer-owned Communica runs in the isolated child and privately receives the adapter for RDF source, typed endpoint, and `SERVICE` operations.
 
+Named public sources such as UniProt, Wikidata, WikiPathways, and Rhea are examples of that dynamic authority, not configured domains. Bulk distributions such as PubChem dumps require a separate future parent-owned acquisition/import contract with explicit artifact, size, checksum, decompression, and storage bounds; they are not routed through this interactive mediator.
+
 Retrieved content remains untrusted RDF/SPARQL data. It is not automatically promoted into instructions, RLM, PEEK, or evaluator state. Kernel timeout, reset, crash, or replacement aborts all sessions owned by the former capability token and epoch.
 
 Start verification in a fresh task opened from this checkout after changing Desktop configuration. The project registration is production-owned and names only this package's MCP entrypoint.

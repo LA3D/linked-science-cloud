@@ -272,6 +272,8 @@ export class MediatedTraversalBroker {
         class: AUTHORITY_CLASS,
         version: AUTHORITY_VERSION,
         anonymous: true,
+        destinationPolicy: "dynamic-anonymous-http-https",
+        endpointAllowlist: false,
         schemes: Object.freeze([ "http", "https" ]),
         methods: Object.freeze([ "GET", "HEAD", "SPARQL_POST" ]),
         queryTypes: Object.freeze([ ...READ_QUERY_TYPES ]),

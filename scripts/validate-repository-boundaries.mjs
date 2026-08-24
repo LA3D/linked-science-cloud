@@ -75,6 +75,8 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
   }
 
   const config = configText ?? await readFile(resolve(root, '.codex/config.toml'), 'utf8');
+  if (/^\[mcp_servers\.node_repl\]/mu.test(config)) failures.push('.codex/config.toml must not register the bundled node_repl');
+  if (/^\[permissions\.[^\]]+\.network\.domains\]/mu.test(config)) failures.push('.codex/config.toml must not use a hostname allowlist as the Linked Science traversal boundary');
   const argsLine = config.split(/\r?\n/u).find(line => /^args\s*=/u.test(line.trim()));
   if (!argsLine) failures.push('.codex/config.toml lacks an MCP args entry');
   for (const value of quotedValues(argsLine ?? '')) {

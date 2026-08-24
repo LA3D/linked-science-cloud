@@ -26,6 +26,8 @@ test("attests one immutable anonymous-read authority over standard Fetch", () =>
   assert.equal(capability.kind, "linked-science-anonymous-read-mediator");
   assert.equal(capability.version, "3.2.0");
   assert.equal(capability.authority.class, "anonymous-linked-data-read");
+  assert.equal(capability.authority.destinationPolicy, "dynamic-anonymous-http-https");
+  assert.equal(capability.authority.endpointAllowlist, false);
   assert.deepEqual(capability.authority.schemes, [ "http", "https" ]);
   assert.deepEqual(capability.authority.methods, [ "GET", "HEAD", "SPARQL_POST" ]);
   assert.equal(capability.transport.implementation, "standard-fetch");

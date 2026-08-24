@@ -21,3 +21,12 @@ test('production configuration cannot reactivate a retired fixed-profile transpo
   const config = `[mcp_servers.cleanroom_node_repl]\ncommand = "node"\nargs = ["/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs"]\n# guarded-sparql-transport\n`;
   await assert.rejects(validateRepositoryBoundaries({ configText: config }), /retired fixed-profile transport/u);
 });
+
+test('production configuration rejects the bundled REPL and hostname-based network approval', async () => {
+  const entrypoint = '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs';
+  const bundled = `[mcp_servers.node_repl]\ncommand = "node"\nargs = ["${entrypoint}"]\n`;
+  await assert.rejects(validateRepositoryBoundaries({ configText: bundled }), /bundled node_repl/u);
+
+  const allowlisted = `[mcp_servers.cleanroom_node_repl]\ncommand = "node"\nargs = ["${entrypoint}"]\n[permissions.science.network.domains]\n"example.com" = "allow"\n`;
+  await assert.rejects(validateRepositoryBoundaries({ configText: allowlisted }), /hostname allowlist/u);
+});

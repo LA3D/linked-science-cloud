@@ -48,3 +48,7 @@ Use the [agent context router](docs/agent/context-routing.md) to load project gu
 ## Current live-navigation boundary
 
 Live use remains explicitly approved and traversal-bound. The approval fixes behavior and resource budgets, not a predeclared destination list. The isolated child has no raw networking; only the consumer-owned Communica/RDF/JS path receives the private anonymous-read Fetch closure. Mutations, URL credentials, ambient identity, arbitrary POST, unbounded federation, and unbounded result handling are denied. Platform Fetch owns DNS, TLS, sockets, certificates, and redirects. Evaluation secrecy remains a separate worker-context and filesystem boundary.
+
+UniProt, Wikidata, WikiPathways, and Rhea are representative dynamically discovered public Linked Data or SPARQL targets, not hardcoded approval domains. Their use is governed by the same current scientific-scope approval, anonymous read-only effects, cumulative budgets, and receipts as any other public target. Reachability is observed per traversal rather than inferred from configuration.
+
+PubChem-scale dumps are outside the interactive traversal mediator's contract. A future bulk-ingestion path must be separately authorized and parent-owned, with an expected artifact, byte and decompression ceilings, checksum verification, explicit storage destination, and bounded import into resident or durable dataset state. No interactive traversal or endpoint exception should be used to approximate that bulk path.
