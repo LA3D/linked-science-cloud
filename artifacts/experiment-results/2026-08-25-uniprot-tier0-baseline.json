@@ -1,0 +1,87 @@
+{
+  "format": "linked-science-uniprot-competency-baseline/v1",
+  "id": "uniprot-tier0-baseline-2026-08-25",
+  "recordedAt": "2026-08-25T14:45:12Z",
+  "classification": "fresh untuned tier-0 competency baseline",
+  "outcome": "semantic-failure",
+  "authorization": {
+    "competencyCases": 1,
+    "liveQueries": 1,
+    "retries": 0,
+    "additionalCases": 0,
+    "workerEvaluatorMaterialAccessed": false
+  },
+  "runtimeAttestation": {
+    "commit": "c065abe04a31e874f384dc82c9ecb979e49c426b",
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "protocol": "3.2.0",
+    "authority": "anonymous-linked-data-read/1.0.0",
+    "transport": "standard-fetch",
+    "rawFetchExposed": false,
+    "legacyTraversalBridgeExposed": false,
+    "crossCallPersistence": true,
+    "offlinePreflight": "passed"
+  },
+  "frozenEvaluation": {
+    "workerManifestVersion": "2026-08-21.1",
+    "workerManifestStatus": "draft",
+    "workerPrivateIdsMatch": true,
+    "workerPrivateQuestionsMatch": true,
+    "workerPrivateCorpusDigestMatch": true,
+    "evaluatorSelectionSha256": "5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616"
+  },
+  "effectiveBudgets": {
+    "maxRequests": 12,
+    "maxFanOut": 6,
+    "maxConcurrency": 3,
+    "maxResponseBytes": 2000000,
+    "maxTotalBytes": 8000000,
+    "maxDurationMs": 60000,
+    "maxResultItems": 500,
+    "maxQueryChars": 16384,
+    "maxRows": 10,
+    "maxCells": 50
+  },
+  "workerOperation": {
+    "operation": "SELECT",
+    "querySha256": "b2eaf8c6e4978e510eb5d92e2eb15eaeb4b3cc0f3739690ec4063be2ad0047ab",
+    "limit": 10,
+    "sourceRole": "authoritative UniProt SPARQL service"
+  },
+  "observedExchange": {
+    "requests": 1,
+    "fanOut": 1,
+    "bytes": 116,
+    "retries": 0,
+    "method": "GET",
+    "httpStatus": 200,
+    "redirected": false,
+    "mediaType": "application/sparql-results+json",
+    "requestHashRecorded": true,
+    "responseHashRecorded": true,
+    "responseEtag": "W/\"2026_02\""
+  },
+  "retainedResult": {
+    "residentAtFinalObservation": true,
+    "type": "bindings",
+    "rows": 0,
+    "columns": 0,
+    "boundedPageCode": "LS_COLUMNS",
+    "bulkResultExposed": false
+  },
+  "termination": {
+    "finishAttempted": true,
+    "finishStatus": "guard-failed",
+    "failureCode": "MEDIATOR_DURATION_LIMIT",
+    "finishRetried": false,
+    "additionalLiveRequestAfterFailure": false
+  },
+  "assessment": {
+    "hardGate": "passed",
+    "semanticSuccess": false,
+    "privateScoreStoredSeparately": true,
+    "interpretation": "The guarded query executed once and established endpoint transport metadata, but the empty bindings result did not return the requested release role. The release-like ETag is source metadata and does not substitute for a query-result binding.",
+    "remainingGuardrailFailure": "Traversal finalization was refused after the cumulative 60-second duration expired, leaving the resident handle available but no successful closed finish receipt."
+  }
+}

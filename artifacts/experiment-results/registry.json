@@ -1,7 +1,7 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-22.1",
-  "recordedAt": "2026-08-22",
+  "version": "2026-08-25.1",
+  "recordedAt": "2026-08-25",
   "runs": [
     {
       "id": "context-map-single-2026-08-15",
@@ -299,6 +299,18 @@
       "documentationPaths": ["docs/experiments/RESULTS.md", "docs/tasks/uniprot-competency-manifest.md"],
       "currentInterpretation": "The W3C RDF exchange succeeded through standard Fetch, while the DBpedia exchange failed before a response completed; no two-source result handle or competency baseline was produced.",
       "missingEvidence": []
+    },
+    {
+      "id": "uniprot-tier0-baseline-2026-08-25",
+      "date": "2026-08-25",
+      "title": "Fresh protocol 3.2.0 UniProt tier-0 competency baseline",
+      "outcome": "failed",
+      "evidenceLevel": "trace-derived-partial",
+      "durability": "partial",
+      "recordPaths": ["artifacts/experiment-results/2026-08-25-uniprot-tier0-baseline.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "currentInterpretation": "The anonymous mediated query executed once with HTTP 200 and zero retries, but returned no release binding; endpoint ETag metadata did not satisfy the private semantic invariant. Final traversal closure then hit the cumulative duration guard and was not retried.",
+      "missingEvidence": ["successful aggregate finish receipt", "exact request and response hash values in the durable artifact"]
     }
   ],
   "documents": [
@@ -310,7 +322,7 @@
     {"path": "docs/experiments/large-result-export.md", "status": "planned-only", "note": "The dossier explicitly records that no exporter or experimental run exists."},
     {"path": "docs/experiments/open-goal-uniprot-operation-selection.md", "status": "results-recorded", "note": "Two run artifacts exist; P00338 is explicitly partial and P00533 is resident-audited."},
     {"path": "docs/experiments/prior-grounding-tool-surface-evaluation.md", "status": "results-recorded", "note": "Three arms are preserved as retrospective summaries because original receipts were not committed."},
-    {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "preparation-only", "note": "Catalog, broker preflight, and isolation audit are recorded; no competency case has run."},
+    {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "results-recorded", "note": "Catalog, isolation, and one fresh tier-0 baseline are recorded; the baseline passed hard guards but failed the private semantic invariant and traversal finalization hit the duration guard."},
     {"path": "docs/experiments/uniprot-schema-discovery.md", "status": "results-recorded", "note": "The successful trial is preserved as a retrospective summary; the original resident state is unavailable."}
   ]
 }
