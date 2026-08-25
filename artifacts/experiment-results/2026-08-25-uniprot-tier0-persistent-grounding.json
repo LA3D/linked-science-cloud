@@ -1,0 +1,112 @@
+{
+  "format": "linked-science-uniprot-competency-grounding/v1",
+  "id": "uniprot-tier0-persistent-grounding-2026-08-25",
+  "recordedAt": "2026-08-25T21:38:07Z",
+  "classification": "fresh tier-0 persistent-harness evaluation; transport-blocked before scored execution",
+  "outcome": "grounding-duration-exhausted",
+  "authorization": {
+    "competencyCases": 1,
+    "groundingRequestsExecuted": 3,
+    "scientificQueriesAuthorized": 3,
+    "scientificQueriesExecuted": 0,
+    "hiddenRetries": 0,
+    "additionalCases": 0,
+    "otherScientificResourcesContacted": 0
+  },
+  "runtimeAttestation": {
+    "commit": "1eeb7bf41e6d77700784cb77d5f658801cc7459e",
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "protocol": "3.2.0",
+    "authority": "anonymous-linked-data-read/1.0.0",
+    "transport": "standard-fetch",
+    "crossCallPersistence": true,
+    "rawFetchExposed": false,
+    "legacyTraversalBridgeExposed": false,
+    "generatedDocumentationRead": true
+  },
+  "frozenEvaluation": {
+    "workerManifestVersion": "2026-08-21.1",
+    "workerManifestStatus": "draft",
+    "workerPrivateIdsMatch": true,
+    "workerPrivateQuestionsMatch": true,
+    "workerPrivateCorpusDigestMatch": true,
+    "evaluatorSelectionSha256": "5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616",
+    "caseId": "uq-1c8e5b2074a9",
+    "iterationPolicy": { "maxScientificQueries": 3, "cumulativeBudgets": true, "hiddenTransportRetries": 0 }
+  },
+  "trajectoryAudit": {
+    "workerThreadId": "01a03ad3-86cb-78f1-9fe0-2032eb8d4aec",
+    "repositoryHistoryAccessed": false,
+    "priorTrajectoryAccessed": false,
+    "evaluationMaterialAccessed": false,
+    "artifactAccessed": false,
+    "privateMaterialAccessed": false,
+    "heldOutExamplesAccessed": false,
+    "shellOrFilesystemAccessed": false,
+    "unmediatedNetworkAccessed": false,
+    "memorizedResourceSpecificPredicateUsed": false,
+    "resourceSpecificInputs": "Only the public task question and embedded declarative EvidencePack locations.",
+    "unnecessaryKernelReset": true
+  },
+  "setupAndLocalRepair": {
+    "initialBootstrapPathOmittedByOrchestrator": true,
+    "failedPublicModuleLookups": 9,
+    "invalidEmptyRlmLookup": 1,
+    "initializerConflictCode": "LS_GLOBAL_CONFLICT",
+    "initializerConflictRepairs": 1,
+    "repairConsumedLiveBudget": false,
+    "kernelResetsAfterScientificState": 0
+  },
+  "grounding": {
+    "began": true,
+    "publicEvidenceHandle": "h-000001",
+    "publicEvidenceSha256": "d5003c0456a793e4151ac092c70600ea47d28f5ac1f59b7e05659761d2143161",
+    "discoverySession": "traversal-46a54aa46c835bd9274e5825",
+    "requests": 3,
+    "destinations": 2,
+    "bytes": 1235849,
+    "hiddenRetries": 0,
+    "successfulResponses": 1,
+    "timedOutRequests": 2,
+    "successfulRepresentation": { "httpStatus": 200, "mediaType": "application/n-triples" },
+    "durationBudgetMs": 60000,
+    "terminalFailureCode": "MEDIATOR_TRAVERSAL_INVALID",
+    "typedDiscoveryHandles": 0,
+    "attestationCreated": false,
+    "groundingContextRegistered": false,
+    "immutablePlans": 0
+  },
+  "scoredTraversal": {
+    "began": false,
+    "planEnrollments": 0,
+    "planRevisions": 0,
+    "scientificAttempts": 0,
+    "transportRequests": 0,
+    "resultHandleCreated": false,
+    "correctReleaseBindingReturned": false
+  },
+  "timing": {
+    "workerObservedStart": "2026-08-25T21:29:30.046Z",
+    "workerObservedEnd": "2026-08-25T21:36:12.048Z",
+    "totalObservedMs": 402002,
+    "recordedMcpToolCallMs": 24455,
+    "recordedDiscoveryCallMs": 23825,
+    "modelOrchestrationAndBetweenCallMsApprox": 377547,
+    "groundingMediatorWallClockMs": 60000,
+    "timingCaveat": "The mediator wall clock overlaps model deliberation and local inspection after grounding.begin, so it is not a pure network-duration measurement."
+  },
+  "assessment": {
+    "hardGuardrailsPassed": true,
+    "semanticInvariantObserved": false,
+    "semanticSuccess": false,
+    "correctReleaseBindingReturned": false,
+    "interpretation": "Grounding retained the public EvidencePack and made bounded mediated requests, but its cumulative wall-clock duration expired before a typed discovery handle existed. The worker stopped without fabricating predicate evidence or resetting budgets, so no attestation, immutable plan, scored query, or release binding exists.",
+    "remainingHarnessIssues": [
+      "Grounding maxDurationMs measures wall time from grounding.begin and therefore charges model deliberation and local inspection against a transport-oriented budget.",
+      "Generated callable documentation does not make the typed SPARQL service descriptor sufficiently explicit; the worker passed the service URL as an untyped document source and acquired a 1.2 MB representation before timing out.",
+      "The launch prompt initially referenced the skill without embedding its absolute initializer, causing avoidable module guesses and a subsequent global-binding conflict."
+    ],
+    "smallestRecommendedChange": "Separate cumulative active transport time from a policy-configurable phase lease, and start transport accounting only on mediated requests. Keep a finite wall-clock lease for stale-session cleanup. Also expose the exact typed source descriptor in generated runtime documentation; do not add UniProt-specific logic."
+  }
+}

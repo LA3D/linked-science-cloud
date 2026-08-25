@@ -44,10 +44,14 @@ This is the durable index of executed experiment results. Methodology dossiers d
 | 2026-08-21 | UniProt core graph provenance and Turtle negotiation discovery | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-uniprot-core-provenance-discovery.json) |
 | 2026-08-21 | Neutral consumer-owned mediated traversal live preflight | Failed | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-21-neutral-mediated-traversal-preflight.json) |
 | 2026-08-22 | Neutral protocol 3.0.0 standard-Fetch live preflight | Partial | Complete | [Machine receipt](../../artifacts/experiment-results/2026-08-22-neutral-standard-fetch-preflight.json) |
+| 2026-08-25 | First protocol 3.2.0 UniProt tier-0 baseline | Failed | Partial | [Trace-derived receipt](../../artifacts/experiment-results/2026-08-25-uniprot-tier0-baseline.json) |
+| 2026-08-25 | Fresh UniProt tier-0 grounding-gate evaluation | Failed | Partial | [Trace-derived receipt](../../artifacts/experiment-results/2026-08-25-uniprot-tier0-grounded-gate.json) |
+| 2026-08-25 | Non-clean-room UniProt tier-0 grounding diagnostic | Failed | Partial | [Trace-derived receipt](../../artifacts/experiment-results/2026-08-25-uniprot-tier0-observational-grounding.json) |
+| 2026-08-25 | Persistent-harness UniProt tier-0 grounding evaluation | Partial | Partial | [Trace-derived receipt](../../artifacts/experiment-results/2026-08-25-uniprot-tier0-persistent-grounding.json) |
 
 The first neutral preflight remains an immutable failed result whose `ERR_INVALID_IP_ADDRESS` cause belongs to the removed custom DNS/TLS connector. The protocol 3.0.0 replacement preflight completed one W3C Turtle exchange through standard Fetch, but the DBpedia exchange failed before a response completed. It therefore proves one real public RDF dereference and bounded exchange provenance, not a two-source join. No competency baseline ran.
 
-The current inventory therefore contains 26 executed run records: thirteen complete compact artifacts, two partial artifacts, and eleven retrospective summary-only records. The missing evidence is enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
+The current inventory therefore contains 30 executed run records. The missing evidence and durability grade are enumerated per run in the machine registry. A complete artifact can preserve a failed or partial experiment; durability does not imply a successful outcome.
 
 ## Confirmed loss and recovery limits
 

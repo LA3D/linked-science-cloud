@@ -49,17 +49,18 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - A checked-in draft is not dispatchable. `status: draft` fails dispatch validation by design; readiness requires a separately frozen run commit and authorization, not a case-specific transport profile.
 - Durable isolation requires a broker-enforced filesystem authority receipt; path separation alone is not accepted as evidence.
 - Each dispatched evaluation must freeze its iteration policy. `maxScientificQueries: 1` means single-shot for that case only; it is not a generic runtime rule. Record local contract repairs, enrolled plan revisions, scientific attempts, and transport exchanges as distinct metrics under one cumulative budget.
+- The 2026-08-25 persistent-harness run retained the public EvidencePack and made three bounded mediated grounding requests with zero hidden retries. Its 60-second grounding wall clock expired before a typed discovery handle, attestation, plan, or scored query existed. The worker stopped without a budget reset or semantic claim; the public receipt and private score are recorded separately.
 
 ### Remaining work
 
 - Preserve the completed restart, owner/authority attestation, and post-reset error-propagation verification as activation evidence distinct from the partial live result.
 - Restart Desktop and verify protocol 3.2.0 ownership, failure navigation, and cumulative exploration without a live request. Then review the historical partial protocol 3.0.0 preflight and decide whether one differently sourced neutral attempt is required; any new live attempt needs separate authorization.
 - Freeze and review the exact production commit, effective generic traversal budgets, worker export, and evaluator-private correspondence.
-- Run the first competency case only in a separately authorized fresh task. Record and privately evaluate the baseline before any prompt or transport tuning, then stop before additional cases.
+- Before another separately authorized tier-0 run, decide whether grounding duration should separate active transport time from a finite policy-configurable phase lease, and expose the typed SPARQL-service source contract in generated documentation. Do not encode a UniProt-specific route.
 
 ### Exact next action
 
-Restart and verify protocol 3.2.0 offline. Review the partial protocol 3.0.0 preflight, but do not retry or substitute a source under the old authorization. If a separately authorized neutral preflight later passes, freeze the implementation and seek separate authorization for exactly one fresh-worker baseline and private evaluation. Keep the worker manifest `draft` until those gates are satisfied.
+Review the persistent-harness grounding timeout receipt and make the smallest resource-neutral timing/documentation correction before seeking authorization for another fresh tier-0 run. Keep the worker manifest `draft`; do not infer a release value from transport metadata.
 
 ### Blockers or required decisions
 
