@@ -201,6 +201,17 @@ test('machine-readable schema routes match runtime documentation and examples', 
   await new AsyncFunction('ws', 'linkedScience', `${facade.examples('reset').code}`)(workspace, facade);
 });
 
+test('active generic clean-room code contains no resource-specific access pattern', async () => {
+  const activeFiles = [
+    '../lib/linked-science-runtime.mjs',
+    '../lib/cleanroom-linked-science-bootstrap.mjs',
+    '../packages/cleanroom-node-repl/src/mediated-traversal.mjs',
+    '../packages/cleanroom-node-repl/src/private-linked-science-traversal.mjs',
+  ];
+  const activeCode = (await Promise.all(activeFiles.map(file => readFile(new URL(file, import.meta.url), 'utf8')))).join('\n');
+  assert.doesNotMatch(activeCode, /uniprot|sparql\.uniprot|purl\.uniprot/iu);
+});
+
 test('fresh-agent discovery fixture passes the documented behavioral rubric using only a natural goal input', async () => {
   const fixture = JSON.parse(await readFile(new URL('./fixtures/runtime-discovery/fresh-agent-goal.json', import.meta.url), 'utf8'));
   assert.doesNotMatch(fixture.goal, /\b(?:API|SPARQL|SELECT|bootstrap|schema\.search|results\.)\b/i);

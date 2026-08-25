@@ -32,7 +32,7 @@ The facade import resolves its declared dependencies from its own validated modu
 
 The bootstrap detects the module-private parent traversal registration without exposing the bridge or Fetch closure on `nodeRepl`. Do not infer activation from configuration text. `nodeRepl.linkedScienceTraversal`, `fetch`, `Request`, and `Response` must remain unavailable to agent code. `linkedScience.capabilities().mediatedTraversal` must be `true`; its traversal receipt must report runtime protocol 3.2.0, authority `anonymous-linked-data-read` 1.0.0, `standard-fetch`, zero retries, HTTP/HTTPS plus read-only query effects, and hard traversal ceilings before `workspace.traversal.query` is considered available.
 
-The MCP and workspace routes do not gain a document-fetch tool. Ordinary RDF documents, ontologies, service descriptions, and VoID metadata use the same private Communica path. Use `CONSTRUCT`/`queryQuads` or another appropriate standard read query over an HTTP/HTTPS RDF source and retain the native RDF/JS quad handle. A result is complete only within the effective byte and item bounds.
+The MCP and workspace routes do not gain a document-fetch tool. Before any live scientific query, use the generated `grounding` route: start a separately bounded discovery phase, load or select typed evidence handles, optionally acquire ordinary RDF documents through `grounding.discover`, finish discovery, attest evidence-backed source/graph/predicate choices, and freeze all plans. Only then start the scored traversal with those plans. The grounding context is registered under the context id returned by `grounding.attest`; inspect it when the planner needs compact evidence metadata. Full payloads remain behind handles.
 
 ## Discover before acting
 
@@ -87,4 +87,5 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 - Preserve provenance and operation IDs through query, derivation, and view.
 - Without an observed traversal capability, use only local-synthetic data; `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
 - Even with an observed traversal capability, live use requires current explicit approval for the traversal scope and effective budgets, plus an aggregate mediator receipt.
+- Scored traversal cannot begin without resident schema, vocabulary, and dataset evidence, attested source/graph/predicate choices, immutable enrolled plans, and registered compact grounding context. Grounding discovery uses a separate receipt; only the final scientific traversal is scored.
 - Keep REPL-resident native RDF/JS handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct. Live retrieval never updates PEEK automatically.

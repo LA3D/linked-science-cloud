@@ -32,6 +32,16 @@
       "run",
       "select"
     ],
+    "grounding": [
+      "begin",
+      "load",
+      "use",
+      "discover",
+      "finish",
+      "attest",
+      "plan",
+      "status"
+    ],
     "traversal": [
       "begin",
       "query",
@@ -67,6 +77,7 @@
     "query.select",
     "query.run",
     "traversal.query",
+    "grounding",
     "traversal.exploration",
     "results.derive",
     "results.profile",

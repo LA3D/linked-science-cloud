@@ -32,6 +32,7 @@ Keep these as enforcement or tool-verified requirements:
 4. **Large-context boundary:** bulk source documents and result tables stay behind REPL handles; reports expose only bounded views, metadata, and provenance.
 5. **Epistemic scope:** an empty result means no binding for one exact query over one queried graph; a failed/unretrieved schema means schema state is unavailable, not that the requested fact is false or absent.
 6. **Prerequisites:** a plan or frontier action may use only the evidence it actually has. Failed schema acquisition cannot yield a schema-derived operation choice.
+7. **Composable grounding:** each resource crosses the same thin boundary—orient or discover, attest typed evidence, freeze a plan, then execute or inspect—while resource semantics remain declarative and resident rather than becoming generic runtime branches.
 
 ## Goal loop
 
@@ -45,6 +46,8 @@ observe state → choose an uncertainty-reducing action → act
 Examples of available actions include acquiring a source, searching/indexing a schema, inspecting a result handle, checking an assertion with `ASK`, retrieving a bounded table with `SELECT`, deriving a bounded relationship graph with `CONSTRUCT`, cautiously using endpoint-supported `DESCRIBE`, or asking the coordinator for a missing approval.
 
 The skill should require an evidence-backed transition and an honest outcome—not a fixed narration order.
+
+Following the compositional-harness principle described by Alex Zhang and Omar Khattab, the reusable phase boundary should make distinct Linked Science resources structurally isomorphic without prescribing their scientific reasoning. The runtime must not encode a standard-location search sequence, endpoint-selection heuristic, ontology interpretation, or query-construction strategy. Those remain agent decisions informed by source-owned evidence. Typed results may feed a later resource's grounding through the same resident-handle contract.
 
 ## Symbolic orientation cache
 

@@ -221,7 +221,17 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
     var facade = await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
     var workspace = facade.open({ contextKey: 'private-authority-smoke' });
-    var exploration = await workspace.traversal.begin({ budgets: { maxRequests: 2 } });
+    await workspace.grounding.begin({ target: 'synthetic private-authority smoke', budgets: { maxRequests: 2 } });
+    var evidence = await workspace.grounding.load({ name: 'synthetic-manifest', document: { kind: 'EvidencePack' } });
+    await workspace.grounding.finish();
+    workspace.grounding.attest({
+      evidence: [{ handle: evidence, supports: ['schema', 'vocabulary', 'dataset'], locator: 'synthetic manifest' }],
+      sourceChoices: [{ term: 'https://example.test/data', evidenceHandles: [evidence] }],
+      graphChoices: [{ term: 'default', evidenceHandles: [evidence] }],
+      predicateChoices: [{ term: 'variable-predicate', evidenceHandles: [evidence] }]
+    });
+    var plan = workspace.grounding.plan({ sources: ['https://example.test/data'], sparql: 'ASK { ?s ?p ?o }' });
+    var exploration = await workspace.traversal.begin({ plans: [plan], budgets: { maxRequests: 2 } });
     var explorationStatus = await workspace.traversal.status();
     await workspace.traversal.abort('offline-smoke-complete');
     nodeRepl.write({

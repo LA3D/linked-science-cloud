@@ -11,6 +11,7 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 
 - Work from this repository and preserve unrelated changes.
 - Treat remembered terms, prefixes, graph paths, and endpoint behavior as hypotheses until supported by retrieved source evidence.
+- Before constructing a live scientific query, follow the executable resource-neutral gate: orient or discover, attest typed grounding evidence, construct immutable plans, then start and execute the scored traversal. Do not bypass a missing phase with prose.
 - Distinguish prior belief, source evidence, query-result evidence, and synthesis.
 - Pursue the information goal, not a preferred source or memorized graph path. Change routes when evidence or failures warrant it.
 - Never interpret an unavailable source or empty result as proof of global absence.
@@ -24,12 +25,14 @@ Use this experimental project as a goal-directed, read-only Linked Data workspac
 - **Documentation-only or static-source work:** inspect repository files directly. It does not require a REPL preflight unless the result claims REPL execution, retention, or live connectivity.
 - **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), use only `cleanroom_node_repl`, bootstrap exactly once with the documented absolute module and roots, and then reuse the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. Broker-owned PEEK orientation survives kernel replacement, but resident handles and RLM kernel context do not; bootstrap again and reject old-epoch handles.
 - **Any persistent-REPL execution:** first read and follow [REPL environment and persistence](references/repl-environment.md). A terminal script is not proof of REPL retention.
-- **Documentation acquisition, live querying, or source selection:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for a bounded traversal remains mandatory.
+- **Documentation acquisition, live querying, or source selection:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for bounded grounding discovery and scored traversal remains mandatory.
 - **Retained results, orientation, reset, or presentation:** read [retained state and bounded presentation](references/retained-state-and-presentation.md).
 - **Reproducing historical Identifiers.org experiments only:** also read [the retired Identifiers.org SPARQL profile](references/identifiers-org-sparql.md); never treat it as current production authority.
 - **Evidence/session architecture changes:** read the repository's [goal-loop state dossier](../../../docs/experiments/goal-loop-state-graph.md) and [architecture routes](../../../docs/architecture/README.md).
 
 Use `resources/index.md` only as routed by the evidence-acquisition reference when a goal crosses sources or the starting source is unclear. Neither that index nor a skill is scientific evidence.
+
+Keep the control trajectory composable across resources: resource-specific schemas, vocabularies, endpoints, graphs, predicates, and identifiers belong in declarative manifests, resident evidence handles, and the registered grounding context—not in this skill, generic runtime logic, or root instructions. A typed grounded result from one resource may be selected as evidence for the next resource through the same `grounding.use` contract. Enforce these phase and evidence invariants without prescribing the scientific reasoning inside each phase.
 
 The exact runtime bootstrap is:
 

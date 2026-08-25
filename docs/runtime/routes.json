@@ -8,6 +8,7 @@
     "query.select",
     "query.run",
     "traversal.query",
+    "grounding",
     "traversal.exploration",
     "results.derive",
     "results.profile",
