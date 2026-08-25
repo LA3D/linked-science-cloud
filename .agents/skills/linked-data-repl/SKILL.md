@@ -1,11 +1,11 @@
 ---
 name: linked-data-repl
-description: Explore RDF, ontologies, and approved public Linked Data through a persistent mediated JavaScript workspace with grounded evidence, cumulative budgets, retained handles, and bounded views.
+description: Explore RDF, ontologies, and approved public Linked Data through a persistent mediated JavaScript workspace with resident evidence, bounded queries, and reusable result handles.
 ---
 
 # Linked Data REPL
 
-Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. Use the project `cleanroom_node_repl` only for persistent RDF/Communica state, mediated public Linked Data traversal, or bounded reuse of resident scientific evidence. Live work requires current authorization for its scope and budgets.
+Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. Use `cleanroom_node_repl` for persistent RDF/Communica state, mediated public Linked Data traversal, or reuse of resident scientific evidence. Live work requires current authorization for its scope and budgets.
 
 ## Persistent runtime
 
@@ -23,24 +23,42 @@ if (globalThis.linkedScience == null) {
 }
 ```
 
-Reuse `linkedScience`, the goal workspace, and current evidence/result/plan handles across calls and later turns while valid. Read the complete callable contract once with `linkedScience.documentation.all()`; use `documentation.get(name)` for targeted troubleshooting. Do not duplicate the runtime schema from memory or reset because one local object or call is malformed. Read `documentation.get('recovery')` first. Reset only after actual kernel/workspace invalidation; stale handles must be reacquired through an authorized source.
+Reuse `linkedScience`, the goal workspace, and valid evidence/result handles across calls and later turns. Read `linkedScience.documentation.all()` once, then use `documentation.get(name)` only for targeted recovery. Correct malformed calls in place; reset only after actual kernel or workspace invalidation. A reset makes old handles stale and does not authorize reacquisition.
 
-## Scientific control boundary
+## Agentic Linked Science
 
-Keep resource-specific schemas, vocabularies, endpoints, graphs, predicates, and identifiers in declarative evidence or resident context—not this skill or generic runtime logic. Before a scientific query, use the generated grounding contract to orient or discover, retain typed evidence, attest source/graph/predicate choices, and construct an immutable plan.
+Before constructing a scientific query, inspect evidence appropriate to the resource and question: source-owned documentation, an ontology or schema, a service or dataset description, VoID/DCAT, `/.well-known/void`, examples, or another justified source. Treat remembered access patterns as hypotheses. Keep resource-specific endpoints, graphs, predicates, and identifiers in evidence or resident JavaScript state—not this skill or generic runtime code.
 
-For embedded declarative evidence, normally call `await workspace.grounding.load({ name, document })`; omission of `source` selects the generic typed declarative-manifest provenance default.
+Retain local declarative material when useful:
 
-Local deterministic validation failures expose `error.repair`. Correct them in place while its bounded allowance remains; they consume no live request budget. Live discovery and scientific query attempts are explicit agent decisions within one cumulative mediator scope. Iterate when task policy and remaining request, fan-out, concurrency, duration, byte, item, and `maxScientificQueries` budgets permit. Each attempt and later immutable-plan enrollment is receipted. Transport performs no hidden retries. An evaluation may explicitly set `maxScientificQueries: 1`; single-shot behavior is not the generic default.
+```js
+const evidence = await workspace.evidence.load({
+  name: 'resource-notes',
+  document: resourceNotes,
+});
+```
 
-Treat remembered resource facts as hypotheses until supported by declarative or retrieved evidence. An unavailable source or empty result is not proof of global absence. Keep bulk data behind resident handles and return only bounded views, provenance, and uncertainty.
+Retrieve RDF evidence and run scientific reads with the same direct operation. Mark a SPARQL service explicitly so it is not dereferenced as an RDF document:
+
+```js
+const result = await workspace.traversal.query({
+  sources: [{ type: 'sparql', value: serviceUrl }],
+  sparql,
+  evidence: [evidence],
+  budgets: { maxRequests: 4, maxResultItems: 100 },
+});
+```
+
+Each call is one visible, bounded attempt with a final receipt and no hidden transport retry. Inspect `workspace.traversal.history()` when retry count or failure history matters. Explicit corrections and revised scientific queries are normal agent actions; evaluation observes them instead of controlling the runtime.
+
+Errors expose `error.repair` when a local call shape can be corrected without a live request. Reuse resident handles and ordinary JavaScript values to compose work across resources. Keep bulk data behind handles and return only bounded views, provenance, and calibrated uncertainty. An unavailable source or empty result is not proof of global absence.
 
 ## Routed detail
 
 - Persistent environment or reset semantics: [REPL environment and persistence](references/repl-environment.md).
-- Authorization, evidence acquisition, grounding, and cumulative iteration: [guarded evidence acquisition](references/guarded-evidence-acquisition.md).
+- Authorization, evidence orientation, mediated querying, and receipts: [guarded evidence acquisition](references/guarded-evidence-acquisition.md).
 - Retained handles and presentation: [retained state and bounded presentation](references/retained-state-and-presentation.md).
 - Runtime implementation or recovery: [runtime discovery](../../../docs/agent/runtime-discovery.md), then generated documentation.
 - Historical Identifiers.org reproduction only: [retired profile](references/identifiers-org-sparql.md).
 
-Do not expose raw Fetch, create parallel data/query helpers, install packages, change global configuration, export, commit, or push unless separately authorized. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).
+Do not expose raw Fetch, create a parallel data/query facade, install packages, change global configuration, export, commit, or push unless separately authorized. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).

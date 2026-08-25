@@ -12,9 +12,9 @@ Use the skill's conditional bootstrap only when `globalThis.linkedScience` is ab
 
 The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 
-The bootstrap detects the private parent mediator without exposing its bridge or Fetch closure. `nodeRepl.linkedScienceTraversal`, `fetch`, `Request`, and `Response` remain unavailable. Capabilities must report the expected protocol, anonymous read authority, standard Fetch, cumulative ceilings, and zero hidden transport retries. Explicit agent discovery/query iterations are a separate, receipted policy surface.
+The bootstrap detects the private parent mediator without exposing its bridge or Fetch closure. `nodeRepl.linkedScienceTraversal`, `fetch`, `Request`, and `Response` remain unavailable. Capabilities report anonymous read authority, standard Fetch, hard per-call ceilings, and zero hidden transport retries. Explicit agent queries are recorded in bounded workspace history.
 
-The MCP and workspace do not gain a document-fetch side channel. Obtain phase contracts from generated documentation. Grounding must still produce resident typed evidence, an attestation, and an immutable initial plan before the scientific timer starts; later immutable revisions require explicit enrollment in the same cumulative traversal.
+The MCP and workspace do not gain a document-fetch side channel. RDF documents, service descriptions, and scientific queries use the same direct `workspace.traversal.query(options)` operation. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
 
 ## Discover before acting
 
@@ -28,7 +28,7 @@ Then use targeted recovery or route detail only when needed:
 
 ```js
 linkedScience.documentation.get('recovery')
-linkedScience.documentation.get('grounding')
+linkedScience.documentation.get('traversal.query')
 ```
 
 The checked-in [API schema](../runtime/linked-science-api.schema.json) and [route index](../runtime/routes.json) support machine discovery. Do not invent a method when lookup fails; inspect the error receipt’s matches or return to the route list.
@@ -65,5 +65,6 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 - Preserve provenance and operation IDs through query, derivation, and view.
 - Without an observed traversal capability, use only local-synthetic data; `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
 - Even with an observed traversal capability, live use requires current explicit approval for the traversal scope and effective budgets, plus an aggregate mediator receipt.
-- Scientific traversal cannot begin without resident schema, vocabulary, and dataset evidence, attested source/graph/predicate choices, an immutable enrolled initial plan, and registered compact grounding context. Explicit attempts and later plan revisions remain visible and cumulative; evaluations may separately choose a single-shot policy.
-- Keep REPL-resident native RDF/JS handles, RLM external context, broker PEEK orientation, Codex goal state, and durable artifacts distinct. Live retrieval never updates PEEK automatically.
+- Before constructing a scientific query, the agent should inspect appropriate source-owned schema, vocabulary, dataset, service, or documentation evidence and retain useful evidence/result handles. The runtime records cited handles but does not prescribe the route or enforce a planning ceremony.
+- Each direct query is one bounded, receipted attempt. Corrections and later queries remain visible in `workspace.traversal.history()`; evaluation counts them without controlling the runtime.
+- Keep REPL-resident native RDF/JS handles, RLM runtime discovery, broker PEEK orientation, Codex goal state, and durable artifacts distinct. PEEK receives only compact handle references, never source or result payloads.

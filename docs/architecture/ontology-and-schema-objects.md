@@ -1,6 +1,6 @@
 # Ontology and schema objects
 
-Ontologies, schemas, SHACL graphs, inferred graphs, and instance data are first-class RDF objects in the Linked Science runtime. `workspace.graphs.load` accepts bounded local-synthetic RDF/JS quads or text. For live orientation or complete-document acquisition within budgets, `workspace.grounding.discover` can retain `CONSTRUCT` or carefully qualified `DESCRIBE` results as typed native quad evidence handles with per-exchange traversal provenance. After evidence attestation and immutable planning, `workspace.traversal.query(plan)` executes the scientific query; no static ontology-file gate or document-fetch facade is required.
+Ontologies, schemas, SHACL graphs, inferred graphs, and instance data are first-class RDF objects in the Linked Science runtime. `workspace.graphs.load` accepts bounded local-synthetic RDF/JS quads or text. For live orientation or complete-document acquisition within budgets, `workspace.traversal.query(options)` can retain `CONSTRUCT` or carefully qualified `DESCRIBE` results as native quad handles with per-exchange provenance. The same operation executes later scientific reads; no static ontology-file gate, plan enrollment, or document-fetch facade is required.
 
 ## Resident fidelity
 

@@ -221,43 +221,35 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
     var facade = await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
     var workspace = facade.open({ contextKey: 'private-authority-smoke' });
-    await workspace.grounding.begin({ target: 'synthetic private-authority smoke', budgets: { maxRequests: 2 } });
-    var evidence = await workspace.grounding.load({ name: 'synthetic-manifest', document: { kind: 'EvidencePack' } });
-    await workspace.grounding.finish();
-    workspace.grounding.attest({
-      evidence: [{ handle: evidence, supports: ['schema', 'vocabulary', 'dataset'], locator: 'synthetic manifest' }],
-      sourceChoices: [{ term: 'https://example.test/data', evidenceHandles: [evidence] }],
-      graphChoices: [{ term: 'default', evidenceHandles: [evidence] }],
-      predicateChoices: [{ term: 'variable-predicate', evidenceHandles: [evidence] }]
-    });
-    var plan = workspace.grounding.plan({ sources: ['https://example.test/data'], sparql: 'ASK { ?s ?p ?o }' });
-    var exploration = await workspace.traversal.begin({ plans: [plan], budgets: { maxRequests: 2 } });
-    var explorationStatus = await workspace.traversal.status();
-    await workspace.traversal.abort('offline-smoke-complete');
+    var evidence = await workspace.evidence.load({ name: 'synthetic-manifest', document: { kind: 'EvidencePack' } });
+    var evidenceProfile = workspace.results.profile(evidence);
+    var attemptHistory = workspace.traversal.history();
     nodeRepl.write({
       version: facade.version,
       authority: facade.capabilities().traversal.authority.class,
       transport: facade.capabilities().traversal.transport.implementation,
+      evidenceMethod: typeof workspace.evidence.load,
       traversalMethod: typeof workspace.traversal.query,
-      explorationStatus: explorationStatus.status,
-      sameTraversal: exploration.traversalId === explorationStatus.traversalId,
+      evidenceType: evidenceProfile.type,
+      attempts: attemptHistory.total,
       exposedBridge: typeof nodeRepl.linkedScienceTraversal,
       exposedFetch: typeof fetch
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '3\.2\.0'/u);
+  assert.match(text(response), /version: '4\.0\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
+  assert.match(text(response), /evidenceMethod: 'function'/u);
   assert.match(text(response), /traversalMethod: 'function'/u);
-  assert.match(text(response), /explorationStatus: 'active'/u);
-  assert.match(text(response), /sameTraversal: true/u);
+  assert.match(text(response), /evidenceType: 'evidence'/u);
+  assert.match(text(response), /attempts: 0/u);
   assert.match(text(response), /exposedBridge: 'undefined'/u);
   assert.match(text(response), /exposedFetch: 'undefined'/u);
   assert.equal(broker.traversal.sessions.size, 0);
 });
 
-test("repairable grounding validation reaches the MCP tool error envelope with typed correction metadata", async t => {
+test("repairable local validation reaches the MCP tool error envelope with typed correction metadata", async t => {
   const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
   t.after(() => broker.close());
   const handle = createRequestHandler({ broker });
@@ -265,19 +257,18 @@ test("repairable grounding validation reaches the MCP tool error envelope with t
     var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
     await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
     var workspace = linkedScience.open({ contextKey: 'repair-feedback-smoke' });
-    await workspace.grounding.begin({ target: 'synthetic repair feedback', budgets: { maxRequests: 2 } });
-    await workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' }, source: 'malformed-source' });
+    await workspace.evidence.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' }, source: { kind: 'remote', id: 'https://example.test/' } });
   ` }));
   assert.equal(response.result.isError, true);
   const envelope = JSON.parse(text(response)).error;
-  assert.equal(envelope.code, "LS_GROUNDING_EVIDENCE");
-  assert.equal(envelope.stage, "grounding-evidence");
+  assert.equal(envelope.code, "LS_EVIDENCE");
+  assert.equal(envelope.stage, "evidence-load");
   assert.equal(envelope.retryable, true);
   assert.equal(envelope.repair.field, "source");
   assert.deepEqual(envelope.repair.expected.omittedDefault, { kind: "declarative-resource-manifest", id: "<name>" });
-  assert.deepEqual(envelope.repair.budgetImpact, { discoveryRequests: 0, scoredRequests: 0 });
+  assert.deepEqual(envelope.repair.budgetImpact, { liveRequests: 0 });
   assert.deepEqual(envelope.receipt.repair, envelope.repair);
-  assert.equal(broker.traversal.sessions.values().next().value.requests, 0);
+  assert.equal(broker.traversal.sessions.size, 0);
 });
 
 test("registered package entrypoints use ESM import conditions", async (t) => {

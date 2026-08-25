@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "routes": [
     "bootstrap",
     "discovery",
@@ -8,8 +8,8 @@
     "query.select",
     "query.run",
     "traversal.query",
-    "grounding",
-    "traversal.exploration",
+    "evidence.load",
+    "traversal.history",
     "results.derive",
     "results.profile",
     "results.page",

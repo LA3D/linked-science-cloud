@@ -43,7 +43,7 @@ test('bootstraps exactly once with stable facade bindings and generated discover
   assert.throws(() => first.documentation.get('neighbors-missing'), error => error instanceof LinkedScienceRuntimeError && error.code === 'LS_DOCUMENT_NOT_FOUND');
   assert.equal(first.capabilities().rawEngineExposed, false);
   assert.equal(first.capabilities().currentJsGuardIsSecuritySandbox, false);
-  assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'derive', 'reset' ] });
+  assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'evidence', 'traversal', 'derive', 'reset' ] });
   assert.match(first.examples('ontology').code, /schema\.search/);
   assert.equal(LINKED_SCIENCE_API_SCHEMA.bootstrap, first.documentation.get('bootstrap').usage);
   assert.equal(typeof first.compatibility.queryToHandleGuarded, 'undefined');
@@ -188,7 +188,8 @@ test('machine-readable schema routes match runtime documentation and examples', 
   const completeDocumentation = facade.documentation.all();
   assert.deepEqual(Object.keys(completeDocumentation), routes.routes);
   assert.match(completeDocumentation.recovery.summary, /repair/i);
-  assert.match(completeDocumentation['traversal.exploration'].constraints.join(' '), /maxScientificQueries/u);
+  assert.match(completeDocumentation['traversal.query'].constraints.join(' '), /visible agent attempt/u);
+  assert.match(completeDocumentation['traversal.query'].sourceShapes.join(' '), /type: 'sparql'/u);
   for (const route of routes.routes) assert.equal(facade.documentation.get(route).name, route);
   for (const topic of facade.examples().topics) assert.equal(typeof facade.examples(topic).code, 'string');
 

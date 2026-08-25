@@ -10,7 +10,7 @@ The replacement hypothesis is:
 
 > Given a Codex goal, a worker should use a project-local, tool-generated evidence/session layer to pursue it. Skills enforce invariants and expose useful affordances; they do not prescribe a universal reasoning sequence or replace Codex's goal loop.
 
-The direction remains experimental. A first runtime slice now implements guarded source acquisition, typed retained evidence/failure handles, and a bounded symbolic orientation cache; broader claim, schema-index, and plan state remains proposed.
+The direction remains experimental. The runtime implements guarded reads, typed retained evidence/results, and a bounded symbolic orientation cache; broader claim and schema-index state remains proposed.
 
 ## Evidence that motivated the change
 
@@ -31,8 +31,8 @@ Keep these as enforcement or tool-verified requirements:
 3. **Read boundary:** live actions require an explicitly approved traversal scope and remain public HTTP/HTTPS, read-only, behavior-bounded, and provenance-bearing through the mediator.
 4. **Large-context boundary:** bulk source documents and result tables stay behind REPL handles; reports expose only bounded views, metadata, and provenance.
 5. **Epistemic scope:** an empty result means no binding for one exact query over one queried graph; a failed/unretrieved schema means schema state is unavailable, not that the requested fact is false or absent.
-6. **Prerequisites:** a plan or frontier action may use only the evidence it actually has. Failed schema acquisition cannot yield a schema-derived operation choice.
-7. **Composable grounding:** each resource crosses the same thin boundary—orient or discover, attest typed evidence, freeze a plan, then execute or inspect—while resource semantics remain declarative and resident rather than becoming generic runtime branches.
+6. **Evidence honesty:** a scientific action may use only the evidence the agent actually has. Failed schema acquisition cannot be reported as a schema-derived operation choice.
+7. **Composable evidence:** resources use the same persistent handles and direct bounded operations while their semantics remain declarative and resident rather than becoming generic runtime branches.
 
 ## Goal loop
 
@@ -47,7 +47,7 @@ Examples of available actions include acquiring a source, searching/indexing a s
 
 The skill should require an evidence-backed transition and an honest outcome—not a fixed narration order.
 
-Following the compositional-harness principle described by Alex Zhang and Omar Khattab, the reusable phase boundary should make distinct Linked Science resources structurally isomorphic without prescribing their scientific reasoning. The runtime must not encode a standard-location search sequence, endpoint-selection heuristic, ontology interpretation, or query-construction strategy. Those remain agent decisions informed by source-owned evidence. Typed results may feed a later resource's grounding through the same resident-handle contract.
+Following the compositional-harness principle described by Alex Zhang and Omar Khattab, the persistent operation and handle surface should make distinct Linked Science resources easier to compose without prescribing their scientific reasoning. The runtime must not encode a standard-location search sequence, endpoint-selection heuristic, ontology interpretation, or query-construction strategy. Those remain agent decisions informed by source-owned evidence. Typed results may be cited by a later query through the same resident-handle contract.
 
 ## Symbolic orientation cache
 
@@ -66,7 +66,6 @@ Tools, rather than the worker's prose, should own these states. Each checkpoint 
 | Claim | `prior-unverified`, `source-confirmed`, `result-supported`, `contradicted`, `unresolved` |
 | Source acquisition | `not-attempted`, `retrieved`, `unavailable`, `failed` |
 | Schema | `unknown`, `partial`, `indexed`, `stale` |
-| Plan | `candidate`, `validated`, `invalid`, `superseded` |
 | Execution | `not-run`, `running`, `succeeded`, `failed`, `guard-rejected` |
 | Result | `unknown`, `nonempty`, `empty-for-exact-query`, `truncated` |
 | Handle | `resident`, `invalidated`, `missing`, `artifact-backed` |
@@ -76,16 +75,15 @@ The worker reports its local evidence state and stop reason back to Codex. Codex
 
 ## Tool surface
 
-Implement small stateful operations that return verified transitions:
+The implemented active surface stays small:
 
-- retained session `profile()`, `inspectEvidence()`, `page()`, and `checkpoint()` operations
-- implemented `acquireEvidenceToHandleGuarded()` with source/failure receipts
-- implemented orientation-map recording for acquisition and result handles
-- `indexSchema()`, `searchSchema()`, `neighbors()`, `findPaths()`
-- `validatePlan()`
-- typed `ask`, `select`, `construct`, and cautious `describe`
-- `profile`, `page`, `aggregate`, `filter`, and `sample` for large result handles
-- `checkpoint()` that serializes compact state only; receipts derive from actual events
+- `evidence.load()` retains bounded local declarative evidence;
+- `traversal.query()` performs one direct mediated read and retains the result;
+- `traversal.history()` exposes bounded attempt receipts for evaluation and recovery;
+- `profile()`, `page()`, `table()`, `derive()`, schema search, and graph neighborhoods inspect or transform resident handles; and
+- orientation operations preserve compact handle references without copying source or result payloads.
+
+Historical guarded-acquisition helpers remain available only for reproducing their recorded experiments.
 
 Reviewed affordance packs remain optional accelerators. They can propose candidates but are not proof and do not become mandatory query templates.
 
