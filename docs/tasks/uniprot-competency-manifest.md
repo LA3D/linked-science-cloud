@@ -48,6 +48,7 @@ The initial selection must cover VoID/current-release discovery, fixed-accession
 - Live execution remains outside this task. Federation support is verified only with offline synthetic fixtures.
 - A checked-in draft is not dispatchable. `status: draft` fails dispatch validation by design; readiness requires a separately frozen run commit and authorization, not a case-specific transport profile.
 - Durable isolation requires a broker-enforced filesystem authority receipt; path separation alone is not accepted as evidence.
+- Each dispatched evaluation must freeze its iteration policy. `maxScientificQueries: 1` means single-shot for that case only; it is not a generic runtime rule. Record local contract repairs, enrolled plan revisions, scientific attempts, and transport exchanges as distinct metrics under one cumulative budget.
 
 ### Remaining work
 

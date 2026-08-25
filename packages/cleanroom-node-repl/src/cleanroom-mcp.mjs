@@ -64,6 +64,13 @@ function rpcError(id, code, message = "Request failed") {
 }
 
 function errorToolResult(error) {
+  const boundedJson = (value, maxBytes) => {
+    if (value === undefined) return undefined;
+    try {
+      const text = JSON.stringify(value);
+      return Buffer.byteLength(text, "utf8") <= maxBytes ? JSON.parse(text) : undefined;
+    } catch { return undefined; }
+  };
   return {
     content: [{
       type: "text",
@@ -73,6 +80,11 @@ function errorToolResult(error) {
           code: typeof error?.code === "string" ? error.code.slice(0, 96) : "REPL_ERROR",
           name: typeof error?.name === "string" ? error.name.slice(0, 96) : "Error",
           message: typeof error?.message === "string" ? error.message.slice(0, 2_000) : "REPL operation failed",
+          ...(typeof error?.stage === "string" ? { stage: error.stage.slice(0, 96) } : {}),
+          ...(typeof error?.recoveryDocument === "string" ? { recoveryDocument: error.recoveryDocument.slice(0, 96) } : {}),
+          ...(typeof error?.retryable === "boolean" ? { retryable: error.retryable } : {}),
+          ...(boundedJson(error?.repair, 16_000) ? { repair: boundedJson(error.repair, 16_000) } : {}),
+          ...(boundedJson(error?.receipt, 64_000) ? { receipt: boundedJson(error.receipt, 64_000) } : {}),
         },
       }),
     }],

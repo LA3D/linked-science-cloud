@@ -257,6 +257,29 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
   assert.equal(broker.traversal.sessions.size, 0);
 });
 
+test("repairable grounding validation reaches the MCP tool error envelope with typed correction metadata", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var workspace = linkedScience.open({ contextKey: 'repair-feedback-smoke' });
+    await workspace.grounding.begin({ target: 'synthetic repair feedback', budgets: { maxRequests: 2 } });
+    await workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' }, source: 'malformed-source' });
+  ` }));
+  assert.equal(response.result.isError, true);
+  const envelope = JSON.parse(text(response)).error;
+  assert.equal(envelope.code, "LS_GROUNDING_EVIDENCE");
+  assert.equal(envelope.stage, "grounding-evidence");
+  assert.equal(envelope.retryable, true);
+  assert.equal(envelope.repair.field, "source");
+  assert.deepEqual(envelope.repair.expected.omittedDefault, { kind: "declarative-resource-manifest", id: "<name>" });
+  assert.deepEqual(envelope.repair.budgetImpact, { discoveryRequests: 0, scoredRequests: 0 });
+  assert.deepEqual(envelope.receipt.repair, envelope.repair);
+  assert.equal(broker.traversal.sessions.values().next().value.requests, 0);
+});
+
 test("registered package entrypoints use ESM import conditions", async (t) => {
   const fixture = await mkdtemp(join(tmpdir(), "cleanroom-repl-conditions-"));
   const moduleRoot = join(fixture, "node_modules");

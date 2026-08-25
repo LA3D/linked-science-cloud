@@ -16,6 +16,7 @@
   },
   "discovery": [
     "documentation",
+    "documentation.all",
     "documentation.get",
     "capabilities",
     "examples",
@@ -44,6 +45,7 @@
     ],
     "traversal": [
       "begin",
+      "enroll",
       "query",
       "status",
       "finish",

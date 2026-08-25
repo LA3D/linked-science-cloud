@@ -13,18 +13,10 @@ The bundled `node_repl` and deprecated `js_repl` label are obsolete for this pro
 
 ## Required preflight
 
-Before creating scientific state, perform this preflight in order:
+On a fresh task or replaced kernel, verify the actual three-tool MCP surface, `nodeRepl.cwd`, CodeAct mode, and one cross-call binding. Then use the skill's conditional bootstrap and inspect `linkedScience.capabilities()` plus the registered runtime context. Do this once, reuse the persistent bindings, and keep the checks compact; configuration prose or a shell cwd is not activation evidence.
 
-1. Start a fresh Local task after project MCP configuration changes. Confirm `cleanroom_node_repl` exposes exactly `js`, `js_reset`, and `js_add_node_module_dir`.
-2. Call `js` with `nodeRepl.write({ cwd: nodeRepl.cwd, mode: nodeRepl.rlm.mode })`. Require the cwd to equal `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl` and the mode to be `codeact`. A shell directory is not REPL evidence.
-3. Create a trivial top-level `var` binding, then inspect it in a second `js` call before claiming persistence.
-4. Run the exact bootstrap from the skill. `linkedScience.capabilities().environment` must report the explicit project root, module root, clean-room runtime, and resolved declared dependencies. This module-scoped resolution is the authoritative Linked Science dependency preflight.
-5. Inspect a bounded slice of `nodeRepl.rlm.inspect('linked-science:runtime', ...)` to verify bootstrap discovery registration.
-6. Start a context with `await workspace.orientation.bootstrap()`. The Linked Science runtime delegates this state to `nodeRepl.peek`; it does not create a second clean-room orientation cache.
-7. When the authorized task needs live data, make one bounded, approved, guarded network preflight. Treat transport evidence as distinct from tool exposure, roots, dependency resolution, persistence, RLM state, and PEEK state.
-
-The visible three-tool surface and project configuration text do not prove fresh-task activation. Report actual tool calls separately from offline server tests. Never change global Codex configuration from this skill.
+Bootstrap broker-owned orientation only when the goal workspace needs it. A live scientific operation still requires current approval and the mediated capability, but it does not require a separate ceremonial network probe unless the task or evaluation policy explicitly calls for one.
 
 Use dynamic imports and top-level `var` for reusable bindings. The Linked Science facade uses an absolute module URL and normal module-scoped ESM resolution from its validated project root. Do not import package entrypoints through `./node_modules/...` or add a guessed module directory. Use `js_add_node_module_dir` only when an interactive bare-package import genuinely needs it and verify that path independently. Prefer `nodeRepl.write(...)` for compact output.
 
-After `js_reset`, bootstrap Linked Science again. JavaScript bindings, RLM contexts, Linked Science workspaces, and resident handles are gone. Broker-owned PEEK maps remain as orientation only. Treat reset as recovery, not routine cleanup, and follow [retained-state reset semantics](retained-state-and-presentation.md#reset-and-stale-state).
+For malformed calls, stale local bindings, or missing selections, inspect the generated `recovery` contract and repair or reacquire the scoped object in place. Use `js_reset` only after actual kernel invalidation. After reset, bootstrap again; JavaScript bindings, RLM contexts, workspaces, and resident handles are gone while broker PEEK remains orientation only. Follow [retained-state reset semantics](retained-state-and-presentation.md#reset-and-stale-state).

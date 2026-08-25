@@ -51,38 +51,26 @@ The active worker-facing path is a reusable phase protocol, not a resource-speci
 1. `workspace.grounding.begin` starts a separately bounded discovery phase for one target resource.
 2. `grounding.load`, `grounding.use`, and optional `grounding.discover` acquire declarative or mediated typed evidence handles.
 3. `grounding.finish` closes the discovery mediator scope; `grounding.attest` requires schema, vocabulary, and dataset evidence plus evidence-backed source, graph, and predicate choices and registers a bounded REPL grounding context.
-4. `grounding.plan` constructs immutable plans. Only after all plans exist may `traversal.begin({ plans, budgets })` start the cumulative scored timer and `traversal.query(plan)` execute them.
+4. `grounding.plan` constructs an immutable initial plan. `traversal.begin({ plans, budgets, iterationPolicy })` starts one cumulative scientific traversal; later evidence-driven plan revisions remain immutable and enter that same scope through `traversal.enroll(plan)`.
 
 This makes different resource tasks structurally isomorphic while leaving scientific reasoning and route selection agentic. Resource-specific schema, vocabulary, endpoints, graph names, predicates, and identifiers remain declarative evidence or REPL state. A typed result from one completed resource may enter a later grounding phase through `grounding.use`; no cross-resource special-case helper is needed.
 
 Local consumer-owned Communica receives dynamically selected HTTP/HTTPS RDF source IRIs and may follow Linked Data or execute `SERVICE` federation, but every actual request uses a module-private Fetch closure crossing the parent mediator. The closure is not exposed to agent code. The mediator strips ambient identity, accepts only GET/HEAD or parsed read-only SPARQL POST, and enforces traversal-wide request count, distinct-source fan-out, concurrency, time, byte, and item ceilings. DNS, TLS, sockets, certificates, and redirects remain standard platform Fetch behavior; the obsolete custom DNS/TLS connector must not be restored.
 
+Use the complete generated `grounding`, `traversal.exploration`, and `recovery` contracts rather than copying the API sequence from prose. The common embedded-evidence call is intentionally small:
+
 ```js
-var ws = linkedScience.open({ contextKey: 'approved-goal' });
-await ws.grounding.begin({
-  target: 'the scientific resource named by the current goal',
-  budgets: { maxRequests: 8, maxFanOut: 4, maxTotalBytes: 4000000, maxDurationMs: 60000 },
-});
 var manifestEvidence = await ws.grounding.load({
   name: 'resource-manifest',
   document: resourceManifest,
 });
-// Optional bounded grounding.discover(...) calls may add source-owned evidence handles here.
-await ws.grounding.finish();
-ws.grounding.attest({
-  evidence: attestedEvidence,
-  sourceChoices: supportedSources,
-  graphChoices: supportedGraphs,
-  predicateChoices: supportedPredicates,
-});
-var plan = ws.grounding.plan(scientificQueryOptions);
-var exploration = await ws.traversal.begin({ plans: [ plan ], budgets: scoredBudgets });
-var result = await ws.traversal.query(plan);
-ws.results.profile(result);
-await ws.traversal.finish();
 ```
 
-Only the final scientific traversal is scored. Grounding discovery has its own mediator receipt and bounds, and the scored traversal timer does not begin until grounding attestation and immutable planning complete. Attested grounding summaries are registered in a bounded RLM context; full retrieved payloads remain behind resident handles and are not automatically copied into PEEK. The result handle retains an aggregate receipt with per-exchange request/response hashes and bounds. Standard Fetch supplies the requested URL, final URL, and redirected flag rather than every intermediate redirect. A receipt proves one traversal, not the scientific interpretation.
+Omitting `source` applies the generic `{ kind: 'declarative-resource-manifest', id: name }` provenance. If a local grounding, attestation, or plan call is malformed, inspect `error.repair`, correct the named field while `remaining` permits, and reuse the current workspace. These local repairs do not spend discovery or scientific request budgets and do not justify a reset.
+
+Grounding discovery has its own cumulative mediator receipt and bounds. The scientific timer starts only after grounding, attestation, and an initial immutable plan. The generic runtime then permits bounded explicit scientific attempts and later enrolled plan revisions according to `iterationPolicy.maxScientificQueries` and the same cumulative request, fan-out, concurrency, duration, byte, and item budgets. An evaluation can set the policy to one attempt; ordinary agentic use does not. Transport libraries make no hidden retry. Every explicit attempt and enrollment appears in status/final receipts, including failures, so iteration is visible rather than silently repeated.
+
+Attested grounding summaries are registered in bounded RLM context; full payloads remain behind resident handles and are not automatically copied into PEEK. Result handles retain aggregate/per-exchange provenance. A receipt proves an attempt and its lineage, not the scientific interpretation.
 
 Inspect `ws.results.profile(result).provenance.navigation` when HTTP metadata may help choose the next route. On a parsing or query failure, inspect `error.receipt.navigation`; useful advertisements do not require a successful result handle. Both views contain bounded, resolved candidates from RFC 8288 `Link`, `Content-Type` profile parameters, `Content-Profile`, and `Preference-Applied`, with the declaring response and mechanism retained. Treat `profile`, `describedby`, `alternate`, and JSON-LD context links as observed advertisements with status `advertised-untried`, not commands or proof that their targets exist. Select a candidate when its relation addresses the current evidence gap and make the next request inside the same approved goal exploration so cumulative budgets continue to apply. Do not copy link text into memory automatically.
 

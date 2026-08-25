@@ -146,6 +146,77 @@ test('resource-neutral grounding gate loads evidence context and starts scored t
   await workspace.traversal.finish();
 });
 
+test('malformed local grounding evidence exposes bounded repair metadata and correction consumes no request budget', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'grounding-local-repair' });
+  const begun = await workspace.grounding.begin({ target: 'synthetic repair target', budgets: { maxRequests: 2 } });
+  await assert.rejects(
+    workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' }, source: 'embedded-pack' }),
+    error => {
+      assert.equal(error.code, 'LS_GROUNDING_EVIDENCE');
+      assert.equal(error.stage, 'grounding-evidence');
+      assert.equal(error.retryable, true);
+      assert.equal(error.repair.field, 'source');
+      assert.equal(error.repair.scope, 'local-validation');
+      assert.deepEqual(error.repair.expected.omittedDefault, { kind: 'declarative-resource-manifest', id: '<name>' });
+      assert.equal(error.repair.remaining, 1);
+      assert.deepEqual(error.repair.budgetImpact, { discoveryRequests: 0, scoredRequests: 0 });
+      assert.deepEqual(error.receipt.repair, error.repair);
+      return true;
+    },
+  );
+  assert.equal(broker.snapshotTraversal({ traversalId: begun.traversalId }, owner).usage.requests, 0);
+  const evidence = await workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' } });
+  assert.equal(workspace.results.profile(evidence).provenance.source.kind, 'declarative-resource-manifest');
+  assert.equal(broker.snapshotTraversal({ traversalId: begun.traversalId }, owner).usage.requests, 0);
+  await workspace.grounding.finish();
+});
+
+test('local validation repair allowance is bounded without creating transport attempts', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'grounding-repair-limit' });
+  const begun = await workspace.grounding.begin({ target: 'synthetic repair limit', budgets: { maxRequests: 2 } });
+  for (const remaining of [ 1, 0 ]) await assert.rejects(
+    workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' }, source: 'invalid' }),
+    error => error.repair.remaining === remaining,
+  );
+  await assert.rejects(
+    workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' } }),
+    error => error.code === 'LS_LOCAL_REPAIR_LIMIT' && error.retryable === false,
+  );
+  assert.equal(broker.snapshotTraversal({ traversalId: begun.traversalId }, owner).usage.requests, 0);
+  await workspace.grounding.finish();
+});
+
+test('attestation and plan validation can be corrected locally before the scientific timer starts', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'attestation-plan-repair' });
+  await workspace.grounding.begin({ target: 'synthetic attestation repair', budgets: { maxRequests: 2 } });
+  const evidence = await workspace.grounding.load({ name: 'resource-manifest', document: { kind: 'EvidencePack' } });
+  await workspace.grounding.finish();
+  const attestation = {
+    evidence: [ { handle: evidence, supports: [ 'schema', 'vocabulary', 'dataset' ], locator: 'embedded manifest' } ],
+    sourceChoices: [ { term: 'https://data.example/source-a.ttl', evidenceHandles: [ evidence ] } ],
+    graphChoices: [ { term: 'default', evidenceHandles: [ evidence ] } ],
+    predicateChoices: [ { term: 'variable-predicate', evidenceHandles: [ evidence ] } ],
+  };
+  await assert.rejects(
+    Promise.resolve().then(() => workspace.grounding.attest({ ...attestation, predicateChoices: [] })),
+    error => error.stage === 'grounding-attestation' && error.repair.remaining === 1,
+  );
+  workspace.grounding.attest(attestation);
+  await assert.rejects(
+    Promise.resolve().then(() => workspace.grounding.plan({ sources: [ 'file:///not-live' ], sparql: 'ASK { ?s ?p ?o }' })),
+    error => error.stage === 'query-planning' && error.repair.field === 'sources[]' && error.repair.remaining === 1,
+  );
+  const plan = workspace.grounding.plan({ sources: [ 'https://data.example/source-a.ttl' ], sparql: 'ASK { ?s ?p ?o }' });
+  assert.equal(broker.sessions.size, 0, 'finished grounding and local repairs leave no active or scored transport session');
+  const begun = await workspace.traversal.begin({ plans: [ plan ], budgets: { maxRequests: 2 } });
+  assert.equal(begun.usage.scientificQueries, 0);
+  const receipt = await workspace.traversal.abort('local-repair-test-complete');
+  assert.equal(receipt.usage.requests, 0);
+});
+
 test('grounded result handles compose into the same evidence contract for a later resource', async () => {
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'composable-grounding' });
@@ -306,6 +377,47 @@ test('failed RDF parsing exposes advertised navigation directly and remains reco
   assert.equal(receipt.usage.requests, 2);
   assert.equal(receipt.operations, 1);
   assert.equal(receipt.resultItems, 1);
+  assert.equal(receipt.scientificQueries, 2);
+  assert.deepEqual(receipt.attempts.map(item => item.status), [ 'failed', 'success' ]);
+});
+
+test('agent can enroll a revised immutable plan after an unproductive result within one cumulative scored budget', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'agentic-plan-revision' });
+  const [ initial ] = await prepareGroundedPlans(workspace, [ {
+    sources: [ 'https://data.example/source-a.ttl' ],
+    sparql: 'ASK { ?s <https://example.test/missing> ?o }',
+  } ]);
+  await workspace.traversal.begin({ plans: [ initial ], budgets: { maxRequests: 2 }, iterationPolicy: { maxScientificQueries: 2 } });
+  const first = await workspace.traversal.query(initial);
+  assert.equal(workspace.results.page(first, { limit: 1 }).rows[0].value, false);
+  const revised = workspace.grounding.plan({ sources: [ 'https://data.example/source-a.ttl' ], sparql: 'ASK { ?s ?p ?o }' });
+  const enrollment = workspace.traversal.enroll(revised);
+  assert.equal(enrollment.status, 'enrolled');
+  assert.equal(enrollment.revision, 1);
+  const second = await workspace.traversal.query(revised);
+  assert.equal(workspace.results.page(second, { limit: 1 }).rows[0].value, true);
+  const receipt = await workspace.traversal.finish();
+  assert.equal(receipt.usage.requests, 2);
+  assert.equal(receipt.scientificQueries, 2);
+  assert.equal(receipt.planRevisions, 1);
+  assert.deepEqual(receipt.attempts.map(item => item.planId), [ initial.id, revised.id ]);
+  assert.equal(calls.length, 2);
+});
+
+test('single-shot evaluation policy blocks a second explicit query without another live request', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'single-shot-policy' });
+  const [ plan ] = await prepareGroundedPlans(workspace, [ { sources: [ 'https://data.example/source-a.ttl' ], sparql: 'ASK { ?s ?p ?o }' } ]);
+  await workspace.traversal.begin({ plans: [ plan ], budgets: { maxRequests: 4 }, iterationPolicy: { maxScientificQueries: 1 } });
+  await workspace.traversal.query(plan);
+  await assert.rejects(workspace.traversal.query(plan), error => error.code === 'LS_SCIENTIFIC_ITERATION_LIMIT' && error.retryable === false);
+  assert.equal(calls.length, 1);
+  const receipt = await workspace.traversal.finish();
+  assert.equal(receipt.scientificQueries, 1);
+  assert.equal(receipt.usage.requests, 1);
 });
 
 test('goal exploration budgets accumulate across agent decisions instead of resetting per query', async () => {
@@ -341,14 +453,11 @@ test('workspace reset aborts its active goal exploration and stale workspace sta
 test('document negotiation is rejected when every initial source is a SPARQL service', async () => {
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'service-negotiation' });
-  const [ plan ] = await prepareGroundedPlans(workspace, [ {
+  await assert.rejects(prepareGroundedPlans(workspace, [ {
     sources: [ { type: 'sparql', value: 'https://service-a.example/sparql' } ],
     sparql: 'ASK { ?s ?p ?o }',
     negotiation: { acceptProfile: 'https://example.test/profile/document-only' },
-  } ]);
-  await workspace.traversal.begin({ plans: [ plan ] });
-  await assert.rejects(workspace.traversal.query(plan), error => error.code === 'LS_TRAVERSAL_PREFLIGHT' && /do not inherit/u.test(error.message));
-  await workspace.traversal.abort('expected-preflight-rejection');
+  } ]), error => error.code === 'LS_QUERY_PLAN' && error.repair.field === 'negotiation' && /do not inherit/u.test(error.message));
   assert.equal(broker.sessions.size, 0);
 });
 
@@ -395,11 +504,9 @@ test('traversal stays unavailable without the parent mediator and rejects non-HT
   const calls = [];
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const guarded = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'unsafe-source' });
-  const [ unsafePlan ] = await prepareGroundedPlans(guarded, [ { sources: [ 'file:///tmp/private' ], sparql: 'ASK { ?s ?p ?o }' } ]);
-  await guarded.traversal.begin({ plans: [ unsafePlan ] });
   await assert.rejects(
-    guarded.traversal.query(unsafePlan),
-    error => error.code === 'LS_TRAVERSAL_PREFLIGHT',
+    prepareGroundedPlans(guarded, [ { sources: [ 'file:///tmp/private' ], sparql: 'ASK { ?s ?p ?o }' } ]),
+    error => error.code === 'LS_QUERY_PLAN' && error.repair.field === 'sources[]',
   );
   assert.equal(calls.length, 0);
 });

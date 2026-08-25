@@ -185,6 +185,10 @@ test('machine-readable schema routes match runtime documentation and examples', 
   const facade = await setupLinkedScience({ nodeRepl: {} });
   assert.deepEqual(schema, LINKED_SCIENCE_API_SCHEMA);
   assert.deepEqual(routes.routes, facade.documentation().routes);
+  const completeDocumentation = facade.documentation.all();
+  assert.deepEqual(Object.keys(completeDocumentation), routes.routes);
+  assert.match(completeDocumentation.recovery.summary, /repair/i);
+  assert.match(completeDocumentation['traversal.exploration'].constraints.join(' '), /maxScientificQueries/u);
   for (const route of routes.routes) assert.equal(facade.documentation.get(route).name, route);
   for (const topic of facade.examples().topics) assert.equal(typeof facade.examples(topic).code, 'string');
 

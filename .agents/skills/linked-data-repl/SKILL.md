@@ -1,57 +1,46 @@
 ---
 name: linked-data-repl
-description: Explore messy RDF, ontologies, and approved public Linked Data sources through a persistent Node JavaScript REPL with Communica. Use for evidence-grounded questions, adaptive source recovery, schema discovery, bounded read queries, symbolic orientation maps, retained handles, and compact presentation.
+description: Explore RDF, ontologies, and approved public Linked Data through a persistent mediated JavaScript workspace with grounded evidence, cumulative budgets, retained handles, and bounded views.
 ---
 
 # Linked Data REPL
 
-Use this experimental project as a goal-directed, read-only Linked Data workspace. Let the user's goal and current evidence determine the route; do not impose a fixed reasoning or narration sequence.
+Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. Use the project `cleanroom_node_repl` only for persistent RDF/Communica state, mediated public Linked Data traversal, or bounded reuse of resident scientific evidence. Live work requires current authorization for its scope and budgets.
 
-## Hard invariants
+## Persistent runtime
 
-- Work from this repository and preserve unrelated changes.
-- Treat remembered terms, prefixes, graph paths, and endpoint behavior as hypotheses until supported by retrieved source evidence.
-- Before constructing a live scientific query, follow the executable resource-neutral gate: orient or discover, attest typed grounding evidence, construct immutable plans, then start and execute the scored traversal. Do not bypass a missing phase with prose.
-- Distinguish prior belief, source evidence, query-result evidence, and synthesis.
-- Pursue the information goal, not a preferred source or memorized graph path. Change routes when evidence or failures warrant it.
-- Never interpret an unavailable source or empty result as proof of global absence.
-- Use live traversal only when the current task explicitly authorizes its scope and effective budgets. Linked Data destinations may be discovered dynamically; do not bypass the mediator or invent a raw-network route.
-- Keep live operations read-only, public HTTP/HTTPS, identity-free, request/fan-out/concurrency/time/byte/item bounded, zero-retry by default, and provenance-bearing through the project mediator.
-- Keep large documents and results in the REPL behind named bindings or handles. Return only compact metadata, bounded pages or aggregates, provenance, and uncertainty.
-- Do not change global Codex configuration, install packages, export data, commit, push, or write externally unless the user separately authorizes that action. Export is not implemented by this skill.
-
-## Route only to relevant detail
-
-- **Documentation-only or static-source work:** inspect repository files directly. It does not require a REPL preflight unless the result claims REPL execution, retention, or live connectivity.
-- **Linked Science CodeAct runtime work:** read [runtime discovery](../../../docs/agent/runtime-discovery.md), use only `cleanroom_node_repl`, bootstrap exactly once with the documented absolute module and roots, and then reuse the stable `linkedScience`/`ls` binding. Start from generated documentation and conditional lookup instead of guessing methods. Keep every observation bounded by rows/cells or nodes/edges and bytes, with provenance. Broker-owned PEEK orientation survives kernel replacement, but resident handles and RLM kernel context do not; bootstrap again and reject old-epoch handles.
-- **Any persistent-REPL execution:** first read and follow [REPL environment and persistence](references/repl-environment.md). A terminal script is not proof of REPL retention.
-- **Documentation acquisition, live querying, or source selection:** read [guarded evidence acquisition](references/guarded-evidence-acquisition.md). Current explicit approval for bounded grounding discovery and scored traversal remains mandatory.
-- **Retained results, orientation, reset, or presentation:** read [retained state and bounded presentation](references/retained-state-and-presentation.md).
-- **Reproducing historical Identifiers.org experiments only:** also read [the retired Identifiers.org SPARQL profile](references/identifiers-org-sparql.md); never treat it as current production authority.
-- **Evidence/session architecture changes:** read the repository's [goal-loop state dossier](../../../docs/experiments/goal-loop-state-graph.md) and [architecture routes](../../../docs/architecture/README.md).
-
-Use `resources/index.md` only as routed by the evidence-acquisition reference when a goal crosses sources or the starting source is unclear. Neither that index nor a skill is scientific evidence.
-
-Keep the control trajectory composable across resources: resource-specific schemas, vocabularies, endpoints, graphs, predicates, and identifiers belong in declarative manifests, resident evidence handles, and the registered grounding context—not in this skill, generic runtime logic, or root instructions. A typed grounded result from one resource may be selected as evidence for the next resource through the same `grounding.use` contract. Enforce these phase and evidence invariants without prescribing the scientific reasoning inside each phase.
-
-The exact runtime bootstrap is:
+Use only `cleanroom_node_repl`. On a fresh kernel, verify project cwd, CodeAct mode, cross-call persistence, and absence of raw transport once. Initialize only when the stable binding is absent:
 
 ```js
-var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
-await bootstrapLinkedScience({
-  host: globalThis,
-  cleanroom: nodeRepl,
-  projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',
-  moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',
-});
+if (globalThis.linkedScience == null) {
+  var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+  await bootstrapLinkedScience({
+    host: globalThis,
+    cleanroom: nodeRepl,
+    projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',
+    moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',
+  });
+}
 ```
 
-Run it once per persistent clean-room kernel, then reuse `linkedScience`. Do not substitute the bundled `node_repl`, `process.cwd()`, an inferred root, or a package entrypoint under `node_modules`. The complete runtime surface belongs in generated documentation and `docs/runtime/`, not in this skill.
+Reuse `linkedScience`, the goal workspace, and current evidence/result/plan handles across calls and later turns while valid. Read the complete callable contract once with `linkedScience.documentation.all()`; use `documentation.get(name)` for targeted troubleshooting. Do not duplicate the runtime schema from memory or reset because one local object or call is malformed. Read `documentation.get('recovery')` first. Reset only after actual kernel/workspace invalidation; stale handles must be reacquired through an authorized source.
 
-## Outcome
+## Scientific control boundary
 
-Choose `ASK`, `SELECT`, `CONSTRUCT`, carefully qualified `DESCRIBE`, source-document acquisition, or bounded handle inspection according to the information need and available evidence. A transport receipt proves that a request occurred; it does not prove the semantic interpretation.
+Keep resource-specific schemas, vocabularies, endpoints, graphs, predicates, and identifiers in declarative evidence or resident context—not this skill or generic runtime logic. Before a scientific query, use the generated grounding contract to orient or discover, retain typed evidence, attest source/graph/predicate choices, and construct an immutable plan.
 
-Return the answer at the scale the user needs, with enough compact evidence to identify the source or query used, resident handles actually verified, what the bounded result supports, and what remains uncertain or needs another permission. Do not manufacture a map, receipt, frontier, or operation narrative merely to satisfy a template. Codex owns the task and worker lifecycle; this project contributes Linked Data evidence and session state.
+For embedded declarative evidence, normally call `await workspace.grounding.load({ name, document })`; omission of `source` selects the generic typed declarative-manifest provenance default.
 
-After authorized repository changes, follow the repository [verification contract](../../../docs/agent/verification.md).
+Local deterministic validation failures expose `error.repair`. Correct them in place while its bounded allowance remains; they consume no live request budget. Live discovery and scientific query attempts are explicit agent decisions within one cumulative mediator scope. Iterate when task policy and remaining request, fan-out, concurrency, duration, byte, item, and `maxScientificQueries` budgets permit. Each attempt and later immutable-plan enrollment is receipted. Transport performs no hidden retries. An evaluation may explicitly set `maxScientificQueries: 1`; single-shot behavior is not the generic default.
+
+Treat remembered resource facts as hypotheses until supported by declarative or retrieved evidence. An unavailable source or empty result is not proof of global absence. Keep bulk data behind resident handles and return only bounded views, provenance, and uncertainty.
+
+## Routed detail
+
+- Persistent environment or reset semantics: [REPL environment and persistence](references/repl-environment.md).
+- Authorization, evidence acquisition, grounding, and cumulative iteration: [guarded evidence acquisition](references/guarded-evidence-acquisition.md).
+- Retained handles and presentation: [retained state and bounded presentation](references/retained-state-and-presentation.md).
+- Runtime implementation or recovery: [runtime discovery](../../../docs/agent/runtime-discovery.md), then generated documentation.
+- Historical Identifiers.org reproduction only: [retired profile](references/identifiers-org-sparql.md).
+
+Do not expose raw Fetch, create parallel data/query helpers, install packages, change global configuration, export, commit, or push unless separately authorized. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).
