@@ -1,0 +1,68 @@
+{
+  "format": "linked-science-uniprot-competency-baseline/v1",
+  "id": "uniprot-tier0-grounded-gate-2026-08-25",
+  "recordedAt": "2026-08-25T15:31:26Z",
+  "classification": "fresh untuned tier-0 grounding-gate evaluation",
+  "outcome": "hard-gate-failure",
+  "authorization": {
+    "competencyCases": 1,
+    "liveQueriesAuthorized": 1,
+    "liveQueriesExecuted": 0,
+    "retries": 0,
+    "additionalCases": 0,
+    "workerEvaluatorMaterialAccessed": false
+  },
+  "runtimeAttestation": {
+    "commit": "5ad042850e467282f4c5436c27dae43a6d96ad52",
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "protocol": "3.2.0",
+    "crossCallPersistence": true,
+    "rawFetchExposed": false,
+    "rawNetworkModuleDenied": true,
+    "legacyTraversalBridgeExposed": false,
+    "filesystemModuleImportDenied": false,
+    "offlineProtocolVerification": "passed"
+  },
+  "frozenEvaluation": {
+    "workerManifestVersion": "2026-08-21.1",
+    "workerManifestStatus": "draft",
+    "workerPrivateIdsMatch": true,
+    "workerPrivateQuestionsMatch": true,
+    "workerPrivateCorpusDigestMatch": true,
+    "evaluatorSelectionSha256": "5dc42c39aa40f72afe70458803e5bcc70d5a0b2ba93506a822cb7d04687d9616",
+    "workerExportSha256": "278ebb4b63867a242fee1e1089ff10b03777f85c0e1aafe0fdbc4833308b2195"
+  },
+  "preflight": {
+    "authoritativeCwd": true,
+    "exactProjectToolCount": 3,
+    "bootstrapSucceeded": true,
+    "runtimeContextInspectedBoundedly": true,
+    "peekOrientationReady": true,
+    "isolationBoundaryConfirmed": false,
+    "failure": "The generic node:fs module import unexpectedly succeeded, so the required filesystem-isolation boundary could not be freshly attested without probing a forbidden private path."
+  },
+  "grounding": {
+    "began": false,
+    "evidenceHandles": 0,
+    "attestationCreated": false,
+    "groundingContextRegistered": false,
+    "immutablePlanCreated": false
+  },
+  "scoredTraversal": {
+    "began": false,
+    "scientificQueries": 0,
+    "transportRequests": 0,
+    "retries": 0,
+    "resultHandleCreated": false,
+    "finished": false
+  },
+  "assessment": {
+    "hardGate": "failed",
+    "semanticSuccess": false,
+    "correctReleaseBindingReturned": false,
+    "privateScoreStoredSeparately": true,
+    "interpretation": "The fresh worker stopped before grounding and planning when it could not confirm the mandatory filesystem-isolation boundary. No live resource was contacted, so the grounding gate and frozen semantic invariant were not exercised.",
+    "remainingGuardrailFailure": "The active clean-room kernel permits importing node:fs even though the evaluated preflight contract requires generic filesystem-module import denial."
+  }
+}
