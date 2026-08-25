@@ -1,0 +1,67 @@
+{
+  "format": "linked-science-uniprot-observational-diagnostic/v1",
+  "id": "uniprot-tier0-observational-grounding-2026-08-25",
+  "recordedAt": "2026-08-25T15:38:02Z",
+  "classification": "non-clean-room observational diagnostic; excluded from clean-room score comparisons",
+  "outcome": "grounding-validation-failure",
+  "authorization": {
+    "attempts": 1,
+    "liveScientificQueriesAuthorized": 1,
+    "liveScientificQueriesExecuted": 0,
+    "retries": 0,
+    "additionalCases": 0,
+    "otherScientificResourcesContacted": 0
+  },
+  "runtimeObservation": {
+    "runtimeCommit": "5ad042850e467282f4c5436c27dae43a6d96ad52",
+    "runtime": "cleanroom_node_repl",
+    "mode": "codeact",
+    "protocol": "3.2.0",
+    "authority": "anonymous-linked-data-read/1.0.0",
+    "transport": "standard-fetch",
+    "authoritativeCwd": true,
+    "crossCallPersistence": true,
+    "rawFetchExposed": false,
+    "legacyTraversalBridgeExposed": false,
+    "evaluatorIsolationClaimed": false
+  },
+  "trajectoryAudit": {
+    "normalProjectWorker": true,
+    "repositoryHistoryAccessed": false,
+    "priorTrajectoryAccessed": false,
+    "evaluationMaterialAccessed": false,
+    "artifactAccessed": false,
+    "privateMaterialAccessed": false,
+    "heldOutExamplesAccessed": false,
+    "shellOrFilesystemAccessed": true,
+    "shellOrFilesystemScope": "The worker read only the generic linked-data-repl skill and its directly required public runtime/reference instructions; this still violated the prompt's literal no-shell/no-filesystem condition.",
+    "memorizedResourceSpecificPatternUsed": false,
+    "resourceSpecificFactsUsed": "Only the public task-embedded declarative resource facts; no source-owned evidence was retrieved."
+  },
+  "grounding": {
+    "began": true,
+    "discoveryRequests": 0,
+    "evidenceHandles": 0,
+    "failureCode": "LS_GROUNDING_EVIDENCE",
+    "failureStage": "declarative-evidence-load",
+    "failureReason": "The worker supplied the evidence source as a string rather than the runtime's typed declarative-manifest provenance object or documented default.",
+    "repairAttempted": false,
+    "attestationCreated": false,
+    "groundingContextRegistered": false,
+    "immutablePlanCreated": false
+  },
+  "scoredTraversal": {
+    "began": false,
+    "scientificQueries": 0,
+    "transportRequests": 0,
+    "resultHandleCreated": false,
+    "correctReleaseBindingReturned": false
+  },
+  "assessment": {
+    "comparableToCleanRoomScore": false,
+    "workerFullyComplied": false,
+    "groundingGateWorkedAsDesigned": true,
+    "interpretation": "The thin grounding gate rejected malformed evidence provenance before planning or execution. The agent obeyed zero-retry stopping and made no semantic claim, but its prerequisite skill reads used the shell despite the observational prompt's literal prohibition.",
+    "remainingConcern": "The launch prompt and mandatory skill-loading rule were internally inconsistent; future observational prompts should preload the exact generic instructions or explicitly allow only those named public reads."
+  }
+}

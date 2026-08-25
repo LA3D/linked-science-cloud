@@ -1,6 +1,6 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-25.2",
+  "version": "2026-08-25.3",
   "recordedAt": "2026-08-25",
   "runs": [
     {
@@ -323,6 +323,18 @@
       "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
       "currentInterpretation": "The fresh worker passed offline correspondence and most clean-room preflight checks, but stopped before grounding when node:fs import unexpectedly succeeded. It made zero live requests, created no plan, and did not exercise the semantic invariant.",
       "missingEvidence": ["grounding attestation and registered grounding context", "immutable scientific plan", "scored traversal receipt and semantic result binding"]
+    },
+    {
+      "id": "uniprot-tier0-observational-grounding-2026-08-25",
+      "date": "2026-08-25",
+      "title": "Non-clean-room UniProt tier-0 grounding diagnostic",
+      "outcome": "failed",
+      "evidenceLevel": "trace-derived-partial",
+      "durability": "partial",
+      "recordPaths": ["artifacts/experiment-results/2026-08-25-uniprot-tier0-observational-grounding.json"],
+      "documentationPaths": ["docs/experiments/uniprot-competency-question-evaluation.md", "docs/tasks/uniprot-competency-manifest.md"],
+      "currentInterpretation": "A normal-project observational worker was explicitly excluded from clean-room score comparisons. It stopped before live discovery or scored execution when malformed declarative-evidence provenance failed the grounding gate; its trace also records literal shell/filesystem noncompliance limited to generic public skill instructions.",
+      "missingEvidence": ["resident grounded evidence and attestation", "immutable scientific plan", "live scientific result binding"]
     }
   ],
   "documents": [
@@ -334,7 +346,7 @@
     {"path": "docs/experiments/large-result-export.md", "status": "planned-only", "note": "The dossier explicitly records that no exporter or experimental run exists."},
     {"path": "docs/experiments/open-goal-uniprot-operation-selection.md", "status": "results-recorded", "note": "Two run artifacts exist; P00338 is explicitly partial and P00533 is resident-audited."},
     {"path": "docs/experiments/prior-grounding-tool-surface-evaluation.md", "status": "results-recorded", "note": "Three arms are preserved as retrospective summaries because original receipts were not committed."},
-    {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "results-recorded", "note": "Catalog, isolation, the immutable first tier-0 baseline, and a fresh grounding-gate attempt are recorded. The latest attempt stopped before grounding or live execution because filesystem-module import denial could not be confirmed."},
+    {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "results-recorded", "note": "Catalog, isolation, the immutable first tier-0 baseline, a failed clean-room launch attempt, and a separately labeled non-clean-room observational attempt are recorded. Neither later attempt executed a scientific query."},
     {"path": "docs/experiments/uniprot-schema-discovery.md", "status": "results-recorded", "note": "The successful trial is preserved as a retrospective summary; the original resident state is unavailable."}
   ]
 }
