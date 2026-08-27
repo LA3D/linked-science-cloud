@@ -1,0 +1,12 @@
+@prefix a: <https://example.test/prime/a/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+a:schema-graph {
+  a:observes-signal rdfs:subPropertyOf a:associated-with .
+  a:label-only-decoy rdfs:label "associated with" .
+}
+
+a:data-graph {
+  a:sample-alpha a:observes-signal a:signal-17 .
+  a:sample-noise a:label-only-decoy a:signal-noise .
+}

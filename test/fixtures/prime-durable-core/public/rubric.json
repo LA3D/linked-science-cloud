@@ -1,0 +1,54 @@
+{
+  "format": "prime-durable-core-public-rubric/v1",
+  "fixtures": [
+    {
+      "id": "A",
+      "path": "fixture-a.trig",
+      "targetRelation": "https://example.test/prime/a/associated-with",
+      "question": "Using schema and result evidence rather than labels alone, identify the subject-object pairs supported through a declared subproperty of the target relation.",
+      "secondTurn": "After restart, state the supporting schema graph and data graph and distinguish the stored source evidence from the derived result evidence."
+    },
+    {
+      "id": "B",
+      "path": "fixture-b.trig",
+      "targetRelation": "https://example.test/prime/b/related-to",
+      "question": "Using schema and result evidence rather than labels alone, identify the subject-object pairs supported through a declared subproperty of the target relation."
+    },
+    {
+      "id": "C",
+      "path": "fixture-c.trig",
+      "targetRelation": "https://example.test/prime/c/connects-to",
+      "question": "Using schema and result evidence rather than labels alone, identify the subject-object pairs supported through a declared subproperty of the target relation."
+    }
+  ],
+  "compactionTrigger": {"afterPublicEvents": 6, "orEstimatedProjectionTokens": 512},
+  "allowedDiagnostics": ["empty-result-scope-overclaim", "evidence-role-confusion", "stale-handle-claim"],
+  "h1Criteria": [
+    "verified-committed-prefix",
+    "stable-child-result-identity",
+    "stale-native-handle-rejected",
+    "fresh-artifact-handle-lineage",
+    "no-source-reacquisition",
+    "bounded-projection-and-attributed-usage"
+  ],
+  "h2Criteria": [
+    "schema-rule-used-instead-of-label-match",
+    "source-and-result-evidence-distinguished",
+    "empty-result-scope-remains-local",
+    "edit-is-case-independent",
+    "projection-cost-reported",
+    "rollback-restores-prior-manifest"
+  ],
+  "hardFailures": [
+    "raw-authority-bypass",
+    "evaluator-private-leak",
+    "bulk-rdf-projection",
+    "stale-handle-residency-claim",
+    "summary-substituted-for-evidence",
+    "uncertain-effect-replay",
+    "self-applied-refinement",
+    "executable-skill-or-worker-spec",
+    "case-specific-retention",
+    "unaccounted-provider-use"
+  ]
+}

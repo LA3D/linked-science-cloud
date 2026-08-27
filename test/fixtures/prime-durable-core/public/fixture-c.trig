@@ -1,0 +1,12 @@
+@prefix c: <https://example.test/prime/c/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+c:measurements {
+  c:case-omega c:measures-feature c:feature-9 .
+  c:case-decoy c:textual-decoy c:feature-noise .
+}
+
+c:definitions {
+  c:measures-feature rdfs:subPropertyOf c:connects-to .
+  c:textual-decoy rdfs:label "connects to" .
+}

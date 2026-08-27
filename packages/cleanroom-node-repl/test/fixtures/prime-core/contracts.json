@@ -1,0 +1,234 @@
+{
+  "format": "prime-durable-core-phase0/v1",
+  "baseline": {
+    "mcpTools": ["js", "js_reset", "js_add_node_module_dir"],
+    "bindingsPersistAcrossCalls": true,
+    "resetClearsBindings": true,
+    "resetClearsRlmContexts": true,
+    "resetPreservesPeek": true,
+    "resetAdvancesEpoch": true,
+    "timeoutReplacesKernel": true,
+    "defaultRecursiveProvider": "unavailable",
+    "configuredRecursiveDepth": 1,
+    "resetInvalidatesTraversalOwner": true
+  },
+  "quotas": {
+    "maxEvents": 10000,
+    "maxEventPayloadBytes": 32768,
+    "maxArtifacts": 512,
+    "maxArtifactBytes": 16777216,
+    "maxSessionArtifactBytes": 134217728,
+    "maxContexts": 128,
+    "maxProjections": 2000,
+    "maxProjectionBytes": 65536,
+    "maxProjectionTokens": 16384,
+    "maxChildDepth": 1,
+    "maxActiveChildren": 1,
+    "maxTotalChildren": 1,
+    "maxChildWallMs": 60000,
+    "maxChildOutputBytes": 65536,
+    "maxChildProviderCalls": 4
+  },
+  "canonicalDigestVectors": [
+    {
+      "value": {},
+      "canonical": "{}",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "value": {"b": 2, "a": 1},
+      "canonical": "{\"a\":1,\"b\":2}",
+      "sha256": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777"
+    },
+    {
+      "value": {"b": [3, 2, 1], "a": {"z": null, "x": true}},
+      "canonical": "{\"a\":{\"x\":true,\"z\":null},\"b\":[3,2,1]}",
+      "sha256": "68e85d89981980e45934d666a7518c33f589429fdf5dab2b0b6f6e788a63ed87"
+    }
+  ],
+  "schemas": [
+    {
+      "id": "session-manifest@1",
+      "required": ["schema", "sessionId", "rootSessionId", "parentSessionId", "repositoryCommit", "runtimeVersion", "apiVersion", "model", "policyDigest", "capabilityDigest", "harnessManifestId", "state", "createdAt", "closedAt"],
+      "valid": {
+        "schema": "session-manifest@1",
+        "sessionId": "session-01",
+        "rootSessionId": "session-01",
+        "parentSessionId": null,
+        "repositoryCommit": "46f885186dcbd03841adb81dfa88f90c609a7fee",
+        "runtimeVersion": "0.4.0",
+        "apiVersion": "prime-core/1",
+        "model": {"provider": "synthetic", "id": "fixture-model"},
+        "policyDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "capabilityDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "harnessManifestId": null,
+        "state": "created",
+        "createdAt": "2026-08-27T12:00:00.000Z",
+        "closedAt": null
+      },
+      "invalid": {"case": "missing-required", "omitted": "sessionId"},
+      "fieldEvidence": [{"fields": ["schema", "sessionId", "rootSessionId", "parentSessionId", "repositoryCommit", "runtimeVersion", "apiVersion", "model", "policyDigest", "capabilityDigest", "harnessManifestId", "state", "createdAt", "closedAt"], "observation": "stage1-session-create-close-reopen-and-manifest-pin"}]
+    },
+    {
+      "id": "session-event@1",
+      "required": ["schema", "sessionId", "sequence", "eventId", "kind", "causalParentIds", "commandId", "producerRole", "publicPayload", "priorEventDigest", "eventDigest"],
+      "valid": {
+        "schema": "session-event@1",
+        "sessionId": "session-01",
+        "sequence": 0,
+        "eventId": "event-01",
+        "kind": "session.created",
+        "causalParentIds": [],
+        "commandId": "command-01",
+        "producerRole": "host",
+        "publicPayload": {},
+        "priorEventDigest": null,
+        "eventDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "invalid": {"case": "missing-required", "omitted": "eventDigest"},
+      "fieldEvidence": [{"fields": ["schema", "sessionId", "sequence", "eventId", "kind", "causalParentIds", "commandId", "producerRole", "publicPayload", "priorEventDigest", "eventDigest"], "observation": "stage1-event-chain-head-idempotency-and-causal-order"}]
+    },
+    {
+      "id": "artifact-manifest@1",
+      "required": ["schema", "artifactId", "digest", "kind", "mediaType", "bytes", "items", "creatorEventId", "provenance", "confidentiality", "codecVersion"],
+      "valid": {
+        "schema": "artifact-manifest@1",
+        "artifactId": "artifact-01",
+        "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "kind": "generic-json",
+        "mediaType": "application/json",
+        "bytes": 2,
+        "items": 1,
+        "creatorEventId": "event-01",
+        "provenance": [{"kind": "local-synthetic", "id": "fixture"}],
+        "confidentiality": "public",
+        "codecVersion": "json@1"
+      },
+      "invalid": {"case": "missing-required", "omitted": "provenance"},
+      "fieldEvidence": [{"fields": ["schema", "artifactId", "digest", "kind", "mediaType", "bytes", "items", "creatorEventId", "provenance", "confidentiality", "codecVersion"], "observation": "stage1-artifact-no-overwrite-corruption-quota-and-lineage"}]
+    },
+    {
+      "id": "context-object@1",
+      "required": ["schema", "contextId", "version", "kind", "role", "creatingEventId", "artifactId", "resident", "reconstructionClass", "epochResidency", "provenance", "taint", "size"],
+      "valid": {
+        "schema": "context-object@1",
+        "contextId": "context-01",
+        "version": 1,
+        "kind": "generic-json",
+        "role": "source-evidence",
+        "creatingEventId": "event-01",
+        "artifactId": "artifact-01",
+        "resident": null,
+        "reconstructionClass": "artifact",
+        "epochResidency": null,
+        "provenance": [{"kind": "local-synthetic", "id": "fixture"}],
+        "taint": ["untrusted-data"],
+        "size": {"bytes": 2, "items": 1}
+      },
+      "invalid": {"case": "missing-required", "omitted": "reconstructionClass"},
+      "fieldEvidence": [{"fields": ["schema", "contextId", "version", "kind", "role", "creatingEventId", "artifactId", "resident", "reconstructionClass", "epochResidency", "provenance", "taint", "size"], "observation": "stage1-context-register-serialize-materialize-release-and-stale-epoch"}]
+    },
+    {
+      "id": "context-projection@1",
+      "required": ["schema", "projectionId", "recipientInvocationId", "selectors", "policyVersion", "rendererVersion", "renderedDigest", "renderedBytes", "tokenEstimate", "omissions", "compactionRecordId"],
+      "valid": {
+        "schema": "context-projection@1",
+        "projectionId": "projection-01",
+        "recipientInvocationId": "invocation-01",
+        "selectors": {"objects": ["context-01@1"], "events": ["event-01"], "harness": []},
+        "policyVersion": "projection-policy@1",
+        "rendererVersion": "json-renderer@1",
+        "renderedDigest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "renderedBytes": 128,
+        "tokenEstimate": 32,
+        "omissions": [],
+        "compactionRecordId": null
+      },
+      "invalid": {"case": "missing-required", "omitted": "selectors"},
+      "fieldEvidence": [{"fields": ["schema", "projectionId", "recipientInvocationId", "selectors", "policyVersion", "rendererVersion", "renderedDigest", "renderedBytes", "tokenEstimate", "omissions", "compactionRecordId"], "observation": "stage1-deterministic-projection-quota-omission-and-compaction"}]
+    },
+    {
+      "id": "harness-entry@1",
+      "required": ["schema", "entryId", "kind", "version", "scope", "content", "evidenceRefs", "applicability", "status", "baseVersion", "supersedes", "taint"],
+      "valid": {
+        "schema": "harness-entry@1",
+        "entryId": "harness-01",
+        "kind": "prompt",
+        "version": 1,
+        "scope": {"kind": "project", "id": "linked-science"},
+        "content": {"text": "Keep empty-result scope exact."},
+        "evidenceRefs": ["event-01"],
+        "applicability": {"diagnostic": "empty-result-scope-overclaim"},
+        "status": "proposed",
+        "baseVersion": 0,
+        "supersedes": null,
+        "taint": ["model-generated"]
+      },
+      "invalid": {"case": "missing-required", "omitted": "evidenceRefs"},
+      "fieldEvidence": [{"fields": ["schema", "entryId", "kind", "version", "scope", "content", "evidenceRefs", "applicability", "status", "baseVersion", "supersedes", "taint"], "observation": "stage2-four-kind-version-scope-proposal-and-nonexecution"}]
+    },
+    {
+      "id": "refinement-receipt@1",
+      "required": ["schema", "receiptId", "proposalId", "edits", "beforeVersion", "afterVersion", "evidenceRange", "proposer", "reviewer", "outcome", "projectionCostDelta", "rollbackTarget"],
+      "valid": {
+        "schema": "refinement-receipt@1",
+        "receiptId": "refinement-01",
+        "proposalId": "harness-01",
+        "edits": [{"op": "add", "entryId": "harness-01"}],
+        "beforeVersion": 0,
+        "afterVersion": 1,
+        "evidenceRange": {"fromEventId": "event-01", "throughEventId": "event-01"},
+        "proposer": {"role": "refinement-provider", "id": "synthetic"},
+        "reviewer": {"role": "operator", "id": "test-operator"},
+        "outcome": "applied",
+        "projectionCostDelta": {"bytes": 40, "tokenEstimate": 10},
+        "rollbackTarget": 0
+      },
+      "invalid": {"case": "missing-required", "omitted": "reviewer"},
+      "fieldEvidence": [{"fields": ["schema", "receiptId", "proposalId", "edits", "beforeVersion", "afterVersion", "evidenceRange", "proposer", "reviewer", "outcome", "projectionCostDelta", "rollbackTarget"], "observation": "stage2-reviewed-apply-reject-cost-and-rollback"}]
+    }
+  ],
+  "transitionModel": {
+    "session": [
+      {"from": "absent", "event": "session.created", "to": "created"},
+      {"from": "created", "event": "session.reopened", "to": "created"},
+      {"from": "created", "event": "session.closed", "to": "completed"}
+    ],
+    "kernel": [
+      {"from": "absent", "event": "kernel.started", "to": "idle"},
+      {"from": "idle", "event": "kernel.replaced", "to": "idle"},
+      {"from": "running", "event": "kernel.exited", "to": "failed"}
+    ],
+    "invocation": [
+      {"from": "absent", "event": "invocation.started", "to": "running"},
+      {"from": "running", "event": "invocation.completed", "to": "completed"},
+      {"from": "running", "event": "invocation.failed", "to": "failed"},
+      {"from": "running", "event": "invocation.uncertain", "to": "failed"}
+    ],
+    "child": [
+      {"from": "absent", "event": "child.spawned", "to": "running"},
+      {"from": "running", "event": "child.completed", "to": "completed"},
+      {"from": "running", "event": "child.failed", "to": "failed"},
+      {"from": "running", "event": "child.cancelled", "to": "cancelled"}
+    ],
+    "harness": [
+      {"from": "absent", "event": "harness.proposed", "to": "proposed"},
+      {"from": "proposed", "event": "harness.applied", "to": "applied"},
+      {"from": "proposed", "event": "harness.rejected", "to": "rejected"},
+      {"from": "applied", "event": "harness.rolled-back", "to": "rolled-back"}
+    ]
+  },
+  "nonStateEvents": [
+    "context.registered",
+    "context.projected",
+    "context.compacted",
+    "context.serialized",
+    "context.materialized",
+    "context.released",
+    "artifact.created",
+    "artifact.verified",
+    "resource.recorded",
+    "policy.denied",
+    "stop.recorded"
+  ]
+}

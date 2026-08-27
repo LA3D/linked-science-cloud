@@ -19,7 +19,7 @@ test('experiment result registry grades every run and every dossier', async () =
   assert.equal(result.complete, 13);
   assert.equal(result.partial, 6);
   assert.equal(result.summaryOnly, 11);
-  assert.equal(result.experimentDocuments, 10);
+  assert.equal(result.experimentDocuments, 11);
 });
 
 test('partial or summary-only evidence must identify what is missing', async () => {
