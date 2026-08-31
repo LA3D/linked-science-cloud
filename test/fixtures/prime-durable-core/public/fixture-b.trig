@@ -1,0 +1,12 @@
+@prefix b: <https://example.test/prime/b/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+b:vocabulary {
+  b:tracks-marker rdfs:subPropertyOf b:related-to .
+  b:label-decoy rdfs:label "related to" .
+}
+
+b:observations {
+  b:specimen-k b:tracks-marker b:marker-4 .
+  b:specimen-decoy b:label-decoy b:marker-noise .
+}

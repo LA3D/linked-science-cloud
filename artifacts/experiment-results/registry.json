@@ -1,7 +1,7 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-25.3",
-  "recordedAt": "2026-08-25",
+  "version": "2026-08-27.1",
+  "recordedAt": "2026-08-27",
   "runs": [
     {
       "id": "context-map-single-2026-08-15",
@@ -357,6 +357,7 @@
     {"path": "docs/experiments/jsmol-static-render.md", "status": "fixture-only", "note": "The checked-in static fixture is documented; no interactive render receipt is claimed."},
     {"path": "docs/experiments/large-result-export.md", "status": "planned-only", "note": "The dossier explicitly records that no exporter or experimental run exists."},
     {"path": "docs/experiments/open-goal-uniprot-operation-selection.md", "status": "results-recorded", "note": "Two run artifacts exist; P00338 is explicitly partial and P00533 is resident-audited."},
+    {"path": "docs/experiments/prime-durable-core-evaluation.md", "status": "planned-only", "note": "Phase 0 freezes local H1/H2/H3 fixtures and methodology; no durable-core experiment run or result is claimed."},
     {"path": "docs/experiments/prior-grounding-tool-surface-evaluation.md", "status": "results-recorded", "note": "Three arms are preserved as retrospective summaries because original receipts were not committed."},
     {"path": "docs/experiments/uniprot-competency-question-evaluation.md", "status": "results-recorded", "note": "Catalog, isolation, the immutable first tier-0 baseline, two failed clean-room attempts, and a separately labeled non-clean-room observational attempt are recorded. The persistent-harness attempt reached bounded live grounding but not a scored scientific query."},
     {"path": "docs/experiments/uniprot-schema-discovery.md", "status": "results-recorded", "note": "The successful trial is preserved as a retrospective summary; the original resident state is unavailable."}
