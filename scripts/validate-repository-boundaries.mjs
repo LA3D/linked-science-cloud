@@ -2,6 +2,11 @@ import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import {
+  assertLinkedScienceProjectManifest,
+  LINKED_SCIENCE_PROJECT_IDENTITY,
+} from '../lib/linked-science-project-identity.mjs';
+
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const experimentalName = [ 'node-repl', 'network-probe' ].join('-');
 const productionRoots = Object.freeze([
@@ -9,6 +14,7 @@ const productionRoots = Object.freeze([
   'lib',
   'scripts',
   'package.json',
+  'package-lock.json',
   'packages/cleanroom-node-repl/package.json',
   'packages/cleanroom-node-repl/src',
 ]);
@@ -30,6 +36,30 @@ function within(root, candidate) {
 
 function quotedValues(line) {
   return [ ...line.matchAll(/"([^"\n]+)"/gu) ].map(match => match[1]);
+}
+
+function sameStrings(actual, expected) {
+  return actual.length === expected.length && actual.every((value, index) => value === expected[index]);
+}
+
+function configSection(config, name) {
+  const assignments = new Map();
+  let current = '';
+  for (const line of config.split(/\r?\n/u)) {
+    const section = line.match(/^\s*\[([^\]]+)\]\s*$/u);
+    if (section) {
+      current = section[1];
+      continue;
+    }
+    if (current !== name) continue;
+    const assignment = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/u);
+    if (assignment) assignments.set(assignment[1], assignment[2]);
+  }
+  return assignments;
+}
+
+function quotedScalar(value) {
+  return value?.match(/^"([^"\n]+)"$/u)?.[1];
 }
 
 async function collectFiles(root, paths = productionRoots) {
@@ -54,7 +84,7 @@ async function collectFiles(root, paths = productionRoots) {
   return files.sort();
 }
 
-export async function validateRepositoryBoundaries({ root = projectRoot, configText, files } = {}) {
+export async function validateRepositoryBoundaries({ root = projectRoot, configText, manifestText, files } = {}) {
   const failures = [];
   let inspected;
   try {
@@ -66,7 +96,9 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
   for (const path of inspected) {
     const text = path === '.codex/config.toml' && configText !== undefined
       ? configText
-      : await readFile(resolve(root, path), 'utf8');
+      : path === 'package.json' && manifestText !== undefined
+        ? manifestText
+        : await readFile(resolve(root, path), 'utf8');
     if (text.includes(experimentalName)) failures.push(`${path} references the experimental sibling repository`);
     for (const match of text.matchAll(/(?:from\s+|import\s*\(|require\s*\()\s*['"]([^'"]+)['"]/gu)) {
       const specifier = match[1];
@@ -74,12 +106,48 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
     }
   }
 
+  let manifest;
+  try {
+    manifest = JSON.parse(manifestText ?? await readFile(resolve(root, 'package.json'), 'utf8'));
+    assertLinkedScienceProjectManifest(manifest);
+  } catch (error) {
+    failures.push(error.message);
+  }
+  try {
+    const lock = JSON.parse(await readFile(resolve(root, 'package-lock.json'), 'utf8'));
+    if (lock.name !== LINKED_SCIENCE_PROJECT_IDENTITY.packageName || lock.packages?.['']?.name !== LINKED_SCIENCE_PROJECT_IDENTITY.packageName) {
+      failures.push(`package-lock.json must identify ${LINKED_SCIENCE_PROJECT_IDENTITY.packageName} at the root`);
+    }
+  } catch (error) {
+    failures.push(`package-lock.json is unavailable or invalid (${error.message})`);
+  }
+  try {
+    const brokerManifest = JSON.parse(await readFile(resolve(root, LINKED_SCIENCE_PROJECT_IDENTITY.broker.packageRoot, 'package.json'), 'utf8'));
+    if (brokerManifest.name !== LINKED_SCIENCE_PROJECT_IDENTITY.broker.packageName) failures.push(`Broker package must be ${LINKED_SCIENCE_PROJECT_IDENTITY.broker.packageName}`);
+    if (brokerManifest.linkedScienceRepositoryRole !== 'production-runtime') failures.push('Broker package must declare linkedScienceRepositoryRole production-runtime');
+  } catch (error) {
+    failures.push(`Broker package identity is unavailable or invalid (${error.message})`);
+  }
+
   const config = configText ?? await readFile(resolve(root, '.codex/config.toml'), 'utf8');
+  const expected = LINKED_SCIENCE_PROJECT_IDENTITY;
+  const serverSections = [ ...config.matchAll(/^\s*\[mcp_servers\.([^\]]+)\]\s*$/gmu) ].map(match => match[1]);
+  if (!sameStrings(serverSections, [ expected.broker.mcpServer ])) {
+    failures.push(`.codex/config.toml must register only mcp_servers.${expected.broker.mcpServer}`);
+  }
   if (/^\[mcp_servers\.node_repl\]/mu.test(config)) failures.push('.codex/config.toml must not register the bundled node_repl');
   if (/^\[permissions\.[^\]]+\.network\.domains\]/mu.test(config)) failures.push('.codex/config.toml must not use a hostname allowlist as the Linked Science traversal boundary');
-  const argsLine = config.split(/\r?\n/u).find(line => /^args\s*=/u.test(line.trim()));
-  if (!argsLine) failures.push('.codex/config.toml lacks an MCP args entry');
-  for (const value of quotedValues(argsLine ?? '')) {
+  const server = configSection(config, `mcp_servers.${expected.broker.mcpServer}`);
+  if (quotedScalar(server.get('command')) !== 'node') failures.push('.codex/config.toml must launch the project broker with node');
+  const args = quotedValues(server.get('args') ?? '');
+  const expectedEntrypoint = resolve(root, expected.broker.entrypoint);
+  if (!sameStrings(args, [ expectedEntrypoint ])) failures.push(`.codex/config.toml args must name only ${expectedEntrypoint}`);
+  const configuredCwd = quotedScalar(server.get('cwd'));
+  if (!configuredCwd || !isAbsolute(configuredCwd) || resolve(configuredCwd) !== resolve(root)) failures.push(`.codex/config.toml cwd must be the authoritative checkout ${resolve(root)}`);
+  if (server.get('enabled') !== 'true' || server.get('required') !== 'true') failures.push('.codex/config.toml must keep the project broker enabled and required');
+  const configuredTools = quotedValues(server.get('enabled_tools') ?? '');
+  if (!sameStrings(configuredTools, expected.broker.tools)) failures.push(`.codex/config.toml enabled_tools must be exactly ${expected.broker.tools.join(', ')}`);
+  for (const value of args) {
     if (!isAbsolute(value)) continue;
     const candidate = resolve(value);
     if (!within(root, candidate)) {
@@ -101,7 +169,7 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
     }
   }
   if (failures.length > 0) throw new Error(`Repository boundary validation failed:\n- ${failures.join('\n- ')}`);
-  return Object.freeze({ status: 'passed', root, productionFiles: inspected.length });
+  return Object.freeze({ status: 'passed', root, project: LINKED_SCIENCE_PROJECT_IDENTITY, productionFiles: inspected.length });
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

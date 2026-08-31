@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import { validateRepositoryBoundaries } from '../scripts/validate-repository-boundaries.mjs';
@@ -6,6 +7,27 @@ import { validateRepositoryBoundaries } from '../scripts/validate-repository-bou
 test('production configuration and runtime remain inside the Linked Science checkout', async () => {
   const result = await validateRepositoryBoundaries();
   assert.equal(result.status, 'passed');
+  assert.equal(result.project.packageName, '@linked-science/runtime');
+  assert.equal(result.project.repositoryRole, 'authoritative-production-implementation');
+  assert.equal(result.project.broker.mcpServer, 'cleanroom_node_repl');
+});
+
+test('root package identity cannot be downgraded to a generic REPL experiment', async () => {
+  const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+  manifest.name = 'linked-data-repl-experiment';
+  manifest.linkedScience.repositoryRole = 'experimental-probe';
+  await assert.rejects(
+    validateRepositoryBoundaries({ manifestText: JSON.stringify(manifest) }),
+    /package name must be @linked-science\/runtime|repositoryRole must be authoritative-production-implementation/u,
+  );
+});
+
+test('project config must name the exact repository-owned broker entrypoint', async () => {
+  const config = await readFile(new URL('../.codex/config.toml', import.meta.url), 'utf8');
+  await assert.rejects(
+    validateRepositoryBoundaries({ configText: config.replace(/packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u, 'scripts/smoke.mjs') }),
+    /args must name only .*packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u,
+  );
 });
 
 test('boundary validation rejects an experimental sibling MCP path without moving either checkout', async () => {

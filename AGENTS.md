@@ -1,6 +1,14 @@
 # Agent guide
 
-This repository is an experimental persistent Linked Data REPL surface, not a general data client or production system. Begin with the [README](README.md), then use the [context router](docs/agent/context-routing.md) to load only the material needed for the current task.
+This repository is the authoritative production implementation of the Linked Science persistent RDF/Communica runtime and its project-owned clean-room REPL broker. The authoritative saved checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Begin with the [README](README.md), then use the [context router](docs/agent/context-routing.md) to load only the material needed for the current task.
+
+## Authoritative project boundary
+
+- This checkout owns the `linkedScience` facade, `lib/cleanroom-linked-science-bootstrap.mjs`, `packages/cleanroom-node-repl`, and the project-scoped `cleanroom_node_repl` registration.
+- `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe` is a separate experimental probe. Never import from it, point project configuration at it, use it as the Linked Science runtime, or treat its results as activation evidence for this checkout.
+- Codex Desktop's bundled `node_repl` is also not the Linked Science runtime. A mounted generic JavaScript REPL does not establish this project's broker, facade, identity, persistence, or traversal boundary.
+- Run `npm run linked-science:verify` for the repository-owned offline identity/broker/runtime check. For an actual Codex task, also follow [runtime discovery](docs/agent/runtime-discovery.md); configuration text and shell checks alone do not prove that the task received the project MCP.
+- Historical experiment dossiers and artifacts remain evidence records. They do not redefine the repository's ownership role or authorize live work.
 
 ## Always-on contract
 

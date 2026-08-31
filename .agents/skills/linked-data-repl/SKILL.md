@@ -7,6 +7,8 @@ description: Explore RDF, ontologies, and approved public Linked Data through a 
 
 Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. Use `cleanroom_node_repl` for persistent RDF/Communica state, mediated public Linked Data traversal, or reuse of resident scientific evidence. Live work requires current authorization for its scope and budgets.
 
+The authoritative project root is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. It owns both the Linked Science facade and `packages/cleanroom-node-repl`. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` are not production implementations or fallbacks. When repository verification is in scope, run `npm run linked-science:verify` from the authoritative root; this is an offline proof and does not replace task-level MCP observation.
+
 ## Persistent runtime
 
 Use only `cleanroom_node_repl`. On a fresh kernel, verify project cwd, CodeAct mode, cross-call persistence, and absence of raw transport once. Initialize only when the stable binding is absent:
@@ -22,6 +24,8 @@ if (globalThis.linkedScience == null) {
   });
 }
 ```
+
+After bootstrap, inspect `linkedScience.capabilities().environment` once. Require project id `@linked-science/runtime`, role `authoritative-production-implementation`, broker package `@linked-science/cleanroom-node-repl`, the authoritative cwd, and the exact three-tool MCP surface. Stop rather than treating a generic or probe REPL as Linked Science when any value differs.
 
 Reuse `linkedScience`, the goal workspace, and valid evidence/result handles across calls and later turns. Read `linkedScience.documentation.all()` once, then use `documentation.get(name)` only for targeted recovery. Correct malformed calls in place; reset only after actual kernel or workspace invalidation. A reset makes old handles stale and does not authorize reacquisition.
 

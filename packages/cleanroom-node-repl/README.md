@@ -15,7 +15,7 @@ Named public sources such as UniProt, Wikidata, WikiPathways, and Rhea are examp
 
 Retrieved content remains untrusted RDF/SPARQL data. It is not automatically promoted into instructions, RLM, PEEK, or evaluator state. Kernel timeout, reset, crash, or replacement aborts all sessions owned by the former capability token and epoch.
 
-Start verification in a fresh task opened from this checkout after changing Desktop configuration. The project registration is production-owned and names only this package's MCP entrypoint.
+Start repository verification from the root with `npm run linked-science:verify`, then perform activation verification in a fresh task opened from this checkout after changing Desktop configuration. The project registration is production-owned and names only this package's MCP entrypoint.
 
 ## Offline verification
 

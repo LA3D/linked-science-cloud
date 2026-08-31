@@ -1,10 +1,28 @@
-# Linked Data REPL experiment
+# Linked Science runtime
 
-This is a small Codex Desktop experiment for running in-memory RDF/SPARQL work with a user-owned persistent JavaScript REPL. The local Communica engine and RDF store belong to a worker task; a conversational coordinator delegates a bounded task and receives its evidence-backed result.
+This saved checkout is the authoritative production implementation of the Linked Science persistent RDF/Communica runtime and its project-owned clean-room REPL broker. The local Communica engine and RDF store belong to a worker task; a conversational coordinator delegates a bounded task and receives its evidence-backed result. “Production” identifies implementation ownership here; historical experiments and incomplete evaluation claims remain explicitly scoped as such.
+
+## Authoritative project boundary
+
+| Surface | Owner in this checkout |
+| --- | --- |
+| Project identity | Private package `@linked-science/runtime`, role `authoritative-production-implementation` |
+| Facade and bootstrap | `lib/linked-science-runtime.mjs` and `lib/cleanroom-linked-science-bootstrap.mjs` |
+| Persistent REPL and broker | `packages/cleanroom-node-repl`, package `@linked-science/cleanroom-node-repl` |
+| Codex registration | `.codex/config.toml`, server `cleanroom_node_repl`, exactly `js`, `js_reset`, and `js_add_node_module_dir` |
+| Excluded experimental probe | `/Users/cvardema/dev/git/LA3D/linked-science-cloud/node-repl-network-probe`; no production import, configuration, bootstrap, or evidence authority |
+
+Run the complete offline identity, broker, and synthetic runtime verification from the authoritative saved checkout:
+
+```sh
+npm run linked-science:verify
+```
+
+That command validates exact repository wiring, checks the broker package, launches the real local JSON-RPC MCP, verifies the three-tool contract and cross-call persistence, bootstraps `linkedScience`, exercises a local-synthetic Communica query, and verifies reset/PEEK semantics. It performs no live traversal. An actual Codex task must still perform the compact [fresh-task preflight](docs/agent/runtime-discovery.md); a passing shell command cannot prove which MCP was mounted into that task.
 
 ## Current Codex runtime boundary
 
-The active project configuration registers the consumer-owned `cleanroom_node_repl` MCP from `packages/cleanroom-node-repl`. It is the canonical CodeAct runtime for this checkout, with persistent JavaScript, RLM context operations, broker-owned PEEK orientation, and the observed three-tool contract. This project does not use or configure Codex Desktop's bundled `node_repl` or the sibling experimental probe repository.
+The active project configuration registers the consumer-owned `cleanroom_node_repl` MCP from `packages/cleanroom-node-repl`. It is the canonical CodeAct runtime for this checkout, with persistent JavaScript, RLM context operations, broker-owned PEEK orientation, and the observed three-tool contract. This project does not use or configure Codex Desktop's bundled `node_repl` or the sibling experimental probe repository. Successful bootstrap reports the project id, authoritative role, broker package, exact root, and module root in `linkedScience.capabilities().environment`.
 
 The former restricted network profile remains disabled at `.codex/config.restricted-profile.toml.disabled` for historical reference. It is not active configuration and must not be re-enabled to grant the bundled REPL network access. Tool exposure, project-root selection, module resolution, persistence, RLM state, PEEK state, and guarded network reachability remain separate properties that must be observed rather than inferred.
 
@@ -14,7 +32,7 @@ The former restricted network profile remains disabled at `.codex/config.restric
 2. A fresh Local task loads the project-scoped `cleanroom_node_repl`, verifies its cwd, and bootstraps the Linked Science facade once per kernel.
 3. The worker verifies a query in a second REPL call and reports only what was actually observed. Kernel reset discards bindings, RLM context, and resident handles while broker PEEK orientation remains advisory.
 
-Run the disposable local check with:
+Run the small dependency smoke check separately with:
 
 ```sh
 npm run smoke

@@ -1,6 +1,6 @@
 # Agent context routing
 
-Root `AGENTS.md` supplies the always-on contract. Read the [project README](../../README.md) for the experiment's current surface, then load only the context that changes the present task.
+Root `AGENTS.md` supplies the always-on contract. Read the [project README](../../README.md) for the authoritative runtime boundary and current surface, then load only the context that changes the present task.
 
 ## Route by task
 

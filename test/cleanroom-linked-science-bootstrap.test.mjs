@@ -70,6 +70,14 @@ test('bootstrap validates roots and declared dependency resolution before instal
   const inspected = await inspectLinkedScienceBootstrap({ cleanroom, projectRoot: LINKED_SCIENCE_PROJECT_ROOT, moduleRoot: LINKED_SCIENCE_MODULE_ROOT });
   assert.equal(inspected.runtime, 'cleanroom_node_repl');
   assert.equal(inspected.mode, 'codeact');
+  assert.deepEqual(inspected.project, {
+    id: '@linked-science/runtime',
+    role: 'authoritative-production-implementation',
+    bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs',
+  });
+  assert.equal(inspected.broker.packageName, '@linked-science/cleanroom-node-repl');
+  assert.equal(inspected.broker.mcpServer, 'cleanroom_node_repl');
+  assert.deepEqual(inspected.broker.tools, [ 'js', 'js_reset', 'js_add_node_module_dir' ]);
   assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'sparqljs' ]);
   assert.equal(Object.values(inspected.dependencies).every(url => url.startsWith('file:') && url.includes('/node_modules/')), true);
 
@@ -78,6 +86,9 @@ test('bootstrap validates roots and declared dependency resolution before instal
   assert.equal(host.linkedScience, facade);
   assert.equal(host.ls, facade);
   assert.equal(facade.capabilities().environment.runtime, 'cleanroom_node_repl');
+  assert.equal(facade.capabilities().environment.project.role, 'authoritative-production-implementation');
+  assert.equal(cleanroom.contexts.get(LINKED_SCIENCE_RLM_CONTEXT).project.id, '@linked-science/runtime');
+  assert.equal(cleanroom.contexts.get(LINKED_SCIENCE_RLM_CONTEXT).broker.packageName, '@linked-science/cleanroom-node-repl');
   assert.equal(cleanroom.contexts.get(LINKED_SCIENCE_RLM_CONTEXT).api.bootstrapEnvironment.orientationOwner, 'cleanroom-broker');
 });
 

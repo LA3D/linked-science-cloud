@@ -2,13 +2,24 @@
 
 ## Fresh-task preflight
 
-The active `.codex/config.toml` registers the user-owned `cleanroom_node_repl` server with this checkout as its explicit cwd. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. Configuration text alone is not activation evidence.
+The authoritative saved checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its active `.codex/config.toml` registers the repository-owned `cleanroom_node_repl` broker from `packages/cleanroom-node-repl` with that checkout as its explicit cwd. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` have no production role here.
 
-Require exactly `js`, `js_reset`, and `js_add_node_module_dir`. In one compact preflight, observe the authoritative cwd and `codeact` mode and verify one top-level binding in a second call. Perform this once per fresh kernel; do not narrate each check as a separate scientific phase.
+Run `npm run linked-science:verify` from the saved checkout for the offline repository identity, broker, and synthetic runtime proof. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. The shell proof and configuration text are necessary repository evidence, not activation evidence for the task.
+
+Require server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`. In one compact preflight, observe the authoritative cwd and `codeact` mode and verify one top-level binding in a second call. After bootstrap, require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl`. Perform this once per fresh kernel; do not narrate each check as a separate scientific phase.
 
 ## Bootstrap once per kernel
 
 Use the skill's conditional bootstrap only when `globalThis.linkedScience` is absent. It validates cwd, project/module roots, and declared dependency resolution; installs stable `linkedScience`/`ls`; delegates orientation to broker PEEK; and registers `linked-science:runtime`. Reuse those bindings, workspaces, and valid handles across later calls and turns.
+
+Inspect the self-identifying environment once with the rest of the preflight:
+
+```js
+const environment = linkedScience.capabilities().environment
+nodeRepl.write({ cwd: nodeRepl.cwd, mode: nodeRepl.rlm.mode, project: environment.project, broker: environment.broker })
+```
+
+Do not proceed as Linked Science if any identity, root, broker package, server name, or tool contract differs. A generic persistent REPL is not an acceptable substitute.
 
 The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 

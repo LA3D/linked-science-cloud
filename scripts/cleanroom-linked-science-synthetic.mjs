@@ -57,6 +57,9 @@ try {
   const booted = text(await tool('js', { code: bootstrap, timeout_ms: 120_000 }));
   assert.match(booted, /version: '4\.0\.0'/u);
   assert.match(booted, /runtime: 'cleanroom_node_repl'/u);
+  assert.match(booted, /id: '@linked-science\/runtime'/u);
+  assert.match(booted, /role: 'authoritative-production-implementation'/u);
+  assert.match(booted, /packageName: '@linked-science\/cleanroom-node-repl'/u);
   assert.match(booted, /@comunica\/query-sparql/u);
   const idempotent = text(await tool('js', { code: "nodeRepl.write((await bootstrapLinkedScience({host:globalThis,cleanroom:nodeRepl,projectRoot:'" + projectRoot + "',moduleRoot:'" + moduleRoot + "'}))===linkedScience)" }));
   assert.equal(idempotent, 'true');
@@ -88,6 +91,8 @@ try {
   console.log(JSON.stringify({
     ok: true,
     server: 'cleanroom_node_repl',
+    project: { id: '@linked-science/runtime', role: 'authoritative-production-implementation' },
+    brokerPackage: '@linked-science/cleanroom-node-repl',
     tools: listed.result.tools.map(tool => tool.name),
     persistence: true,
     projectRoot,
