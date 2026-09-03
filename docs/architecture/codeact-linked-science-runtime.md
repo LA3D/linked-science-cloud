@@ -4,13 +4,13 @@
 
 Linked Science uses the user-owned `cleanroom_node_repl` and persistent model-written JavaScript as its primary action space. `lib/cleanroom-linked-science-bootstrap.mjs` validates the saved project and dependency roots, registers RLM discovery context, and injects the `linkedScience` facade (with short alias `ls`) from `lib/linked-science-runtime.mjs`. Communica remains the RDF/SPARQL query kernel behind the facade.
 
-The one-time bootstrap, generated documentation, machine schema, conditional lookup, examples, stable globals, and explicit reset follow the public adapter shape described in [runtime discovery](../agent/runtime-discovery.md). This repository does not imitate a private Browser or Chrome bridge.
+The one-time bootstrap, generated documentation, machine schema, conditional lookup, examples, stable globals, and explicit reset follow the public adapter shape described in [runtime discovery](../agent/runtime-discovery.md). Like the Browser persistent-JavaScript pattern, Linked Science gives agents composable stateful objects while a trusted broker enforces authority, capability filtering, and audit below that programming surface; it is a Linked Data runtime, not a browser bridge.
 
 ## Runtime shape
 
 `bootstrapLinkedScience({ host, cleanroom, projectRoot, moduleRoot })` is the authoritative clean-room entrypoint. Its explicit roots replace the earlier `process.cwd()` assumption. The lower-level `setupLinkedScience` remains available for offline tests and standalone scripts. Both install non-writable `linkedScience` and `ls` properties idempotently for one global object.
 
-The facade exposes generated documentation, capabilities, examples, context open/reset, and local retained-session/table compatibility helpers. Raw transport is not exposed. When the clean-room MCP injects `linkedScienceTraversal`, the workspace gains a mediated Communica query operation whose results are retained in the same native state model.
+The facade exposes generated documentation, capabilities, examples, context open/reset, and local retained-session/table compatibility helpers. Raw ambient transport is not exposed. When the clean-room MCP injects `linkedScienceTraversal`, the workspace gains broker-mediated general resource responses plus a Communica query operation; both retain their state and provenance in the same native model.
 
 A workspace owns private Communica state and opaque retained handles. It supports:
 
@@ -18,6 +18,8 @@ A workspace owns private Communica state and opaque retained handles. It support
 - bounded schema search and RDF-neighborhood inspection;
 - bounded local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica;
 - one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
+- general `resources.get` response objects for bounded JSON, text, XML, CSV, binary, and RDF representations, with `resources.inspect` for prompt-bounded projections;
+- `resource.rdf()` / `resources.parseRdf()` and `rdf.dataset` / `rdf.retain` for ordinary RDF/JS and Communica composition without reacquisition;
 - bounded profiles, pages, and tables with lineage, operation IDs, source fingerprints, and provenance; and
 - asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations; and
 - optional behavior-bounded public-HTTPS traversal and local federation with native result handles.
@@ -48,7 +50,7 @@ Resident graphs and results have hard item ceilings. Prompt-visible pages/tables
 
 ## Security and broker boundary
 
-Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor raw Fetch. The optional traversal surface accepts credential-free HTTP/HTTPS source IRIs and tighter effective budgets; a module-private adapter routes every Communica dereference and federated request to the parent mediator. Standard Fetch owns DNS/TLS/socket/redirect behavior, while identity, read-only method/query, concurrency, time, request, and byte policy remain parent-owned.
+Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor ambient raw Fetch. The optional resource and traversal surfaces accept credential-free HTTP/HTTPS source IRIs under tighter effective budgets; a module-private adapter routes every general resource read, Communica dereference, and federated request to the parent mediator. Standard Fetch owns DNS/TLS/socket/redirect behavior, while identity, effect class, concurrency, time, request, and byte policy remain parent-owned. The first production slice enables anonymous `GET`/`HEAD`; authenticated reads and mutations use the same model but are explicitly disabled.
 
 The clean-room VM context is a compatibility boundary, not a security sandbox. The consumer-owned parent MCP broker denies raw child networking and evaluator-private filesystem reads; the Linked Science facade independently verifies its traversal capability and aggregate receipt. Registration of the clean-room MCP does not authorize a live traversal, and the runtime reports traversal unavailable unless that mediator is injected. See [broker-mediated traversal](broker-owned-live-operations.md).
 

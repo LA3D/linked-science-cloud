@@ -277,7 +277,7 @@ export class MediatedTraversalBroker {
         schemes: Object.freeze([ "http", "https" ]),
         methods: Object.freeze([ "GET", "HEAD", "SPARQL_POST" ]),
         queryTypes: Object.freeze([ ...READ_QUERY_TYPES ]),
-        effects: Object.freeze([ "rdf-document-read", "sparql-read", "linked-data-dereference", "local-communica-federation" ]),
+        effects: Object.freeze([ "public-resource-read", "rdf-document-read", "sparql-read", "linked-data-dereference", "local-communica-federation" ]),
         prohibited: Object.freeze([ "ambient-identity", "url-credentials", "sparql-update", "arbitrary-post", "filesystem-write", "authority-expansion", "automatic-context-promotion" ]),
       }),
       transport: Object.freeze({ implementation: "standard-fetch", redirectEvidence: "requested-final-and-redirected-flag", dnsTls: "platform" }),

@@ -31,6 +31,7 @@ test("attests one immutable anonymous-read authority over standard Fetch", () =>
   assert.deepEqual(capability.authority.schemes, [ "http", "https" ]);
   assert.deepEqual(capability.authority.methods, [ "GET", "HEAD", "SPARQL_POST" ]);
   assert.equal(capability.transport.implementation, "standard-fetch");
+  assert.equal(capability.authority.effects.includes("public-resource-read"), true);
   assert.equal(capability.transport.dnsTls, "platform");
   assert.equal(capability.retries, 0);
   assert.equal(capability.defaultBudgets.maxDurationMs, 300_000);

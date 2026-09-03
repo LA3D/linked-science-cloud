@@ -23,9 +23,9 @@ Do not proceed as Linked Science if any identity, root, broker package, server n
 
 The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
 
-The bootstrap detects the private parent mediator without exposing its bridge or Fetch closure. `nodeRepl.linkedScienceTraversal`, `fetch`, `Request`, and `Response` remain unavailable. Capabilities report anonymous read authority, standard Fetch, hard per-call ceilings, and zero hidden transport retries. Explicit agent queries are recorded in bounded workspace history.
+The bootstrap detects the private parent mediator without exposing its bridge or ambient Fetch closure. `nodeRepl.linkedScienceTraversal` and global `fetch` remain unavailable. Capabilities report anonymous public-read authority, standard Fetch beneath the facade, effect gates, hard per-call ceilings, and zero hidden transport retries. Explicit resource reads and agent queries are recorded in bounded workspace history.
 
-The MCP and workspace do not gain a document-fetch side channel. RDF documents, service descriptions, and scientific queries use the same direct `workspace.traversal.query(options)` operation. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
+The MCP remains the exact three-tool surface, while the persistent workspace exposes a general broker-mediated resource surface. Use `workspace.resources.get(url)` for a bounded HTTP representation; its response object supports in-kernel text, JSON, and binary composition, and `workspace.resources.inspect` provides prompt-bounded JSON/text/XML/CSV/binary views. Use `resource.rdf({ name })` or `workspace.resources.parseRdf(resource, { name })` to retain an RDF/JS graph directly—no CONSTRUCT wrapper is needed. Use `workspace.traversal.query(options)` for remote SPARQL or Communica federation. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
 
 ## Discover before acting
 
@@ -39,7 +39,7 @@ Then use targeted recovery or route detail only when needed:
 
 ```js
 linkedScience.documentation.get('recovery')
-linkedScience.documentation.get('traversal.query')
+linkedScience.documentation.get('resources.get')
 ```
 
 The checked-in [API schema](../runtime/linked-science-api.schema.json) and [route index](../runtime/routes.json) support machine discovery. Do not invent a method when lookup fails; inspect the error receipt’s matches or return to the route list.
@@ -71,10 +71,10 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 ## Invariants
 
 - Use only `cleanroom_node_repl`; the bundled `node_repl` is obsolete for this project.
-- Require exactly the three MCP tools above; never invent a document-acquisition MCP tool or a parallel graph/dataset facade.
+- Require exactly the three MCP tools above. The stable Linked Science workspace, not additional MCP tools, supplies general resources, RDF/JS datasets, and Communica composition.
 - Keep output bounded by rows/cells or nodes/edges and bytes.
 - Preserve provenance and operation IDs through query, derivation, and view.
-- Without an observed traversal capability, use only local-synthetic data; `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
+- Without an observed traversal capability, use only local-synthetic data; `workspace.resources.get` and `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
 - Even with an observed traversal capability, live use requires current explicit approval for the traversal scope and effective budgets, plus an aggregate mediator receipt.
 - Before constructing a scientific query, the agent should inspect appropriate source-owned schema, vocabulary, dataset, service, or documentation evidence and retain useful evidence/result handles. The runtime records cited handles but does not prescribe the route or enforce a planning ceremony.
 - Each direct query is one bounded, receipted attempt. Corrections and later queries remain visible in `workspace.traversal.history()`; evaluation counts them without controlling the runtime.

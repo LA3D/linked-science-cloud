@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { mkdtemp, mkdir, writeFile } from "node:fs/promises";
+import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createInterface } from "node:readline";
@@ -237,7 +238,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '4\.0\.0'/u);
+  assert.match(text(response), /version: '5\.0\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -247,6 +248,53 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
   assert.match(text(response), /exposedBridge: 'undefined'/u);
   assert.match(text(response), /exposedFetch: 'undefined'/u);
   assert.equal(broker.traversal.sessions.size, 0);
+});
+
+test("the actual repository MCP broker composes a loopback resource response into RDF/JS and Communica without ambient Fetch", async t => {
+  const requests = [];
+  const fixture = createServer((request, response) => {
+    requests.push({ method: request.method, url: request.url });
+    response.writeHead(200, { "content-type": "text/turtle" });
+    response.end("@prefix ex: <https://example.test/> . ex:item1 ex:kind ex:Protein .");
+  });
+  await new Promise((resolveListen, rejectListen) => {
+    fixture.once("error", rejectListen);
+    fixture.listen(0, "127.0.0.1", resolveListen);
+  });
+  t.after(() => new Promise(resolveClose => fixture.close(resolveClose)));
+  const address = fixture.address();
+  const url = `http://127.0.0.1:${address.port}/source.ttl`;
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 120_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var ws = linkedScience.open({ contextKey: 'loopback-resource-composition' });
+    var resource = await ws.resources.get(${JSON.stringify(url)}, { role: 'fixture-document' });
+    var graph = await resource.rdf({ name: 'fixture-graph' });
+    var dataset = ws.rdf.dataset(graph);
+    dataset.add(ws.rdf.DataFactory.quad(
+      ws.rdf.DataFactory.namedNode('https://example.test/item2'),
+      ws.rdf.DataFactory.namedNode('https://example.test/kind'),
+      ws.rdf.DataFactory.namedNode('https://example.test/Protein')
+    ));
+    var enriched = await ws.rdf.retain({ name: 'fixture-enriched', dataset });
+    var result = await ws.query.select({ sources: [enriched], sparql: 'SELECT ?item WHERE { ?item <https://example.test/kind> <https://example.test/Protein> } ORDER BY ?item LIMIT 10' });
+    nodeRepl.write({
+      resource: ws.resources.inspect(resource, { as: 'text', maxBytes: 4096 }),
+      rows: ws.results.page(result, { limit: 10 }).rows.map(row => row.item.value),
+      effects: linkedScience.capabilities().effects,
+      rawFetch: typeof fetch
+    });
+  ` }));
+  assert.equal(response.result.isError, undefined, text(response));
+  const output = text(response);
+  assert.match(output, /source\.ttl/u);
+  assert.match(output, /https:\/\/example\.test\/item1/u);
+  assert.match(output, /https:\/\/example\.test\/item2/u);
+  assert.match(output, /rawFetch: 'undefined'/u);
+  assert.equal(requests.length, 1);
 });
 
 test("repairable local validation reaches the MCP tool error envelope with typed correction metadata", async t => {

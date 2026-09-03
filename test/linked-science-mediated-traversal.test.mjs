@@ -36,6 +36,10 @@ function rdfFetch(calls) {
     '/schema': '@prefix ex: <https://example.test/> . @prefix owl: <http://www.w3.org/2002/07/owl#> . ex:Term a owl:Class .',
     '/landing': '<html><title>Vocabulary</title></html>',
     '/broken': '@prefix ex: <https://example.test/> . ex:s ex:p [',
+    '/resource.json': JSON.stringify({ title: 'Synthetic metadata', items: [ 1, 2 ] }),
+    '/resource.csv': 'id,label\n1,Alpha\n2,Beta\n',
+    '/resource.xml': '<resource><title>Synthetic metadata</title></resource>',
+    '/resource.bin': Buffer.from([ 0, 1, 2, 3, 255 ]),
   };
   return async (input, init = {}) => {
     const url = new URL(input);
@@ -45,6 +49,14 @@ function rdfFetch(calls) {
       'content-type': 'text/html', link: '<./schema>; rel="alternate describedby"; type="text/turtle"',
     } : url.pathname === '/broken' ? {
       'content-type': 'text/turtle', link: '<./schema>; rel="alternate describedby"; type="text/turtle"',
+    } : url.pathname === '/resource.json' ? {
+      'content-type': 'application/json',
+    } : url.pathname === '/resource.csv' ? {
+      'content-type': 'text/csv',
+    } : url.pathname === '/resource.xml' ? {
+      'content-type': 'application/xml',
+    } : url.pathname === '/resource.bin' ? {
+      'content-type': 'application/octet-stream',
     } : { 'content-type': 'text/turtle; profile="https://example.test/profile/core"', link: '<./schema>; rel="describedby", <https://example.test/profile/link>; rel="profile"' } });
     if (url.hostname === 'service-a.example') {
       return new Response(JSON.stringify({
@@ -100,6 +112,67 @@ test('persistent workspace retains evidence and starts mediated transport only f
   assert.equal(profile.provenance.traversalReceipt.status, 'complete');
   assert.deepEqual(profile.provenance.evidenceHandles, [ evidence.id ]);
   assert.deepEqual(workspace.traversal.history({ limit: 5 }).attempts.map(item => item.status), [ 'success' ]);
+});
+
+test('general resource responses compose across calls with non-RDF inspection, RDF/JS parsing, and Communica without a re-fetch', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'resource-composition' });
+
+  const metadata = await workspace.resources.get('https://data.example/resource.json', { headers: { accept: 'application/json' }, role: 'metadata' });
+  assert.equal(metadata.ok, true);
+  assert.equal(metadata.status, 200);
+  assert.equal(metadata.headers.get('content-type'), 'application/json');
+  assert.deepEqual(await metadata.json(), { title: 'Synthetic metadata', items: [ 1, 2 ] });
+  assert.deepEqual(workspace.resources.inspect(metadata, { as: 'json', maxBytes: 4_096 }).json, { type: 'object', keys: [ 'title', 'items' ], totalKeys: 2 });
+  assert.deepEqual(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.csv'), { as: 'csv', maxBytes: 4_096 }).csv.columns, [ 'id', 'label' ]);
+  assert.equal(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.xml'), { as: 'xml', maxBytes: 4_096 }).xml.root, 'resource');
+  assert.equal(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.bin'), { as: 'binary', maxBytes: 4_096 }).bytes, 5);
+
+  const rdfResource = await workspace.resources.get('https://data.example/source-a.ttl', { role: 'source-a-document' });
+  const graph = await rdfResource.rdf({ name: 'source-a-graph' });
+  const dataset = workspace.rdf.dataset(graph);
+  dataset.add(workspace.rdf.DataFactory.quad(
+    workspace.rdf.DataFactory.namedNode('https://example.test/item2'),
+    workspace.rdf.DataFactory.namedNode('https://example.test/kind'),
+    workspace.rdf.DataFactory.namedNode('https://example.test/Protein'),
+  ));
+  const enriched = await workspace.rdf.retain({ name: 'enriched-source-a', dataset, role: 'in-kernel-enrichment' });
+  const selected = await workspace.query.select({
+    sources: [ enriched ],
+    sparql: 'SELECT ?item WHERE { ?item <https://example.test/kind> <https://example.test/Protein> } ORDER BY ?item LIMIT 10',
+  });
+  assert.deepEqual(workspace.results.page(selected, { limit: 10 }).rows.map(row => row.item.value), [ 'https://example.test/item1', 'https://example.test/item2' ]);
+  assert.equal(calls.filter(call => call.url === 'https://data.example/source-a.ttl').length, 1, 'resident RDF is queried locally after parsing');
+  const profile = workspace.results.profile(graph);
+  assert.equal(profile.provenance.sourceResource, rdfResource.handle.id);
+  assert.equal(workspace.resources.history().attempts.filter(item => item.kind === 'linked-science-resource-attempt').length, 5);
+});
+
+test('resource effects are broker-gated by class rather than endpoint identity', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
+  const workspace = linkedScience.open({ contextKey: 'resource-effects' });
+  assert.equal(linkedScience.capabilities().effects['anonymous-public-read'], true);
+  assert.equal(linkedScience.capabilities().effects.mutation, false);
+  await assert.rejects(
+    workspace.resources.get('https://another-public.example/anything', { method: 'POST' }),
+    error => error.code === 'LS_EFFECT_DENIED' && error.receipt.effect === 'mutation-or-arbitrary-post',
+  );
+  assert.equal(calls.length, 0);
+  assert.equal(broker.sessions.size, 0);
+});
+
+test('resource response bodies are stale after workspace reset while broker sessions remain closed', async () => {
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch([]) });
+  const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
+  const workspace = linkedScience.open({ contextKey: 'resource-reset' });
+  const resource = await workspace.resources.get('https://data.example/resource.json');
+  linkedScience.reset({ contextKey: 'resource-reset' });
+  await assert.rejects(resource.text(), error => error.code === 'LS_STALE_WORKSPACE');
+  assert.throws(() => workspace.resources.inspect(resource), error => error.code === 'LS_STALE_WORKSPACE');
+  assert.equal(broker.sessions.size, 0);
 });
 
 test('malformed local evidence exposes repair metadata and correction consumes no live request', async () => {
@@ -197,7 +270,7 @@ test('complete RDF document acquisition retains native quads and projects only s
   };
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker), peek })).open({ contextKey: 'ontology-document' });
-  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'epoch', 'evidence', 'graph', 'graphs', 'orientation', 'query', 'results', 'schema', 'traversal' ]);
+  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'epoch', 'evidence', 'graph', 'graphs', 'orientation', 'query', 'rdf', 'resources', 'results', 'schema', 'traversal' ]);
   const handle = await runMediatedQuery(workspace, {
     sources: [ { value: 'http://data.example/many.ttl', negotiation: {
       accept: 'text/turtle; profile="https://example.test/profile/request"',

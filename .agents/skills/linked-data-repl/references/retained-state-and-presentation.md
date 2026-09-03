@@ -2,7 +2,7 @@
 
 ## Results behind handles
 
-Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, use `workspace.evidence.load` for local declarative material and `workspace.traversal.query(options)` for bounded RDF acquisition or scientific reads. Direct queries privately bind consumer-owned Communica to one parent-mediated anonymous-read session and retain native RDF/JS values with aggregate lineage. Materialize once under a symbolic handle, then inspect with bounded `profile`, `page`, or `derive` operations rather than rerunning or dumping the source result. PEEK receives only compact handle metadata, never the query or result payload.
+Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, use `workspace.evidence.load` for local declarative material, `workspace.resources.get` for bounded representations, and `workspace.traversal.query(options)` for SPARQL/Communica reads. Resource responses retain native bytes with aggregate lineage; `resource.rdf()` creates a graph handle directly, while JSON/text/arrayBuffer methods compose inside the REPL. Materialize once under a symbolic handle, then inspect with bounded `resources.inspect`, `profile`, `page`, or `derive` operations rather than rerunning or dumping the source result. PEEK receives only compact handle metadata, never the query or result payload.
 
 A handle name is not residency evidence. Cite current tool-generated operations for its type, count, and state. Keep raw documents, full rows, and quads resident; return only the bounded evidence needed for the task.
 

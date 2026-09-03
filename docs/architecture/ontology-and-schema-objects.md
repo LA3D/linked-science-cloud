@@ -1,6 +1,6 @@
 # Ontology and schema objects
 
-Ontologies, schemas, SHACL graphs, inferred graphs, and instance data are first-class RDF objects in the Linked Science runtime. `workspace.graphs.load` accepts bounded local-synthetic RDF/JS quads or text. For live orientation or complete-document acquisition within budgets, `workspace.traversal.query(options)` can retain `CONSTRUCT` or carefully qualified `DESCRIBE` results as native quad handles with per-exchange provenance. The same operation executes later scientific reads; no static ontology-file gate, plan enrollment, or document-fetch facade is required.
+Ontologies, schemas, SHACL graphs, inferred graphs, and instance data are first-class RDF objects in the Linked Science runtime. `workspace.graphs.load` accepts bounded local-synthetic RDF/JS quads or text. For a remote RDF representation, `workspace.resources.get(url)` retains the broker-mediated response and `resource.rdf({ name })` (or `workspace.resources.parseRdf`) retains its native RDF/JS graph directly with per-exchange provenance; a CONSTRUCT wrapper is unnecessary. `workspace.traversal.query(options)` remains the general Communica/SPARQL operation for remote queries and federation.
 
 ## Resident fidelity
 
@@ -23,7 +23,7 @@ The PEEK map stores only compact symbolic routes and handle references. It may s
 
 ## Query and derivation
 
-Local read queries explicitly select graph handles and require a result limit except for `ASK`. The resulting bindings or quads remain typed internally. `results.derive` accepts one model-written JavaScript callback and retains one documented typed output; it is the generic transformation surface instead of a growing family of fixed domain operations.
+Local read queries explicitly select graph handles and require a result limit except for `ASK`. The resulting bindings or quads remain typed internally. `results.derive` accepts one model-written JavaScript callback and retains one documented typed output. `workspace.rdf.dataset(handle)` returns a cloned native RDF/JS DatasetCore for ordinary in-kernel JavaScript or installed-library work, and `workspace.rdf.retain({ dataset })` makes the resulting graph queryable by Communica.
 
 Prompt-visible `results.page` and `results.table` views convert RDF terms to bounded descriptors only at the presentation boundary. The retained source handle, lineage, fingerprints, and provenance remain attached.
 

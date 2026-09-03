@@ -43,7 +43,7 @@ test('bootstraps exactly once with stable facade bindings and generated discover
   assert.throws(() => first.documentation.get('neighbors-missing'), error => error instanceof LinkedScienceRuntimeError && error.code === 'LS_DOCUMENT_NOT_FOUND');
   assert.equal(first.capabilities().rawEngineExposed, false);
   assert.equal(first.capabilities().currentJsGuardIsSecuritySandbox, false);
-  assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'evidence', 'traversal', 'derive', 'reset' ] });
+  assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'evidence', 'traversal', 'resources', 'derive', 'reset' ] });
   assert.match(first.examples('ontology').code, /schema\.search/);
   assert.equal(LINKED_SCIENCE_API_SCHEMA.bootstrap, first.documentation.get('bootstrap').usage);
   assert.equal(typeof first.compatibility.queryToHandleGuarded, 'undefined');

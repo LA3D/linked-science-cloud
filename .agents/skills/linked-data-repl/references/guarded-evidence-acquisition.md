@@ -57,7 +57,7 @@ var manifestEvidence = await ws.evidence.load({
 
 Omitting `source` applies generic declarative-manifest provenance; a short provenance string is also accepted. Local call-shape errors expose `error.repair` and consume no live request. Correct the call in the same workspace.
 
-Use `workspace.traversal.query` for RDF evidence retrieval and scientific reads. Each invocation creates one bounded private mediator session, returns or throws only after that session is finished or aborted, and appends a compact receipt to `workspace.traversal.history()`. Repeated calls are ordinary explicit agent attempts; the runtime does not enroll plans, impose evaluation single-shot policy, or keep a reasoning-phase timer alive between calls.
+Use `workspace.resources.get(url)` for bounded resource retrieval and `workspace.traversal.query` for SPARQL/Communica reads. A resource response retains a private broker receipt, media type, bytes, and a stable handle; use `resource.rdf({ name })` to parse a remote RDF representation directly, or `resources.inspect(resource, { as: 'json'|'text'|'xml'|'csv'|'binary' })` for a prompt-bounded view. Each invocation creates one bounded private mediator session, returns or throws only after that session is finished or aborted, and appends a compact receipt to `workspace.traversal.history()`. Repeated calls are ordinary explicit agent attempts; the runtime does not enroll plans, impose evaluation single-shot policy, or keep a reasoning-phase timer alive between calls.
 
 Local consumer-owned Communica receives agent-selected HTTP/HTTPS RDF sources and may execute `SERVICE` federation, while every request crosses a module-private parent mediator. The agent receives neither Fetch nor the bridge. The mediator strips ambient identity, accepts only bounded read operations, and enforces request, fan-out, concurrency, duration, byte, and item ceilings. Transport libraries make no hidden retry.
 
@@ -67,7 +67,7 @@ Inspect `ws.results.profile(result).provenance.navigation` when HTTP metadata ma
 
 Negotiation belongs to the document source that needs it. Use `{ value, negotiation }` for source-specific `Accept`, `Accept-Profile`, or `Prefer`. A top-level `negotiation` value applies only to initial document sources; it is never copied to `SERVICE` requests or typed SPARQL sources.
 
-Do not invent a separate document-acquisition tool or graph model. For an RDF document, ontology, service description, or VoID graph, use the Communica/RDF/JS primitives behind `workspace.traversal.query`. A bounded `CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }` can materialize quads from one RDF document; item and byte ceilings bound the native handle. Non-RDF or malformed representations fail at Communica's source/parser layer.
+Do not add a separate MCP document tool. The persistent workspace already provides the general resource and RDF/JS model: for an RDF document, ontology, service description, or VoID graph, call `workspace.resources.get(url)` then `resource.rdf({ name })`; for a modified native DatasetCore, use `workspace.rdf.retain({ name, dataset })`. Item and byte ceilings, identity stripping, and provenance remain broker-enforced. Use `workspace.traversal.query` when the operation itself is SPARQL or federated Communica.
 
 ## Historical fixed-profile helpers
 

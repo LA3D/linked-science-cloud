@@ -42,7 +42,18 @@ const evidence = await workspace.evidence.load({
 });
 ```
 
-Retrieve RDF evidence and run scientific reads with the same direct operation. Mark a SPARQL service explicitly so it is not dereferenced as an RDF document:
+Retrieve a bounded representation through the general resource surface when its document, JSON, text, XML, CSV, or binary form matters. The returned object is response-like inside the persistent REPL; its bounded inspection and provenance are automatic. Parse RDF directly into a resident graph—do not wrap document retrieval in CONSTRUCT merely to acquire it:
+
+```js
+const resource = await workspace.resources.get(documentUrl, {
+  headers: { accept: 'text/turtle, application/ld+json;q=0.8' },
+  role: 'source-document',
+});
+const graph = await resource.rdf({ name: 'source-graph' });
+const dataset = workspace.rdf.dataset(graph); // native RDF/JS DatasetCore in the REPL
+```
+
+Use `workspace.traversal.query` for general SPARQL/Communica reads. Mark a SPARQL service explicitly so it is not dereferenced as an RDF document:
 
 ```js
 const result = await workspace.traversal.query({
@@ -65,4 +76,4 @@ Errors expose `error.repair` when a local call shape can be corrected without a 
 - Runtime implementation or recovery: [runtime discovery](../../../docs/agent/runtime-discovery.md), then generated documentation.
 - Historical Identifiers.org reproduction only: [retired profile](references/identifiers-org-sparql.md).
 
-Do not expose raw Fetch, create a parallel data/query facade, install packages, change global configuration, export, commit, or push unless separately authorized. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).
+Do not expose raw ambient Fetch, install packages, change global configuration, export, commit, or push unless separately authorized. The stable `workspace.resources`, `workspace.rdf`, and `workspace.traversal` APIs are the supported composable Linked Data surface. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).

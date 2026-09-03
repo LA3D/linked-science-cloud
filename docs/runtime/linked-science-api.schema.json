@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -52,6 +52,17 @@
     "evidence": [
       "load"
     ],
+    "resources": [
+      "get",
+      "inspect",
+      "parseRdf",
+      "history"
+    ],
+    "rdf": [
+      "DataFactory",
+      "dataset",
+      "retain"
+    ],
     "traversal": [
       "query",
       "history"
@@ -84,6 +95,11 @@
     "query.select",
     "query.run",
     "traversal.query",
+    "resources.get",
+    "resources.inspect",
+    "resources.parseRdf",
+    "rdf.dataset",
+    "rdf.retain",
     "evidence.load",
     "traversal.history",
     "results.derive",
