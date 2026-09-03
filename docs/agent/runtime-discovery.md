@@ -1,18 +1,22 @@
 # Linked Science clean-room runtime discovery
 
-## Fresh-task preflight
+## Compact normal bootstrap
 
 The authoritative saved checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its active `.codex/config.toml` registers the repository-owned `cleanroom_node_repl` broker from `packages/cleanroom-node-repl` with that checkout as its explicit cwd. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` have no production role here.
 
-Run `npm run linked-science:verify` from the saved checkout for the offline repository identity, broker, and synthetic runtime proof. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. The shell proof and configuration text are necessary repository evidence, not activation evidence for the task.
+Run `npm run linked-science:verify` from the saved checkout for the offline repository identity, broker, and synthetic runtime proof. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. The shell proof and configuration text are repository evidence, not activation evidence for the task.
 
-Require server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`. In one compact preflight, observe the authoritative cwd and `codeact` mode and verify one top-level binding in a second call. After bootstrap, require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl`. Perform this once per fresh kernel; do not narrate each check as a separate scientific phase.
+For normal work, conditionally bootstrap `linkedScience` once and reuse it. Inspect capabilities or targeted documentation only when the task needs an effect, route, bound, or recovery detail. The stable workspace supplies resources, RDF/JS, and Communica composition without additional MCP tools.
+
+## Activation and diagnostic verification
+
+When configuring the MCP, evaluating a fresh agent, diagnosing a suspected wrong runtime, or making an execution-backed activation claim, verify server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`; observe the authoritative cwd and `codeact` mode; verify one cross-call binding; and require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl` after bootstrap. Perform this once per fresh kernel; do not narrate each check as a scientific phase.
 
 ## Bootstrap once per kernel
 
 Use the skill's conditional bootstrap only when `globalThis.linkedScience` is absent. It validates cwd, project/module roots, and declared dependency resolution; installs stable `linkedScience`/`ls`; delegates orientation to broker PEEK; and registers `linked-science:runtime`. Reuse those bindings, workspaces, and valid handles across later calls and turns.
 
-Inspect the self-identifying environment once with the rest of the preflight:
+For that activation/diagnostic verification, inspect the self-identifying environment:
 
 ```js
 const environment = linkedScience.capabilities().environment
@@ -29,13 +33,7 @@ The MCP remains the exact three-tool surface, while the persistent workspace exp
 
 ## Discover before acting
 
-Read the complete generated callable contract once after bootstrap:
-
-```js
-linkedScience.documentation.all()
-```
-
-Then use targeted recovery or route detail only when needed:
+Use targeted recovery or route detail only when needed:
 
 ```js
 linkedScience.documentation.get('recovery')
@@ -75,7 +73,7 @@ Old references must report stale and old handles must not be reused. PEEK may gu
 - Keep output bounded by rows/cells or nodes/edges and bytes.
 - Preserve provenance and operation IDs through query, derivation, and view.
 - Without an observed traversal capability, use only local-synthetic data; `workspace.resources.get` and `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
-- Even with an observed traversal capability, live use requires current explicit approval for the traversal scope and effective budgets, plus an aggregate mediator receipt.
-- Before constructing a scientific query, the agent should inspect appropriate source-owned schema, vocabulary, dataset, service, or documentation evidence and retain useful evidence/result handles. The runtime records cited handles but does not prescribe the route or enforce a planning ceremony.
+- Ordinary goal-relevant anonymous public reads use the broker defaults and aggregate receipts. Authenticated, sensitive, mutating, bulk, export, and evaluation operations require their appropriate authority or confirmation.
+- Consult source-owned schema, vocabulary, dataset, service, or documentation evidence when the access pattern, provenance, ambiguity, or stakes warrant it. The runtime records cited handles but does not prescribe a planning ceremony.
 - Each direct query is one bounded, receipted attempt. Corrections and later queries remain visible in `workspace.traversal.history()`; evaluation counts them without controlling the runtime.
 - Keep REPL-resident native RDF/JS handles, RLM runtime discovery, broker PEEK orientation, Codex goal state, and durable artifacts distinct. PEEK receives only compact handle references, never source or result payloads.

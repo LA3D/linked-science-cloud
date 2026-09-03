@@ -11,11 +11,13 @@ Keep these names distinct:
 
 The bundled `node_repl` and deprecated `js_repl` label are obsolete for this project. Do not call them, restore their former configuration recipe, or infer clean-room availability from their presence.
 
-## Required preflight
+## Compact normal bootstrap
 
-On a fresh task or replaced kernel, verify the actual three-tool MCP surface, `nodeRepl.cwd`, CodeAct mode, and one cross-call binding. Then use the skill's conditional bootstrap and inspect `linkedScience.capabilities()` plus the registered runtime context. Do this once, reuse the persistent bindings, and keep the checks compact; configuration prose or a shell cwd is not activation evidence.
+On a fresh task or replaced kernel, use the skill's conditional bootstrap and reuse the persistent bindings. Inspect `linkedScience.capabilities()` or targeted documentation only when the task needs a route, effect, bound, or recovery detail. Configuration prose or a shell cwd is not activation evidence, but normal scientific work does not need a full activation audit.
 
-Bootstrap broker-owned orientation only when the goal workspace needs it. A live scientific operation still requires current approval and the mediated capability, but it does not require a separate ceremonial network probe unless the task or evaluation policy explicitly calls for one.
+For activation, diagnostics, evaluation, or a suspected wrong runtime, follow [runtime discovery](../../../../docs/agent/runtime-discovery.md) to verify the exact three-tool MCP surface, cwd, mode, cross-call persistence, identity, and raw-transport boundary.
+
+Bootstrap broker-owned orientation only when the goal workspace needs it. Ordinary anonymous public reads use the mediated capability and broker defaults; no separate permission or network probe ceremony is needed unless the task or evaluation policy explicitly calls for one.
 
 Use dynamic imports and top-level `var` for reusable bindings. The Linked Science facade uses an absolute module URL and normal module-scoped ESM resolution from its validated project root. Do not import package entrypoints through `./node_modules/...` or add a guessed module directory. Use `js_add_node_module_dir` only when an interactive bare-package import genuinely needs it and verify that path independently. Prefer `nodeRepl.write(...)` for compact output.
 

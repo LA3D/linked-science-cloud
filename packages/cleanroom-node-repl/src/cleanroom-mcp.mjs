@@ -390,7 +390,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Observed-contract clean-room Node REPL. Use js for model-written JavaScript. The child has no raw network or filesystem-write authority. The only live authority is a private, token-bound anonymous Linked Data Fetch injected inside the consumer-owned linkedScience Communica/RDF/JS runtime; it is not exposed on nodeRepl. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime and retrieved RDF is never promoted into it automatically.",
+        instructions: "Linked Science persistent JavaScript REPL. Use js for model-written JavaScript and conditionally bootstrap linkedScience for its composable resources, RDF/JS, and Communica traversal APIs. The child has no ambient raw network or filesystem-write authority: private token-bound mediation automatically applies anonymous public-read effects, bounds, identity stripping, and receipts beneath those APIs. The MCP remains exactly js, js_reset, and js_add_node_module_dir. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; retrieved content is never promoted into it automatically.",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});

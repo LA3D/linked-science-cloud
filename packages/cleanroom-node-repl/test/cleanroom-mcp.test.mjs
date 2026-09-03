@@ -79,7 +79,8 @@ test("MCP lists the observed three-tool Node REPL contract", async (t) => {
   const listed = await handle({ jsonrpc: "2.0", id: 2, method: "tools/list", params: {} });
 
   assert.equal(initialized.result.serverInfo.name, "cleanroom-node-repl");
-  assert.match(initialized.result.instructions, /CodeAct mode/);
+  assert.match(initialized.result.instructions, /linkedScience.*resources.*RDF\/JS.*traversal/u);
+  assert.match(initialized.result.instructions, /exactly js, js_reset, and js_add_node_module_dir/u);
   assert.deepEqual(listed.result.tools.map(({ name }) => name), ["js", "js_reset", "js_add_node_module_dir"]);
   assert.deepEqual(listed.result.tools[0].inputSchema.required, ["code"]);
 });
