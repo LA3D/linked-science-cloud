@@ -11,6 +11,12 @@ This directory holds a small queue of material work that is ready, active, or de
 | [Wiki memory and continual-learning distillation](wiki-memory-continual-learning.md) | Deferred research after the first frozen baseline | Distill reviewed lessons from evidence-backed teaching trajectories into bounded wiki memory that skills can retrieve selectively without ingesting transcripts or hidden answers. | Do not start yet; after the UniProt preflight and first baseline, research the object model, review workflow, retrieval boundary, and skill-attachment contract. |
 | [Clean-room broker live capability](cleanroom-broker-live-capability.md) | Superseded historical evidence | Preserve the fixed-profile experiments and source receipts without treating them as the production transport architecture. | Consult only when interpreting historical receipts; current transport work starts from the mediated-traversal architecture. |
 
+## Completed records
+
+| Task | Status | Durable outcome |
+| --- | --- | --- |
+| [Composable Linked Science resource surface v5](linked-science-resource-surface-v5.md) | Complete | Added the production resource/RDF/Communica programming surface and aligned active guidance with low-friction anonymous public reads. |
+
 ## When to create or update a task brief
 
 - Continue the same unit of work in the same Codex task when practical.
