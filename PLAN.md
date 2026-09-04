@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below was completed and validated on 2026-09-04. The symbolic query-completeness correction in section 0.1 is active and authorized.
+**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice and the symbolic query-completeness correction below were completed and validated on 2026-09-04.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -27,7 +27,7 @@ The controlled acceptance fixture contains more than 10,000 quads, is acquired o
 
 Completed evidence: runtime 5.1.0 retains and indexes a controlled 12,050-quad Turtle graph from one broker acquisition, reuses it for two local Communica subqueries, and emits only bounded profiles/pages. The actual repository JSON-RPC MCP loopback test records exactly one HTTP request. The complete 140-test suite, smoke check, repository-owned broker/runtime verification, skill validation, documentation-link validation, and Git diff checks passed. See the [completed task record](docs/tasks/rlm-symbolic-graph-realignment.md).
 
-### 0.1 Active symbolic query-completeness correction
+### 0.1 Completed symbolic query-completeness correction
 
 Task-level MCP testing exposed a second mismatch: local queries required a SPARQL `LIMIT` as a condition of result retention, and Communica 5.3.0 cannot optimize a `DESCRIBE` nested beneath the algebra `slice` produced by `LIMIT` or `OFFSET`. A query modifier is part of SPARQL semantics, not a storage control. Requiring, injecting, removing, or relocating it can change the answer and can make a graph result silently incomplete.
 
@@ -40,7 +40,9 @@ This correction establishes the following contract:
 5. Profiles and mediated-attempt receipts state semantic completion and the description policy explicitly. They retain the hash and query type of the caller's original query; an internal normalization hash may be recorded as implementation provenance but never substituted for caller intent.
 6. Physical memory, storage, time, network, and result-residency ceilings remain honest operational controls. This slice does not claim infinite resources; it claims that an exceeded resource ceiling is a failure rather than a successful partial answer.
 
-Acceptance requires a synthetic all-four-form matrix through the actual project MCP, including `DESCRIBE` with and without solution modifiers, plus an over-ceiling test proving failure without a retained partial handle. See the [active task record](docs/tasks/symbolic-query-completeness.md).
+Acceptance requires a synthetic all-four-form matrix through the actual project MCP, including `DESCRIBE` with and without solution modifiers, plus an over-ceiling test proving failure without a retained partial handle. See the [completed task record](docs/tasks/symbolic-query-completeness.md).
+
+Completed evidence: runtime 6.0.0 removes the local query-LIMIT requirement, streams result materialization, declares the outgoing-subject-triples DESCRIBE policy, normalizes wildcard/variable/explicit targets while preserving solution modifiers, and records completion on successful profiles and receipts. The actual repository JSON-RPC MCP retained a complete 12,050-quad no-LIMIT DESCRIBE result from one acquired graph and returned the distinct native types for all four forms. A separate mounted-MCP probe retained a 1,005-quad DESCRIBE with a binding-item quota of two. The 142-test suite, smoke check, repository-owned broker/runtime verification, and Git diff checks passed. See the [completed task record](docs/tasks/symbolic-query-completeness.md).
 
 ## 1. Objective and falsifiable thesis
 

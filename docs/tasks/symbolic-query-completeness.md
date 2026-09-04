@@ -1,6 +1,6 @@
 # Task: Preserve symbolic SPARQL query completeness
 
-- **Status:** Active
+- **Status:** Complete
 - **Owner/task:** Current Codex task
 - **Scope:** Correct local and mediated result materialization for all four SPARQL read forms; remove the harness-imposed local `LIMIT` requirement; normalize `DESCRIBE` while preserving its query semantics; expose explicit completion provenance; update tests, generated documentation, and guidance. Durable result storage across kernel reset is excluded.
 - **Authorization boundary:** Repository-local documentation, source, tests, focused commits, and local-main integration are authorized. No live evaluation, dependency download, export, global configuration change, push, authenticated access, mutation, or bulk ingestion is authorized.
@@ -17,6 +17,12 @@ A successful query handle is a complete symbolic result under the caller's query
 - Task-level MCP tests established that local `SELECT`, `ASK`, and `CONSTRUCT` return their distinct native result types.
 - Task-level MCP tests established that Comunica 5.3.0 executes a top-level `DESCRIBE` but rejects `DESCRIBE ... LIMIT ...` because its configured describe optimizer does not reach a describe nested below an algebra slice.
 - The repository already separates model-visible projection bounds from graph residency, and mediated stream collection already fails instead of returning a partial handle.
+- Runtime 6.0.0 accepts all four read forms without a harness-imposed SPARQL `LIMIT`; `SELECT` retains bindings, `ASK` a boolean, and `CONSTRUCT`/`DESCRIBE` RDF/JS quad stores.
+- DESCRIBE normalization preserves explicit IRIs, selected variables, `DESCRIBE *`, mixed targets, `ORDER BY`, `OFFSET`, and `LIMIT`, while declaring the outgoing-subject-triples policy and retaining the original query type/hash.
+- Successful query profiles and mediated receipts report atomic semantic completion. A deliberately over-ceiling mediated DESCRIBE aborts and the next retained object receives the first handle ID, proving no hidden partial handle was allocated.
+- The actual repository JSON-RPC MCP retained a complete 12,050-quad no-LIMIT DESCRIBE result, returned all four native result types, preserved a solution-modified DESCRIBE, and made only one loopback resource request.
+- The currently mounted project MCP independently returned runtime 6.0.0, all four native result types, five complete profiles, the declared description policy, and a 1,005-quad no-LIMIT DESCRIBE despite a binding-item quota of two.
+- `npm test` passed 142/142 tests; `npm run linked-science:verify`, `npm run smoke`, `npm ls sparqlalgebrajs --depth=0`, and `git diff --check` passed.
 
 ### Decisions
 
@@ -28,15 +34,11 @@ A successful query handle is a complete symbolic result under the caller's query
 
 ### Remaining work
 
-- Update architecture and generated runtime guidance.
-- Implement semantic-preserving DESCRIBE normalization and streamed atomic materialization.
-- Add completion metadata and structured residency failures.
-- Add the four-form runtime and actual MCP acceptance matrix.
-- Run all required verification, commit focused milestones, and integrate to local `main` if safe.
+- None for this slice. Durable result storage across kernel reset remains separately staged work.
 
 ### Exact next action
 
-Implement the query normalization and atomic collection helpers in `lib/linked-science-runtime.mjs`, then run the focused runtime tests.
+No implementation action remains. Restart or open a fresh task only when the default mounted facade itself must advertise runtime 6.0.0 without a cache-busted verification import.
 
 ### Blockers or required decisions
 
@@ -44,7 +46,7 @@ Implement the query normalization and atomic collection helpers in `lib/linked-s
 
 ## Handoff state
 
-- **Git:** Authoritative checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`; branch `codex/symbolic-query-completeness`; starting commit `deace4c`; unrelated untracked `artifacts/structure-viewer/` is preserved and excluded.
-- **Verification:** Not yet run for this slice.
-- **Ephemeral state:** No completion claim depends on a resident REPL handle.
+- **Git:** Authoritative checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`; branch `codex/symbolic-query-completeness`; starting commit `deace4c`; task commits `a32d1c8` and `a515172`; unrelated untracked `artifacts/structure-viewer/` is preserved and excluded. Local-main integration is the final handoff step.
+- **Verification:** `npm test` 142/142 passed; `npm run linked-science:verify`, `npm run smoke`, dependency resolution, and diff checks passed. Repository-spawned and mounted MCP observations both passed.
+- **Ephemeral state:** The mounted-MCP verification used an isolated cache-busted runtime 6.0.0 facade and left the pre-existing mounted facade and resident state untouched. Its 1,005-quad synthetic handle remains ephemeral and is not a durable artifact.
 - **Durable artifacts/receipts:** This task record and focused Git commits; no experiment receipt is required because this is implementation verification, not an intentional scientific evaluation run.
