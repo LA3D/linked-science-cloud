@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below is authorized and active.
+**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below was completed and validated on 2026-09-04.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -12,7 +12,7 @@
 
 **Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local RLM/Prime symbolic-graph slice in section 0: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not automatically activate the full durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
 
-## 0. Active RLM/Prime symbolic-graph slice
+## 0. Completed RLM/Prime symbolic-graph slice
 
 The immediate correction makes the intended architecture explicit and removes one implementation mismatch exposed by task-level MCP testing.
 
@@ -24,6 +24,8 @@ The immediate correction makes the intended architecture explicit and removes on
 6. `nodeRepl.rlm` reports structured control-environment and recursion capabilities. The current one-shot provider seam remains compatibility behavior; this slice does not pretend it is the durable asynchronous child runtime specified for Stage 1.
 
 The controlled acceptance fixture contains more than 10,000 quads, is acquired once, is queried locally at least twice through one graph handle, and proves that only bounded views enter model-visible output. This local fixture is implementation verification, not a formal live evaluation run.
+
+Completed evidence: runtime 5.1.0 retains and indexes a controlled 12,050-quad Turtle graph from one broker acquisition, reuses it for two local Communica subqueries, and emits only bounded profiles/pages. The actual repository JSON-RPC MCP loopback test records exactly one HTTP request. The complete 140-test suite, smoke check, repository-owned broker/runtime verification, skill validation, documentation-link validation, and Git diff checks passed. See the [completed task record](docs/tasks/rlm-symbolic-graph-realignment.md).
 
 ## 1. Objective and falsifiable thesis
 
