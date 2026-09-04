@@ -3,9 +3,9 @@ name: linked-data-repl
 description: Use the persistent Linked Science/Linked Data REPL for composable public resources, RDF/JS datasets, Communica queries, and reusable resident results.
 ---
 
-# Linked Data REPL
+# Linked Data RLM REPL
 
-Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. Use `cleanroom_node_repl` for persistent Linked Data resources, RDF/JS state, Communica queries, or reuse of resident scientific evidence. A normal request that needs anonymous public scientific retrieval uses the broker-mediated surface and its defaults; request-specific tighter limits remain available. Authenticated, sensitive, mutating, bulk, export, and evaluation work require the appropriate separate authority.
+Treat `cleanroom_node_repl` as an RDF-specialized Recursive Language Model (RLM) control environment. Large resources, graphs, ontologies, and results stay external to the prompt behind resident handles; use model-written JavaScript, RDF/JS, Communica, and optional host-mediated recursive calls to inspect only the relevant context. Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. A normal request that needs anonymous public scientific retrieval uses the broker-mediated surface and its defaults; request-specific tighter limits remain available. Authenticated, sensitive, mutating, bulk, export, and evaluation work require the appropriate separate authority.
 
 The authoritative project root is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. It owns both the Linked Science facade and `packages/cleanroom-node-repl`. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` are not production implementations or fallbacks. When repository verification is in scope, run `npm run linked-science:verify` from the authoritative root; this is an offline proof and does not replace task-level MCP observation.
 
@@ -29,7 +29,7 @@ Use `linkedScience.capabilities()` or `documentation.get(name)` when you need to
 
 Reuse `linkedScience`, the goal workspace, and valid resource/evidence/result handles across calls and later turns. Correct malformed calls in place; reset only after actual kernel or workspace invalidation. A reset makes old handles stale and does not authorize reacquisition.
 
-## Agentic Linked Science
+## Agentic RLM Linked Science
 
 Use source documentation, an ontology/schema, service description, examples, or retained evidence when an access pattern, vocabulary, provenance claim, scientific ambiguity, or stakes make it useful. Do not add an orientation step merely by ritual: straightforward resource reads and known local datasets can proceed directly. Treat remembered resource-specific details as hypotheses and keep endpoints, graphs, predicates, and identifiers in evidence or resident JavaScript state—not this skill or generic runtime code.
 
@@ -42,7 +42,9 @@ const evidence = await workspace.evidence.load({
 });
 ```
 
-Retrieve a bounded representation through the general resource surface when its document, JSON, text, XML, CSV, or binary form matters. The returned object is response-like inside the persistent REPL; its bounded inspection and provenance are automatic. Parse RDF directly into a resident graph—do not wrap document retrieval in CONSTRUCT merely to acquire it:
+Choose between direct subgraph query and acquire-once reuse by considering the information need and likely representation size. Query a remote RDF source directly when only one small subgraph is needed. Retrieve and parse once when several local queries or RDF/JS transformations will reuse the same representation. `HEAD` and `Content-Length` are optional hints, not required gates; actual broker byte/time accounting is authoritative. A large RDF graph is symbolic external context, not a prompt-size failure.
+
+Retrieve a representation through the general resource surface when its document, JSON, text, XML, CSV, binary, or reusable RDF form matters. The returned object is response-like inside the persistent REPL; its bounded inspection and provenance are automatic. Parse RDF directly into a resident graph—do not wrap document retrieval in CONSTRUCT merely to acquire it:
 
 ```js
 const resource = await workspace.resources.get(documentUrl, {
@@ -63,9 +65,9 @@ const result = await workspace.traversal.query({
 });
 ```
 
-Each call is one visible, broker-bounded attempt with a final receipt and no hidden transport retry. Supply `budgets` only when the task needs tighter limits than the broker defaults. Inspect `workspace.traversal.history()` when retry count or failure history matters. Explicit corrections and revised scientific queries are normal agent actions; evaluation observes them instead of controlling the runtime.
+Each call is one visible, broker-bounded attempt with a final receipt and no hidden transport retry. Supply `budgets` only when the task needs tighter limits than the broker defaults. Keep execution limits (requests, bytes, time), resident state limits, and model-visible projections (rows, cells, nodes, edges, preview bytes) conceptually separate. Inspect `workspace.traversal.history()` when retry count or failure history matters. Explicit corrections and revised scientific queries are normal agent actions; evaluation observes them instead of controlling the runtime.
 
-Errors expose `error.repair` when a local call shape can be corrected without a live request. Reuse resident handles and ordinary JavaScript values to compose work across resources. Keep bulk data behind handles and return only bounded views, provenance, and calibrated uncertainty. An unavailable source or empty result is not proof of global absence.
+Errors expose `error.repair` when a local call shape can be corrected without a live request. Reuse resident handles and ordinary JavaScript values to compose work across resources. Prefer ontology-informed `ASK`, `SELECT`, `CONSTRUCT`, neighborhoods, schema search, or RDF/JS matching over printing or paging through a graph. Keep bulk data behind handles and return only bounded views, provenance, and calibrated uncertainty. An unavailable source or empty result is not proof of global absence.
 
 ## Routed detail
 

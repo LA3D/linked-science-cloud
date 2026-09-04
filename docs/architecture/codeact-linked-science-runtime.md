@@ -1,8 +1,10 @@
-# CodeAct Linked Science runtime
+# Persistent JavaScript compatibility surface
+
+> **Architecture status:** Compatibility and implementation-mechanics note. The normative design is [RLM/Prime Linked Science runtime](rlm-linked-science-runtime.md). The persistent JavaScript and browser-shaped facade described here remain supported, but CodeAct is not the system's defining architecture.
 
 ## Decision
 
-Linked Science uses the user-owned `cleanroom_node_repl` and persistent model-written JavaScript as its primary action space. `lib/cleanroom-linked-science-bootstrap.mjs` validates the saved project and dependency roots, registers RLM discovery context, and injects the `linkedScience` facade (with short alias `ls`) from `lib/linked-science-runtime.mjs`. Communica remains the RDF/SPARQL query kernel behind the facade.
+Linked Science uses the user-owned `cleanroom_node_repl` and persistent model-written JavaScript as its RLM control environment. `lib/cleanroom-linked-science-bootstrap.mjs` validates the saved project and dependency roots, registers RLM discovery context, and injects the `linkedScience` facade (with short alias `ls`) from `lib/linked-science-runtime.mjs`. Communica remains the RDF/SPARQL query kernel behind the facade.
 
 The one-time bootstrap, generated documentation, machine schema, conditional lookup, examples, stable globals, and explicit reset follow the public adapter shape described in [runtime discovery](../agent/runtime-discovery.md). Like the Browser persistent-JavaScript pattern, Linked Science gives agents composable stateful objects while a trusted broker enforces authority, capability filtering, and audit below that programming surface; it is a Linked Data runtime, not a browser bridge.
 
@@ -24,7 +26,7 @@ A workspace owns private Communica state and opaque retained handles. It support
 - asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations; and
 - optional behavior-bounded public-HTTPS traversal and local federation with native result handles.
 
-Recursion and model-provider calls are outside v1.
+The v5 facade does not itself own recursive provider calls. `nodeRepl.rlm` advertises the host's recursion capability separately; durable asynchronous child execution remains a staged clean-room-host responsibility.
 
 ## Handles and epochs
 
@@ -46,7 +48,7 @@ The runtime does not instantiate a competing PEEK cache when the clean-room back
 
 ## Bounds and observation contract
 
-Resident graphs and results have hard item ceilings. Prompt-visible pages/tables are bounded by rows, cells, and bytes. Neighborhoods are bounded by nodes, edges, and bytes. Schema search is bounded by hits and bytes. All observations retain compact provenance; byte fitting truncates values, never provenance. PEEK remains orientation only and never substitutes for the ontology, schema, graph, or result handle.
+Execution, residency, and projection are separate budget planes. Resident graphs and results remain subject to explicit physical safety controls, but graph quad count is not a prompt or display limit. Prompt-visible pages/tables are bounded by rows, cells, and bytes. Neighborhoods are bounded by nodes, edges, and bytes. Schema search is bounded by hits and bytes. All observations retain compact provenance; byte fitting truncates values, never provenance. PEEK remains orientation only and never substitutes for the ontology, schema, graph, or result handle.
 
 ## Security and broker boundary
 

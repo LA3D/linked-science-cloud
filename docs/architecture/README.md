@@ -10,7 +10,8 @@ linked information in Linked Science Cloud
 
 The stable boundaries are split into focused notes:
 
-- [CodeAct Linked Science runtime](codeact-linked-science-runtime.md)
+- [RLM/Prime Linked Science runtime](rlm-linked-science-runtime.md) — normative architecture
+- [Persistent JavaScript compatibility surface](codeact-linked-science-runtime.md) — implementation history and facade mechanics
 - [Ontology and schema objects](ontology-and-schema-objects.md)
 - [Persistent Communica session and symbolic handles](persistent-session-and-handles.md)
 - [PEEK-aligned orientation cache, stale state, and reset](orientation-cache-and-reset.md)

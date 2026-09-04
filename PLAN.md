@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Proposed implementation plan. This document authorizes planning and Phase 0 only.
+**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below is authorized and active.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -10,7 +10,20 @@
 
 **Primary references:** [Prime Agent paper](https://arxiv.org/abs/2608.23552), [Prime Agent repository](https://github.com/PrimeIntellect-ai/prime-agent), and [persistent harness state](https://github.com/PrimeIntellect-ai/prime-agent/blob/main/prime-agent-runtime/src/rlm/harness.py)
 
-**Authorization boundary:** Phase 0 is documentation, characterization, schema fixtures, and experiment design only. Stages 1-3 require separate explicit authorization. Nothing here authorizes live traversal, dependency installation, export, global configuration changes, push, or execution of a later stage.
+**Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local RLM/Prime symbolic-graph slice in section 0: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not automatically activate the full durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
+
+## 0. Active RLM/Prime symbolic-graph slice
+
+The immediate correction makes the intended architecture explicit and removes one implementation mismatch exposed by task-level MCP testing.
+
+1. [RLM/Prime Linked Science](docs/architecture/rlm-linked-science-runtime.md) becomes the normative runtime architecture. Persistent JavaScript is the RLM control environment; the browser-shaped facade and CodeAct-style execution are subordinate ergonomics.
+2. Execution, residency, and model-visible projection budgets become separate capability planes. RDF graph size is not treated as a context-window or display limit.
+3. Broker-acquired RDF larger than the former 10,000-quad default can remain behind a native graph handle and support repeated local subgraph queries without refetch. Physical byte, time, memory/storage, and query-work ceilings remain explicit operational controls.
+4. Agent guidance considers likely representation and result size without requiring `HEAD` or `Content-Length`. It chooses between direct remote subgraph query, acquire-once local reuse, ontology/schema inspection, and bounded result projection according to the information need.
+5. Local graph-name, format, budget, and projection-shape failures expose structured repair. Generated signatures reflect the callable API.
+6. `nodeRepl.rlm` reports structured control-environment and recursion capabilities. The current one-shot provider seam remains compatibility behavior; this slice does not pretend it is the durable asynchronous child runtime specified for Stage 1.
+
+The controlled acceptance fixture contains more than 10,000 quads, is acquired once, is queried locally at least twice through one graph handle, and proves that only bounded views enter model-visible output. This local fixture is implementation verification, not a formal live evaluation run.
 
 ## 1. Objective and falsifiable thesis
 
@@ -114,7 +127,7 @@ The plan adopts the Prime mechanisms needed for the three hypotheses and records
 | Prime-style mechanism | Disposition | Linked Science treatment |
 | --- | --- | --- |
 | L0-L3 information hierarchy | **Adopt** | Make visibility, persistence, ownership, and transitions explicit. |
-| Persistent programmatic REPL | **Adopt** | Preserve JavaScript/CodeAct and restricted child authority. |
+| Persistent programmatic REPL | **Adopt** | Preserve JavaScript as the RLM control environment and preserve restricted child authority; CodeAct is an execution technique, not the architectural center. |
 | Context as data | **Adopt narrowly** | Addressable bounded objects, programmatic JavaScript operations, explicit projection, serialization, and materialization. |
 | Append-only history | **Adopt** | Per-session public events remain exact and recoverable. |
 | Package-child compaction | **Adopt narrowly** | Replace a child L1 prefix only in later projections; preserve the exact source range in L3. Root/Codex compaction remains external and unobserved. |
