@@ -1,40 +1,27 @@
 # Retained state and bounded presentation
 
-## Results behind handles
+## Native state
 
-Use `lib/repl-linked-data-session.mjs` for offline compatibility work. In the production clean-room runtime, use `workspace.evidence.load` for local declarative material, `workspace.resources.get` for bounded representations, and `workspace.traversal.query(options)` for SPARQL/Communica reads. Resource responses retain native bytes with aggregate lineage; `resource.rdf()` creates a graph handle directly, while JSON/text/arrayBuffer methods compose inside the REPL. Materialize once under a symbolic handle, then inspect with bounded `resources.inspect`, `profile`, `page`, or `derive` operations rather than rerunning or dumping the source result. Small results stay in the restricted kernel; complete large `SELECT`, `CONSTRUCT`, and `DESCRIBE` results spill to an epoch-owned broker SQLite store with no child-visible path. Always `await results.page` and `results.table`. A stored quad-result handle is an indexed source for later local SPARQL (pattern lookups and exact counts are pushed to the broker), while whole-result `rdf.dataset` and JavaScript `derive` deliberately refuse to pull it back into memory. Resident-graph quotas are derived from the kernel heap and reported under `budgetPlanes.residency.basis`; `LS_KERNEL_HEAP_BOUND` means a retention or copy would exhaust the kernel and no partial state was created. PEEK receives only compact handle metadata, never the query or result payload.
+Production work uses `workspace.resources`, `rdf`, `query` and `traversal`. `lib/repl-linked-data-session.mjs` remains an offline compatibility API. Resource reads retain bytes and provenance; `resource.rdf()` parses a reusable graph directly. Native terms preserve IRIs, datatypes, languages, blank nodes and graph names. Source evidence also preserves its promised ordering and duplicates.
 
-A handle name is not residency evidence. Cite current tool-generated operations for its type, count, completion, and state. Graph quad count and result row count are symbolic-state facts, not prompt budgets. Profiles distinguish `resident-rdf-dataset` from `broker-stored-result` residency. SPARQL `LIMIT` is query semantics, never a presentation safeguard. Successful query handles are complete; an operational ceiling fails without a partial handle. Keep raw documents, full rows, and quads behind their handles; return only the bounded profile, subquery, neighborhood, page, aggregate, or provenance needed for the task.
+`rdf.source(handle)` provides streaming matching/counts for resident or broker-stored graphs. `rdf.clone(handle)` explicitly copies a resident graph into a mutable N3 dataset; `rdf.dataset` is a compatibility alias. Stored results require streaming views, bounded observations or later symbolic queries. `rdf.retain` copies caller-owned RDF into the registry.
 
-## Symbolic orientation cache
+Successful SELECT/ASK/CONSTRUCT/DESCRIBE handles represent complete results under the submitted query and declared description policy. Small results stay resident; larger bindings and graphs spill to private indexed broker storage. Bag/set semantics remain distinct. A storage/operational ceiling fails without a successful partial handle. Query modifiers are caller semantics, independent of projection bounds.
 
-The active Linked Science facade uses the clean-room broker's `nodeRepl.peek` operations through `workspace.orientation`; do not also instantiate `lib/orientation-map.mjs` for the same runtime context. The library map and its `context-map-recovery.mjs` re-export remain for compatibility and offline standalone work. Both use these sections:
+## Lifetime and orientation
 
-- `context-roadmap`: available or attempted sources;
-- `context-understanding`: grounded relations and known failures;
-- `domain-constants`: stable IRIs and identifiers;
-- `parsing-schema`: detected formats and reusable parsing facts; and
-- `reusable-results`: named retained handles and their roles.
+`inventory()` lists current retained handles. `await release(handleOrResource)` invalidates one object and reclaims its registry/storage ownership. Other results retain compact provenance and remain valid. Already copied JavaScript values are caller-owned.
 
-The map is bounded, stable-ID, JSON-compatible symbolic state. It may point to evidence handles but current automatic entries must not contain raw documents, rows, raw SPARQL, task answers, prose reasoning, or a competing goal/workflow state machine. Add only reusable orientation that reduces later search or prevents a repeated failure. A future reviewed PEEK policy may promote compact parameterized query motifs under the architecture's provenance and leakage rules; that is not current behavior. Priority eviction keeps the map compact; the REPL handles retain the inspectable evidence.
+`await dispose()` and `await linkedScience.reset({ contextKey })` invalidate a workspace, clean its broker state including pending allocations, and permit a fresh workspace. Other workspaces survive. Late work cannot publish results in the old workspace. Await cleanup; retry disposal if it reports cleanup failure.
+
+The orientation map holds source descriptions and versions, not a query-result catalog. `orientationContext: { id, version }` optionally shares this advisory context across questions. Registries stay separate; references can be resident here, stale, or from an external workspace. No reference grants authority or establishes residency elsewhere. The map is a simple baseline; the learned PEEK policy remains optional research.
 
 ## Reset and stale state
 
-Clean-room `js_reset` destroys JavaScript bindings, RLM contexts, Linked Science workspaces, symbolic handles, and epoch-owned result spools while broker-owned PEEK orientation survives. Bootstrap again before inspecting the map. A pre-reset orientation entry may retain lineage or a known failed route, but it cannot prove that a handle remains available. Check the current workspace and report the reference stale or missing.
-
-Rematerialization is a new mediated operation, not reuse or automatic recovery. It requires current traversal authorization and yields new provenance. If the source, approval, or mediator is unavailable, stop honestly rather than reconstructing state from the map.
+`js_reset` removes all JavaScript bindings, workspaces and epoch-owned result storage. The next evaluation prepares the facade again. Source orientation may survive but cannot restore scientific data. Reacquisition is a new authorized source operation with fresh provenance. Unavailable sources and exact empty queries never establish global absence.
 
 ## Presentation
 
-Use `displayTable` for an inline table model of at most 10 scalar rows. A display model is a bounded projection, not the result itself. It identifies the source handle, selected columns, page, and compact provenance. Any future chart must consume an explicit bounded page, aggregate, or derived handle rather than a whole result. Export requires separate user authorization and is not implemented by this skill.
+Use profile, page, table, schema search, neighborhood or query-selected aggregate views. Always await pages/tables across storage tiers. Keep bulk resources and native data outside model output; return only the evidence needed for the question with compact provenance and uncertainty. A display model is not an artifact or full result. Export requires separate authorization.
 
-## Reporting
-
-Report at the scale of the question. Include enough compact evidence to distinguish:
-
-- which source or query was actually used;
-- which state is currently verified as resident;
-- what the bounded result supports; and
-- what remains uncertain or requires another source or permission.
-
-Do not manufacture a map, receipt, frontier, or operation narrative merely to satisfy a template. See the repository architecture notes for the stable [session](../../../../docs/architecture/persistent-session-and-handles.md), [orientation/reset](../../../../docs/architecture/orientation-cache-and-reset.md), and [presentation](../../../../docs/architecture/bounded-presentation-handoff.md) boundaries.
+See [session lifetime](../../../../docs/architecture/persistent-session-and-handles.md), [orientation/reset](../../../../docs/architecture/orientation-cache-and-reset.md), and [bounded presentation](../../../../docs/architecture/bounded-presentation-handoff.md).

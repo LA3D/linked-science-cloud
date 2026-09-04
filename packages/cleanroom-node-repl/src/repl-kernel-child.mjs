@@ -307,6 +307,14 @@ function createKernel() {
 }
 
 const kernel = createKernel();
+let bootstrap;
+
+function bootstrapProject() {
+  if (process.env.CLEANROOM_LINKED_SCIENCE_BOOTSTRAP !== 'enabled') return;
+  bootstrap ??= import('../../../lib/cleanroom-linked-science-bootstrap.mjs').then(({ bootstrapLinkedScience }) =>
+    bootstrapLinkedScience({ host: kernel.context, cleanroom: kernel.context.nodeRepl }));
+  return bootstrap;
+}
 
 function evaluate(code) {
   if (/\bimport\s*\(\s*(["'])(?:node:)?(?:process|http|https|http2|net|tls|dns|dgram|undici)\1\s*\)/.test(code)) {
@@ -396,6 +404,7 @@ process.on("message", async (message) => {
   outputTruncationReported = false;
   currentRequestMeta = Object.freeze(message.requestMeta && typeof message.requestMeta === "object" ? message.requestMeta : {});
   try {
+    await bootstrapProject();
     await evaluate(message.code);
     const content = [...writes, ...images];
     sendToParent({ type: "response", id: message.id, ok: true, value: { content } });

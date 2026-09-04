@@ -293,7 +293,7 @@ test('reset retains PEEK orientation but rejects old-epoch handles in reset and 
   const result = await workspace.query.select({ sources: [ ontology, sourceA, sourceB ], sparql: measurementQuery, role: 'measurements' });
   const committed = await workspace.orientation.commit();
   assert.equal(committed.entries > 0, true);
-  const reset = linkedScience.reset({ contextKey: 'reset-goal' });
+  const reset = await linkedScience.reset({ contextKey: 'reset-goal' });
   assert.equal(reset.orientationRetained, true);
   const recovered = linkedScience.open({ contextKey: 'reset-goal' });
   const status = await recovered.orientation.status();
@@ -379,7 +379,7 @@ test('fresh-agent discovery fixture passes the documented behavioral rubric usin
   const result = await workspace.query.select({ sources: [ ontology, sourceA, sourceB ], sparql: measurementQuery, role: 'measurements' });
   const page = workspace.results.page(result, { limit: 2, maxCells: 4 });
   const checkpoint = await workspace.orientation.commit();
-  linkedScience.reset({ contextKey: 'fresh-agent-goal' });
+  await linkedScience.reset({ contextKey: 'fresh-agent-goal' });
   const fresh = linkedScience.open({ contextKey: 'fresh-agent-goal' });
   let staleRejected = false;
   try { fresh.results.profile(result); } catch (error) { staleRejected = error.code === 'LS_STALE_HANDLE'; }

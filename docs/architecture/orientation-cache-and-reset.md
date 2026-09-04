@@ -1,19 +1,33 @@
-# Orientation cache, stale state, and reset
+# Source orientation and reset
 
-The active Linked Science runtime delegates its bounded orientation map to the clean-room MCP broker through `nodeRepl.peek`. `lib/orientation-map.mjs` remains the compatibility and offline implementation, and `lib/context-map-recovery.mjs` re-exports it for older callers. Both use the same five sections:
+The workspace registry owns ephemeral handle inventory; `workspace.inventory()` reads it directly. The small orientation map holds reusable source context, following the distinction studied by [PEEK](https://arxiv.org/html/2605.19932v1).
 
-- `context-roadmap`: available or attempted sources;
-- `context-understanding`: grounded relations and known failures;
-- `domain-constants`: stable IRIs and identifiers;
-- `parsing-schema`: detected formats and reusable parsing facts; and
-- `reusable-results`: named retained handles and their roles.
+Automatic entries describe resources, graphs and declarative evidence: source identity, representation version/fingerprint, format or role, and compact evidence references. A later description of the same source/type replaces its earlier entry. Query results do not automatically fill the map. Their full provenance remains available through result profiles while retained.
 
-Entries use stable IDs, remain JSON-compatible, and are priority-evicted to stay small. They may cite evidence handles and operation IDs. Current automatic entries must not contain raw documents, result rows, raw SPARQL, task answers, prose reasoning, or a second goal/workflow lifecycle. A future PEEK policy may promote a compact parameterized query motif only through the provenance, applicability, explicit-review, and evaluator-leakage checks in [Prime-style context management](prime-linked-data-context-management.md); that proposal is not current behavior.
+The current map is a baseline with bounded deterministic eviction. The broker's optional policy hook is unconfigured by default; no learned Distiller/Cartographer policy or durable memory system is implemented.
 
-The cache is orientation, not authority. Before reusing an entry, a worker checks the current session for the referenced handle and verifies its type and state through an operation receipt. A cache entry that predates a reset or conflicts with current session evidence is stale; it may preserve lineage or a known failed route, but it cannot support a claim that the handle is resident.
+## Recurring contexts
 
-After clean-room `js_reset`, JavaScript bindings, RLM contexts, symbolic handles, and epoch-owned result spools are missing; broker-owned PEEK orientation remains. Recovery bootstraps the facade and RLM context again, then reports pre-reset handle references stale. Rematerialization is a new operation through the original authorized source path, with new provenance, and must be refused when the source or current authorization is unavailable. A surviving module root or PEEK entry does not restore scientific state.
+Workspaces normally use their `contextKey` for orientation. To reuse source orientation across questions, identify the recurring context and its version explicitly:
 
-Source failures can remain useful orientation only at their exact scope. A failed route is not evidence that a fact is globally absent, and an empty result describes one exact bounded query over the queried graph.
+```js
+var ws = linkedScience.open({
+  contextKey: 'question-two',
+  orientationContext: { id: 'study-corpus', version: 'snapshot-2026-09-04' },
+});
+nodeRepl.write(await ws.orientation.status());
+```
 
-The detailed design evidence and pending perturbations live in the [goal-loop state dossier](../experiments/goal-loop-state-graph.md). The recorded constrained reset behavior is in the [clean-worker evaluation](../experiments/clean-worker-map-evaluation.md).
+The identity/version selects a map, not a resource or authority grant. Registries stay separate. A reference from another workspace is reported `external-workspace`; it does not grant access to that workspace's handles. A new context version uses a separate map. A workspace's orientation scope cannot be changed silently after it is opened.
+
+A reference to a released or earlier-epoch handle is `stale` in its originating workspace. The source metadata may remain useful for orientation, but residency and scientific assertions require current evidence. Empty queries and unavailable sources retain their exact scope and never establish global absence.
+
+## Ownership and compatibility
+
+The active facade uses the broker's `nodeRepl.peek` map. Standalone scripts use `lib/orientation-map.mjs`; they do not create a second cache alongside a broker map. Existing checkpoint formats and older handle-reference entries remain readable. The five section names remain compatible, including `reusable-results` for historical/reviewed entries, but the runtime no longer writes a query-result catalog there.
+
+`orientation.bootstrap()` remains an optional explicit sizing/checkpoint operation. `current`, `status` and `commit` inspect the small map; normal graph retention initializes source orientation as needed. Map entries contain no raw documents, query results, raw SPARQL, task answers or workflow state.
+
+Release/disposal invalidates data access and reclaims storage while preserving advisory orientation. Kernel reset additionally removes all JavaScript bindings and RLM context. The broker prepares the facade again on the next evaluation. Reacquisition is a new authorized operation with new provenance; surviving orientation does not make it automatic.
+
+See [optional policy research](prime-linked-data-context-management.md) and [session lifetime](persistent-session-and-handles.md).

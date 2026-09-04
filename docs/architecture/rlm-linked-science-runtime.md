@@ -1,114 +1,60 @@
-# RLM/Prime Linked Science runtime
+# Persistent scientific REPL architecture
 
-- **Status:** Normative architecture
+- **Status:** Current architecture
 - **Date:** 2026-09-04
-- **Supersedes:** CodeAct as the architectural center of the Linked Science runtime
-- **Related plan:** [Prime-inspired durable RLM, context, and continual-harness research plan](../../PLAN.md)
+- **Plan:** [Scientific REPL](../../PLAN.md)
 
-## Decision
+## Design
 
-Linked Science is an RDF-specialized Recursive Language Model (RLM) environment exposed through MCP. The persistent JavaScript kernel is the model's control environment, following the RLM pattern of keeping large context external and examining it programmatically. The clean-room broker is the trusted host membrane, following Prime Agent's separation between model-facing computation and host-owned provider calls, child lifecycle, authority, accounting, and recovery.
-
-The browser-shaped JavaScript facade remains a useful ergonomic pattern. It is not the architecture. CodeAct describes one execution technique inside the persistent control environment; it does not define context ownership, recursive execution, or the semantic state model.
+Linked Science keeps scientific resources and results outside the prompt in a persistent JavaScript kernel. A thin workspace API owns handles, provenance and lifetime. RDF/JS sources and N3 provide native graph operations; Comunica provides SPARQL execution. The trusted broker provides anonymous public-read mediation, output limits, epoch recovery and private result storage. Codex owns the task and worker lifecycle.
 
 ```text
-Codex task / model
-        |
-        | exactly three MCP tools
-        v
-trusted clean-room host
-  - authority and transport mediation
-  - RLM provider/child lifecycle when configured
-  - budgets, receipts, epochs, and recovery
-        |
-        v
-persistent JavaScript control environment
-  - external context as resident objects and handles
-  - model-written search, decomposition, and subqueries
-  - bounded recursive calls when the host advertises them
-        |
-        v
-Linked Science semantic adapter
-  - RDF/JS datasets and graph handles
-  - Communica and SPARQL subgraph queries
-  - ontology/schema evidence and provenance
-  - bounded model-visible projections
+Codex task → persistent JavaScript → workspace handles / RDF/JS / Comunica
+                                       ↕
+                     broker transport, storage, limits and receipts
 ```
 
-## RLM interpretation of RDF
+This uses the external-context mechanism described by [RLM](https://arxiv.org/html/2512.24601v2). The current provider capability is optional and reported honestly by `nodeRepl.rlm.capabilities()`. A recursive model call, durable child session and external-context registry are different mechanisms; the REPL does not require a durable agent platform.
 
-An RDF graph is symbolic external context, not prompt text. Its quad count is therefore not a model-context limit. A large graph remains behind a resident graph handle or an endpoint/source descriptor while the agent uses SPARQL, RDF/JS matching, schema search, and neighborhood operations to select the relevant subgraph.
+## State and lifetime
 
-Large does not mean physically free. Network bytes, parsing time, resident memory or durable storage, query execution, and fan-out remain operational resources. Those controls must not be confused with prompt-visible row, cell, edge, node, or byte limits.
+Each workspace has one registry of resources, graph evidence and typed results. A handle is an epoch-scoped reference, not an artifact. `inventory()` gives a bounded view of current ownership; `results.profile()` gives detailed bounded provenance.
 
-For a broker-acquired RDF representation:
+- `await workspace.release(handle)` invalidates one handle immediately, returns graph quota and removes any associated broker spool. Dependent results retain compact provenance, not ownership of the source payload.
+- `await workspace.dispose()` invalidates the workspace immediately, then cleans up broker state. It waits for in-flight allocations to reveal their IDs before reclaiming them. Late queries and derivations cannot publish old-workspace results. It can be retried if cleanup reports a failure.
+- `await linkedScience.reset({ contextKey })` disposes that workspace and advances its epoch. Other workspaces remain usable. Reopening creates a fresh registry.
+- Kernel reset or loss additionally clears all JavaScript bindings and epoch-owned broker results. PEEK orientation survives as advisory metadata. The next evaluation initializes the validated facade again.
 
-1. transport enforces actual response-byte, request, time, and concurrency limits;
-2. parsing retains a native symbolic dataset under a handle;
-3. repeated local queries reuse that dataset without source reacquisition; and
-4. only profiles, pages, neighborhoods, aggregates, or query-selected subgraphs enter model-visible output.
+Release cannot erase JavaScript copies already obtained by the caller. Native query work already running may unwind after invalidation; physical execution limits remain the final bound. No stale handle is silently reacquired or restored.
 
-An HTTP `HEAD` response or `Content-Length` may inform acquisition when available, but neither is required or authoritative. Compressed transfer, dynamic representations, and servers that omit or misstate length make actual streamed/request accounting the enforcement source.
+## Native RDF/JS
 
-## Three budget planes
+`rdf.source(handle)` returns a read-only RDF/JS Source supporting `match` and `countQuads`. It supports both resident N3 stores and broker-stored graph results. The view exposes neither a mutable store nor transport authority and rejects new reads after release/disposal.
 
-| Plane | Governs | Examples | Must not be used as |
-| --- | --- | --- | --- |
-| Execution | External and compute effects | requests, response bytes, time, fan-out, concurrency, query work | a prompt-size proxy |
-| Residency | State held behind handles | resource bytes, graph datasets, result stores, durable artifacts | a page or display limit |
-| Projection | Values exposed to the model | rows, cells, nodes, edges, preview bytes, recursive output | a graph-admission limit |
+Resident matching uses N3's lazy `readQuads`; counts use its indexes. Stored matching pushes each pattern into the broker's SPO/POS/OSP indexes and streams bounded keyset pages. Comunica accepts these native interfaces directly, including optional count estimates for planning. See [Comunica source support](https://comunica.dev/docs/query/advanced/rdfjs_querying/).
 
-Defaults and capabilities must report these planes separately. A caller may request tighter limits. Local and broker hard ceilings remain implementation-safety controls and must be named as such, with structured recovery that suggests a narrower symbolic query, a durable/bulk route, or a tighter projection as appropriate.
+`rdf.clone(handle)` explicitly copies a resident graph into a mutable N3 dataset; `rdf.dataset(handle)` remains a compatibility alias. Stored results require streaming views, bounded pages or symbolic subqueries. Parsing no longer copies private parser output again, and native dataset retention/cloning avoids unnecessary intermediate arrays. The original ordered, duplicate-aware source sequence remains where the evidence contract promises it; query stores apply RDF set semantics.
 
-## Query semantics and complete symbolic results
+## Complete query results and bounded observations
 
-SPARQL syntax controls the result. In particular, `LIMIT`, `OFFSET`, ordering, grouping, and dataset clauses are query semantics; the harness must not require, inject, remove, or relocate them to control memory or presentation. Local and mediated operations accept valid `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` forms without a harness-imposed query limit.
+SPARQL controls result semantics. The runtime accepts local and mediated SELECT, ASK, CONSTRUCT and DESCRIBE without inserting or requiring LIMIT. It publishes a handle only after materialization completes. Execution/storage exhaustion fails without a partial successful handle.
 
-Query materialization is atomic at the handle boundary. The runtime consumes the native result stream into symbolic state and publishes a result handle only after normal completion. Small results remain in the restricted kernel: solution sequences as RDF/JS binding rows and graph results as native N3 stores. When a `SELECT`, `CONSTRUCT`, or normalized `DESCRIBE` exceeds the in-kernel item threshold, the broker atomically spools serialized RDF/JS rows or quads into a private SQLite store and returns only an opaque epoch-owned descriptor after commit. Stored solution sequences keep SPARQL bag semantics; stored graphs keep RDF set semantics. The path and storage capability never enter agent-visible JavaScript. A successful handle therefore represents the complete result under the submitted query and the declared graph-description policy. If execution, transport, memory, storage, time, or a residency quota is exhausted, the call fails, cancels the stream, deletes any provisional spool, and publishes no successful partial handle. A smaller query can be a recovery choice made by the caller, but the runtime must not mislabel that narrower answer as the original result.
+Small bindings and graph results remain in the kernel. Larger complete results spill into private broker SQLite storage. Bindings preserve bag semantics; graphs preserve set semantics. The spool is ephemeral, with no exposed path or durable-artifact claim. Workspace cleanup and kernel loss reclaim its records.
 
-Projection is different. A page, table, neighborhood, or preview may be truncated under its explicit model-visible bounds because it is an observation of an already complete symbolic value. Page and table calls are awaitable for both storage tiers. Broker-stored quad results are indexed RDF sources for later local SPARQL: the broker keeps SPO, POS, and OSP indexes, each triple pattern is pushed down as an indexed lookup streamed back through bounded keyset pages, and exact pattern counts give the query planner real cardinalities. Whole-result dataset cloning and JavaScript derivation are rejected for stored results because those operations would defeat out-of-core residency. Projection metadata must identify truncation without weakening the completion claim of the source handle.
+DESCRIBE uses the declared outgoing-subject-triples policy, preserving explicit IRIs, variable targets, wildcard expansion, dataset clauses and solution modifiers during normalization. Profiles retain the caller's query type/hash and completion policy.
 
-## Heap-aligned residency
+Projection is independent: pages, tables, schema searches and neighborhoods expose bounded views of complete values and label truncation. Always await page/table calls across both storage tiers.
 
-The kernel heap is the physical ceiling behind every resident quota. The facade derives its resident-graph and workspace quotas from the heap limit it actually receives, using a measured per-quad estimate and a reserve for the runtime itself, and reports the derivation as `budgetPlanes.residency.basis`. The configured defaults are ceilings; a smaller heap advertises a smaller quota rather than an unreachable one. A live headroom check guards each large retention, parse, dataset clone, and derivation copy and fails with `LS_KERNEL_HEAP_BOUND` and structured repair before the kernel can exhaust itself. Local queries run over lazy indexed sources and never build a per-query merged copy of the resident graphs; multiple sources are combined as an RDF merge with duplicate quads collapsed. If the kernel nevertheless dies of memory, the broker replaces it and reports `KERNEL_OOM` with the bounded stderr tail and explicit epoch-loss repair guidance, so an agent learns that every previous handle and stored result is gone rather than receiving an opaque exit.
+## Resource bounds and authority
 
-SPARQL leaves the exact `DESCRIBE` graph algorithm implementation-defined. This runtime declares one stable policy: return outgoing triples whose subject is each explicitly named IRI and each RDF resource selected by the query's described variables. `DESCRIBE *` expands to all in-scope query variables. Internal normalization to an equivalent `CONSTRUCT` may compensate for query-engine limitations, but it must preserve explicit resources, variable selection, wildcard expansion, dataset clauses, and solution modifiers, execute as one caller-visible attempt, and retain the original query type and hash as provenance.
+Execution (requests, time, bytes and fan-out), residency (retained memory/storage) and projection (model-visible output) remain separate. Resident quotas use a heap-derived estimate and live headroom checks. These are admission aids, not proof that arbitrary data or every query operator fits memory. Joins, DISTINCT, merge deduplication and arbitrary JavaScript can require substantial working memory. The broker reports `KERNEL_OOM` and epoch loss if the process exhausts its heap.
 
-## Agent behavior
+Anonymous public HTTP/HTTPS resources and SPARQL services are dynamically selected. A private custom Fetch connects Comunica to the broker; the broker strips identity, denies unauthorized effects, enforces bounds and records per-exchange provenance. Authentication, mutation, bulk ingestion and exports remain separate authority classes. No ambient Fetch is exposed to model code.
 
-The agent chooses the smallest information-bearing operation for the current uncertainty:
+## Orientation and startup
 
-- query a remote RDF source directly when only a subgraph is needed once;
-- acquire and parse once when several local queries or RDF/JS transformations will reuse the same representation;
-- consult an ontology, schema, service description, or examples when vocabulary or access semantics are uncertain;
-- use `ASK`, `SELECT`, `CONSTRUCT`, `DESCRIBE`, dataset matching, schema search, or neighborhoods according to the desired information shape; and
-- inspect metadata and bounded projections before asking for more context.
+The broker initializes `linkedScience` / `ls` before the first evaluation in the authoritative project. Normal work opens a workspace directly. Explicit bootstrap validates roots and remains available for diagnosis; a generic REPL or the sibling probe cannot substitute for the project runtime.
 
-This is an adaptive RLM loop, not a mandatory ceremony. Source documentation and ontologies are evidence, not query templates. Empty results remain scoped to the exact query and graph.
+A small source-orientation map is derived from retained source metadata. It records source identity/version, format or role and evidence references. Query results stay in the ephemeral inventory. `open({ contextKey, orientationContext: { id, version } })` optionally shares orientation across related questions while keeping registries separate. Map references do not establish residency or authority. See [orientation and reset](orientation-cache-and-reset.md).
 
-## Recursive execution
-
-The runtime must advertise recursive execution as structured capability data rather than a binary "CodeAct mode" label. The control environment is always an RLM-style external-context REPL. When a provider is configured, the trusted host owns credentials, child admission, depth, timeout, output bounds, accounting, and lifecycle. When no provider is configured, local programmatic decomposition and symbolic RDF queries remain available, while recursion is reported as unavailable with an explicit recovery path.
-
-The current one-shot provider seam is compatibility behavior, not the durable Prime-style child contract. A stable asynchronous child handle, independent context, durable terminal result, and restart recovery belong to the separately staged durable RLM implementation; they must not be simulated with an in-kernel promise or an MCP Sampling dependency.
-
-## MCP boundary
-
-MCP carries the persistent control environment; it is not the reasoning architecture. The public surface remains exactly `js`, `js_reset`, and `js_add_node_module_dir`. Model/provider recursion is a host integration behind `nodeRepl.rlm`, not an extra Linked Science MCP tool. Public scientific reads continue through the private mediated traversal authority, with no ambient Fetch or credentials in child code.
-
-## Acceptance criteria for the symbolic-graph slice
-
-A synthetic or controlled broker fixture larger than the former 10,000-quad threshold must demonstrate all of the following:
-
-1. the RDF representation is acquired once and retained as a graph handle;
-2. profile metadata reports the full resident graph count without exposing its quads;
-3. at least two different Communica subgraph queries reuse the same handle with no refetch;
-4. query and graph observations remain bounded independently of graph size;
-5. graph-name, format, and projection-limit failures provide structured local repair; and
-6. capabilities and agent guidance distinguish execution, residency, and projection budgets.
-
-The query-completeness follow-up additionally requires all four SPARQL read forms through the project MCP, solution-modified `DESCRIBE`, explicit completion metadata, an out-of-core graph result that can be queried again symbolically, and an over-ceiling failure that publishes no partial result handle.
-
-The current spool is kernel-epoch state, not a durable artifact: kernel reset removes it and invalidates its handle. Its byte quotas are physical storage controls, not semantic truncation. A quota failure is explicit and complete-or-fail; no finite implementation claims infinite storage.
-
-This slice does not claim unbounded memory, durable graph persistence across kernel reset, or completion of the Prime durable child runtime.
+Learned PEEK policy, recursive-provider experiments and durable Prime recovery remain [optional research](prime-linked-data-context-management.md). They are not an implementation dependency of the scientific REPL.

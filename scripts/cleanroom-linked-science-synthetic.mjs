@@ -55,7 +55,7 @@ try {
   assert.match(persistent, /mode: 'external-context'/u);
 
   const booted = text(await tool('js', { code: bootstrap, timeout_ms: 120_000 }));
-  assert.match(booted, /version: '6\.2\.0'/u);
+  assert.match(booted, /version: '6\.3\.0'/u);
   assert.match(booted, /runtime: 'cleanroom_node_repl'/u);
   assert.match(booted, /id: '@linked-science\/runtime'/u);
   assert.match(booted, /role: 'authoritative-production-implementation'/u);
@@ -80,8 +80,8 @@ try {
   await tool('js_reset');
   const reset = text(await tool('js', { code: "nodeRepl.write({sentinel:typeof cleanroomSentinel,facade:typeof linkedScience,peek:await nodeRepl.peek.current('cleanroom-proof')})" }));
   assert.match(reset, /sentinel: 'undefined'/u);
-  assert.match(reset, /facade: 'undefined'/u);
-  assert.match(reset, /linked-science-handle-reference/u);
+  assert.match(reset, /facade: 'object'/u, 'the broker rebuilt the facade before this evaluation');
+  assert.match(reset, /linked-science-context-reference/u);
 
   await tool('js', { code: bootstrap, timeout_ms: 120_000 });
   const recovered = text(await tool('js', { code: "var recovered=linkedScience.open({contextKey:'cleanroom-proof'}); nodeRepl.write(await recovered.orientation.status())" }));
@@ -97,9 +97,9 @@ try {
     persistence: true,
     projectRoot,
     moduleRoot,
-    facadeVersion: '6.2.0',
+    facadeVersion: '6.3.0',
     localSynthetic: true,
-    reset: { bindingsCleared: true, rlmRebootstrapped: true, peekSurvived: true, oldHandles: 'stale' },
+    reset: { bindingsCleared: true, facadeAutomaticallyRebuilt: true, rlmRebootstrapped: true, peekSurvived: true, oldHandles: 'stale' },
   }, null, 2));
 } finally {
   lines.close();

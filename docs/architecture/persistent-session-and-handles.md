@@ -1,17 +1,31 @@
-# Persistent Communica session and symbolic handles
+# Persistent session and handles
 
-The worker's Node JavaScript REPL owns the Communica engine, model-selected source IRIs, and small retained values. The broker owns private epoch-scoped storage for complete large graph-query results. The child has no raw transport: live dereference and federation requests cross a parent-owned traversal mediator. Reusable top-level bindings let state survive across REPL tool calls within one kernel.
+`lib/linked-science-runtime.mjs` owns the production workspace registry. `lib/repl-linked-data-session.mjs` remains an offline compatibility API. A persistent JavaScript kernel owns native values and a Comunica engine per workspace; the broker owns mediated transport and private storage for complete large results.
 
-`lib/repl-linked-data-session.mjs` provides the retained-session boundary. Resources and results are materialized once under symbolic handles and inspected through typed, bounded operations such as `resources.inspect`, `profile`, `page`, `deriveFilter`, or `deriveCountBy`. Broker-mediated resource reads retain native bytes, response metadata, and aggregate lineage atomically; RDF can be parsed into a native graph handle and reused by Communica without a second request.
+A **handle** refers to retained epoch-scoped data. A **receipt** records an operation. An **orientation entry** is advisory source context. A **display** is a bounded projection. A **durable artifact** requires a separately authorized write. These identities are not interchangeable.
 
-Keep the following identities distinct:
+## Normal use
 
-- a **handle** names epoch-scoped symbolic evidence or results, whether kernel-resident or broker-stored;
-- an **operation receipt** proves a particular state transition or observation;
-- an **orientation entry** is compact symbolic guidance that may point to a handle;
-- a **display model** is a bounded projection for presentation; and
-- an **artifact** is a separately authorized durable file.
+The project MCP prepares `linkedScience` before evaluating code:
 
-A handle name alone does not prove residency, type, count, or freshness. Those claims require a current session operation. Full documents and result rows remain behind handles; stored quad results can stream into a later local SPARQL query without whole-result materialization. Compact metadata, bounded pages, aggregates, provenance, and uncertainty may cross into the task conversation.
+```js
+var ws = linkedScience.open({ contextKey: 'measurement-question' });
+var inventory = ws.inventory();
+// Retain resources or local graphs, run queries, inspect bounded results.
+await ws.release(unneededHandle);
+await ws.dispose();
+```
 
-The REPL kernel is ephemeral. Reset destroys JavaScript bindings, handles, and broker result spools for that epoch; it does not turn a former result into an artifact or authorize rerunning its source. See [orientation cache and reset](orientation-cache-and-reset.md) for recovery semantics, the [goal-loop dossier](../experiments/goal-loop-state-graph.md) for the evidence-state rationale, and the [operation-selection experiment](../experiments/open-goal-uniprot-operation-selection.md) for recorded table and graph handles.
+`release` accepts a handle or ResourceResponse, invalidates new access immediately, returns graph capacity and removes associated stored results. Other result handles keep their provenance and remain usable. Caller-owned JavaScript copies remain caller-owned.
+
+`dispose` invalidates a workspace and reclaims its storage, including allocations that were already pending. Repeated successful disposal is harmless. Await completion before relying on reclaimed storage. `await linkedScience.reset({ contextKey })` uses the same cleanup and advances the epoch. `open` then creates a fresh workspace without changing unrelated workspaces. Failed cleanup is explicit; retaining the old workspace permits a retry of `dispose()`.
+
+Late queries/derivations cannot publish results into the disposed workspace. Already-running native work may unwind after invalidation; this is not a separate scheduler or execution framework.
+
+## Native composition
+
+`ws.rdf.source(handle)` supplies an RDF/JS streaming Source, including indexed matching/counts for stored graph results. It does not copy the whole graph or expose mutable evidence. `ws.rdf.clone(handle)` explicitly creates a mutable N3 dataset for resident graphs. `rdf.dataset` remains a compatibility alias for cloning. `rdf.retain` copies caller-owned data into retained evidence.
+
+Source graphs preserve ordered duplicate-aware evidence; RDF query stores use set semantics. Solution sequences preserve bag semantics. Queries never acquire a successful handle for an operationally truncated result; bounded pages remain independent projections. Full scientific data stays outside the prompt.
+
+Kernel reset removes bindings, workspaces and epoch-owned storage. The broker's source-orientation map may survive but cannot restore data or authorize reacquisition. See [orientation/reset](orientation-cache-and-reset.md) and [runtime discovery](../agent/runtime-discovery.md).

@@ -1,80 +1,60 @@
 ---
 name: linked-data-repl
-description: Use the persistent Linked Science/Linked Data REPL for composable public resources, RDF/JS datasets, Communica queries, and reusable symbolic results.
+description: Use the persistent Linked Science REPL for public resources, native RDF/JS composition, Comunica queries, and reusable scientific state.
 ---
 
-# Linked Data RLM REPL
+# Linked Data REPL
 
-Treat `cleanroom_node_repl` as an RDF-specialized Recursive Language Model (RLM) control environment. Large resources, graphs, ontologies, and results stay external to the prompt behind symbolic handles; small values remain in the kernel and large `SELECT`, `CONSTRUCT`, or `DESCRIBE` results spill to broker-owned indexed storage. Use model-written JavaScript, RDF/JS, Communica, and optional host-mediated recursive calls to inspect only the relevant context. Choose the narrowest capability that serves the user's intent. Use static repository or connector evidence when sufficient. A normal request that needs anonymous public scientific retrieval uses the broker-mediated surface and its defaults; request-specific tighter limits remain available. Authenticated, sensitive, mutating, bulk, export, and evaluation work require the appropriate separate authority.
+Use the project `cleanroom_node_repl` for scientific JavaScript work. Large resources, graphs and complete results stay outside the prompt; native RDF/JS and Comunica operations select useful evidence. The authoritative checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its broker and facade are distinct from the sibling experimental probe and the bundled generic REPL.
 
-The authoritative project root is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. It owns both the Linked Science facade and `packages/cleanroom-node-repl`. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` are not production implementations or fallbacks. When repository verification is in scope, run `npm run linked-science:verify` from the authoritative root; this is an offline proof and does not replace task-level MCP observation.
+## Start and reuse
 
-## Persistent runtime
-
-Use only `cleanroom_node_repl`. For normal work, conditionally bootstrap the stable facade once per kernel:
+The project broker prepares `linkedScience` / `ls` automatically:
 
 ```js
-if (globalThis.linkedScience == null) {
-  var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
-  await bootstrapLinkedScience({
-    host: globalThis,
-    cleanroom: nodeRepl,
-    projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',
-    moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',
-  });
-}
+var ws = linkedScience.open({ contextKey: 'scientific-question' });
 ```
 
-Use `linkedScience.capabilities()` or `documentation.get(name)` when you need to discover an available effect, route, bound, or recovery action. Reserve exhaustive identity, persistence, raw-transport, and exact three-tool checks for activation, diagnostics, evaluation, or a suspected wrong runtime; see [runtime discovery](../../../docs/agent/runtime-discovery.md).
+Reuse bindings, workspaces and valid handles across calls. Use `ws.inventory()` to find retained objects, and `linkedScience.documentation.get(name)` for an unfamiliar operation. Full identity checks and explicit fallback bootstrap belong to [runtime discovery](../../../docs/agent/runtime-discovery.md), for activation or diagnosis.
 
-Reuse `linkedScience`, the goal workspace, and valid resource/evidence/result handles across calls and later turns. Correct malformed calls in place; reset only after actual kernel or workspace invalidation. A reset makes old handles stale and does not authorize reacquisition.
+## Choose the information-bearing operation
 
-## Agentic RLM Linked Science
-
-Use source documentation, an ontology/schema, service description, examples, or retained evidence when an access pattern, vocabulary, provenance claim, scientific ambiguity, or stakes make it useful. Do not add an orientation step merely by ritual: straightforward resource reads and known local datasets can proceed directly. Treat remembered resource-specific details as hypotheses and keep endpoints, graphs, predicates, and identifiers in evidence or resident JavaScript state—not this skill or generic runtime code.
-
-Retain local declarative material when useful:
+Use local synthetic RDF when it serves the task. Query a remote source directly for a one-off subgraph; acquire and parse once when repeated local queries or transformations will reuse the representation. Consult source-owned schema, ontology or documentation when vocabulary, access semantics or scientific ambiguity warrant it.
 
 ```js
-const evidence = await workspace.evidence.load({
-  name: 'resource-notes',
-  document: resourceNotes,
-});
+var resource = await ws.resources.get(documentUrl);
+var graph = await resource.rdf({ name: 'source-graph' });
+var source = ws.rdf.source(graph); // streaming RDF/JS Source; no whole-graph clone
 ```
 
-Choose between direct subgraph query and acquire-once reuse by considering the information need and likely representation size. Query a remote RDF source directly when only one small subgraph is needed. Retrieve and parse once when several local queries or RDF/JS transformations will reuse the same representation. `HEAD` and `Content-Length` are optional hints, not required gates; actual broker byte/time accounting is authoritative. A large RDF graph is symbolic external context, not a prompt-size failure.
+`ws.query.run({ sources: [graph], sparql })` runs local SPARQL. `ws.traversal.query({ sources, sparql })` performs mediated remote queries/federation; identify a SPARQL service as `{ type: 'sparql', value: serviceUrl }`. Native matching and `countQuads` are available on `rdf.source`; `rdf.clone` explicitly creates a mutable resident dataset, and `rdf.retain` retains caller-owned RDF. Legacy `rdf.dataset` also clones.
 
-Retrieve a representation through the general resource surface when its document, JSON, text, XML, CSV, binary, or reusable RDF form matters. The returned object is response-like inside the persistent REPL; its bounded inspection and provenance are automatic. Parse RDF directly into a resident graph—do not wrap document retrieval in CONSTRUCT merely to acquire it:
+Choose ASK, SELECT, CONSTRUCT, DESCRIBE, matching, schema search or neighborhoods according to the needed information. DESCRIBE uses the runtime's documented outgoing-subject-triples policy. Keep source evidence, query results, prior hypotheses and synthesis distinct. An empty query or unavailable source is scoped evidence, not proof of global absence.
+
+## Observe and release
+
+Use bounded profiles, pages, tables or subqueries. Always `await ws.results.page(...)` and `table(...)`: large complete results may live in indexed broker storage. A display limit does not limit graph size. Never insert a SPARQL LIMIT just to satisfy storage or prompt bounds; successful query handles are complete and operational exhaustion is an explicit failure.
 
 ```js
-const resource = await workspace.resources.get(documentUrl, {
-  headers: { accept: 'text/turtle, application/ld+json;q=0.8' },
-  role: 'source-document',
-});
-const graph = await resource.rdf({ name: 'source-graph' });
-const dataset = workspace.rdf.dataset(graph); // native RDF/JS DatasetCore in the REPL
+nodeRepl.write(await ws.results.page(result));
+await ws.release(result); // when no longer needed
+// At the end of a workspace's useful lifetime:
+await ws.dispose();
 ```
 
-Use `workspace.traversal.query` for general SPARQL/Communica reads. Mark a SPARQL service explicitly so it is not dereferenced as an RDF document:
+Release invalidates new handle/view access and reclaims registry/storage ownership. Disposal or `await linkedScience.reset({ contextKey })` cleans the workspace, including pending allocations. Other workspaces and caller-owned copies remain independent. Use whole-kernel reset for actual kernel invalidation, not routine memory cleanup. `KERNEL_OOM` means all earlier kernel handles are lost; the next evaluation rebuilds the facade.
 
-```js
-const result = await workspace.traversal.query({
-  sources: [{ type: 'sparql', value: serviceUrl }],
-  sparql,
-  evidence: [evidence],
-});
-```
+Source orientation is a small derived map, separate from inventory. For repeated questions over a known context version, optionally pass `orientationContext: { id, version }` to `open`. Map references are advisory, never residency or authorization. Learned PEEK and model recursion remain separately advertised research capabilities.
 
-Each call is one visible, broker-bounded attempt with a final receipt and no hidden transport retry. Supply `budgets` only when the task needs tighter limits than the broker defaults. Keep execution limits (requests, bytes, time), symbolic residency/storage limits, and model-visible projections (rows, cells, nodes, edges, preview bytes) conceptually separate. Never add or require a SPARQL `LIMIT` merely to fit storage or prompt context: it changes query semantics. A successful query handle is complete under the submitted query; operational exhaustion fails without publishing a partial handle, while `results.page` and `results.table` may expose explicitly truncated views of that complete symbolic result. Always `await` page/table calls so the same code works for kernel-resident and broker-stored results. A stored `CONSTRUCT` or `DESCRIBE` handle is an indexed source for a later local `query.run`; use that symbolic query path instead of materializing the whole result with `rdf.dataset` or `results.derive`. Resident-graph quotas follow the kernel heap: read `linkedScience.capabilities().budgetPlanes.residency` before retaining a large graph, treat `LS_KERNEL_HEAP_BOUND` as a signal to query symbolically instead of copying, and treat `KERNEL_OOM` as a fresh epoch in which every earlier handle is stale. Inspect `workspace.traversal.history()` when retry count or failure history matters. Explicit corrections and revised scientific queries are normal agent actions; evaluation observes them instead of controlling the runtime.
+## Access and further detail
 
-Errors expose `error.repair` when a local call shape can be corrected without a live request. Reuse symbolic handles and ordinary JavaScript values to compose work across resources. Prefer ontology-informed `ASK`, `SELECT`, `CONSTRUCT`, `DESCRIBE`, neighborhoods, schema search, or RDF/JS matching over printing or paging through a graph. Use `DESCRIBE` when the declared outgoing-subject-triples graph is the intended information shape; its profile records that policy and semantic completion. Keep bulk data behind handles and return only bounded views, provenance, and calibrated uncertainty. An unavailable source or empty result is not proof of global absence.
+Ordinary goal-relevant anonymous public scientific reads use the private broker and its default bounds/receipts; callers may request tighter bounds. Authenticated, sensitive, mutating, bulk-ingestion, export and evaluation work require their own authority. Do not expose raw Fetch, change global configuration, install packages or push without authorization.
 
-## Routed detail
+Read only relevant detail:
 
-- Persistent environment or reset semantics: [REPL environment and persistence](references/repl-environment.md).
-- Authorization, evidence orientation, mediated querying, and receipts: [guarded evidence acquisition](references/guarded-evidence-acquisition.md).
-- Retained handles and presentation: [retained state and bounded presentation](references/retained-state-and-presentation.md).
-- Runtime implementation or recovery: [runtime discovery](../../../docs/agent/runtime-discovery.md), then generated documentation.
-- Historical Identifiers.org reproduction only: [retired profile](references/identifiers-org-sparql.md).
+- [Environment and diagnostics](references/repl-environment.md).
+- [Mediated evidence acquisition](references/guarded-evidence-acquisition.md).
+- [Retained state and presentation](references/retained-state-and-presentation.md).
+- [Historical Identifiers.org reproduction](references/identifiers-org-sparql.md), only for that recorded experiment.
 
-Do not expose raw ambient Fetch, install packages, change global configuration, export, commit, or push unless separately authorized. The stable `workspace.resources`, `workspace.rdf`, and `workspace.traversal` APIs are the supported composable Linked Data surface. After authorized repository changes, follow [verification](../../../docs/agent/verification.md).
+For repository changes, follow [verification](../../../docs/agent/verification.md) and the repository Git handoff procedure. Experiments require compact registered receipts before losing ephemeral state; ordinary implementation tests are not scientific evaluation claims.

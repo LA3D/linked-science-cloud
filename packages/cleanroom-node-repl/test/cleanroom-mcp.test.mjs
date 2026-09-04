@@ -257,7 +257,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '6\.2\.0'/u);
+  assert.match(text(response), /version: '6\.3\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -267,6 +267,32 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
   assert.match(text(response), /exposedBridge: 'undefined'/u);
   assert.match(text(response), /exposedFetch: 'undefined'/u);
   assert.equal(broker.traversal.sessions.size, 0);
+});
+
+test("the project facade is ready without a bootstrap call and workspace disposal reclaims its stored results", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const loaded = await handle(request(1, "js", { code: `
+    var autoWs = linkedScience.open({ contextKey: 'auto-bootstrap' });
+    var autoGraph = await autoWs.graphs.load({name:'fixture',kind:'instance-data',text:Array.from({length:600},(_,i)=>'<urn:s'+i+'> <urn:p> "x" .').join('\\n')});
+    var autoResult = await autoWs.query.run({sources:[autoGraph],sparql:'SELECT * WHERE {?s ?p ?o}'});
+    nodeRepl.write({ project: linkedScience.capabilities().environment.project.id, alias: ls === linkedScience, count: autoWs.results.profile(autoResult).count, inventory: autoWs.inventory().total });
+  ` }));
+  assert.equal(loaded.result.isError, undefined, text(loaded));
+  assert.match(text(loaded), /project: '@linked-science\/runtime'/u);
+  assert.match(text(loaded), /count: 600/u);
+  assert.match(text(loaded), /inventory: 2/u);
+  assert.equal(broker.resultSpool.records.size, 1);
+  const disposed = await handle(request(2, "js", { code: `await autoWs.dispose(); nodeRepl.write(linkedScience.open({contextKey:'auto-bootstrap'}).inventory().total)` }));
+  assert.equal(disposed.result.isError, undefined, text(disposed));
+  assert.equal(text(disposed), '0');
+  assert.equal(broker.resultSpool.records.size, 0);
+  assert.equal(broker.resultSpool.totalBytes, 0);
+  await broker.reset();
+  const fresh = await handle(request(3, "js", { code: `nodeRepl.write({ready:typeof linkedScience.open,oldBinding:typeof autoWs})` }));
+  assert.match(text(fresh), /ready: 'function'/u);
+  assert.match(text(fresh), /oldBinding: 'undefined'/u);
 });
 
 test("the actual repository MCP retains a large graph and returns all four complete SPARQL result forms", async t => {

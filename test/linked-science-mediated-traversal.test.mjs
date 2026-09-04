@@ -233,7 +233,7 @@ test('resource response bodies are stale after workspace reset while broker sess
   const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
   const workspace = linkedScience.open({ contextKey: 'resource-reset' });
   const resource = await workspace.resources.get('https://data.example/resource.json');
-  linkedScience.reset({ contextKey: 'resource-reset' });
+  await linkedScience.reset({ contextKey: 'resource-reset' });
   await assert.rejects(resource.text(), error => error.code === 'LS_STALE_WORKSPACE');
   assert.throws(() => workspace.resources.inspect(resource), error => error.code === 'LS_STALE_WORKSPACE');
   assert.equal(broker.sessions.size, 0);
@@ -334,7 +334,7 @@ test('complete RDF document acquisition retains native quads and projects only s
   };
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker), peek })).open({ contextKey: 'ontology-document' });
-  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'epoch', 'evidence', 'graph', 'graphs', 'orientation', 'query', 'rdf', 'resources', 'results', 'schema', 'traversal' ]);
+  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'dispose', 'epoch', 'evidence', 'graph', 'graphs', 'inventory', 'orientation', 'query', 'rdf', 'release', 'resources', 'results', 'schema', 'traversal' ]);
   const handle = await runMediatedQuery(workspace, {
     sources: [ { value: 'http://data.example/many.ttl', negotiation: {
       accept: 'text/turtle; profile="https://example.test/profile/request"',
@@ -358,7 +358,7 @@ test('complete RDF document acquisition retains native quads and projects only s
     [ 'https://example.test/profile/link', 'link' ],
   ]);
   assert.match(profile.provenance.navigation.use, /subsequent mediated action/u);
-  assert.equal(edits.length, 2);
+  assert.equal(edits.length, 1, 'source evidence updates orientation; the query result belongs in inventory');
   assert.doesNotMatch(JSON.stringify(edits), /CONSTRUCT|ex:a|example\.test\/p/u);
   const nativeShape = await workspace.results.derive(handle, ({ dataset, quads }) => ({
     kind: 'rows', rows: [ { datasetCore: typeof dataset.match === 'function', size: dataset.size, termType: quads[0].subject.termType } ],
@@ -486,7 +486,7 @@ test('workspace reset invalidates resident state while no mediated session remai
   const workspace = linkedScience.open({ contextKey: 'reset-direct-workspace' });
   const result = await workspace.traversal.query({ sources: [ 'https://data.example/source-a.ttl' ], sparql: 'ASK { ?s ?p ?o }' });
   assert.equal(broker.sessions.size, 0);
-  linkedScience.reset({ contextKey: 'reset-direct-workspace' });
+  await linkedScience.reset({ contextKey: 'reset-direct-workspace' });
   assert.throws(() => workspace.traversal.history(), error => error.code === 'LS_STALE_WORKSPACE');
   assert.throws(() => workspace.results.profile(result), error => error.code === 'LS_STALE_WORKSPACE');
 });

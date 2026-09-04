@@ -180,11 +180,13 @@ export class KernelBroker {
     traversalOptions,
     resultSpool,
     resultSpoolOptions,
+    bootstrapLinkedScience = true,
   } = {}) {
     this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
     this.checkpointRoot = checkpointRoot ? resolve(checkpointRoot) : null;
     this.maxOldSpaceMb = maxOldSpaceMb;
+    this.bootstrapLinkedScience = bootstrapLinkedScience && this.cwd === realpathSync(resolve(KERNEL_ROOT, '../../..'));
     this.peek = new PeekRegistry({ policy: peekPolicy });
     this.traversal = traversalBroker ?? new MediatedTraversalBroker(traversalOptions);
     this.resultSpool = resultSpool ?? new ResultSpoolRegistry(resultSpoolOptions);
@@ -212,7 +214,7 @@ export class KernelBroker {
     this.hostCapabilityToken = hostCapabilityToken;
     const child = fork(KERNEL_PATH, [], {
       cwd: this.cwd,
-      env: safeChildEnvironment(Boolean(this.provider)),
+      env: { ...safeChildEnvironment(Boolean(this.provider)), CLEANROOM_LINKED_SCIENCE_BOOTSTRAP: this.bootstrapLinkedScience ? 'enabled' : 'disabled' },
       execArgv: [
         `--max-old-space-size=${this.maxOldSpaceMb}`,
         "--permission",

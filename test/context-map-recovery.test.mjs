@@ -162,4 +162,8 @@ test('orientation entries upsert stably, evict by priority, and reject raw query
   assert.equal(map.sections['domain-constants'].length, 5);
   assert.equal(map.sections['domain-constants'].some(entry => entry.key === 'constant-0'), false);
   assert.throws(() => recordOrientation(map, { section: 'context-understanding', key: 'unsafe', kind: 'relation', value: { text: 'SELECT * WHERE { ?s ?p ?o }' } }));
+  for (const text of ['ASK{}', 'DESCRIBE<urn:sample>']) {
+    assert.throws(() => recordOrientation(map, { section: 'context-understanding', key: 'compact-query', kind: 'relation', value: { text } }));
+  }
+  assert.doesNotThrow(() => recordOrientation(map, { section: 'context-roadmap', key: 'service', kind: 'source', value: { role: 'service-schema', iri: 'https://example.test/service?version=1' } }));
 });

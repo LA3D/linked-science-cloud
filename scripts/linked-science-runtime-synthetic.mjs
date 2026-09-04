@@ -28,7 +28,7 @@ const resultProfile = workspace.results.profile(aboveFive);
 const table = await workspace.results.table(aboveFive, { title: 'Measurements above five', limit: 5 });
 const neighborhood = workspace.graph.neighbors(sourceB, { term: 'https://example.test/science/sample-b', maxNodes: 5, maxEdges: 5 });
 const checkpoint = await workspace.orientation.commit();
-linkedScience.reset({ contextKey: 'synthetic-acceptance' });
+await linkedScience.reset({ contextKey: 'synthetic-acceptance' });
 const resetStatus = await linkedScience.open({ contextKey: 'synthetic-acceptance' }).orientation.status();
 
 console.log(JSON.stringify({

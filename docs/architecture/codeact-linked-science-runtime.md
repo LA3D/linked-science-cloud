@@ -1,64 +1,17 @@
 # Persistent JavaScript compatibility surface
 
-> **Architecture status:** Compatibility and implementation-mechanics note. The normative design is [RLM/Prime Linked Science runtime](rlm-linked-science-runtime.md). The persistent JavaScript and browser-shaped facade described here remain supported, but CodeAct is not the system's defining architecture.
+The [current architecture](rlm-linked-science-runtime.md) centers a useful scientific REPL with a small management layer. This note preserves compatibility decisions from the earlier CodeAct/RLM/Prime framing; those labels do not add a workflow engine or require durable child sessions.
 
-## Decision
+## Supported interfaces
 
-Linked Science uses the user-owned `cleanroom_node_repl` and persistent model-written JavaScript as its RLM control environment. `lib/cleanroom-linked-science-bootstrap.mjs` validates the saved project and dependency roots, registers RLM discovery context, and injects the `linkedScience` facade (with short alias `ls`) from `lib/linked-science-runtime.mjs`. Communica remains the RDF/SPARQL query kernel behind the facade.
+- The MCP remains exactly `js`, `js_reset` and `js_add_node_module_dir`.
+- The project broker automatically prepares `linkedScience` / `ls` before evaluation. `bootstrapLinkedScience({ host, cleanroom, projectRoot, moduleRoot })` remains the explicit validated diagnostic entrypoint.
+- `setupLinkedScience` supports standalone/offline fixtures. Legacy `initializeSession` and `createTableDisplay` remain under `linkedScience.compatibility`.
+- `rdf.dataset(handle)` keeps its copied-dataset behavior and aliases the clearer `rdf.clone(handle)`. New native reads should prefer `rdf.source(handle)`.
+- `linkedScience.reset({ contextKey })` is now awaitable because it reclaims workspace-owned broker storage. Invalidation begins immediately; callers must await cleanup before relying on reclaimed resources.
+- `workspace.release`, `dispose` and `inventory` supply explicit lifetime and current ownership. Query and result APIs keep complete-result semantics and bounded views.
+- Existing PEEK section names, checkpoints and older handle-reference entries remain readable. New automatic entries describe source context; query results stay in the registry.
 
-The one-time bootstrap, generated documentation, machine schema, conditional lookup, examples, stable globals, and explicit reset follow the public adapter shape described in [runtime discovery](../agent/runtime-discovery.md). Like the Browser persistent-JavaScript pattern, Linked Science gives agents composable stateful objects while a trusted broker enforces authority, capability filtering, and audit below that programming surface; it is a Linked Data runtime, not a browser bridge.
+The runtime does not expose the mutable internal N3 store or raw network authority. A cloned dataset is caller-owned; a Source view is read-only and becomes unavailable after release. `nodeRepl.rlm` continues to advertise optional one-shot provider support separately from external context. Durable recursion and learned PEEK remain research options.
 
-## Runtime shape
-
-`bootstrapLinkedScience({ host, cleanroom, projectRoot, moduleRoot })` is the authoritative clean-room entrypoint. Its explicit roots replace the earlier `process.cwd()` assumption. The lower-level `setupLinkedScience` remains available for offline tests and standalone scripts. Both install non-writable `linkedScience` and `ls` properties idempotently for one global object.
-
-The facade exposes generated documentation, capabilities, examples, context open/reset, and local retained-session/table compatibility helpers. Raw ambient transport is not exposed. When the clean-room MCP injects `linkedScienceTraversal`, the workspace gains broker-mediated general resource responses plus a Communica query operation; both retain their state and provenance in the same native model.
-
-A workspace owns private Communica state and opaque retained handles. It supports:
-
-- asynchronous local ontology, schema, SHACL, inferred-graph, and instance-data graph materialization;
-- bounded schema search and RDF-neighborhood inspection;
-- complete-or-fail local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica, without a harness-imposed SPARQL `LIMIT`;
-- one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
-- general `resources.get` response objects for bounded JSON, text, XML, CSV, binary, and RDF representations, with `resources.inspect` for prompt-bounded projections;
-- `resource.rdf()` / `resources.parseRdf()` and `rdf.dataset` / `rdf.retain` for ordinary RDF/JS and Communica composition without reacquisition;
-- bounded awaitable profiles/pages/tables with lineage, operation IDs, source fingerprints, and provenance;
-- hybrid graph-result residency: small N3 stores in the child and complete large `CONSTRUCT`/`DESCRIBE` results in a private broker SQLite spool that can stream into later local queries;
-- asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations; and
-- optional behavior-bounded public-HTTPS traversal and local federation with native result handles.
-
-The v6.1 facade does not itself own recursive provider calls. `nodeRepl.rlm` advertises the host's recursion capability separately; durable asynchronous child execution remains a staged clean-room-host responsibility.
-
-## Handles and epochs
-
-Handles are frozen branded tokens carrying only an ID, type, label, and runtime epoch. RDF/JS values remain in a private registry. Graphs retain their input quad array, including ordering and duplicates; bindings retain variable terms and RDF value terms. IRIs, datatypes, language tags, blank nodes, and named graphs are not flattened to strings in resident state.
-
-Every operation records an operation ID. Graphs receive an ordered, duplicate-aware fingerprint. Query and derived results retain source fingerprints, source handles, query or callback hashes, and lineage.
-
-Facade reset advances the context epoch and destroys the workspace registry while the clean-room broker retains its compact PEEK map. Kernel reset additionally removes the facade, RLM contexts, and epoch-owned result spools; bootstrap recreates them while the same broker PEEK map remains. A handle from another epoch produces a recovery-shaped `LS_STALE_HANDLE` error. PEEK references to pre-reset handles are explicitly stale until authorized rematerialization creates new evidence.
-
-## State ownership
-
-- Linked Science workspaces own symbolic RDF and result handles; the kernel owns small native values and the clean-room broker owns private epoch-scoped graph-result spools.
-- `nodeRepl.rlm` owns kernel-resident external discovery context registered at bootstrap.
-- The clean-room MCP broker owns bounded PEEK orientation across kernel replacement.
-- Codex owns task goals and worker lifecycle.
-- Durable artifacts require a separate authorized write and are not created by reset or orientation commit.
-
-The runtime does not instantiate a competing PEEK cache when the clean-room backend is present. `lib/orientation-map.mjs` remains for compatibility code and offline standalone tests.
-
-## Bounds and observation contract
-
-Execution, residency, and projection are separate budget planes. Resident graphs and results remain subject to explicit physical safety controls, but graph or result size is not a prompt or display limit. Query modifiers remain caller semantics: the runtime never requires or injects `LIMIT` for storage. A result handle is published only after the native stream completes; an operational ceiling produces failure rather than a partial successful handle. Prompt-visible pages/tables are bounded by rows, cells, and bytes. Neighborhoods are bounded by nodes, edges, and bytes. Schema search is bounded by hits and bytes. All observations retain compact provenance; byte fitting truncates values, never provenance. PEEK remains orientation only and never substitutes for the ontology, schema, graph, or result handle.
-
-## Security and broker boundary
-
-Direct graph loading accepts only explicitly labeled local-synthetic inputs. Its workspace exposes neither the Communica engine nor ambient raw Fetch. The optional resource and traversal surfaces accept credential-free HTTP/HTTPS source IRIs under tighter effective budgets; a module-private adapter routes every general resource read, Communica dereference, and federated request to the parent mediator. Standard Fetch owns DNS/TLS/socket/redirect behavior, while identity, effect class, concurrency, time, request, and byte policy remain parent-owned. The first production slice enables anonymous `GET`/`HEAD`; authenticated reads and mutations use the same model but are explicitly disabled.
-
-The clean-room VM context is a compatibility boundary, not a security sandbox. The consumer-owned parent MCP broker denies raw child networking and evaluator-private filesystem reads; the Linked Science facade independently verifies its traversal capability and aggregate receipt. Registration of the clean-room MCP does not authorize a live traversal, and the runtime reports traversal unavailable unless that mediator is injected. See [broker-mediated traversal](broker-owned-live-operations.md).
-
-## Recovery errors
-
-Public failures use `LinkedScienceRuntimeError` with `code`, `stage`, `receipt`, `recoveryDocument`, and `retryable`. Agents should consult `linkedScience.documentation.get(error.recoveryDocument)`, validate the current epoch and orientation status, and rematerialize only through an authorized source route.
-
-See [ontology and schema objects](ontology-and-schema-objects.md), the [machine schema](../runtime/linked-science-api.schema.json), and the [v1 task record](../tasks/linked-science-runtime-v1.md).
+See [runtime discovery](../agent/runtime-discovery.md), [native graph semantics](ontology-and-schema-objects.md), [session lifetime](persistent-session-and-handles.md) and [broker mediation](broker-owned-live-operations.md).

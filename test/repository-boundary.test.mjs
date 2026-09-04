@@ -36,6 +36,13 @@ test('project config must name the exact repository-owned broker entrypoint', as
   );
 });
 
+test('nested tool settings configure the existing server and cannot hide another server', async () => {
+  const active = await readFile(new URL('../.codex/config.toml', import.meta.url), 'utf8');
+  const nested = `${active}\n[mcp_servers.cleanroom_node_repl.tools.example]\napproval_mode = "approve"\n`;
+  assert.equal((await validateRepositoryBoundaries({ configText: nested })).status, 'passed');
+  await assert.rejects(validateRepositoryBoundaries({ configText: `${active}\n[mcp_servers.unexpected.tools.js]\napproval_mode = "approve"\n` }), /must register only/u);
+});
+
 test('boundary validation rejects an experimental sibling MCP path without moving either checkout', async () => {
   const forbidden = [ '/tmp', 'node-repl', 'network-probe', 'src', 'cleanroom-mcp.mjs' ].join('/');
   const config = `[mcp_servers.cleanroom_node_repl]\ncommand = "node"\nargs = ["${forbidden}"]\n`;

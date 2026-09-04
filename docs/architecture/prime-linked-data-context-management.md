@@ -1,108 +1,30 @@
-# Prime-style context management for Linked Data agents
+# Optional RLM and PEEK research
 
-- **Status:** Proposed, evidence-gated architecture
+- **Status:** Optional, evidence-gated research
 - **Date:** 2026-09-04
-- **Related plan:** [Prime-inspired durable RLM, context, and continual-harness research plan](../../PLAN.md)
-- **Authorization:** Design and local synthetic planning only; no provider activation, live evaluation, durable service, or global configuration change is authorized.
+- **Current product:** [Persistent scientific REPL](rlm-linked-science-runtime.md)
+- **Authorization:** No provider activation, learned-policy run, durable service or live evaluation follows from this note.
 
-## Decision
+The scientific REPL is useful independently of these experiments. Its native RDF/JS/Comunica operations already perform structural decomposition, filtering and aggregation. Each additional mechanism needs a concrete information-management problem and measured benefit.
 
-Do not begin by implementing the complete durable Prime substrate. First test the two mechanisms that distinguish an RLM/Prime agent from the current depth-zero symbolic REPL:
+## Model recursion
 
-1. a depth-one child that can operate on an explicitly granted Linked Data handle without copying the whole graph or result into a prompt; and
-2. a real PEEK maintenance policy over bounded typed trajectory evidence.
+The [RLM paper](https://arxiv.org/html/2512.24601v2) reports useful external-context REPL behavior without subcalls, and additional benefits from recursion on information-dense semantic tasks. Its reported depth-one synchronous calls do not require durable asynchronous child sessions.
 
-Durable sessions, continual-harness state, and automatic facade injection proceed only if those experiments show a useful gain without violating the Linked Science authority and evidence model. This ordering follows the mechanism evidence in the [RLM paper](https://arxiv.org/abs/2512.24601), [PEEK paper](https://arxiv.org/abs/2605.19932), and [Prime Agent paper](https://arxiv.org/abs/2608.23552), while adapting their designs to RDF/JS terms, scientific provenance, and a restricted host membrane.
+A separately authorized experiment should compare the existing root REPL with a bounded depth-one call on semantic tasks such as annotation interpretation or ambiguous-label reconciliation. Match observation budgets, record correctness, cost and latency, and retain SPARQL-only controls where meaningful. Keep credentials, admission and accounting host-owned. A child requiring symbolic graph access receives explicitly scoped access, never a bulk prompt dump or ambient transport.
 
-## One context system, four planes
+No improvement leaves the current REPL as the production path. A benefit justifies that bounded mechanism; durability needs a further user need and experiment.
 
-The implementation should not add another set of overlapping memory stores. Each plane has one job:
+## Orientation policy
 
-| Plane | Contents | Owner | Lifetime |
-| --- | --- | --- | --- |
-| Symbolic data (L2) | RDF graphs, query results, resources, and broker result spools behind handles | Linked Science workspace plus clean-room broker | Kernel epoch initially; durable artifacts only after a later gate |
-| Recursive reasoning (L1/L2) | Parent objective, explicitly granted handles, bounded child observations, terminal child result | RLM session runtime | One admitted child experiment initially |
-| Orientation (derived L1) | Compact source facts, failures, schemas, identifiers, and reviewed motifs | PEEK policy | Derived from typed events; project durability is a later decision |
-| Evidence/control (L3) | Typed public events, receipts, provenance, policy versions, and later immutable artifacts | Trusted host | Ephemeral experiment trace first; durable append-only store only after evidence gates |
+The [PEEK paper](https://arxiv.org/html/2605.19932v1) studies reusable orientation across questions about recurring external context. The current baseline is a small derived source map, separated from ephemeral handle inventory and optionally shared by context identity/version.
 
-The current RLM context registry remains a compatibility adapter. PEEK becomes a derived orientation view, not an independent source of truth. Continual-harness memories, if later built, use the same typed L3 evidence store rather than creating a fifth memory system.
+First compare no map, manual/static orientation and the current derived map on recurring but different questions. A later Distiller/Cartographer/Evictor experiment should measure whether later tasks require less rediscovery, remove stale or incorrect entries, and improve correctness under a fixed context budget. Use bounded public observations and receipts; do not ingest hidden reasoning, raw documents or evaluator-private answers into map maintenance.
 
-## Gate A: handle-scoped depth-one experiment
+The Distiller extracts reusable context, the Cartographer proposes local edits, and the Evictor enforces the map budget. These are separate testable policy functions, not an additional evidence store or workflow engine. Their implementation and provider work require separate authorization.
 
-### Target interaction
+## Durability and continual refinement
 
-The public MCP surface remains `js`, `js_reset`, and `js_add_node_module_dir`. The Linked Science facade creates a private context grant for a handle; the trusted host admits one child and returns a stable child handle:
+Durable roots/children, append-only event histories, artifact recovery and reviewed harness refinement belong to a broader optional research program. They are not an irreducible scientific-REPL foundation. Any future recovery work must distinguish native handles from durable payloads, establish fresh identity on materialization and avoid silently replaying uncertain external effects.
 
-```js
-const grant = await workspace.context.grant(resultHandle, {
-  operations: ['profile', 'page', 'query'],
-  maxRowsPerPage: 20,
-  maxObservationBytes: 32_768,
-});
-
-const child = await nodeRepl.rlm.spawn({
-  objective,
-  contextRefs: [grant],
-  budget: { depth: 1, timeoutMs: 60_000, maxOutputBytes: 32_768 },
-});
-```
-
-These names are an experiment contract, not yet implemented API.
-
-### Grant semantics
-
-- A grant is an opaque broker record bound to the parent token, parent epoch, exact handle/storage identity, child identity, allowed operations, and cumulative observation budget.
-- For the first experiment, the source is a broker-stored quad result. This makes the broker the physical owner already and avoids copying an in-memory graph merely to test recursion.
-- The child receives a private streaming RDF source backed by bounded broker pages. It may issue local `ASK`, `SELECT`, `CONSTRUCT`, or `DESCRIBE` over that source, but cannot obtain a path, capability token, parent JavaScript value, or unbounded dump.
-- Live traversal is disabled in the first arm. A later arm may inherit the same anonymous-read authority only with equal-or-tighter budgets and explicit attribution.
-- Parent reset or owner loss revokes the grant and aborts the child. No stale handle is silently rematerialized.
-
-### Experiment
-
-Use deterministic local Linked Data fixtures for semantic work that SPARQL alone cannot finish, such as classifying free-text annotations, reconciling ambiguous labels against ontology evidence, or judging relevance across many descriptions. Compare:
-
-1. a depth-zero root using bounded pages;
-2. a depth-one child with the same total observation/output budget and one handle grant; and
-3. where meaningful, a direct SPARQL-only control.
-
-Gate A passes only if the child improves a predeclared correctness measure on at least two structurally different fixtures, all provider work and handle observations are attributable, no bulk payload enters the prompt, and the authority boundary remains unchanged. Latency and provider cost are reported, not hidden inside the score. Failure leaves the existing symbolic REPL as the production path.
-
-## Gate B: PEEK policy experiment
-
-The broker must not distill raw JavaScript, hidden reasoning, or bulk result rows. Linked Science emits bounded typed public events such as:
-
-- resource acquired or failed, with source role, media type, hash, and receipt ID;
-- graph parsed, with format, graph role, count, and source handle;
-- query completed or failed, with query type/hash, source handles, completion policy, count, and residency tier;
-- profile/page/subquery observed, with selector, bounds, and source handle; and
-- correction, stale-handle detection, or explicit scientific uncertainty.
-
-After a child/root boundary, the policy runs three separately testable steps:
-
-1. **Distiller:** extracts candidate reusable orientation from the bounded typed trajectory and identifies counterevidence or staleness.
-2. **Cartographer:** proposes structured add/update/remove edits against an exact map version.
-3. **Evictor:** enforces section, item, and byte budgets using priority, use, age, provenance, and staleness.
-
-The map is injected at the head of a later child projection only after validation. Retrieved documents and model synthesis remain delimited data without instruction authority. Query motifs are not categorically forbidden in production: a compact parameterized motif may be promoted only with provenance, applicability, query-form validation, and explicit review. Evaluator-target queries and hidden-answer fragments remain prohibited.
-
-Gate B compares the full three-stage policy with current manual/no-policy PEEK and a monolithic-update ablation on recurring but non-identical contexts. It passes only if later-task orientation improves under a fixed context budget, stale/incorrect entries are removed, scientific claims remain source-scoped, and no held-out material leaks.
-
-## Gate C: durable Prime substrate
-
-Only after Gate A passes should the repository implement durable root/child identity, stable asynchronous child results, exact typed public history, immutable artifacts, restart recovery, and provider accounting. Only after Gate B passes should reviewed prompt-note/memory state be made durable. Existing Phase 0 schemas are design input, not an obligation to implement every schema before the mechanism experiments.
-
-Durability must preserve these distinctions:
-
-- an epoch-bound native handle is not a durable artifact;
-- a descriptor or digest is not the payload;
-- a recovered artifact creates a fresh handle and provenance link;
-- interrupted external/provider work is `failed` or `uncertain`, never silently replayed; and
-- Codex continues to own top-level goals and worker lifecycle.
-
-## Gate D: ergonomics
-
-Automatic facade bootstrap and a shorter examples-first worker skill are independent of Gates A-C: they change no authority, budget, or evidence semantics, and they reduce the per-kernel ritual and worker-facing guidance that every experiment arm otherwise pays for. They may therefore proceed before or alongside Gate A. The broker may inject a validated facade binding at kernel creation, but wrong-runtime diagnostics and explicit capability receipts remain available for activation and troubleshooting so convenience does not become a second implicit activation path.
-
-## Immediate next action
-
-Freeze one local synthetic dense-context protocol for Gate A with exact fixtures, provider/model settings, matched root/child budgets, public scoring, typed-event requirements, and stop/go thresholds. Provider activation and an intentional run require separate authorization; until then, implement no `spawn`, grant, policy, checkpoint, or durable-harness behavior from this proposal.
+The [earlier detailed plan](prime-research-plan-2026-09-04.md) and [Phase 0 decision](prime-durable-core-phase-0.md) remain historical design records. Neither commits the project to implementing that program. The [current plan](../../PLAN.md) controls active scope.

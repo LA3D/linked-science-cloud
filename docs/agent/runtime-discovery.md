@@ -1,79 +1,56 @@
-# Linked Science clean-room runtime discovery
+# Linked Science runtime discovery
 
-## Compact normal bootstrap
+## Normal use
 
-The authoritative saved checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its active `.codex/config.toml` registers the repository-owned `cleanroom_node_repl` broker from `packages/cleanroom-node-repl` with that checkout as its explicit cwd. The sibling `node-repl-network-probe` checkout and Desktop's bundled `node_repl` have no production role here.
-
-Run `npm run linked-science:verify` from the saved checkout for the offline repository identity, broker, and synthetic runtime proof. After any MCP configuration change, fully restart Desktop and open a fresh Local task in this saved checkout. The shell proof and configuration text are repository evidence, not activation evidence for the task.
-
-For normal work, conditionally bootstrap `linkedScience` once and reuse it. Inspect capabilities or targeted documentation only when the task needs an effect, route, bound, or recovery detail. The stable workspace supplies resources, RDF/JS, and Communica composition without additional MCP tools.
-
-## Activation and diagnostic verification
-
-When configuring the MCP, evaluating a fresh agent, diagnosing a suspected wrong runtime, or making an execution-backed activation claim, verify server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`; observe the authoritative cwd and structured `nodeRepl.rlm.capabilities()` result; verify one cross-call binding; and require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl` after bootstrap. Perform this once per fresh kernel; do not narrate each check as a scientific phase.
-
-## Bootstrap once per kernel
-
-Use the skill's conditional bootstrap only when `globalThis.linkedScience` is absent. It validates cwd, project/module roots, and declared dependency resolution; installs stable `linkedScience`/`ls`; delegates orientation to broker PEEK; and registers `linked-science:runtime`. Reuse those bindings, workspaces, and valid handles across later calls and turns.
-
-For that activation/diagnostic verification, inspect the self-identifying environment:
+The project broker initializes the validated `linkedScience` / `ls` facade before the first evaluation in each kernel. Open and reuse a workspace directly:
 
 ```js
-const environment = linkedScience.capabilities().environment
-nodeRepl.write({ cwd: nodeRepl.cwd, rlm: nodeRepl.rlm.capabilities(), project: environment.project, broker: environment.broker })
+var ws = linkedScience.open({ contextKey: 'scientific-question' });
 ```
 
-Do not proceed as Linked Science if any identity, root, broker package, server name, or tool contract differs. A generic persistent REPL is not an acceptable substitute.
+Use `linkedScience.documentation.get(name)` for an unfamiliar operation and `capabilities()` for effects or limits. `ws.inventory()` shows current retained handles; `results.profile(handle)` adds provenance. Source orientation is optional and initializes when useful source evidence is retained. No exhaustive activation ceremony is needed for ordinary use.
 
-The facade import resolves its declared dependencies from its own validated module location. `js_add_node_module_dir` is not part of this bootstrap and must not replace the explicit project/module validation. Reserve it for a separately justified interactive bare-package import.
+For native composition, prefer `ws.rdf.source(handle)`. `rdf.clone` explicitly creates a mutable copy and `rdf.dataset` is its compatibility alias. Release individual handles with `await ws.release(handle)`, or dispose the workspace with `await ws.dispose()`. `await linkedScience.reset({ contextKey })` uses the same storage cleanup. Await release/disposal before relying on reclaimed storage.
 
-The bootstrap detects the private parent mediator without exposing its bridge or ambient Fetch closure. `nodeRepl.linkedScienceTraversal` and global `fetch` remain unavailable. Capabilities report anonymous public-read authority, standard Fetch beneath the facade, effect gates, hard per-call ceilings, and zero hidden transport retries. Explicit resource reads and agent queries are recorded in bounded workspace history.
+## Activation and diagnosis
 
-The MCP remains the exact three-tool surface, while the persistent workspace exposes a general broker-mediated resource surface. Use `workspace.resources.get(url)` for a bounded HTTP representation; its response object supports in-kernel text, JSON, and binary composition, and `workspace.resources.inspect` provides prompt-bounded JSON/text/XML/CSV/binary views. Use `resource.rdf({ name })` or `workspace.resources.parseRdf(resource, { name })` to retain an RDF/JS graph directly—no CONSTRUCT wrapper is needed. Use `workspace.traversal.query(options)` for remote SPARQL or Communica federation. Query-level `LIMIT` remains optional caller semantics, not a harness bound. Successful query profiles state completion; operational exhaustion returns a failed attempt with no partial handle. Large solution sequences and graph results spill to broker storage; resident-graph quotas follow the kernel heap and are reported under `budgetPlanes.residency.basis`. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
+For configuration, fresh-agent evaluation, suspected wrong runtime or an activation claim, observe:
 
-## Discover before acting
-
-Use targeted recovery or route detail only when needed:
+- server `cleanroom_node_repl` and exactly `js`, `js_reset`, `js_add_node_module_dir`;
+- `nodeRepl.cwd` equal to the authoritative checkout;
+- project ID `@linked-science/runtime`, role `authoritative-production-implementation`, broker package `@linked-science/cleanroom-node-repl`;
+- one binding surviving a second call, and structured `nodeRepl.rlm.capabilities()`; and
+- the requested effect actually available through the private mediator.
 
 ```js
-linkedScience.documentation.get('recovery')
-linkedScience.documentation.get('resources.get')
+nodeRepl.write({
+  cwd: nodeRepl.cwd,
+  environment: linkedScience.capabilities().environment,
+  rlm: nodeRepl.rlm.capabilities(),
+});
 ```
 
-The checked-in [API schema](../runtime/linked-science-api.schema.json) and [route index](../runtime/routes.json) support machine discovery. Do not invent a method when lookup fails; inspect the error receipt’s matches or return to the route list.
+The authoritative checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its `.codex/config.toml` registers the project broker. The sibling experimental probe and bundled generic REPL cannot establish this project's identity or authority.
 
-## Open a goal workspace
+Run `npm run linked-science:verify` for offline repository/MCP checks. Configuration and shell results do not prove task-level mounting. Restart an already-running broker after broker-code changes; after MCP configuration changes, fully restart Desktop and use a fresh Local task in the saved checkout.
 
-Use a compact context key and explicitly start its broker PEEK map before retaining local graph objects:
+## Explicit fallback bootstrap
+
+For an older broker or diagnostics, the same validated entrypoint remains available:
 
 ```js
-var ws = linkedScience.open({ contextKey: 'measurement-goal' })
-await ws.orientation.bootstrap()
+var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
 ```
 
-Follow generated method documentation. `graphs.load` is asynchronous because successful retention also records a compact broker-owned orientation reference. Keep ontology/schema/SHACL graphs behind handles. PEEK is orientation only, RLM holds external discovery context, and neither is a result store or Codex goal state.
+It validates the checkout, module roots and declared dependency resolution, installs stable bindings and registers compact discovery context. An explicit second bootstrap returns the installed facade. Wrong-runtime errors remain errors; do not substitute the sibling repository or generic REPL. `js_add_node_module_dir` is reserved for justified interactive package imports, not facade setup.
 
-## Reset recovery
+The broker only auto-initializes when its cwd is the authoritative project root. Standalone broker characterization can opt out with the host constructor option `bootstrapLinkedScience: false`; this grants no additional authority and is not a model-facing tool switch.
 
-Repair local validation failures in place from structured `error.repair` feedback. A missing or stale scoped object does not invalidate the runtime binding. Read the targeted `recovery` contract before resetting.
+## Recovery and discovery
 
-`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, symbolic handles, and epoch-owned result spools. A kernel that dies of memory is replaced the same way and reported as `KERNEL_OOM` with epoch-loss repair guidance. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
+`js_reset` removes JavaScript bindings, contexts, workspaces and epoch-owned storage. The next evaluation prepares the facade, but old data is gone. Source orientation may survive; inspect it without claiming its handles are resident. Reacquisition is a new operation through a currently authorized source.
 
-```js
-var recovered = linkedScience.open({ contextKey: 'measurement-goal' })
-await recovered.orientation.status()
-```
+Repair malformed calls from `error.repair` or targeted documentation before considering a reset. `LS_RELEASED_HANDLE` means ownership was explicitly released; `LS_STALE_WORKSPACE` / `LS_STALE_HANDLE` refer to invalidated epochs. A surviving Source view cannot start new reads after release. `KERNEL_OOM` means the entire kernel epoch was lost.
 
-Old references must report stale and old handles must not be reused. PEEK may guide explicit rematerialization but cannot prove residency or authorize a source.
-
-## Invariants
-
-- Use only `cleanroom_node_repl`; the bundled `node_repl` is obsolete for this project.
-- Require exactly the three MCP tools above. The stable Linked Science workspace, not additional MCP tools, supplies general resources, RDF/JS datasets, and Communica composition.
-- Keep output bounded by rows/cells or nodes/edges and bytes.
-- Preserve provenance and operation IDs through query, derivation, and view.
-- Without an observed traversal capability, use only local-synthetic data; `workspace.resources.get` and `workspace.traversal.query` must fail with `LS_TRAVERSAL_UNAVAILABLE`.
-- Ordinary goal-relevant anonymous public reads use the broker defaults and aggregate receipts. Authenticated, sensitive, mutating, bulk, export, and evaluation operations require their appropriate authority or confirmation.
-- Consult source-owned schema, vocabulary, dataset, service, or documentation evidence when the access pattern, provenance, ambiguity, or stakes warrant it. The runtime records cited handles but does not prescribe a planning ceremony.
-- Each direct query is one bounded, receipted attempt. Corrections and later queries remain visible in `workspace.traversal.history()`; evaluation counts them without controlling the runtime.
-- Keep REPL-resident native RDF/JS handles, RLM runtime discovery, broker PEEK orientation, Codex goal state, and durable artifacts distinct. PEEK receives only compact handle references, never source or result payloads.
+The [API schema](../runtime/linked-science-api.schema.json), [route index](../runtime/routes.json), [architecture](../architecture/rlm-linked-science-runtime.md) and [session lifetime](../architecture/persistent-session-and-handles.md) provide conditional detail. Full query results stay behind handles, pages/tables are awaitable bounded views, and ordinary public reads use the broker's default authority and receipts.

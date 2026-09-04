@@ -1,24 +1,13 @@
 # REPL environment and persistence
 
-## Tool contract
+The project `cleanroom_node_repl` exposes exactly `js`, `js_reset` and `js_add_node_module_dir`. The authoritative project broker initializes `linkedScience` / `ls` before the first evaluation. Use dynamic imports, top-level `var` for reusable bindings and `nodeRepl.write` for bounded output.
 
-Keep these names distinct:
+Normal work reuses a workspace and its handles. `inventory`, `release` and `dispose` manage retained state without replacing the kernel. Release/disposal must be awaited for storage cleanup. Whole-kernel reset loses all bindings and epoch-owned results; the next evaluation prepares a fresh facade while broker source orientation remains advisory.
 
-- `cleanroom_node_repl` is the project-registered, user-owned MCP surface;
-- `mcp__cleanroom_node_repl__js` executes JavaScript in its persistent child kernel;
-- `mcp__cleanroom_node_repl__js_add_node_module_dir` adds an absolute `node_modules` root for interactive bare-package imports; and
-- `mcp__cleanroom_node_repl__js_reset` replaces the child kernel, clearing JavaScript bindings and RLM contexts while preserving broker-owned PEEK maps and registered module roots.
+Use [runtime discovery](../../../../docs/agent/runtime-discovery.md) for an explicit fallback bootstrap, wrong-runtime diagnosis, activation checks or a suspected missing effect. A passing shell check does not establish which MCP a Codex task mounted. The sibling probe and bundled generic REPL are not fallback implementations.
 
-The bundled `node_repl` and deprecated `js_repl` label are obsolete for this project. Do not call them, restore their former configuration recipe, or infer clean-room availability from their presence.
+Facade imports resolve declared dependencies from the validated project module root. `js_add_node_module_dir` is only for independently justified interactive package resolution. Do not add guessed roots or import package entrypoints through `./node_modules/...`.
 
-## Compact normal bootstrap
+Malformed calls should be repaired from generated documentation or structured errors. Source/handle loss does not by itself invalidate the facade. `LS_RELEASED_HANDLE`, stale-epoch errors and `KERNEL_OOM` distinguish explicit release, workspace replacement and whole-kernel loss.
 
-On a fresh task or replaced kernel, use the skill's conditional bootstrap and reuse the persistent bindings. Inspect `linkedScience.capabilities()` or targeted documentation only when the task needs a route, effect, bound, or recovery detail. Configuration prose or a shell cwd is not activation evidence, but normal scientific work does not need a full activation audit.
-
-For activation, diagnostics, evaluation, or a suspected wrong runtime, follow [runtime discovery](../../../../docs/agent/runtime-discovery.md) to verify the exact three-tool MCP surface, cwd, mode, cross-call persistence, identity, and raw-transport boundary.
-
-Bootstrap broker-owned orientation only when the goal workspace needs it. Ordinary anonymous public reads use the mediated capability and broker defaults; no separate permission or network probe ceremony is needed unless the task or evaluation policy explicitly calls for one.
-
-Use dynamic imports and top-level `var` for reusable bindings. The Linked Science facade uses an absolute module URL and normal module-scoped ESM resolution from its validated project root. Do not import package entrypoints through `./node_modules/...` or add a guessed module directory. Use `js_add_node_module_dir` only when an interactive bare-package import genuinely needs it and verify that path independently. Prefer `nodeRepl.write(...)` for compact output. Text output is aggregate-bounded per evaluation; use bounded result projections first, and request a larger `max_output_bytes` only when the task genuinely needs it.
-
-For malformed calls, stale local bindings, or missing selections, inspect the generated `recovery` contract and repair or reacquire the scoped object in place. Use `js_reset` only after actual kernel invalidation. After reset, bootstrap again; JavaScript bindings, RLM contexts, workspaces, symbolic handles, and epoch-owned result spools are gone while broker PEEK remains orientation only. Follow [retained-state reset semantics](retained-state-and-presentation.md#reset-and-stale-state).
+Text output is aggregate-bounded per evaluation. Prefer bounded observations; request a larger `max_output_bytes` only when the task needs it. See [retained state](retained-state-and-presentation.md) for the distinction between native state, orientation and presentation.

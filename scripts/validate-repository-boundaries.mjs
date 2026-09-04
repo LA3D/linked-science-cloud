@@ -132,7 +132,10 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
 
   const config = configText ?? await readFile(resolve(root, '.codex/config.toml'), 'utf8');
   const expected = LINKED_SCIENCE_PROJECT_IDENTITY;
-  const serverSections = [ ...config.matchAll(/^\s*\[mcp_servers\.([^\]]+)\]\s*$/gmu) ].map(match => match[1]);
+  // Nested tables configure a server's tools; they do not register another
+  // server. Still inspect their first key so an unexpected server cannot hide
+  // behind a nested table.
+  const serverSections = [ ...new Set([ ...config.matchAll(/^\s*\[mcp_servers\.([^\]]+)\]\s*(?:#.*)?$/gmu) ].map(match => match[1].split('.')[0])) ];
   if (!sameStrings(serverSections, [ expected.broker.mcpServer ])) {
     failures.push(`.codex/config.toml must register only mcp_servers.${expected.broker.mcpServer}`);
   }
