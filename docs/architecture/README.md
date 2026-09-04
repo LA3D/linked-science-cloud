@@ -11,6 +11,7 @@ linked information in Linked Science Cloud
 The stable boundaries are split into focused notes:
 
 - [RLM/Prime Linked Science runtime](rlm-linked-science-runtime.md) — normative architecture
+- [Prime-style context management for Linked Data agents](prime-linked-data-context-management.md) — evidence-gated recursion, PEEK, durability, and ergonomics order
 - [Persistent JavaScript compatibility surface](codeact-linked-science-runtime.md) — implementation history and facade mechanics
 - [Ontology and schema objects](ontology-and-schema-objects.md)
 - [Persistent Communica session and symbolic handles](persistent-session-and-handles.md)

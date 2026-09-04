@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice and the symbolic query-completeness correction below were completed and validated on 2026-09-04.
+**Status:** Active evidence-gated implementation plan. Phase 0, symbolic-graph realignment, query completeness, and out-of-core graph-result retention were completed locally on 2026-09-04. Recursive-provider, PEEK-policy, and durable Prime work remain gated.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -8,9 +8,9 @@
 
 **Baseline:** local `main` at `3a440b5` (`Simplify Linked Science persistent harness`), inspected 2026-08-27
 
-**Primary references:** [Prime Agent paper](https://arxiv.org/abs/2608.23552), [Prime Agent repository](https://github.com/PrimeIntellect-ai/prime-agent), and [persistent harness state](https://github.com/PrimeIntellect-ai/prime-agent/blob/main/prime-agent-runtime/src/rlm/harness.py)
+**Primary references:** [RLM paper](https://arxiv.org/abs/2512.24601), [PEEK paper](https://arxiv.org/abs/2605.19932), [Prime Agent paper](https://arxiv.org/abs/2608.23552), [Prime Agent repository](https://github.com/PrimeIntellect-ai/prime-agent), and [persistent harness state](https://github.com/PrimeIntellect-ai/prime-agent/blob/main/prime-agent-runtime/src/rlm/harness.py)
 
-**Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local RLM/Prime symbolic-graph slice in section 0 and the follow-up symbolic query-completeness correction in section 0.1: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not automatically activate the full durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
+**Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local slices in sections 0-0.2 and design work for section 0.3: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not activate a recursive provider, learned PEEK policy, or durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
 
 ## 0. Completed RLM/Prime symbolic-graph slice
 
@@ -35,7 +35,7 @@ This correction establishes the following contract:
 
 1. Local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` accept their valid SPARQL 1.1 syntax without a harness-imposed `LIMIT` requirement.
 2. Query result streams are materialized atomically. A successful handle represents the complete result under the submitted query and the declared graph-description policy. If an operational residency ceiling is reached, the stream is cancelled, no result handle is published, and the call fails with structured recovery.
-3. Model-visible pages and tables remain independently bounded projections. Their truncation never changes the resident result or its completion claim.
+3. Model-visible pages and tables remain independently bounded projections. Their truncation never changes the symbolic result or its completion claim.
 4. `DESCRIBE` is normalized deliberately to the runtime's declared outgoing-subject-triples policy before Communica execution. The normalization preserves explicit described IRIs, variable solutions, wildcard expansion, dataset clauses, and solution modifiers such as `ORDER BY`, `OFFSET`, and `LIMIT`.
 5. Profiles and mediated-attempt receipts state semantic completion and the description policy explicitly. They retain the hash and query type of the caller's original query; an internal normalization hash may be recorded as implementation provenance but never substituted for caller intent.
 6. Physical memory, storage, time, network, and result-residency ceilings remain honest operational controls. This slice does not claim infinite resources; it claims that an exceeded resource ceiling is a failure rather than a successful partial answer.
@@ -44,9 +44,33 @@ Acceptance requires a synthetic all-four-form matrix through the actual project 
 
 Completed evidence: runtime 6.0.0 removes the local query-LIMIT requirement, streams result materialization, declares the outgoing-subject-triples DESCRIBE policy, normalizes wildcard/variable/explicit targets while preserving solution modifiers, and records completion on successful profiles and receipts. The actual repository JSON-RPC MCP retained a complete 12,050-quad no-LIMIT DESCRIBE result from one acquired graph and returned the distinct native types for all four forms. A separate mounted-MCP probe retained a 1,005-quad DESCRIBE with a binding-item quota of two. The 142-test suite, smoke check, repository-owned broker/runtime verification, and Git diff checks passed. See the [completed task record](docs/tasks/symbolic-query-completeness.md).
 
+### 0.2 Completed out-of-core graph-result and cleanup slice
+
+Runtime 6.1.0 completes the immediate production corrections identified during review:
+
+1. Large complete `CONSTRUCT` and normalized `DESCRIBE` streams spill from the child into a private broker-owned SQLite spool instead of failing at the in-memory item threshold.
+2. The result handle is published only after the spool commits. Storage-quota failure deletes provisional rows and returns a structured no-partial-result error.
+3. Stored quad results support awaitable bounded pages/tables and remain streaming sources for later local SPARQL. Whole-result dataset cloning and JavaScript derivation are rejected so the out-of-core boundary cannot be bypassed accidentally.
+4. The spool is token/epoch-owned, exposes no path, preserves RDF graph set semantics, and is removed on reset or owner loss. Its byte ceilings are physical resource controls, not semantic truncation.
+5. `nodeRepl.write` has an aggregate 32 KiB default per evaluation and a hard-capped explicit override.
+6. Local `SERVICE` rejection walks parsed query structure rather than matching serialized text, and the sample broker configuration points at this authoritative checkout.
+
+Acceptance uses the actual repository JSON-RPC MCP: one 12,050-quad no-`LIMIT` `DESCRIBE` spills, reports complete, pages successfully, and becomes the input to a later local `ASK` without refetch or whole-result loading. A separate low-quota test proves failure with no stored record, and reset proves epoch cleanup. See the [completed task record](docs/tasks/out-of-core-graph-results.md).
+
+### 0.3 Evidence-first Prime/PEEK amendment
+
+The earlier plan put durable schemas and session machinery before evidence that recursive reasoning improves a Linked Data task. That order is superseded by the [Prime-style context-management architecture](docs/architecture/prime-linked-data-context-management.md):
+
+1. **Gate A — handle-scoped depth one:** grant one broker-stored RDF result to one independent child under bounded profile/page/query operations and compare it with matched depth-zero paging and SPARQL-only controls on at least two dense synthetic tasks.
+2. **Gate B — real PEEK policy:** derive a bounded orientation map from typed public runtime events using separately testable Distiller, Cartographer, and Evictor stages; compare it with manual/no-policy and monolithic-update controls.
+3. **Gate C — durability:** implement persistent child/session identity, exact event history, artifacts, recovery, and reviewed prompt/memory state only for mechanisms that passed Gates A/B.
+4. **Gate D — ergonomics:** pre-bootstrap the facade and trim worker guidance only after the context and child contracts stabilize.
+
+The current result spool is the initial L2 symbolic data plane. PEEK is a derived L1 orientation view, not another evidence store. Future continual-harness state must use the same typed L3 event/artifact substrate rather than creating a fifth overlapping memory. No provider, policy, checkpoint, or durable substrate is activated by this amendment.
+
 ## 1. Objective and falsifiable thesis
 
-Build the smallest real Prime-style foundation needed to test durable information management and continual harness learning in Linked Science:
+After the mechanism-evidence gates pass, build the smallest real Prime-style foundation needed to test durable information management and continual harness learning in Linked Science:
 
 1. a durable RLM session substrate with persistent root and recursive child computation;
 2. an explicit context-management layer that records bounded projections, child compaction, and L2/L3 transitions; and
@@ -54,7 +78,9 @@ Build the smallest real Prime-style foundation needed to test durable informatio
 
 The semantic-web symbolic interface is an adaptation layer on top of those foundations. It must preserve RDF/JS terms, graph roles, provenance, source/result evidence separation, mediated authority, and honest empty/failure semantics, but it should not force the generic harness to implement an RDF platform before the generic core works.
 
-The plan tests three hypotheses in dependency order:
+Before those implementation hypotheses, Gate A tests whether handle-scoped depth one improves dense Linked Data reasoning over matched depth-zero controls, and Gate B tests whether the full PEEK maintenance policy improves recurring-context orientation over no-policy and monolithic ablations.
+
+Only mechanisms that pass those gates advance to the three durable hypotheses in dependency order:
 
 - **H1 — durable RLM/context continuity:** a root plus one recursive child can preserve exact public history and selected context across compaction and host restart, then continue from verified artifacts without false handle residency or hidden source reacquisition.
 - **H2 — evidence-linked refinement transfer:** one reviewed, versioned harness edit derived from public trajectory evidence can improve behavior on a structurally different case, while a pinned control and rollback demonstrate that the edit—not unrelated context or code—caused the difference.
@@ -124,11 +150,11 @@ The existing system is a strong compatibility and safety substrate, but not the 
 | Surface | Implemented evidence | Missing core behavior |
 | --- | --- | --- |
 | MCP and kernel | Exactly `js`, `js_reset`, and `js_add_node_module_dir`; one serialized restricted JavaScript child; timeout/reset replacement; epoch changes; module-root retention. | Durable root/session identity, persistent history, explicit reopen, and independent recursive children. |
-| RLM context | Kernel-local JSON/text contexts with bounded inspection; optional one-shot provider call. | Durable context identity, projection records, compaction, artifact backing, and stable child sessions. |
-| PEEK | Broker-owned bounded orientation map that can survive child reset and optionally checkpoint. | Exact trajectory history or recovered semantic payloads. PEEK must remain orientation only. |
-| Linked Science | Native RDF/JS graph, result, evidence, and workspace handles; bounded query, derivation, search, neighborhood, page, table, provenance, and stale-handle behavior. | Artifact-backed rematerialization and durable cross-invocation descriptors. |
+| RLM context | Kernel-local JSON/text contexts with bounded inspection; optional one-shot provider call. | A handle-scoped depth-one child, then durable context identity/projections only if the experiment passes. |
+| PEEK | Broker-owned bounded orientation map that can survive child reset and optionally checkpoint. | A Distiller/Cartographer/Evictor policy over typed public trajectory events; current commit input is not sufficient evidence. |
+| Linked Science | Native RDF/JS graph, result, evidence, and workspace handles; hybrid in-kernel/broker-spooled complete graph results; bounded query, derivation, search, neighborhood, page, table, provenance, and stale-handle behavior. | Handle grants for the depth-one experiment, then artifact-backed rematerialization and durable cross-invocation descriptors only after the evidence gates. |
 | Traversal | Private token/epoch-owned anonymous read-only mediation with cumulative request, fan-out, concurrency, time, byte, and item bounds plus per-exchange receipts. | Durable session/child attribution. Authority semantics themselves need not change. |
-| Results governance | Compact artifacts under `artifacts/` and a validated experiment-result registry distinguish contemporaneous receipts from retrospective summaries. | Automatic runtime history. Existing receipts remain a valid experiment handoff mechanism. |
+| Results governance | Epoch-owned SQLite graph-result spool plus compact artifacts under `artifacts/`; the validated experiment-result registry distinguishes contemporaneous receipts from retrospective summaries. | Typed experimental trajectory first; automatic durable runtime history only after Gate A. Existing receipts remain a valid experiment handoff mechanism. |
 | Evaluation | Worker/evaluator root separation and hidden UniProt references are already tested. | Only the new public session/refinement projections need integration. A new evaluator service is not required. |
 
 Compatibility facts:
@@ -596,7 +622,7 @@ No child API accepts a path, raw Fetch closure, credential, capability token, ev
 
 ## 13. Dependency-ordered roadmap
 
-Each stage is a separately authorized, reviewable worktree slice. There are no more than three implementation stages after Phase 0.
+Each gate and stage is separately authorized and reviewable. There are no more than three implementation stages after the two mechanism-evidence gates.
 
 ### Phase 0 — Characterize, decide the minimal core, and freeze experiments
 
@@ -631,7 +657,33 @@ Each stage is a separately authorized, reviewable worktree slice. There are no m
 
 **Stop/go**
 
-Stop on unresolved durable root, writer model, commit ordering, quotas, epoch semantics, child isolation, compaction ownership, refinement authority, or evaluator-boundary decisions. Other product questions do not block Stage 1.
+Stop on unresolved durable root, writer model, commit ordering, quotas, epoch semantics, child isolation, compaction ownership, refinement authority, or evaluator-boundary decisions. Other product questions do not block the mechanism-evidence gates.
+
+### Evidence Gate A — Handle-scoped depth-one value
+
+**Deliverables**
+
+- Freeze two deterministic dense Linked Data fixtures whose semantic classification/reconciliation work is not reducible to the scoring query itself.
+- Implement only the experimental broker grant needed for one epoch-owned, broker-stored quad result and one independent depth-one child.
+- Give the child bounded `profile`, `page`, and local `query` access to the grant with no path, parent JavaScript value, raw transport, or hidden bulk projection.
+- Compare depth-zero paging, depth-one child, and SPARQL-only controls under matched observation/output budgets; record provider cost and latency separately.
+
+**Stop/go**
+
+Proceed to durable child/session work only if depth one improves the predeclared correctness measure on at least two structurally different fixtures, every provider and handle observation is attributable, and all authority/epistemic invariants pass. Otherwise remove or leave disabled the experimental grant path and keep the depth-zero symbolic REPL.
+
+### Evidence Gate B — PEEK policy value
+
+**Deliverables**
+
+- Emit bounded typed public runtime events rather than exposing raw JavaScript, hidden reasoning, or result rows to the policy.
+- Implement separable Distiller, Cartographer, and Evictor experiment stages with versioned structured edits and exact input-event references.
+- Compare the full policy with current manual/no-policy PEEK and a monolithic-update ablation on recurring but non-identical contexts.
+- Permit provenance-bearing, parameterized query motifs only through explicit review and applicability/evaluation-leakage checks.
+
+**Stop/go**
+
+Proceed to durable project orientation or continual-harness memory only if the full policy improves later-task orientation under a fixed context budget, removes stale/incorrect entries, preserves source-scoped scientific claims, and leaks no held-out material.
 
 ### Stage 1 — Durable RLM and context core
 
@@ -699,9 +751,9 @@ Stop if model content can apply itself, mutate base policy/capabilities, enter a
 
 Stop if durability/refinement improves apparent task success by leaking answers, flattening semantic roles, bypassing grounding, widening authority, hiding extra provider work, or accepting stale/unverified evidence.
 
-## 14. Smallest end-to-end experiment
+## 14. Post-gate durable end-to-end experiment
 
-Run one paired experiment in one worktree with two sequential contrasts. Use deterministic local synthetic RDF and a configured bounded provider; no live scientific query is required.
+Run this durability/refinement experiment only after the mechanism gates above pass. Use one paired experiment in one worktree with two sequential contrasts, deterministic local synthetic RDF, and a configured bounded provider; no live scientific query is required.
 
 ### 14.1 H1 contrast — durable RLM/context continuity
 
@@ -802,10 +854,13 @@ Any of the following fails the relevant experiment regardless of answer quality:
 | D-016 | Minimal provider leaf facts precede H1; a general accounting subsystem is deferred. | Proposed | Keeps child/compaction/refinement cost visible. |
 | D-017 | Stage-3 RDF codec initially supports blank-node-free synthetic data and rejects unsupported input. | Open; Phase 0 ADR | Avoids pretending a canonicalization problem is solved. |
 | D-018 | Full Prime daemon/product fidelity is a future option, not a Phase 0 gate. | Accepted for this plan | The initial claim is limited to the durable RLM/context/Continual Harness core. |
+| D-019 | A handle-scoped depth-one experiment precedes durable child/session implementation. | Accepted | It tests the recursive mechanism on Linked Data before committing to the durable substrate. |
+| D-020 | PEEK is a derived orientation view over typed public events, not a separate evidence store. | Accepted | It prevents overlapping memory systems and makes Distiller/Cartographer/Evictor behavior testable. |
+| D-021 | Complete large graph-query results use private epoch-owned broker storage and remain local-query sources. | Accepted and implemented in 6.1.0 | Physical storage bounds must not silently alter SPARQL semantics. |
 
 ## 17. Focused Prime core review
 
-Before Stage 1, an independent reviewer compares the pinned Prime paper/repository revision with this plan only for:
+Before Evidence Gate A, an independent reviewer compares the pinned Prime paper/repository revision with this plan only for:
 
 - L0-L3 visibility and transition mechanisms;
 - persistent REPL behavior;
