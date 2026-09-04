@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Active evidence-gated implementation plan. Phase 0, symbolic-graph realignment, query completeness, and out-of-core graph-result retention were completed locally on 2026-09-04. Recursive-provider, PEEK-policy, and durable Prime work remain gated.
+**Status:** Active evidence-gated implementation plan. Phase 0, symbolic-graph realignment, query completeness, out-of-core graph-result retention, and the heap-aligned residency/indexed-spool correction were completed locally on 2026-09-04. Recursive-provider, PEEK-policy, and durable Prime work remain gated.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -64,9 +64,21 @@ The earlier plan put durable schemas and session machinery before evidence that 
 1. **Gate A — handle-scoped depth one:** grant one broker-stored RDF result to one independent child under bounded profile/page/query operations and compare it with matched depth-zero paging and SPARQL-only controls on at least two dense synthetic tasks.
 2. **Gate B — real PEEK policy:** derive a bounded orientation map from typed public runtime events using separately testable Distiller, Cartographer, and Evictor stages; compare it with manual/no-policy and monolithic-update controls.
 3. **Gate C — durability:** implement persistent child/session identity, exact event history, artifacts, recovery, and reviewed prompt/memory state only for mechanisms that passed Gates A/B.
-4. **Gate D — ergonomics:** pre-bootstrap the facade and trim worker guidance only after the context and child contracts stabilize.
+4. **Gate D — ergonomics:** pre-bootstrap the facade and trim worker guidance. This gate depends on none of A-C: it changes no authority, budget, or evidence semantics, so it may run before or alongside Gate A. It must keep explicit capability receipts and wrong-runtime diagnostics available for activation checks.
 
 The current result spool is the initial L2 symbolic data plane. PEEK is a derived L1 orientation view, not another evidence store. Future continual-harness state must use the same typed L3 event/artifact substrate rather than creating a fifth overlapping memory. No provider, policy, checkpoint, or durable substrate is activated by this amendment.
+
+### 0.4 Completed heap-aligned residency, bindings spill, and indexed spool
+
+Probing the 6.1.0 runtime through the actual broker exposed three defects in the symbolic data plane: the kernel died of memory below its own advertised residency ceiling, `SELECT` solutions had no out-of-core path while graph results did, and the stored-result source re-streamed the whole result for every triple pattern. Runtime 6.2.0 and broker 0.6.0 correct all three:
+
+1. **Heap-aligned residency.** Resident-graph and workspace quotas are `min(configured ceiling, heap-derived quota)`, where the derivation uses the kernel's actual heap limit, a runtime reserve, and a measured per-quad estimate, and is reported as `budgetPlanes.residency.basis`. A live headroom check guards graph retention, RDF parsing, dataset cloning, and derivation copies and fails with `LS_KERNEL_HEAP_BOUND` before the kernel can die. Local queries run over lazy indexed N3 sources with exact `countQuads`, so a full scan no longer builds N3's filtered index copy, and multi-source queries are an RDF merge over lazy sources rather than a per-query merged store. The broker default heap is 1024 MB, and a kernel that still exhausts memory is replaced and reported as `KERNEL_OOM` with the bounded stderr tail and epoch-loss repair guidance.
+2. **Bindings spill.** Large `SELECT` solution sequences spill to the same broker spool with bag semantics and declared columns; stored bindings page and tabulate on demand, reject whole-result derivation, and are not query sources.
+3. **Indexed spool.** Stored quad results live in a columnar SQLite table with SPO, POS, and OSP indexes and set semantics. The kernel-side source pushes each triple pattern down as an indexed lookup streamed through bounded keyset pages and answers `countQuads` with an exact SQL count, so Comunica plans joins against real cardinalities and never pages the whole result.
+
+Completed evidence, measured through the actual broker on 2026-09-04: a two-pattern join over a 20,000-quad stored result fell from 15.8 s and 4,264 whole-result page calls to 0.24 s with no page calls; a 20,000-row `SELECT` that previously failed at the 500-item quota now retains a complete stored bindings handle; at a 256 MB heap the facade advertises 62,914 resident quads and a 50,000-quad load plus full `CONSTRUCT` completes where it previously aborted; at the new default heap a 100,000-quad graph loads, spills a complete `CONSTRUCT`, and answers a join over the stored result in about one second. See the [task record](docs/tasks/heap-aligned-residency-indexed-spool.md).
+
+Gate D in section 0.3 is amended to be independent of Gates A-C: facade pre-injection and worker-guidance trimming change no authority or evidence semantics and remain a separately authorized slice.
 
 ## 1. Objective and falsifiable thesis
 
@@ -857,6 +869,8 @@ Any of the following fails the relevant experiment regardless of answer quality:
 | D-019 | A handle-scoped depth-one experiment precedes durable child/session implementation. | Accepted | It tests the recursive mechanism on Linked Data before committing to the durable substrate. |
 | D-020 | PEEK is a derived orientation view over typed public events, not a separate evidence store. | Accepted | It prevents overlapping memory systems and makes Distiller/Cartographer/Evictor behavior testable. |
 | D-021 | Complete large graph-query results use private epoch-owned broker storage and remain local-query sources. | Accepted and implemented in 6.1.0 | Physical storage bounds must not silently alter SPARQL semantics. |
+| D-022 | Resident-graph quotas are derived from the kernel heap and guarded by a live headroom check; the configured defaults are ceilings. | Accepted and implemented in 6.2.0 | An advertised quota the kernel cannot hold is a false capability claim. |
+| D-023 | Broker-stored results are indexed sources with pattern pushdown and exact counts, and bindings spill under bag semantics. | Accepted and implemented in 6.2.0 / broker 0.6.0 | Out-of-core residency must not make symbolic queries orders of magnitude slower or steer the model toward CONSTRUCT to dodge a SELECT bound. |
 
 ## 17. Focused Prime core review
 

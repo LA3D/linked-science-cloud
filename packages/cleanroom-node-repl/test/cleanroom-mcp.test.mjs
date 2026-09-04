@@ -257,7 +257,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '6\.1\.0'/u);
+  assert.match(text(response), /version: '6\.2\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -673,4 +673,152 @@ test("image emission returns an MCP image content block", async (t) => {
   }));
 
   assert.deepEqual(response.result.content, [{ type: "image", mimeType: "image/png", data: "iVBORw0KGgo=" }]);
+});
+
+test("large SELECT solutions spill to broker storage with bag semantics and remain pageable", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 60_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var selectWs = linkedScience.open({ contextKey: 'select-spill' });
+    var df = selectWs.rdf.DataFactory;
+    var selectQuads = [];
+    for (let index = 0; index < 1200; index += 1) {
+      selectQuads.push(df.quad(df.namedNode('https://example.test/s/' + index), df.namedNode('https://example.test/kind'), df.namedNode('https://example.test/kind/' + (index % 4))));
+    }
+    var selectGraph = await selectWs.graphs.load({ name: 'select-graph', kind: 'instance-data', quads: selectQuads, source: { kind: 'local-synthetic', id: 'select-fixture' } });
+    var solutions = await selectWs.query.run({ sources: [selectGraph], sparql: 'SELECT ?s ?kind WHERE { ?s <https://example.test/kind> ?kind } ORDER BY ?s' });
+    var profile = selectWs.results.profile(solutions);
+    var firstPage = await selectWs.results.page(solutions, { limit: 3 });
+    var table = await selectWs.results.table(solutions, { limit: 2, offset: 1198 });
+    var derived;
+    try { await selectWs.results.derive(solutions, value => value); derived = 'allowed'; } catch (error) { derived = error.code; }
+    var asSource;
+    try { await selectWs.query.run({ sources: [solutions], sparql: 'ASK { ?s ?p ?o }' }); asSource = 'allowed'; } catch (error) { asSource = error.code; }
+    nodeRepl.write({
+      type: profile.type,
+      count: profile.count,
+      columns: profile.columns,
+      residency: profile.residency,
+      complete: profile.completion.complete,
+      firstRows: firstPage.rows.map(row => row.kind.value),
+      firstTruncated: firstPage.truncated,
+      lastRows: table.rows.length,
+      lastTotal: table.total,
+      derived,
+      asSource,
+    });
+  ` }));
+  assert.equal(response.result.isError, undefined, text(response));
+  const output = text(response);
+  assert.match(output, /type: 'bindings'/u);
+  assert.match(output, /count: 1200/u);
+  assert.match(output, /columns: \[ 's', 'kind' \]/u);
+  assert.match(output, /kind: 'broker-stored-result'/u);
+  assert.match(output, /complete: true/u);
+  assert.match(output, /firstRows: \[\s*'https:\/\/example\.test\/kind\/0',\s*'https:\/\/example\.test\/kind\/1',\s*'https:\/\/example\.test\/kind\/2'\s*\]/u);
+  assert.match(output, /firstTruncated: true/u);
+  assert.match(output, /lastRows: 2/u);
+  assert.match(output, /lastTotal: 1200/u);
+  assert.match(output, /derived: 'LS_STORED_RESULT_DERIVATION'/u);
+  assert.match(output, /asSource: 'LS_HANDLE_KIND'/u);
+  assert.equal(broker.resultSpool.records.size, 1);
+  assert.equal([ ...broker.resultSpool.records.values() ][0].kind, "bindings");
+});
+
+test("stored quad results answer joins through indexed pattern pushdown instead of full re-streaming", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const calls = { match: 0, count: 0, page: 0 };
+  for (const method of Object.keys(calls)) {
+    const original = broker.resultSpool[method].bind(broker.resultSpool);
+    broker.resultSpool[method] = (...args) => { calls[method] += 1; return original(...args); };
+  }
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 60_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var joinWs = linkedScience.open({ contextKey: 'stored-join' });
+    var df = joinWs.rdf.DataFactory;
+    var joinQuads = [];
+    for (let index = 0; index < 3000; index += 1) {
+      joinQuads.push(df.quad(df.namedNode('https://example.test/s/' + index), df.namedNode('https://example.test/p'), df.namedNode('https://example.test/o/' + (index % 50))));
+    }
+    for (let index = 0; index < 50; index += 1) {
+      joinQuads.push(df.quad(df.namedNode('https://example.test/o/' + index), df.namedNode('https://example.test/label'), df.literal('label ' + index)));
+    }
+    var joinGraph = await joinWs.graphs.load({ name: 'join-graph', kind: 'instance-data', quads: joinQuads, source: { kind: 'local-synthetic', id: 'join-fixture' } });
+    var stored = await joinWs.query.run({ sources: [joinGraph], sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }' });
+    nodeRepl.write({ storedCount: joinWs.results.profile(stored).count, residency: joinWs.results.profile(stored).residency.kind });
+  ` }));
+  assert.equal(response.result.isError, undefined, text(response));
+  assert.match(text(response), /storedCount: 3050/u);
+  assert.match(text(response), /residency: 'broker-stored-result'/u);
+  calls.match = 0; calls.count = 0; calls.page = 0;
+  const joined = await handle(request(2, "js", { timeout_ms: 60_000, code: `
+    var joinedResult = await joinWs.query.run({ sources: [stored], sparql: 'SELECT (COUNT(*) AS ?n) WHERE { ?s <https://example.test/p> ?o . ?o <https://example.test/label> ?l }' });
+    var bound = await joinWs.query.run({ sources: [stored], sparql: 'ASK { <https://example.test/s/2999> <https://example.test/p> <https://example.test/o/49> }' });
+    nodeRepl.write({ joined: (await joinWs.results.page(joinedResult, { limit: 1 })).rows[0].n.value, bound: (await joinWs.results.page(bound, { limit: 1 })).rows[0].value });
+  ` }));
+  assert.equal(joined.result.isError, undefined, text(joined));
+  assert.match(text(joined), /joined: '3000'/u);
+  assert.match(text(joined), /bound: true/u);
+  assert.equal(calls.page, 0, "query execution never pages the whole stored result");
+  assert.ok(calls.count > 0, "Comunica receives exact cardinalities from the broker");
+  assert.ok(calls.match <= 120, `bound lookups are index seeks, observed ${calls.match} match calls`);
+});
+
+test("resident-graph quotas follow the kernel heap and refuse oversized graphs before the kernel can die", async t => {
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot, maxOldSpaceMb: 256 });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 60_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var residency = linkedScience.capabilities().budgetPlanes.residency;
+    var quotaWs = linkedScience.open({ contextKey: 'heap-quota' });
+    var df = quotaWs.rdf.DataFactory;
+    var oversized = [];
+    for (let index = 0; index < residency.maxResidentGraphQuads + 1; index += 1) {
+      oversized.push(df.quad(df.namedNode('https://example.test/s/' + index), df.namedNode('https://example.test/p'), df.namedNode('https://example.test/o')));
+    }
+    var refusal;
+    try { await quotaWs.graphs.load({ name: 'oversized', kind: 'instance-data', quads: oversized, source: { kind: 'local-synthetic', id: 'oversized' } }); refusal = 'allowed'; } catch (error) { refusal = { code: error.code, scope: error.repair?.scope, maximum: error.repair?.maximum }; }
+    nodeRepl.write({ maxResidentGraphQuads: residency.maxResidentGraphQuads, basis: residency.basis.source, capped: residency.basis.capped, derived: residency.basis.heap.derivedMaxQuads, heapLimitMb: Math.round(residency.basis.heap.heapLimitBytes / 1048576), refusal, headroom: residency.kernelHeap.failureCode });
+  ` }));
+  assert.equal(response.result.isError, undefined, text(response));
+  const output = text(response);
+  const advertised = Number(/maxResidentGraphQuads: (\d+)/u.exec(output)?.[1]);
+  assert.ok(advertised > 1_000 && advertised < 250_000, `heap-derived quota ${advertised} sits below the configured ceiling`);
+  assert.match(output, /basis: 'heap-derived'/u);
+  assert.match(output, /capped: true/u);
+  assert.match(output, /code: 'LS_GRAPH_RESIDENCY_BOUND'/u);
+  assert.match(output, /scope: 'operational-residency'/u);
+  assert.match(output, /headroom: 'LS_KERNEL_HEAP_BOUND'/u);
+  assert.equal(broker.child !== null, true, "the kernel survived the refusal");
+});
+
+test("kernel heap exhaustion is reported as KERNEL_OOM with epoch-loss repair guidance", async t => {
+  const broker = new KernelBroker({ maxOldSpaceMb: 64 });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  await handle(request(1, "js", { code: "var survivor = 'before-oom'" }));
+  const response = await handle(request(2, "js", { timeout_ms: 90_000, code: `
+    var hog = [];
+    for (;;) hog.push(new Array(100000).fill('x'.repeat(16)));
+  ` }));
+  assert.equal(response.result.isError, true);
+  const envelope = JSON.parse(text(response)).error;
+  assert.equal(envelope.code, "KERNEL_OOM");
+  assert.equal(envelope.stage, "kernel-lifecycle");
+  assert.equal(envelope.retryable, false);
+  assert.equal(envelope.repair.epochLost, true);
+  assert.equal(envelope.repair.scope, "kernel-heap");
+  assert.equal(envelope.receipt.heapExhausted, true);
+  assert.equal(envelope.receipt.heapLimitMb, 64);
+  assert.match(envelope.message, /64 MB heap/u);
+  const after = await handle(request(3, "js", { code: "nodeRepl.write(typeof survivor)" }));
+  assert.equal(text(after), "undefined", "the replacement kernel starts a fresh epoch");
 });

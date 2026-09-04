@@ -399,3 +399,25 @@ test('fresh-agent discovery fixture passes the documented behavioral rubric usin
   });
   assert.equal(evaluation.passed, true, JSON.stringify(evaluation));
 });
+
+test('resident-graph quotas expose a heap basis and multi-source queries keep RDF merge semantics', async () => {
+  const linkedScience = await setupLinkedScience({ nodeRepl: {} });
+  const residency = linkedScience.capabilities().budgetPlanes.residency;
+  assert.equal(residency.basis.kind, 'linked-science-residency-basis');
+  assert.equal(residency.basis.heap.estimatedBytesPerQuad, 2_560);
+  assert.equal(residency.maxResidentGraphQuads <= residency.basis.configured.maxResidentGraphQuads, true);
+  assert.equal(residency.maxResidentGraphQuads <= Math.max(1, residency.basis.heap.derivedMaxQuads), true);
+  assert.equal(residency.kernelHeap.failureCode, 'LS_KERNEL_HEAP_BOUND');
+  assert.deepEqual(residency.brokerStoredResults, { available: false });
+
+  const workspace = linkedScience.open({ contextKey: 'merge-semantics' });
+  const shared = '<https://example.test/a> <https://example.test/p> <https://example.test/o> .';
+  const left = await workspace.graphs.load({ name: 'left', kind: 'instance-data', text: `${shared}\n<https://example.test/b> <https://example.test/p> <https://example.test/o> .`, source: { kind: 'local-synthetic', id: 'left' } });
+  const right = await workspace.graphs.load({ name: 'right', kind: 'instance-data', text: `${shared}\n<https://example.test/c> <https://example.test/p> <https://example.test/o> .`, source: { kind: 'local-synthetic', id: 'right' } });
+  const merged = await workspace.query.run({ sources: [ left, right ], sparql: 'SELECT ?s WHERE { ?s <https://example.test/p> <https://example.test/o> } ORDER BY ?s' });
+  assert.deepEqual(workspace.results.page(merged, { limit: 10 }).rows.map(row => row.s.value), [ 'https://example.test/a', 'https://example.test/b', 'https://example.test/c' ], 'a quad present in both graphs yields one solution');
+  const constructed = await workspace.query.run({ sources: [ left, right ], sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }' });
+  assert.equal(workspace.results.profile(constructed).count, 3);
+  const reused = await workspace.query.run({ sources: [ constructed, left ], sparql: 'SELECT (COUNT(*) AS ?n) WHERE { ?s <https://example.test/p> ?o }' });
+  assert.equal(workspace.results.page(reused, { limit: 1 }).rows[0].n.value, '3', 'an in-kernel quad result composes with a graph under the same merge semantics');
+});

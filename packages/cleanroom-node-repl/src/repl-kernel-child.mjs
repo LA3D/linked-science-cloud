@@ -245,8 +245,10 @@ const linkedScienceResultStorage = Object.freeze({
   capabilities: () => hostCallStrict("results.capabilities", {}),
   begin: options => hostCallStrict("results.begin", options),
   append: (storageId, items) => hostCallStrict("results.append", { storageId, items }),
-  commit: storageId => hostCallStrict("results.commit", { storageId }),
+  commit: (storageId, options = {}) => hostCallStrict("results.commit", { storageId, ...options }),
   page: (storageId, options = {}) => hostCallStrict("results.page", { storageId, ...options }),
+  match: (storageId, options = {}) => hostCallStrict("results.match", { storageId, ...options }),
+  count: (storageId, options = {}) => hostCallStrict("results.count", { storageId, ...options }),
   abort: storageId => hostCallStrict("results.abort", { storageId }),
 });
 

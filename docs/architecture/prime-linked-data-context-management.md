@@ -101,7 +101,7 @@ Durability must preserve these distinctions:
 
 ## Gate D: ergonomics
 
-Automatic facade bootstrap and a shorter examples-first worker skill are last-mile changes. Evaluate them after the context and child contracts stabilize so convenience does not become a second implicit activation path. The broker may inject a validated facade binding at kernel creation, but wrong-runtime diagnostics and explicit capability receipts remain available for activation and troubleshooting.
+Automatic facade bootstrap and a shorter examples-first worker skill are independent of Gates A-C: they change no authority, budget, or evidence semantics, and they reduce the per-kernel ritual and worker-facing guidance that every experiment arm otherwise pays for. They may therefore proceed before or alongside Gate A. The broker may inject a validated facade binding at kernel creation, but wrong-runtime diagnostics and explicit capability receipts remain available for activation and troubleshooting so convenience does not become a second implicit activation path.
 
 ## Immediate next action
 

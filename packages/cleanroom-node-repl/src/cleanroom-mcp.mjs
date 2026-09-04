@@ -11,7 +11,7 @@ import { MediatedTraversalBroker } from "./mediated-traversal.mjs";
 import { ResultSpoolRegistry } from "./result-spool.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
-export const SERVER_VERSION = "0.5.0";
+export const SERVER_VERSION = "0.6.0";
 
 const KERNEL_PATH = fileURLToPath(new URL("./repl-kernel-child.mjs", import.meta.url));
 const KERNEL_ROOT = dirname(KERNEL_PATH);
@@ -21,6 +21,68 @@ const DEFAULT_MAX_OUTPUT_BYTES = 32 * 1024;
 const MAX_OUTPUT_BYTES = 256 * 1024;
 const DEFAULT_TIMEOUT_MS = 30_000;
 const MAX_TIMEOUT_MS = 120_000;
+// The kernel heap is an explicit physical ceiling. The Linked Science facade
+// derives its resident-graph quotas from the heap it actually receives, so a
+// larger default here raises the advertised symbolic capacity rather than
+// letting a resident graph outgrow the process.
+const DEFAULT_MAX_OLD_SPACE_MB = 1024;
+const STDERR_HEAD_BYTES = 2 * 1024;
+const STDERR_TAIL_BYTES = 2 * 1024;
+const STDERR_SEAM_CHARS = 256;
+const HEAP_EXHAUSTION_PATTERN = /Reached heap limit|heap out of memory|FATAL ERROR: .*(?:Allocation failed|OOM|Committing semi space failed)/iu;
+
+// V8 prints one fatal-error line and then a long native backtrace, so the
+// classification is latched as stderr arrives rather than read from a tail.
+function createStderrObserver() {
+  const state = { head: "", tail: "", seam: "", heapExhausted: false };
+  return {
+    state,
+    observe(chunk) {
+      const text = chunk.toString("utf8");
+      if (!state.heapExhausted && HEAP_EXHAUSTION_PATTERN.test(`${state.seam}${text}`)) state.heapExhausted = true;
+      state.seam = `${state.seam}${text}`.slice(-STDERR_SEAM_CHARS);
+      if (state.head.length < STDERR_HEAD_BYTES) state.head = `${state.head}${text}`.slice(0, STDERR_HEAD_BYTES);
+      state.tail = `${state.tail}${text}`.slice(-STDERR_TAIL_BYTES);
+    },
+  };
+}
+
+function kernelExitError({ code, signal, stderr, maxOldSpaceMb, cwd }) {
+  const scrub = value => value.replaceAll(cwd, "<cwd>").trim();
+  const head = scrub(stderr.head);
+  const tail = scrub(stderr.tail);
+  const heapExhausted = stderr.heapExhausted;
+  const error = new Error(heapExhausted
+    ? `Kernel exceeded its ${maxOldSpaceMb} MB heap and was replaced; every binding, handle, RLM context, and stored result from the previous epoch is lost`
+    : `Kernel exited (${code ?? signal ?? "unknown"}) and was replaced; every binding, handle, RLM context, and stored result from the previous epoch is lost`);
+  const repair = {
+    kind: "cleanroom-kernel-repair",
+    scope: heapExhausted ? "kernel-heap" : "kernel-exit",
+    epochLost: true,
+    allowed: true,
+    sameCall: false,
+    ...(heapExhausted ? { heapLimitMb: maxOldSpaceMb } : {}),
+    action: heapExhausted
+      ? "Bootstrap again in the fresh kernel, keep resident graphs within linkedScience.capabilities().budgetPlanes.residency, prefer symbolic subqueries over whole-graph copies, and treat every previous handle as stale."
+      : "Bootstrap again in the fresh kernel and treat every previous handle as stale.",
+  };
+  return Object.assign(error, {
+    code: heapExhausted ? "KERNEL_OOM" : "KERNEL_EXIT",
+    stage: "kernel-lifecycle",
+    retryable: false,
+    repair,
+    receipt: {
+      kind: "cleanroom-kernel-exit",
+      exitCode: code ?? null,
+      signal: signal ?? null,
+      heapLimitMb: maxOldSpaceMb,
+      heapExhausted,
+      ...(head ? { stderrHead: head } : {}),
+      ...(tail && tail !== head ? { stderrTail: tail } : {}),
+      repair,
+    },
+  });
+}
 
 const TOOLS = Object.freeze([
   {
@@ -113,7 +175,7 @@ export class KernelBroker {
     provider = null,
     peekPolicy = null,
     checkpointRoot = null,
-    maxOldSpaceMb = 256,
+    maxOldSpaceMb = DEFAULT_MAX_OLD_SPACE_MB,
     traversalBroker,
     traversalOptions,
     resultSpool,
@@ -161,7 +223,8 @@ export class KernelBroker {
       stdio: ["ignore", "ignore", "pipe", "ipc"],
     });
     this.child = child;
-    child.stderr?.resume();
+    const stderr = createStderrObserver();
+    child.stderr?.on("data", stderr.observe);
     this.ready = new Promise((resolveReady, rejectReady) => {
       const onError = (error) => rejectReady(error);
       child.once("error", onError);
@@ -183,14 +246,23 @@ export class KernelBroker {
         }
       });
     });
-    child.once("exit", (code, signal) => {
+    child.once("exit", () => {
       const owner = { token: hostCapabilityToken, epoch: kernelEpoch };
       this.traversal.abortOwner(owner, "kernel-exit");
       this.resultSpool.releaseOwner(owner);
       if (this.child === child) this.child = null;
-      const error = Object.assign(new Error(`Kernel exited (${code ?? signal ?? "unknown"})`), { code: "KERNEL_EXIT" });
-      for (const pending of this.pending.values()) pending.reject(error);
-      this.pending.clear();
+    });
+    // `close` follows `exit` once stdio has drained, so the stderr tail that
+    // classifies a heap-exhaustion abort is complete before callers hear of it.
+    child.once("close", (code, signal) => {
+      const error = kernelExitError({ code, signal, stderr: stderr.state, maxOldSpaceMb: this.maxOldSpaceMb, cwd: this.cwd });
+      // Only this kernel's requests are rejected; a replacement kernel may
+      // already have its own in flight by the time the old stdio drains.
+      for (const [ id, pending ] of this.pending) {
+        if (pending.child !== child) continue;
+        this.pending.delete(id);
+        pending.reject(error);
+      }
     });
     await this.ready;
     for (const root of this.moduleRoots) await this._send("add_root", { path: root });
@@ -200,7 +272,7 @@ export class KernelBroker {
     await this._spawn();
     const id = ++this.sequence;
     return new Promise((resolveRequest, rejectRequest) => {
-      this.pending.set(id, { resolve: resolveRequest, reject: rejectRequest });
+      this.pending.set(id, { resolve: resolveRequest, reject: rejectRequest, child: this.child });
       this.child.send({ type, id, ...payload }, (error) => {
         if (!error) return;
         this.pending.delete(id);
@@ -229,6 +301,8 @@ export class KernelBroker {
       else if (method === "results.append") value = this.resultSpool.append(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "results.commit") value = this.resultSpool.commit(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "results.page") value = this.resultSpool.page(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.match") value = this.resultSpool.match(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.count") value = this.resultSpool.count(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "results.abort") value = this.resultSpool.abort(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "peek.begin") value = this.peek.begin(args.contextId, args.options);
       else if (method === "peek.current") value = this.peek.current(args.contextId);

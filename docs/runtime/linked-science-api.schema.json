@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -33,9 +33,11 @@
       "owner": "cleanroom-broker",
       "lifetime": "kernel-epoch",
       "resultKinds": [
-        "quads"
+        "quads",
+        "bindings"
       ],
-      "publication": "complete-only"
+      "publication": "complete-only",
+      "indexed": true
     }
   },
   "discovery": [

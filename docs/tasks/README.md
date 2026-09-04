@@ -16,6 +16,7 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Durable outcome |
 | --- | --- | --- |
+| [Heap-aligned residency, bindings spill, and indexed spool](heap-aligned-residency-indexed-spool.md) | Complete | Derived resident-graph quotas from the kernel heap with a live headroom check and `KERNEL_OOM` classification, spilled large `SELECT` solutions to broker storage, and made stored quad results indexed sources with pattern pushdown and exact counts. |
 | [Complete out-of-core graph-query results](out-of-core-graph-results.md) | Complete | Added private epoch-owned SQLite spooling for complete large `CONSTRUCT`/`DESCRIBE` results, streaming symbolic reuse, quota atomicity, reset cleanup, aggregate output bounds, structural `SERVICE` detection, and corrected sample configuration. |
 | [Symbolic SPARQL query completeness](symbolic-query-completeness.md) | Complete | Removed the harness-imposed SPARQL LIMIT; added complete-or-fail streamed materialization, declared DESCRIBE normalization, explicit completion provenance, and all-four-form runtime plus actual-MCP coverage. |
 | [RLM/Prime symbolic graph realignment](rlm-symbolic-graph-realignment.md) | Complete | Made RLM/Prime normative; separated execution, residency, and projection budgets; retained and indexed a controlled 12,050-quad graph from one acquisition for repeated bounded local subqueries; added structured repair and honest recursion capability reporting. |

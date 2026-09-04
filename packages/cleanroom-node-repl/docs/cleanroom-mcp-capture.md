@@ -4,7 +4,7 @@ The project-scoped `cleanroom_node_repl` server is the Linked Science-owned obse
 
 The MCP broker exposes only:
 
-- `js({code, timeout_ms?, title?})`
+- `js({code, timeout_ms?, max_output_bytes?, title?})`
 - `js_reset({})`
 - `js_add_node_module_dir({path})`
 

@@ -29,7 +29,7 @@ The facade import resolves its declared dependencies from its own validated modu
 
 The bootstrap detects the private parent mediator without exposing its bridge or ambient Fetch closure. `nodeRepl.linkedScienceTraversal` and global `fetch` remain unavailable. Capabilities report anonymous public-read authority, standard Fetch beneath the facade, effect gates, hard per-call ceilings, and zero hidden transport retries. Explicit resource reads and agent queries are recorded in bounded workspace history.
 
-The MCP remains the exact three-tool surface, while the persistent workspace exposes a general broker-mediated resource surface. Use `workspace.resources.get(url)` for a bounded HTTP representation; its response object supports in-kernel text, JSON, and binary composition, and `workspace.resources.inspect` provides prompt-bounded JSON/text/XML/CSV/binary views. Use `resource.rdf({ name })` or `workspace.resources.parseRdf(resource, { name })` to retain an RDF/JS graph directly—no CONSTRUCT wrapper is needed. Use `workspace.traversal.query(options)` for remote SPARQL or Communica federation. Query-level `LIMIT` remains optional caller semantics, not a harness bound. Successful query profiles state completion; operational exhaustion returns a failed attempt with no partial handle. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
+The MCP remains the exact three-tool surface, while the persistent workspace exposes a general broker-mediated resource surface. Use `workspace.resources.get(url)` for a bounded HTTP representation; its response object supports in-kernel text, JSON, and binary composition, and `workspace.resources.inspect` provides prompt-bounded JSON/text/XML/CSV/binary views. Use `resource.rdf({ name })` or `workspace.resources.parseRdf(resource, { name })` to retain an RDF/JS graph directly—no CONSTRUCT wrapper is needed. Use `workspace.traversal.query(options)` for remote SPARQL or Communica federation. Query-level `LIMIT` remains optional caller semantics, not a harness bound. Successful query profiles state completion; operational exhaustion returns a failed attempt with no partial handle. Large solution sequences and graph results spill to broker storage; resident-graph quotas follow the kernel heap and are reported under `budgetPlanes.residency.basis`. The skill guides evidence orientation; the runtime does not encode a grounding or planning state machine.
 
 ## Discover before acting
 
@@ -57,7 +57,7 @@ Follow generated method documentation. `graphs.load` is asynchronous because suc
 
 Repair local validation failures in place from structured `error.repair` feedback. A missing or stale scoped object does not invalidate the runtime binding. Read the targeted `recovery` contract before resetting.
 
-`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, symbolic handles, and epoch-owned result spools. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
+`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, symbolic handles, and epoch-owned result spools. A kernel that dies of memory is replaced the same way and reported as `KERNEL_OOM` with epoch-loss repair guidance. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
 
 ```js
 var recovered = linkedScience.open({ contextKey: 'measurement-goal' })
