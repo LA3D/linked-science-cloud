@@ -1,6 +1,6 @@
 # Task: simplify the scientific REPL
 
-- **Status:** Implementation and verification complete; local Git integration pending below.
+- **Status:** Complete; implementation integrated into local `main`.
 - **Authorization:** The user accepted the architecture review and requested implementation in a new thread on 2026-09-04. Repository-local code, tests, documentation and focused local Git handoff are in scope.
 - **Checkout:** `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`
 - **Branch:** `codex/repl-simplification`, starting from local `main` / `claude/resident-quota-spool-index` at `10550cf`.
@@ -32,4 +32,6 @@ The nested `.codex/config.toml` approval setting and unrelated `artifacts/struct
 
 ## Git handoff
 
-The reviewed inherited baseline is commit `8348ecd`. The verified simplification will be committed on `codex/repl-simplification` and fast-forwarded into local `main` from `10550cf` if the checkout remains safe. The exact implementation commit and reachability will be recorded after integration. The existing `.codex/config.toml` setting and `artifacts/structure-viewer/` remain outside the commits. Push is not authorized.
+The reviewed inherited baseline is commit `8348ecd`; the simplification is `d95550b` (`Simplify scientific REPL lifetime and native composition`). Both were fast-forwarded from `codex/repl-simplification` into local `main`, starting at `10550cf`. Both passed `git merge-base --is-ancestor <commit> main`. This final handoff record follows in a documentation-only commit on the same task branch.
+
+Local `main` is ahead of `origin/main`; nothing was pushed. The existing `.codex/config.toml` approval setting and untracked `artifacts/structure-viewer/` remain outside task commits. No implementation work remains. An already-running project broker must be restarted to load the new startup behavior; task-level mounting and scientific evaluation remain separate from this offline verification.
