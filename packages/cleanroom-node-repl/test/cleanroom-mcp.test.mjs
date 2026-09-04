@@ -239,7 +239,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '5\.1\.0'/u);
+  assert.match(text(response), /version: '6\.0\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -251,7 +251,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
   assert.equal(broker.traversal.sessions.size, 0);
 });
 
-test("the actual repository MCP retains a large loopback RDF graph and reuses it for two bounded local queries", async t => {
+test("the actual repository MCP retains a large graph and returns all four complete SPARQL result forms", async t => {
   const requests = [];
   const largeTurtle = Array.from({ length: 12_050 }, (_, index) =>
     `<https://example.test/item/${index}> <https://example.test/p> <https://example.test/o> .`,
@@ -278,11 +278,29 @@ test("the actual repository MCP retains a large loopback RDF graph and reuses it
     var resource = await ws.resources.get(${JSON.stringify(url)}, { role: 'fixture-document' });
     var graph = await resource.rdf({ name: 'fixture-graph' });
     var exists = await ws.query.run({ sources: [graph], sparql: 'ASK { <https://example.test/item/12049> <https://example.test/p> <https://example.test/o> }' });
-    var result = await ws.query.select({ sources: [graph], sparql: 'SELECT ?item WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> } ORDER BY ?item LIMIT 5' });
+    var result = await ws.query.select({ sources: [graph], sparql: 'SELECT ?item WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> } ORDER BY ?item' });
+    var constructed = await ws.query.run({ sources: [graph], sparql: 'CONSTRUCT { ?item <https://example.test/selected> true } WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> }' });
+    var described = await ws.query.run({ sources: [graph], sparql: 'DESCRIBE ?item WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> } ORDER BY ?item LIMIT 1 OFFSET 1' });
+    var describedAll = await ws.query.run({ sources: [graph], sparql: 'DESCRIBE ?item WHERE { ?item <https://example.test/p> <https://example.test/o> }' });
+    var profiles = [result, exists, constructed, described].map(value => ws.results.profile(value));
     nodeRepl.write({
       graph: ws.results.profile(graph),
       exists: ws.results.page(exists, { limit: 1 }).rows[0].value,
       rows: ws.results.page(result, { limit: 2 }).rows.map(row => row.item.value),
+      resultTypes: profiles.map(profile => profile.type),
+      completion: profiles.map(profile => profile.completion.complete),
+      described: {
+        count: profiles[3].count,
+        queryType: profiles[3].provenance.queryType,
+        executionQueryType: profiles[3].provenance.executionQueryType,
+        policy: profiles[3].completion.descriptionPolicy.id,
+        subject: ws.results.page(described, { limit: 1 }).rows[0].subject.value
+      },
+      completeLargeDescribe: {
+        count: ws.results.profile(describedAll).count,
+        complete: ws.results.profile(describedAll).completion.complete,
+        truncated: ws.results.profile(describedAll).completion.truncated
+      },
       history: ws.resources.history(),
       budgets: linkedScience.capabilities().budgetPlanes,
       rawFetch: typeof fetch
@@ -295,8 +313,15 @@ test("the actual repository MCP retains a large loopback RDF graph and reuses it
   assert.match(output, /exists: true/u);
   assert.match(output, /https:\/\/example\.test\/item\/1/u);
   assert.match(output, /https:\/\/example\.test\/item\/12049/u);
+  assert.match(output, /resultTypes: \[ 'bindings', 'boolean', 'quads', 'quads' \]/u);
+  assert.match(output, /completion: \[ true, true, true, true \]/u);
+  assert.match(output, /queryType: 'DESCRIBE'/u);
+  assert.match(output, /executionQueryType: 'CONSTRUCT'/u);
+  assert.match(output, /policy: 'outgoing-subject-triples'/u);
+  assert.match(output, /subject: 'https:\/\/example\.test\/item\/12049'/u);
+  assert.match(output, /completeLargeDescribe: \{ count: 12050, complete: true, truncated: false \}/u);
   assert.match(output, /total: 1/u);
-  assert.match(output, /operational in-memory safety; not a prompt or display limit/u);
+  assert.match(output, /operational in-memory safety and atomic admission; not query semantics or a prompt\/display limit/u);
   assert.match(output, /rawFetch: 'undefined'/u);
   assert.equal(requests.length, 1);
 });
@@ -330,8 +355,8 @@ test("repairable local validation reaches the MCP tool error envelope with typed
   assert.equal(queryEnvelope.code, "LS_QUERY_PREFLIGHT");
   assert.equal(queryEnvelope.stage, "query-preflight");
   assert.equal(queryEnvelope.retryable, true);
-  assert.equal(queryEnvelope.repair.field, "sparql.limit");
-  assert.deepEqual(queryEnvelope.repair.expected, { type: "integer", minimum: 1, maximum: 500 });
+  assert.equal(queryEnvelope.repair.field, "sources");
+  assert.deepEqual(queryEnvelope.repair.expected, { type: "array", minItems: 1, maxItems: 20, items: "resident graph handle" });
   assert.deepEqual(queryEnvelope.repair.budgetImpact, { liveRequests: 0 });
   assert.deepEqual(queryEnvelope.receipt.repair, queryEnvelope.repair);
   assert.equal(broker.traversal.sessions.size, 0);

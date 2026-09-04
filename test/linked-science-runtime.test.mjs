@@ -45,7 +45,8 @@ test('bootstraps exactly once with stable facade bindings and generated discover
   assert.equal(first.capabilities().currentJsGuardIsSecuritySandbox, false);
   assert.equal(first.capabilities().architecture, 'recursive-language-model');
   assert.equal(first.capabilities().budgetPlanes.residency.maxResidentGraphQuads, 250_000);
-  assert.equal(first.capabilities().budgetPlanes.residency.semantics, 'operational in-memory safety; not a prompt or display limit');
+  assert.equal(first.capabilities().budgetPlanes.residency.semantics, 'operational in-memory safety and atomic admission; not query semantics or a prompt/display limit');
+  assert.equal(first.capabilities().budgetPlanes.residency.maxResidentLocalQuadResultQuads, 500_000);
   assert.equal(first.capabilities().budgetPlanes.projection.semantics, 'model-visible observation only; never graph admission');
   assert.equal(first.capabilities().budgets.maxGraphQuads, undefined);
   assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'evidence', 'traversal', 'resources', 'derive', 'reset' ] });
@@ -132,6 +133,98 @@ test('discovers ontology terms, runs ontology-informed SELECT, and matches raw C
   assert.deepEqual(page.rows.map(row => [ row.sample.value, row.value.value ]), rawRows.map(row => [ row.get('sample').value, row.get('value').value ]));
 });
 
+test('all four local read forms retain complete native results without a harness-imposed LIMIT', async () => {
+  const linkedScience = await setupLinkedScience({ nodeRepl: {}, budgets: { maxResultItems: 20 } });
+  const workspace = linkedScience.open({ contextKey: 'all-query-forms' });
+  const graph = await workspace.graphs.load({
+    name: 'query-form-data',
+    kind: 'instance-data',
+    text: `@prefix ex: <https://example.test/> .
+      ex:a ex:kind ex:Thing; ex:value 1 .
+      ex:b ex:kind ex:Thing; ex:value 2 .
+      ex:c ex:kind ex:Thing; ex:value 3 .`,
+    source: { kind: 'local-synthetic', id: 'query-form-data' },
+  });
+
+  const selected = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> SELECT ?item WHERE { ?item ex:kind ex:Thing } ORDER BY ?item',
+  });
+  const asked = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> ASK { ex:c ex:value 3 }',
+  });
+  const constructed = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> CONSTRUCT { ?item ex:selected true } WHERE { ?item ex:kind ex:Thing }',
+  });
+  const described = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE ?item WHERE { ?item ex:kind ex:Thing } ORDER BY DESC(?item) LIMIT 2 OFFSET 1',
+  });
+  const wildcard = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE * WHERE { ?item ex:kind ?kind } ORDER BY ?item LIMIT 1',
+  });
+  const mixed = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE ex:a ?item WHERE { ?item ex:kind ex:Thing } ORDER BY DESC(?item) LIMIT 1',
+  });
+
+  const profiles = [ selected, asked, constructed, described, wildcard, mixed ].map(handle => workspace.results.profile(handle));
+  assert.deepEqual(profiles.map(profile => profile.type), [ 'bindings', 'boolean', 'quads', 'quads', 'quads', 'quads' ]);
+  assert.deepEqual(profiles.map(profile => profile.count), [ 3, 1, 3, 4, 2, 4 ]);
+  assert.equal(workspace.results.page(asked, { limit: 1 }).rows[0].value, true);
+  assert.equal(profiles.every(profile => profile.completion?.complete === true && profile.completion.truncated === false), true);
+  for (const profile of profiles.slice(3)) {
+    assert.equal(profile.provenance.queryType, 'DESCRIBE');
+    assert.equal(profile.provenance.executionQueryType, 'CONSTRUCT');
+    assert.equal(profile.provenance.descriptionPolicy.id, 'outgoing-subject-triples');
+    assert.equal(profile.completion.descriptionPolicy.wildcard, 'all-in-scope-query-variables');
+  }
+  assert.deepEqual(
+    workspace.results.page(described, { limit: 10 }).rows.map(row => row.subject.value).sort(),
+    [ 'https://example.test/a', 'https://example.test/a', 'https://example.test/b', 'https://example.test/b' ],
+  );
+  const boundedView = workspace.results.page(selected, { limit: 1 });
+  assert.equal(boundedView.truncated, true);
+  assert.equal(boundedView.provenance.completion.complete, true);
+});
+
+test('a local DESCRIBE graph may exceed the binding-item quota and remains complete', async () => {
+  const linkedScience = await setupLinkedScience({
+    nodeRepl: {},
+    budgets: { maxResultItems: 1, maxResidentGraphQuads: 10, maxWorkspaceGraphQuads: 10 },
+  });
+  const workspace = linkedScience.open({ contextKey: 'atomic-query-residency' });
+  const graph = await workspace.graphs.load({
+    name: 'complete-description',
+    kind: 'instance-data',
+    text: '<https://example.test/a> <https://example.test/p> <https://example.test/o> .\n<https://example.test/b> <https://example.test/p> <https://example.test/o> .\n<https://example.test/c> <https://example.test/p> <https://example.test/o> .',
+    source: { kind: 'local-synthetic', id: 'complete-description' },
+  });
+  const described = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'DESCRIBE ?s WHERE { ?s <https://example.test/p> <https://example.test/o> }',
+  });
+  const profile = workspace.results.profile(described);
+  assert.equal(profile.count, 3);
+  assert.equal(profile.count > linkedScience.capabilities().budgetPlanes.residency.maxResultItems, true);
+  assert.equal(profile.completion.complete, true);
+  assert.equal(profile.completion.truncated, false);
+  await assert.rejects(
+    workspace.query.run({ sources: [ graph ], sparql: 'SELECT ?s WHERE { ?s <https://example.test/p> <https://example.test/o> }' }),
+    error => error.code === 'LS_QUERY_RESULT_RESIDENCY_BOUND'
+      && error.stage === 'query-residency'
+      && error.retryable === true
+      && error.repair.scope === 'operational-residency'
+      && error.repair.preservesOriginalAnswer === false
+      && /no partial result handle/u.test(error.message),
+  );
+  const asked = await workspace.query.run({ sources: [ graph ], sparql: 'ASK { ?s <https://example.test/p> <https://example.test/o> }' });
+  assert.equal(asked.id, 'h-000003', 'the failed SELECT did not allocate a hidden partial handle');
+});
+
 test('generic derivation and views preserve lineage and enforce row, cell, edge, node, and byte bounds', async () => {
   const { workspace, ontology, sourceA, sourceB } = await runtimeFixture({ budgets: { maxBytes: 4_096 } });
   const result = await workspace.query.select({ sources: [ ontology, sourceA, sourceB ], sparql: measurementQuery, role: 'all-measurements' });
@@ -198,16 +291,16 @@ test('errors are recovery-shaped and no raw network-capable engine is present on
   assert.equal(workspace.fetch, undefined);
   await assert.rejects(() => workspace.query.select({
     sources: [ ontology ],
-    sparql: `SELECT ?s WHERE { GRAPH ?g { ?s ?p ?o } }`,
+    sparql: 'SELECT ?s WHERE { ?s ?p ?o ',
   }), error => error instanceof LinkedScienceRuntimeError
     && error.code === 'LS_QUERY_PREFLIGHT'
     && error.stage === 'query-preflight'
     && error.recoveryDocument === 'recovery'
     && error.retryable === true
-    && error.repair.field === 'sparql.limit'
-    && error.repair.expected.maximum === 500
+    && error.repair.field === 'sparql'
+    && error.repair.expected.syntax === 'valid SPARQL 1.1 query'
     && error.repair.budgetImpact.liveRequests === 0
-    && error.receipt.repair.field === 'sparql.limit');
+    && error.receipt.repair.field === 'sparql');
   await assert.rejects(() => workspace.graphs.load({ name: 'remote', kind: 'ontology', quads: ontologyQuads, source: { kind: 'remote', id: 'https://example.test/ontology' } }), error => error.code === 'LS_LOCAL_ONLY');
 });
 
@@ -221,6 +314,8 @@ test('machine-readable schema routes match runtime documentation and examples', 
   assert.deepEqual(Object.keys(completeDocumentation), routes.routes);
   assert.match(completeDocumentation.recovery.summary, /repair/i);
   assert.match(completeDocumentation['traversal.query'].constraints.join(' '), /visible agent attempt/u);
+  assert.match(completeDocumentation['query.select'].constraints.join(' '), /LIMIT is optional caller semantics/u);
+  assert.deepEqual(completeDocumentation['query.run'].resultTypes, { SELECT: 'bindings', ASK: 'boolean', CONSTRUCT: 'quads', DESCRIBE: 'quads' });
   assert.match(completeDocumentation['traversal.query'].sourceShapes.join(' '), /type: 'sparql'/u);
   assert.match(completeDocumentation['resources.get'].signature, /method\?/u);
   assert.match(completeDocumentation['resources.parseRdf'].signature, /role\?/u);

@@ -87,7 +87,7 @@ test('bootstrap validates roots and declared dependency resolution before instal
   assert.equal(inspected.broker.packageName, '@linked-science/cleanroom-node-repl');
   assert.equal(inspected.broker.mcpServer, 'cleanroom_node_repl');
   assert.deepEqual(inspected.broker.tools, [ 'js', 'js_reset', 'js_add_node_module_dir' ]);
-  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'sparqljs' ]);
+  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'sparqlalgebrajs', 'sparqljs' ]);
   assert.equal(Object.values(inspected.dependencies).every(url => url.startsWith('file:') && url.includes('/node_modules/')), true);
 
   const host = {};

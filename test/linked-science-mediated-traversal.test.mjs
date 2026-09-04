@@ -366,7 +366,7 @@ test('complete RDF document acquisition retains native quads and projects only s
   assert.deepEqual(workspace.results.page(nativeShape, { limit: 1 }).rows[0], { datasetCore: true, size: 2, termType: 'NamedNode' });
 });
 
-test('the private Communica path preserves ASK booleans and DESCRIBE native quads', async () => {
+test('the private Communica path preserves ASK booleans and solution-modified DESCRIBE native quads', async () => {
   const calls = [];
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'read-query-forms' });
@@ -381,13 +381,22 @@ test('the private Communica path preserves ASK booleans and DESCRIBE native quad
   assert.equal(workspace.results.page(asked, { limit: 1 }).rows[0].value, true);
   const described = await workspace.traversal.query({
     sources: [ 'https://data.example/source-a.ttl', 'https://data.example/source-b.ttl' ],
-    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE ex:item1',
+    sparql: 'PREFIX ex: <https://example.test/> DESCRIBE ?item WHERE { ?item ex:kind ex:Protein } ORDER BY ?item LIMIT 1 OFFSET 0',
     evidence: [ evidence ],
     budgets: { maxResultItems: 10 },
   });
-  assert.equal(workspace.results.profile(described).type, 'quads');
-  assert.equal(workspace.results.profile(described).count, 2);
-  assert.deepEqual(workspace.traversal.history().attempts.map(item => item.queryType), [ 'ASK', 'DESCRIBE' ]);
+  const describedProfile = workspace.results.profile(described);
+  assert.equal(describedProfile.type, 'quads');
+  assert.equal(describedProfile.count, 2);
+  assert.equal(describedProfile.completion.complete, true);
+  assert.equal(describedProfile.completion.descriptionPolicy.id, 'outgoing-subject-triples');
+  assert.equal(describedProfile.provenance.queryType, 'DESCRIBE');
+  assert.equal(describedProfile.provenance.executionQueryType, 'CONSTRUCT');
+  assert.notEqual(describedProfile.provenance.querySha256, describedProfile.provenance.executionQuerySha256);
+  const attempts = workspace.traversal.history().attempts;
+  assert.deepEqual(attempts.map(item => item.queryType), [ 'ASK', 'DESCRIBE' ]);
+  assert.equal(attempts[1].completion.complete, true);
+  assert.equal(attempts[1].hiddenRetries, 0);
 });
 
 test('a later agentic turn can select a relevant HTTP relation without automatic following', async () => {
@@ -543,18 +552,24 @@ test('traversal stays unavailable without the parent mediator and rejects non-HT
   assert.equal(calls.length, 0);
 });
 
-test('traversal aborts and retains no handle when the result item budget is exceeded', async () => {
+test('mediated DESCRIBE aborts and retains no incomplete handle when the result item budget is exceeded', async () => {
   const calls = [];
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) })).open({ contextKey: 'result-item-bound' });
   await assert.rejects(
     workspace.traversal.query({
       sources: [ 'https://data.example/many.ttl' ],
-      sparql: 'SELECT ?s WHERE { ?s <https://example.test/p> <https://example.test/o> } LIMIT 2',
+      sparql: 'DESCRIBE <https://example.test/a> <https://example.test/b>',
       budgets: { maxResultItems: 1 },
     }),
-    error => error.code === 'LS_TRAVERSAL_RESULT_BOUND',
+    error => error.code === 'LS_TRAVERSAL_RESULT_BOUND'
+      && error.repair.scope === 'operational-residency'
+      && error.repair.preservesOriginalAnswer === false
+      && /no partial result handle/u.test(error.message),
   );
   assert.equal(calls.length, 1);
   assert.deepEqual(workspace.traversal.history().attempts.map(item => item.status), [ 'failed' ]);
+  assert.equal(broker.sessions.size, 0);
+  const evidence = await loadSyntheticEvidence(workspace, 'post-failure-evidence');
+  assert.equal(evidence.id, 'h-000001', 'the failed DESCRIBE did not allocate a hidden partial handle');
 });
