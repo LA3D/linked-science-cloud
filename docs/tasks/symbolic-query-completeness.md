@@ -46,7 +46,7 @@ No implementation action remains. Restart or open a fresh task only when the def
 
 ## Handoff state
 
-- **Git:** Authoritative checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`; branch `codex/symbolic-query-completeness`; starting commit `deace4c`; task commits `a32d1c8` and `a515172`; unrelated untracked `artifacts/structure-viewer/` is preserved and excluded. Local-main integration is the final handoff step.
+- **Git:** Authoritative checkout `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`; branch `codex/symbolic-query-completeness`; starting commit `deace4c`; task commits `a32d1c8`, `a515172`, and `4f2ffe9` are reachable from local `main`; unrelated untracked `artifacts/structure-viewer/` is preserved and excluded.
 - **Verification:** `npm test` 142/142 passed; `npm run linked-science:verify`, `npm run smoke`, dependency resolution, and diff checks passed. Repository-spawned and mounted MCP observations both passed.
 - **Ephemeral state:** The mounted-MCP verification used an isolated cache-busted runtime 6.0.0 facade and left the pre-existing mounted facade and resident state untouched. Its 1,005-quad synthetic handle remains ephemeral and is not a durable artifact.
 - **Durable artifacts/receipts:** This task record and focused Git commits; no experiment receipt is required because this is implementation verification, not an intentional scientific evaluation run.
