@@ -10,7 +10,7 @@ For normal work, conditionally bootstrap `linkedScience` once and reuse it. Insp
 
 ## Activation and diagnostic verification
 
-When configuring the MCP, evaluating a fresh agent, diagnosing a suspected wrong runtime, or making an execution-backed activation claim, verify server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`; observe the authoritative cwd and `codeact` mode; verify one cross-call binding; and require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl` after bootstrap. Perform this once per fresh kernel; do not narrate each check as a scientific phase.
+When configuring the MCP, evaluating a fresh agent, diagnosing a suspected wrong runtime, or making an execution-backed activation claim, verify server `cleanroom_node_repl` with exactly `js`, `js_reset`, and `js_add_node_module_dir`; observe the authoritative cwd and structured `nodeRepl.rlm.capabilities()` result; verify one cross-call binding; and require `environment.project.id === '@linked-science/runtime'`, role `authoritative-production-implementation`, and broker package `@linked-science/cleanroom-node-repl` after bootstrap. Perform this once per fresh kernel; do not narrate each check as a scientific phase.
 
 ## Bootstrap once per kernel
 
@@ -20,7 +20,7 @@ For that activation/diagnostic verification, inspect the self-identifying enviro
 
 ```js
 const environment = linkedScience.capabilities().environment
-nodeRepl.write({ cwd: nodeRepl.cwd, mode: nodeRepl.rlm.mode, project: environment.project, broker: environment.broker })
+nodeRepl.write({ cwd: nodeRepl.cwd, rlm: nodeRepl.rlm.capabilities(), project: environment.project, broker: environment.broker })
 ```
 
 Do not proceed as Linked Science if any identity, root, broker package, server name, or tool contract differs. A generic persistent REPL is not an acceptable substitute.

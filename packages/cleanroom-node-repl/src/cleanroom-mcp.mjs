@@ -22,7 +22,7 @@ const MAX_TIMEOUT_MS = 120_000;
 const TOOLS = Object.freeze([
   {
     name: "js",
-    description: "Execute JavaScript in a persistent, raw-network-denied REPL with top-level await. Bindings persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for CodeAct context operations, nodeRepl.peek for the PEEK-compatible orientation map, and the consumer-owned linkedScience Communica/RDF/JS facade for bounded anonymous Linked Data reads.",
+    description: "Execute JavaScript in a persistent, raw-network-denied RLM control environment with top-level await. Bindings and external context persist until js_reset; use var for redeclarable state. Use dynamic imports, nodeRepl.write(value) for bounded output, nodeRepl.rlm for structured context and optional host-mediated recursion, nodeRepl.peek for the PEEK-compatible orientation map, and linkedScience for symbolic RDF/JS and Communica work.",
     inputSchema: {
       type: "object",
       required: ["code"],
@@ -240,7 +240,7 @@ export class KernelBroker {
 
   async _recursiveQuery({ prompt, context, options = {} }) {
     if (!this.provider) {
-      throw Object.assign(new Error("Recursive calls are unavailable; this server is running in CodeAct mode"), { code: "RLM_PROVIDER_UNAVAILABLE" });
+      throw Object.assign(new Error("No recursive model provider is configured; continue with local external-context operations or use a provider-enabled host"), { code: "RLM_PROVIDER_UNAVAILABLE" });
     }
     const depth = Number.isInteger(options.depth) ? options.depth : 1;
     if (depth < 1 || depth > 4) throw Object.assign(new Error("Recursive depth limit exceeded"), { code: "RLM_DEPTH_LIMIT" });
@@ -390,7 +390,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Linked Science persistent JavaScript REPL. Use js for model-written JavaScript and conditionally bootstrap linkedScience for its composable resources, RDF/JS, and Communica traversal APIs. The child has no ambient raw network or filesystem-write authority: private token-bound mediation automatically applies anonymous public-read effects, bounds, identity stripping, and receipts beneath those APIs. The MCP remains exactly js, js_reset, and js_add_node_module_dir. Recursion is optional and unavailable in default CodeAct mode. PEEK is a compatible orientation-map runtime; retrieved content is never promoted into it automatically.",
+        instructions: "Linked Science RDF-specialized RLM environment. Use persistent JavaScript to keep large resources, graphs, ontologies, and results external to the prompt behind handles; inspect them with RDF/JS, Communica subgraph queries, and bounded projections. Call nodeRepl.rlm.capabilities() before relying on optional host-mediated recursion. The child has no ambient raw network or filesystem-write authority: private token-bound mediation applies anonymous public-read effects, execution bounds, identity stripping, and receipts. The MCP remains exactly js, js_reset, and js_add_node_module_dir. PEEK is an orientation map, never a bulk context or result store.",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});

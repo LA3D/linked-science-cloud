@@ -27,4 +27,4 @@ Local read queries explicitly select graph handles and require a result limit ex
 
 Prompt-visible `results.page` and `results.table` views convert RDF terms to bounded descriptors only at the presentation boundary. The retained source handle, lineage, fingerprints, and provenance remain attached.
 
-See [the runtime architecture](codeact-linked-science-runtime.md) and [runtime discovery](../agent/runtime-discovery.md).
+See the normative [RLM/Prime runtime architecture](rlm-linked-science-runtime.md), the [persistent JavaScript compatibility surface](codeact-linked-science-runtime.md), and [runtime discovery](../agent/runtime-discovery.md).

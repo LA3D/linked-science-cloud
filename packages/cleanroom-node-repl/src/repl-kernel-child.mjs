@@ -117,10 +117,39 @@ function validateContextId(contextId) {
   }
 }
 
+function rlmCapabilities() {
+  const recursionAvailable = process.env.CLEANROOM_RLM_PROVIDER === "configured";
+  return Object.freeze({
+    kind: "cleanroom-rlm-capabilities",
+    version: "1.0.0",
+    architecture: "recursive-language-model",
+    controlEnvironment: "persistent-javascript",
+    externalContext: Object.freeze({
+      available: true,
+      persistence: "kernel-epoch",
+      maxContextBytes: MAX_CONTEXT_BYTES,
+      operations: Object.freeze(["registerContext", "context", "inspect"]),
+    }),
+    recursion: Object.freeze({
+      available: recursionAvailable,
+      interface: "nodeRepl.rlm.query",
+      lifecycleOwner: "cleanroom-host",
+      lifecycle: "bounded-one-shot-compatibility",
+      durable: false,
+      asynchronousHandle: false,
+      hardMaxDepth: 4,
+      recovery: recursionAvailable
+        ? "Use a bounded provider call only when decomposition benefits from a recursive model invocation."
+        : "Continue with local external-context operations, or run under a host configured with an RLM provider.",
+    }),
+  });
+}
+
 const rlm = Object.freeze({
   get mode() {
-    return process.env.CLEANROOM_RLM_PROVIDER === "configured" ? "recursive" : "codeact";
+    return process.env.CLEANROOM_RLM_PROVIDER === "configured" ? "recursive" : "external-context";
   },
+  capabilities: rlmCapabilities,
   registerContext(contextId, value) {
     validateContextId(contextId);
     if (Buffer.byteLength(JSON.stringify(value), "utf8") > MAX_CONTEXT_BYTES) {
@@ -153,7 +182,7 @@ const rlm = Object.freeze({
     return hostCall("rlm.query", { prompt, context, options });
   },
   status() {
-    return { mode: this.mode, contextCount: contexts.size };
+    return { mode: this.mode, contextCount: contexts.size, capabilities: rlmCapabilities() };
   },
 });
 

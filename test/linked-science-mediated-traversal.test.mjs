@@ -5,6 +5,9 @@ import { setupLinkedScience } from '../lib/linked-science-runtime.mjs';
 import { MediatedTraversalBroker } from '../packages/cleanroom-node-repl/src/mediated-traversal.mjs';
 
 const owner = { token: 'b'.repeat(64), epoch: 1 };
+const LARGE_TURTLE = Array.from({ length: 12_050 }, (_, index) =>
+  `<https://example.test/item/${index}> <https://example.test/p> <https://example.test/o> .`,
+).join('\n');
 function traversalAdapter(broker) {
   return {
     capabilities: () => broker.capabilities(),
@@ -33,6 +36,7 @@ function rdfFetch(calls) {
     '/source-b.ttl': '@prefix ex: <https://example.test/> . ex:item1 ex:label "Alpha" .',
     '/empty.ttl': '@prefix ex: <https://example.test/> .',
     '/many.ttl': '@prefix ex: <https://example.test/> . ex:a ex:p ex:o . ex:b ex:p ex:o .',
+    '/large.ttl': LARGE_TURTLE,
     '/schema': '@prefix ex: <https://example.test/> . @prefix owl: <http://www.w3.org/2002/07/owl#> . ex:Term a owl:Class .',
     '/landing': '<html><title>Vocabulary</title></html>',
     '/broken': '@prefix ex: <https://example.test/> . ex:s ex:p [',
@@ -127,7 +131,15 @@ test('general resource responses compose across calls with non-RDF inspection, R
   assert.deepEqual(workspace.resources.inspect(metadata, { as: 'json', maxBytes: 4_096 }).json, { type: 'object', keys: [ 'title', 'items' ], totalKeys: 2 });
   assert.deepEqual(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.csv'), { as: 'csv', maxBytes: 4_096 }).csv.columns, [ 'id', 'label' ]);
   assert.equal(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.xml'), { as: 'xml', maxBytes: 4_096 }).xml.root, 'resource');
-  assert.equal(workspace.resources.inspect(await workspace.resources.get('https://data.example/resource.bin'), { as: 'binary', maxBytes: 4_096 }).bytes, 5);
+  const binaryResource = await workspace.resources.get('https://data.example/resource.bin');
+  assert.equal(workspace.resources.inspect(binaryResource, { as: 'binary', maxBytes: 4_096 }).bytes, 5);
+  await assert.rejects(
+    binaryResource.rdf({ name: 'opaque-rdf' }),
+    error => error.code === 'LS_RESOURCE_RDF_FORMAT'
+      && error.repair.field === 'format'
+      && error.repair.expected.enum.includes('text/turtle')
+      && error.repair.budgetImpact.liveRequests === 0,
+  );
 
   const rdfResource = await workspace.resources.get('https://data.example/source-a.ttl', { role: 'source-a-document' });
   const graph = await rdfResource.rdf({ name: 'source-a-graph' });
@@ -147,6 +159,58 @@ test('general resource responses compose across calls with non-RDF inspection, R
   const profile = workspace.results.profile(graph);
   assert.equal(profile.provenance.sourceResource, rdfResource.handle.id);
   assert.equal(workspace.resources.history().attempts.filter(item => item.kind === 'linked-science-resource-attempt').length, 5);
+});
+
+test('large RDF is acquired once, indexed behind a graph handle, and reused through bounded local subgraph queries', async () => {
+  const calls = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
+  const linkedScience = await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker) });
+  const workspace = linkedScience.open({ contextKey: 'large-symbolic-graph' });
+
+  const resource = await workspace.resources.get('https://data.example/large.ttl', { role: 'large-rdf-document' });
+  await assert.rejects(
+    resource.rdf({ name: 'Large Graph' }),
+    error => error.code === 'LS_GRAPH_NAME'
+      && error.repair.field === 'name'
+      && error.repair.expected.pattern === '^[a-z][a-z0-9-]{1,63}$'
+      && error.repair.budgetImpact.liveRequests === 0,
+  );
+  const graph = await resource.rdf({ name: 'large-graph', role: 'reusable-large-graph' });
+  const graphProfile = workspace.results.profile(graph);
+  assert.equal(graphProfile.count, 12_050);
+  assert.deepEqual(graphProfile.residency, { kind: 'resident-rdf-dataset', indexed: true, scope: 'workspace-epoch' });
+  assert.ok(graphProfile.bounds.bytes <= linkedScience.capabilities().budgetPlanes.projection.maxBytes);
+
+  const exists = await workspace.query.run({
+    sources: [ graph ],
+    sparql: 'ASK { <https://example.test/item/12049> <https://example.test/p> <https://example.test/o> }',
+    role: 'large-graph-ask',
+  });
+  assert.equal(workspace.results.page(exists, { limit: 1 }).rows[0].value, true);
+
+  const selected = await workspace.query.select({
+    sources: [ graph ],
+    sparql: `SELECT ?item WHERE {
+      VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> }
+      ?item <https://example.test/p> <https://example.test/o>
+    } ORDER BY ?item LIMIT 5`,
+    role: 'large-graph-subgraph',
+  });
+  assert.deepEqual(workspace.results.page(selected, { limit: 2 }).rows.map(row => row.item.value), [
+    'https://example.test/item/1',
+    'https://example.test/item/12049',
+  ]);
+  assert.throws(
+    () => workspace.results.page(selected, { limit: 12 }),
+    error => error.code === 'LS_BOUND_EXCEEDED'
+      && error.repair.field === 'limit'
+      && error.repair.expected.maximum === 10
+      && error.repair.budgetImpact.liveRequests === 0,
+  );
+
+  assert.equal(calls.filter(call => call.url === 'https://data.example/large.ttl').length, 1);
+  assert.equal(workspace.traversal.history().total, 1);
+  assert.deepEqual(workspace.traversal.history().attempts.map(attempt => attempt.kind), [ 'linked-science-resource-attempt' ]);
 });
 
 test('resource effects are broker-gated by class rather than endpoint identity', async () => {

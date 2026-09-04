@@ -18,7 +18,7 @@ The project `.codex/config.toml` already contains the registration. Fully restar
 2. Run `npm test` and `npm run check`.
 3. Call `js` with `var sentinel = 40`.
 4. In a separate call, run `nodeRepl.write(await Promise.resolve(sentinel + 2))` and expect `42`.
-5. Run `nodeRepl.write({mode: nodeRepl.rlm.mode, cwd: nodeRepl.cwd})`. The default mode must be `codeact`.
+5. Run `nodeRepl.write({rlm: nodeRepl.rlm.capabilities(), cwd: nodeRepl.cwd})`. The result must identify the `recursive-language-model` architecture, persistent-JavaScript control environment, external context, and whether a recursive provider is actually available.
 6. Register and inspect external context entirely through JavaScript:
 
    ```js
@@ -55,7 +55,7 @@ The project `.codex/config.toml` already contains the registration. Fully restar
 
 ## Semantics and limits
 
-This is a CodeAct-style JavaScript environment: the model writes the control program and manipulates external context symbolically. Recursive `nodeRepl.rlm.query` calls are optional and return `RLM_PROVIDER_UNAVAILABLE` in the default CodeAct mode.
+This is an RLM-style JavaScript control environment: the model writes the control program and manipulates external context symbolically. CodeAct-style execution is one technique inside it. Recursive `nodeRepl.rlm.query` calls are optional and return `RLM_PROVIDER_UNAVAILABLE` when the trusted host has no provider configured.
 
 The PEEK runtime is explicitly **PEEK-compatible**, not canonical PEEK. It provides context-scoped bounded maps, structured edits, deterministic eviction, observable-trajectory commits, and optional checkpoints. An MCP server cannot inject a changing map into the root model's system prompt or infer complete query boundaries, so callers must bootstrap the map explicitly.
 

@@ -43,6 +43,11 @@ test('bootstraps exactly once with stable facade bindings and generated discover
   assert.throws(() => first.documentation.get('neighbors-missing'), error => error instanceof LinkedScienceRuntimeError && error.code === 'LS_DOCUMENT_NOT_FOUND');
   assert.equal(first.capabilities().rawEngineExposed, false);
   assert.equal(first.capabilities().currentJsGuardIsSecuritySandbox, false);
+  assert.equal(first.capabilities().architecture, 'recursive-language-model');
+  assert.equal(first.capabilities().budgetPlanes.residency.maxResidentGraphQuads, 250_000);
+  assert.equal(first.capabilities().budgetPlanes.residency.semantics, 'operational in-memory safety; not a prompt or display limit');
+  assert.equal(first.capabilities().budgetPlanes.projection.semantics, 'model-visible observation only; never graph admission');
+  assert.equal(first.capabilities().budgets.maxGraphQuads, undefined);
   assert.deepEqual(first.examples(), { topics: [ 'bootstrap', 'ontology', 'query', 'evidence', 'traversal', 'resources', 'derive', 'reset' ] });
   assert.match(first.examples('ontology').code, /schema\.search/);
   assert.equal(LINKED_SCIENCE_API_SCHEMA.bootstrap, first.documentation.get('bootstrap').usage);
@@ -81,6 +86,25 @@ test('retains first-class graph objects with RDF term, duplicate, order, named-g
   const duplicates = workspace.graph.neighbors(sourceA, { term: `${EX}sample-a`, maxEdges: 10, maxNodes: 10 });
   assert.equal(duplicates.edges.filter(edge => edge.object.value === 'duplicate-preserved').length, 2);
   assert.equal(workspace.results.profile(shacl).type, 'shacl');
+});
+
+test('resident graph quotas are operational controls with symbolic-query recovery, not projection limits', async () => {
+  const linkedScience = await setupLinkedScience({
+    nodeRepl: {},
+    budgets: { maxResidentGraphQuads: 4, maxWorkspaceGraphQuads: 8, maxRows: 1 },
+  });
+  const workspace = linkedScience.open({ contextKey: 'resident-graph-quota' });
+  await assert.rejects(
+    workspace.graphs.load({ name: 'too-large', kind: 'instance-data', quads: sourceAQuads, source: { kind: 'local-synthetic', id: 'too-large' } }),
+    error => error.code === 'LS_GRAPH_RESIDENCY_BOUND'
+      && error.stage === 'graph-residency'
+      && error.repair.scope === 'operational-residency'
+      && error.repair.sameCall === false
+      && /direct SPARQL subgraph query/u.test(error.repair.action)
+      && !/page limit/u.test(error.repair.action),
+  );
+  assert.equal(linkedScience.capabilities().budgetPlanes.projection.maxRows, 1);
+  assert.equal(linkedScience.capabilities().budgetPlanes.residency.maxResidentGraphQuads, 4);
 });
 
 test('discovers ontology terms, runs ontology-informed SELECT, and matches raw Communica', async () => {
@@ -190,6 +214,10 @@ test('machine-readable schema routes match runtime documentation and examples', 
   assert.match(completeDocumentation.recovery.summary, /repair/i);
   assert.match(completeDocumentation['traversal.query'].constraints.join(' '), /visible agent attempt/u);
   assert.match(completeDocumentation['traversal.query'].sourceShapes.join(' '), /type: 'sparql'/u);
+  assert.match(completeDocumentation['resources.get'].signature, /method\?/u);
+  assert.match(completeDocumentation['resources.parseRdf'].signature, /role\?/u);
+  assert.match(completeDocumentation['resources.parseRdf'].constraints.join(' '), /\^\[a-z\]/u);
+  assert.match(completeDocumentation.budgets.summary, /execution, residency, and model-visible projection/u);
   for (const route of routes.routes) assert.equal(facade.documentation.get(route).name, route);
   for (const topic of facade.examples().topics) assert.equal(typeof facade.examples(topic).code, 'string');
 

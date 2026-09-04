@@ -43,7 +43,14 @@ function cleanroomFixture(peek = new MemoryBrokerPeek()) {
     cwd: LINKED_SCIENCE_PROJECT_ROOT,
     peek,
     rlm: {
-      mode: 'codeact',
+      mode: 'external-context',
+      capabilities() {
+        return {
+          kind: 'cleanroom-rlm-capabilities', version: '1.0.0', architecture: 'recursive-language-model', controlEnvironment: 'persistent-javascript',
+          externalContext: { available: true, persistence: 'kernel-epoch', maxContextBytes: 2 * 1024 * 1024, operations: [ 'registerContext', 'context', 'inspect' ] },
+          recursion: { available: false, interface: 'nodeRepl.rlm.query', lifecycleOwner: 'cleanroom-host', lifecycle: 'bounded-one-shot-compatibility', durable: false, asynchronousHandle: false, hardMaxDepth: 4 },
+        };
+      },
       registerContext(contextId, value) { contexts.set(contextId, structuredClone(value)); return { contextId, registered: true }; },
       inspect(contextId, { start = 0, end = 4_096 } = {}) {
         const text = JSON.stringify(contexts.get(contextId));
@@ -69,7 +76,9 @@ test('bootstrap validates roots and declared dependency resolution before instal
   const cleanroom = cleanroomFixture();
   const inspected = await inspectLinkedScienceBootstrap({ cleanroom, projectRoot: LINKED_SCIENCE_PROJECT_ROOT, moduleRoot: LINKED_SCIENCE_MODULE_ROOT });
   assert.equal(inspected.runtime, 'cleanroom_node_repl');
-  assert.equal(inspected.mode, 'codeact');
+  assert.equal(inspected.mode, 'external-context');
+  assert.equal(inspected.rlm.architecture, 'recursive-language-model');
+  assert.equal(inspected.rlm.recursion.available, false);
   assert.deepEqual(inspected.project, {
     id: '@linked-science/runtime',
     role: 'authoritative-production-implementation',
@@ -86,6 +95,8 @@ test('bootstrap validates roots and declared dependency resolution before instal
   assert.equal(host.linkedScience, facade);
   assert.equal(host.ls, facade);
   assert.equal(facade.capabilities().environment.runtime, 'cleanroom_node_repl');
+  assert.equal(facade.capabilities().architecture, 'recursive-language-model');
+  assert.equal(facade.capabilities().recursion, false);
   assert.equal(facade.capabilities().environment.project.role, 'authoritative-production-implementation');
   assert.equal(cleanroom.contexts.get(LINKED_SCIENCE_RLM_CONTEXT).project.id, '@linked-science/runtime');
   assert.equal(cleanroom.contexts.get(LINKED_SCIENCE_RLM_CONTEXT).broker.packageName, '@linked-science/cleanroom-node-repl');

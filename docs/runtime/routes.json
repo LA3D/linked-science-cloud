@@ -24,6 +24,7 @@
     "reset",
     "recovery",
     "security",
+    "budgets",
     "compatibility"
   ],
   "aliases": {

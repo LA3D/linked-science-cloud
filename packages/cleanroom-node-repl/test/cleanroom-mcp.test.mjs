@@ -79,7 +79,7 @@ test("MCP lists the observed three-tool Node REPL contract", async (t) => {
   const listed = await handle({ jsonrpc: "2.0", id: 2, method: "tools/list", params: {} });
 
   assert.equal(initialized.result.serverInfo.name, "cleanroom-node-repl");
-  assert.match(initialized.result.instructions, /linkedScience.*resources.*RDF\/JS.*traversal/u);
+  assert.match(initialized.result.instructions, /RLM.*persistent JavaScript.*RDF\/JS.*Communica.*bounded projections/u);
   assert.match(initialized.result.instructions, /exactly js, js_reset, and js_add_node_module_dir/u);
   assert.deepEqual(listed.result.tools.map(({ name }) => name), ["js", "js_reset", "js_add_node_module_dir"]);
   assert.deepEqual(listed.result.tools[0].inputSchema.required, ["code"]);
@@ -239,7 +239,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '5\.0\.0'/u);
+  assert.match(text(response), /version: '5\.1\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -251,12 +251,15 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
   assert.equal(broker.traversal.sessions.size, 0);
 });
 
-test("the actual repository MCP broker composes a loopback resource response into RDF/JS and Communica without ambient Fetch", async t => {
+test("the actual repository MCP retains a large loopback RDF graph and reuses it for two bounded local queries", async t => {
   const requests = [];
+  const largeTurtle = Array.from({ length: 12_050 }, (_, index) =>
+    `<https://example.test/item/${index}> <https://example.test/p> <https://example.test/o> .`,
+  ).join("\n");
   const fixture = createServer((request, response) => {
     requests.push({ method: request.method, url: request.url });
     response.writeHead(200, { "content-type": "text/turtle" });
-    response.end("@prefix ex: <https://example.test/> . ex:item1 ex:kind ex:Protein .");
+    response.end(largeTurtle);
   });
   await new Promise((resolveListen, rejectListen) => {
     fixture.once("error", rejectListen);
@@ -274,26 +277,26 @@ test("the actual repository MCP broker composes a loopback resource response int
     var ws = linkedScience.open({ contextKey: 'loopback-resource-composition' });
     var resource = await ws.resources.get(${JSON.stringify(url)}, { role: 'fixture-document' });
     var graph = await resource.rdf({ name: 'fixture-graph' });
-    var dataset = ws.rdf.dataset(graph);
-    dataset.add(ws.rdf.DataFactory.quad(
-      ws.rdf.DataFactory.namedNode('https://example.test/item2'),
-      ws.rdf.DataFactory.namedNode('https://example.test/kind'),
-      ws.rdf.DataFactory.namedNode('https://example.test/Protein')
-    ));
-    var enriched = await ws.rdf.retain({ name: 'fixture-enriched', dataset });
-    var result = await ws.query.select({ sources: [enriched], sparql: 'SELECT ?item WHERE { ?item <https://example.test/kind> <https://example.test/Protein> } ORDER BY ?item LIMIT 10' });
+    var exists = await ws.query.run({ sources: [graph], sparql: 'ASK { <https://example.test/item/12049> <https://example.test/p> <https://example.test/o> }' });
+    var result = await ws.query.select({ sources: [graph], sparql: 'SELECT ?item WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> } ORDER BY ?item LIMIT 5' });
     nodeRepl.write({
-      resource: ws.resources.inspect(resource, { as: 'text', maxBytes: 4096 }),
-      rows: ws.results.page(result, { limit: 10 }).rows.map(row => row.item.value),
-      effects: linkedScience.capabilities().effects,
+      graph: ws.results.profile(graph),
+      exists: ws.results.page(exists, { limit: 1 }).rows[0].value,
+      rows: ws.results.page(result, { limit: 2 }).rows.map(row => row.item.value),
+      history: ws.resources.history(),
+      budgets: linkedScience.capabilities().budgetPlanes,
       rawFetch: typeof fetch
     });
   ` }));
   assert.equal(response.result.isError, undefined, text(response));
   const output = text(response);
-  assert.match(output, /source\.ttl/u);
-  assert.match(output, /https:\/\/example\.test\/item1/u);
-  assert.match(output, /https:\/\/example\.test\/item2/u);
+  assert.match(output, /count: 12050/u);
+  assert.match(output, /indexed: true/u);
+  assert.match(output, /exists: true/u);
+  assert.match(output, /https:\/\/example\.test\/item\/1/u);
+  assert.match(output, /https:\/\/example\.test\/item\/12049/u);
+  assert.match(output, /total: 1/u);
+  assert.match(output, /operational in-memory safety; not a prompt or display limit/u);
   assert.match(output, /rawFetch: 'undefined'/u);
   assert.equal(requests.length, 1);
 });
@@ -454,17 +457,20 @@ test("post-reset RLM inspection errors return without replacing the kernel", asy
   assert.equal(text(recovered), "2");
 });
 
-test("CodeAct mode provides symbolic contexts and reports recursion unavailable", async (t) => {
+test("external-context RLM mode provides symbolic contexts and reports recursion honestly", async (t) => {
   const broker = new KernelBroker();
   t.after(() => broker.close());
   const handle = createRequestHandler({ broker });
 
   const symbolic = await handle(request(1, "js", {
-    code: "nodeRepl.rlm.registerContext('letters', 'abcdefghij'); nodeRepl.write(nodeRepl.rlm.inspect('letters', {start:2,end:6}))",
+    code: "nodeRepl.rlm.registerContext('letters', 'abcdefghij'); nodeRepl.write({slice:nodeRepl.rlm.inspect('letters', {start:2,end:6}), capabilities:nodeRepl.rlm.capabilities()})",
   }));
   const recursive = await handle(request(2, "js", { code: "nodeRepl.write(await nodeRepl.rlm.query('summarize'))" }));
 
   assert.match(text(symbolic), /cdef/);
+  assert.match(text(symbolic), /architecture: 'recursive-language-model'/u);
+  assert.match(text(symbolic), /controlEnvironment: 'persistent-javascript'/u);
+  assert.match(text(symbolic), /available: false/u);
   assert.match(text(recursive), /RLM_PROVIDER_UNAVAILABLE/);
 });
 
@@ -480,10 +486,11 @@ test("configured recursive provider is broker-mediated and bounded", async (t) =
   const handle = createRequestHandler({ broker });
 
   const response = await handle(request(1, "js", {
-    code: "nodeRepl.rlm.registerContext('ctx','0123456789'); nodeRepl.write(await nodeRepl.rlm.query('inspect', {contextId:'ctx', slice:{start:3,end:7}}))",
+    code: "nodeRepl.rlm.registerContext('ctx','0123456789'); nodeRepl.write({capabilities:nodeRepl.rlm.capabilities(), result:await nodeRepl.rlm.query('inspect', {contextId:'ctx', slice:{start:3,end:7}})})",
   }));
 
-  assert.equal(text(response), "nested:3456");
+  assert.match(text(response), /available: true/u);
+  assert.match(text(response), /result: 'nested:3456'/u);
   assert.equal(seen.length, 1);
   assert.equal(seen[0].budget.depth, 1);
 });
