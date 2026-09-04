@@ -191,6 +191,29 @@ test('all four local read forms retain complete native results without a harness
   assert.equal(boundedView.provenance.completion.complete, true);
 });
 
+test('local SERVICE rejection walks parsed structure without rejecting literal text', async () => {
+  const linkedScience = await setupLinkedScience({ nodeRepl: {} });
+  const workspace = linkedScience.open({ contextKey: 'structural-service-check' });
+  const graph = await workspace.graphs.load({
+    name: 'service-check-data',
+    kind: 'instance-data',
+    text: '<https://example.test/a> <https://example.test/value> "ok" .',
+    source: { kind: 'local-synthetic', id: 'service-check-data' },
+  });
+  const literal = await workspace.query.select({
+    sources: [ graph ],
+    sparql: `SELECT ?value WHERE { VALUES ?value { '"type":"service"' } }`,
+  });
+  assert.equal(workspace.results.profile(literal).count, 1);
+  await assert.rejects(
+    workspace.query.select({
+      sources: [ graph ],
+      sparql: 'SELECT ?s WHERE { SERVICE <https://example.test/sparql> { ?s ?p ?o } }',
+    }),
+    error => error.code === 'LS_QUERY_PREFLIGHT' && error.repair.expected.serviceClauses === 0,
+  );
+});
+
 test('a local DESCRIBE graph may exceed the binding-item quota and remains complete', async () => {
   const linkedScience = await setupLinkedScience({
     nodeRepl: {},

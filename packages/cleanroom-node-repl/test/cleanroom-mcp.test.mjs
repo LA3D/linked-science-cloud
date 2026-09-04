@@ -111,6 +111,24 @@ test("JavaScript bindings, top-level await, writes, and request metadata persist
   assert.equal(text(metadata), "separate-call");
 });
 
+test("JavaScript text output is aggregate-bounded with an explicit per-evaluation override", async (t) => {
+  const broker = new KernelBroker();
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+
+  const bounded = await handle(request(1, "js", { code: "nodeRepl.write('a'.repeat(20000)); nodeRepl.write('b'.repeat(20000))" }));
+  const boundedTexts = bounded.result.content.filter(item => item.type === "text");
+  assert.equal(Buffer.byteLength(boundedTexts.map(item => item.text).join(""), "utf8") <= 32 * 1024, true);
+  assert.equal(boundedTexts.some(item => item._meta?.["cleanroom/output"]?.truncated === true), true);
+
+  const expanded = await handle(request(2, "js", {
+    code: "nodeRepl.write('c'.repeat(36000))",
+    max_output_bytes: 40_000,
+  }));
+  assert.equal(Buffer.byteLength(text(expanded), "utf8"), 36_000);
+  assert.equal(expanded.result.content[0]._meta, undefined);
+});
+
 test("implicit values stay silent and var bindings can be redeclared", async (t) => {
   const broker = new KernelBroker();
   t.after(() => broker.close());
@@ -239,7 +257,7 @@ test("consumer-owned bootstrap privately injects anonymous-read authority withou
     });
   ` }));
   assert.equal(response.result.isError, undefined);
-  assert.match(text(response), /version: '6\.0\.0'/u);
+  assert.match(text(response), /version: '6\.1\.0'/u);
   assert.match(text(response), /authority: 'anonymous-linked-data-read'/u);
   assert.match(text(response), /transport: 'standard-fetch'/u);
   assert.match(text(response), /evidenceMethod: 'function'/u);
@@ -282,11 +300,16 @@ test("the actual repository MCP retains a large graph and returns all four compl
     var constructed = await ws.query.run({ sources: [graph], sparql: 'CONSTRUCT { ?item <https://example.test/selected> true } WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> }' });
     var described = await ws.query.run({ sources: [graph], sparql: 'DESCRIBE ?item WHERE { VALUES ?item { <https://example.test/item/1> <https://example.test/item/12049> } ?item <https://example.test/p> <https://example.test/o> } ORDER BY ?item LIMIT 1 OFFSET 1' });
     var describedAll = await ws.query.run({ sources: [graph], sparql: 'DESCRIBE ?item WHERE { ?item <https://example.test/p> <https://example.test/o> }' });
+    var describedAllContainsLast = await ws.query.run({ sources: [describedAll], sparql: 'ASK { <https://example.test/item/12049> <https://example.test/p> <https://example.test/o> }' });
+    var describedPage = await ws.results.page(described, { limit: 1 });
+    var existsPage = await ws.results.page(exists, { limit: 1 });
+    var selectedPage = await ws.results.page(result, { limit: 2 });
     var profiles = [result, exists, constructed, described].map(value => ws.results.profile(value));
     nodeRepl.write({
       graph: ws.results.profile(graph),
-      exists: ws.results.page(exists, { limit: 1 }).rows[0].value,
-      rows: ws.results.page(result, { limit: 2 }).rows.map(row => row.item.value),
+      exists: existsPage.rows[0].value,
+      rows: selectedPage.rows.map(row => row.item.value),
+      constructedDatasetSize: ws.rdf.dataset(constructed).size,
       resultTypes: profiles.map(profile => profile.type),
       completion: profiles.map(profile => profile.completion.complete),
       described: {
@@ -294,13 +317,15 @@ test("the actual repository MCP retains a large graph and returns all four compl
         queryType: profiles[3].provenance.queryType,
         executionQueryType: profiles[3].provenance.executionQueryType,
         policy: profiles[3].completion.descriptionPolicy.id,
-        subject: ws.results.page(described, { limit: 1 }).rows[0].subject.value
+        subject: describedPage.rows[0].subject.value
       },
       completeLargeDescribe: {
         count: ws.results.profile(describedAll).count,
         complete: ws.results.profile(describedAll).completion.complete,
-        truncated: ws.results.profile(describedAll).completion.truncated
+        truncated: ws.results.profile(describedAll).completion.truncated,
+        residency: ws.results.profile(describedAll).residency
       },
+      storedResultReusable: (await ws.results.page(describedAllContainsLast, { limit: 1 })).rows[0].value,
       history: ws.resources.history(),
       budgets: linkedScience.capabilities().budgetPlanes,
       rawFetch: typeof fetch
@@ -311,6 +336,7 @@ test("the actual repository MCP retains a large graph and returns all four compl
   assert.match(output, /count: 12050/u);
   assert.match(output, /indexed: true/u);
   assert.match(output, /exists: true/u);
+  assert.match(output, /constructedDatasetSize: 2/u);
   assert.match(output, /https:\/\/example\.test\/item\/1/u);
   assert.match(output, /https:\/\/example\.test\/item\/12049/u);
   assert.match(output, /resultTypes: \[ 'bindings', 'boolean', 'quads', 'quads' \]/u);
@@ -319,10 +345,101 @@ test("the actual repository MCP retains a large graph and returns all four compl
   assert.match(output, /executionQueryType: 'CONSTRUCT'/u);
   assert.match(output, /policy: 'outgoing-subject-triples'/u);
   assert.match(output, /subject: 'https:\/\/example\.test\/item\/12049'/u);
-  assert.match(output, /completeLargeDescribe: \{ count: 12050, complete: true, truncated: false \}/u);
+  assert.match(output, /completeLargeDescribe: \{[\s\S]*count: 12050,[\s\S]*complete: true,[\s\S]*truncated: false,/u);
+  assert.match(output, /kind: 'broker-stored-result'/u);
+  assert.match(output, /backend: 'broker-sqlite'/u);
+  assert.match(output, /storedResultReusable: true/u);
   assert.match(output, /total: 1/u);
   assert.match(output, /operational in-memory safety and atomic admission; not query semantics or a prompt\/display limit/u);
   assert.match(output, /rawFetch: 'undefined'/u);
+  assert.equal(requests.length, 1);
+  assert.equal(broker.resultSpool.records.size, 1);
+  await broker.reset();
+  assert.equal(broker.resultSpool.records.size, 0);
+});
+
+test("out-of-core graph-result quota failure publishes no partial stored result", async t => {
+  const broker = new KernelBroker({
+    cwd: linkedScienceProjectRoot,
+    resultSpoolOptions: { maxResultBytes: 1_024, maxTotalBytes: 2_048 },
+  });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 30_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var quotaWs = linkedScience.open({ contextKey: 'result-storage-quota' });
+    var df = quotaWs.rdf.DataFactory;
+    var quotaQuads = Array.from({ length: 501 }, (_, index) => df.quad(
+      df.namedNode('https://example.test/item/' + index),
+      df.namedNode('https://example.test/predicate'),
+      df.literal('value-' + index)
+    ));
+    var quotaGraph = await quotaWs.graphs.load({
+      name: 'quota-graph',
+      kind: 'instance-data',
+      quads: quotaQuads,
+      source: { kind: 'local-synthetic', id: 'quota-fixture' }
+    });
+    await quotaWs.query.run({
+      sources: [quotaGraph],
+      sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }'
+    });
+  ` }));
+  assert.equal(response.result.isError, true);
+  const envelope = JSON.parse(text(response)).error;
+  assert.equal(envelope.code, "LS_QUERY_RESULT_STORAGE_BOUND");
+  assert.equal(envelope.stage, "result-storage");
+  assert.equal(envelope.retryable, true);
+  assert.equal(envelope.repair.preservesOriginalAnswer, false);
+  assert.match(envelope.message, /no partial result handle was retained/u);
+  assert.equal(broker.resultSpool.records.size, 0);
+  assert.equal(broker.resultSpool.totalBytes, 0);
+});
+
+test("a mediated out-of-core graph result remains a streaming source for local SPARQL", async t => {
+  const requests = [];
+  const turtle = Array.from({ length: 600 }, (_, index) =>
+    `<https://example.test/mediated/${index}> <https://example.test/p> <https://example.test/o> .`,
+  ).join("\n");
+  const fixture = createServer((request, response) => {
+    requests.push({ method: request.method, url: request.url });
+    response.writeHead(200, { "content-type": "text/turtle" });
+    response.end(turtle);
+  });
+  await new Promise((resolveListen, rejectListen) => {
+    fixture.once("error", rejectListen);
+    fixture.listen(0, "127.0.0.1", resolveListen);
+  });
+  t.after(() => new Promise(resolveClose => fixture.close(resolveClose)));
+  const address = fixture.address();
+  const url = `http://127.0.0.1:${address.port}/mediated.ttl`;
+  const broker = new KernelBroker({ cwd: linkedScienceProjectRoot });
+  t.after(() => broker.close());
+  const handle = createRequestHandler({ broker });
+  const response = await handle(request(1, "js", { timeout_ms: 30_000, code: `
+    var { bootstrapLinkedScience } = await import(${JSON.stringify(linkedScienceBootstrapUrl)});
+    await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
+    var mediatedWs = linkedScience.open({ contextKey: 'mediated-stored-result' });
+    var mediatedGraph = await mediatedWs.traversal.query({
+      sources: [${JSON.stringify(url)}],
+      sparql: 'CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }'
+    });
+    var containsLast = await mediatedWs.query.run({
+      sources: [mediatedGraph],
+      sparql: 'ASK { <https://example.test/mediated/599> <https://example.test/p> <https://example.test/o> }'
+    });
+    nodeRepl.write({
+      profile: mediatedWs.results.profile(mediatedGraph),
+      containsLast: (await mediatedWs.results.page(containsLast, { limit: 1 })).rows[0].value,
+      history: mediatedWs.traversal.history()
+    });
+  ` }));
+  assert.equal(response.result.isError, undefined, text(response));
+  assert.match(text(response), /count: 600/u);
+  assert.match(text(response), /kind: 'broker-stored-result'/u);
+  assert.match(text(response), /containsLast: true/u);
+  assert.match(text(response), /total: 1/u);
   assert.equal(requests.length, 1);
 });
 

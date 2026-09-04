@@ -16,6 +16,7 @@ const productionRoots = Object.freeze([
   'package.json',
   'package-lock.json',
   'packages/cleanroom-node-repl/package.json',
+  'packages/cleanroom-node-repl/docs/cleanroom-mcp.config.toml',
   'packages/cleanroom-node-repl/src',
 ]);
 const inspectedExtensions = new Set([ '.cjs', '.js', '.json', '.mjs', '.toml' ]);

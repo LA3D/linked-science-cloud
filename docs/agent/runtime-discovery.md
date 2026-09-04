@@ -57,7 +57,7 @@ Follow generated method documentation. `graphs.load` is asynchronous because suc
 
 Repair local validation failures in place from structured `error.repair` feedback. A missing or stale scoped object does not invalidate the runtime binding. Read the targeted `recovery` contract before resetting.
 
-`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, and resident handles. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
+`js_reset` replaces the whole child kernel. It destroys JavaScript bindings, RLM contexts, Linked Science workspaces, symbolic handles, and epoch-owned result spools. The clean-room broker preserves PEEK maps. Bootstrap again, reopen the context, and inspect:
 
 ```js
 var recovered = linkedScience.open({ contextKey: 'measurement-goal' })

@@ -22,11 +22,12 @@ A workspace owns private Communica state and opaque retained handles. It support
 - one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
 - general `resources.get` response objects for bounded JSON, text, XML, CSV, binary, and RDF representations, with `resources.inspect` for prompt-bounded projections;
 - `resource.rdf()` / `resources.parseRdf()` and `rdf.dataset` / `rdf.retain` for ordinary RDF/JS and Communica composition without reacquisition;
-- bounded profiles, pages, and tables with lineage, operation IDs, source fingerprints, and provenance; and
+- bounded awaitable profiles/pages/tables with lineage, operation IDs, source fingerprints, and provenance;
+- hybrid graph-result residency: small N3 stores in the child and complete large `CONSTRUCT`/`DESCRIBE` results in a private broker SQLite spool that can stream into later local queries;
 - asynchronous broker-owned PEEK orientation bootstrap/current/commit/status operations; and
 - optional behavior-bounded public-HTTPS traversal and local federation with native result handles.
 
-The v5 facade does not itself own recursive provider calls. `nodeRepl.rlm` advertises the host's recursion capability separately; durable asynchronous child execution remains a staged clean-room-host responsibility.
+The v6.1 facade does not itself own recursive provider calls. `nodeRepl.rlm` advertises the host's recursion capability separately; durable asynchronous child execution remains a staged clean-room-host responsibility.
 
 ## Handles and epochs
 
@@ -34,11 +35,11 @@ Handles are frozen branded tokens carrying only an ID, type, label, and runtime 
 
 Every operation records an operation ID. Graphs receive an ordered, duplicate-aware fingerprint. Query and derived results retain source fingerprints, source handles, query or callback hashes, and lineage.
 
-Facade reset advances the context epoch and destroys the workspace registry while the clean-room broker retains its compact PEEK map. Kernel reset additionally removes the facade and RLM contexts; bootstrap recreates them while the same broker PEEK map remains. A handle from another epoch produces a recovery-shaped `LS_STALE_HANDLE` error. PEEK references to pre-reset handles are explicitly stale until authorized rematerialization creates new evidence.
+Facade reset advances the context epoch and destroys the workspace registry while the clean-room broker retains its compact PEEK map. Kernel reset additionally removes the facade, RLM contexts, and epoch-owned result spools; bootstrap recreates them while the same broker PEEK map remains. A handle from another epoch produces a recovery-shaped `LS_STALE_HANDLE` error. PEEK references to pre-reset handles are explicitly stale until authorized rematerialization creates new evidence.
 
 ## State ownership
 
-- Linked Science workspaces own bulk RDF and result handles inside one JavaScript kernel.
+- Linked Science workspaces own symbolic RDF and result handles; the kernel owns small native values and the clean-room broker owns private epoch-scoped graph-result spools.
 - `nodeRepl.rlm` owns kernel-resident external discovery context registered at bootstrap.
 - The clean-room MCP broker owns bounded PEEK orientation across kernel replacement.
 - Codex owns task goals and worker lifecycle.

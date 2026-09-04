@@ -1,12 +1,12 @@
 {
   "name": "@linked-science/cleanroom-node-repl",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "Consumer-owned clean-room JavaScript runtime and mediated Linked Science transport",
   "linkedScienceRepositoryRole": "production-runtime",
   "type": "module",
   "scripts": {
-    "check": "node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node --check src/mediated-traversal.mjs && node --check src/private-linked-science-traversal.mjs && node -e \"Promise.all([import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs'), import('./src/mediated-traversal.mjs'), import('./src/private-linked-science-traversal.mjs')]).then(([mcp, peek, traversal, privateTraversal]) => { if (typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function' || typeof traversal.MediatedTraversalBroker !== 'function' || typeof privateTraversal.hasLinkedSciencePrivateTraversal !== 'function') process.exit(1) })\"",
+    "check": "node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node --check src/result-spool.mjs && node --check src/mediated-traversal.mjs && node --check src/private-linked-science-traversal.mjs && node -e \"Promise.all([import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs'), import('./src/result-spool.mjs'), import('./src/mediated-traversal.mjs'), import('./src/private-linked-science-traversal.mjs')]).then(([mcp, peek, spool, traversal, privateTraversal]) => { if (typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function' || typeof spool.ResultSpoolRegistry !== 'function' || typeof traversal.MediatedTraversalBroker !== 'function' || typeof privateTraversal.hasLinkedSciencePrivateTraversal !== 'function') process.exit(1) })\"",
     "test": "node --test"
   }
 }

@@ -12,6 +12,12 @@ test('production configuration and runtime remain inside the Linked Science chec
   assert.equal(result.project.broker.mcpServer, 'cleanroom_node_repl');
 });
 
+test('documented broker configuration stays inside the authoritative checkout', async () => {
+  const config = await readFile(new URL('../packages/cleanroom-node-repl/docs/cleanroom-mcp.config.toml', import.meta.url), 'utf8');
+  assert.doesNotMatch(config, /node-repl-network-probe/u);
+  assert.match(config, /cwd = "\/Users\/cvardema\/dev\/git\/LA3D\/linked-science-cloud\/codex-repl\/packages\/cleanroom-node-repl"/u);
+});
+
 test('root package identity cannot be downgraded to a generic REPL experiment', async () => {
   const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   manifest.name = 'linked-data-repl-experiment';

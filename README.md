@@ -30,7 +30,7 @@ The former restricted network profile remains disabled at `.codex/config.restric
 
 1. The coordinator keeps the conversation, scope, and approval boundary.
 2. A fresh Local task loads the project-scoped `cleanroom_node_repl`, verifies its cwd, and bootstraps the Linked Science facade once per kernel.
-3. The worker verifies a query in a second REPL call and reports only what was actually observed. Kernel reset discards bindings, RLM context, and resident handles while broker PEEK orientation remains advisory.
+3. The worker verifies a query in a second REPL call and reports only what was actually observed. Kernel reset discards bindings, RLM context, symbolic handles, and epoch-owned result spools while broker PEEK orientation remains advisory.
 
 Run the small dependency smoke check separately with:
 
@@ -47,6 +47,8 @@ The production-oriented local adapter is bootstrapped by `lib/cleanroom-linked-s
 ## Capability map and next work
 
 - **Synthetic session:** local in-memory RDF is materialized under a symbolic handle and can be profiled, paged, or derived without printing the full result.
+- **Complete graph-query results:** small `CONSTRUCT` and `DESCRIBE` results remain native N3 stores; larger complete results spill to a private broker SQLite spool, remain pageable and reusable as streaming local-SPARQL sources, and are removed on kernel reset. Storage exhaustion fails without publishing a partial handle.
+- **Bounded REPL egress:** `nodeRepl.write` has a 32 KiB aggregate default per evaluation and an explicit hard-capped override, independent of result/page bounds.
 - **RLM control environment:** persistent model-written JavaScript keeps resources, RDF/JS datasets, ontologies, and results external to the prompt behind symbolic handles. Agents use Communica subgraph queries, RDF/JS operations, generic derivation, bounded views, PEEK orientation, and optional host-mediated recursion to examine only the context needed for the current step.
 - **Open-world mediated traversal:** consumer-owned Communica may dereference dynamically discovered anonymous HTTP/HTTPS RDF resources and federate across SPARQL services. Every request uses a private parent-owned standard-Fetch authority, which enforces identity stripping, mutation denial, request/fan-out/concurrency/time/byte/item bounds and records per-exchange lineage without exposing Fetch to agent code.
 - **Historical guarded profiles:** the earlier pinned Identifiers.org, UniProt, WikiPathways, Rhea, Wikidata, and document profiles remain experiment provenance only. They are not the active worker-facing transport contract.
@@ -57,7 +59,7 @@ The production-oriented local adapter is bootstrapped by `lib/cleanroom-linked-s
 - **Prior grounding evaluation:** workers may use pretrained knowledge as hypotheses, but must ground, correct, reject, or leave it unresolved before it enters a plan. The evaluation separately diagnoses methodology, tool-surface, environment, and source failures. See the [dossier](docs/experiments/prior-grounding-tool-surface-evaluation.md).
 - **Externally authored competency evaluation:** the official UniProt SPARQL example catalog is the held-out question corpus for staged clean-room evaluation. A dated catalog snapshot and three evaluator-private references back the public non-dispatchable worker draft; official queries remain outside the worker checkout. No competency case has run, and transport openness does not weaken the evaluator-private boundary.
 - **Historical adaptive acquisition:** earlier exact-profile trials content-sniffed documents and retained typed attempts. Their receipts remain evidence, but the helpers are retired from the production transport surface.
-- **Symbolic orientation cache:** a bounded PEEK-aligned map retains stable sources, parsing facts, failures, identifiers, and reusable result handles while bulk evidence remains in the REPL. It is not a task-answer store or a competing workflow engine.
+- **Symbolic orientation cache:** a bounded PEEK-aligned map retains stable sources, parsing facts, failures, identifiers, and reusable result handles while bulk evidence remains behind handles. It is not a task-answer store or a competing workflow engine. The current implementation is a map data structure without the learned Distiller/Cartographer/Evictor policy; the evidence-first Prime plan treats that policy as a separate experiment.
 - **Codex-goal-compatible evidence state:** the earlier checklist-style worker guidance is transitional. Codex owns goals and worker lifecycle; the first project-local slice now attaches guarded acquisition and symbolic orientation events to retained Linked Data state. See the [decision and experiment dossier](docs/experiments/goal-loop-state-graph.md).
 - **Presentation handoff:** a retained handle can yield a typed, bounded table model with source handle and compact provenance. It is not HTML, a full result, or a UniProt record browser.
 
@@ -65,7 +67,7 @@ Use the [agent context router](docs/agent/context-routing.md) to load project gu
 
 ## Current live-navigation boundary
 
-Ordinary goal-relevant anonymous public reads use the broker-mediated Linked Science surface and its default bounds; a user or task may ask for tighter limits. The isolated child has no ambient raw networking; only the consumer-owned resources/RDF/JS/Communica runtime receives the private anonymous-read Fetch closure. Authenticated, sensitive, mutating, bulk-ingestion, export, and evaluation actions remain separately governed. Mutations, URL credentials, ambient identity, arbitrary POST, unbounded federation, and unbounded result handling are denied in the current authority class. Platform Fetch owns DNS, TLS, sockets, certificates, and redirects. Evaluation secrecy remains a separate worker-context and filesystem boundary.
+Ordinary goal-relevant anonymous public reads use the broker-mediated Linked Science surface and its default bounds; a user or task may ask for tighter limits. The isolated child has no ambient raw networking; only the consumer-owned resources/RDF/JS/Communica runtime receives the private anonymous-read Fetch closure. Authenticated, sensitive, mutating, bulk-ingestion, export, and evaluation actions remain separately governed. Mutations, URL credentials, ambient identity, arbitrary POST, unbounded federation, and unbounded physical resource use are denied in the current authority class. Query answers are complete-or-fail: operational byte/storage ceilings never become silent semantic truncation. Platform Fetch owns DNS, TLS, sockets, certificates, and redirects. Evaluation secrecy remains a separate worker-context and filesystem boundary.
 
 UniProt, Wikidata, WikiPathways, and Rhea are representative dynamically discovered public Linked Data or SPARQL targets, not hardcoded approval domains. Their goal-relevant anonymous reads use the same effect class, default cumulative budgets, and automatic receipts as any other public target. Reachability is observed per traversal rather than inferred from configuration.
 

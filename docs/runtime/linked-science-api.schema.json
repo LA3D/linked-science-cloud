@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runtime": "linked-science",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "globalBindings": [
     "linkedScience",
     "ls"
@@ -28,7 +28,15 @@
     "projectRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
     "moduleRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules",
     "rlmContext": "linked-science:runtime",
-    "orientationOwner": "cleanroom-broker"
+    "orientationOwner": "cleanroom-broker",
+    "resultStorage": {
+      "owner": "cleanroom-broker",
+      "lifetime": "kernel-epoch",
+      "resultKinds": [
+        "quads"
+      ],
+      "publication": "complete-only"
+    }
   },
   "discovery": [
     "documentation",

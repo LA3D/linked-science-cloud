@@ -23,7 +23,7 @@ The PEEK map stores only compact symbolic routes and handle references. It may s
 
 ## Query and derivation
 
-Local read queries explicitly select graph handles and require a result limit except for `ASK`. The resulting bindings or quads remain typed internally. `results.derive` accepts one model-written JavaScript callback and retains one documented typed output. `workspace.rdf.dataset(handle)` returns a cloned native RDF/JS DatasetCore for ordinary in-kernel JavaScript or installed-library work, and `workspace.rdf.retain({ dataset })` makes the resulting graph queryable by Communica.
+Local read queries explicitly select graph or quad-result handles and accept caller-chosen SPARQL semantics without a harness-imposed result limit. The resulting bindings, booleans, or quads remain typed internally. Small graph results are kernel-resident; large complete graph results are broker-stored and can stream into later local SPARQL. `results.derive` accepts one model-written JavaScript callback for kernel-resident results. `workspace.rdf.dataset(handle)` clones a kernel-resident RDF/JS value for ordinary in-kernel work, while broker-stored results deliberately require bounded pages or symbolic subqueries. `workspace.rdf.retain({ dataset })` makes an in-kernel RDF/JS dataset queryable by Communica.
 
 Prompt-visible `results.page` and `results.table` views convert RDF terms to bounded descriptors only at the presentation boundary. The retained source handle, lineage, fingerprints, and provenance remain attached.
 

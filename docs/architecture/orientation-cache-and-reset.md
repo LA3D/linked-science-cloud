@@ -8,11 +8,11 @@ The active Linked Science runtime delegates its bounded orientation map to the c
 - `parsing-schema`: detected formats and reusable parsing facts; and
 - `reusable-results`: named retained handles and their roles.
 
-Entries use stable IDs, remain JSON-compatible, and are priority-evicted to stay small. They may cite evidence handles and operation IDs. They must not contain raw documents, result rows, SPARQL text, task answers, prose reasoning, or a second goal/workflow lifecycle.
+Entries use stable IDs, remain JSON-compatible, and are priority-evicted to stay small. They may cite evidence handles and operation IDs. Current automatic entries must not contain raw documents, result rows, raw SPARQL, task answers, prose reasoning, or a second goal/workflow lifecycle. A future PEEK policy may promote a compact parameterized query motif only through the provenance, applicability, explicit-review, and evaluator-leakage checks in [Prime-style context management](prime-linked-data-context-management.md); that proposal is not current behavior.
 
 The cache is orientation, not authority. Before reusing an entry, a worker checks the current session for the referenced handle and verifies its type and state through an operation receipt. A cache entry that predates a reset or conflicts with current session evidence is stale; it may preserve lineage or a known failed route, but it cannot support a claim that the handle is resident.
 
-After clean-room `js_reset`, JavaScript bindings, RLM contexts, and resident handles are missing; broker-owned PEEK orientation remains. Recovery bootstraps the facade and RLM context again, then reports pre-reset handle references stale. Rematerialization is a new operation through the original authorized source path, with new provenance, and must be refused when the source or current authorization is unavailable. A surviving module root or PEEK entry does not restore scientific state.
+After clean-room `js_reset`, JavaScript bindings, RLM contexts, symbolic handles, and epoch-owned result spools are missing; broker-owned PEEK orientation remains. Recovery bootstraps the facade and RLM context again, then reports pre-reset handle references stale. Rematerialization is a new operation through the original authorized source path, with new provenance, and must be refused when the source or current authorization is unavailable. A surviving module root or PEEK entry does not restore scientific state.
 
 Source failures can remain useful orientation only at their exact scope. A failed route is not evidence that a fact is globally absent, and an empty result describes one exact bounded query over the queried graph.
 

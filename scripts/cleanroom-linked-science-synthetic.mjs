@@ -55,7 +55,7 @@ try {
   assert.match(persistent, /mode: 'external-context'/u);
 
   const booted = text(await tool('js', { code: bootstrap, timeout_ms: 120_000 }));
-  assert.match(booted, /version: '6\.0\.0'/u);
+  assert.match(booted, /version: '6\.1\.0'/u);
   assert.match(booted, /runtime: 'cleanroom_node_repl'/u);
   assert.match(booted, /id: '@linked-science\/runtime'/u);
   assert.match(booted, /role: 'authoritative-production-implementation'/u);
@@ -68,7 +68,7 @@ try {
   assert.match(rlm, /linked-science-runtime-discovery/u);
   assert.match(rlm, /cleanroom_node_repl/u);
 
-  const local = text(await tool('js', { code: `var fixture=await import('file://${fixturePath}'); var ws=linkedScience.open({contextKey:'cleanroom-proof'}); await ws.orientation.bootstrap(); var ontology=await ws.graphs.load({name:'ontology',kind:'ontology',quads:fixture.ontologyQuads,source:{kind:'local-synthetic',id:'ontology'}}); var sourceA=await ws.graphs.load({name:'source-a',kind:'instance-data',quads:fixture.sourceAQuads,source:{kind:'local-synthetic',id:'source-a'}}); var sourceB=await ws.graphs.load({name:'source-b',kind:'instance-data',quads:fixture.sourceBQuads,source:{kind:'local-synthetic',id:'source-b'}}); var result=await ws.query.select({sources:[ontology,sourceA,sourceB],sparql:fixture.measurementQuery,role:'measurements'}); nodeRepl.write(ws.results.table(result,{limit:2,maxCells:4,maxBytes:4096}))`, timeout_ms: 120_000 }));
+  const local = text(await tool('js', { code: `var fixture=await import('file://${fixturePath}'); var ws=linkedScience.open({contextKey:'cleanroom-proof'}); await ws.orientation.bootstrap(); var ontology=await ws.graphs.load({name:'ontology',kind:'ontology',quads:fixture.ontologyQuads,source:{kind:'local-synthetic',id:'ontology'}}); var sourceA=await ws.graphs.load({name:'source-a',kind:'instance-data',quads:fixture.sourceAQuads,source:{kind:'local-synthetic',id:'source-a'}}); var sourceB=await ws.graphs.load({name:'source-b',kind:'instance-data',quads:fixture.sourceBQuads,source:{kind:'local-synthetic',id:'source-b'}}); var result=await ws.query.select({sources:[ontology,sourceA,sourceB],sparql:fixture.measurementQuery,role:'measurements'}); nodeRepl.write(await ws.results.table(result,{limit:2,maxCells:4,maxBytes:4096}))`, timeout_ms: 120_000 }));
   assert.match(local, /kind: 'table'/u);
   assert.match(local, /localOnly: true/u);
   assert.match(local, /maxRows: 2/u);
@@ -97,7 +97,7 @@ try {
     persistence: true,
     projectRoot,
     moduleRoot,
-    facadeVersion: '6.0.0',
+    facadeVersion: '6.1.0',
     localSynthetic: true,
     reset: { bindingsCleared: true, rlmRebootstrapped: true, peekSurvived: true, oldHandles: 'stale' },
   }, null, 2));

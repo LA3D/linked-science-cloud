@@ -8,14 +8,17 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { PeekRegistry } from "./peek-runtime.mjs";
 import { MediatedTraversalBroker } from "./mediated-traversal.mjs";
+import { ResultSpoolRegistry } from "./result-spool.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
-export const SERVER_VERSION = "0.4.0";
+export const SERVER_VERSION = "0.5.0";
 
 const KERNEL_PATH = fileURLToPath(new URL("./repl-kernel-child.mjs", import.meta.url));
 const KERNEL_ROOT = dirname(KERNEL_PATH);
 const MAX_REQUEST_BYTES = 512 * 1024;
 const MAX_CODE_BYTES = 256 * 1024;
+const DEFAULT_MAX_OUTPUT_BYTES = 32 * 1024;
+const MAX_OUTPUT_BYTES = 256 * 1024;
 const DEFAULT_TIMEOUT_MS = 30_000;
 const MAX_TIMEOUT_MS = 120_000;
 
@@ -29,6 +32,7 @@ const TOOLS = Object.freeze([
       properties: {
         code: { type: "string", description: "JavaScript code to execute with top-level await." },
         timeout_ms: { type: "integer", minimum: 1, maximum: MAX_TIMEOUT_MS },
+        max_output_bytes: { type: "integer", minimum: 256, maximum: MAX_OUTPUT_BYTES, description: "Aggregate text-output budget for this evaluation. Defaults to 32768 bytes." },
         title: { type: "string", maxLength: 200 },
       },
       additionalProperties: false,
@@ -36,7 +40,7 @@ const TOOLS = Object.freeze([
   },
   {
     name: "js_reset",
-    description: "Reset the JavaScript kernel and clear all bindings. Registered module directories and broker-owned PEEK maps survive.",
+    description: "Reset the JavaScript kernel and clear bindings plus epoch-owned result spools. Registered module directories and broker-owned PEEK maps survive.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
@@ -112,6 +116,8 @@ export class KernelBroker {
     maxOldSpaceMb = 256,
     traversalBroker,
     traversalOptions,
+    resultSpool,
+    resultSpoolOptions,
   } = {}) {
     this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
@@ -119,6 +125,7 @@ export class KernelBroker {
     this.maxOldSpaceMb = maxOldSpaceMb;
     this.peek = new PeekRegistry({ policy: peekPolicy });
     this.traversal = traversalBroker ?? new MediatedTraversalBroker(traversalOptions);
+    this.resultSpool = resultSpool ?? new ResultSpoolRegistry(resultSpoolOptions);
     this.moduleRoots = [];
     this.child = null;
     this.ready = null;
@@ -177,7 +184,9 @@ export class KernelBroker {
       });
     });
     child.once("exit", (code, signal) => {
-      this.traversal.abortOwner({ token: hostCapabilityToken, epoch: kernelEpoch }, "kernel-exit");
+      const owner = { token: hostCapabilityToken, epoch: kernelEpoch };
+      this.traversal.abortOwner(owner, "kernel-exit");
+      this.resultSpool.releaseOwner(owner);
       if (this.child === child) this.child = null;
       const error = Object.assign(new Error(`Kernel exited (${code ?? signal ?? "unknown"})`), { code: "KERNEL_EXIT" });
       for (const pending of this.pending.values()) pending.reject(error);
@@ -215,6 +224,12 @@ export class KernelBroker {
       else if (method === "traversal.snapshot") value = this.traversal.snapshotTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.finish") value = this.traversal.finishTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.abort") value = this.traversal.abortTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.capabilities") value = this.resultSpool.capabilities();
+      else if (method === "results.begin") value = this.resultSpool.begin(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.append") value = this.resultSpool.append(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.commit") value = this.resultSpool.commit(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.page") value = this.resultSpool.page(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "results.abort") value = this.resultSpool.abort(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "peek.begin") value = this.peek.begin(args.contextId, args.options);
       else if (method === "peek.current") value = this.peek.current(args.contextId);
       else if (method === "peek.edit") value = this.peek.edit(args.contextId, args.edits);
@@ -290,6 +305,7 @@ export class KernelBroker {
     this.child = null;
     this.hostCapabilityToken = null;
     this.traversal.abortOwner(owner, "kernel-replaced");
+    this.resultSpool.releaseOwner(owner);
     if (child.exitCode === null && child.signalCode === null) {
       await new Promise((resolveExit) => {
         child.once("exit", resolveExit);
@@ -298,14 +314,18 @@ export class KernelBroker {
     }
   }
 
-  execute(code, { timeoutMs = DEFAULT_TIMEOUT_MS, requestMeta = {} } = {}) {
+  execute(code, { timeoutMs = DEFAULT_TIMEOUT_MS, maxOutputBytes = DEFAULT_MAX_OUTPUT_BYTES, requestMeta = {} } = {}) {
     return this._enqueue(async () => {
       let timer;
       const timeout = new Promise((_resolve, reject) => {
         timer = setTimeout(() => reject(Object.assign(new Error("JavaScript execution timed out; the kernel was replaced"), { code: "KERNEL_TIMEOUT" })), timeoutMs);
       });
       try {
-        return await Promise.race([this._send("eval", { code, requestMeta }), timeout]);
+        return await Promise.race([this._send("eval", {
+          code,
+          requestMeta,
+          maxOutputBytes,
+        }), timeout]);
       } catch (error) {
         if (error?.code === "KERNEL_TIMEOUT") await this._terminate();
         throw error;
@@ -369,14 +389,15 @@ export class KernelBroker {
   }
 
   close() {
-    return this._terminate();
+    return this._terminate().finally(() => this.resultSpool.close());
   }
 }
 
 function validateJsArguments(args) {
   if (!plainObject(args) || typeof args.code !== "string" || Buffer.byteLength(args.code, "utf8") > MAX_CODE_BYTES) return false;
-  if (Object.keys(args).some((key) => !["code", "timeout_ms", "title"].includes(key))) return false;
+  if (Object.keys(args).some((key) => !["code", "timeout_ms", "max_output_bytes", "title"].includes(key))) return false;
   if (args.timeout_ms !== undefined && (!Number.isInteger(args.timeout_ms) || args.timeout_ms < 1 || args.timeout_ms > MAX_TIMEOUT_MS)) return false;
+  if (args.max_output_bytes !== undefined && (!Number.isInteger(args.max_output_bytes) || args.max_output_bytes < 256 || args.max_output_bytes > MAX_OUTPUT_BYTES)) return false;
   return args.title === undefined || (typeof args.title === "string" && args.title.length <= 200);
 }
 
@@ -390,7 +411,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         protocolVersion: typeof requestedVersion === "string" ? requestedVersion : "2024-11-05",
         capabilities: { tools: { listChanged: false } },
         serverInfo: { name: SERVER_NAME, version: SERVER_VERSION },
-        instructions: "Linked Science RDF-specialized RLM environment. Use persistent JavaScript to keep large resources, graphs, ontologies, and results external to the prompt behind handles; inspect them with RDF/JS, Communica subgraph queries, and bounded projections. Call nodeRepl.rlm.capabilities() before relying on optional host-mediated recursion. The child has no ambient raw network or filesystem-write authority: private token-bound mediation applies anonymous public-read effects, execution bounds, identity stripping, and receipts. The MCP remains exactly js, js_reset, and js_add_node_module_dir. PEEK is an orientation map, never a bulk context or result store.",
+        instructions: "Linked Science RDF-specialized RLM environment. Use persistent JavaScript to keep large resources, graphs, ontologies, and results external to the prompt behind handles; large graph-query results may use private broker storage and remain streaming local-query sources. Inspect state with RDF/JS, Communica subgraph queries, and bounded projections. Call nodeRepl.rlm.capabilities() before relying on optional host-mediated recursion. The child has no ambient raw network or filesystem-write authority: private token-bound mediation applies anonymous public-read effects, execution/storage bounds, identity stripping, and receipts. The MCP remains exactly js, js_reset, and js_add_node_module_dir. PEEK is an orientation map, never a bulk context or result store.",
       });
     }
     if (request.method === "ping") return rpcResult(request.id, {});
@@ -404,6 +425,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
         if (!validateJsArguments(args)) throw Object.assign(new Error("Invalid js arguments"), { code: "INVALID_ARGUMENT" });
         return rpcResult(request.id, await broker.execute(args.code, {
           timeoutMs: args.timeout_ms ?? DEFAULT_TIMEOUT_MS,
+          maxOutputBytes: args.max_output_bytes ?? DEFAULT_MAX_OUTPUT_BYTES,
           requestMeta: plainObject(request.params?._meta) ? request.params._meta : {},
         }));
       }

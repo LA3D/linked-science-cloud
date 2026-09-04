@@ -2,7 +2,7 @@
 
 Presentation consumes an explicit bounded view of retained state. It never receives an entire endpoint result by default.
 
-`displayTable` produces a typed table model with at most 10 scalar rows, selected columns, paging metadata, source handle, and compact provenance. The model is a projection for display, not the resident result, an export, or an HTML application. A later inspection or derivation returns to the source or derived handle rather than treating the displayed rows as complete data.
+`displayTable` produces a typed table model with at most 10 scalar rows, selected columns, paging metadata, source handle, and compact provenance. The model is a projection for display, not the symbolic source result, an export, or an HTML application. A later inspection or derivation returns to the source or derived handle rather than treating the displayed rows as complete data.
 
 Any future visualization kind must accept an explicit bounded page, aggregate, or derived handle and preserve its source lineage and budget. Charts must not materialize a whole result into coordinator context. Export is a distinct, separately authorized capability with a controlled non-overwriting artifact target; the [large-result export protocol](../experiments/large-result-export.md) remains planned only.
 

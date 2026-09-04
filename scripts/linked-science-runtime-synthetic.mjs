@@ -25,7 +25,7 @@ const aboveFive = await workspace.results.derive(measurements, ({ rows }) => ({
   rows: rows.filter(row => Number(row.get('value').value) > 5),
 }), { role: 'above-five' });
 const resultProfile = workspace.results.profile(aboveFive);
-const table = workspace.results.table(aboveFive, { title: 'Measurements above five', limit: 5 });
+const table = await workspace.results.table(aboveFive, { title: 'Measurements above five', limit: 5 });
 const neighborhood = workspace.graph.neighbors(sourceB, { term: 'https://example.test/science/sample-b', maxNodes: 5, maxEdges: 5 });
 const checkpoint = await workspace.orientation.commit();
 linkedScience.reset({ contextKey: 'synthetic-acceptance' });

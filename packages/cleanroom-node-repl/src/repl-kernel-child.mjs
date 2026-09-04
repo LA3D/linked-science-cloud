@@ -6,10 +6,14 @@ import { inspect } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve, sep } from "node:path";
 
-import { registerLinkedSciencePrivateTraversal } from "./private-linked-science-traversal.mjs";
+import {
+  registerLinkedSciencePrivateResultStore,
+  registerLinkedSciencePrivateTraversal,
+} from "./private-linked-science-traversal.mjs";
 
 const sendToParent = process.send.bind(process);
 const MAX_TEXT_BYTES = 256 * 1024;
+const DEFAULT_MAX_OUTPUT_BYTES = 32 * 1024;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const MAX_CONTEXT_BYTES = 2 * 1024 * 1024;
 const MAX_HOST_CALL_BYTES = 384 * 1024;
@@ -19,6 +23,9 @@ const pendingHostCalls = new Map();
 let hostCallSequence = 0;
 let hostCapabilityToken;
 let currentRequestMeta = Object.freeze({});
+let currentMaxOutputBytes = DEFAULT_MAX_OUTPUT_BYTES;
+let currentOutputBytes = 0;
+let outputTruncationReported = false;
 let writes = [];
 let images = [];
 
@@ -62,13 +69,21 @@ registerHooks({
   },
 });
 
-function boundedText(value) {
+function boundedText(value, maximum) {
   const text = typeof value === "string"
     ? value
     : inspect(value, { depth: 6, maxArrayLength: 200, maxStringLength: 32_000, breakLength: 120 });
   const bytes = Buffer.byteLength(text, "utf8");
-  if (bytes <= MAX_TEXT_BYTES) return text;
-  return `${Buffer.from(text).subarray(0, MAX_TEXT_BYTES).toString("utf8")}\n…[truncated]`;
+  const limit = Math.max(0, Math.min(MAX_TEXT_BYTES, maximum));
+  if (bytes <= limit) return { text, bytes, truncated: false, originalBytes: bytes };
+  if (limit === 0) return { text: "", bytes: 0, truncated: true, originalBytes: bytes };
+  const marker = "\n…[output truncated]";
+  const markerBytes = Buffer.byteLength(marker, "utf8");
+  const prefixLimit = Math.max(0, limit - markerBytes);
+  let prefix = Buffer.from(text).subarray(0, prefixLimit).toString("utf8");
+  if (prefix.endsWith("\uFFFD")) prefix = prefix.slice(0, -1);
+  const bounded = markerBytes <= limit ? `${prefix}${marker}` : prefix;
+  return { text: bounded, bytes: Buffer.byteLength(bounded, "utf8"), truncated: true, originalBytes: bytes };
 }
 
 function normalizeImage(image) {
@@ -226,6 +241,15 @@ const linkedScienceTraversal = Object.freeze({
   },
 });
 
+const linkedScienceResultStorage = Object.freeze({
+  capabilities: () => hostCallStrict("results.capabilities", {}),
+  begin: options => hostCallStrict("results.begin", options),
+  append: (storageId, items) => hostCallStrict("results.append", { storageId, items }),
+  commit: storageId => hostCallStrict("results.commit", { storageId }),
+  page: (storageId, options = {}) => hostCallStrict("results.page", { storageId, ...options }),
+  abort: storageId => hostCallStrict("results.abort", { storageId }),
+});
+
 function createKernel() {
   const input = new PassThrough();
   const output = new PassThrough();
@@ -250,7 +274,17 @@ function createKernel() {
     write: {
       enumerable: true,
       value(value) {
-        writes.push({ type: "text", text: boundedText(value) });
+        const remaining = Math.max(0, currentMaxOutputBytes - currentOutputBytes);
+        const bounded = boundedText(value, remaining);
+        currentOutputBytes += bounded.bytes;
+        if (bounded.bytes > 0 || (!outputTruncationReported && bounded.truncated)) {
+          writes.push({
+            type: "text",
+            text: bounded.text,
+            ...(bounded.truncated ? { _meta: { "cleanroom/output": { truncated: true, maxBytes: currentMaxOutputBytes, originalWriteBytes: bounded.originalBytes } } } : {}),
+          });
+        }
+        outputTruncationReported ||= bounded.truncated;
         return value;
       },
     },
@@ -265,6 +299,7 @@ function createKernel() {
   });
   Object.freeze(nodeRepl);
   registerLinkedSciencePrivateTraversal(nodeRepl, linkedScienceTraversal);
+  registerLinkedSciencePrivateResultStore(nodeRepl, linkedScienceResultStorage);
   server.context.nodeRepl = nodeRepl;
   return server;
 }
@@ -354,6 +389,9 @@ process.on("message", async (message) => {
   if (message?.type !== "eval") return;
   writes = [];
   images = [];
+  currentMaxOutputBytes = Number.isInteger(message.maxOutputBytes) ? Math.min(Math.max(message.maxOutputBytes, 256), MAX_TEXT_BYTES) : DEFAULT_MAX_OUTPUT_BYTES;
+  currentOutputBytes = 0;
+  outputTruncationReported = false;
   currentRequestMeta = Object.freeze(message.requestMeta && typeof message.requestMeta === "object" ? message.requestMeta : {});
   try {
     await evaluate(message.code);
