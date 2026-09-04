@@ -1,6 +1,6 @@
 # Prime-inspired durable RLM, context, and continual-harness research plan
 
-**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below was completed and validated on 2026-09-04.
+**Status:** Active staged implementation plan. Phase 0 is accepted; the focused RLM/Prime symbolic-graph slice below was completed and validated on 2026-09-04. The symbolic query-completeness correction in section 0.1 is active and authorized.
 
 **Canonical repository:** `LA3D/linked-science-cloud`
 
@@ -10,7 +10,7 @@
 
 **Primary references:** [Prime Agent paper](https://arxiv.org/abs/2608.23552), [Prime Agent repository](https://github.com/PrimeIntellect-ai/prime-agent), and [persistent harness state](https://github.com/PrimeIntellect-ai/prime-agent/blob/main/prime-agent-runtime/src/rlm/harness.py)
 
-**Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local RLM/Prime symbolic-graph slice in section 0: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not automatically activate the full durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
+**Authorization boundary:** Phase 0 is complete. On 2026-09-04 the user explicitly authorized the focused repository-local RLM/Prime symbolic-graph slice in section 0 and the follow-up symbolic query-completeness correction in section 0.1: documentation, plan, runtime, skill, tests, focused commits, and local-main integration. That authorization does not automatically activate the full durable Stage 1-3 program. Nothing here authorizes live evaluation, dependency installation, export, global configuration changes, push, authenticated access, mutation, or bulk ingestion.
 
 ## 0. Completed RLM/Prime symbolic-graph slice
 
@@ -26,6 +26,21 @@ The immediate correction makes the intended architecture explicit and removes on
 The controlled acceptance fixture contains more than 10,000 quads, is acquired once, is queried locally at least twice through one graph handle, and proves that only bounded views enter model-visible output. This local fixture is implementation verification, not a formal live evaluation run.
 
 Completed evidence: runtime 5.1.0 retains and indexes a controlled 12,050-quad Turtle graph from one broker acquisition, reuses it for two local Communica subqueries, and emits only bounded profiles/pages. The actual repository JSON-RPC MCP loopback test records exactly one HTTP request. The complete 140-test suite, smoke check, repository-owned broker/runtime verification, skill validation, documentation-link validation, and Git diff checks passed. See the [completed task record](docs/tasks/rlm-symbolic-graph-realignment.md).
+
+### 0.1 Active symbolic query-completeness correction
+
+Task-level MCP testing exposed a second mismatch: local queries required a SPARQL `LIMIT` as a condition of result retention, and Communica 5.3.0 cannot optimize a `DESCRIBE` nested beneath the algebra `slice` produced by `LIMIT` or `OFFSET`. A query modifier is part of SPARQL semantics, not a storage control. Requiring, injecting, removing, or relocating it can change the answer and can make a graph result silently incomplete.
+
+This correction establishes the following contract:
+
+1. Local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` accept their valid SPARQL 1.1 syntax without a harness-imposed `LIMIT` requirement.
+2. Query result streams are materialized atomically. A successful handle represents the complete result under the submitted query and the declared graph-description policy. If an operational residency ceiling is reached, the stream is cancelled, no result handle is published, and the call fails with structured recovery.
+3. Model-visible pages and tables remain independently bounded projections. Their truncation never changes the resident result or its completion claim.
+4. `DESCRIBE` is normalized deliberately to the runtime's declared outgoing-subject-triples policy before Communica execution. The normalization preserves explicit described IRIs, variable solutions, wildcard expansion, dataset clauses, and solution modifiers such as `ORDER BY`, `OFFSET`, and `LIMIT`.
+5. Profiles and mediated-attempt receipts state semantic completion and the description policy explicitly. They retain the hash and query type of the caller's original query; an internal normalization hash may be recorded as implementation provenance but never substituted for caller intent.
+6. Physical memory, storage, time, network, and result-residency ceilings remain honest operational controls. This slice does not claim infinite resources; it claims that an exceeded resource ceiling is a failure rather than a successful partial answer.
+
+Acceptance requires a synthetic all-four-form matrix through the actual project MCP, including `DESCRIBE` with and without solution modifiers, plus an over-ceiling test proving failure without a retained partial handle. See the [active task record](docs/tasks/symbolic-query-completeness.md).
 
 ## 1. Objective and falsifiable thesis
 

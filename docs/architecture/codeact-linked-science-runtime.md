@@ -18,7 +18,7 @@ A workspace owns private Communica state and opaque retained handles. It support
 
 - asynchronous local ontology, schema, SHACL, inferred-graph, and instance-data graph materialization;
 - bounded schema search and RDF-neighborhood inspection;
-- bounded local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica;
+- complete-or-fail local `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` through Communica, without a harness-imposed SPARQL `LIMIT`;
 - one generic `results.derive(handle, callback)` for model-written JavaScript transformations;
 - general `resources.get` response objects for bounded JSON, text, XML, CSV, binary, and RDF representations, with `resources.inspect` for prompt-bounded projections;
 - `resource.rdf()` / `resources.parseRdf()` and `rdf.dataset` / `rdf.retain` for ordinary RDF/JS and Communica composition without reacquisition;
@@ -48,7 +48,7 @@ The runtime does not instantiate a competing PEEK cache when the clean-room back
 
 ## Bounds and observation contract
 
-Execution, residency, and projection are separate budget planes. Resident graphs and results remain subject to explicit physical safety controls, but graph quad count is not a prompt or display limit. Prompt-visible pages/tables are bounded by rows, cells, and bytes. Neighborhoods are bounded by nodes, edges, and bytes. Schema search is bounded by hits and bytes. All observations retain compact provenance; byte fitting truncates values, never provenance. PEEK remains orientation only and never substitutes for the ontology, schema, graph, or result handle.
+Execution, residency, and projection are separate budget planes. Resident graphs and results remain subject to explicit physical safety controls, but graph or result size is not a prompt or display limit. Query modifiers remain caller semantics: the runtime never requires or injects `LIMIT` for storage. A result handle is published only after the native stream completes; an operational ceiling produces failure rather than a partial successful handle. Prompt-visible pages/tables are bounded by rows, cells, and bytes. Neighborhoods are bounded by nodes, edges, and bytes. Schema search is bounded by hits and bytes. All observations retain compact provenance; byte fitting truncates values, never provenance. PEEK remains orientation only and never substitutes for the ontology, schema, graph, or result handle.
 
 ## Security and broker boundary
 

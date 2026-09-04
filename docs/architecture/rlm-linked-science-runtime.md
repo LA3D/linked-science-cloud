@@ -60,6 +60,16 @@ An HTTP `HEAD` response or `Content-Length` may inform acquisition when availabl
 
 Defaults and capabilities must report these planes separately. A caller may request tighter limits. Local and broker hard ceilings remain implementation-safety controls and must be named as such, with structured recovery that suggests a narrower symbolic query, a durable/bulk route, or a tighter projection as appropriate.
 
+## Query semantics and complete symbolic results
+
+SPARQL syntax controls the result. In particular, `LIMIT`, `OFFSET`, ordering, grouping, and dataset clauses are query semantics; the harness must not require, inject, remove, or relocate them to control memory or presentation. Local and mediated operations accept valid `SELECT`, `ASK`, `CONSTRUCT`, and `DESCRIBE` forms without a harness-imposed query limit.
+
+Query materialization is atomic at the handle boundary. The runtime consumes the native result stream into resident symbolic state and publishes a result handle only after normal completion. A successful handle therefore represents the complete result under the submitted query and the declared graph-description policy. If execution, transport, memory, storage, time, or a residency quota is exhausted, the call fails, cancels the stream, and publishes no successful partial handle. A smaller query can be a recovery choice made by the caller, but the runtime must not mislabel that narrower answer as the original result.
+
+Projection is different. A page, table, neighborhood, or preview may be truncated under its explicit model-visible bounds because it is an observation of an already complete resident value. Projection metadata must identify that truncation without weakening the completion claim of the source handle.
+
+SPARQL leaves the exact `DESCRIBE` graph algorithm implementation-defined. This runtime declares one stable policy: return outgoing triples whose subject is each explicitly named IRI and each RDF resource selected by the query's described variables. `DESCRIBE *` expands to all in-scope query variables. Internal normalization to an equivalent `CONSTRUCT` may compensate for query-engine limitations, but it must preserve explicit resources, variable selection, wildcard expansion, dataset clauses, and solution modifiers, execute as one caller-visible attempt, and retain the original query type and hash as provenance.
+
 ## Agent behavior
 
 The agent chooses the smallest information-bearing operation for the current uncertainty:
@@ -92,5 +102,7 @@ A synthetic or controlled broker fixture larger than the former 10,000-quad thre
 4. query and graph observations remain bounded independently of graph size;
 5. graph-name, format, and projection-limit failures provide structured local repair; and
 6. capabilities and agent guidance distinguish execution, residency, and projection budgets.
+
+The query-completeness follow-up additionally requires all four SPARQL read forms through the project MCP, solution-modified `DESCRIBE`, explicit completion metadata, and an over-ceiling failure that publishes no partial result handle.
 
 This slice does not claim unbounded memory, durable graph persistence across kernel reset, or completion of the Prime durable child runtime.
