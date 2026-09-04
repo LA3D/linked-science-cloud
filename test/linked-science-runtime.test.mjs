@@ -199,7 +199,15 @@ test('errors are recovery-shaped and no raw network-capable engine is present on
   await assert.rejects(() => workspace.query.select({
     sources: [ ontology ],
     sparql: `SELECT ?s WHERE { GRAPH ?g { ?s ?p ?o } }`,
-  }), error => error instanceof LinkedScienceRuntimeError && error.code === 'LS_QUERY_PREFLIGHT' && error.stage === 'query-preflight' && error.receipt && error.recoveryDocument === 'recovery');
+  }), error => error instanceof LinkedScienceRuntimeError
+    && error.code === 'LS_QUERY_PREFLIGHT'
+    && error.stage === 'query-preflight'
+    && error.recoveryDocument === 'recovery'
+    && error.retryable === true
+    && error.repair.field === 'sparql.limit'
+    && error.repair.expected.maximum === 500
+    && error.repair.budgetImpact.liveRequests === 0
+    && error.receipt.repair.field === 'sparql.limit');
   await assert.rejects(() => workspace.graphs.load({ name: 'remote', kind: 'ontology', quads: ontologyQuads, source: { kind: 'remote', id: 'https://example.test/ontology' } }), error => error.code === 'LS_LOCAL_ONLY');
 });
 

@@ -321,6 +321,20 @@ test("repairable local validation reaches the MCP tool error envelope with typed
   assert.deepEqual(envelope.repair.budgetImpact, { liveRequests: 0 });
   assert.deepEqual(envelope.receipt.repair, envelope.repair);
   assert.equal(broker.traversal.sessions.size, 0);
+
+  const queryResponse = await handle(request(2, "js", { code: `
+    await workspace.query.select({ sources: [], sparql: 'SELECT ?s WHERE { ?s ?p ?o }' });
+  ` }));
+  assert.equal(queryResponse.result.isError, true);
+  const queryEnvelope = JSON.parse(text(queryResponse)).error;
+  assert.equal(queryEnvelope.code, "LS_QUERY_PREFLIGHT");
+  assert.equal(queryEnvelope.stage, "query-preflight");
+  assert.equal(queryEnvelope.retryable, true);
+  assert.equal(queryEnvelope.repair.field, "sparql.limit");
+  assert.deepEqual(queryEnvelope.repair.expected, { type: "integer", minimum: 1, maximum: 500 });
+  assert.deepEqual(queryEnvelope.repair.budgetImpact, { liveRequests: 0 });
+  assert.deepEqual(queryEnvelope.receipt.repair, queryEnvelope.repair);
+  assert.equal(broker.traversal.sessions.size, 0);
 });
 
 test("registered package entrypoints use ESM import conditions", async (t) => {
