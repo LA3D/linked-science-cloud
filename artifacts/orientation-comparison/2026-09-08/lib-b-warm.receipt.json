@@ -1,0 +1,142 @@
+{
+  "contextKey": "lib-b-warm",
+  "orientationId": "orientation-20260908-lib-b",
+  "enrich": true,
+  "dataVersion": "13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8",
+  "answer": "In the supplied catalog, Tomas (urn:catalog:person9) is the Harbor edition's translator via edition7 → translator → person9. Mira (urn:catalog:person2) is the creator of its underlying work Salt Roads via edition7 → editionOf → work3 → creator → person2. These are the people and relationships evidenced by this nine-quad local catalog.",
+  "generatedText": "The catalog separates editions from works via editionOf. translator relates an edition to a person, while creator relates a work to a person; multiple editions can reference the same work.",
+  "calls": [
+    {
+      "code": "var sentinel='lib-b-warm'; nodeRepl.write({cwd:process.cwd(),sentinel,docs:linkedScience.help()});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"ReferenceError\",\"message\":\"process is not defined\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 370,
+      "outputUtf8Bytes": 107
+    },
+    {
+      "code": "nodeRepl.write({sentinel,docs:linkedScience});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  sentinel: 'lib-b-warm',\n  docs: {\n    version: '6.4.0',\n    api: {\n      schemaVersion: 1,\n      runtime: 'linked-science',\n      version: '6.4.0',\n      globalBindings: [ 'linkedScience', 'ls' ],\n      bootstrap: \"var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs'); await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl, projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl', moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules' })\",\n      bootstrapEnvironment: {\n        mcp: 'cleanroom_node_repl',\n        project: {\n          id: '@linked-science/runtime',\n          role: 'authoritative-production-implementation',\n          bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n        },\n        broker: {\n          packageName: '@linked-science/cleanroom-node-repl',\n          packageRoot: 'packages/cleanroom-node-repl',\n          entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n          mcpServer: 'cleanroom_node_repl',\n          tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n        },\n        projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n        moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',\n        rlmContext: 'linked-science:runtime',\n        orientationOwner: 'cleanroom-broker',\n        resultStorage: {\n          owner: 'cleanroom-broker',\n          lifetime: 'kernel-epoch',\n          resultKinds: [ 'quads', 'bindings' ],\n          publication: 'complete-only',\n          indexed: true\n        }\n      },\n      discovery: [ 'documentation', 'documentation.all', 'documentation.get', 'capabilities', 'examples', 'open' ],\n      workspace: {\n        lifecycle: [ 'inventory', 'release', 'dispose' ],\n        graphs: [ 'load' ],\n        schema: [ 'search' ],\n        query: [ 'run', 'select' ],\n        evidence: [ 'load' ],\n        resources: [ 'get', 'inspect', 'parseRdf', 'history' ],\n        rdf: [ 'DataFactory', 'source', 'clone', 'dataset', 'retain' ],\n        traversal: [ 'query', 'history' ],\n        results: [ 'derive', 'profile', 'page', 'table' ],\n        graph: [ 'neighbors' ],\n        orientation: [ 'bootstrap', 'current', 'update', 'commit', 'status' ]\n      },\n      compatibility: [ 'initializeSession', 'createTableDisplay' ],\n      documentationRoutes: [\n        'bootstrap',         'discovery',\n        'graphs.load',       'schema.search',\n        'query.select',      'query.run',\n        'traversal.query',   'resources.get',\n        'resources.inspect', 'resources.parseRdf',\n        'rdf.dataset',       'rdf.source',\n        'rdf.clone',         'rdf.retain',\n        'evidence.load',     'traversal.history',\n        'results.derive',    'results.profile',\n        'results.page',      'results.table',\n        'graph.neighbors',   'orientation',\n        'reset',             'inventory',\n        'release',           'dispose',\n        'recovery',          'security',\n        'budgets',           'compatibility'\n      ]\n    },\n    documentation: [Function: fn],\n    capabilities: [Function: capabilities],\n    examples: [Function: examples],\n    open: [Function: open],\n    reset: [AsyncFunction: reset],\n    compatibility: {\n      initializeSession: [Function: initializeLinkedDataSession],\n      createTableDisplay: [Function: createTableDisplay]\n    }\n  }\n}"
+          }
+        ]
+      },
+      "wallMs": 14,
+      "outputUtf8Bytes": 3513
+    },
+    {
+      "code": "nodeRepl.write(linkedScience.documentation.get('orientation')); nodeRepl.write(linkedScience.documentation.get('rdf.source')); nodeRepl.write(linkedScience.documentation.get('graphs.load'));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  name: 'orientation',\n  summary: 'Inspect reusable source context; query-result inventory stays in the workspace registry. Pass orientationContext: { id, version } to open for recurring-context reuse.',\n  methods: [\n    'await workspace.orientation.bootstrap({ maxBytes? })',\n    'await current()',\n    'await update({ edits })',\n    'await commit()',\n    'await status()'\n  ],\n  constraints: [\n    'experimental automatic source bookkeeping and agent-proposed native quad evidence',\n    'bootstrap returns a bounded tool-result view; open remains synchronous and does not inject prompts',\n    'update accepts at most four edits and eight native quads per entry; reference validation is not semantic truth',\n    'empty/unavailable/rejected orientation does not block ordinary scientific work'\n  ]\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  name: 'rdf.source',\n  summary: 'Return an immutable RDF/JS Source view over a resident graph or stored quad result without cloning the dataset.',\n  signature: 'workspace.rdf.source(graphOrQuadResultHandle) -> Source { match, countQuads }',\n  constraints: [\n    'native RDF/JS quads stream inside the REPL',\n    'stored patterns and counts use the broker indexes',\n    'new reads fail after release or workspace disposal',\n    'no mutable store or transport authority is exposed'\n  ]\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  name: 'graphs.load',\n  summary: 'Retain local RDF/JS quads or local RDF text as a typed graph handle.',\n  signature: 'await workspace.graphs.load({ name, kind, quads?, text?, format?, source? }) -> handle',\n  kinds: [ 'ontology', 'schema', 'shacl', 'instance-data', 'inferred-graph' ],\n  constraints: [\n    'local/synthetic input only',\n    'name matches ^[a-z][a-z0-9-]{1,63}$',\n    'RDF/JS source order and duplicates retained for provenance',\n    'a private indexed DatasetCore is created once for repeated symbolic queries',\n    'resident quads and source bytes use operational residency quotas, not projection bounds',\n    'resident-graph quotas are derived from the kernel heap and a live headroom check refuses a retention that would exhaust it'\n  ]\n}"
+          }
+        ]
+      },
+      "wallMs": 11,
+      "outputUtf8Bytes": 2051
+    },
+    {
+      "code": "var ws=linkedScience.open({contextKey:'lib-b-warm',orientationContext:{id:'orientation-20260908-lib-b',version:'v1'}}); nodeRepl.write(await ws.orientation.bootstrap({maxItems:16,maxBytes:4096})); var data='@prefix c: <urn:catalog:> .\\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\\nc:edition7 c:editionOf c:work3 ; c:translator c:person9 ; rdfs:label \"Harbor edition\" .\\nc:work3 c:creator c:person2 ; rdfs:label \"Salt Roads\" .\\nc:person2 rdfs:label \"Mira\" .\\nc:person9 rdfs:label \"Tomas\" .\\nc:edition8 c:editionOf c:work3 ; rdfs:label \"Inland edition\" .'; var graph=await ws.graphs.load({name:'data-source',kind:'instance-data',text:data,source:{kind:'local-synthetic',id:'synthetic-library'}}); var src=ws.rdf.source(graph); var qs=[]; for await (var q of src.match()) qs.push(q); nodeRepl.write({graph,rows:qs.map(q=>[q.subject.value,q.predicate.value,q.object.value])});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'empty',\n  entries: [],\n  entryCount: 0,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 179, maxBytes: 4096 }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  graph: {\n    kind: 'linked-science-handle',\n    id: 'h-000001',\n    type: 'instance-data',\n    epoch: '2c5db013-08fd-4a79-a5b2-506802dcbcdb:lib-b-warm:1',\n    label: 'data-source'\n  },\n  rows: [\n    [ 'urn:catalog:edition7', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition7', 'urn:catalog:translator', 'urn:catalog:person9' ],\n    [ 'urn:catalog:edition7', 'http://www.w3.org/2000/01/rdf-schema#label', 'Harbor edition' ],\n    [ 'urn:catalog:work3', 'http://www.w3.org/2000/01/rdf-schema#label', 'Salt Roads' ],\n    [ 'urn:catalog:work3', 'urn:catalog:creator', 'urn:catalog:person2' ],\n    [ 'urn:catalog:person9', 'http://www.w3.org/2000/01/rdf-schema#label', 'Tomas' ],\n    [ 'urn:catalog:person2', 'http://www.w3.org/2000/01/rdf-schema#label', 'Mira' ],\n    [ 'urn:catalog:edition8', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition8', 'http://www.w3.org/2000/01/rdf-schema#label', 'Inland edition' ]\n  ]\n}"
+          }
+        ]
+      },
+      "wallMs": 316,
+      "outputUtf8Bytes": 1162
+    },
+    {
+      "code": "var generatedText='The catalog separates editions from works via editionOf. translator relates an edition to a person, while creator relates a work to a person; multiple editions can reference the same work.'; var evidenceQuads=qs.filter(q=>['urn:catalog:editionOf','urn:catalog:translator','urn:catalog:creator'].includes(q.predicate.value)); nodeRepl.write(await ws.orientation.update({edits:[{action:'ADD',id:'ls-semantic:catalog-relationship-levels',entry:{section:'context-understanding',claimKind:'observed-relationship',text:generatedText,evidence:[{handle:graph,quads:evidenceQuads}]}}]}));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{ status: 'applied', accepted: [ 'ls-semantic:catalog-relationship-levels' ], evicted: [], evictedCount: 0 }"
+          }
+        ]
+      },
+      "wallMs": 13,
+      "outputUtf8Bytes": 108
+    },
+    {
+      "code": "nodeRepl.write(JSON.stringify(await ws.orientation.current({maxBytes:8192})));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"version\":1,\"contextId\":\"ls-context:a78e0072a4f1c099b4302316b1e8a515\",\"tokenBudget\":1024,\"estimatedTokens\":665,\"queryCount\":0,\"entries\":[{\"id\":\"ls-context:7410725d760790e5b20c2182\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"synthetic-library\\\",\\\"sourceKey\\\":\\\"ls-context:7410725d760790e5b20c2182\\\",\\\"version\\\":\\\"13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"count\\\":9,\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"2c5db013-08fd-4a79-a5b2-506802dcbcdb:lib-b-warm:1\\\",\\\"contextKey\\\":\\\"lib-b-warm\\\"}\",\"score\":0.7},{\"id\":\"ls-semantic:catalog-relationship-levels\",\"section\":\"context-understanding\",\"text\":\"{\\\"kind\\\":\\\"linked-science-semantic-entry\\\",\\\"text\\\":\\\"The catalog separates editions from works via editionOf. translator relates an edition to a person, while creator relates a work to a person; multiple editions can reference the same work.\\\",\\\"claimKind\\\":\\\"observed-relationship\\\",\\\"validation\\\":\\\"references-checked\\\",\\\"semanticStatus\\\":\\\"agent-proposed\\\",\\\"dependencyStatus\\\":\\\"observed-version\\\",\\\"dependencies\\\":[{\\\"sourceKey\\\":\\\"ls-context:7410725d760790e5b20c2182\\\",\\\"source\\\":\\\"synthetic-library\\\",\\\"version\\\":\\\"13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\"}],\\\"evidence\\\":[{\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"2c5db013-08fd-4a79-a5b2-506802dcbcdb:lib-b-warm:1\\\",\\\"contextKey\\\":\\\"lib-b-warm\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"quads\\\":[{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:edition7\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:editionOf\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:work3\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:edition7\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:translator\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:person9\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:work3\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:creator\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:person2\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:edition8\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:editionOf\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"urn:catalog:work3\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}}]}]}\",\"score\":0.5}]}"
+          }
+        ]
+      },
+      "wallMs": 13,
+      "outputUtf8Bytes": 2772
+    }
+  ],
+  "counts": {
+    "jsCalls": 6,
+    "inspections": 1,
+    "queries": 0,
+    "updates": 1,
+    "observedQuads": 9,
+    "proposalEvidenceQuads": 4
+  },
+  "errors": [
+    {
+      "call": 1,
+      "error": "ReferenceError: process is not defined",
+      "repair": "Call 2 verified projectRoot using linkedScience.api.bootstrapEnvironment and cross-call sentinel persistence; direct cwd unavailable."
+    }
+  ],
+  "evictions": 0,
+  "outputUtf8Bytes": 9713,
+  "callWallMs": [
+    370,
+    14,
+    11,
+    316,
+    13,
+    13
+  ],
+  "telemetry": {
+    "modelTokens": null,
+    "totalModelTimeMs": null,
+    "missing": [
+      "model token telemetry",
+      "total model time telemetry",
+      "direct cwd unavailable"
+    ],
+    "inputRead": {
+      "originalTokenCount": 945,
+      "exactUtf8Bytes": null,
+      "note": "Read output preserved in parent-visible tool transcript; exact UTF-8 bytes not instrumented."
+    }
+  },
+  "runtimeResident": true,
+  "mapEstimatedTokens": 665
+}

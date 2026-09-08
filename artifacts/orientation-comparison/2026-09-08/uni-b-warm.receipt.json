@@ -1,0 +1,161 @@
+{
+  "contextKey": "uni-b-warm",
+  "orientationId": "orientation-20260908-uni-b",
+  "enrich": true,
+  "source": {
+    "kind": "local-synthetic",
+    "id": "historical-uniprot-reconstruction",
+    "note": "Reconstruction of public historical 2026-08-15 six-triple observation; not current/live data"
+  },
+  "dataVersion": "0576e934924609c17478de0f48e42aa839b32f110517cfbdd3ad5468aabd218b",
+  "answer": "The historical six-triple fragment types UniProt P00533 as core:Protein and links it by core:organism to taxonomy/9606. P00533 --core:annotation--> P00533#SIP5F6B6005642E54E6 (typed core:Catalytic_Activity_Annotation) --core:catalyticActivity--> P00533#SIP5A6CD89DB205C09A --core:catalyzedReaction--> http://rdf.rhea-db.org/10596. The supplied separate historical identity row names P00533 EGFR_HUMAN, Epidermal growth factor receptor; those names are not RDF assertions in this fragment. This establishes the recorded identifier chain, not reaction chemistry, substrates/products, mechanism, completeness, or current live annotations.",
+  "generatedText": [
+    "In this source, a protein connects through core:annotation to a Catalytic_Activity_Annotation, then through core:catalyticActivity to an activity node whose core:catalyzedReaction points to a reaction identifier. The protein also has a separate core:organism link."
+  ],
+  "calls": [
+    {
+      "code": "var sentinel='uni-b-warm-persistent'; nodeRepl.write({cwd:process.cwd(),sentinel});",
+      "raw": null,
+      "wallMs": null,
+      "outputBytes": null,
+      "error": "Orchestrator TextEncoder unavailable after tool returned; raw response not retained."
+    },
+    {
+      "code": "nodeRepl.write({sentinel,cwd:process.cwd()}); nodeRepl.write(linkedScience.help());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"ReferenceError\",\"message\":\"process is not defined\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 10,
+      "outputBytes": 177
+    },
+    {
+      "code": "nodeRepl.write({sentinel}); nodeRepl.write(linkedScience); nodeRepl.write(nodeRepl);",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{ sentinel: 'uni-b-warm-persistent' }"
+          },
+          {
+            "type": "text",
+            "text": "{\n  version: '6.4.0',\n  api: {\n    schemaVersion: 1,\n    runtime: 'linked-science',\n    version: '6.4.0',\n    globalBindings: [ 'linkedScience', 'ls' ],\n    bootstrap: \"var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs'); await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl, projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl', moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules' })\",\n    bootstrapEnvironment: {\n      mcp: 'cleanroom_node_repl',\n      project: {\n        id: '@linked-science/runtime',\n        role: 'authoritative-production-implementation',\n        bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n      },\n      broker: {\n        packageName: '@linked-science/cleanroom-node-repl',\n        packageRoot: 'packages/cleanroom-node-repl',\n        entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n        mcpServer: 'cleanroom_node_repl',\n        tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n      },\n      projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n      moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',\n      rlmContext: 'linked-science:runtime',\n      orientationOwner: 'cleanroom-broker',\n      resultStorage: {\n        owner: 'cleanroom-broker',\n        lifetime: 'kernel-epoch',\n        resultKinds: [ 'quads', 'bindings' ],\n        publication: 'complete-only',\n        indexed: true\n      }\n    },\n    discovery: [ 'documentation', 'documentation.all', 'documentation.get', 'capabilities', 'examples', 'open' ],\n    workspace: {\n      lifecycle: [ 'inventory', 'release', 'dispose' ],\n      graphs: [ 'load' ],\n      schema: [ 'search' ],\n      query: [ 'run', 'select' ],\n      evidence: [ 'load' ],\n      resources: [ 'get', 'inspect', 'parseRdf', 'history' ],\n      rdf: [ 'DataFactory', 'source', 'clone', 'dataset', 'retain' ],\n      traversal: [ 'query', 'history' ],\n      results: [ 'derive', 'profile', 'page', 'table' ],\n      graph: [ 'neighbors' ],\n      orientation: [ 'bootstrap', 'current', 'update', 'commit', 'status' ]\n    },\n    compatibility: [ 'initializeSession', 'createTableDisplay' ],\n    documentationRoutes: [\n      'bootstrap',         'discovery',\n      'graphs.load',       'schema.search',\n      'query.select',      'query.run',\n      'traversal.query',   'resources.get',\n      'resources.inspect', 'resources.parseRdf',\n      'rdf.dataset',       'rdf.source',\n      'rdf.clone',         'rdf.retain',\n      'evidence.load',     'traversal.history',\n      'results.derive',    'results.profile',\n      'results.page',      'results.table',\n      'graph.neighbors',   'orientation',\n      'reset',             'inventory',\n      'release',           'dispose',\n      'recovery',          'security',\n      'budgets',           'compatibility'\n    ]\n  },\n  documentation: [Function: fn],\n  capabilities: [Function: capabilities],\n  examples: [Function: examples],\n  open: [Function: open],\n  reset: [AsyncFunction: reset],\n  compatibility: {\n    initializeSession: [Function: initializeLinkedDataSession],\n    createTableDisplay: [Function: createTableDisplay]\n  }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  cwd: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n  homeDir: '/Users/cvardema',\n  tmpDir: '/var/folders/c5/gc7vgjds6tq1jy3b143hjtnm0000gn/T/',\n  requestMeta: [Getter],\n  rlm: {\n    mode: [Getter],\n    capabilities: [Function: rlmCapabilities],\n    registerContext: [Function: registerContext],\n    context: [Function: context],\n    inspect: [Function: inspect],\n    query: [AsyncFunction: query],\n    status: [Function: status]\n  },\n  peek: {\n    begin: [Function: begin],\n    current: [Function: current],\n    edit: [Function: edit],\n    commit: [Function: commit],\n    clear: [Function: clear],\n    checkpoint: [Function: checkpoint],\n    restore: [Function: restore]\n  },\n  write: [Functi\n…[output truncated]",
+            "_meta": {
+              "cleanroom/output": {
+                "truncated": true,
+                "maxBytes": 4096,
+                "originalWriteBytes": 763
+              }
+            }
+          }
+        ]
+      },
+      "wallMs": 10,
+      "outputBytes": 4378
+    },
+    {
+      "code": "nodeRepl.write(linkedScience.documentation.get('rdf.source')); nodeRepl.write(linkedScience.documentation.get('orientation'));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  name: 'rdf.source',\n  summary: 'Return an immutable RDF/JS Source view over a resident graph or stored quad result without cloning the dataset.',\n  signature: 'workspace.rdf.source(graphOrQuadResultHandle) -> Source { match, countQuads }',\n  constraints: [\n    'native RDF/JS quads stream inside the REPL',\n    'stored patterns and counts use the broker indexes',\n    'new reads fail after release or workspace disposal',\n    'no mutable store or transport authority is exposed'\n  ]\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  name: 'orientation',\n  summary: 'Inspect reusable source context; query-result inventory stays in the workspace registry. Pass orientationContext: { id, version } to open for recurring-context reuse.',\n  methods: [\n    'await workspace.orientation.bootstrap({ maxBytes? })',\n    'await current()',\n    'await update({ edits })',\n    'await commit()',\n    'await status()'\n  ],\n  constraints: [\n    'experimental automatic source bookkeeping and agent-proposed native quad evidence',\n    'bootstrap returns a bounded tool-result view; open remains synchronous and does not inject prompts',\n    'update accepts at most four edits and eight native quads per entry; reference validation is not semantic truth',\n    'empty/unavailable/rejected orientation does not block ordinary scientific work'\n  ]\n}"
+          }
+        ]
+      },
+      "wallMs": 12,
+      "outputBytes": 1380
+    },
+    {
+      "code": "var ws=linkedScience.open({contextKey:'uni-b-warm',orientationContext:{id:'orientation-20260908-uni-b',version:'v1'}}); nodeRepl.write(await ws.orientation.bootstrap({maxItems:16,maxBytes:4096})); var graph=await ws.graphs.load({name:'data-source',kind:'instance-data',text:\"<http://purl.uniprot.org/uniprot/P00533> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Protein> .\\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/organism> <http://purl.uniprot.org/taxonomy/9606> .\\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/annotation> <http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Catalytic_Activity_Annotation> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://purl.uniprot.org/core/catalyticActivity> <http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> <http://purl.uniprot.org/core/catalyzedReaction> <http://rdf.rhea-db.org/10596> .\",source:{\"kind\":\"local-synthetic\",\"id\":\"historical-uniprot-reconstruction\",\"note\":\"Reconstruction of public historical 2026-08-15 six-triple observation; not current/live data\"}});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'empty',\n  entries: [],\n  entryCount: 0,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 179, maxBytes: 4096 }\n}"
+          }
+        ]
+      },
+      "wallMs": 326,
+      "outputBytes": 242
+    },
+    {
+      "code": "var sourceView=ws.rdf.source(graph); var observed=[]; for await (var q of sourceView.match()) observed.push(q); nodeRepl.write(observed.map(q=>[q.subject.value,q.predicate.value,q.object.value]));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "[\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',\n    'http://purl.uniprot.org/core/Protein'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://purl.uniprot.org/core/organism',\n    'http://purl.uniprot.org/taxonomy/9606'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://purl.uniprot.org/core/annotation',\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6',\n    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',\n    'http://purl.uniprot.org/core/Catalytic_Activity_Annotation'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6',\n    'http://purl.uniprot.org/core/catalyticActivity',\n    'http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A',\n    'http://purl.uniprot.org/core/catalyzedReaction',\n    'http://rdf.rhea-db.org/10596'\n  ]\n]"
+          }
+        ]
+      },
+      "wallMs": 13,
+      "outputBytes": 1089
+    },
+    {
+      "code": "nodeRepl.write(await ws.orientation.update({edits:[{action:'ADD',id:'ls-semantic:catalytic-annotation-structure',entry:{section:'context-understanding',claimKind:'observed-relationship',text:\"In this source, a protein connects through core:annotation to a Catalytic_Activity_Annotation, then through core:catalyticActivity to an activity node whose core:catalyzedReaction points to a reaction identifier. The protein also has a separate core:organism link.\",evidence:[{handle:graph,quads:observed}]}}]}));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{ status: 'applied', accepted: [ 'ls-semantic:catalytic-annotation-structure' ], evicted: [], evictedCount: 0 }"
+          }
+        ]
+      },
+      "wallMs": 14,
+      "outputBytes": 150
+    },
+    {
+      "code": "nodeRepl.write(JSON.stringify(await ws.orientation.current({maxBytes:8192})));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"version\":1,\"contextId\":\"ls-context:df3963d51cce6401cfb6b51f17ae5f41\",\"tokenBudget\":1024,\"estimatedTokens\":955,\"queryCount\":0,\"entries\":[{\"id\":\"ls-context:b751c0130ca78ed646dbc2cc\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"historical-uniprot-reconstruction\\\",\\\"sourceKey\\\":\\\"ls-context:b751c0130ca78ed646dbc2cc\\\",\\\"version\\\":\\\"0576e934924609c17478de0f48e42aa839b32f110517cfbdd3ad5468aabd218b\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"count\\\":6,\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"a5f12742-0cf6-42d0-bc33-3c30b7347694:uni-b-warm:1\\\",\\\"contextKey\\\":\\\"uni-b-warm\\\"}\",\"score\":0.7},{\"id\":\"ls-semantic:catalytic-annotation-structure\",\"section\":\"context-understanding\",\"text\":\"{\\\"kind\\\":\\\"linked-science-semantic-entry\\\",\\\"text\\\":\\\"In this source, a protein connects through core:annotation to a Catalytic_Activity_Annotation, then through core:catalyticActivity to an activity node whose core:catalyzedReaction points to a reaction identifier. The protein also has a separate core:organism link.\\\",\\\"claimKind\\\":\\\"observed-relationship\\\",\\\"validation\\\":\\\"references-checked\\\",\\\"semanticStatus\\\":\\\"agent-proposed\\\",\\\"dependencyStatus\\\":\\\"observed-version\\\",\\\"dependencies\\\":[{\\\"sourceKey\\\":\\\"ls-context:b751c0130ca78ed646dbc2cc\\\",\\\"source\\\":\\\"historical-uniprot-reconstruction\\\",\\\"version\\\":\\\"0576e934924609c17478de0f48e42aa839b32f110517cfbdd3ad5468aabd218b\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\"}],\\\"evidence\\\":[{\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"a5f12742-0cf6-42d0-bc33-3c30b7347694:uni-b-warm:1\\\",\\\"contextKey\\\":\\\"uni-b-warm\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"quads\\\":[{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/Protein\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/organism\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/taxonomy/9606\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/annotation\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://www.w3.org/1999/02/22-rdf-syntax-ns#type\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/Catalytic_Activity_Annotation\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/catalyticActivity\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}},{\\\"subject\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A\\\"},\\\"predicate\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://purl.uniprot.org/core/catalyzedReaction\\\"},\\\"object\\\":{\\\"termType\\\":\\\"NamedNode\\\",\\\"value\\\":\\\"http://rdf.rhea-db.org/10596\\\"},\\\"graph\\\":{\\\"termType\\\":\\\"DefaultGraph\\\",\\\"value\\\":\\\"\\\"}}]}]}\",\"score\":0.5}]}"
+          }
+        ]
+      },
+      "wallMs": 10,
+      "outputBytes": 4709
+    }
+  ],
+  "counts": {
+    "jsCalls": 8,
+    "inspections": 1,
+    "queries": 0,
+    "updates": 1,
+    "observedQuads": 6,
+    "semanticEntries": 1,
+    "evictions": 0
+  },
+  "errors": [
+    "Calls 1 and 2 used unavailable process.cwd(); binding sentinel survived and persistence was verified in call 3. Project cwd verified from nodeRepl.cwd in call 3.",
+    "First response lost due to orchestrator TextEncoder ReferenceError; exact code retained but raw output, bytes and wall time missing.",
+    "Call 3 bounded output truncated after relevant project identity and cwd."
+  ],
+  "repairs": [
+    "Used runtime facade and nodeRepl introspection after unavailable process global.",
+    "Used encodeURIComponent-based UTF-8 byte calculation for subsequent response envelopes."
+  ],
+  "outputBytesKnown": 12125,
+  "outputBytesScope": "Serialized raw MCP response envelopes; first response unknown.",
+  "inputReadOutputBytes": null,
+  "inputReadTelemetryNote": "Initial authorized cat read returned original_token_count 1134; exact UTF-8 output bytes were not retained or calculated. This tool token estimate is not model-token telemetry.",
+  "modelTokenTelemetry": null,
+  "totalModelTimeTelemetry": null,
+  "runtimeResident": true,
+  "mapEstimatedTokens": 955
+}

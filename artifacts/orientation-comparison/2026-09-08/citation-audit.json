@@ -1,0 +1,26 @@
+{
+  "kind": "offline-citation-membership-audit",
+  "semanticTruthValidated": false,
+  "results": [
+    {
+      "map": "lib-b-follow.map.json",
+      "citedQuads": 4,
+      "nonmembers": 0
+    },
+    {
+      "map": "lib-b-warm.map.json",
+      "citedQuads": 4,
+      "nonmembers": 0
+    },
+    {
+      "map": "uni-b-follow.map.json",
+      "citedQuads": 4,
+      "nonmembers": 0
+    },
+    {
+      "map": "uni-b-warm.map.json",
+      "citedQuads": 6,
+      "nonmembers": 0
+    }
+  ]
+}

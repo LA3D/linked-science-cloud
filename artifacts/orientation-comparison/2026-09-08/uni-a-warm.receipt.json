@@ -1,0 +1,159 @@
+{
+  "contextKey": "uni-a-warm",
+  "orientationId": "orientation-20260908-uni-a",
+  "enrich": false,
+  "dataVersion": "0576e934924609c17478de0f48e42aa839b32f110517cfbdd3ad5468aabd218b",
+  "source": {
+    "kind": "local-synthetic",
+    "id": "historical-uniprot-reconstruction",
+    "note": "Reconstruction of public historical 2026-08-15 six-triple observation; not current/live data"
+  },
+  "answer": "The historical fragment types UniProt P00533 as a Protein and links it through organism to taxonomy/9606. P00533 — core:annotation → P00533#SIP5F6B6005642E54E6 (typed Catalytic_Activity_Annotation) — core:catalyticActivity → P00533#SIP5A6CD89DB205C09A — core:catalyzedReaction → http://rdf.rhea-db.org/10596. The supplied non-RDF identity row labels P00533 EGFR_HUMAN / Epidermal growth factor receptor. This six-triple reconstruction establishes that path only; it supplies no reaction equation, participants, conditions, or evidence of current live annotation.",
+  "generatedText": [],
+  "calls": [
+    {
+      "code": "var warmProbe='uni-a-warm'; nodeRepl.write({cwd:process.cwd(),probe:warmProbe,docs:linkedScience.help()});",
+      "raw": null,
+      "wallMs": null,
+      "outputBytes": null,
+      "error": "Tool returned but orchestration failed before preserving/displaying result: TextEncoder is not defined."
+    },
+    {
+      "code": "nodeRepl.write({cwd:process.cwd(),probe:warmProbe}); nodeRepl.write(linkedScience.help());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"ReferenceError\",\"message\":\"process is not defined\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 11,
+      "outputBytes": 177
+    },
+    {
+      "code": "nodeRepl.write({probe:warmProbe}); nodeRepl.write(linkedScience.help());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"TypeError\",\"message\":\"linkedScience.help is not a function\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 15,
+      "outputBytes": 186
+    },
+    {
+      "code": "nodeRepl.write({probe:warmProbe,facadeKeys:Object.keys(linkedScience),runtimeKeys:Object.keys(nodeRepl)});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  probe: 'uni-a-warm',\n  facadeKeys: [ 'version', 'api', 'documentation', 'capabilities', 'examples', 'open', 'reset', 'compatibility' ],\n  runtimeKeys: [ 'cwd', 'homeDir', 'tmpDir', 'requestMeta', 'rlm', 'peek', 'write', 'emitImage' ]\n}"
+          }
+        ]
+      },
+      "wallMs": 12,
+      "outputBytes": 282
+    },
+    {
+      "code": "nodeRepl.write({cwd:nodeRepl.cwd,version:linkedScience.version,documentation:linkedScience.documentation}); var ws=linkedScience.open({contextKey:'uni-a-warm',orientationContext:{id:'orientation-20260908-uni-a',version:'v1'}}); nodeRepl.write(await ws.orientation.bootstrap({maxItems:16,maxBytes:4096}));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  cwd: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n  version: '6.4.0',\n  documentation: [Function: fn]\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  status: 'empty',\n  entries: [],\n  entryCount: 0,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 179, maxBytes: 4096 }\n}"
+          }
+        ]
+      },
+      "wallMs": 347,
+      "outputBytes": 398
+    },
+    {
+      "code": "nodeRepl.write(linkedScience.documentation());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  runtime: 'linked-science',\n  version: '6.4.0',\n  summary: 'Persistent scientific JavaScript REPL with native RDF/JS sources, Comunica queries and bounded observations.',\n  start: [ 'bootstrap', 'discovery' ],\n  routes: [\n    'bootstrap',         'discovery',\n    'graphs.load',       'schema.search',\n    'query.select',      'query.run',\n    'traversal.query',   'resources.get',\n    'resources.inspect', 'resources.parseRdf',\n    'rdf.dataset',       'rdf.source',\n    'rdf.clone',         'rdf.retain',\n    'evidence.load',     'traversal.history',\n    'results.derive',    'results.profile',\n    'results.page',      'results.table',\n    'graph.neighbors',   'orientation',\n    'reset',             'inventory',\n    'release',           'dispose',\n    'recovery',          'security',\n    'budgets',           'compatibility'\n  ],\n  machineSchema: 'docs/runtime/linked-science-api.schema.json'\n}"
+          }
+        ]
+      },
+      "wallMs": 11,
+      "outputBytes": 965
+    },
+    {
+      "code": "var graph=await ws.graphs.load({name:'data-source',kind:'instance-data',text:'<http://purl.uniprot.org/uniprot/P00533> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Protein> .\\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/organism> <http://purl.uniprot.org/taxonomy/9606> .\\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/annotation> <http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Catalytic_Activity_Annotation> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://purl.uniprot.org/core/catalyticActivity> <http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> .\\n<http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> <http://purl.uniprot.org/core/catalyzedReaction> <http://rdf.rhea-db.org/10596> .',source:{kind:'local-synthetic',id:'historical-uniprot-reconstruction',note:'Reconstruction of public historical 2026-08-15 six-triple observation; not current/live data'}}); nodeRepl.write(graph); nodeRepl.write(linkedScience.documentation('rdf.dataset'));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  kind: 'linked-science-handle',\n  id: 'h-000001',\n  type: 'instance-data',\n  epoch: '84a9c7c6-ddfc-4995-8bd1-6886af98c516:uni-a-warm:1',\n  label: 'data-source'\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  runtime: 'linked-science',\n  version: '6.4.0',\n  summary: 'Persistent scientific JavaScript REPL with native RDF/JS sources, Comunica queries and bounded observations.',\n  start: [ 'bootstrap', 'discovery' ],\n  routes: [\n    'bootstrap',         'discovery',\n    'graphs.load',       'schema.search',\n    'query.select',      'query.run',\n    'traversal.query',   'resources.get',\n    'resources.inspect', 'resources.parseRdf',\n    'rdf.dataset',       'rdf.source',\n    'rdf.clone',         'rdf.retain',\n    'evidence.load',     'traversal.history',\n    'results.derive',    'results.profile',\n    'results.page',      'results.table',\n    'graph.neighbors',   'orientation',\n    'reset',             'inventory',\n    'release',           'dispose',\n    'recovery',          'security',\n    'budgets',           'compatibility'\n  ],\n  machineSchema: 'docs/runtime/linked-science-api.schema.json'\n}"
+          }
+        ]
+      },
+      "wallMs": 17,
+      "outputBytes": 1161
+    },
+    {
+      "code": "var ds=await ws.rdf.dataset(graph); var observed=Array.from(ds.match(null,null,null)); nodeRepl.write(observed.map(q=>[q.subject.value,q.predicate.value,q.object.value])); nodeRepl.write(JSON.stringify(await ws.orientation.current({maxBytes:8192})));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "[\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',\n    'http://purl.uniprot.org/core/Protein'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://purl.uniprot.org/core/organism',\n    'http://purl.uniprot.org/taxonomy/9606'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533',\n    'http://purl.uniprot.org/core/annotation',\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6',\n    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',\n    'http://purl.uniprot.org/core/Catalytic_Activity_Annotation'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6',\n    'http://purl.uniprot.org/core/catalyticActivity',\n    'http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A'\n  ],\n  [\n    'http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A',\n    'http://purl.uniprot.org/core/catalyzedReaction',\n    'http://rdf.rhea-db.org/10596'\n  ]\n]"
+          },
+          {
+            "type": "text",
+            "text": "{\"version\":1,\"contextId\":\"ls-context:2f2e97f886075b2a0346ffbce7e1c0c6\",\"tokenBudget\":1024,\"estimatedTokens\":150,\"queryCount\":0,\"entries\":[{\"id\":\"ls-context:b751c0130ca78ed646dbc2cc\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"historical-uniprot-reconstruction\\\",\\\"sourceKey\\\":\\\"ls-context:b751c0130ca78ed646dbc2cc\\\",\\\"version\\\":\\\"0576e934924609c17478de0f48e42aa839b32f110517cfbdd3ad5468aabd218b\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"count\\\":6,\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"84a9c7c6-ddfc-4995-8bd1-6886af98c516:uni-a-warm:1\\\",\\\"contextKey\\\":\\\"uni-a-warm\\\"}\",\"score\":0.7}]}"
+          }
+        ]
+      },
+      "wallMs": 13,
+      "outputBytes": 1958
+    }
+  ],
+  "counts": {
+    "jsCalls": 8,
+    "inspections": 1,
+    "queries": 0,
+    "updates": 0,
+    "observedQuads": 6,
+    "bootstrapCalls": 1
+  },
+  "errors": [
+    "Initial output capture failed in orchestration: TextEncoder is not defined; first raw response, elapsed wall ms and output bytes unavailable.",
+    "process is not defined in runtime; repaired with nodeRepl.cwd.",
+    "linkedScience.help is not a function; repaired with linkedScience.documentation."
+  ],
+  "protocolDeviations": [
+    "Cross-call binding was initialized on call 1 but successful persistence display was call 4; cwd verified call 5.",
+    "First call raw output unavailable due to capture failure."
+  ],
+  "repairs": [
+    "Used UTF-8 byte count via unescape(encodeURIComponent(JSON.stringify(response))).",
+    "Inspected runtime keys to locate documented entry points."
+  ],
+  "evictions": [],
+  "outputBytesKnown": 5127,
+  "outputBytesComplete": false,
+  "wallMsKnown": 426,
+  "missingTelemetry": [
+    "First call raw output, byte count and wall time",
+    "Reasoning and total model tokens",
+    "Total model execution time"
+  ],
+  "inputReadAccounting": {"command":"cat /Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/orientation-comparison/2026-09-08/worker-instructions.txt /Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/orientation-comparison/2026-09-08/uni.fixture.json","reportedOriginalTokenCount":1134,"outputBytes":null,"note":"Exact read output bytes were not instrumented or retained in orchestration store; no estimate substituted."},
+  "runtimeResident": true
+}

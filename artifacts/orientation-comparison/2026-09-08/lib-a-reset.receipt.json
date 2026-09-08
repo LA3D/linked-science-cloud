@@ -1,0 +1,55 @@
+{
+  "kind": "reset-diagnostic",
+  "contextKey": "lib-a-follow",
+  "answer": "Historical orientation metadata survives reset but does not restore graph residency. Old workspace native source access failed with LS_STALE_WORKSPACE: Workspace belongs to a prior runtime epoch. Fresh epoch 2 inventory has zero handles and zero resident graph quads; bootstrap retains the historical v2 metadata pointing to epoch 1 handle h-000002.",
+  "calls": [
+    {
+      "code": "var resetOldWs=ws; var resetOldGraph=graphV2; nodeRepl.write(await linkedScience.reset({contextKey:'lib-a-follow'})); try { var resetAccess=await resetOldWs.rdf.source(resetOldGraph); nodeRepl.write({oldAccess:'unexpected-success',source:resetAccess}); } catch(e) { nodeRepl.write({oldAccess:'failed',name:e.name,code:e.code,message:e.message}); } var resetFreshWs=linkedScience.open({contextKey:'lib-a-follow',orientationContext:{id:'orientation-20260908-lib-a',version:'v1'}}); nodeRepl.write(await resetFreshWs.orientation.bootstrap({maxBytes:4096})); nodeRepl.write(resetFreshWs.inventory());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'reset',\n  contextKey: 'lib-a-follow',\n  epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:2',\n  orientationRetained: true,\n  orientationOwner: 'cleanroom-broker',\n  recoveryDocument: 'reset'\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  oldAccess: 'failed',\n  name: 'LinkedScienceRuntimeError',\n  code: 'LS_STALE_WORKSPACE',\n  message: 'Workspace belongs to a prior runtime epoch'\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  status: 'ready',\n  entries: [\n    {\n      id: 'ls-context:7410725d760790e5b20c2182',\n      section: 'context-roadmap',\n      kind: 'linked-science-context-reference',\n      source: 'synthetic-library',\n      sourceKey: 'ls-context:7410725d760790e5b20c2182',\n      version: 'a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec',\n      role: 'data-source',\n      type: 'instance-data',\n      provenanceScope: 'local-synthetic',\n      operationId: 'op-000002',\n      count: 9,\n      handle: 'h-000002',\n      handleEpoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n      contextKey: 'lib-a-follow'\n    }\n  ],\n  entryCount: 1,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 681, maxBytes: 4096 }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  kind: 'linked-science-inventory',\n  contextKey: 'lib-a-follow',\n  epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:2',\n  total: 0,\n  residentGraphQuads: 0,\n  handles: [],\n  truncated: false,\n  bounds: { bytes: 229, maxBytes: 32768 }\n}"
+          }
+        ]
+      },
+      "wallMs": 37,
+      "outputBytes": 1566
+    }
+  ],
+  "counts": {
+    "jsCalls": 1,
+    "resets": 1,
+    "oldSourceAccessAttempts": 1,
+    "bootstrapCalls": 1,
+    "inventoryInspections": 1,
+    "reloads": 0,
+    "semanticUpdates": 0
+  },
+  "costs": {
+    "toolOutputEnvelopeBytes": 1566,
+    "toolWallMs": 37,
+    "modelTokens": null,
+    "reasoningTokens": null,
+    "totalModelTimeMs": null
+  },
+  "expectedFailure": {
+    "name": "LinkedScienceRuntimeError",
+    "code": "LS_STALE_WORKSPACE",
+    "message": "Workspace belongs to a prior runtime epoch"
+  },
+  "runtimeResident": true,
+  "priorFilesPreserved": true
+}

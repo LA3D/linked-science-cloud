@@ -1,0 +1,147 @@
+{
+  "contextKey": "lib-a-follow",
+  "orientationId": "orientation-20260908-lib-a",
+  "enrich": false,
+  "dataVersion": "13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8",
+  "answer": "Neither claim is asserted. Salt Roads has creator Mira. Tomas is explicitly translator of the Harbor edition, which is an edition of Salt Roads; this indirectly associates Tomas with the work but does not assert work authorship. The Inland edition is also an edition of Salt Roads, with no translator statement in this catalog. Shared editionOf does not transfer the Harbor translator to Inland. Missing statements do not prove global absence.",
+  "generatedText": [],
+  "calls": [
+    {
+      "code": "var followProbe='lib-a-follow'; nodeRepl.write({cwd:process.cwd(),probe:followProbe}); nodeRepl.write(linkedScience);",
+      "raw": null,
+      "wallMs": null,
+      "outputBytes": null,
+      "error": "Tool executed, but harness TextEncoder ReferenceError prevented raw output capture; later calls establish process is unavailable."
+    },
+    {
+      "code": "nodeRepl.write({cwd:process.cwd(),probe:followProbe}); nodeRepl.write(linkedScience.help());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"ReferenceError\",\"message\":\"process is not defined\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 12,
+      "outputBytes": 177
+    },
+    {
+      "code": "nodeRepl.write({probe:followProbe}); nodeRepl.write(linkedScience.help());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"EVALUATION_ERROR\",\"name\":\"TypeError\",\"message\":\"linkedScience.help is not a function\"}}"
+          }
+        ],
+        "isError": true
+      },
+      "wallMs": 12,
+      "outputBytes": 186
+    },
+    {
+      "code": "var ws=linkedScience.open({contextKey:'lib-a-follow',orientationContext:{id:'orientation-20260908-lib-a',version:'v1'}}); nodeRepl.write({probe:followProbe,runtime:linkedScience,session:ws});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  probe: 'lib-a-follow',\n  runtime: {\n    version: '6.4.0',\n    api: {\n      schemaVersion: 1,\n      runtime: 'linked-science',\n      version: '6.4.0',\n      globalBindings: [ 'linkedScience', 'ls' ],\n      bootstrap: \"var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs'); await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl, projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl', moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules' })\",\n      bootstrapEnvironment: {\n        mcp: 'cleanroom_node_repl',\n        project: {\n          id: '@linked-science/runtime',\n          role: 'authoritative-production-implementation',\n          bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n        },\n        broker: {\n          packageName: '@linked-science/cleanroom-node-repl',\n          packageRoot: 'packages/cleanroom-node-repl',\n          entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n          mcpServer: 'cleanroom_node_repl',\n          tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n        },\n        projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n        moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',\n        rlmContext: 'linked-science:runtime',\n        orientationOwner: 'cleanroom-broker',\n        resultStorage: {\n          owner: 'cleanroom-broker',\n          lifetime: 'kernel-epoch',\n          resultKinds: [ 'quads', 'bindings' ],\n          publication: 'complete-only',\n          indexed: true\n        }\n      },\n      discovery: [ 'documentation', 'documentation.all', 'documentation.get', 'capabilities', 'examples', 'open' ],\n      workspace: {\n        lifecycle: [ 'inventory', 'release', 'dispose' ],\n        graphs: [ 'load' ],\n        schema: [ 'search' ],\n        query: [ 'run', 'select' ],\n        evidence: [ 'load' ],\n        resources: [ 'get', 'inspect', 'parseRdf', 'history' ],\n        rdf: [ 'DataFactory', 'source', 'clone', 'dataset', 'retain' ],\n        traversal: [ 'query', 'history' ],\n        results: [ 'derive', 'profile', 'page', 'table' ],\n        graph: [ 'neighbors' ],\n        orientation: [ 'bootstrap', 'current', 'update', 'commit', 'status' ]\n      },\n      compatibility: [ 'initializeSession', 'createTableDisplay' ],\n      documentationRoutes: [\n        'bootstrap',         'discovery',\n        'graphs.load',       'schema.search',\n        'query.select',      'query.run',\n        'traversal.query',   'resources.get',\n        'resources.inspect', 'resources.parseRdf',\n        'rdf.dataset',       'rdf.source',\n        'rdf.clone',         'rdf.retain',\n        'evidence.load',     'traversal.history',\n        'results.derive',    'results.profile',\n        'results.page',      'results.table',\n        'graph.neighbors',   'orientation',\n        'reset',             'inventory',\n        'release',           'dispose',\n        'recovery',          'security',\n        'budgets',           'compatibility'\n      ]\n    },\n    documentation: [Function: fn],\n    capabilities: [Function: capabilities],\n    examples: [Function: examples],\n    open: [Function: open],\n    reset: [AsyncFunction: reset],\n    compatibility: {\n      initializeSession: [Function: initializeLinkedDataSession],\n      createTableDisplay: [Function: createTableDisplay]\n    }\n  },\n  session: {\n    contextKey: 'lib-a-follow',\n    epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n    inventory: [Function: inventory],\n    release: [AsyncFunction: release],\n    dispose: [Function: dispose],\n    graphs: { load: [AsyncFunction: loadGraph] },\n    schema: { search: [Function: schemaSearch] },\n    query: { run: [Function: run], select: [Function: select] },\n    evidence: { load: [AsyncFunction: loadEvidence] },\n    resources: {\n      get: [AsyncFunction: getResource],\n      inspect: [Function: resourceInspect],\n      parseRdf:\n…[output truncated]",
+            "_meta": {
+              "cleanroom/output": {
+                "truncated": true,
+                "maxBytes": 4096,
+                "originalWriteBytes": 5336
+              }
+            }
+          }
+        ]
+      },
+      "wallMs": 293,
+      "outputBytes": 4320
+    },
+    {
+      "code": "nodeRepl.write(ws.orientation.bootstrap({maxItems:16,maxBytes:4096})); var current=await ws.orientation.current(); nodeRepl.peek.begin(current.contextId,{tokenBudget:1024}); nodeRepl.peek.edit(current.contextId,[{\"id\":\"ls-context:7410725d760790e5b20c2182\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"synthetic-library\\\",\\\"sourceKey\\\":\\\"ls-context:7410725d760790e5b20c2182\\\",\\\"version\\\":\\\"13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"count\\\":9,\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"fde2e22c-30f4-45f3-9817-79ab992ef8c6:lib-a-warm:1\\\",\\\"contextKey\\\":\\\"lib-a-warm\\\"}\",\"score\":0.7}].map(entry=>({action:'ADD',entry}))); nodeRepl.write(ws.orientation.bootstrap({maxBytes:4096})); nodeRepl.write(linkedScience.documentation.get('rdf.dataset'));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Promise { <pending> }"
+          },
+          {
+            "type": "text",
+            "text": "Promise { <pending> }"
+          },
+          {
+            "type": "text",
+            "text": "{\n  name: 'rdf.dataset',\n  summary: 'Compatibility alias for rdf.clone: copy a resident graph into a mutable N3 dataset. Prefer rdf.source for streaming read access.',\n  signature: 'workspace.rdf.dataset(graphOrQuadResultHandle) -> DatasetCore'\n}"
+          }
+        ]
+      },
+      "wallMs": 19,
+      "outputBytes": 383
+    },
+    {
+      "code": "nodeRepl.write(await ws.orientation.bootstrap({maxBytes:4096})); var graph=await ws.graphs.load({name:'data-source',kind:'instance-data',text:\"@prefix c: <urn:catalog:> .\\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\\nc:edition7 c:editionOf c:work3 ; c:translator c:person9 ; rdfs:label \\\"Harbor edition\\\" .\\nc:work3 c:creator c:person2 ; rdfs:label \\\"Salt Roads\\\" .\\nc:person2 rdfs:label \\\"Mira\\\" .\\nc:person9 rdfs:label \\\"Tomas\\\" .\\nc:edition8 c:editionOf c:work3 ; rdfs:label \\\"Inland edition\\\" .\",source:{kind:'local-synthetic',id:'synthetic-library'}}); var ds=await ws.rdf.dataset(graph); nodeRepl.write({graph,quads:[...ds].map(q=>[q.subject.value,q.predicate.value,q.object.value])});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'ready',\n  entries: [\n    {\n      id: 'ls-context:7410725d760790e5b20c2182',\n      section: 'context-roadmap',\n      kind: 'linked-science-context-reference',\n      source: 'synthetic-library',\n      sourceKey: 'ls-context:7410725d760790e5b20c2182',\n      version: '13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8',\n      role: 'data-source',\n      type: 'instance-data',\n      provenanceScope: 'local-synthetic',\n      operationId: 'op-000001',\n      count: 9,\n      handle: 'h-000001',\n      handleEpoch: 'fde2e22c-30f4-45f3-9817-79ab992ef8c6:lib-a-warm:1',\n      contextKey: 'lib-a-warm'\n    }\n  ],\n  entryCount: 1,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 677, maxBytes: 4096 }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  graph: {\n    kind: 'linked-science-handle',\n    id: 'h-000001',\n    type: 'instance-data',\n    epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n    label: 'data-source'\n  },\n  quads: [\n    [ 'urn:catalog:edition7', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition7', 'urn:catalog:translator', 'urn:catalog:person9' ],\n    [ 'urn:catalog:edition7', 'http://www.w3.org/2000/01/rdf-schema#label', 'Harbor edition' ],\n    [ 'urn:catalog:work3', 'http://www.w3.org/2000/01/rdf-schema#label', 'Salt Roads' ],\n    [ 'urn:catalog:work3', 'urn:catalog:creator', 'urn:catalog:person2' ],\n    [ 'urn:catalog:person9', 'http://www.w3.org/2000/01/rdf-schema#label', 'Tomas' ],\n    [ 'urn:catalog:person2', 'http://www.w3.org/2000/01/rdf-schema#label', 'Mira' ],\n    [ 'urn:catalog:edition8', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition8', 'http://www.w3.org/2000/01/rdf-schema#label', 'Inland edition' ]\n  ]\n}"
+          }
+        ]
+      },
+      "wallMs": 17,
+      "outputBytes": 1869
+    },
+    {
+      "code": "var finalMap=JSON.stringify(await ws.orientation.current({maxBytes:8192})); nodeRepl.write(finalMap);",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"version\":1,\"contextId\":\"ls-context:c0c2304a0c93b9b597e79dc264ac383a\",\"tokenBudget\":1024,\"estimatedTokens\":147,\"queryCount\":0,\"entries\":[{\"id\":\"ls-context:7410725d760790e5b20c2182\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"synthetic-library\\\",\\\"sourceKey\\\":\\\"ls-context:7410725d760790e5b20c2182\\\",\\\"version\\\":\\\"13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000001\\\",\\\"count\\\":9,\\\"handle\\\":\\\"h-000001\\\",\\\"handleEpoch\\\":\\\"04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1\\\",\\\"contextKey\\\":\\\"lib-a-follow\\\"}\",\"score\":0.7}]}"
+          }
+        ]
+      },
+      "wallMs": 13,
+      "outputBytes": 870
+    }
+  ],
+  "counts": {
+    "jsCalls": 7,
+    "inspections": 1,
+    "queries": 0,
+    "semanticUpdates": 0,
+    "observedQuads": 9,
+    "mapTransfers": 1,
+    "bootstrapCalls": 3
+  },
+  "transfer": {
+    "jsonBytes": 707,
+    "readOutputBytes": null,
+    "note": "Initial authorized shell read combined instructions, fixture and map; exact per-file transport bytes unavailable. Map serialized JSON byte count measured separately, and its transfer code is input rather than output."
+  },
+  "outputBytes": {
+    "knownRawEnvelopeBytes": 7805,
+    "completeTotal": null,
+    "note": "Raw tool envelope UTF-8 bytes counted; first raw response missing. One runtime surface output truncated at 4096 bytes."
+  },
+  "errors": [
+    "process is not defined prevented initial cwd verification; runtime documentation verified authoritative projectRoot instead.",
+    "linkedScience.help is not a function; repaired by inspecting runtime surface.",
+    "Two bootstrap outputs were unresolved Promise objects; repaired with awaited bootstrap before graph load.",
+    "First response telemetry lost by functions harness TextEncoder ReferenceError."
+  ],
+  "evictions": 0,
+  "oldHandles": "Transferred warm handle and epoch treated as nonresident; newly loaded graph used exclusively.",
+  "runtimeResident": true,
+  "modelTokens": null,
+  "reasoningTokens": null,
+  "totalModelTimeMs": null
+}

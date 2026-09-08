@@ -1,0 +1,12 @@
+{
+  "data": "<http://purl.uniprot.org/uniprot/P00533> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Protein> .\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/organism> <http://purl.uniprot.org/taxonomy/9606> .\n<http://purl.uniprot.org/uniprot/P00533> <http://purl.uniprot.org/core/annotation> <http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> .\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.uniprot.org/core/Catalytic_Activity_Annotation> .\n<http://purl.uniprot.org/uniprot/P00533#SIP5F6B6005642E54E6> <http://purl.uniprot.org/core/catalyticActivity> <http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> .\n<http://purl.uniprot.org/uniprot/P00533#SIP5A6CD89DB205C09A> <http://purl.uniprot.org/core/catalyzedReaction> <http://rdf.rhea-db.org/10596> .",
+  "source": {
+    "kind": "local-synthetic",
+    "id": "historical-uniprot-reconstruction",
+    "note": "Reconstruction of public historical 2026-08-15 six-triple observation; not current/live data"
+  },
+  "identity": {
+    "mnemonic": "EGFR_HUMAN",
+    "fullName": "Epidermal growth factor receptor"
+  }
+}

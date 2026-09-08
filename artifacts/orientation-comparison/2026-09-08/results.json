@@ -1,0 +1,124 @@
+{
+  "format": "linked-science-orientation-comparison/v1",
+  "status": "completed-partial-evidence",
+  "scope": "local historical development and synthetic library; not held-out or live evaluation",
+  "protocol": "artifacts/orientation-comparison/2026-09-08/protocol.json",
+  "workers": [
+    "artifacts/orientation-comparison/2026-09-08/lib-a-follow.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-a-reset.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-a-stale.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-a-warm.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-b-follow.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-b-reset.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-b-stale.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/lib-b-warm.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/uni-a-follow.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/uni-a-warm.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/uni-b-follow.receipt.json",
+    "artifacts/orientation-comparison/2026-09-08/uni-b-warm.receipt.json"
+  ],
+  "missingEvidence": [
+    "Exact total model tokens, reasoning tokens and model time",
+    "Some first-call raw outputs and initial input-read byte telemetry",
+    "All raw-call telemetry in lib-a-warm (bookkeeping failure)",
+    "Verified aggregate observation/time compliance for every worker; instructed caps were not fully instrumented",
+    "Reversed-order repetition (not run; no benefit claim)"
+  ],
+  "liveScientificRequests": 0,
+  "mainComparison": {
+    "questionsCompleted": 8,
+    "evidenceSupportedAnswers": 8,
+    "unsupportedAnswerClaimsObserved": 0,
+    "heldOut": false,
+    "fullFixtureQuadsInspectedPerFollowup": {
+      "uni": {
+        "A": 6,
+        "B": 6
+      },
+      "lib": {
+        "A": 9,
+        "B": 9
+      }
+    },
+    "jsCalls": {
+      "uniWarm": {
+        "A": 8,
+        "B": 8
+      },
+      "uniFollow": {
+        "A": 11,
+        "B": 7
+      },
+      "libWarm": {
+        "A": 6,
+        "B": 6
+      },
+      "libFollow": {
+        "A": 7,
+        "B": 8
+      }
+    },
+    "semanticProposals": {
+      "A": 0,
+      "B": 4
+    },
+    "followupEvictions": {
+      "A": 0,
+      "B": 2
+    },
+    "transferJsonBytes": {
+      "uni": {
+        "A": 723,
+        "B": 3932
+      },
+      "lib": {
+        "A": 707,
+        "B": 2772
+      }
+    },
+    "interpretation": "No observed reduction in full-fixture rediscovery. Discovery errors differ across workers, so js-call difference is not a map benefit estimate. Generated semantics were useful local summaries, with larger transfer/output and maintenance cost. Missing raw/input/model telemetry prevents exact total-cost comparison."
+  },
+  "reversedOrderRepetition": {
+    "run": false,
+    "reason": "First pairs provide no comparative benefit claim and incomplete telemetry; repetition would not repair missing observations. No maps or implementation tuned on outcomes."
+  },
+  "diagnostics": {
+    "sourceVersionMatched": true,
+    "v2Fingerprint": "a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec",
+    "currentTranslatorAnswers": {
+      "A": "Leena",
+      "B": "Leena"
+    },
+    "BDependencyChangedObserved": true,
+    "BRevalidation": {
+      "attempts": 2,
+      "accepted": 1,
+      "rejection": "ADD existing id; repaired with new generated version-specific id",
+      "evictions": 1
+    },
+    "stalenessJsCalls": {
+      "A": 3,
+      "B": 5
+    },
+    "stalenessOutputEnvelopeBytes": {
+      "A": 3057,
+      "B": 11063
+    },
+    "resetJsCalls": {
+      "A": 1,
+      "B": 2
+    },
+    "oldWorkspaceErrorBoth": "LS_STALE_WORKSPACE",
+    "freshInventoryHandlesBoth": 0,
+    "BPostReset": "stale evidence and source-not-observed",
+    "preResetReceiptsRegisteredAndValidated": true
+  },
+  "verification": {
+    "npmTest": "171 passed after updating registry expected counts; initial 170/171 failed only stale count 30 vs 31",
+    "smoke": "passed",
+    "linkedScienceVerify": "passed; 6.4.0",
+    "resultRegistry": "passed",
+    "liveScientificRequests": 0,
+    "runtimeImplementationChanges": 0
+  }
+}

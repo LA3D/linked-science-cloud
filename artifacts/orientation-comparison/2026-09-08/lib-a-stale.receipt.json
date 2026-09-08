@@ -1,0 +1,75 @@
+{
+  "kind": "separate-frozen-staleness-diagnostic",
+  "contextKey": "lib-a-follow",
+  "enrich": false,
+  "persistenceVerified": true,
+  "dataVersion": "a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec",
+  "answer": "Leena is now explicitly the Harbor edition translator (edition7 translator person4; person4 label Leena). Prior map metadata refers to the previous source version and is not current relationship evidence. The automatic map refreshed to v2 handle h-000002 and its version, with references-only validation. No semantic guidance was present in this control map. Current translator evidence comes from the v2 native RDF graph.",
+  "generatedText": [],
+  "calls": [
+    {
+      "code": "nodeRepl.write({wsPresent:typeof ws!=='undefined',graphPresent:typeof graph!=='undefined',contextKey:typeof ws!=='undefined'?ws.contextKey:null,graph:typeof graph!=='undefined'?graph:null});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  wsPresent: true,\n  graphPresent: true,\n  contextKey: 'lib-a-follow',\n  graph: {\n    kind: 'linked-science-handle',\n    id: 'h-000001',\n    type: 'instance-data',\n    epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n    label: 'data-source'\n  }\n}"
+          }
+        ]
+      },
+      "wallMs": 12,
+      "outputBytes": 312
+    },
+    {
+      "code": "var graphV2=await ws.graphs.load({name:'data-source',kind:'instance-data',text:\"@prefix c: <urn:catalog:> .\\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\\nc:edition7 c:editionOf c:work3 ; c:translator c:person4 ; rdfs:label \\\"Harbor edition\\\" .\\nc:work3 c:creator c:person2 ; rdfs:label \\\"Salt Roads\\\" .\\nc:person2 rdfs:label \\\"Mira\\\" .\\nc:person4 rdfs:label \\\"Leena\\\" .\\nc:edition8 c:editionOf c:work3 ; rdfs:label \\\"Inland edition\\\" .\",source:{kind:'local-synthetic',id:'synthetic-library'}}); nodeRepl.write(await ws.orientation.bootstrap({maxBytes:4096})); var dsV2=await ws.rdf.dataset(graphV2); nodeRepl.write({graphV2,quads:[...dsV2].map(q=>[q.subject.value,q.predicate.value,q.object.value])});",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'ready',\n  entries: [\n    {\n      id: 'ls-context:7410725d760790e5b20c2182',\n      section: 'context-roadmap',\n      kind: 'linked-science-context-reference',\n      source: 'synthetic-library',\n      sourceKey: 'ls-context:7410725d760790e5b20c2182',\n      version: 'a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec',\n      role: 'data-source',\n      type: 'instance-data',\n      provenanceScope: 'local-synthetic',\n      operationId: 'op-000002',\n      count: 9,\n      handle: 'h-000002',\n      handleEpoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n      contextKey: 'lib-a-follow'\n    }\n  ],\n  entryCount: 1,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 681, maxBytes: 4096 }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  graphV2: {\n    kind: 'linked-science-handle',\n    id: 'h-000002',\n    type: 'instance-data',\n    epoch: '04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1',\n    label: 'data-source'\n  },\n  quads: [\n    [ 'urn:catalog:edition7', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition7', 'urn:catalog:translator', 'urn:catalog:person4' ],\n    [ 'urn:catalog:edition7', 'http://www.w3.org/2000/01/rdf-schema#label', 'Harbor edition' ],\n    [ 'urn:catalog:work3', 'http://www.w3.org/2000/01/rdf-schema#label', 'Salt Roads' ],\n    [ 'urn:catalog:work3', 'urn:catalog:creator', 'urn:catalog:person2' ],\n    [ 'urn:catalog:person4', 'http://www.w3.org/2000/01/rdf-schema#label', 'Leena' ],\n    [ 'urn:catalog:person2', 'http://www.w3.org/2000/01/rdf-schema#label', 'Mira' ],\n    [ 'urn:catalog:edition8', 'urn:catalog:editionOf', 'urn:catalog:work3' ],\n    [ 'urn:catalog:edition8', 'http://www.w3.org/2000/01/rdf-schema#label', 'Inland edition' ]\n  ]\n}"
+          }
+        ]
+      },
+      "wallMs": 16,
+      "outputBytes": 1875
+    },
+    {
+      "code": "nodeRepl.write(JSON.stringify(await ws.orientation.current({maxBytes:8192})));",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"version\":1,\"contextId\":\"ls-context:c0c2304a0c93b9b597e79dc264ac383a\",\"tokenBudget\":1024,\"estimatedTokens\":147,\"queryCount\":0,\"entries\":[{\"id\":\"ls-context:7410725d760790e5b20c2182\",\"section\":\"context-roadmap\",\"text\":\"{\\\"kind\\\":\\\"linked-science-context-reference\\\",\\\"source\\\":\\\"synthetic-library\\\",\\\"sourceKey\\\":\\\"ls-context:7410725d760790e5b20c2182\\\",\\\"version\\\":\\\"a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec\\\",\\\"role\\\":\\\"data-source\\\",\\\"type\\\":\\\"instance-data\\\",\\\"provenanceScope\\\":\\\"local-synthetic\\\",\\\"operationId\\\":\\\"op-000002\\\",\\\"count\\\":9,\\\"handle\\\":\\\"h-000002\\\",\\\"handleEpoch\\\":\\\"04366906-0fc4-4caa-9541-a5c2f2ee99f6:lib-a-follow:1\\\",\\\"contextKey\\\":\\\"lib-a-follow\\\"}\",\"score\":0.7}]}"
+          }
+        ]
+      },
+      "wallMs": 12,
+      "outputBytes": 870
+    }
+  ],
+  "counts": {
+    "jsCalls": 3,
+    "inspections": 1,
+    "queries": 0,
+    "semanticUpdates": 0,
+    "observedQuads": 9,
+    "bootstrapCalls": 1
+  },
+  "costs": {
+    "toolOutputEnvelopeBytes": 3057,
+    "toolWallMs": 40,
+    "modelTokens": null,
+    "reasoningTokens": null,
+    "totalModelTimeMs": null,
+    "inputTransferBytes": null
+  },
+  "errors": [],
+  "repairs": [],
+  "evictions": 0,
+  "runtimeResident": true,
+  "originalOutputFilesPreserved": true
+}

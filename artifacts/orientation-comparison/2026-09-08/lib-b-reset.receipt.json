@@ -1,0 +1,59 @@
+{
+  "phase": "reset-diagnostic",
+  "contextKey": "lib-b-follow",
+  "answer": "Historical orientation is retained but does not restore graph residency. Access through the old workspace/current graph fails with LS_STALE_WORKSPACE: Workspace belongs to a prior runtime epoch. Fresh workspace inventory has zero handles and zero residentGraphQuads; bootstrap marks retained semantic evidence stale and source-not-observed.",
+  "calls": [
+    {
+      "code": "var resetOldWs=ws; var resetOldGraph=staleGraph; nodeRepl.write(await linkedScience.reset({contextKey:'lib-b-follow'})); try { var resetOldSource=await resetOldWs.rdf.source(resetOldGraph); nodeRepl.write({oldSourceAccess:'unexpected-success',source:resetOldSource}); } catch(error) { nodeRepl.write({oldSourceAccess:'failed',name:error.name,code:error.code,message:error.message}); }",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'reset',\n  contextKey: 'lib-b-follow',\n  epoch: '6d34b911-438c-4c0b-bbb1-c7345bcb230a:lib-b-follow:2',\n  orientationRetained: true,\n  orientationOwner: 'cleanroom-broker',\n  recoveryDocument: 'reset'\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  oldSourceAccess: 'failed',\n  name: 'LinkedScienceRuntimeError',\n  code: 'LS_STALE_WORKSPACE',\n  message: 'Workspace belongs to a prior runtime epoch'\n}"
+          }
+        ]
+      },
+      "wallMs": 12,
+      "outputBytes": 445
+    },
+    {
+      "code": "var resetFreshWs=linkedScience.open({contextKey:'lib-b-follow',orientationContext:{id:'orientation-20260908-lib-b',version:'v1'}}); nodeRepl.write(await resetFreshWs.orientation.bootstrap({maxBytes:4096})); nodeRepl.write(await resetFreshWs.inventory());",
+      "raw": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: 'ready',\n  entries: [\n    {\n      id: 'ls-context:7410725d760790e5b20c2182',\n      section: 'context-roadmap',\n      kind: 'linked-science-context-reference',\n      source: 'synthetic-library',\n      sourceKey: 'ls-context:7410725d760790e5b20c2182',\n      version: 'a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec',\n      role: 'data-source',\n      type: 'instance-data',\n      provenanceScope: 'local-synthetic',\n      operationId: 'op-000002',\n      count: 9,\n      handle: 'h-000002',\n      handleEpoch: '6d34b911-438c-4c0b-bbb1-c7345bcb230a:lib-b-follow:1',\n      contextKey: 'lib-b-follow'\n    },\n    {\n      id: 'ls-semantic:edition-work-scope-v2',\n      section: 'context-understanding',\n      kind: 'linked-science-semantic-entry',\n      text: 'Edition-level translator relationships and work-level creator relationships have distinct subjects. Sharing an editionOf target connects editions indirectly without copying their person relationships.',\n      claimKind: 'observed-relationship',\n      validation: 'references-checked',\n      semanticStatus: 'agent-proposed',\n      dependencyStatus: 'source-not-observed',\n      dependencies: [\n        {\n          sourceKey: 'ls-context:7410725d760790e5b20c2182',\n          source: 'synthetic-library',\n          version: 'a25b7d5790daf50cdc754e4b615c37187bb65bfc8a4f5e1330b678903ea924ec',\n          provenanceScope: 'local-synthetic'\n        }\n      ],\n      evidence: [\n        {\n          handle: 'h-000002',\n          handleEpoch: '6d34b911-438c-4c0b-bbb1-c7345bcb230a:lib-b-follow:1',\n          contextKey: 'lib-b-follow',\n          operationId: 'op-000002',\n          quadCount: 4\n        }\n      ],\n      residency: [ { handle: 'h-000002', status: 'stale' } ]\n    }\n  ],\n  entryCount: 2,\n  omittedCount: 0,\n  semanticValidation: 'references-only',\n  presentation: 'explicit-tool-result',\n  bounds: { bytes: 1588, maxBytes: 4096 }\n}"
+          },
+          {
+            "type": "text",
+            "text": "{\n  kind: 'linked-science-inventory',\n  contextKey: 'lib-b-follow',\n  epoch: '6d34b911-438c-4c0b-bbb1-c7345bcb230a:lib-b-follow:2',\n  total: 0,\n  residentGraphQuads: 0,\n  handles: [],\n  truncated: false,\n  bounds: { bytes: 229, maxBytes: 32768 }\n}"
+          }
+        ]
+      },
+      "wallMs": 38,
+      "outputBytes": 2294
+    }
+  ],
+  "counts": {
+    "jsCalls": 2,
+    "resets": 1,
+    "oldSourceAccessAttempts": 1,
+    "bootstraps": 1,
+    "inventories": 1,
+    "reloads": 0,
+    "semanticUpdates": 0
+  },
+  "metrics": {
+    "outputBytes": 2739,
+    "outputByteMetric": "UTF-8 JSON serialized raw tool envelope",
+    "callWallMs": 50,
+    "modelTokens": null,
+    "reasoningTokens": null,
+    "totalModelTimeMs": null
+  },
+  "runtimeResident": true
+}

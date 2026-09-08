@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "contextId": "ls-context:38688c997872d07d4f42d009706abcac",
+  "tokenBudget": 2000,
+  "estimatedTokens": 158,
+  "queryCount": 0,
+  "entries": [
+    {
+      "id": "ls-context:a6f7774be8fae4a03fb25bbe",
+      "section": "context-roadmap",
+      "text": "{\"kind\":\"linked-science-context-reference\",\"source\":\"isolation-probe\",\"sourceKey\":\"ls-context:a6f7774be8fae4a03fb25bbe\",\"version\":\"c07a95b4e4917a978531f1baf48ffb586f48bfaa8f7e0ff7a2f57f50ade64d62\",\"role\":\"isolation-probe\",\"type\":\"instance-data\",\"provenanceScope\":\"local-synthetic\",\"operationId\":\"op-000001\",\"count\":1,\"handle\":\"h-000001\",\"handleEpoch\":\"f39cb11f-2de8-4a36-9e18-08bb62fd5a42:orientation-isolation-probe-parent:1\",\"contextKey\":\"orientation-isolation-probe-parent\"}",
+      "score": 0.7
+    }
+  ]
+}

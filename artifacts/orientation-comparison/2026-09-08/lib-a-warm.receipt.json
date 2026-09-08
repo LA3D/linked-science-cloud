@@ -1,0 +1,46 @@
+{
+  "worker": "lib-a-warm",
+  "treatment": {
+    "enrich": false
+  },
+  "orientationId": "orientation-20260908-lib-a",
+  "dataVersion": "13a228e3379d4903842d2221abbafb81027bc29274fe2ac15628878a3d6ca2d8",
+  "source": {
+    "kind": "local-synthetic",
+    "id": "synthetic-library"
+  },
+  "answer": "In the supplied catalog, Tomas (urn:catalog:person9) is directly the translator of Harbor edition (urn:catalog:edition7). Mira (urn:catalog:person2) is indirectly associated: Harbor edition is an editionOf Salt Roads (urn:catalog:work3), whose creator is Mira. The catalog does not directly assert Mira as creator of the edition.",
+  "generatedText": [],
+  "calls": [],
+  "accountingFailure": "functions.load returned copies; push mutations did not persist call records. Six calls occurred, but exact raw outputs and wall times were lost from receipt bookkeeping. Outputs remain in tool transcript. This receipt is incomplete; telemetry below is null rather than invented.",
+  "counts": {
+    "jsCalls": 6,
+    "inspections": 1,
+    "queries": 0,
+    "updates": 0,
+    "observedQuads": 9
+  },
+  "errors": [
+    {
+      "call": 1,
+      "message": "ReferenceError: process is not defined",
+      "repair": "Call 2 verified nodeRepl.cwd and warmProbe persistence."
+    }
+  ],
+  "repairs": 1,
+  "evictions": 0,
+  "outputUtf8Bytes": null,
+  "callWallMs": null,
+  "inputReadBytes": {
+    "instructions": null,
+    "fixture": null,
+    "reason": "Initial cat returned concatenated text; exact separate byte counts were not measured."
+  },
+  "telemetry": {
+    "modelTokens": null,
+    "reasoningTokens": null,
+    "totalModelTokens": null,
+    "totalModelTimeMs": null
+  },
+  "runtimeLeftResident": true
+}

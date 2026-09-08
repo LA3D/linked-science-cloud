@@ -1,8 +1,62 @@
 {
   "format": "linked-science-experiment-result-registry/v1",
-  "version": "2026-08-27.1",
-  "recordedAt": "2026-08-27",
+  "version": "2026-09-08.1",
+  "recordedAt": "2026-09-08",
   "runs": [
+    {
+      "id": "orientation-local-comparison-2026-09-08",
+      "date": "2026-09-08",
+      "title": "Local fresh-worker orientation pilot with bounded generated-map transfer",
+      "outcome": "partial",
+      "evidenceLevel": "trace-derived-partial",
+      "durability": "partial",
+      "recordPaths": [
+        "artifacts/orientation-comparison/2026-09-08/results.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-a-follow.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-a-reset.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-a-stale.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-a-warm.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-b-follow.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-b-reset.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-b-stale.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/lib-b-warm.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/uni-a-follow.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/uni-a-warm.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/uni-b-follow.receipt.json",
+        "artifacts/orientation-comparison/2026-09-08/uni-b-warm.receipt.json"
+      ],
+      "documentationPaths": [
+        "docs/tasks/uniprot-orientation-comparison.md"
+      ],
+      "missingEvidence": [
+        "Exact total model token/time telemetry",
+        "Some first-call raw outputs and input-read byte telemetry",
+        "lib-a-warm raw-call telemetry",
+        "Fully verified aggregate observation and wall-time budgets",
+        "Reversed-order repetition (not run)"
+      ],
+      "currentInterpretation": "Eight fresh main worker questions answered with local evidence; generated-map transfer/presentation observed, but both arms re-inspected full fixtures. Partial telemetry prevents exact total-cost or strict matched-total-token claims. Version/reset diagnostics support stale-evidence honesty."
+    },
+    {
+      "id": "orientation-local-preflight-2026-09-08",
+      "date": "2026-09-08",
+      "title": "Local orientation comparison activation and worker continuity preflight",
+      "outcome": "inconclusive",
+      "evidenceLevel": "trace-derived-partial",
+      "durability": "partial",
+      "recordPaths": [
+        "artifacts/experiment-results/2026-09-08-orientation-local-preflight.json",
+        "artifacts/experiment-results/2026-09-08-orientation-transfer-probe.json"
+      ],
+      "documentationPaths": [
+        "docs/tasks/uniprot-orientation-comparison.md"
+      ],
+      "missingEvidence": [
+        "Raw child MCP tool envelopes",
+        "Model token/time telemetry",
+        "Scientific A/B trials and semantic scoring (not run)"
+      ]
+    },
     {
       "id": "context-map-single-2026-08-15",
       "date": "2026-08-15",

@@ -1,0 +1,7 @@
+{
+  "data": "@prefix c: <urn:catalog:> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\nc:edition7 c:editionOf c:work3 ; c:translator c:person4 ; rdfs:label \"Harbor edition\" .\nc:work3 c:creator c:person2 ; rdfs:label \"Salt Roads\" .\nc:person2 rdfs:label \"Mira\" .\nc:person4 rdfs:label \"Leena\" .\nc:edition8 c:editionOf c:work3 ; rdfs:label \"Inland edition\" .",
+  "source": {
+    "kind": "local-synthetic",
+    "id": "synthetic-library"
+  }
+}

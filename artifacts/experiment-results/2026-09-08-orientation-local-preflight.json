@@ -1,0 +1,66 @@
+{
+  "format": "linked-science-orientation-preflight/v1",
+  "date": "2026-09-08",
+  "revision": "f9e22bb77b82c4564dee4495a4eab2587dd6663d",
+  "outcome": "inconclusive",
+  "scope": "Runtime and fresh-worker map continuity preflight only; no A/B trial",
+  "parentToolReceipt": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  kind: 'orientation-comparison-preflight',\n  cwd: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n  environment: {\n    runtime: 'cleanroom_node_repl',\n    mode: 'external-context',\n    rlm: {\n      kind: 'cleanroom-rlm-capabilities',\n      version: '1.0.0',\n      architecture: 'recursive-language-model',\n      controlEnvironment: 'persistent-javascript',\n      externalContext: {\n        available: true,\n        persistence: 'kernel-epoch',\n        maxContextBytes: 2097152,\n        operations: [ 'registerContext', 'context', 'inspect' ]\n      },\n      recursion: {\n        available: false,\n        interface: 'nodeRepl.rlm.query',\n        lifecycleOwner: 'cleanroom-host',\n        lifecycle: 'bounded-one-shot-compatibility',\n        durable: false,\n        asynchronousHandle: false,\n        hardMaxDepth: 4,\n        recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n      }\n    },\n    project: {\n      id: '@linked-science/runtime',\n      role: 'authoritative-production-implementation',\n      bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n    },\n    broker: {\n      packageName: '@linked-science/cleanroom-node-repl',\n      packageRoot: 'packages/cleanroom-node-repl',\n      entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n      mcpServer: 'cleanroom_node_repl',\n      tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n    },\n    projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl',\n    moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules',\n    dependencies: {\n      '@comunica/query-sparql': 'file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/@comunica/query-sparql/lib/index.js',\n      'http-link-header': 'file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/http-link-header/lib/link.js',\n      n3: 'file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/n3/lib/index.js',\n      sparqlalgebrajs: 'file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/sparqlalgebrajs/index.js',\n      sparqljs: 'file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules/sparqljs/sparql.js'\n    },\n    traversalMediator: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' },\n    resultStorage: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' }\n  },\n  persistence: true,\n  parentMap: {\n    status: 'ready',\n    entries: [\n      {\n        id: 'ls-context:a6f7774be8fae4a03fb25bbe',\n        section: 'context-roadmap',\n        kind: 'linked-science-context-reference',\n        source: 'isolation-probe',\n        sourceKey: 'ls-context:a6f7774be8fae4a03fb25bbe',\n        version: 'c07a95b4e4917a978531f1baf48ffb586f48bfaa8f7e0ff7a2f57f50ade64d62',\n        role: 'isolation-probe',\n        type: 'instance-data',\n        provenanceScope: 'local-synthetic',\n        operationId: 'op-000001',\n        count: 1,\n        handle: 'h-000001',\n        handleEpoch: 'f39cb11f-2de8-4a36-9e18-08bb62fd5a42:orientation-isolation-probe-parent:1',\n        contextKey: 'orientation-isolation-probe-parent'\n      }\n    ],\n    entryCount: 1,\n    omittedCount: 0,\n    semanticValidation: 'references-only',\n    presentation: 'explicit-tool-result',\n    bounds: { bytes: 727, maxBytes: 4096 }\n  },\n  scientificTrials: 0,\n  liveScientificRequests: 0\n}"
+      }
+    ]
+  },
+  "childReportedObservations": {
+    "evidence": "Contemporaneous subagent return; raw child tool envelope not retained",
+    "parentBindingType": "undefined",
+    "cwd": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
+    "project": "@linked-science/runtime",
+    "bootstrap": {
+      "status": "empty",
+      "entries": [],
+      "entryCount": 0,
+      "omittedCount": 0,
+      "semanticValidation": "references-only",
+      "presentation": "explicit-tool-result",
+      "bounds": {
+        "bytes": 179,
+        "maxBytes": 4096
+      }
+    }
+  },
+  "orientationContext": {
+    "id": "orientation-isolation-probe-20260908",
+    "version": "1"
+  },
+  "counts": {
+    "parentJsCalls": 4,
+    "childReportedJsCalls": 2,
+    "scientificTrials": 0,
+    "liveScientificRequests": 0,
+    "semanticProposals": 0
+  },
+  "telemetry": {
+    "modelTokens": null,
+    "modelTime": null
+  },
+  "interpretation": "Approval friction resolved. Fresh subagents have independent kernels and did not receive the parent orientation map through shared context identity. Existing bootstrap alone does not deliver map-only continuity to a fresh follow-up agent. Same-agent continuation could work but retains earlier chat; no comparative result claimed.",
+  "missingEvidence": [
+    "Raw child MCP tool envelopes",
+    "Model token/time telemetry",
+    "Scientific A/B trials and semantic scoring (not run)"
+  ],
+  "continuation": {
+    "status": "bounded transfer probe passed; scientific workers dispatched",
+    "mechanism": "Unchanged map entries through existing peek.begin/edit; no new framework or provider",
+    "childReportedTransfer": {
+      "status": "ready",
+      "entryCount": 1,
+      "bytes": 727,
+      "oldHandleResidency": "not established"
+    },
+    "evidence": "Contemporaneous subagent-reported bootstrap; parent generated transfer artifact retained",
+    "artifact": "artifacts/experiment-results/2026-09-08-orientation-transfer-probe.json"
+  }
+}
