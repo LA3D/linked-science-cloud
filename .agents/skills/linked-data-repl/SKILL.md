@@ -13,6 +13,7 @@ The project broker prepares `linkedScience` / `ls` automatically:
 
 ```js
 var ws = linkedScience.open({ contextKey: 'scientific-question' });
+nodeRepl.write(await ws.orientation.bootstrap({ maxBytes: 4096 }));
 ```
 
 Reuse bindings, workspaces and valid handles across calls. Use `ws.inventory()` to find retained objects, and `linkedScience.documentation.get(name)` for an unfamiliar operation. Full identity checks and explicit fallback bootstrap belong to [runtime discovery](../../../docs/agent/runtime-discovery.md), for activation or diagnosis.
@@ -44,7 +45,11 @@ await ws.dispose();
 
 Release invalidates new handle/view access and reclaims registry/storage ownership. Disposal or `await linkedScience.reset({ contextKey })` cleans the workspace, including pending allocations. Other workspaces and caller-owned copies remain independent. Use whole-kernel reset for actual kernel invalidation, not routine memory cleanup. `KERNEL_OOM` means all earlier kernel handles are lost; the next evaluation rebuilds the facade.
 
-Source orientation is a small derived map, separate from inventory. For repeated questions over a known context version, optionally pass `orientationContext: { id, version }` to `open`. Map references are advisory, never residency or authorization. Learned PEEK and model recursion remain separately advertised research capabilities.
+Source orientation is a small derived map, separate from inventory. For repeated questions over a known context version, optionally pass `orientationContext: { id, version }` to `open`. On opening/resuming a question, display `orientation.bootstrap` as above; this is explicit tool-result delivery, not host prompt injection. Empty or unavailable maps do not block scientific work.
+
+During normal exploration, the experimental `await ws.orientation.update({ edits })` accepts at most four ADD/REPLACE/DELETE edits with IDs such as `ls-semantic:relationship`. For ADD/REPLACE, supply `entry: { section: 'context-understanding', text, claimKind: 'observed-relationship' | 'documented-meaning' | 'interpretation', evidence: [{ handle: graph, quads: observedNativeQuads }] }` (at most eight quads per entry). Use native quads observed via `rdf.source(handle).match`, not invented evidence or prepared map answers. Runtime-attached source fingerprints and membership validation establish references, not semantic truth. Inspect the receipt for rejection or eviction, and continue from source evidence if an update fails. Dependency changes need fresh evidence before replacement; old map handles never restore residency.
+
+Map references are advisory, never residency or authorization. Learned PEEK and model recursion remain separately advertised research capabilities.
 
 ## Access and further detail
 

@@ -37,8 +37,10 @@ Read the [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md) for 
 | Bounded observations | Independent page/table/schema/neighborhood limits and aggregate 32 KiB default text output |
 | Explicit lifetime | Release/disposal reclaim registry ownership, graph accounting and broker storage, including pending allocations |
 | Native composition | Streaming RDF/JS Sources and explicit mutable clones using N3/Comunica interfaces |
-| Source orientation | Small derived descriptions with source identity/version and evidence references; separate ephemeral inventory |
+| Source orientation | Automatic source metadata and experimental agent-proposed RDF evidence entries; separate ephemeral inventory |
 | Authority and provenance | Private broker-mediated anonymous reads, identity stripping, request/time/byte/fan-out bounds and automatic receipts |
+
+For recurring contexts, `nodeRepl.write(await ws.orientation.bootstrap({ maxBytes: 4096 }))` explicitly displays a bounded map on opening/resuming; `open()` remains synchronous and does not inject host prompts. The experimental `orientation.update` validates bounded native RDF/JS quad citations and source dependencies, not semantic truth. Empty, rejected or unavailable orientation leaves ordinary scientific work available. See the [experimental scope and comparison plan](docs/tasks/uniprot-orientation-comparison.md).
 
 Resident quotas use heap estimates and headroom checks. They do not prove every RDF term, query operator or arbitrary JavaScript program fits memory. Kernel OOM produces explicit epoch-loss recovery. Complete result storage does not imply bounded working memory for every join, sort or merge operation.
 
@@ -73,4 +75,4 @@ A handle is not an artifact, a display is not a full result, and an orientation 
 
 ## Project records
 
-Use the [context router](docs/agent/context-routing.md), [task queue](docs/tasks/README.md), [roadmap](docs/ROADMAP.md), [source orientation index](resources/index.md) and [experiment result registry](docs/experiments/RESULTS.md). Historical dossiers and receipts remain evidence records. Summary-only trials do not establish open-ended navigation, and no UniProt competency case has run. The large-result export protocol remains documentation only.
+Use the [context router](docs/agent/context-routing.md), [task queue](docs/tasks/README.md), [roadmap](docs/ROADMAP.md), [source orientation index](resources/index.md) and [experiment result registry](docs/experiments/RESULTS.md). Historical dossiers and receipts remain evidence records. Summary-only trials do not establish open-ended navigation, and no successful UniProt competency answer is established. The large-result export protocol remains documentation only.

@@ -14,7 +14,7 @@ Successful SELECT/ASK/CONSTRUCT/DESCRIBE handles represent complete results unde
 
 `await dispose()` and `await linkedScience.reset({ contextKey })` invalidate a workspace, clean its broker state including pending allocations, and permit a fresh workspace. Other workspaces survive. Late work cannot publish results in the old workspace. Await cleanup; retry disposal if it reports cleanup failure.
 
-The orientation map holds source descriptions and versions, not a query-result catalog. `orientationContext: { id, version }` optionally shares this advisory context across questions. Registries stay separate; references can be resident here, stale, or from an external workspace. No reference grants authority or establishes residency elsewhere. The map is a simple baseline; the learned PEEK policy remains optional research.
+The orientation map holds source descriptions and versions, not a query-result catalog. `orientationContext: { id, version }` optionally shares this advisory context across questions. Registries stay separate; references can be resident here, stale, or from an external workspace. No reference grants authority or establishes residency elsewhere. Use bounded `orientation.bootstrap` presentation on open/resume. Experimental semantic updates cite observed native quads and carry source-version flags; validation establishes references, not truth. Empty or failed orientation is an advisory fallback, and the learned PEEK policy remains optional research.
 
 ## Reset and stale state
 

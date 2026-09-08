@@ -55,7 +55,7 @@ try {
   assert.match(persistent, /mode: 'external-context'/u);
 
   const booted = text(await tool('js', { code: bootstrap, timeout_ms: 120_000 }));
-  assert.match(booted, /version: '6\.3\.0'/u);
+  assert.match(booted, /version: '6\.4\.0'/u);
   assert.match(booted, /runtime: 'cleanroom_node_repl'/u);
   assert.match(booted, /id: '@linked-science\/runtime'/u);
   assert.match(booted, /role: 'authoritative-production-implementation'/u);
@@ -77,6 +77,11 @@ try {
   assert.match(reused, /owner: 'cleanroom-broker'/u);
   assert.match(reused, /status: 'resident'/u);
 
+  const oriented = text(await tool('js', { code: "var orientationEdit=await ws.orientation.update({edits:[{action:'ADD',id:'ls-semantic:observed',entry:{section:'context-understanding',claimKind:'observed-relationship',text:'Observed RDF relationship in the local fixture.',evidence:[{handle:sourceA,quads:[fixture.sourceAQuads[0]]}]}}]}); nodeRepl.write({update:orientationEdit,map:await ws.orientation.bootstrap({maxBytes:4096})})" }));
+  assert.match(oriented, /status: 'applied'/u);
+  assert.match(oriented, /semanticStatus: 'agent-proposed'/u);
+  assert.match(oriented, /presentation: 'explicit-tool-result'/u);
+
   await tool('js_reset');
   const reset = text(await tool('js', { code: "nodeRepl.write({sentinel:typeof cleanroomSentinel,facade:typeof linkedScience,peek:await nodeRepl.peek.current('cleanroom-proof')})" }));
   assert.match(reset, /sentinel: 'undefined'/u);
@@ -97,7 +102,7 @@ try {
     persistence: true,
     projectRoot,
     moduleRoot,
-    facadeVersion: '6.3.0',
+    facadeVersion: '6.4.0',
     localSynthetic: true,
     reset: { bindingsCleared: true, facadeAutomaticallyRebuilt: true, rlmRebootstrapped: true, peekSurvived: true, oldHandles: 'stale' },
   }, null, 2));

@@ -102,14 +102,16 @@ export class PeekRegistry {
   }
 
   edit(contextId, edits) {
-    const record = this.contexts.get(contextId) ?? (this.begin(contextId), this.contexts.get(contextId));
+    const original = this.contexts.get(contextId) ?? (this.begin(contextId), this.contexts.get(contextId));
+    const record = { ...original, entries: original.entries.map(entry => ({ ...entry })) };
+    let sequence = this.sequence;
     if (!Array.isArray(edits) || edits.length > 64) {
       throw Object.assign(new Error("Invalid PEEK edits"), { code: "INVALID_PEEK_EDITS" });
     }
     for (const edit of edits) {
       const action = edit?.action;
       if (action === "ADD") {
-        const entry = normalizeEntry(edit.entry, ++this.sequence);
+        const entry = normalizeEntry(edit.entry, ++sequence);
         const index = record.entries.findIndex((item) => item.id === entry.id);
         if (index >= 0) record.entries.splice(index, 1);
         record.entries.push(entry);
@@ -118,7 +120,7 @@ export class PeekRegistry {
         record.entries = record.entries.filter((entry) => entry.id !== edit.id);
       } else if (action === "REPLACE") {
         if (typeof edit.id !== "string") throw Object.assign(new Error("Invalid PEEK edit"), { code: "INVALID_PEEK_EDIT" });
-        const entry = normalizeEntry({ ...edit.entry, id: edit.entry?.id ?? edit.id }, ++this.sequence);
+        const entry = normalizeEntry({ ...edit.entry, id: edit.entry?.id ?? edit.id }, ++sequence);
         const index = record.entries.findIndex((item) => item.id === edit.id);
         if (index < 0) throw Object.assign(new Error("PEEK entry not found"), { code: "PEEK_ENTRY_NOT_FOUND" });
         record.entries.splice(index, 1, entry);
@@ -127,6 +129,8 @@ export class PeekRegistry {
       }
     }
     evict(record);
+    this.sequence = sequence;
+    this.contexts.set(contextId, record);
     return publicMap(record);
   }
 
