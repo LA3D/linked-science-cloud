@@ -1,0 +1,22 @@
+[
+  {
+    "id": "parent-fixture",
+    "required": true,
+    "expected": 1,
+    "observed": 1,
+    "status": "passed",
+    "eventSequences": [
+      1
+    ]
+  },
+  {
+    "id": "worker-access-classified",
+    "required": true,
+    "expected": "observed present boolean",
+    "observed": false,
+    "status": "passed",
+    "eventSequences": [
+      2
+    ]
+  }
+]

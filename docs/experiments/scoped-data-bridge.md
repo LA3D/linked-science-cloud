@@ -1,7 +1,7 @@
 # Codex-owned scoped data bridge experiments
 
 - Protocol: `scoped-data-bridge/v1`, designed 2026-09-09.
-- Status: planned only; no experiment in this suite has run.
+- Status: E1 executed; shared scientific-session implementation selected. E2–E5 remain unrun.
 - Task: [scoped data bridge](../tasks/scoped-data-bridge.md).
 - Records: [storage contract](../../artifacts/scoped-data-bridge/README.md), [receipt template](scoped-data-bridge/receipt.template.json), [result registry](RESULTS.md).
 
@@ -11,7 +11,7 @@ Can Codex dispatch its own subagents to interpret selected resident data, deposi
 
 Codex owns model selection, dispatch, cancellation and worker lifecycle. The REPL owns native values, operations and evidence; the broker owns scoped transport and result storage. No embedded model, external model-provider API, MCP sampling dependency, new agent scheduler, or replacement of the existing scientific runtime is assumed. An MCP tool call returns at the delegation boundary; later calls resume computation. A pending computation is not an indefinitely blocked kernel evaluation.
 
-The authorized deliverable for this task is experiment design and recording structure. This protocol does not itself execute workers, activate services, change configuration, export resident data or authorize later implementation. When a run is requested, record its scope before dispatch. Use local synthetic data; no public scientific retrieval is needed for this suite.
+The user subsequently authorized execution and then selected a core shared-session refactor after E1. The original protocol remains the experiment specification, not blanket authority for future runs. Use local synthetic data; no public scientific retrieval is needed for this suite.
 
 ## Starting evidence, not suite results
 
@@ -106,6 +106,12 @@ Capture tool-generated observations while state is live and before any reset/wor
 **Decision:** identify the largest verified size and remaining limits. Do not extend to bulk scientific ingestion or permanent shared services from this result.
 
 ## Decision and next action
+
+### E1 observations and revised implementation direction
+
+Four attempts are registered: [initial fixture failure](../../artifacts/scoped-data-bridge/20260909-e1-worker-01/receipt.json), [worker 1](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-01-retry/receipt.json), [worker 2](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-02/receipt.json), and [worker 3](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-03/receipt.json). All three fresh workers reached the project runtime but did not observe the parent's variable; each parent recheck retained its marker and graph. This establishes separate or inaccessible namespaces, not independent broker process identity. Accounting gaps are recorded and durability is partial. No shared live-object access was demonstrated.
+
+The user paused experiments and explicitly chose shared scientific-session ownership instead of snapshot transfer. Core implementation now separates MCP connection lifetime from scientific session lifetime. The unexecuted snapshot prototype was removed. E2–E5 need a frozen shared-session arm before resumption; do not claim the forthcoming implementation tests are those experimental runs.
 
 E1 selects topology; E2 establishes per-type semantics; E3 establishes scope; E4 establishes the model round trip; E5 characterizes bounded operation. Stop dependent experiments when a prerequisite fails. Save failed and inconclusive attempts just as durably as successful ones.
 

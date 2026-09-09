@@ -1,0 +1,8 @@
+{
+  "kind": "synthetic-rdf-identity-fixture",
+  "quadCount": 1,
+  "textSha256": "fbfad8e9920e0560079ba805b8d62e85204afe943a8a5f7af1be7c0a3e801931",
+  "marker": "generated in owning kernel; only digest observed",
+  "parentCodeSha256": "e51bde8117079c6e9eeaca82d70d8fb3ac2f83dd9f01e05e581398585562f5d7",
+  "workerCodeSha256": "11fb0af7f8489e1d15c898798391f5b6b748a670e9ea3ad747ab7f6150e7ee63"
+}

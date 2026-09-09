@@ -1,0 +1,34 @@
+{
+  "format": "scoped-data-bridge-plan/v1",
+  "protocol": "scoped-data-bridge/v1",
+  "experiment": "E1",
+  "runId": "bridge-20260909-e1-worker-02",
+  "attempt": 2,
+  "arm": "fresh-codex-worker",
+  "frozenAt": "2026-09-09T17:49:12.810Z",
+  "authorization": "User requested execution of the designed experiment suite in this task.",
+  "source": {
+    "commit": "e355c43b1b1cf90f7fec2b06e1744cae71af8516",
+    "dirty": true,
+    "diffSha256": "cdf4957043794369fe9800d38ebeb9ee2be4e30f013fbd1faaa6180acc351104",
+    "harnessSha256": "e5ea26cdd5fba165607ac1fc5b31becabc25c00ace116d007a6afe1c0aff6937"
+  },
+  "budgets": {
+    "workersConcurrent": 1,
+    "wallTimeMs": 600000,
+    "parentObservationBytes": 8192,
+    "childReadBytes": 8192
+  },
+  "expectedChecks": [
+    "parent native graph count is 1",
+    "worker observes or explicitly cannot observe parent marker",
+    "if visible, marker digests and epoch agree",
+    "if visible, copied descriptor is rejected",
+    "if visible, worker deposit is visible to parent"
+  ],
+  "limitations": [
+    "No assumption of cross-worker kernel sharing",
+    "Worker model usage may not be exposed",
+    "Same namespace access is not enforced scope"
+  ]
+}

@@ -18,6 +18,10 @@ This is the durable index of executed experiment results. Methodology dossiers d
 
 | Date | Run | Outcome | Durability | Durable record |
 | --- | --- | --- | --- | --- |
+| 2026-09-09 | E1 fixture preparation | Failed | Partial | [Receipt](../../artifacts/scoped-data-bridge/20260909-e1-worker-01/receipt.json) |
+| 2026-09-09 | E1 fresh worker 1 | Passed: namespace probe | Partial | [Receipt](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-01-retry/receipt.json) |
+| 2026-09-09 | E1 fresh worker 2 | Passed: namespace probe | Partial | [Receipt](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-02/receipt.json) |
+| 2026-09-09 | E1 fresh worker 3 | Passed: namespace probe | Partial | [Receipt](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-03/receipt.json) |
 | 2026-08-15 | Single-turn Identifiers.org context-map recovery | Passed | Complete | [Receipt](../../artifacts/context-map-runs/context-map-2026-08-15T11-46-20-605Z.json) |
 | 2026-08-15 | Two-turn coordinator-selected context-map recovery | Passed | Complete | [Turn 1](../../artifacts/context-map-runs/two-turn-turn-1-2026-08-15T11-53-16-471Z.json), [turn 2](../../artifacts/context-map-runs/two-turn-turn-2-2026-08-15T11-54-52-829Z.json) |
 | 2026-08-15 | Open-goal UniProt P00338 `SELECT` navigation | Partial | Partial | [Trace-derived receipt](../../artifacts/open-goal-runs/2026-08-15-p00338-select.json) |

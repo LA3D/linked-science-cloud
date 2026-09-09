@@ -1,0 +1,3 @@
+var sbE1_2 = { marker: (await import('node:crypto')).randomBytes(32).toString('hex'), ws: linkedScience.open({contextKey:'bridge-20260909-e1-worker-02'}) };
+sbE1_2.graph = await sbE1_2.ws.graphs.load({name:'identity-fixture',kind:'ontology',text:'<urn:bridge:A> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <urn:bridge:B> .'});
+nodeRepl.write(JSON.stringify({observedAt:new Date().toISOString(),cwd:nodeRepl.cwd,environment:linkedScience.capabilities().environment,markerSha256:(await import('node:crypto')).createHash('sha256').update(sbE1_2.marker).digest('hex'),count:await sbE1_2.ws.rdf.source(sbE1_2.graph).countQuads(null,null,null,null),handleEpoch:sbE1_2.graph.epoch}));

@@ -1,0 +1,3 @@
+var sbProbe = {observedAt:new Date().toISOString(),cwd:nodeRepl.cwd,environment:linkedScience.capabilities().environment,present:typeof sbE1_3 !== 'undefined'};
+if(sbProbe.present){sbProbe.markerSha256=(await import('node:crypto')).createHash('sha256').update(sbE1_3.marker).digest('hex');sbProbe.count=await sbE1_3.ws.rdf.source(sbE1_3.graph).countQuads(null,null,null,null);sbProbe.handleEpoch=sbE1_3.graph.epoch;try{sbE1_3.ws.rdf.source(JSON.parse(JSON.stringify(sbE1_3.graph)));sbProbe.copiedHandle='accepted';}catch(e){sbProbe.copiedHandle=e.code;}sbE1_3.workerDeposit={probe:'bridge-20260909-e1-worker-03',count:sbProbe.count};sbProbe.deposit=true;}
+nodeRepl.write(JSON.stringify(sbProbe));

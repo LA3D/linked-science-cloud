@@ -1,6 +1,6 @@
 # Scoped data bridge result storage
 
-No runs are recorded yet. This directory defines storage for the [experiment protocol](../../docs/experiments/scoped-data-bridge.md); it does not establish successful bridge behavior.
+Four E1 attempts are recorded: one fixture preparation failure and three fresh-worker probes. See the [experiment protocol and observations](../../docs/experiments/scoped-data-bridge.md). No shared bridge round trip is established by those probes.
 
 ## Layout for each executed attempt
 

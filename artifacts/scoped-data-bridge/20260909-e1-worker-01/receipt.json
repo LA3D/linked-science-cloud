@@ -1,0 +1,59 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "20260909-e1-worker-01",
+  "experiment": "E1",
+  "arm": "fresh-codex-worker",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/v1",
+  "startedAt": "2026-09-09T17:46:53.495Z",
+  "finishedAt": "2026-09-09T17:47:54.637Z",
+  "authorization": "User requested execution of the designed experiment suite in this task.",
+  "source": {
+    "commit": "e355c43b1b1cf90f7fec2b06e1744cae71af8516",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "47c64f5f3cbe04b49ffae8e3d68449f7745ca4fde69689f7cfb23c56b9f16ec2"
+  },
+  "environment": {
+    "topology": "unestablished"
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": {
+    "workersConcurrent": 1,
+    "wallTimeMs": 600000,
+    "parentObservationBytes": 8192,
+    "childReadBytes": 8192
+  },
+  "outcome": "failed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Parent fixture setup failed before worker dispatch.",
+  "interpretation": "No shared object access is inferred without a matching marker.",
+  "missingEvidence": [
+    "Exact per-model token usage and complete observation-byte accounting are unavailable.",
+    "Worker probe was not executed because parent fixture preparation failed."
+  ],
+  "limitations": [
+    "No assumption of cross-worker kernel sharing",
+    "Worker model usage may not be exposed",
+    "Same namespace access is not enforced scope"
+  ],
+  "nextDecision": "Repair invalid fixture context key and record a separate attempt.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "7ba7f00b63b9e0963adf63734bd5e5b948692afff1c49bbeba8fe64bb44ecdee",
+      "fixture-manifest.json": "a5345613250a22b05ac6d38fde7079fdd899b8f3a114985cf750e7fbdc62707a",
+      "parent-code.js": "dd8c41867fe192a058ffabb5cbe09318690911ec9ccaae21d50f37448a363371",
+      "worker-code.js": "1ed852915820f26afa50add62c63d6ab1a92e5741fa0ef7e0db82c27c6c6cbbc",
+      "parent-tool.json": "086352d45e860f44fa54ad0071d3bd9c93fd581f280d06b9fe4cbf4533930a84",
+      "events.jsonl": "6e8e6f9bb84d186b4449aaad25f28bfb7dede386549b4e40817ddd117555dee0",
+      "checks.json": "f4f8465f3679240548fe863faff22b190ebc2df1e8668c5abd35dfddf63ec755"
+    },
+    "finalizedAt": "2026-09-09T17:47:54.639Z"
+  }
+}

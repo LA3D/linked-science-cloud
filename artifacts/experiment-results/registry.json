@@ -3,6 +3,10 @@
   "version": "2026-09-08.1",
   "recordedAt": "2026-09-08",
   "runs": [
+    {"id":"bridge-20260909-e1-worker-03","date":"2026-09-09","title":"Scoped data bridge E1 bridge-20260909-e1-worker-03","outcome":"passed","evidenceLevel":"machine-receipt","durability":"partial","recordPaths":["artifacts/scoped-data-bridge/bridge-20260909-e1-worker-03/receipt.json","artifacts/scoped-data-bridge/bridge-20260909-e1-worker-03/checks.json"],"documentationPaths":["docs/experiments/scoped-data-bridge.md","docs/tasks/scoped-data-bridge.md"],"missingEvidence":["Exact per-model token usage and complete observation-byte accounting are unavailable.","Broker identity is not independently exposed; distinct namespace does not establish distinct broker."]},
+    {"id":"bridge-20260909-e1-worker-02","date":"2026-09-09","title":"Scoped data bridge E1 bridge-20260909-e1-worker-02","outcome":"passed","evidenceLevel":"machine-receipt","durability":"partial","recordPaths":["artifacts/scoped-data-bridge/bridge-20260909-e1-worker-02/receipt.json","artifacts/scoped-data-bridge/bridge-20260909-e1-worker-02/checks.json"],"documentationPaths":["docs/experiments/scoped-data-bridge.md","docs/tasks/scoped-data-bridge.md"],"missingEvidence":["Exact per-model token usage and complete observation-byte accounting are unavailable.","Broker identity is not independently exposed; distinct namespace does not establish distinct broker."]},
+    {"id":"bridge-20260909-e1-worker-01-retry","date":"2026-09-09","title":"Scoped data bridge E1 bridge-20260909-e1-worker-01-retry","outcome":"passed","evidenceLevel":"machine-receipt","durability":"partial","recordPaths":["artifacts/scoped-data-bridge/bridge-20260909-e1-worker-01-retry/receipt.json","artifacts/scoped-data-bridge/bridge-20260909-e1-worker-01-retry/checks.json"],"documentationPaths":["docs/experiments/scoped-data-bridge.md","docs/tasks/scoped-data-bridge.md"],"missingEvidence":["Exact per-model token usage and complete observation-byte accounting are unavailable.","Broker identity is not independently exposed; distinct namespace does not establish distinct broker."]},
+    {"id":"20260909-e1-worker-01","date":"2026-09-09","title":"Scoped data bridge E1 20260909-e1-worker-01","outcome":"failed","evidenceLevel":"machine-receipt","durability":"partial","recordPaths":["artifacts/scoped-data-bridge/20260909-e1-worker-01/receipt.json","artifacts/scoped-data-bridge/20260909-e1-worker-01/checks.json"],"documentationPaths":["docs/experiments/scoped-data-bridge.md","docs/tasks/scoped-data-bridge.md"],"missingEvidence":["Exact per-model token usage and complete observation-byte accounting are unavailable.","Worker probe was not executed because parent fixture preparation failed."]},
     {
       "id": "orientation-local-comparison-2026-09-08",
       "date": "2026-09-08",
@@ -404,7 +408,7 @@
     }
   ],
   "documents": [
-    {"path": "docs/experiments/scoped-data-bridge.md", "status": "planned-only", "note": "Five gated experiments and a per-attempt recording contract are designed; no scoped data bridge run or result is claimed."},
+    {"path": "docs/experiments/scoped-data-bridge.md", "status": "results-recorded", "note": "E1 recorded one preparation failure and three separate-namespace probes. E2–E5 are unrun; the user selected a shared scientific-session refactor."},
     {"path": "docs/experiments/affordance-catalog.md", "status": "offline-contract-only", "note": "Offline tests and a deterministic demo exist; no clean-worker or live federation run is claimed."},
     {"path": "docs/experiments/clean-worker-map-evaluation.md", "status": "results-recorded", "note": "Two passing runs and two inconclusive preflights are registered; their original machine receipts were not retained."},
     {"path": "docs/experiments/coordinator-worker-context-map.md", "status": "results-recorded", "note": "Committed machine-readable receipts cover the single-turn and two-turn demonstrations."},

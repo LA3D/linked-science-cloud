@@ -1,0 +1,61 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "bridge-20260909-e1-worker-02",
+  "experiment": "E1",
+  "arm": "fresh-codex-worker",
+  "attempt": 2,
+  "protocol": "scoped-data-bridge/v1",
+  "startedAt": "2026-09-09T17:49:12.810Z",
+  "finishedAt": "2026-09-09T17:50:47.582Z",
+  "authorization": "User requested execution of the designed experiment suite in this task.",
+  "source": {
+    "commit": "e355c43b1b1cf90f7fec2b06e1744cae71af8516",
+    "dirty": true,
+    "diffSha256": "cdf4957043794369fe9800d38ebeb9ee2be4e30f013fbd1faaa6180acc351104",
+    "harnessSha256": "e5ea26cdd5fba165607ac1fc5b31becabc25c00ace116d007a6afe1c0aff6937"
+  },
+  "environment": {
+    "topology": "separate-or-inaccessible-namespace"
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": {
+    "workersConcurrent": 1,
+    "wallTimeMs": 600000,
+    "parentObservationBytes": 8192,
+    "childReadBytes": 8192
+  },
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Worker access classified as separate-or-inaccessible-namespace.",
+  "interpretation": "No shared object access is inferred without a matching marker.",
+  "missingEvidence": [
+    "Exact per-model token usage and complete observation-byte accounting are unavailable.",
+    "Broker identity is not independently exposed; distinct namespace does not establish distinct broker."
+  ],
+  "limitations": [
+    "No assumption of cross-worker kernel sharing",
+    "Worker model usage may not be exposed",
+    "Same namespace access is not enforced scope"
+  ],
+  "nextDecision": "Select bridge topology using all E1 repetitions.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "49bd3bb18d947923e12818b6c0284a0bd3d6e40c2e9c93f92c881d463236db35",
+      "fixture-manifest.json": "a21612d098d1a8bc8950bd701a2e7c5e66d89a2a9de1f71c8883a92ecc9475f0",
+      "parent-code.js": "7712c82e741a6bf9ce58e28db1eb59296ef7475a63bfaa915f9780a7b169d4fa",
+      "worker-code.js": "8e15a23d2af0d774366bf49be0a64354f7865c3522c07720c1200021f0027d93",
+      "parent-tool.json": "0b34d97a41619a5dda2ca7de0835580cb84f1e089e4cc65f9da5ccf58c2ee309",
+      "worker-tool.json": "c18e54cd2948830a0287fbce928e8406530c84f96ced13d00965c99df28cd6cb",
+      "parent-after-tool.json": "70cf43dbf3e50015eb0e97930ce1d0a9fb5b3a09fa72243d1d1afb612975d142",
+      "events.jsonl": "1d43b497ec5776da12c4567f5b92f7c6d6c29c8ba4ef5377e5da4f0376f6e70e",
+      "checks.json": "037fcb0c7d1820b53ed3c54066cc336d2073eaf1d1aed66cf87f65e22391de25"
+    },
+    "finalizedAt": "2026-09-09T17:50:47.583Z"
+  }
+}

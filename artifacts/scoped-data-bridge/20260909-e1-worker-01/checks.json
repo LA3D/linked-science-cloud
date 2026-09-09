@@ -1,0 +1,12 @@
+[
+  {
+    "id": "parent-fixture",
+    "required": true,
+    "expected": 1,
+    "observed": null,
+    "status": "failed",
+    "eventSequences": [
+      1
+    ]
+  }
+]

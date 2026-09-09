@@ -1,0 +1,1 @@
+{"content":[{"type":"text","text":"{\"ok\":false,\"error\":{\"code\":\"LS_CONTEXT_KEY\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"contextKey must be a lowercase symbolic identifier\",\"stage\":\"open\",\"recoveryDocument\":\"recovery\",\"retryable\":false,\"receipt\":{\"status\":\"failed\",\"stage\":\"open\",\"code\":\"LS_CONTEXT_KEY\"}}}"}],"isError":true}
