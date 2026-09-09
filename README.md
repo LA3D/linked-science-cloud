@@ -76,3 +76,5 @@ A handle is not an artifact, a display is not a full result, and an orientation 
 ## Project records
 
 Use the [context router](docs/agent/context-routing.md), [task queue](docs/tasks/README.md), [roadmap](docs/ROADMAP.md), [source orientation index](resources/index.md) and [experiment result registry](docs/experiments/RESULTS.md). Historical dossiers and receipts remain evidence records. Summary-only trials do not establish open-ended navigation, and no successful UniProt competency answer is established. The large-result export protocol remains documentation only.
+
+Shared live scientific state across agent connections is available through the explicit [scientific session service](docs/architecture/scientific-session.md). The service owns the native kernel; reconnecting clients need session capabilities.

@@ -1,0 +1,48 @@
+# Shared scientific sessions
+
+The registered MCP entrypoint now creates a session-capable adapter. Before explicit attachment it behaves as an independent scratch REPL. An independently running local session service owns the scientific kernel, native RDF/JS objects and retained query results. MCP disconnect closes a client and its scratch kernel; it does not close the scientific session.
+
+Codex still owns model calls, worker dispatch and continuation. This implementation supplies the scoped data/result bridge, not automatic recursive model execution or a second agent scheduler.
+
+## Ownership and lifetime
+
+An owner creates a session and receives an owner capability. A worker attaches using an expiring grant for selected published objects, operations and an output slot. Owner code runs in the canonical kernel. Worker code runs in its own scratch kernel; fixed data operations run against the owner's objects through the service. Ordinary JavaScript globals are deliberately not shared with workers.
+
+The service serializes operations per scientific session. Owner reset invalidates grants and native objects. Source release/unpublish invalidates later scoped access and deposits depending on that source. A worker timeout before dispatch preserves the owner session; a timeout during shared-kernel work closes it because evaluation cannot safely be cancelled independently. Client detach preserves state; idle cleanup (five minutes by default), service shutdown, kernel failure and execution timeout can end it. This is process persistence, not disk recovery. Reconnecting requires retaining the session identity and capability; a repository path is not session identity.
+
+Capabilities enforce the bridge protocol between cooperative agents. This is a same-user local service, not isolation from arbitrary code running with the user's filesystem/process authority. Socket directories must be owned by that user with mode 0700; sockets have mode 0600. Do not put owner capabilities in worker prompts or checked-in receipts.
+
+## Native objects and bounded transport
+
+Owner code publishes a native workspace handle through `nodeRepl.scientificSession.publish(workspace, handle)`. A published reference is an identifier for that retained object, not a serialized graph. `source(reference.object).match()` returns native RDF/JS quads to worker code, and `bindings(reference.object)` returns native Maps of RDF terms. Language, datatype, blank nodes and graph terms survive the bridge. Only bounded operation responses cross the socket; there is no implicit printing of full data to the parent model.
+
+Remote `query(object, sparql)` accepts local queries over the granted source. Dataset clauses and SERVICE are rejected. Derived results are retained and added to that grant; their source lifetime remains a dependency. Grants may separately allow describe, match, bindings, query, deposit and result. Deposits are bounded JSON objects/arrays, copied into one result slot and rejected on replay. Slots remain exclusively reserved for the session epoch, including after grant expiry. A grant retains at most 1,024 object references including derived results. The owner reads `result(slot)` and explicitly continues its computation.
+
+Paging currently repeats a stream scan up to the requested offset. It supports complete iteration without display-page truncation, but is not a scalable cursor store. Concurrent mutation between pages does not provide snapshot isolation. Page limit is 128 items, individual result/deposit limit 128 KiB, wire frame limit 512 KiB; exceeding a bound is an error, never evidence of complete results. Large values, richer result schemas, cursor efficiency and further object adapters remain future work.
+
+## Activation after saving changes
+
+Keep the service in a separate terminal/process if it must survive a desktop restart. Start it with a new private socket directory:
+
+```sh
+node packages/cleanroom-node-repl/src/scientific-session-server.mjs /private/tmp/linked-science-session/session.sock
+```
+
+The launcher prints readiness and the canonical socket path. It will not replace an existing socket. The project MCP registration stays at its existing entrypoint; a freshly loaded entrypoint selects the adapter. Restart the desktop after saving this implementation, then perform the project [runtime discovery](../agent/runtime-discovery.md). Shell tests alone do not prove the mounted MCP changed.
+
+In a fresh owner REPL, create and retain the returned connection information:
+
+```js
+var connection = await nodeRepl.scientificSession.create({
+  socketPath: '/private/tmp/linked-science-session/session.sock'
+});
+nodeRepl.write(connection);
+```
+
+Creation happens in the scratch kernel; **subsequent calls** run in the scientific kernel. Load/publish scientific objects there, then create grants. A fresh worker calls `attach({socketPath, sessionId, capability})` with its worker grant. Keep a separate protected copy of the owner connection information if owner reconnection is needed. Do not recreate a session and assume old variables will return.
+
+The external client API supports owner `closeSession()`; closing an MCP connection only detaches. Owner and worker scratch resets have different scope. A worker cannot request a shared reset or execute arbitrary code in the owner's kernel through this protocol.
+
+## Verification boundary
+
+Automated synthetic integration tests exercise independent MCP adapters, native graph reads, local SELECT bindings, structured deposit, owner aggregation, disconnect/reconnect and grant/reset restrictions. Service tests cover lifecycle and wire bounds. The [topology experiment](../experiments/scoped-data-bridge.md) records the earlier live worker observations separately. A new live Codex worker round trip and semantic model-quality experiments remain unrun until desktop activation; the deterministic tests are not RLM quality evidence.

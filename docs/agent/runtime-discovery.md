@@ -54,3 +54,9 @@ The broker only auto-initializes when its cwd is the authoritative project root.
 Repair malformed calls from `error.repair` or targeted documentation before considering a reset. `LS_RELEASED_HANDLE` means ownership was explicitly released; `LS_STALE_WORKSPACE` / `LS_STALE_HANDLE` refer to invalidated epochs. A surviving Source view cannot start new reads after release. `KERNEL_OOM` means the entire kernel epoch was lost.
 
 The [API schema](../runtime/linked-science-api.schema.json), [route index](../runtime/routes.json), [architecture](../architecture/rlm-linked-science-runtime.md) and [session lifetime](../architecture/persistent-session-and-handles.md) provide conditional detail. Full query results stay behind handles, pages/tables are awaitable bounded views, and ordinary public reads use the broker's default authority and receipts.
+
+## Shared scientific-session activation
+
+A fresh project MCP connection exposes `nodeRepl.scientificSession`; its presence alone does not prove attachment. Before create/attach, it still owns a scratch kernel. Follow the [scientific-session activation guide](../architecture/scientific-session.md), and verify session role/epoch with `status()` after attachment. Owner create/attach changes the target of subsequent evaluations; it does not migrate existing scratch variables. Workers attach with scoped grants and retain separate scratch namespaces.
+
+Record a fresh worker read/deposit and owner aggregation before claiming live shared-state activation. The earlier E1 namespace probes and offline adapter tests cannot substitute for that evidence. A desktop restart loads saved code but neither starts the independent service nor restores an old kernel automatically.

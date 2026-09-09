@@ -5,6 +5,7 @@ import { PassThrough } from "node:stream";
 import { inspect } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve, sep } from "node:path";
+import { createScientificSessionRuntime } from './scientific-session-runtime.mjs';
 
 import {
   registerLinkedSciencePrivateResultStore,
@@ -270,6 +271,7 @@ function createKernel() {
     tmpDir: { enumerable: true, value: process.env.TMPDIR ?? "/tmp" },
     requestMeta: { enumerable: true, get: () => currentRequestMeta },
     rlm: { enumerable: true, value: rlm },
+    scientificSession: { enumerable: true, value: createScientificSessionRuntime({control: args => hostCallStrict('scientificSession.control', args)}) },
     peek: { enumerable: true, value: peek },
   });
   Object.defineProperties(nodeRepl, {

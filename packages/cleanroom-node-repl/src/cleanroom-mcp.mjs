@@ -181,9 +181,11 @@ export class KernelBroker {
     resultSpool,
     resultSpoolOptions,
     bootstrapLinkedScience = true,
+    sessionControl = null,
   } = {}) {
     this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
+    this.sessionControl = sessionControl;
     this.checkpointRoot = checkpointRoot ? resolve(checkpointRoot) : null;
     this.maxOldSpaceMb = maxOldSpaceMb;
     this.bootstrapLinkedScience = bootstrapLinkedScience && this.cwd === realpathSync(resolve(KERNEL_ROOT, '../../..'));
@@ -291,7 +293,11 @@ export class KernelBroker {
     try {
       const { method, args = {} } = message;
       let value;
-      if (method === "rlm.query") value = await this._recursiveQuery(args);
+      if (method === 'scientificSession.control') {
+        if (!this.sessionControl) throw Object.assign(new Error('Scientific session adapter is not connected'), {code:'SESSION_UNAVAILABLE'});
+        value = await this.sessionControl(args);
+      }
+      else if (method === "rlm.query") value = await this._recursiveQuery(args);
       else if (method === "traversal.capabilities") value = this.traversal.capabilities();
       else if (method === "traversal.begin") value = this.traversal.beginTraversal(args.budgets, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.request") value = await this.traversal.request(args, { token: this.hostCapabilityToken, epoch: this.epoch });
@@ -546,4 +552,10 @@ const isDirectExecution = typeof process !== "undefined"
   && typeof process.argv?.[1] === "string"
   && pathToFileURL(process.argv[1]).href === import.meta.url;
 
-if (isDirectExecution) runStdioServer();
+// Keep the registered entrypoint stable. Imported brokers retain standalone
+// ownership; desktop stdio connections can explicitly attach to a shared session.
+if (isDirectExecution) {
+  import('./scientific-session-mcp.mjs').then(({ ScientificSessionMcpAdapter }) => {
+    runStdioServer({ broker: new ScientificSessionMcpAdapter() });
+  }).catch(error => { console.error(error); process.exitCode = 1; });
+}

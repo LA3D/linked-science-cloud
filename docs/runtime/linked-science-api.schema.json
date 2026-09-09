@@ -88,7 +88,8 @@
       "derive",
       "profile",
       "page",
-      "table"
+      "table",
+      "iterate"
     ],
     "graph": [
       "neighbors"
@@ -126,6 +127,7 @@
     "results.profile",
     "results.page",
     "results.table",
+    "results.iterate",
     "graph.neighbors",
     "orientation",
     "reset",

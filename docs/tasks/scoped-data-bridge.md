@@ -1,24 +1,33 @@
-# Scoped data bridge investigation
+# Scoped data bridge and scientific sessions
 
-- Status: experiment design complete; execution unrun.
-- User constraint: Codex drives model work; no model provider embedded in or attached independently to the REPL.
+- Status: shared-session core implemented and verified; live desktop activation pending.
+- User constraint: Codex drives model work; no independent model provider in the REPL.
 - Methodology: [five gated experiments](../experiments/scoped-data-bridge.md).
-- Evidence storage: [run contract](../../artifacts/scoped-data-bridge/README.md).
+- Evidence: [run contract and E1 attempts](../../artifacts/scoped-data-bridge/README.md).
+- Implementation: [scientific session architecture and activation](../architecture/scientific-session.md).
 
-## Decisions
+## Decisions and completed work
 
-Preserve heterogeneous native structures: RDF graphs/ontologies, SELECT bindings and JSON evidence have distinct adapters and semantics. Do not flatten graphs into tables. Do not assume a child shares the parent kernel. An owner-bound handle is not a portable grant. Scope enforcement must be measured separately from connectivity.
+E1 recorded one failed preparation and three independent worker probes. Workers did not see parent globals; that establishes unavailable shared namespace, not definitive broker process identity. Receipts are registered with missing accounting explicitly recorded. E2–E5 have not run.
 
-Codex owns dispatch/lifecycle; the data layer supports selected reads and validated deposits, followed by explicit parent REPL continuation. The suite does not introduce another goal or worker scheduler.
+The user selected a shared live session service instead of snapshot transfer and authorized the core refactor. The service owns a kernel independently of MCP clients. Owners publish native graph/result handles; workers run separate scratch kernels and access selected objects through expiring grants. Fixed operations preserve RDF terms and SELECT bindings, and structured results return through a scoped slot. Codex owns dispatch and explicit continuation. Full recursive model behavior is not claimed.
 
-## Completed work and boundaries
-
-Prepared E1 topology discovery, E2 typed operations, E3 scope/lifetime, E4 semantic round trip and E5 bounded scale/recovery. Defined per-attempt plans, events, checks, receipts, fixture manifests and integration with the existing registry. No fixture run, worker test, bridge implementation or model-quality result is claimed. Earlier conversational source/capability observations are motivation, not registered suite runs.
+Native bindings now have a complete iterator for resident and broker-stored results. Integration tests exercise independent MCP adapters, graph/query access, deposit and parent aggregation, reconnect persistence and scope/reset rejection. Idle expiry, timeout, shutdown and crashes can still lose state; no disk recovery is promised.
 
 ## Exact next action
 
-When E1 execution is requested, freeze its synthetic fixture, probe code and plan, add receipt-specific validation to the harness, then dispatch fresh Codex workers and capture identity/access evidence before cleanup. Select the topology from observations. E2 onward requires a minimal bridge implementation and its own frozen run scope; do not presume shared state, automatic MCP sampling or a provider API.
+Implementation is ready for a desktop restart once its local integration is recorded below. After restart, discover the mounted project runtime, launch the independent service if needed, and record a fresh live worker round trip separately from deterministic tests. Existing pre-refactor globals are not migrated automatically. Do not silently resume E2–E5 or treat shell checks as live activation evidence.
 
 ## Handoff
 
-Design began in the authoritative checkout on local main at `d751422e92414475e51883dd323f7c37b8a564e0`, using branch `codex/scoped-bridge-experiments`. Existing changes to `.codex/config.toml` and untracked `artifacts/structure-viewer/` belong to other work and are excluded. See the focused design commit in Git history for verification and integration; experiment results remain empty until execution.
+Implementation began in the authoritative checkout on `codex/scoped-bridge-runs` at `e355c43b1b1cf90f7fec2b06e1744cae71af8516`. Existing `.codex/config.toml` edits and untracked `artifacts/structure-viewer/` are unrelated and excluded. The registered entrypoint remains unchanged; its new direct-launch adapter requires a fresh desktop MCP connection. Verification and integration outcomes will be recorded here before restart.
+
+## Verification and remaining limits
+
+- `npm test`: 206 passed, zero failed/skipped, including real stdio transport, service lifecycle, five integration/launcher tests and native iterator tests.
+- `npm run smoke` and `npm run linked-science:verify`: passed with offline synthetic fixtures.
+- `npm run evaluation:results:validate`: passed, 36 registered runs with explicit durability classifications.
+- Markdown links and `git diff --check`: passed.
+- E1 receipts saved in `d7cd03c`; implementation commit is the next focused commit in this branch's history.
+- Large paged traversals rescan earlier rows. This is a bounded core implementation, not a scalability result. Worker timeouts during shared-kernel execution can close the session; timeouts before dispatch preserve it.
+- No live activation or semantic RLM evaluation was run after refactoring. No service has been left running by tests. Existing pre-refactor REPL objects will not be migrated by restarting.
