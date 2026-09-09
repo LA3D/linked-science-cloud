@@ -1,0 +1,40 @@
+{
+  "runId": "e2-20260909-shared-types-04",
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "experiment": "E2",
+  "startedAt": "2026-09-09T18:29:48.872Z",
+  "source": {
+    "commit": "7032936e38b7bec5f5bd724325e7ff16a3ff4ccb",
+    "dirty": true,
+    "diffSha256": "17ea7f6af758f56f08ce3cc4ad418373ea62c45e3527a8e5144383ade5f9bb47",
+    "harnessSha256": "1f6c35b9257a8c36c411741df075017c87e093d0de6b3a9b68fd8b6682f7b0d1"
+  },
+  "fixtureSha256": "63aa880e46819031f301cc495dff1047f5bac4b34b0749a8e9a55b3d2c6eed14",
+  "arms": [
+    "owner oracle",
+    "isolated worker adapter",
+    "copied handle negative"
+  ],
+  "repetitions": 2,
+  "tiers": [
+    "resident",
+    "broker-stored bindings"
+  ],
+  "checks": [
+    "graph semantic fingerprint",
+    "eight and257 bindings exact equality",
+    "multiplicity and unboundness",
+    "copied handle rejection",
+    "nested JSON input support"
+  ],
+  "bounds": {
+    "pageSize": 32,
+    "maxOutputBytes": 8192,
+    "wallMs": 600000
+  },
+  "deviations": [
+    "Deterministic worker adapter clients; no model interpretation or live Codex subagents needed for equality.",
+    "Full named-graph fixture cannot currently be forced into result storage through the public local retain API; report unmeasured, do not flatten.",
+    "Nested JSON input support is probed separately from JSON output deposits."
+  ]
+}

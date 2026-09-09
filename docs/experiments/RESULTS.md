@@ -78,3 +78,5 @@ Before resetting a kernel, closing a worker, or declaring an intentional experim
 If capture was missed, create a `retrospective-summary` record from durable sources and leave unavailable fields missing. Never upgrade prose reconstruction to a machine receipt.
 
 Post-restart live activation: [passed scoped worker round trip](../../artifacts/scoped-data-bridge/live-20260909-session-activation-01/receipt.json), partial accounting durability.
+
+E2 shared-session typed data: [latest partial result](../../artifacts/scoped-data-bridge/e2-20260909-shared-types-06/receipt.json). Attempts 1–3 recorded harness failures, attempt 4 basic equality checks, attempt 5 added scoped-query checks but hit a resident-profile harness assumption, and attempt 6 completed the comparisons. JSON input remains unsupported; named-graph broker-tier coverage remains unmeasured.

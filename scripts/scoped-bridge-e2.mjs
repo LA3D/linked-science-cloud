@@ -1,0 +1,58 @@
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join,resolve} from 'node:path';
+import {mkdtemp,realpath,rm} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {startScientificSessionService} from '../packages/cleanroom-node-repl/src/scientific-session-service.mjs';
+import {ScientificSessionMcpAdapter} from '../packages/cleanroom-node-repl/src/scientific-session-mcp.mjs';
+import {KernelBroker} from '../packages/cleanroom-node-repl/src/cleanroom-mcp.mjs';
+const root=resolve(new URL('..',import.meta.url).pathname);
+const sha=v=>createHash('sha256').update(v).digest('hex');
+const runId=process.argv[2];
+if(!runId||!/^e2-[a-z0-9-]+$/.test(runId))throw Error('Provide unique e2- run id');
+const dir=join(root,'artifacts/scoped-data-bridge',runId);
+await mkdir(dir);
+const save=(name,v)=>writeFile(join(dir,name),JSON.stringify(v,null,2)+'\n',{flag:'wx'});
+const fixtureCode=`var f=ws.rdf.DataFactory;var n=x=>f.namedNode('urn:'+x);var b=f.blankNode('restriction');var quads=[f.quad(n('A'),f.namedNode('http://www.w3.org/2000/01/rdf-schema#subClassOf'),n('B')),f.quad(n('B'),f.namedNode('http://www.w3.org/2000/01/rdf-schema#subClassOf'),n('C')),f.quad(n('A'),n('restriction'),b),f.quad(b,n('onProperty'),n('p')),f.quad(b,n('someValuesFrom'),n('C')),f.quad(n('A'),n('label'),f.literal('bonjour','fr')),f.quad(n('A'),n('typed'),f.literal('007',f.namedNode('http://www.w3.org/2001/XMLSchema#integer'))),f.quad(n('same'),n('p'),n('one'),n('g1')),f.quad(n('same'),n('p'),n('two'),n('g2')), ...Array.from({length:15},(_,i)=>f.quad(n('item'+i),n('p'),f.literal(String(i))))];var graph=await ws.rdf.retain({name:'ontology',kind:'ontology',quads});`;
+const query=count=>`SELECT ?value ?optional WHERE { <urn:A> <urn:restriction> ?restriction . VALUES (?i ?value ?optional) { ${Array.from({length:count},(_,i)=>`(${i} ${['<urn:value>','"bonjour"@fr','"007"^^<http://www.w3.org/2001/XMLSchema#integer>'][i%3]} ${i%2?'UNDEF':'"bound"'})`).join(' ')} } } ORDER BY ?i`;
+const normalizers=`var hashModule=await import('node:crypto');var encode=t=>[t.termType,t.value,t.language??'',t.datatype?.value??''];var digest=x=>hashModule.createHash('sha256').update(JSON.stringify(x)).digest('hex');var graphSummary=async source=>{var rows=[];for await(var q of source.match())rows.push([q.subject,q.predicate,q.object,q.graph].map(encode));return {count:rows.length,digest:digest(rows.sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))),namedGraphs:[...new Set(rows.filter(r=>r[3][0]==='NamedNode').map(r=>r[3][1]))].sort(),blankTerms:rows.flat().filter(t=>t[0]==='BlankNode').length};};var bindingSummary=async iterable=>{var rows=[];for await(var row of iterable)rows.push([...row].map(([k,t])=>[k,encode(t)]).sort());return {count:rows.length,digest:digest(rows),unbound:rows.filter(r=>!r.some(x=>x[0]==='optional')).length,duplicateRows:rows.length-new Set(rows.map(r=>JSON.stringify(r))).size};};`;
+const startedAt=new Date().toISOString();
+const source={commit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),dirty:true,diffSha256:sha(execFileSync('git',['diff'],{cwd:root})),harnessSha256:sha(await readFile(new URL(import.meta.url)))};
+await save('plan.json',{runId,protocol:'scoped-data-bridge/shared-session-v2',experiment:'E2',startedAt,source,fixtureSha256:sha(fixtureCode),arms:['owner oracle','isolated worker adapter','copied handle negative'],repetitions:2,tiers:['resident','broker-stored bindings'],checks:['graph semantic fingerprint','eight and257 bindings exact equality','multiplicity and unboundness','copied handle rejection','nested JSON input support'],bounds:{pageSize:32,maxOutputBytes:8192,wallMs:600000},deviations:['Deterministic worker adapter clients; no model interpretation or live Codex subagents needed for equality.','Full named-graph fixture cannot currently be forced into result storage through the public local retain API; report unmeasured, do not flatten.','Nested JSON input support is probed separately from JSON output deposits.']});
+await writeFile(join(dir,'harness-source.txt'),await readFile(new URL(import.meta.url)),{flag:'wx'});
+await save('fixture-manifest.json',{fixtureCode,queries:[query(8),query(257)],graphQuads:24,nestedJSON:{nested:[null,true,3,{text:'value'}]},normalization:'Compare native owner and proxy terms for the same retained graph, including shared blank-node occurrences and named-graph separation; does not compare arbitrary relabelled graphs.'});
+const checks=[],events=[];let seq=0;
+const tmp=await realpath(await mkdtemp(join(tmpdir(),'bridge-e2-')));
+const service=await startScientificSessionService({socketPath:join(tmp,'s.sock'),brokerFactory:()=>new KernelBroker({cwd:root}),idleTtlMs:600000});
+const evaluate=async(client,code)=>{const r=await client.execute(code,{maxOutputBytes:8192});if(r.isError)throw Error(JSON.stringify(r));return JSON.parse(r.content[0].text);};
+try{
+for(const tier of ['resident','stored'])for(let repeat=1;repeat<=2;repeat++){
+ const owner=new ScientificSessionMcpAdapter({cwd:root}),worker=new ScientificSessionMcpAdapter({cwd:root});
+ const tag=`${tier}-${repeat}`;let phase="create";
+ try{
+  await owner.control({operation:'create',args:{socketPath:join(tmp,'s.sock')}});
+  phase="prepare-fixture";const refs=await evaluate(owner,`var {setupLinkedScienceWithPrivateTraversal}=await import(${JSON.stringify(new URL('../packages/cleanroom-node-repl/src/private-linked-science-traversal.mjs',import.meta.url).href)});var facade=await setupLinkedScienceWithPrivateTraversal({cleanroom:nodeRepl,nodeRepl:{},budgets:{maxResultItems:${tier==='stored'?1:1000},maxRows:1,maxCells:1}});var ws=facade.open({contextKey:'typed-data'});${fixtureCode}var rows8=await ws.query.run({sources:[graph],sparql:${JSON.stringify(query(8))}});var rows257=await ws.query.run({sources:[graph],sparql:${JSON.stringify(query(257))}});nodeRepl.write(JSON.stringify({graph:nodeRepl.scientificSession.publish(ws,graph),rows8:nodeRepl.scientificSession.publish(ws,rows8),rows257:nodeRepl.scientificSession.publish(ws,rows257)}));`);
+  phase="owner-oracle";const oracle=await evaluate(owner,`${normalizers}nodeRepl.write(JSON.stringify({graph:await graphSummary(ws.rdf.source(graph)),rows8:await bindingSummary(ws.results.iterate(rows8,{batchSize:32})),rows257:await bindingSummary(ws.results.iterate(rows257,{batchSize:32})),filtered:await bindingSummary(ws.results.iterate(await ws.query.run({sources:[graph],sparql:'SELECT ?o WHERE { GRAPH <urn:g1> { <urn:same> <urn:p> ?o } }'}))),profile:ws.results.profile(rows257)}));`);
+  const grant=await owner.client.grant({objects:Object.values(refs).map(r=>r.object),operations:['match','bindings','query','deposit'],outputSlot:'result',ttlMs:300000});
+  const session=await owner.client.status();
+  await worker.control({operation:'attach',args:{socketPath:join(tmp,'s.sock'),sessionId:session.sessionId,capability:grant.capability}});
+  phase="worker-comparison";const observed=await evaluate(worker,`${normalizers}nodeRepl.write(JSON.stringify({graph:await graphSummary(nodeRepl.scientificSession.source(${JSON.stringify(refs.graph.object)})),rows8:await bindingSummary(nodeRepl.scientificSession.bindings(${JSON.stringify(refs.rows8.object)})),rows257:await bindingSummary(nodeRepl.scientificSession.bindings(${JSON.stringify(refs.rows257.object)})),filtered:await bindingSummary(nodeRepl.scientificSession.bindings((await nodeRepl.scientificSession.query(${JSON.stringify(refs.graph.object)},'SELECT ?o WHERE { GRAPH <urn:g1> { <urn:same> <urn:p> ?o } }')).object))}));`);
+  for(const kind of ['graph','rows8','rows257','filtered'])checks.push({id:`${tag}-${kind}`,status:JSON.stringify(oracle[kind])===JSON.stringify(observed[kind])?'passed':'failed',expected:oracle[kind],observed:observed[kind]});
+  checks.push({id:`${tag}-expected-counts`,status:oracle.graph.count===24&&oracle.rows8.count===8&&oracle.rows257.count===257&&oracle.filtered.count===1?'passed':'failed'});
+  checks.push({id:`${tag}-storage-tier`,status:(oracle.profile.residency?.kind==='broker-stored-result')===(tier==='stored')?'passed':'failed',observed:oracle.profile.residency??{kind:"resident-no-broker-metadata"}});
+  const negative=await evaluate(owner,`try{ws.results.profile({...graph});nodeRepl.write(JSON.stringify({rejected:false}));}catch(e){nodeRepl.write(JSON.stringify({rejected:true,code:e.code}));}`);
+  checks.push({id:`${tag}-copied-handle`,status:negative.rejected?'passed':'failed',observed:negative});
+  const json=await evaluate(owner,`try{nodeRepl.scientificSession.publish(ws,{nested:[null,true,3,{text:'value'}]});nodeRepl.write(JSON.stringify({supported:true}));}catch(e){nodeRepl.write(JSON.stringify({supported:false,code:e.code}));}`);
+  checks.push({id:`${tag}-json-input`,status:json.supported?'passed':'failed',observed:json,limitation:'JSON output deposits do not constitute a native JSON input adapter.'});
+  await save(`${tag}.json`,{oracle,observed,negative,json});
+  events.push({seq:++seq,observedAt:new Date().toISOString(),actor:'deterministic-clients',operation:tag,status:'recorded',evidencePath:`${tag}.json`,inputBytes:null,outputBytes:null,parentVisibleBytes:null,childVisibleBytes:null});
+ }catch(error){checks.push({id:tag,status:'failed',phase,error:String(error.message)});await save(`${tag}-error.json`,{phase,message:error.message});}
+ finally{await save(`${tag}-checkpoint.json`,{checks:checks.filter(x=>x.id.startsWith(tag))});await worker.close();if(owner.client)await owner.client.closeSession().catch(()=>{});await owner.close();}
+}
+}finally{await service.close();await rm(tmp,{recursive:true,force:true});}
+checks.push({id:'named-graph-broker-tier',status:'not-measured',limitation:'No public fixture-only admission switch for retaining the same named-graph dataset in broker storage.'});
+await save('checks.json',{checks});await writeFile(join(dir,'events.jsonl'),events.map(e=>JSON.stringify(e)).join('\n')+'\n',{flag:'wx'});
+const receipt=JSON.parse(await readFile(join(root,'docs/experiments/scoped-data-bridge/receipt.template.json')));
+Object.assign(receipt,{recordState:'finalized',runId,experiment:'E2',arm:'shared-session-typed-adapters',attempt:1,protocol:'scoped-data-bridge/shared-session-v2',startedAt,finishedAt:new Date().toISOString(),source,authorization:{scope:'Synthetic typed-data experiments through isolated session service',source:'User authorized resumption starting with typed data'},outcome:checks.some(c=>c.status==='failed')?'partial':'passed',evidenceLevel:'machine-receipt',durability:'partial',observedSummary:'Per-adapter equality checks with explicit unsupported input and storage-tier gaps.',missingEvidence:['Exact model token and total transport accounting unavailable.','Named-graph dataset broker-tier admission unmeasured.'],limitations:['Mechanical clients, not a semantic model experiment.','Nested JSON input adapter currently unavailable.'],nextDecision:'Accept only passing adapter/tier pairs; do not advance unsupported adapters to dependent gates.'});receipt.finalization={capturedBeforeStateLoss:true,evidenceSha256:{checks:sha(JSON.stringify(checks))},finalizedAt:new Date().toISOString()};await save('receipt.json',receipt);
+console.log(JSON.stringify({runId,outcome:receipt.outcome,checks},null,2));

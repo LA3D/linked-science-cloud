@@ -1,0 +1,9 @@
+{
+  "checks": [
+    {
+      "id": "resident-1",
+      "status": "failed",
+      "error": "Value of \"this\" must be of type nullish or must be the global object"
+    }
+  ]
+}

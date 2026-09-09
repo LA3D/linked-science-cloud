@@ -1,0 +1,75 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "e2-20260909-shared-types-03",
+  "experiment": "E2",
+  "arm": "shared-session-typed-adapters",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "startedAt": "2026-09-09T18:29:26.415Z",
+  "finishedAt": "2026-09-09T18:29:29.063Z",
+  "authorization": {
+    "scope": "Synthetic typed-data experiments through isolated session service",
+    "source": "User authorized resumption starting with typed data"
+  },
+  "source": {
+    "commit": "7032936e38b7bec5f5bd724325e7ff16a3ff4ccb",
+    "dirty": true,
+    "diffSha256": "17ea7f6af758f56f08ce3cc4ad418373ea62c45e3527a8e5144383ade5f9bb47",
+    "harnessSha256": "086abc6ccc2e91a35e926f87a86e4722864cd7192a5c2b54bcd3ff158a67d2ce"
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": null,
+    "parentRuntime": null,
+    "workerRuntimes": [],
+    "topology": null
+  },
+  "inputs": {
+    "fixtureManifest": "fixture-manifest.json",
+    "objectKinds": [],
+    "storageTiers": [],
+    "grantFingerprints": [],
+    "snapshotPolicy": null
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": null,
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": null,
+    "assignedItems": null,
+    "completedItems": null,
+    "failedItems": null,
+    "duplicateDeposits": null,
+    "semanticScore": null,
+    "peakMemoryBytes": null
+  },
+  "outcome": "partial",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Per-adapter equality checks with explicit unsupported input and storage-tier gaps.",
+  "interpretation": null,
+  "limitations": [
+    "Mechanical clients, not a semantic model experiment.",
+    "Nested JSON input adapter currently unavailable."
+  ],
+  "missingEvidence": [
+    "Exact model token and total transport accounting unavailable.",
+    "Named-graph dataset broker-tier admission unmeasured."
+  ],
+  "nextDecision": "Accept only passing adapter/tier pairs; do not advance unsupported adapters to dependent gates.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "checks": "f938bde9bf1086d0a342f1507668fffc7a5a1e47a123280be5bb26a25898c1fc"
+    },
+    "finalizedAt": "2026-09-09T18:29:29.063Z"
+  }
+}

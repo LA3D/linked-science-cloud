@@ -1,0 +1,75 @@
+{
+  "checks": [
+    {
+      "id": "resident-1-graph",
+      "status": "passed",
+      "expected": {
+        "count": 24,
+        "digest": "0650a6c46f86768907a5a30ac979641455cdd72f713f694f3c31fd5469e183e8",
+        "namedGraphs": [
+          "urn:g1",
+          "urn:g2"
+        ],
+        "blankTerms": 3
+      },
+      "observed": {
+        "count": 24,
+        "digest": "0650a6c46f86768907a5a30ac979641455cdd72f713f694f3c31fd5469e183e8",
+        "namedGraphs": [
+          "urn:g1",
+          "urn:g2"
+        ],
+        "blankTerms": 3
+      }
+    },
+    {
+      "id": "resident-1-rows8",
+      "status": "passed",
+      "expected": {
+        "count": 8,
+        "digest": "f311b459a357612226c111aeb59491afd4c0010c0e78a93ec830857f5cc9cfd8",
+        "unbound": 4,
+        "duplicateRows": 2
+      },
+      "observed": {
+        "count": 8,
+        "digest": "f311b459a357612226c111aeb59491afd4c0010c0e78a93ec830857f5cc9cfd8",
+        "unbound": 4,
+        "duplicateRows": 2
+      }
+    },
+    {
+      "id": "resident-1-rows257",
+      "status": "passed",
+      "expected": {
+        "count": 257,
+        "digest": "8f55130e171cfd458e100de2106ff0ded810c474e0b609f5a190866be0f75c2c",
+        "unbound": 128,
+        "duplicateRows": 251
+      },
+      "observed": {
+        "count": 257,
+        "digest": "8f55130e171cfd458e100de2106ff0ded810c474e0b609f5a190866be0f75c2c",
+        "unbound": 128,
+        "duplicateRows": 251
+      }
+    },
+    {
+      "id": "resident-1-copied-handle",
+      "status": "passed",
+      "observed": {
+        "rejected": true,
+        "code": "LS_INVALID_HANDLE"
+      }
+    },
+    {
+      "id": "resident-1-json-input",
+      "status": "failed",
+      "observed": {
+        "supported": false,
+        "code": "LS_INVALID_HANDLE"
+      },
+      "limitation": "JSON output deposits do not constitute a native JSON input adapter."
+    }
+  ]
+}

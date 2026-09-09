@@ -1,0 +1,2 @@
+{"seq":1,"observedAt":"2026-09-09T18:30:26.423Z","actor":"deterministic-clients","operation":"stored-1","status":"recorded","evidencePath":"stored-1.json","inputBytes":null,"outputBytes":null,"parentVisibleBytes":null,"childVisibleBytes":null}
+{"seq":2,"observedAt":"2026-09-09T18:30:27.426Z","actor":"deterministic-clients","operation":"stored-2","status":"recorded","evidencePath":"stored-2.json","inputBytes":null,"outputBytes":null,"parentVisibleBytes":null,"childVisibleBytes":null}

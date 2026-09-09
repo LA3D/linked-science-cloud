@@ -1,0 +1,4 @@
+{
+  "phase": "worker-comparison",
+  "message": "Cannot read properties of undefined (reading 'kind')"
+}

@@ -37,3 +37,9 @@ Implementation began in the authoritative checkout on `codex/scoped-bridge-runs`
 ## Post-restart activation
 
 The fresh mounted project MCP exposed the session interface. One fresh Codex worker read two native graph quads using a scoped grant, deposited a structured finding, and the owner retrieved it into a variable while retaining the graph. See the [activation receipt](../../artifacts/scoped-data-bridge/live-20260909-session-activation-01/receipt.json). This is a live bridge check, not a semantic quality evaluation. Broader E2–E5 work remains unrun. The service remains subject to five-minute idle expiry.
+
+## Typed-data resumption
+
+The [shared-session amendment](../experiments/scoped-data-bridge-shared-session.md) updates E2–E5 methodology. E2 executed with six recorded attempts; the final attempt passed graph/bindings equality and negative-handle checks, but the complete gate is partial: native JSON input is unsupported, and the full named-graph broker tier is unmeasured. E3–E5 remain unrun. Next: address these two coverage gaps, or explicitly limit E3 to passing graph/bindings adapter pairs. No runtime feature changes were made in this slice.
+
+E2 delivery began on `codex/scoped-bridge-e2` from `7032936`. Receipts preserve all six attempts and the final run has 28 passing, four unsupported-JSON failures, and one unmeasured storage case. Registry validation reports 43 runs. Repository tests, smoke, whitespace and changed-document link checks pass; unrelated configuration and structure-viewer changes remain excluded.

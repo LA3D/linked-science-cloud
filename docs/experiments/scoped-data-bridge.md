@@ -1,7 +1,7 @@
 # Codex-owned scoped data bridge experiments
 
 - Protocol: `scoped-data-bridge/v1`, designed 2026-09-09.
-- Status: E1 executed; shared scientific-session implementation selected. E2–E5 remain unrun.
+- Status: E1 executed; shared scientific-session implementation and live activation completed. E2 resumption uses the [shared-session amendment](scoped-data-bridge-shared-session.md); E3–E5 remain unrun.
 - Task: [scoped data bridge](../tasks/scoped-data-bridge.md).
 - Records: [storage contract](../../artifacts/scoped-data-bridge/README.md), [receipt template](scoped-data-bridge/receipt.template.json), [result registry](RESULTS.md).
 
@@ -115,4 +115,4 @@ The user paused experiments and explicitly chose shared scientific-session owner
 
 E1 selects topology; E2 establishes per-type semantics; E3 establishes scope; E4 establishes the model round trip; E5 characterizes bounded operation. Stop dependent experiments when a prerequisite fails. Save failed and inconclusive attempts just as durably as successful ones.
 
-Next action after run authorization: freeze E1's synthetic fixture and probe code, allocate its run directory, and execute the fresh-worker identity test. No E2–E5 result is implied by E1. Design changes receive a new protocol version; later interpretation adds a linked record rather than overwriting old observations.
+Next action: run E2 under the frozen shared-session amendment, recording unsupported adapters separately. No E2–E5 result is implied by E1. Design changes receive a new protocol version; later interpretation adds a linked record rather than overwriting old observations.
