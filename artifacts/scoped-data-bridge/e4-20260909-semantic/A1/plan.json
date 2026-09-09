@@ -1,0 +1,47 @@
+{
+  "protocol": "scoped-data-bridge/e4-semantic-v1",
+  "frozenAt": "2026-09-09T19:02:34.085Z",
+  "seed": 20260909,
+  "order": [
+    "A1",
+    "B3",
+    "C1",
+    "B1",
+    "B2",
+    "A2",
+    "C3",
+    "C2",
+    "A3"
+  ],
+  "source": {
+    "commit": "f2c436790fdcec62d64092d9ad443a183dbd32c9",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "03ad1cde97b6d87fb2d21ebf13cc7df0354417afcbca4f4d9565b547546b98eb",
+    "evaluatorSha256": "51ba5eb88067d318703cc9f35f3b3e3d1d683e3412c5ec8839b4f31a70a30c8a"
+  },
+  "bounds": {
+    "annotations": 12,
+    "graphQuads": 2,
+    "concurrency": 1,
+    "workerDeadlineMs": 300000,
+    "grantTtlMs": 300000,
+    "ownerOutputBytes": 8192
+  },
+  "model": "Inherited model and reasoning; actual backend settings/token usage unavailable",
+  "arms": {
+    "A": "Fresh evaluator with explicit complete bounded fixture prompt, output file relayed by code into owner findings variable. Proxy for root-only access, not literal coordinating root.",
+    "B": "Fresh evaluator receives only scoped JSON and native RDF references; reads via mounted project MCP; deposits directly; owner validates and aggregates.",
+    "C": "Deterministic transitive graph reachability; annotation prose deliberately uninterpreted; unresolved annotations reported unknown."
+  },
+  "rubric": "Each row correct iff exact target, verdict, uncertainty and required existing references match frozen key. Schema validity/coverage/references reported separately. Six structural-baseline rows expected correct by construction; not a competitive optimized rules engine.",
+  "limitations": [
+    "Synthetic, descriptive, unblinded; coordinator authored fixture and key.",
+    "Fresh evaluator baseline is a declared change from literal root-only processing.",
+    "No enforced filesystem separation of answer key; workers instructed to use only supplied evidence.",
+    "No complete parent/worker transcript audit; strict no-relay remains unestablished.",
+    "No complete token/transport accounting; measured payload bytes are not total costs."
+  ],
+  "authorization": "User authorized semantic experiment with 3 arms and 3 repetitions after E3.",
+  "run": "A1"
+}

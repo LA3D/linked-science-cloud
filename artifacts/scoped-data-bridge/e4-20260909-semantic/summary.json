@@ -1,0 +1,155 @@
+{
+  "recordedAt": "2026-09-09T19:08:26.050Z",
+  "order": [
+    "A1",
+    "B3",
+    "C1",
+    "B1",
+    "B2",
+    "A2",
+    "C3",
+    "C2",
+    "A3"
+  ],
+  "rows": [
+    {
+      "run": "A1",
+      "arm": "A",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 82058,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    },
+    {
+      "run": "B3",
+      "arm": "B",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 69583,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    },
+    {
+      "run": "C1",
+      "arm": "C",
+      "correct": 6,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 86,
+      "findingBytes": 1723,
+      "aggregateBytes": 137
+    },
+    {
+      "run": "B1",
+      "arm": "B",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 84222,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    },
+    {
+      "run": "B2",
+      "arm": "B",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 53293,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    },
+    {
+      "run": "A2",
+      "arm": "A",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 43728,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    },
+    {
+      "run": "C3",
+      "arm": "C",
+      "correct": 6,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 132,
+      "findingBytes": 1723,
+      "aggregateBytes": 137
+    },
+    {
+      "run": "C2",
+      "arm": "C",
+      "correct": 6,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 129,
+      "findingBytes": 1723,
+      "aggregateBytes": 137
+    },
+    {
+      "run": "A3",
+      "arm": "A",
+      "correct": 12,
+      "assigned": 12,
+      "completed": 12,
+      "schemaValid": true,
+      "validReferences": 12,
+      "elapsedMs": 40687,
+      "findingBytes": 1703,
+      "aggregateBytes": 153
+    }
+  ],
+  "arms": {
+    "A": {
+      "attempts": 3,
+      "correct": 36,
+      "assigned": 36,
+      "completed": 36,
+      "validReferences": 36
+    },
+    "B": {
+      "attempts": 3,
+      "correct": 36,
+      "assigned": 36,
+      "completed": 36,
+      "validReferences": 36
+    },
+    "C": {
+      "attempts": 3,
+      "correct": 18,
+      "assigned": 36,
+      "completed": 36,
+      "validReferences": 36
+    }
+  },
+  "interpretation": "Three scoped worker deposits were captured into owner variables and aggregated. Synthetic semantic feasibility established; neither semantic superiority nor fully audited no-relay/cost claims established.",
+  "limitations": [
+    "Synthetic, descriptive, unblinded; coordinator authored fixture and key.",
+    "Fresh evaluator baseline is a declared change from literal root-only processing.",
+    "No enforced filesystem separation of answer key; workers instructed to use only supplied evidence.",
+    "No complete parent/worker transcript audit; strict no-relay remains unestablished.",
+    "No complete token/transport accounting; measured payload bytes are not total costs."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-09-09T19:04:22.736Z",
+  "appliesTo": "All nine attempts",
+  "failure": "A1 first collect passed epoch from create response to strict attach; rejected before reading findings",
+  "correction": "Run scripts/scoped-bridge-e4-reconnect.mjs RUN before collect. Removes extra fields from private reconnect descriptor. Frozen original harness retained.",
+  "affectedMeasurements": "A1 elapsed time includes harness recovery. No model rerun or changed rubric.",
+  "parentControl": "External repository client owns and resumes isolated REPL; mounted parent remains scratch.",
+  "noRelay": "Not established by complete transcript audit. Raw B findings are captured by evaluator code without being printed to coordinating model."
+}

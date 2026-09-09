@@ -29,6 +29,8 @@ Use existing outcomes `passed`, `failed`, `partial`, `inconclusive`; evidence gr
 
 ## Event and check fields
 
+E4 uses a grouped [frozen plan](e4-20260909-semantic/plan.json) with nine arm/repetition subdirectories. Each contains its own plan, findings, checks, event and finalized receipt. The separate key is excluded from worker prompts but not protected against same-user filesystem reads; this exception is explicitly unblinded. Its [comparison](e4-20260909-semantic/summary.json) and collection amendment preserve accounting and audit limitations.
+
 Each event has `seq`, `observedAt`, `actor`, `operation`, `objectRef`, `status`, `inputBytes`, `outputBytes`, `parentVisibleBytes`, `childVisibleBytes`, `evidencePath`, and `error`. Unavailable measurements are null, not zero. `objectRef` is non-redeemable metadata. Distinguish runtime-observed facts from evaluator inference.
 
 Each check has `id`, `expected`, `observed`, `status` (`passed`, `failed`, `not-measured`), `eventSequences`, and `limitation`. An experiment passes only when its required checks are measured and pass. Missing prerequisite evidence is inconclusive, not a passing assumption.

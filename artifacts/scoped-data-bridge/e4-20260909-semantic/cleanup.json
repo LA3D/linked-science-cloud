@@ -1,0 +1,8 @@
+{
+  "recordedAt": "2026-09-09T19:10:52.768Z",
+  "sessionsClosedAfterReceipt": 9,
+  "workersClosed": 6,
+  "serviceExitCode": 0,
+  "knownPrivateCapabilitiesAbsentFromArtifacts": true,
+  "scope": "Compared retained private descriptors against E4 artifact tree; not a global secret scanner"
+}

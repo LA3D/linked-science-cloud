@@ -1,0 +1,10 @@
+{
+  "startedAt": "2026-09-09T19:07:45.311Z",
+  "refs": {
+    "json": "9d3e390a-314a-4c80-a91f-af0c20d58228",
+    "graph": "e9213d41-32f0-4502-bde1-513529b4d5a8"
+  },
+  "grantFingerprint": "d1b91b4292582ae73dbc3d6813721ee17457f5867c1fe9ac45444a88b4bb13a7",
+  "role": "owner",
+  "fixtureSha256": "97275752612fa248d54e0228e88c0ad921d59703dba0900946df878e67e02c5d"
+}

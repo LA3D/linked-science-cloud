@@ -1,0 +1,21 @@
+{
+  "task": "Assess each target claim using only the supplied annotation and graph. No external knowledge. Tentative positive evidence means supported with tentative uncertainty. Missing or unresolved evidence means undetermined, never contradicted merely by absence.",
+  "schema": {
+    "findings": [
+      {
+        "id": "annotation id",
+        "claim": {
+          "subject": "exact target subject",
+          "relation": "exact target relation",
+          "object": "exact target object",
+          "verdict": "supported | contradicted | undetermined"
+        },
+        "evidence": [
+          "annotation id and graph edge ids used"
+        ],
+        "uncertainty": "none | tentative | unknown"
+      }
+    ]
+  },
+  "requirements": "Exactly one finding per annotation, no additional fields. Cite its annotation and, for graph questions, both relevant graph edges. Preserve explicit negation, tentative language and unresolved uncertainty. No free-text rationale is requested."
+}

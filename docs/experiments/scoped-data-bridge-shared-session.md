@@ -24,6 +24,12 @@ Requires relevant E2 and E3 gates. Retain the original twelve-annotation fixture
 
 Requires E4. Retain sizes 32, 256 and 2,048, batch size 32, concurrency two and fixed budgets. Separate mechanical transport runs from the bounded real-worker case. Include interrupted workers, read timeout, completion replay and isolated reset. Measure exact coverage and duplicate acceptance, metadata growth and memory where available. The current offset-based proxies rescan prefixes, so record read amplification and timeout behavior; do not extrapolate constant cost or silently increase budgets. Recover only by an explicit new epoch/reacquisition when state is lost.
 
+## Frozen E4 execution design
+
+The [frozen plan](../../artifacts/scoped-data-bridge/e4-20260909-semantic/plan.json) records seeded order, budgets, fixture and evaluator fingerprints before any model dispatch. Each arm has three fresh attempts. A uses fresh direct-input evaluators as a proxy for root-only access because the coordinating conversation already knows the fixture. B uses fresh Codex workers and scoped JSON/native RDF reads through the mounted project MCP, followed by direct deposits. C computes subclass reachability and deliberately abstains on prose interpretation. The external repository client owns each isolated scientific REPL, admits A/C responses into a findings variable, and retrieves B deposits into that variable before aggregation. This is a declared change from resuming the mounted parent MCP; that working scratch namespace is left intact.
+
+The evaluator requires one fixed-schema finding per annotation, exact target identity, valid required references, and a matching verdict/uncertainty pair. Application schema validation happens before accepting the experiment result, outside the generic JSON deposit validator. The answer key is a separate evaluator artifact, excluded from worker prompts. Same-user filesystem access means this is not blinded or an enforced answer-key isolation test. The coordinator authored the fixture; complete transcript and token accounting is unavailable, so strict no-parent-relay and cost comparisons remain unestablished. Serialized fixture/findings and aggregate lengths are only payload measurements. Preserve all attempts, including failures; do not tune the rubric after results.
+
 ## Advancement
 
 A failed or unavailable adapter blocks dependent claims for that adapter. Passing a graph subset does not clear the entire heterogeneous-data gate. Save diagnostic failures under new run identifiers; code changes produce a new source/harness fingerprint. Run results belong in the registry, separately from this methodology.
@@ -55,3 +61,21 @@ Covered: authorized graph/bindings/JSON reads; foreign objects; widened JSON pat
 The in-flight test uses a test-only asynchronous source wrapper that releases its real underlying graph before yielding. It verifies the dispatcher's lifetime recheck and absence of a returned data payload; it does not simulate arbitrary transport timing. JSON reads are synchronous within the serialized kernel. Previously delivered bytes are not revocable. These tests establish the application protocol between cooperative same-user clients, not operating-system isolation or semantic model quality.
 
 E3 passes for this supported contract. E4 semantic processing is next and requires its frozen rubric, schema validation, three arms and repetitions. E5 scale/recovery remains unrun. No production runtime change was required by E3.
+
+## E4 semantic results
+
+All nine frozen attempts completed in the recorded order. The [comparison](../../artifacts/scoped-data-bridge/e4-20260909-semantic/summary.json) reports:
+
+| Arm | Repetition scores | Coverage | Valid references |
+| --- | --- | --- | --- |
+| A: fresh direct-input evaluator | 12/12, 12/12, 12/12 | 36/36 | 36/36 |
+| B: scoped MCP worker and direct deposit | 12/12, 12/12, 12/12 | 36/36 | 36/36 |
+| C: structural-only baseline | 6/12, 6/12, 6/12 | 36/36 | 36/36 |
+
+All schemas and owner aggregates validated. Each B result was retrieved from its actual deposit slot into an owner REPL variable; worker completion alone was not accepted. Findings/checks/receipts were saved before session closure. Six fresh Codex evaluators used inherited settings; no separate provider was configured. Optional provider recursion remains unavailable; Codex performed delegation externally.
+
+The first A collection rejected an extra reconnect field before reading findings. A [recorded correction](../../artifacts/scoped-data-bridge/e4-20260909-semantic/collection-amendment.json) normalized the private descriptor without changing the frozen rubric, response, or original harness. Its elapsed time includes recovery. Reproduction uses `scoped-bridge-e4-reconnect.mjs` between prepare and collect. This was one collection failure, not an additional model attempt.
+
+The narrow semantic round-trip feasibility gate passes. The full original no-parent-relay audit gate remains partial. Worker read counts are reported; the owner independently captured deposits, not full tool transcripts. The coordinator created the fixture and key, and workers share filesystem authority. This is an unblinded twelve-item descriptive experiment with a deliberately limited structural control, not evidence of semantic superiority or general scientific reasoning quality. Input snapshot size was 2,175 bytes; model findings were 1,703 serialized bytes and their owner aggregate was 153 bytes. These are payload sizes, not total costs. Timing includes coordination and is not a latency benchmark.
+
+The isolated service and all six workers were closed after capture; the working REPL was not reset. E5 remains unrun. Its prerequisite of a verified round trip is established; scale/recovery needs its own bounded execution and evidence.

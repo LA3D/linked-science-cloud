@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-09-09T19:05:11.249Z",
+  "records": [
+    {
+      "run": "A1",
+      "worker": {
+        "agent_id": "01a0878d-2bbc-7021-83f2-84eaf71e0aef",
+        "nickname": "Tesla"
+      },
+      "status": "completed",
+      "reported": "Response saved",
+      "observedOwner": {
+        "coverage": 12,
+        "correct": 12
+      }
+    },
+    {
+      "run": "B3",
+      "worker": {
+        "agent_id": "01a0878e-1c9b-7e72-8b84-657dfb5ccd13",
+        "nickname": "Zeno"
+      },
+      "status": "completed",
+      "reported": "Deposit success, 12 findings, 12 annotations and 2 quads inspected",
+      "observedOwner": {
+        "coverage": 12,
+        "correct": 12
+      }
+    },
+    {
+      "run": "B1",
+      "worker": {
+        "agent_id": "01a0878f-1618-78d1-aebb-a8917fb69701",
+        "nickname": "Volta"
+      },
+      "status": "dispatched"
+    }
+  ],
+  "scope": "Coordinator dispatch and completion observations, not complete worker tool transcripts"
+}

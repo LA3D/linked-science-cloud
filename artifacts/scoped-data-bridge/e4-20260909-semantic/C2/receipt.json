@@ -1,0 +1,99 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "e4-20260909-semantic-c2",
+  "experiment": "E4",
+  "arm": "C",
+  "attempt": 2,
+  "protocol": "scoped-data-bridge/e4-semantic-v1",
+  "startedAt": "2026-09-09T19:07:44.514Z",
+  "finishedAt": "2026-09-09T19:07:44.643Z",
+  "authorization": {
+    "scope": "Synthetic semantic processing 3 arms x 3 repetitions",
+    "source": "User authorized semantic experiment with 3 arms and 3 repetitions after E3."
+  },
+  "source": {
+    "commit": "f2c436790fdcec62d64092d9ad443a183dbd32c9",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "03ad1cde97b6d87fb2d21ebf13cc7df0354417afcbca4f4d9565b547546b98eb",
+    "evaluatorSha256": "51ba5eb88067d318703cc9f35f3b3e3d1d683e3412c5ec8839b4f31a70a30c8a"
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": "Inherited model and reasoning; actual backend settings/token usage unavailable",
+    "parentRuntime": "scientific-session owner through repository external client",
+    "workerRuntimes": [],
+    "topology": "Deterministic transitive graph reachability; annotation prose deliberately uninterpreted; unresolved annotations reported unknown."
+  },
+  "inputs": {
+    "fixtureManifest": "../fixture.json",
+    "objectKinds": [
+      "json",
+      "rdf-quads"
+    ],
+    "storageTiers": [
+      "resident-json",
+      "broker-quads"
+    ],
+    "grantFingerprints": [
+      "883b045af0c942f85772ba771b3fca2a412ac31835734cbca6d2ba9b3e0c204d"
+    ]
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": {
+    "annotations": 12,
+    "graphQuads": 2,
+    "concurrency": 1,
+    "workerDeadlineMs": 300000,
+    "grantTtlMs": 300000,
+    "ownerOutputBytes": 8192
+  },
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": 129,
+    "assignedItems": 12,
+    "completedItems": 12,
+    "failedItems": 0,
+    "duplicateDeposits": null,
+    "semanticScore": 0.5,
+    "peakMemoryBytes": null,
+    "serializedInputBytes": 2175,
+    "serializedFindingBytes": 1723,
+    "ownerAggregateBytes": 137
+  },
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "6/12 exact semantic rows; 12/12 coverage; 12/12 references.",
+  "interpretation": "Structural-only negative control; partial semantic correctness expected.",
+  "limitations": [
+    "Synthetic, descriptive, unblinded; coordinator authored fixture and key.",
+    "Fresh evaluator baseline is a declared change from literal root-only processing.",
+    "No enforced filesystem separation of answer key; workers instructed to use only supplied evidence.",
+    "No complete parent/worker transcript audit; strict no-relay remains unestablished.",
+    "No complete token/transport accounting; measured payload bytes are not total costs."
+  ],
+  "missingEvidence": [
+    "Exact total transport bytes, model tokens and complete transcript audit unavailable."
+  ],
+  "nextDecision": "Compare all nine attempts before advancing E5.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "2c045aaabda274d572ee15c51e3ec523ab67eee8e70b053454337fc4844d05d8",
+      "started.json": "51659b3d535a924b0a5084db7ce26de1e9502deab340eb80457ba4da1a44ca68",
+      "findings.json": "99dcfea307dd4bf72c4da343580ce2ec3cab550a541354e69d58d8e85a945787",
+      "checks.json": "6bcda043ad7183924b96b4a85ee573cfbad1421eb559bacb0cc9eacfa1bbd6bf",
+      "events.jsonl": "0f6181005d558c37c34799f55dbdfe8b35543f85a964beb687ee84255bade4a3"
+    },
+    "finalizedAt": "2026-09-09T19:07:44.643Z"
+  }
+}

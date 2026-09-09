@@ -1,0 +1,16 @@
+{
+  "findings": [
+    {"id":"a01","claim":{"subject":"A","relation":"binds","object":"B","verdict":"supported"},"evidence":["a01"],"uncertainty":"none"},
+    {"id":"a02","claim":{"subject":"C","relation":"inhibits","object":"D","verdict":"contradicted"},"evidence":["a02"],"uncertainty":"none"},
+    {"id":"a03","claim":{"subject":"E","relation":"transports","object":"F","verdict":"supported"},"evidence":["a03"],"uncertainty":"tentative"},
+    {"id":"a04","claim":{"subject":"G","relation":"catalyzes","object":"H","verdict":"undetermined"},"evidence":["a04"],"uncertainty":"unknown"},
+    {"id":"a05","claim":{"subject":"I","relation":"locatedIn","object":"J","verdict":"undetermined"},"evidence":["a05"],"uncertainty":"unknown"},
+    {"id":"a06","claim":{"subject":"K","relation":"binds","object":"L","verdict":"contradicted"},"evidence":["a06"],"uncertainty":"none"},
+    {"id":"a07","claim":{"subject":"M","relation":"regulates","object":"N","verdict":"supported"},"evidence":["a07"],"uncertainty":"tentative"},
+    {"id":"a08","claim":{"subject":"O","relation":"produces","object":"P","verdict":"supported"},"evidence":["a08"],"uncertainty":"none"},
+    {"id":"a09","claim":{"subject":"Q","relation":"inhibits","object":"R","verdict":"undetermined"},"evidence":["a09"],"uncertainty":"unknown"},
+    {"id":"a10","claim":{"subject":"S","relation":"transports","object":"T","verdict":"undetermined"},"evidence":["a10"],"uncertainty":"unknown"},
+    {"id":"a11","claim":{"subject":"U","relation":"subClassOf","object":"Root","verdict":"supported"},"evidence":["a11","g01","g02"],"uncertainty":"none"},
+    {"id":"a12","claim":{"subject":"Root","relation":"subClassOf","object":"U","verdict":"undetermined"},"evidence":["a12","g01","g02"],"uncertainty":"unknown"}
+  ]
+}

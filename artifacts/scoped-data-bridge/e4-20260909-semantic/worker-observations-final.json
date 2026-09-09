@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-09-09T19:08:26.208Z",
+  "workers": [
+    {
+      "run": "A1",
+      "agent_id": "01a0878d-2bbc-7021-83f2-84eaf71e0aef",
+      "nickname": "Tesla",
+      "status": "completed",
+      "evidence": "Worker wrote response; owner admitted response into variable"
+    },
+    {
+      "run": "B3",
+      "agent_id": "01a0878e-1c9b-7e72-8b84-657dfb5ccd13",
+      "nickname": "Zeno",
+      "status": "completed",
+      "evidence": "Worker reported reads and deposit; owner independently captured deposit"
+    },
+    {
+      "run": "B1",
+      "agent_id": "01a0878f-1618-78d1-aebb-a8917fb69701",
+      "nickname": "Volta",
+      "status": "completed",
+      "evidence": "Worker reported reads and deposit; owner independently captured deposit"
+    },
+    {
+      "run": "B2",
+      "agent_id": "01a08790-2265-7e70-ba13-3bfa76d05843",
+      "nickname": "Averroes",
+      "status": "completed",
+      "evidence": "Worker reported reads and deposit; owner independently captured deposit"
+    },
+    {
+      "run": "A2",
+      "agent_id": "01a08790-f544-7123-b454-c42d6d7d415b",
+      "nickname": "Curie",
+      "status": "completed",
+      "evidence": "Worker wrote response; owner admitted response into variable"
+    },
+    {
+      "run": "A3",
+      "agent_id": "01a08791-a928-7313-b373-3b92572e5c55",
+      "nickname": "Heisenberg",
+      "status": "completed",
+      "evidence": "Worker wrote response; owner admitted response into variable"
+    }
+  ],
+  "limitation": "Worker tool transcripts and actual backend model settings unavailable; these are coordinator lifecycle observations and worker reports, not independent read telemetry."
+}

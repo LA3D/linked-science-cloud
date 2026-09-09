@@ -1,0 +1,101 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "e4-20260909-semantic-a1",
+  "experiment": "E4",
+  "arm": "A",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/e4-semantic-v1",
+  "startedAt": "2026-09-09T19:02:41.996Z",
+  "finishedAt": "2026-09-09T19:04:04.054Z",
+  "authorization": {
+    "scope": "Synthetic semantic processing 3 arms x 3 repetitions",
+    "source": "User authorized semantic experiment with 3 arms and 3 repetitions after E3."
+  },
+  "source": {
+    "commit": "f2c436790fdcec62d64092d9ad443a183dbd32c9",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "03ad1cde97b6d87fb2d21ebf13cc7df0354417afcbca4f4d9565b547546b98eb",
+    "evaluatorSha256": "51ba5eb88067d318703cc9f35f3b3e3d1d683e3412c5ec8839b4f31a70a30c8a"
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": "Inherited model and reasoning; actual backend settings/token usage unavailable",
+    "parentRuntime": "scientific-session owner through repository external client",
+    "workerRuntimes": [
+      "fresh Codex evaluator"
+    ],
+    "topology": "Fresh evaluator with explicit complete bounded fixture prompt, output file relayed by code into owner findings variable. Proxy for root-only access, not literal coordinating root."
+  },
+  "inputs": {
+    "fixtureManifest": "../fixture.json",
+    "objectKinds": [
+      "json",
+      "rdf-quads"
+    ],
+    "storageTiers": [
+      "resident-json",
+      "broker-quads"
+    ],
+    "grantFingerprints": [
+      "a0c54d6bcf78c73593209b832ad2ccef6a5dfece8bf2d2df93234feb2fa22a29"
+    ]
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": {
+    "annotations": 12,
+    "graphQuads": 2,
+    "concurrency": 1,
+    "workerDeadlineMs": 300000,
+    "grantTtlMs": 300000,
+    "ownerOutputBytes": 8192
+  },
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": 82058,
+    "assignedItems": 12,
+    "completedItems": 12,
+    "failedItems": 0,
+    "duplicateDeposits": null,
+    "semanticScore": 1,
+    "peakMemoryBytes": null,
+    "serializedInputBytes": 2175,
+    "serializedFindingBytes": 1703,
+    "ownerAggregateBytes": 153
+  },
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "12/12 exact semantic rows; 12/12 coverage; 12/12 references.",
+  "interpretation": "Small synthetic feasibility result, not model-quality improvement.",
+  "limitations": [
+    "Synthetic, descriptive, unblinded; coordinator authored fixture and key.",
+    "Fresh evaluator baseline is a declared change from literal root-only processing.",
+    "No enforced filesystem separation of answer key; workers instructed to use only supplied evidence.",
+    "No complete parent/worker transcript audit; strict no-relay remains unestablished.",
+    "No complete token/transport accounting; measured payload bytes are not total costs."
+  ],
+  "missingEvidence": [
+    "Exact total transport bytes, model tokens and complete transcript audit unavailable."
+  ],
+  "nextDecision": "Compare all nine attempts before advancing E5.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "8edd0e61ef11ab340ecf88633fc87d574094a92cc1e5ad5f2b534437cdcdd331",
+      "started.json": "918065704651255d7c7cdd0c6cf8a3b4dce7ff706a94cc744ea745b8947a82dc",
+      "findings.json": "9ba30e718400cfd3bffc29d3cc11ad6df85c6560cf237176b4e67c4f8a57e373",
+      "checks.json": "2c373f8bf0f58376654911e1e2a8c39487656ce40502b729a876ff5493267af7",
+      "events.jsonl": "d28147d043feaba4a299b95f5d74931da743d87ab88deb1dd8dd4086744c2014"
+    },
+    "finalizedAt": "2026-09-09T19:04:04.054Z"
+  }
+}

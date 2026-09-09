@@ -1,0 +1,102 @@
+{
+  "annotations": [
+    {
+      "id": "a01",
+      "subject": "A",
+      "relation": "binds",
+      "object": "B",
+      "text": "Repeated direct measurements establish that A binds B."
+    },
+    {
+      "id": "a02",
+      "subject": "C",
+      "relation": "inhibits",
+      "object": "D",
+      "text": "The controlled assay establishes that C does not inhibit D under the stated conditions."
+    },
+    {
+      "id": "a03",
+      "subject": "E",
+      "relation": "transports",
+      "object": "F",
+      "text": "Preliminary observations suggest that E transports F; confirmation is pending."
+    },
+    {
+      "id": "a04",
+      "subject": "G",
+      "relation": "catalyzes",
+      "object": "H",
+      "text": "The available observations cannot determine whether G catalyzes H."
+    },
+    {
+      "id": "a05",
+      "subject": "I",
+      "relation": "locatedIn",
+      "object": "J",
+      "text": "No localization information for I is supplied. Its presence in J has not been assessed."
+    },
+    {
+      "id": "a06",
+      "subject": "K",
+      "relation": "binds",
+      "object": "L",
+      "text": "An earlier binding proposal was overturned: the definitive follow-up establishes that K does not bind L."
+    },
+    {
+      "id": "a07",
+      "subject": "M",
+      "relation": "regulates",
+      "object": "N",
+      "text": "M may regulate N according to an indirect observation; this remains a working hypothesis."
+    },
+    {
+      "id": "a08",
+      "subject": "O",
+      "relation": "produces",
+      "object": "P",
+      "text": "A direct observation confirms that O produces P."
+    },
+    {
+      "id": "a09",
+      "subject": "Q",
+      "relation": "inhibits",
+      "object": "R",
+      "text": "Two equally credible observations conflict about Q inhibiting R. The conflict is unresolved."
+    },
+    {
+      "id": "a10",
+      "subject": "S",
+      "relation": "transports",
+      "object": "T",
+      "text": "The data do not rule out S transporting T, but supply no positive demonstration or preferred hypothesis."
+    },
+    {
+      "id": "a11",
+      "subject": "U",
+      "relation": "subClassOf",
+      "object": "Root",
+      "text": "Using only the supplied subclass graph and transitivity, assess whether U is a subclass of Root."
+    },
+    {
+      "id": "a12",
+      "subject": "Root",
+      "relation": "subClassOf",
+      "object": "U",
+      "text": "Using only the supplied subclass graph and transitivity, assess whether Root is a subclass of U. Missing paths do not prove disjointness or a negative assertion."
+    }
+  ],
+  "graph": [
+    {
+      "id": "g01",
+      "subject": "U",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "V"
+    },
+    {
+      "id": "g02",
+      "subject": "V",
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "object": "Root"
+    }
+  ]
+}

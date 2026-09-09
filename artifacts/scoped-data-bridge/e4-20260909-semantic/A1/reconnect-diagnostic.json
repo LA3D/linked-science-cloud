@@ -1,0 +1,7 @@
+{
+  "error": "INVALID_ARGUMENT",
+  "message": "Unexpected request fields",
+  "cause": "Harness passed create response including epoch into strict attach",
+  "correction": "Normalize private reconnect descriptor to sessionId and capability; no rubric or model response change",
+  "recordedAt": "2026-09-09T19:04:04.000Z"
+}

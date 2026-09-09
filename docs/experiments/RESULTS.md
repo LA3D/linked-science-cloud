@@ -84,3 +84,5 @@ E2 shared-session typed data: [latest partial result](../../artifacts/scoped-dat
 E2 after adapter additions: [48 checks passed](../../artifacts/scoped-data-bridge/e2-20260909-adapters-fixed-03/receipt.json), covering JSON inputs and native named-graph broker storage. Earlier partial attempts remain historical records.
 
 E3 scope/lifetime: [74 checks passed](../../artifacts/scoped-data-bridge/e3-20260909-scope-lifetime-02/receipt.json) for resident/broker graph and bindings plus scoped JSON. Earlier attempt preserved with three harness-expectation failures.
+
+E4 semantics: [all nine attempts](../../artifacts/scoped-data-bridge/e4-20260909-semantic/summary.json). Direct input and scoped workers each scored 36/36; structural-only scored 18/36. Every row had valid references and coverage. Three direct deposits were independently aggregated in owner variables. Semantic feasibility passes; full no-relay audit and cost accounting remain partial. E5 is unrun.
