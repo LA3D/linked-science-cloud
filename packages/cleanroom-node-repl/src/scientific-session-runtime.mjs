@@ -29,13 +29,47 @@ function paging(args) {
   return {offset,limit};
 }
 
+// Validate without invoking user getters or silently coercing non-JSON values.
+function copyJson(value, seen = new Set(), depth = 0, budget = {bytes:0,nodes:0,maxBytes:2*1024*1024}) {
+  if (++budget.nodes > 65536) error('SESSION_JSON_CAPACITY');
+  const charge=bytes=>{budget.bytes+=bytes;if(budget.bytes>budget.maxBytes)error('SESSION_JSON_CAPACITY');};
+  if (depth > 32) error('SESSION_JSON_DEPTH');
+  if(typeof value==='string'&&value.length>budget.maxBytes-budget.bytes)error('SESSION_JSON_CAPACITY');
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') {charge(Buffer.byteLength(JSON.stringify(value)));return value;}
+  if (typeof value === 'number' && Number.isFinite(value)) {charge(Buffer.byteLength(JSON.stringify(value)));return value;}
+  if (typeof value !== 'object') error('SESSION_JSON_TYPE');
+  if (seen.has(value)) error('SESSION_JSON_CYCLE');
+  const array = Array.isArray(value), proto = Object.getPrototypeOf(value);
+  if (!array && proto !== null && (Object.getPrototypeOf(proto) !== null || Object.getOwnPropertyDescriptor(proto, 'constructor')?.value?.name !== 'Object')) error('SESSION_JSON_TYPE');
+  charge(2);
+  seen.add(value);
+  const output = array ? [] : Object.create(null);
+  const keys = Reflect.ownKeys(value);
+  for (const key of keys) {
+    if (array && key === 'length') continue;
+    if (typeof key !== 'string') error('SESSION_JSON_TYPE');
+    if (array && (!/^(0|[1-9][0-9]*)$/.test(key) || Number(key) >= value.length)) error('SESSION_JSON_TYPE');
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+    if (!descriptor.enumerable || !Object.hasOwn(descriptor, 'value')) error('SESSION_JSON_TYPE');
+    if(!array&&key.length>budget.maxBytes-budget.bytes)error('SESSION_JSON_CAPACITY');
+    charge(array?1:Buffer.byteLength(JSON.stringify(key))+2);
+    Object.defineProperty(output, key, {value:copyJson(descriptor.value, seen, depth + 1, budget), enumerable:true, writable:true, configurable:true});
+  }
+  if (array && output.length !== value.length) error('SESSION_JSON_TYPE');
+  if (array) for (let i=0;i<value.length;i++) if (!Object.hasOwn(output,i)) error('SESSION_JSON_TYPE');
+  seen.delete(value);
+  return output;
+}
+
 // Native handles never leave this registry. Remote references are meaningful
 // only after the service has authorized a connection, object and operation.
 export function createScientificSessionRuntime({control}) {
   const objects=new Map(),outputs=new Map();
+  let jsonBytes=0,jsonObjects=0;
   const resolve = id => {
     const record=objects.get(id);if(!record)error('SESSION_OBJECT_UNKNOWN');
-    record.workspace.results.profile(record.handle);
+    if(record.kind==='json')record.workspace.inventory();
+    else record.workspace.results.profile(record.handle);
     if(record.parent)resolve(record.parent);
     return record;
   };
@@ -43,6 +77,15 @@ export function createScientificSessionRuntime({control}) {
     const profile=workspace.results.profile(handle);
     const id=randomUUID();objects.set(id,{workspace,handle,kind:profile.type});
     return {object:id,kind:profile.type,count:profile.count,epoch:handle.epoch};
+  };
+  const publishJson=(workspace,value)=>{
+    workspace.inventory();
+    if(jsonObjects>=128||jsonBytes>=8*1024*1024)error('SESSION_JSON_CAPACITY');
+    const copy=copyJson(value,new Set(),0,{bytes:0,nodes:0,maxBytes:Math.min(2*1024*1024,8*1024*1024-jsonBytes)}),bytes=Buffer.byteLength(JSON.stringify(copy));
+    if(bytes>2*1024*1024||jsonBytes+bytes>8*1024*1024||jsonObjects>=128)error('SESSION_JSON_CAPACITY');
+    const id=randomUUID();
+    objects.set(id,{workspace,value:copy,kind:'json',version:1,bytes});jsonBytes+=bytes;jsonObjects++;
+    return {object:id,kind:'json',version:1,bytes};
   };
   const dispatch=async ({operation,args={}}) => {
     if(operation==='deposit') {
@@ -56,6 +99,20 @@ export function createScientificSessionRuntime({control}) {
       return bounded({slot:args.slot,value:structuredClone(outputs.get(args.slot))});
     }
     const r=resolve(args.object);
+    if(operation==='describe'&&r.kind==='json')return {object:args.object,kind:'json',version:r.version,bytes:r.bytes};
+    if(operation==='jsonRead'){
+      if(r.kind!=='json')error('SESSION_OBJECT_KIND');
+      if(args.version!==r.version)error('SESSION_VERSION');
+      const path=args.path??[];
+      if(!Array.isArray(path)||path.length>32||path.some(k=>!(typeof k==='string'&&k.length<=200)&&!(Number.isSafeInteger(k)&&k>=0)))error('SESSION_JSON_PATH');
+      let value=r.value;
+      for(const key of path){if(value===null||typeof value!=='object'||!Object.hasOwn(value,key))error('SESSION_JSON_PATH');value=value[key];}
+      const sliced=args.offset!==undefined||args.limit!==undefined;
+      let page={};
+      if(sliced){if(!Array.isArray(value))error('SESSION_OBJECT_KIND');const {offset,limit}=paging(args);if(offset>value.length)error('SESSION_PAGE');page={offset,total:value.length,complete:offset+limit>=value.length};value=value.slice(offset,offset+limit);}
+      return bounded({object:args.object,version:r.version,value:structuredClone(value),...page});
+    }
+    if(r.kind==='json')error('SESSION_OBJECT_KIND');
     if(operation==='describe') {const p=r.workspace.results.profile(r.handle);return {object:args.object,kind:r.kind,count:p.count,columns:p.columns,epoch:r.handle.epoch};}
     if(operation==='match') {
       await loadDataFactory();
@@ -94,7 +151,9 @@ export function createScientificSessionRuntime({control}) {
     ? dispatch({operation,args}) : control({operation:'request',args:{operation,args}});
   return Object.freeze({
     publish,
-    unpublish(reference){const id=typeof reference==='string'?reference:reference.object;if(!objects.delete(id))error('SESSION_OBJECT_UNKNOWN');return {object:id,status:'unpublished'};},
+    publishJson,
+    readJson:(object,{path=[],version=1,offset,limit}={})=>request('jsonRead',{object,path,version,...(offset===undefined?{}:{offset}),...(limit===undefined?{}:{limit})}),
+    unpublish(reference){const id=typeof reference==='string'?reference:reference.object;const r=objects.get(id);if(!r)error('SESSION_OBJECT_UNKNOWN');objects.delete(id);if(r.kind==='json'){jsonBytes-=r.bytes;jsonObjects--;}return {object:id,status:'unpublished'};},
     dispatch,
     create:args=>control({operation:'create',args}),
     attach:args=>control({operation:'attach',args}),

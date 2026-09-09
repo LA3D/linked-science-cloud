@@ -1,0 +1,73 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "e2-20260909-adapters-fixed-02",
+  "experiment": "E2",
+  "arm": "shared-session-typed-adapters",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "startedAt": "2026-09-09T18:44:49.556Z",
+  "finishedAt": "2026-09-09T18:44:53.470Z",
+  "authorization": {
+    "scope": "Synthetic typed-data experiments through isolated session service",
+    "source": "User authorized resumption starting with typed data"
+  },
+  "source": {
+    "commit": "c53dcea37b2934c9d0d496165ac6cd95bc2d57d9",
+    "dirty": true,
+    "diffSha256": "b3ca6bc492cecd89104fceb08bb8d533bddd64b7fe5536afe8bf0b1d86bc840f",
+    "harnessSha256": "5a1499d2122fda1120da61f8c6d92aae0611c5b4117842c83d64c0ec85efec9e"
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": null,
+    "parentRuntime": null,
+    "workerRuntimes": [],
+    "topology": null
+  },
+  "inputs": {
+    "fixtureManifest": "fixture-manifest.json",
+    "objectKinds": [],
+    "storageTiers": [],
+    "grantFingerprints": [],
+    "snapshotPolicy": null
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": null,
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": null,
+    "assignedItems": null,
+    "completedItems": null,
+    "failedItems": null,
+    "duplicateDeposits": null,
+    "semanticScore": null,
+    "peakMemoryBytes": null
+  },
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Graph, bindings and scoped JSON input comparisons across explicitly selected storage tiers.",
+  "interpretation": null,
+  "limitations": [
+    "Mechanical clients, not a semantic model experiment."
+  ],
+  "missingEvidence": [
+    "Exact model token and total transport accounting unavailable."
+  ],
+  "nextDecision": "Advance only passing adapter/tier pairs to E3 scope and lifetime experiments.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "checks": "3ed97ab0001ed55f80da264fa02ecb480bfea0d824837cc1ec10aef27d1bd2a4"
+    },
+    "finalizedAt": "2026-09-09T18:44:53.470Z"
+  }
+}

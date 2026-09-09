@@ -1,0 +1,40 @@
+{
+  "runId": "e2-20260909-adapters-fixed-03",
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "experiment": "E2",
+  "startedAt": "2026-09-09T18:46:15.829Z",
+  "source": {
+    "commit": "c53dcea37b2934c9d0d496165ac6cd95bc2d57d9",
+    "dirty": true,
+    "diffSha256": "7e3baa0911699c79beaacfee63e6c51b16a59bdd83a7ff15efc628081f3b418b",
+    "harnessSha256": "5a1499d2122fda1120da61f8c6d92aae0611c5b4117842c83d64c0ec85efec9e"
+  },
+  "fixtureSha256": "dfd20e1eecb3bc920c6263ddde4a62acedb71049720bfe28af91cb2e3f756afc",
+  "arms": [
+    "owner oracle",
+    "isolated worker adapter",
+    "copied handle negative"
+  ],
+  "repetitions": 2,
+  "tiers": [
+    "resident graph/bindings",
+    "broker-stored graph/bindings"
+  ],
+  "checks": [
+    "graph semantic fingerprint",
+    "eight and257 bindings exact equality",
+    "multiplicity and unboundness",
+    "copied handle rejection",
+    "nested JSON input support"
+  ],
+  "bounds": {
+    "pageSize": 32,
+    "maxOutputBytes": 8192,
+    "wallMs": 600000
+  },
+  "deviations": [
+    "Deterministic worker adapter clients; no model interpretation or live Codex subagents needed for equality.",
+    "Graph admission now explicitly selects resident or broker storage without flattening.",
+    "Nested JSON input support is probed separately from JSON output deposits."
+  ]
+}

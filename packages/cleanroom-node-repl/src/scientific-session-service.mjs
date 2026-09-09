@@ -6,7 +6,7 @@ import { Parser } from 'sparqljs';
 import { KernelBroker } from './cleanroom-mcp.mjs';
 
 export const MAX_FRAME_BYTES = 512 * 1024;
-const operations = new Set(['describe', 'match', 'bindings', 'query', 'deposit', 'result']);
+const operations = new Set(['describe', 'match', 'bindings', 'query', 'deposit', 'result', 'jsonRead']);
 const fail = (code, message) => Object.assign(new Error(message), { code });
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -15,15 +15,21 @@ const token = () => randomBytes(32).toString('hex');
 function fields(value, allowed) {
   if (!object(value) || Object.keys(value).some(key => !allowed.includes(key))) throw fail('INVALID_ARGUMENT', 'Unexpected request fields');
 }
+const validJsonPath=path=>Array.isArray(path)&&path.length<=32&&path.every(key=>(typeof key==='string'&&key.length<=200)||(Number.isSafeInteger(key)&&key>=0));
 function scopedArgs(operation, args, grant) {
-  const allowed = { describe: ['object'], match: ['object', 'pattern', 'offset', 'limit'], bindings: ['object', 'offset', 'limit'], query: ['object', 'sparql'], deposit: ['slot', 'value'], result: ['slot'] };
+  const allowed = { describe: ['object'], match: ['object', 'pattern', 'offset', 'limit'], bindings: ['object', 'offset', 'limit'], query: ['object', 'sparql'], deposit: ['slot', 'value'], result: ['slot'], jsonRead: ['object','path','version','offset','limit'] };
   if (!operations.has(operation) || !grant.operations.includes(operation)) throw fail('FORBIDDEN', 'Operation is outside the grant');
   fields(args, allowed[operation]);
   if (operation === 'deposit' || operation === 'result') {
     if (!grant.outputSlot || args.slot !== grant.outputSlot) throw fail('FORBIDDEN', 'Slot is outside the grant');
   } else if (!grant.objects.includes(args.object)) throw fail('FORBIDDEN', 'Object is outside the grant');
-  if (['match', 'bindings'].includes(operation) && args.limit !== undefined && (!positive(args.limit) || args.limit > 128)) throw fail('INVALID_ARGUMENT', 'limit must be 1-128');
+  if (['match', 'bindings', 'jsonRead'].includes(operation) && args.limit !== undefined && (!positive(args.limit) || args.limit > 128)) throw fail('INVALID_ARGUMENT', 'limit must be 1-128');
   if (args.offset !== undefined && (!Number.isSafeInteger(args.offset) || args.offset < 0)) throw fail('INVALID_ARGUMENT', 'Invalid offset');
+  if (operation === 'jsonRead') {
+    const path=args.path??[];
+    if(!validJsonPath(path)||args.version!==1)throw fail('INVALID_ARGUMENT','Invalid JSON path or version');
+    if(grant.jsonPaths&&!grant.jsonPaths[args.object]?.some(prefix=>prefix.length<=path.length&&prefix.every((key,i)=>String(key)===String(path[i]))))throw fail('FORBIDDEN','JSON path is outside the grant');
+  }
   if (operation === 'query') {
     if (typeof args.sparql !== 'string' || Buffer.byteLength(args.sparql) > 65536) throw fail('INVALID_ARGUMENT', 'sparql is required');
     let parsed;
@@ -92,14 +98,15 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
   }
   function issueGrant(session, args) {
     syncEpoch(session);
-    fields(args, ['objects', 'operations', 'ttlMs', 'outputSlot']);
-    const { objects, operations: requested, ttlMs = 60_000, outputSlot } = args;
+    fields(args, ['objects', 'operations', 'ttlMs', 'outputSlot', 'jsonPaths']);
+    const { objects, operations: requested, ttlMs = 60_000, outputSlot, jsonPaths } = args;
     if (!Array.isArray(objects) || objects.length > Math.min(128, maxGrantObjects) || !objects.every(name) || !Array.isArray(requested) || !requested.length || requested.length > operations.size || !requested.every(op => operations.has(op)) || !positive(ttlMs) || ttlMs > idleTtlMs || (outputSlot !== undefined && !name(outputSlot)) || (requested.some(op => ['deposit', 'result'].includes(op)) && !outputSlot)) throw fail('INVALID_ARGUMENT', 'Invalid grant scope or TTL');
+    if(jsonPaths!==undefined&&(!object(jsonPaths)||Object.entries(jsonPaths).some(([id,paths])=>!objects.includes(id)||!Array.isArray(paths)||!paths.length||paths.length>32||!paths.every(validJsonPath))))throw fail('INVALID_ARGUMENT','Invalid JSON path scope');
     for (const [key, grant] of session.grants) if (grant.expiresAt <= Date.now()) session.grants.delete(key);
     if (session.grants.size >= maxGrants) throw fail('CAPACITY', 'Grant capacity reached');
     if (!session.broker.child) throw fail('EPOCH_LOST', 'Owner must initialize a live kernel before granting');
     if (outputSlot && session.slots.has(outputSlot)) throw fail('SLOT_IN_USE', 'Output slot is already reserved for this session epoch');
-    const grant = { capability: token(), sessionId: session.id, epoch: session.epoch, objects: [...objects], sourceObjects: [...objects], operations: [...requested], ...(outputSlot ? { outputSlot } : {}), expiresAt: Date.now() + ttlMs };
+    const grant = { capability: token(), sessionId: session.id, epoch: session.epoch, objects: [...objects], sourceObjects: [...objects], operations: [...requested], ...(jsonPaths?{jsonPaths:structuredClone(jsonPaths)}:{}), ...(outputSlot ? { outputSlot } : {}), expiresAt: Date.now() + ttlMs };
     session.grants.set(grant.capability, grant);
     if (outputSlot) session.slots.add(outputSlot);
     const { sourceObjects, ...publicGrant } = grant;

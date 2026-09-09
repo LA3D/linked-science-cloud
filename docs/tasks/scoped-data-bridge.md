@@ -43,3 +43,9 @@ The fresh mounted project MCP exposed the session interface. One fresh Codex wor
 The [shared-session amendment](../experiments/scoped-data-bridge-shared-session.md) updates E2–E5 methodology. E2 executed with six recorded attempts; the final attempt passed graph/bindings equality and negative-handle checks, but the complete gate is partial: native JSON input is unsupported, and the full named-graph broker tier is unmeasured. E3–E5 remain unrun. Next: address these two coverage gaps, or explicitly limit E3 to passing graph/bindings adapter pairs. No runtime feature changes were made in this slice.
 
 E2 delivery began on `codex/scoped-bridge-e2` from `7032936`. Receipts preserve all six attempts and the final run has 28 passing, four unsupported-JSON failures, and one unmeasured storage case. Registry validation reports 43 runs. Repository tests, smoke, whitespace and changed-document link checks pass; unrelated configuration and structure-viewer changes remain excluded.
+
+## Adapter changes and passing E2 rerun
+
+Implemented immutable workspace-bound JSON snapshots with scoped path reads, array slices, validation and release/version checks. Added explicit broker-backed native RDF retention preserving all quad terms. The [E2 rerun](../../artifacts/scoped-data-bridge/e2-20260909-adapters-fixed-03/receipt.json) passed all 48 checks. Final validation passed all 216 repository tests, smoke, offline runtime verification, result-registry validation and changed-document link/whitespace checks. E3–E5 remain unrun. No independent model/provider was introduced.
+
+Work began on `codex/typed-input-adapters` from `c53dcea`. Runtime changes require a freshly loaded kernel/service for live use; deterministic experiment clients loaded the new code. Pre-existing configuration and structure-viewer changes remain excluded. Next action is E3, scoped to the now-tested adapter representations.
