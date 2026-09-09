@@ -1,0 +1,7 @@
+{
+  "evidenceOrigin": "subagent-reported-tool-output",
+  "role": "worker",
+  "count": 2,
+  "deposited": true,
+  "limitation": "Worker tool envelope reported by subagent; owner independently observed deposited payload."
+}

@@ -1,6 +1,6 @@
 # Scoped data bridge result storage
 
-Four E1 attempts are recorded: one fixture preparation failure and three fresh-worker probes. See the [experiment protocol and observations](../../docs/experiments/scoped-data-bridge.md). No shared bridge round trip is established by those probes.
+Four E1 attempts are recorded: one fixture preparation failure and three fresh-worker probes. See the [experiment protocol and observations](../../docs/experiments/scoped-data-bridge.md). Those probes do not establish a shared bridge round trip. A subsequent [live activation](live-20260909-session-activation-01/receipt.json) does record a scoped graph-read/deposit round trip after restart.
 
 ## Layout for each executed attempt
 

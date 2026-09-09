@@ -76,3 +76,5 @@ Before resetting a kernel, closing a worker, or declaring an intentional experim
 5. run `npm run evaluation:results:validate` before committing.
 
 If capture was missed, create a `retrospective-summary` record from durable sources and leave unavailable fields missing. Never upgrade prose reconstruction to a machine receipt.
+
+Post-restart live activation: [passed scoped worker round trip](../../artifacts/scoped-data-bridge/live-20260909-session-activation-01/receipt.json), partial accounting durability.

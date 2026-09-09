@@ -1,6 +1,6 @@
 # Scoped data bridge and scientific sessions
 
-- Status: shared-session core implemented and verified; live desktop activation pending.
+- Status: shared-session core implemented and verified; live desktop activation passed.
 - User constraint: Codex drives model work; no independent model provider in the REPL.
 - Methodology: [five gated experiments](../experiments/scoped-data-bridge.md).
 - Evidence: [run contract and E1 attempts](../../artifacts/scoped-data-bridge/README.md).
@@ -14,7 +14,7 @@ The user selected a shared live session service instead of snapshot transfer and
 
 Native bindings now have a complete iterator for resident and broker-stored results. Integration tests exercise independent MCP adapters, graph/query access, deposit and parent aggregation, reconnect persistence and scope/reset rejection. Idle expiry, timeout, shutdown and crashes can still lose state; no disk recovery is promised.
 
-## Exact next action
+## Restart procedure (completed below)
 
 Implementation is ready for a desktop restart. After restart, discover the mounted project runtime, launch the independent service if needed, and record a fresh live worker round trip separately from deterministic tests. Existing pre-refactor globals are not migrated automatically. Do not silently resume E2–E5 or treat shell checks as live activation evidence.
 
@@ -32,4 +32,8 @@ Implementation began in the authoritative checkout on `codex/scoped-bridge-runs`
 - `npm run cleanroom:test`: 71 passed, zero failed/skipped.
 - Only the pre-existing `.codex/config.toml` edits and `artifacts/structure-viewer/` remain outside the task commits.
 - Large paged traversals rescan earlier rows. This is a bounded core implementation, not a scalability result. Worker timeouts during shared-kernel execution can close the session; timeouts before dispatch preserve it.
-- No live activation or semantic RLM evaluation was run after refactoring. No service has been left running by tests. Existing pre-refactor REPL objects will not be migrated by restarting.
+- At implementation handoff, live activation and semantic RLM evaluation were unrun; the subsequent activation result is recorded below. No service has been left running by tests. Existing pre-refactor REPL objects will not be migrated by restarting.
+
+## Post-restart activation
+
+The fresh mounted project MCP exposed the session interface. One fresh Codex worker read two native graph quads using a scoped grant, deposited a structured finding, and the owner retrieved it into a variable while retaining the graph. See the [activation receipt](../../artifacts/scoped-data-bridge/live-20260909-session-activation-01/receipt.json). This is a live bridge check, not a semantic quality evaluation. Broader E2–E5 work remains unrun. The service remains subject to five-minute idle expiry.

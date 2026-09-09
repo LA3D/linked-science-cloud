@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"role\":\"owner\",\"nativeCount\":2,\"finding\":{\"count\":2,\"subjects\":[\"urn:alpha\",\"urn:beta\"]},\"passed\":true}"
+    }
+  ]
+}

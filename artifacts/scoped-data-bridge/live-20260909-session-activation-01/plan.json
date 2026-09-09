@@ -1,0 +1,23 @@
+{
+  "runId": "live-20260909-session-activation-01",
+  "experiment": "post-restart-live-session-activation",
+  "revision": "9147af2ee07dfcb8a17c2851514c4756acb0cd23",
+  "frozenAt": "2026-09-09T18:21:47.571733+00:00",
+  "scope": "Local synthetic RDF only; one fresh Codex worker reads granted graph, deposits structured count, parent aggregates; no external retrieval or model-quality claim.",
+  "checks": [
+    "mounted project identity",
+    "persistent binding",
+    "owner session attachment",
+    "worker scoped graph count",
+    "structured deposit read by owner"
+  ],
+  "expectedCount": 2,
+  "budgets": {
+    "grantTtlMs": 300000,
+    "maxOutputBytes": 2000,
+    "workers": 1
+  },
+  "missingMeasurements": [
+    "Exact token use and full transport byte accounting unavailable."
+  ]
+}

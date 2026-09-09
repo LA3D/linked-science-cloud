@@ -1,0 +1,83 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "live-20260909-session-activation-01",
+  "experiment": "post-restart-live-session-activation",
+  "arm": "live-shared-service",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/v1",
+  "startedAt": "2026-09-09T18:21:47.571733+00:00",
+  "finishedAt": "2026-09-09T18:23:22.040Z",
+  "authorization": {
+    "scope": "Local synthetic RDF only; one fresh Codex worker reads granted graph, deposits structured count, parent aggregates; no external retrieval or model-quality claim.",
+    "source": "User requested scientific-session implementation and returned after agreed restart for activation."
+  },
+  "source": {
+    "commit": "9147af2ee07dfcb8a17c2851514c4756acb0cd23",
+    "dirty": true,
+    "diffSha256": null,
+    "harnessSha256": null
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": null,
+    "parentRuntime": null,
+    "workerRuntimes": [],
+    "topology": null
+  },
+  "inputs": {
+    "fixtureManifest": "fixture-manifest.json",
+    "objectKinds": [
+      "graph",
+      "JSON finding"
+    ],
+    "storageTiers": [],
+    "grantFingerprints": [],
+    "snapshotPolicy": null
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": null,
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": null,
+    "assignedItems": 2,
+    "completedItems": 2,
+    "failedItems": null,
+    "duplicateDeposits": null,
+    "semanticScore": null,
+    "peakMemoryBytes": null
+  },
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Live restarted MCP owner published a synthetic graph; fresh Codex worker read two quads through a grant and deposited findings; owner retrieved them into a variable with native graph intact.",
+  "interpretation": "Establishes a live scoped data-to-worker-to-variable path, not semantic RLM quality or crash durability.",
+  "limitations": [
+    "No model-quality score; counting task only.",
+    "No live reconnect/reset/timeout test in this attempt; those remain automated-test evidence.",
+    "Session service has a five-minute idle timeout."
+  ],
+  "missingEvidence": [
+    "Exact token and transport byte accounting unavailable.",
+    "Worker tool envelope is reported by the subagent; owner independently captured the resulting deposit.",
+    "Original mounted identity probe predates frozen live fixture plan."
+  ],
+  "nextDecision": "Use the activated session for scoped scientific processing; broader experiments remain separately scoped.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "finalizedAt": "2026-09-09T18:23:22.040Z",
+    "evidenceSha256": {
+      "parent-evidence.json": "768eb56b55b89bf896972ddc368c292a67819454509da8eae9a6d293f42e93ff",
+      "worker-report.json": "32c1d0df0f957c05e7367331b5ff25a37c78475698be9c2a22dacf5dc38ed2ac",
+      "owner-result.json": "5c57408731eb2b795618327d14966e8165a5f9aec87fa452382e14fa6b0a1f89",
+      "checks.json": "f50eb4b0d9eaf353d000a962aeb9a6499e5c78b975faefb6976e76259ddf5777"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "kind": "synthetic-RDF",
+  "quadCount": 2,
+  "recipe": "<urn:alpha> <urn:label> \"alpha\" . <urn:beta> <urn:label> \"beta\" .",
+  "sha256": "b23606f65bfa2440b31f638de98de76a555cfc5d89c9658075cc15435855018a"
+}
