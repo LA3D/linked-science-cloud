@@ -404,6 +404,7 @@
     }
   ],
   "documents": [
+    {"path": "docs/experiments/scoped-data-bridge.md", "status": "planned-only", "note": "Five gated experiments and a per-attempt recording contract are designed; no scoped data bridge run or result is claimed."},
     {"path": "docs/experiments/affordance-catalog.md", "status": "offline-contract-only", "note": "Offline tests and a deterministic demo exist; no clean-worker or live federation run is claimed."},
     {"path": "docs/experiments/clean-worker-map-evaluation.md", "status": "results-recorded", "note": "Two passing runs and two inconclusive preflights are registered; their original machine receipts were not retained."},
     {"path": "docs/experiments/coordinator-worker-context-map.md", "status": "results-recorded", "note": "Committed machine-readable receipts cover the single-turn and two-turn demonstrations."},
