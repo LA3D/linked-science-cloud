@@ -1,0 +1,8 @@
+{
+  "id": "resident-storage-tiers",
+  "status": "failed",
+  "observed": {
+    "graph": "resident-rdf-dataset",
+    "bindings": "resident"
+  }
+}

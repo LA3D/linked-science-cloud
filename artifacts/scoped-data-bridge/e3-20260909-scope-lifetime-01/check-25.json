@@ -1,0 +1,8 @@
+{
+  "id": "resident-released-json-deposit",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "SESSION_OBJECT_UNKNOWN"
+  }
+}

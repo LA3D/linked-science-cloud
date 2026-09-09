@@ -1,0 +1,8 @@
+{
+  "id": "broker-old-epoch-read",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "GRANT_EXPIRED"
+  }
+}

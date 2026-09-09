@@ -82,3 +82,5 @@ Post-restart live activation: [passed scoped worker round trip](../../artifacts/
 E2 shared-session typed data: [latest partial result](../../artifacts/scoped-data-bridge/e2-20260909-shared-types-06/receipt.json). Attempts 1–3 recorded harness failures, attempt 4 basic equality checks, attempt 5 added scoped-query checks but hit a resident-profile harness assumption, and attempt 6 completed the comparisons. JSON input remains unsupported; named-graph broker-tier coverage remains unmeasured.
 
 E2 after adapter additions: [48 checks passed](../../artifacts/scoped-data-bridge/e2-20260909-adapters-fixed-03/receipt.json), covering JSON inputs and native named-graph broker storage. Earlier partial attempts remain historical records.
+
+E3 scope/lifetime: [74 checks passed](../../artifacts/scoped-data-bridge/e3-20260909-scope-lifetime-02/receipt.json) for resident/broker graph and bindings plus scoped JSON. Earlier attempt preserved with three harness-expectation failures.

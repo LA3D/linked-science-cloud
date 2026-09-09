@@ -1,0 +1,8 @@
+{
+  "id": "broker-duplicate",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "SESSION_DUPLICATE_DEPOSIT"
+  }
+}

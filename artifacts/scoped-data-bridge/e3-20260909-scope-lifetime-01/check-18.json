@@ -1,0 +1,12 @@
+{
+  "id": "resident-aggregate",
+  "status": "passed",
+  "observed": {
+    "a": {
+      "count": 1
+    },
+    "b": {
+      "count": 1
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "recordState": "finalized",
+  "runId": "e3-20260909-scope-lifetime-01",
+  "experiment": "E3",
+  "arm": "isolated-real-session-mechanical-clients",
+  "attempt": 1,
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "startedAt": "2026-09-09T18:52:22.859Z",
+  "finishedAt": "2026-09-09T18:52:24.811Z",
+  "authorization": {
+    "scope": "Synthetic isolated scope/lifetime experiment",
+    "source": "User authorized proceeding after restart"
+  },
+  "source": {
+    "commit": "fe60837e8304a5931e7973386f014f689ca2af71",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "a7f0a2ca44996990276c855c760e36dfbe6fce3f2584dc9b8265f219a7c91e49"
+  },
+  "environment": {
+    "codexVersion": null,
+    "modelSettings": null,
+    "parentRuntime": null,
+    "workerRuntimes": [],
+    "topology": null
+  },
+  "inputs": {
+    "fixtureManifest": "fixture-manifest.json",
+    "objectKinds": [],
+    "storageTiers": [],
+    "grantFingerprints": [],
+    "snapshotPolicy": null
+  },
+  "planPath": "plan.json",
+  "eventsPath": "events.jsonl",
+  "checksPath": "checks.json",
+  "budgets": null,
+  "measurements": {
+    "parentVisibleBytes": null,
+    "childVisibleBytes": null,
+    "transportBytes": null,
+    "inputTokens": null,
+    "outputTokens": null,
+    "elapsedMs": null,
+    "assignedItems": null,
+    "completedItems": null,
+    "failedItems": null,
+    "duplicateDeposits": null,
+    "semanticScore": null,
+    "peakMemoryBytes": null
+  },
+  "outcome": "partial",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "observedSummary": "Recorded authorized and denied operations through real scientific session service, including concurrent return and invalidation.",
+  "interpretation": null,
+  "limitations": [
+    "Mechanical clients, no semantic model task.",
+    "Same-user application protocol boundary only.",
+    "RDF scope is a whole published object; general RDF selector grants are not implemented.",
+    "Generic JSON output shape tested, not application-specific result schemas.",
+    "In-flight release uses an explicitly injected source wrapper; JSON reads are synchronous and serialized."
+  ],
+  "missingEvidence": [
+    "Total transport and model-token accounting unavailable."
+  ],
+  "nextDecision": "Advance only if all frozen required checks pass; E4 requires its own schema/rubric and repetitions.",
+  "relatedRunIds": [],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "checks.json": "d325864fa1bbdaf6eadf982f86ef7b8f9bf800ffcd240e0bbdb2b7e100b5ed65"
+    },
+    "finalizedAt": "2026-09-09T18:52:24.811Z"
+  }
+}

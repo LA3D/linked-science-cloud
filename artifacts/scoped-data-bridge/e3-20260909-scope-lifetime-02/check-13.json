@@ -1,0 +1,8 @@
+{
+  "id": "resident-worker-close",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

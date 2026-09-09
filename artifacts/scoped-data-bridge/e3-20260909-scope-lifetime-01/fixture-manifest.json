@@ -1,0 +1,9 @@
+{
+  "recipe": "var ws=scopedFacade.open({contextKey:\"example\"});var f=ws.rdf.DataFactory;var graph=await ws.rdf.retain({name:'fixture',storage:\"resident\",quads:[f.quad(f.namedNode('urn:a'),f.namedNode('urn:p'),f.literal('one'),f.namedNode('urn:g'))]});var bindings=await ws.query.run({sources:[graph],sparql:'SELECT ?o WHERE { GRAPH <urn:g> {?s ?p ?o} VALUES ?i {1 2} }'});var json=nodeRepl.scientificSession.publishJson(ws,{allowed:[1,null,true],private:'not-granted'});var graphRef=nodeRepl.scientificSession.publish(ws,graph);var bindingRef=nodeRepl.scientificSession.publish(ws,bindings);nodeRepl.write(JSON.stringify({graph:graphRef.object,bindings:bindingRef.object,json:json.object}));",
+  "inputKinds": [
+    "RDF named graph",
+    "SELECT bindings",
+    "JSON"
+  ],
+  "inFlightFixture": "Test-only workspace source wrapper waits asynchronously, releases its underlying graph, then yields; dispatcher must revalidate before delivering that quad."
+}

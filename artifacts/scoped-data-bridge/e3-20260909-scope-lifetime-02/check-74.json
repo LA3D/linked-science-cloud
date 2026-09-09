@@ -1,0 +1,8 @@
+{
+  "id": "broker-old-epoch-deposit",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "GRANT_EXPIRED"
+  }
+}

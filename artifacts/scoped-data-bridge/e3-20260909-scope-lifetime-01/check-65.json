@@ -1,0 +1,8 @@
+{
+  "id": "broker-disposed-bindings",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "LS_STALE_WORKSPACE"
+  }
+}

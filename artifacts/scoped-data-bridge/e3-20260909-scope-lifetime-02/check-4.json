@@ -1,0 +1,13 @@
+{
+  "id": "resident-authorized-json",
+  "status": "passed",
+  "observed": {
+    "object": "9d8fe084-bff3-4be6-b1d8-05fbeeea2ed3",
+    "version": 1,
+    "value": [
+      1,
+      null,
+      true
+    ]
+  }
+}

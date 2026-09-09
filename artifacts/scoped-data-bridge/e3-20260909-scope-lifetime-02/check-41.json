@@ -1,0 +1,13 @@
+{
+  "id": "broker-authorized-json",
+  "status": "passed",
+  "observed": {
+    "object": "819890ba-e7c4-479d-9102-988952526a39",
+    "version": 1,
+    "value": [
+      1,
+      null,
+      true
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "resident-concurrent-return",
+  "status": "passed",
+  "observed": [
+    {
+      "slot": "a",
+      "status": "deposited"
+    },
+    {
+      "slot": "b",
+      "status": "deposited"
+    }
+  ]
+}

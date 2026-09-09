@@ -1,0 +1,8 @@
+{
+  "id": "broker-mutation-query",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

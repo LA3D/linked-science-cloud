@@ -1,0 +1,8 @@
+{
+  "id": "broker-external-source",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

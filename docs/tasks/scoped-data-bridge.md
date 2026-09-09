@@ -49,3 +49,9 @@ E2 delivery began on `codex/scoped-bridge-e2` from `7032936`. Receipts preserve 
 Implemented immutable workspace-bound JSON snapshots with scoped path reads, array slices, validation and release/version checks. Added explicit broker-backed native RDF retention preserving all quad terms. The [E2 rerun](../../artifacts/scoped-data-bridge/e2-20260909-adapters-fixed-03/receipt.json) passed all 48 checks. Final validation passed all 216 repository tests, smoke, offline runtime verification, result-registry validation and changed-document link/whitespace checks. E3–E5 remain unrun. No independent model/provider was introduced.
 
 Work began on `codex/typed-input-adapters` from `c53dcea`. Runtime changes require a freshly loaded kernel/service for live use; deterministic experiment clients loaded the new code. Pre-existing configuration and structure-viewer changes remain excluded. Next action is E3, scoped to the now-tested adapter representations.
+
+## E3 completed
+
+Scope/lifetime experiment [attempt 2](../../artifacts/scoped-data-bridge/e3-20260909-scope-lifetime-02/receipt.json) passed all 74 checks after preserving one attempt with three harness-expectation failures. Tests used isolated real service/kernels and mechanical clients; the mounted working REPL was not reset. The supported whole-object RDF and path-scoped JSON protocol passed. Arbitrary RDF selectors, application-specific result schemas, and OS isolation are not established. E4 semantic processing is next; E5 remains unrun.
+
+Delivery began on `codex/scoped-bridge-e3` from `fe60837`. No runtime source change was needed. Receipts, harness and methodology are the only intended changes, alongside registry validation. Unrelated configuration and structure-viewer edits remain excluded.

@@ -1,0 +1,42 @@
+{
+  "runId": "e3-20260909-scope-lifetime-01",
+  "experiment": "E3",
+  "protocol": "scoped-data-bridge/shared-session-v2",
+  "startedAt": "2026-09-09T18:52:22.859Z",
+  "source": {
+    "commit": "fe60837e8304a5931e7973386f014f689ca2af71",
+    "dirty": true,
+    "diffSha256": "0aa482f949b1ef301497dfb05f4cc86e98fd326028f8628df082dcf5658ff1d2",
+    "harnessSha256": "a7f0a2ca44996990276c855c760e36dfbe6fce3f2584dc9b8265f219a7c91e49"
+  },
+  "arms": [
+    "resident graph",
+    "broker graph"
+  ],
+  "workers": "two mechanical scoped clients concurrently; no semantic model",
+  "scope": "local synthetic only; isolated owner kernel; no working-session reset",
+  "requiredCheckCount": 74,
+  "bounds": {
+    "requestTimeoutMs": 30000,
+    "outputBytes": 8192,
+    "graphQuads": 1
+  },
+  "checks": [
+    "authorized reads",
+    "foreign objects",
+    "JSON widened path",
+    "external query source",
+    "mutation",
+    "wrong slot",
+    "malformed output",
+    "duplicate completion",
+    "concurrent deposits",
+    "release per kind",
+    "workspace disposal with other workspace survival",
+    "expiry",
+    "in-flight release with no response payload",
+    "reset and late deposit",
+    "child-local copy mutation"
+  ],
+  "interpretation": "Whole published-object grants for RDF/bindings and JSON path-prefix grants. Generic JSON deposit shape only, not application-specific schema. Cooperative same-user protocol boundary, not OS isolation."
+}

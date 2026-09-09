@@ -1,0 +1,8 @@
+{
+  "id": "broker-foreign-json",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

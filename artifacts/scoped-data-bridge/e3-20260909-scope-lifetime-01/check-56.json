@@ -1,0 +1,30 @@
+{
+  "id": "broker-local-copy-mutation",
+  "status": "passed",
+  "observed": {
+    "quads": [
+      [
+        {
+          "termType": "NamedNode",
+          "value": "urn:a"
+        },
+        {
+          "termType": "NamedNode",
+          "value": "urn:p"
+        },
+        {
+          "termType": "Literal",
+          "value": "one",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        {
+          "termType": "NamedNode",
+          "value": "urn:g"
+        }
+      ]
+    ],
+    "nextOffset": 1,
+    "complete": true
+  }
+}

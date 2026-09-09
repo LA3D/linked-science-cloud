@@ -1,0 +1,8 @@
+{
+  "id": "resident-worker-reset",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

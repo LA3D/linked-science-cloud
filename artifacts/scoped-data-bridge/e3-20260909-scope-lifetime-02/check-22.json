@@ -1,0 +1,8 @@
+{
+  "id": "resident-released-bindings-read",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "LS_RELEASED_HANDLE"
+  }
+}

@@ -43,3 +43,15 @@ After explicit user authorization, native JSON input publication/scoped reads an
 The tested E2 adapter gate now passes. Transport accounting remains incomplete, so evidence durability is partial. Earlier failed/partial attempts remain unchanged. E3 is the next experiment; unit tests for JSON path scope and stale reads are implementation validation, not a substitute for its full matrix.
 
 The first adapter-completion rerun also passed 48 checks. Independent review then found that repeated JSON references could expand excessively before a final size check. Incremental byte/node checks were added with a regression test; the second completion rerun again passed 48 checks. A final preallocation length guard for large strings/property names was then added and the third completion rerun passed 48 checks. All three receipts remain registered.
+
+## E3 scope and lifetime results
+
+The [scope harness](../../scripts/scoped-bridge-e3.mjs) freezes 74 required checks before creating isolated sessions. Two mechanical clients hold disjoint graph, bindings and JSON references. Both resident and broker graph/bindings tiers are verified. Whole-object RDF grants and JSON path-prefix grants are the supported scope contract; arbitrary RDF selector grants and application-specific output schemas are not claimed.
+
+[Attempt 1](../../artifacts/scoped-data-bridge/e3-20260909-scope-lifetime-01/receipt.json) recorded 71 passes and three harness-expectation failures: the resident graph profile uses its explicit dataset label, and a page limited to one row returns one row with more available. No unauthorized payload was observed. [Attempt 2](../../artifacts/scoped-data-bridge/e3-20260909-scope-lifetime-02/receipt.json) corrected those expectations and tightened lifecycle checks to require their specific rejection codes; all 74 checks passed.
+
+Covered: authorized graph/bindings/JSON reads; foreign objects; widened JSON paths; external query sources; mutation/arbitrary-code/reset/close attempts; wrong output slots; scalar malformed deposits; concurrent returns and duplicate rejection; unchanged owner data after mutating a local transport copy; individual release of each type; workspace disposal with another workspace surviving; grant expiry; in-flight graph release; epoch reset and late reads/deposits. Each observation was saved before closing or resetting the associated state.
+
+The in-flight test uses a test-only asynchronous source wrapper that releases its real underlying graph before yielding. It verifies the dispatcher's lifetime recheck and absence of a returned data payload; it does not simulate arbitrary transport timing. JSON reads are synchronous within the serialized kernel. Previously delivered bytes are not revocable. These tests establish the application protocol between cooperative same-user clients, not operating-system isolation or semantic model quality.
+
+E3 passes for this supported contract. E4 semantic processing is next and requires its frozen rubric, schema validation, three arms and repetitions. E5 scale/recovery remains unrun. No production runtime change was required by E3.

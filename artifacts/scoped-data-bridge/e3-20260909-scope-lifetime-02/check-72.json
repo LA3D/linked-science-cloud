@@ -1,0 +1,8 @@
+{
+  "id": "broker-epoch-changed",
+  "status": "passed",
+  "observed": {
+    "before": 1,
+    "after": 2
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "broker-released-json-read",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "SESSION_OBJECT_UNKNOWN"
+  }
+}

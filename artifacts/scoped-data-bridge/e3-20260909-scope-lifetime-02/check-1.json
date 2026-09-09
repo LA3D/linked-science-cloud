@@ -1,0 +1,8 @@
+{
+  "id": "resident-storage-tiers",
+  "status": "passed",
+  "observed": {
+    "graph": "resident-rdf-dataset",
+    "bindings": "resident"
+  }
+}

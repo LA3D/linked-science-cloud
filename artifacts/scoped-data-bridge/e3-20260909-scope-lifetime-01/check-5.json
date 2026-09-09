@@ -1,0 +1,8 @@
+{
+  "id": "resident-foreign-graph",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "resident-external-source",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

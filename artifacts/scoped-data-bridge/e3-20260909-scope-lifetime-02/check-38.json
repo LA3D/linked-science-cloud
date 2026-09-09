@@ -1,0 +1,8 @@
+{
+  "id": "broker-storage-tiers",
+  "status": "passed",
+  "observed": {
+    "graph": "broker-stored-result",
+    "bindings": "broker-stored-result"
+  }
+}

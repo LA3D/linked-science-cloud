@@ -1,0 +1,8 @@
+{
+  "id": "broker-expiry",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "GRANT_EXPIRED"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "resident-expired-deposit",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "GRANT_EXPIRED"
+  }
+}

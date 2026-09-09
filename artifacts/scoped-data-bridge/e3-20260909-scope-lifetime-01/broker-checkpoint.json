@@ -1,0 +1,394 @@
+{
+  "checks": [
+    {
+      "id": "broker-storage-tiers",
+      "status": "passed",
+      "observed": {
+        "graph": "broker-stored-result",
+        "bindings": "broker-stored-result"
+      }
+    },
+    {
+      "id": "broker-authorized-graph",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "broker-authorized-bindings",
+      "status": "failed",
+      "observed": {
+        "rows": [
+          [
+            [
+              "o",
+              {
+                "termType": "Literal",
+                "value": "one",
+                "language": "",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string"
+              }
+            ]
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": false
+      }
+    },
+    {
+      "id": "broker-authorized-json",
+      "status": "passed",
+      "observed": {
+        "object": "1d7f930e-348b-4d94-846a-00ecfd8bcdc8",
+        "version": 1,
+        "value": [
+          1,
+          null,
+          true
+        ]
+      }
+    },
+    {
+      "id": "broker-foreign-graph",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-foreign-bindings",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-foreign-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-widen-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-external-source",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-mutation-query",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-arbitrary-code",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-worker-reset",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-worker-close",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-wrong-slot",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "broker-malformed-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "INVALID_ARGUMENT"
+      }
+    },
+    {
+      "id": "broker-concurrent-return",
+      "status": "passed",
+      "observed": [
+        {
+          "slot": "a",
+          "status": "deposited"
+        },
+        {
+          "slot": "b",
+          "status": "deposited"
+        }
+      ]
+    },
+    {
+      "id": "broker-duplicate",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_DUPLICATE_DEPOSIT"
+      }
+    },
+    {
+      "id": "broker-aggregate",
+      "status": "passed",
+      "observed": {
+        "a": {
+          "count": 1
+        },
+        "b": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "id": "broker-local-copy-mutation",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "broker-released-graph-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-released-graph-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-released-bindings-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-released-bindings-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-released-json-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_OBJECT_UNKNOWN"
+      }
+    },
+    {
+      "id": "broker-released-json-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_OBJECT_UNKNOWN"
+      }
+    },
+    {
+      "id": "broker-unrelated-workspace-survives",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "broker-disposed-graph",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "broker-disposed-bindings",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "broker-disposed-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "broker-disposed-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "broker-expiry",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "broker-expired-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "broker-in-flight-release",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-in-flight-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "broker-epoch-changed",
+      "status": "passed",
+      "observed": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "id": "broker-old-epoch-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "broker-old-epoch-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    }
+  ]
+}

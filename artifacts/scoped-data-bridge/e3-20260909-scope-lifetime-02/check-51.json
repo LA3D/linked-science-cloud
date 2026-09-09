@@ -1,0 +1,8 @@
+{
+  "id": "broker-wrong-slot",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

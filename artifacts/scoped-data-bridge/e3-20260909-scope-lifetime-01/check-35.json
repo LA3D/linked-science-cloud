@@ -1,0 +1,8 @@
+{
+  "id": "resident-epoch-changed",
+  "status": "passed",
+  "observed": {
+    "before": 1,
+    "after": 2
+  }
+}

@@ -1,7 +1,7 @@
 # Codex-owned scoped data bridge experiments
 
 - Protocol: `scoped-data-bridge/v1`, designed 2026-09-09.
-- Status: E1 executed; shared scientific-session implementation and live activation completed. E2 resumption uses the [shared-session amendment](scoped-data-bridge-shared-session.md); E3–E5 remain unrun.
+- Status: E1 executed; shared scientific-session implementation and live activation completed. E2 and E3 passed under the [shared-session amendment](scoped-data-bridge-shared-session.md); E4–E5 remain unrun.
 - Task: [scoped data bridge](../tasks/scoped-data-bridge.md).
 - Records: [storage contract](../../artifacts/scoped-data-bridge/README.md), [receipt template](scoped-data-bridge/receipt.template.json), [result registry](RESULTS.md).
 

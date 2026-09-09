@@ -1,0 +1,8 @@
+{
+  "id": "resident-malformed-deposit",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "INVALID_ARGUMENT"
+  }
+}

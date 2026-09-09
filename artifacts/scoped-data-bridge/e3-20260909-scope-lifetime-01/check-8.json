@@ -1,0 +1,8 @@
+{
+  "id": "resident-widen-json",
+  "status": "passed",
+  "observed": {
+    "denied": true,
+    "code": "FORBIDDEN"
+  }
+}

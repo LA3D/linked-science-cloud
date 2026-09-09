@@ -1,0 +1,21 @@
+{
+  "id": "broker-authorized-bindings",
+  "status": "passed",
+  "observed": {
+    "rows": [
+      [
+        [
+          "o",
+          {
+            "termType": "Literal",
+            "value": "one",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        ]
+      ]
+    ],
+    "nextOffset": 1,
+    "complete": false
+  }
+}

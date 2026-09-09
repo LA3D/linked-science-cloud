@@ -1,0 +1,394 @@
+{
+  "checks": [
+    {
+      "id": "resident-storage-tiers",
+      "status": "passed",
+      "observed": {
+        "graph": "resident-rdf-dataset",
+        "bindings": "resident"
+      }
+    },
+    {
+      "id": "resident-authorized-graph",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "resident-authorized-bindings",
+      "status": "passed",
+      "observed": {
+        "rows": [
+          [
+            [
+              "o",
+              {
+                "termType": "Literal",
+                "value": "one",
+                "language": "",
+                "datatype": "http://www.w3.org/2001/XMLSchema#string"
+              }
+            ]
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": false
+      }
+    },
+    {
+      "id": "resident-authorized-json",
+      "status": "passed",
+      "observed": {
+        "object": "9d8fe084-bff3-4be6-b1d8-05fbeeea2ed3",
+        "version": 1,
+        "value": [
+          1,
+          null,
+          true
+        ]
+      }
+    },
+    {
+      "id": "resident-foreign-graph",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-foreign-bindings",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-foreign-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-widen-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-external-source",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-mutation-query",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-arbitrary-code",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-worker-reset",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-worker-close",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-wrong-slot",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "FORBIDDEN"
+      }
+    },
+    {
+      "id": "resident-malformed-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "INVALID_ARGUMENT"
+      }
+    },
+    {
+      "id": "resident-concurrent-return",
+      "status": "passed",
+      "observed": [
+        {
+          "slot": "a",
+          "status": "deposited"
+        },
+        {
+          "slot": "b",
+          "status": "deposited"
+        }
+      ]
+    },
+    {
+      "id": "resident-duplicate",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_DUPLICATE_DEPOSIT"
+      }
+    },
+    {
+      "id": "resident-aggregate",
+      "status": "passed",
+      "observed": {
+        "a": {
+          "count": 1
+        },
+        "b": {
+          "count": 1
+        }
+      }
+    },
+    {
+      "id": "resident-local-copy-mutation",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "resident-released-graph-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-released-graph-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-released-bindings-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-released-bindings-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-released-json-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_OBJECT_UNKNOWN"
+      }
+    },
+    {
+      "id": "resident-released-json-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "SESSION_OBJECT_UNKNOWN"
+      }
+    },
+    {
+      "id": "resident-unrelated-workspace-survives",
+      "status": "passed",
+      "observed": {
+        "quads": [
+          [
+            {
+              "termType": "NamedNode",
+              "value": "urn:a"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:p"
+            },
+            {
+              "termType": "Literal",
+              "value": "one",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            {
+              "termType": "NamedNode",
+              "value": "urn:g"
+            }
+          ]
+        ],
+        "nextOffset": 1,
+        "complete": true
+      }
+    },
+    {
+      "id": "resident-disposed-graph",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "resident-disposed-bindings",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "resident-disposed-json",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "resident-disposed-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_STALE_WORKSPACE"
+      }
+    },
+    {
+      "id": "resident-expiry",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "resident-expired-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "resident-in-flight-release",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-in-flight-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "LS_RELEASED_HANDLE"
+      }
+    },
+    {
+      "id": "resident-epoch-changed",
+      "status": "passed",
+      "observed": {
+        "before": 1,
+        "after": 2
+      }
+    },
+    {
+      "id": "resident-old-epoch-read",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    },
+    {
+      "id": "resident-old-epoch-deposit",
+      "status": "passed",
+      "observed": {
+        "denied": true,
+        "code": "GRANT_EXPIRED"
+      }
+    }
+  ]
+}
