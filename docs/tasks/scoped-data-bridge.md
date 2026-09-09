@@ -16,7 +16,7 @@ Native bindings now have a complete iterator for resident and broker-stored resu
 
 ## Exact next action
 
-Implementation is ready for a desktop restart once its local integration is recorded below. After restart, discover the mounted project runtime, launch the independent service if needed, and record a fresh live worker round trip separately from deterministic tests. Existing pre-refactor globals are not migrated automatically. Do not silently resume E2–E5 or treat shell checks as live activation evidence.
+Implementation is ready for a desktop restart. After restart, discover the mounted project runtime, launch the independent service if needed, and record a fresh live worker round trip separately from deterministic tests. Existing pre-refactor globals are not migrated automatically. Do not silently resume E2–E5 or treat shell checks as live activation evidence.
 
 ## Handoff
 
@@ -28,6 +28,8 @@ Implementation began in the authoritative checkout on `codex/scoped-bridge-runs`
 - `npm run smoke` and `npm run linked-science:verify`: passed with offline synthetic fixtures.
 - `npm run evaluation:results:validate`: passed, 36 registered runs with explicit durability classifications.
 - Markdown links and `git diff --check`: passed.
-- E1 receipts saved in `d7cd03c`; implementation commit is the next focused commit in this branch's history.
+- E1 receipts saved in `d7cd03c`; implementation saved in `00ce9a5`. Both were verified reachable from local `main` after fast-forward integration. This handoff update follows those commits. No push was performed.
+- `npm run cleanroom:test`: 71 passed, zero failed/skipped.
+- Only the pre-existing `.codex/config.toml` edits and `artifacts/structure-viewer/` remain outside the task commits.
 - Large paged traversals rescan earlier rows. This is a bounded core implementation, not a scalability result. Worker timeouts during shared-kernel execution can close the session; timeouts before dispatch preserve it.
 - No live activation or semantic RLM evaluation was run after refactoring. No service has been left running by tests. Existing pre-refactor REPL objects will not be migrated by restarting.
