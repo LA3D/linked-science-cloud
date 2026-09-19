@@ -1,0 +1,86 @@
+{
+  "format": "linked-science-history-coverage-observation/v1",
+  "taskId": "01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61",
+  "interface": "codex_app.read_thread",
+  "readOptions": {
+    "turnLimit": 3,
+    "includeOutputs": true,
+    "maxOutputCharsPerItem": 600
+  },
+  "page": {
+    "hasMore": true,
+    "returnedTurnIds": [
+      "01a0ba3e-fbd3-7922-92d3-7321b3b0d6f9",
+      "01a0ba3d-d72d-7f01-b771-7c6844f2d408",
+      "01a0ba2d-0960-7f90-9888-17e1d0e25d4d"
+    ]
+  },
+  "selectedTools": [
+    {
+      "turnId": "01a0ba3e-fbd3-7922-92d3-7321b3b0d6f9",
+      "itemId": "exec-ef7e537c-9001-4a12-9281-0460f3c05f6c",
+      "server": "codex_app",
+      "tool": "send_message_to_thread",
+      "returnedFields": [
+        "type",
+        "id",
+        "server",
+        "tool",
+        "arguments",
+        "status",
+        "durationMs"
+      ],
+      "resultFieldPresent": false,
+      "outputFieldPresent": false
+    },
+    {
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "exec-b593363c-fbce-4d22-b871-198e7f96115b",
+      "server": "codex_app",
+      "tool": "send_message_to_thread",
+      "returnedFields": [
+        "type",
+        "id",
+        "server",
+        "tool",
+        "arguments",
+        "status",
+        "durationMs"
+      ],
+      "resultFieldPresent": false,
+      "outputFieldPresent": false
+    }
+  ],
+  "reportedOutputs": [
+    {
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "fco_01a0ba39-6e5d-7ef1-8ddd-cf860fce31e5",
+      "type": "functionCallOutput",
+      "name": "send_message_to_thread",
+      "outputPresent": true,
+      "truncated": true,
+      "originalChars": 732,
+      "retainedChars": 0,
+      "interpretation": "Executor handoff report, not a directly observed scientific tool result"
+    },
+    {
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "fco_01a0ba3b-96e9-7353-aec6-bfd1601e8c12",
+      "type": "functionCallOutput",
+      "name": "send_message_to_thread",
+      "outputPresent": true,
+      "truncated": true,
+      "originalChars": 2172,
+      "retainedChars": 0,
+      "interpretation": "Executor handoff report, not a directly observed scientific tool result"
+    }
+  ],
+  "conclusions": [
+    "Initial outputs were omitted by query choice; that alone is not a host capture gap",
+    "Output-enabled probe exposes two truncated executor handoff reports, not original scientific operation results",
+    "Selected delegation MCP records still return metadata/arguments without result or output fields in this response",
+    "Earlier source operations are outside the chosen window; their existence/availability elsewhere is unknown",
+    "No evidence here requires hooks; a future explicit executor receipt reference can improve cross-task correlation without hooks"
+  ],
+  "retention": "Field-presence/truncation metadata only; no output bodies retained"
+}

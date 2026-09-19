@@ -1,6 +1,6 @@
 # Implementation PLAN: wiki memory and reviewed skill evolution
 
-- **Status:** Authorized phase-0 foundation implemented, 2026-09-19; later phases and learning evaluations remain proposed. See the implementation record below.
+- **Status:** Authorized phase-0 foundation and bounded phase-1 history import implemented, 2026-09-19. Wiki maintenance, skill evolution and learning evaluations remain proposed. See the implementation records below.
 - **Owner:** Codex coordinates work; a repository maintainer reviews wiki revisions and releases. The scientific runtime remains the evidence/session service.
 - **Scope:** Reuse Codex history, preserve selected scientific evidence, maintain a versioned procedural wiki, propose one atomic skill change, validate it, then release or reject it with a durable record.
 - **Authority:** The user authorized this plan and documentation. No runtime code, skills, hooks, memory settings, transcript exports, learning runs or model evaluations are being implemented or enabled now. Later phase execution requires an appropriate task authorization; ordinary authorized public reads retain the existing broker contract.
@@ -277,7 +277,7 @@ Migration is additive and reversible. Existing experiment registry records remai
 
 A first implementation is complete only when durable references survive worker/session loss, wiki revisions retain evidence and counterexamples, a candidate remains undiscovered until release, evaluation records actual isolation/memory/loading limits, and full-bundle activation/rollback is demonstrated on fresh episodes. Mechanism success does not establish long-term learning quality, scientific truth or scalability.
 
-**Next implementation boundary:** the authorized phase-0 foundation below is complete. Before phase 1, select and authorize a bounded host-history input and its retention scope; then test the import adapter against its actual observable schema. Do not install hooks or design a new archive first. No additional decision is needed to save/review this plan. Before a real pilot, material choices are (a) which selected task evidence the user permits retaining beyond references, (b) a supported host connection or manual import mode, and (c) a genuinely isolated evaluator/memory treatment. Defaults above allow synthetic contract work while these are resolved.
+**Next implementation boundary:** the authorized phase-0 foundation and selected phase-1 import below are complete. Before wiki maintenance, authorize a selected evidence batch and reviewed hypothesis scope. A future direct scientific-operation import needs retained result correlation, not inferred links. Do not install hooks or design a new archive first. No additional decision is needed to save/review this plan. Before a real pilot, material choices are (a) which selected task evidence the user permits retaining beyond references, (b) a supported host connection or manual import mode, and (c) a genuinely isolated evaluator/memory treatment. Defaults above allow synthetic contract work while these are resolved.
 
 Planning delivery uses the configured checkout `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`, starting commit `c6ed4c1e6ba8e0a3a706ee768330444e9695be29`, on `codex/wiki-memory-plan`. No new worktree, global configuration changes, private transcript reads, runtime/skill implementation or learning evaluation is part of this delivery. The older absolute ownership path in some project documents is not copied into proposed module contracts; resolve roots from the current validated checkout.
 
@@ -313,3 +313,41 @@ node scripts/wiki-learning/snapshot-baseline.mjs verify artifacts/wiki-learning/
 Delivery starts at `db34264a4902fcdc465c107b3fc26de8b52c9ffe` in `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`, on `codex/wiki-memory-phase0`. The unrelated `.codex/config.toml` edit is preserved and excluded. Verification and final commit/main integration are reported in the completion handoff.
 
 Phase-0 verification: all 10 focused tests and the saved fixture/baseline validator pass; `npm run smoke`, changed-document relative-link checks and `git diff --check` pass. Full `npm test`: 229/230 pass; the sole failure repeats the pre-existing old-`codex-repl` path assertion at `test/cleanroom-linked-science-bootstrap.test.mjs:69`. No runtime configuration change or workaround was made.
+
+
+## 13. Phase-1 bounded real-history import — 2026-09-19
+
+The user authorized selected history and minimum retention from planning task `01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61`. Two supported `codex_app.read_thread` calls selected six recent turns (81 returned items), with `includeOutputs: false` and `maxOutputCharsPerItem: 1800`. In-memory minimization retained ten observable items and **329 UTF-8 bytes of exact excerpts**. No raw page archive, private rollout access, hidden reasoning, unrelated task scan, voice transcript archive or Obsidian access was retained. The [episode](../../artifacts/wiki-learning/episodes/wikiskill-planning-20260919/episode.json) and [selected observations](../../artifacts/wiki-learning/episodes/wikiskill-planning-20260919/observable-events.json) preserve the planning request, separation correction, phase-0 authorization and phase-1 authorization. Objective descriptions are curator interpretations; short assent messages are interpreted using the observed surrounding planning context.
+
+The [adapter](../../lib/wiki-learning/episode-import.mjs) accepts supplied authorized `read_thread` schema-version-1 pages plus explicit item selectors/excerpts and a reviewed phase-0 episode draft. It checks task and item identity, exact excerpt membership, chronological event order, duplicate conflicts, bounds and known secret patterns. It whitelists user/assistant messages and MCP metadata; arguments, output bodies and reasoning are not copied. Assistant statements are `reported-claim`, voice-wrapper excerpts are `quoted-transcript`, and MCP status is only `observed-tool-metadata`. It does not implement a universal secret detector; the caller must review selected excerpts and draft free text. It makes no host connection or configuration change.
+
+The [CLI](../../scripts/wiki-learning/import-episode.mjs) runs:
+
+```sh
+node scripts/wiki-learning/import-episode.mjs supplied-input.json artifacts/wiki-learning/episodes/<new-name>
+node --test test/wiki-learning/phase0.test.mjs test/wiki-learning/phase1.test.mjs
+```
+
+The supplied JSON has `pages`, `selections` (`turnId`, `itemId`, optional exact `excerpt`), `draft` (existing episode contract) and optional `readOptions`. It writes only `observable-events.json` and `episode.json` under the controlled destination. Identical completed imports are idempotent; differing content, incomplete prior output or a conflicting concurrent writer fails without overwrite. A write interruption may leave an explicitly incomplete directory; choose a new destination after inspection. Existing artifact hashes are checked before writing. Missing referenced files remain explicit partial evidence. The committed real episode is sufficient for offline inspection; temporary minimized import input was not committed. No raw history is needed to understand it after host/session loss.
+
+### Measured coverage and limits
+
+| Field or claim | Observation and treatment |
+| --- | --- |
+| Task/turn/item IDs and MCP server/tool/status | Returned; selected identities preserved. These prove observed metadata, not execution of a scientific query. |
+| Objective changes | Four ordered interpretations linked to selected user items; Obsidian separation remains an inherited constraint. |
+| Initial absent outputs | Omitted by `includeOutputs: false`; not evidence of a host capture gap. |
+| Output-enabled follow-up | One further three-turn read with `includeOutputs: true`, 600-character cap. Two executor handoff outputs carry `truncated: true`, original lengths 732 and 2172. Only field/truncation metadata is saved in the [coverage observation](../../artifacts/wiki-learning/coverage/wikiskill-planning-20260919.json). |
+| Scientific operation correlation | Selected delegation MCP items still have no result/output field in the output-enabled response. Returned executor handoff text is a reported claim, not the original scientific tool result. |
+| Relevant saved receipt | Existing executor phase-0 synthetic `results.profile` is referenced by repository path, SHA-256 and revision without copying. The join is **inferred**, with no invented operation ID or asserted planning-task runtime identity. |
+| Earlier pathway/voice-session operations | Outside the chosen recent window; one unresolved link and explicit missing evidence. No conclusion about global absence or inaccessible older pages. |
+| Pagination and display | Both initial pages and the follow-up report more history. Message truncation remains unknown where the API supplies no flag; tool-output truncation is explicitly observed. Tool/context presentation truncation is separate from source completeness. |
+| Memory, skill loading and live residency | Not observed. No settings changed, no host-memory inference from silence, no saved handle treated as live. |
+
+The inspector's `passed` status means **reference integrity only**. The episode outcome remains partial, with one inferred and one unresolved join and zero verified scientific joins. This is useful evidence about this selected interface/window, not a completed scientific evaluation. The initial option omission, explicit output truncation, unsampled older events and cross-task inference are separate limitations. **No need for hooks was established.** An explicitly deposited executor receipt reference could improve future correlation without installing hooks; any richer receipt adapter must validate the actual source result format and authority separately.
+
+[Six new tests](../../test/wiki-learning/phase1.test.mjs) cover real saved-record validation; output/argument/reasoning exclusion; voice and assistant claim classification; reordered input and duplicate conflict handling; fabricated excerpts, unknown versions/tasks, bounds and secret-pattern rejection; idempotence, conflicting imports, missing evidence and corrupt-artifact rejection before writing. Combined phase-0/phase-1 focused tests pass 16/16. No active skill, wiki maintainer/proposer, model evaluation, release system, network scientific read or global memory/configuration change was added. This import is a software/provenance artifact, not an experiment-result registry entry.
+
+Delivery starts at `6b9771ceec42f2edb14e97777ca0e899e2590b6c` on `codex/wiki-memory-phase1` in `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`; `.codex/config.toml` remains unrelated and excluded. Required repository checks and final commit/main status are reported in the completion handoff.
+
+Phase-1 verification: 16/16 combined focused tests pass; full `npm test` passes 235/236 with only the known old-checkout-path assertion at `test/cleanroom-linked-science-bootstrap.test.mjs:69`. `npm run smoke`, changed-document relative links and `git diff --check` pass. No configuration workaround was made.

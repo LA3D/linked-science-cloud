@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "wikiskill-planning-selected-20260919",
+  "host": {
+    "hostId": "local",
+    "taskId": "01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61",
+    "version": "read_thread schemaVersion 1; host build not observed",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/episodes/wikiskill-planning-20260919/observable-events.json",
+      "sha256": "eaff365c75ad8095a996dbeb6f846d4a82d45d33da83e51fb0cdbe5811904db0",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "not observed by selected history read"
+    }
+  },
+  "capture": {
+    "kind": "selected-import",
+    "completeness": "partial",
+    "gaps": [
+      "Only explicitly selected items retained; no whole-history completeness claim",
+      "Outputs and arguments not retained; tool metadata is not runtime proof",
+      "Earlier pathway events and original voice-session operations not selected or established",
+      "Source item truncation is not attested by this interface; context display may truncate separately",
+      "Host memory use/generation and skill loading not observed",
+      "Input pages were minimized in memory before file retention: original two reads returned 6 turns / 81 items; only 10 items retained",
+      "Objective descriptions are curator interpretations of selected requests and observed planning context, not verbatim complete requests",
+      "No directly observed scientific tool-result operation ID in selected planning events",
+      "Referenced query profile belongs to executor phase-0 synthetic fixture; its relationship is inferred, not a verified cross-task operation join",
+      "Original pathway/voice-session machine events were outside selected six turns; absence here does not establish global absence"
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "not-observed",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "01a0ba1f-9c16-7bf1-b9d3-f08dff4024bf",
+      "itemId": "01a0ba1f-9d0f-7372-8f53-45febae25265",
+      "kind": "userMessage",
+      "sequence": 1,
+      "objectiveIds": [
+        "plan"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "01a0ba1f-9c16-7bf1-b9d3-f08dff4024bf",
+      "itemId": "exec-e6a09fa8-d92c-4493-8a3d-7ad0c342a75e",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "plan"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "01a0ba29-1343-7953-a750-8b09bff9d98f",
+      "itemId": "01a0ba29-13f8-7972-b88f-5bcf0e6881c1",
+      "kind": "userMessage",
+      "sequence": 3,
+      "objectiveIds": [
+        "separate"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "01a0ba29-1343-7953-a750-8b09bff9d98f",
+      "itemId": "exec-f1cb6e9d-34b4-40fc-b35f-6be604c38028",
+      "kind": "mcpToolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "separate"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "01a0ba2d-0a0e-7691-85d8-18e4d3b04f1b",
+      "kind": "userMessage",
+      "sequence": 5,
+      "objectiveIds": [
+        "phase0"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "exec-b593363c-fbce-4d22-b871-198e7f96115b",
+      "kind": "mcpToolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "phase0"
+      ]
+    },
+    {
+      "id": "event-7",
+      "turnId": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+      "itemId": "msg_02a596e9d092c082016aaea6e0b85887d1b1c22a8abb995718",
+      "kind": "agentMessage",
+      "sequence": 7,
+      "objectiveIds": [
+        "phase0"
+      ]
+    },
+    {
+      "id": "event-8",
+      "turnId": "01a0ba3d-d72d-7f01-b771-7c6844f2d408",
+      "itemId": "msg_02a596e9d092c082016aaea764930087d1addd478a237b5713",
+      "kind": "agentMessage",
+      "sequence": 8,
+      "objectiveIds": [
+        "phase0"
+      ]
+    },
+    {
+      "id": "event-9",
+      "turnId": "01a0ba3e-fbd3-7922-92d3-7321b3b0d6f9",
+      "itemId": "01a0ba3e-fc84-7bc3-840e-f0c591bd276a",
+      "kind": "userMessage",
+      "sequence": 9,
+      "objectiveIds": [
+        "phase1"
+      ]
+    },
+    {
+      "id": "event-10",
+      "turnId": "01a0ba3e-fbd3-7922-92d3-7321b3b0d6f9",
+      "itemId": "exec-ef7e537c-9001-4a12-9281-0460f3c05f6c",
+      "kind": "mcpToolCall",
+      "sequence": 10,
+      "objectiveIds": [
+        "phase1"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "plan",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Plan repository wiki-memory implementation",
+      "acceptance": [
+        "Save a staged implementation plan"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "separate",
+      "previousId": "plan",
+      "eventId": "event-3",
+      "statement": "Keep Science Cloud wiki memory separate from Obsidian",
+      "acceptance": [
+        "No vault integration or access"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "phase0",
+      "previousId": "separate",
+      "eventId": "event-5",
+      "statement": "Implement the proposed phase-0 foundation with the separation constraint",
+      "acceptance": [
+        "Freeze skill baseline; test durable evidence contracts"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "phase1",
+      "previousId": "phase0",
+      "eventId": "event-9",
+      "statement": "Import a bounded real task episode while keeping Obsidian separate",
+      "acceptance": [
+        "Use selected history and minimal excerpts; mark missing scientific links"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "executor-query-receipt",
+      "kind": "receipt-only",
+      "description": "Existing executor phase-0 synthetic query profile, referenced without copying or promoting it to planning-task runtime evidence",
+      "artifact": {
+        "path": "test/fixtures/wiki-learning/development/scope-change/query-profile.json",
+        "sha256": "9cf37160be8c16d527e71c4d3227942339c7891ff33232ce830ec17a9a519bef",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "repository:phase0-synthetic-scope-change",
+        "revision": "6b9771ceec42f2edb14e97777ca0e899e2590b6c",
+        "representation": "application/json; results.profile"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full query bindings are not saved",
+        "Planning-task tool-result correlation unavailable"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "earlier-pathway-events",
+      "kind": "missing",
+      "description": "Earlier pathway machine events and original voice-session actions are not present in the selected history window",
+      "artifact": null,
+      "historicalHandle": null,
+      "source": {
+        "identity": "codex-task:01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61",
+        "revision": null,
+        "representation": "unavailable selected machine evidence"
+      },
+      "completion": "unknown",
+      "missingEvidence": [
+        "Direct scientific actions, operation identifiers, source revision and visualization artifact not selected or established"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "id": "phase0-delegation-receipt",
+      "eventId": "event-6",
+      "objectiveId": "phase0",
+      "evidenceId": "executor-query-receipt",
+      "operationId": null,
+      "traversalId": null,
+      "basis": "inferred",
+      "note": "Observed phase-0 delegation plus assistant report and existing executor artifact support relevance only; metadata-only read lacks scientific result correlation"
+    },
+    {
+      "id": "planning-pathway-link",
+      "eventId": "event-2",
+      "objectiveId": "plan",
+      "evidenceId": null,
+      "operationId": null,
+      "traversalId": null,
+      "basis": "unresolved",
+      "note": "Planning delegation refers to motivating work; the original pathway tool events are not in this bounded selection"
+    }
+  ],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "selected-evidence-outcome",
+      "objectiveId": "phase1",
+      "kind": "agent-judgment",
+      "status": "partial",
+      "claim": "Selected history establishes objective changes and delegation metadata; scientific operation linkage remains inferred or unresolved",
+      "evidenceIds": [
+        "executor-query-receipt",
+        "earlier-pathway-events"
+      ],
+      "missingEvidence": [
+        "No direct scientific tool-result correlation in selected planning task; no completion grade inferred from assistant reports"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "format": "linked-science-selected-history/v1",
+  "thread": {
+    "id": "01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61",
+    "turns": [
+      {
+        "id": "01a0ba1f-9c16-7bf1-b9d3-f08dff4024bf",
+        "items": [
+          {
+            "id": "01a0ba1f-9d0f-7372-8f53-45febae25265",
+            "type": "userMessage",
+            "text": "Okay, could we formulate a plan to do the implementation in the Science Cloud repository?",
+            "evidenceClass": "user-request",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          },
+          {
+            "id": "exec-e6a09fa8-d92c-4493-8a3d-7ad0c342a75e",
+            "type": "mcpToolCall",
+            "server": "codex_app",
+            "tool": "send_message_to_thread",
+            "status": "completed",
+            "evidenceClass": "observed-tool-metadata",
+            "output": "not-retained"
+          }
+        ]
+      },
+      {
+        "id": "01a0ba29-1343-7953-a750-8b09bff9d98f",
+        "items": [
+          {
+            "id": "01a0ba29-13f8-7972-b88f-5bcf0e6881c1",
+            "type": "userMessage",
+            "text": "Ok. I want this to be separate from my obsidian wikimemory.",
+            "evidenceClass": "user-request",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          },
+          {
+            "id": "exec-f1cb6e9d-34b4-40fc-b35f-6be604c38028",
+            "type": "mcpToolCall",
+            "server": "codex_app",
+            "tool": "send_message_to_thread",
+            "status": "completed",
+            "evidenceClass": "observed-tool-metadata",
+            "output": "not-retained"
+          }
+        ]
+      },
+      {
+        "id": "01a0ba2d-0960-7f90-9888-17e1d0e25d4d",
+        "items": [
+          {
+            "id": "01a0ba2d-0a0e-7691-85d8-18e4d3b04f1b",
+            "type": "userMessage",
+            "text": "Ok. Let's do that.",
+            "evidenceClass": "user-request",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          },
+          {
+            "id": "exec-b593363c-fbce-4d22-b871-198e7f96115b",
+            "type": "mcpToolCall",
+            "server": "codex_app",
+            "tool": "send_message_to_thread",
+            "status": "completed",
+            "evidenceClass": "observed-tool-metadata",
+            "output": "not-retained"
+          },
+          {
+            "id": "msg_02a596e9d092c082016aaea6e0b85887d1b1c22a8abb995718",
+            "type": "agentMessage",
+            "text": "Synthetic fixture linking task events to real local runtime receipts.",
+            "evidenceClass": "reported-claim",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          }
+        ]
+      },
+      {
+        "id": "01a0ba3d-d72d-7f01-b771-7c6844f2d408",
+        "items": [
+          {
+            "id": "msg_02a596e9d092c082016aaea764930087d1addd478a237b5713",
+            "type": "agentMessage",
+            "text": "Next is **Phase 1: test the contracts against a real Codex task history**.",
+            "evidenceClass": "reported-claim",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          }
+        ]
+      },
+      {
+        "id": "01a0ba3e-fbd3-7922-92d3-7321b3b0d6f9",
+        "items": [
+          {
+            "id": "01a0ba3e-fc84-7bc3-840e-f0c591bd276a",
+            "type": "userMessage",
+            "text": "Ok. Can you do that?",
+            "evidenceClass": "user-request",
+            "excerptOnly": true,
+            "sourceTruncation": "unknown"
+          },
+          {
+            "id": "exec-ef7e537c-9001-4a12-9281-0460f3c05f6c",
+            "type": "mcpToolCall",
+            "server": "codex_app",
+            "tool": "send_message_to_thread",
+            "status": "completed",
+            "evidenceClass": "observed-tool-metadata",
+            "output": "not-retained"
+          }
+        ]
+      }
+    ]
+  },
+  "coverage": {
+    "interface": "codex_app.read_thread",
+    "schemaVersion": 1,
+    "readOptions": {
+      "includeOutputs": false,
+      "maxOutputCharsPerItem": 1800
+    },
+    "pages": [
+      {
+        "returnedTurns": 3,
+        "hasMore": true,
+        "nextCursorAvailable": true
+      },
+      {
+        "returnedTurns": 3,
+        "hasMore": true,
+        "nextCursorAvailable": true
+      }
+    ],
+    "suppliedTurns": 6,
+    "suppliedItems": 10,
+    "retainedItems": 10,
+    "excerptBytes": 329,
+    "completeness": "partial",
+    "sourceTruncation": "unknown",
+    "hostSummaries": "lossy; not retained",
+    "gaps": [
+      "Only explicitly selected items retained; no whole-history completeness claim",
+      "Outputs and arguments not retained; tool metadata is not runtime proof",
+      "Earlier pathway events and original voice-session operations not selected or established",
+      "Source item truncation is not attested by this interface; context display may truncate separately",
+      "Host memory use/generation and skill loading not observed"
+    ]
+  }
+}
