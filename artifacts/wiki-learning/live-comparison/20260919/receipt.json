@@ -103,7 +103,7 @@
     },
     {
       "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/derive-answer.py",
-      "sha256": "95f2c5ba909fb0d152c421a1093f11262940f30a9ee45d65ef5b6011baf872c3"
+      "sha256": "b5730f1680d57d0d26989ff1ebfe6873aa6db5b22557f1e30960b5a32bcb9fee"
     },
     {
       "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/memory-feedback.json",
@@ -173,5 +173,6 @@
       "path": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-feedback-2109d4da-38b2-4416-b18e-58c13ee631fd.json",
       "sha256": "d16d024720f6935fc404c59ce58e3adfdf17fde567dcfd1e706b8e91c03cd96c"
     }
-  ]
+  ],
+  "artifactNormalization": "Removed one trailing blank line from the saved derivation script after the initial commit; no runtime response or result changed. Script hash updated."
 }

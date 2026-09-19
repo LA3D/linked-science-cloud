@@ -24,4 +24,3 @@ answer={'groups':groups,'winners':[g for g in groups if groups[g]['count']==max(
 feedback={'assessment':'helped','note':'Self-report: the consulted candidate informed checking retained handles and repairing only pagination. Saved actual calls show a presentation-bound failure, surviving handles, and complete 36-row coverage without another query or graph load. This does not establish causal benefit; runtime error and skill also provide repair guidance.','evidence':[{'path':str((arm/'answer.json').relative_to(pathlib.Path.cwd())),'sha256':hashlib.sha256((arm/'answer.json').read_bytes()).hexdigest(),'hashDomain':'file-bytes','pointer':'/coverage'},{'path':str((arm/'runtime-call-04.json').relative_to(pathlib.Path.cwd())),'sha256':hashlib.sha256((arm/'runtime-call-04.json').read_bytes()).hexdigest(),'hashDomain':'file-bytes','pointer':'/response'}]}
 (arm/'memory-feedback.json').write_text(json.dumps(feedback,indent=2)+'\n')
 print(json.dumps(answer))
-
