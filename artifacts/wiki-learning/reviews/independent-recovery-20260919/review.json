@@ -1,0 +1,118 @@
+{
+  "format": "linked-science-wiki-independent-review/v1",
+  "id": "wiki-independent-recovery-20260919",
+  "date": "2026-09-19",
+  "outcome": "inconclusive",
+  "method": "Bounded offline comparison by the current Codex assistant using the scientific-wiki-maintainer skill; not a blinded or separate-model evaluation.",
+  "selection": {
+    "maxIndependentCandidateGroups": 3,
+    "reason": "Three saved groups selected for failed presentation, reset, or handle transfer; engineering planning excluded.",
+    "exhaustive": false,
+    "omitted": [
+      "Other historical records and host task history were not exhaustively inspected.",
+      "No new scientific acquisition or live recovery attempt.",
+      "No private evaluator answer files inspected."
+    ]
+  },
+  "wikiRevisionBefore": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "wikiRevisionAfter": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "patternId": "retained-query-after-display-limit",
+  "inputs": [
+    {
+      "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+      "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/wiki-learning/corpus/planning-engineering.json",
+      "sha256": "bbc6880010545a89452665fef081e5fc70ff064a103355c0935b83ba4dfe0696",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/wiki-learning/corpus/exclusions.json",
+      "sha256": "f4e1e74c2026307f5f5b53cd249d9adc5701edf5460ddbe7fefbd087f0e7553b",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/experiment-results/2026-08-25-uniprot-tier0-baseline.json",
+      "sha256": "9893ce9cb1e8581d91cf9c014adf88095d574dff0ca427cc7ba6ea16e8f464e4",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/experiment-results/2026-09-08-orientation-transfer-probe.json",
+      "sha256": "b71af9f774b2310b9b91496ee64d1b5bbbe4600c12259bf73780b965dfe0a9f2",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/orientation-comparison/2026-09-08/lib-a-reset.receipt.json",
+      "sha256": "f99b0977fe4787a79b0c775e4a856d26b1b690abc2e21ad122baa62f50b828df",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    {
+      "path": "artifacts/orientation-comparison/2026-09-08/lib-a-follow.receipt.json",
+      "sha256": "1a04abdeb8ee9fcb44fccdeb32f58fff6d44d777ec39e9a42a827903b3163edd",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    }
+  ],
+  "comparisons": [
+    {
+      "candidate": "uniprot-tier0-baseline-2026-08-25",
+      "classification": "scientific-summary-with-missing-witnesses",
+      "observations": [
+        "Saved summary reports HTTP 200, zero result rows, LS_COLUMNS on presentation, and MEDIATOR_DURATION_LIMIT at finalization.",
+        "Registry explicitly lists missing exact request/response hashes and successful aggregate finish receipt."
+      ],
+      "decision": "Not admitted: no explicit eligible corpus unit or verifiable raw exchange chain for this recovery claim.",
+      "relationToPattern": "Different error and no demonstrated bounded-page/native-iteration recovery. Neither confirms nor falsifies the scoped pattern."
+    },
+    {
+      "candidate": "orientation-transfer-probe-2026-09-08",
+      "classification": "synthetic-runtime-diagnostic",
+      "observations": [
+        "Saved orientation object reports queryCount 0 and an epoch-scoped handle reference."
+      ],
+      "decision": "Not admitted: no independent scientific query-and-recovery episode.",
+      "relationToPattern": "Reference metadata alone is not residency or recovery evidence."
+    },
+    {
+      "candidate": "lib-a-reset-2026-09-08",
+      "classification": "synthetic-library-runtime-diagnostic",
+      "observations": [
+        "Stored raw output reports LS_STALE_WORKSPACE after reset and empty fresh inventory.",
+        "Companion workflow uses synthetic catalog authorship/translator statements, not a scientific objective."
+      ],
+      "decision": "Not admitted as scientific learning evidence; retain only as an architectural boundary diagnostic.",
+      "relationToPattern": "Reset is already excluded by the candidate. This challenges an unrestricted recovery claim, not the existing scoped claim."
+    }
+  ],
+  "eligibility": {
+    "independentAdmittedEpisodes": 0,
+    "existingEligibleEpisodes": 1,
+    "originalEpisodeReusedAsIndependent": false
+  },
+  "decision": {
+    "status": "retain-proposed",
+    "wikiMutation": false,
+    "proposalCreated": false,
+    "reason": "No independent eligible in-scope counterexample or replication in this bounded sample; do not fabricate citations or promote evidence."
+  },
+  "missingEvidence": [
+    "An independent scientific episode with directly witnessed query completion, display failure, handle/epoch continuity and a subsequent recovery attempt.",
+    "An in-scope negative outcome or independent replication suitable for corpus validation.",
+    "Transfer performance, model-quality benefit and broader generality."
+  ],
+  "nextAction": "Capture a second scientific comparison with raw broker exchanges, including a recoverable display-bound failure and a separately labeled release/reset boundary control; classify units before proposing any wiki change.",
+  "skillObservation": {
+    "catalogListed": true,
+    "skillFileRead": true,
+    "currentAssistantUsed": true,
+    "freshTaskDiscoveryTest": false
+  }
+}

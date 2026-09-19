@@ -1,0 +1,76 @@
+{
+  "results": [
+    {
+      "id": "planning-engineering-exclusion",
+      "eligible": false,
+      "reason": "engineering-evidence-only",
+      "units": []
+    },
+    {
+      "id": "ontology-membership-corpus",
+      "eligible": true,
+      "reason": "reviewed-scientific-actions-and-outcomes",
+      "units": [
+        {
+          "id": "asserted-go-finding",
+          "lessonKind": "scientific-finding",
+          "eligible": true,
+          "evidenceStatus": "observed-within-scope",
+          "outcome": "success",
+          "validation": "candidate-not-generalized",
+          "gaps": []
+        },
+        {
+          "id": "display-failure",
+          "lessonKind": "procedure",
+          "eligible": true,
+          "evidenceStatus": "observed-within-scope",
+          "outcome": "failure",
+          "validation": "candidate-not-generalized",
+          "gaps": []
+        },
+        {
+          "id": "retained-recovery",
+          "lessonKind": "procedure",
+          "eligible": true,
+          "evidenceStatus": "observed-within-scope",
+          "outcome": "success",
+          "validation": "candidate-not-generalized",
+          "gaps": []
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "recordId": "ontology-membership-corpus",
+      "id": "asserted-go-finding",
+      "lessonKind": "scientific-finding",
+      "eligible": true,
+      "evidenceStatus": "observed-within-scope",
+      "outcome": "success",
+      "validation": "candidate-not-generalized",
+      "gaps": []
+    },
+    {
+      "recordId": "ontology-membership-corpus",
+      "id": "display-failure",
+      "lessonKind": "procedure",
+      "eligible": true,
+      "evidenceStatus": "observed-within-scope",
+      "outcome": "failure",
+      "validation": "candidate-not-generalized",
+      "gaps": []
+    },
+    {
+      "recordId": "ontology-membership-corpus",
+      "id": "retained-recovery",
+      "lessonKind": "procedure",
+      "eligible": true,
+      "evidenceStatus": "observed-within-scope",
+      "outcome": "success",
+      "validation": "candidate-not-generalized",
+      "gaps": []
+    }
+  ]
+}
