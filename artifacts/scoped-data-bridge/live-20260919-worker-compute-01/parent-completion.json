@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-09-19T13:59:43.241Z",
+  "events": [
+    {
+      "code": "var live0919connection = await nodeRepl.scientificSession.create({socketPath:'/private/tmp/ls-live-20260919-01/session.sock'}); nodeRepl.write({sessionId:live0919connection.sessionId,epoch:live0919connection.epoch,role:live0919connection.role});",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{ sessionId: '30e05bee-dfdc-478d-812b-9f8f3611078d', epoch: 1, role: 'owner' }"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var liveWs = linkedScience.open({contextKey:'live-20260919-worker-compute-01'});\nvar liveN3=await import('n3'); var liveDataset=new liveN3.Store(); var liveDf=liveN3.DataFactory;\nfor(var liveI=0;liveI<2048;liveI++){liveDataset.addQuad(liveDf.namedNode('urn:item:'+liveI),liveDf.namedNode('urn:score'),liveDf.literal(String(liveI%100),liveDf.namedNode('http://www.w3.org/2001/XMLSchema#integer')));liveDataset.addQuad(liveDf.namedNode('urn:item:'+liveI),liveDf.namedNode('urn:group'),liveDf.namedNode('urn:group:'+liveI%16));}\nfor(var liveG=0;liveG<16;liveG++)liveDataset.addQuad(liveDf.namedNode('urn:group:'+liveG),liveDf.namedNode('urn:enabled'),liveDf.literal(String(liveG%2===0),liveDf.namedNode('http://www.w3.org/2001/XMLSchema#boolean')));\nvar liveFixtureText=new liveN3.Writer({format:'N-Quads'}).quadsToString(liveDataset.getQuads(null,null,null,null));\nvar liveFixtureHash=(await import('node:crypto')).createHash('sha256').update(liveFixtureText).digest('hex');\nvar liveGraph=await liveWs.rdf.retain({name:'2048-item-synthetic',dataset:liveDataset,storage:'broker'});\nvar liveRef=nodeRepl.scientificSession.publish(liveWs,liveGraph);\nnodeRepl.write({status:await nodeRepl.scientificSession.status(),input:liveRef,items:2048,quads:liveDataset.size,fixtureBytes:Buffer.byteLength(liveFixtureText),sha256:liveFixtureHash});\n",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"LS_GRAPH_NAME\",\"name\":\"Error\",\"message\":\"Graph name must be a lowercase symbolic identifier\"}}"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "code": "var liveGraph=await liveWs.rdf.retain({name:'synthetic-items',dataset:liveDataset,storage:'broker'});\nvar liveRef=nodeRepl.scientificSession.publish(liveWs,liveGraph);\nnodeRepl.write({status:await nodeRepl.scientificSession.status(),input:liveRef,items:2048,quads:liveDataset.size,fixtureBytes:Buffer.byteLength(liveFixtureText),sha256:liveFixtureHash});\n",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  status: { sessionId: '30e05bee-dfdc-478d-812b-9f8f3611078d', epoch: 1, role: 'owner' },\n  input: {\n    object: '8d2bc845-0b8f-471c-ac74-3be29859dd79',\n    kind: 'quads',\n    count: 4112,\n    epoch: '5d1c4645-d74f-46ee-9950-10a2bfd21ce1:live-20260919-worker-compute-01:1'\n  },\n  items: 2048,\n  quads: 4112,\n  fixtureBytes: 251552,\n  sha256: '3860dccdbaa48a20f15780f841aa345ab99860eb1f4ec81f95266b3ace71a780'\n}"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var liveExpected={count:0,sum:0};for(var liveJ=0;liveJ<2048;liveJ++)if(liveJ%100>=50 && liveJ%16%2===0){liveExpected.count++;liveExpected.sum+=liveJ%100;}\nvar liveMetadata={fixture:{items:2048,quads:liveDataset.size,serializedBytes:Buffer.byteLength(liveFixtureText),sha256:liveFixtureHash},grant:{fingerprint:(await import('node:crypto')).createHash('sha256').update(liveGrant.capability).digest('hex'),objects:liveGrant.objects,operations:liveGrant.operations,expiresAt:liveGrant.expiresAt,outputSlot:liveGrant.outputSlot},status:await nodeRepl.scientificSession.status()};\nnodeRepl.write(liveMetadata);",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  fixture: {\n    items: 2048,\n    quads: 4112,\n    serializedBytes: 251552,\n    sha256: '3860dccdbaa48a20f15780f841aa345ab99860eb1f4ec81f95266b3ace71a780'\n  },\n  grant: {\n    fingerprint: 'bbea0a3c5673791fa966d328ac04a97cb0813e7dcff134aea154db15aefead6f',\n    objects: [ '8d2bc845-0b8f-471c-ac74-3be29859dd79' ],\n    operations: [ 'describe', 'query', 'bindings', 'deposit' ],\n    expiresAt: 1789826518470,\n    outputSlot: 'live-worker-result'\n  },\n  status: { sessionId: '30e05bee-dfdc-478d-812b-9f8f3611078d', epoch: 1, role: 'owner' }\n}"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var liveDeposit=await nodeRepl.scientificSession.result('live-worker-result');\nvar liveDerivedMetadata=await nodeRepl.scientificSession.describe(liveDeposit.value.derived.object);\nvar liveParentResult=await nodeRepl.scientificSession.query(liveDeposit.value.derived.object,'SELECT (COUNT(?item) AS ?count) (SUM(?score) AS ?sum) WHERE { ?item <urn:eligibleScore> ?score }');\nvar liveObserved;for await(var liveRow of nodeRepl.scientificSession.bindings(liveParentResult.object)){liveObserved={count:Number(liveRow.get('count').value),sum:Number(liveRow.get('sum').value)}}\nvar liveFinal={depositRetrieved:true,worker:liveDeposit.value.activation,derived:liveDerivedMetadata,observed:liveObserved,expected:liveExpected,passed:liveObserved.count===liveExpected.count&&liveObserved.sum===liveExpected.sum,parentDependentCalculation:'SUM scores / COUNT eligible',mean:liveObserved.sum/liveObserved.count,originalRetained:liveWs.results.profile(liveGraph).count};\nnodeRepl.write(liveFinal);",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  depositRetrieved: true,\n  worker: {\n    projectId: '@linked-science/runtime',\n    cwd: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n    role: 'worker',\n    persistence: true\n  },\n  derived: {\n    object: '2089d4b1-e8da-47c4-8b09-5a831695602c',\n    kind: 'quads',\n    count: 500,\n    columns: [ 'subject', 'predicate', 'object', 'graph' ],\n    epoch: '5d1c4645-d74f-46ee-9950-10a2bfd21ce1:live-20260919-worker-compute-01:1'\n  },\n  observed: { count: 500, sum: 37000 },\n  expected: { count: 500, sum: 37000 },\n  passed: true,\n  parentDependentCalculation: 'SUM scores / COUNT eligible',\n  mean: 74,\n  originalRetained: 4112\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "pendingSlotObservation": {
+    "code": "FORBIDDEN",
+    "interpretation": "Before deposit owner result() forwarded unavailable local slot to worker-only service request; later read succeeded."
+  }
+}

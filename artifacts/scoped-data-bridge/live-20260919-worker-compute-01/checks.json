@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "id": "parent-mounted-identity-persistence",
+      "status": "passed"
+    },
+    {
+      "id": "worker-mounted-identity-persistence-role",
+      "status": "passed",
+      "evidence": "worker-evidence.json"
+    },
+    {
+      "id": "retained-native-derived-reference-queryable-by-owner",
+      "status": "passed",
+      "evidence": "parent-completion.json"
+    },
+    {
+      "id": "dependent-count-sum-mean",
+      "status": "passed",
+      "expected": {
+        "count": 500,
+        "sum": 37000,
+        "mean": 74
+      },
+      "observed": {
+        "count": 500,
+        "sum": 37000,
+        "mean": 74
+      }
+    },
+    {
+      "id": "strict-total-no-relay-audit",
+      "status": "not-measured",
+      "limitation": "Selected action/tool evidence only; complete transcript and transport accounting unavailable."
+    }
+  ]
+}

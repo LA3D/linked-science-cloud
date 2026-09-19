@@ -1,0 +1,85 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "runId": "live-20260919-public-worker-01",
+  "recordState": "final",
+  "finishedAt": "2026-09-19T14:08:12.619804+00:00",
+  "outcome": "passed",
+  "evidenceLevel": "resident-audited",
+  "durability": "partial",
+  "workerAttempts": [
+    {
+      "attempt": 1,
+      "outcome": "partial",
+      "reason": "Automatic approval rejection; activated worker but no query/deposit",
+      "evidence": "worker-evidence.json"
+    },
+    {
+      "attempt": 2,
+      "outcome": "passed",
+      "authorization": "Direct user: I authorize the experiment",
+      "evidence": "worker-attempt-2-evidence.json",
+      "context": "Full-history fork to include direct user approval; not blinded"
+    }
+  ],
+  "planPath": "plan.json",
+  "checksPath": "checks.json",
+  "provenancePath": "retrieval-provenance.json",
+  "final": {
+    "depositRetrieved": true,
+    "worker": {
+      "projectId": "@linked-science/runtime",
+      "cwd": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+      "role": "authoritative-production-implementation",
+      "persistence": true
+    },
+    "derived": {
+      "object": "23b72d40-285b-4f36-af1d-81e8dad91540",
+      "kind": "quads",
+      "count": 36,
+      "columns": [
+        "subject",
+        "predicate",
+        "object",
+        "graph"
+      ],
+      "epoch": "5d1c4645-d74f-46ee-9950-10a2bfd21ce1:live-20260919-public-worker-01:1"
+    },
+    "inputTriples": 45,
+    "classificationCounts": {
+      "P69905": 20,
+      "P68871": 25
+    },
+    "dependent": {
+      "shared": 18,
+      "links": 36
+    },
+    "independentIntersection": 18,
+    "union": 27,
+    "jaccard": 0.6666666666666666,
+    "exactNativeSetCheck": true,
+    "passed": true,
+    "scope": "identical asserted GO IRIs in retrieved UniProt slice; no ontology closure or evidence-code weighting"
+  },
+  "limitations": [
+    "Shared asserted GO identifiers only; no functional equivalence, ontology closure or evidence-code assessment",
+    "One small public data join; no scale or model-quality claim",
+    "Selected bounded outputs stayed out of bulk graph payload, but complete transcript/transport no-relay audit unavailable",
+    "Attempt 2 activation.role in deposit contains project role; actual worker connection role is independently in worker tool status evidence"
+  ],
+  "missingEvidence": [
+    "Total model tokens, transport bytes and peak memory unavailable",
+    "Full transcript visibility audit unavailable"
+  ],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "fc592a1493bb1b5e7d03dd41dbd7628a7293e16f75ceac5fa532c56a1dcb06ed",
+      "retrieval-provenance.json": "da3c0fe10f4e6c83715a89b56e5c351b9744b7f86c6dc78d4ce31e070bdf058b",
+      "parent-evidence.json": "06f1b05d84b96a193352e180a0daa46aa04fcabb9a1be211aa2508f20b3ff998",
+      "checks.json": "66718c9a5b9d51a3ef7ba3d7efec0ce084af4affb92fcc08feb047b5d2b87ab6",
+      "worker-evidence.json": "949fde92fd5a203b1116d091bbb074878e8606dbf12f9e79cd527ab6fd03bbad",
+      "worker-attempt-2-evidence.json": "12dafa117659a6b1d1ce326944a8d9090be2dc4901bad2bb3ceb9856ad2d14f5",
+      "authorization-amendment.json": "497f39ba947ee26bdf56dc74487b6b9fb0f27283a97e9d6eda4120723f5b31c2"
+    }
+  }
+}

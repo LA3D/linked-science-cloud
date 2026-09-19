@@ -1,0 +1,53 @@
+{
+  "format": "linked-science-scoped-data-bridge-receipt/v1",
+  "runId": "live-20260919-worker-compute-01",
+  "experiment": "bounded live synthetic computation (not E5 suite)",
+  "recordState": "final",
+  "finishedAt": "2026-09-19T14:01:35.284037+00:00",
+  "outcome": "passed",
+  "evidenceLevel": "resident-audited",
+  "durability": "partial",
+  "planPath": "plan.json",
+  "checksPath": "checks.json",
+  "evidencePaths": [
+    "parent-evidence.json",
+    "parent-completion.json",
+    "worker-evidence.json"
+  ],
+  "scope": {
+    "workers": 1,
+    "items": 2048,
+    "inputQuads": 4112,
+    "inputNQuadsBytes": 251552,
+    "derivedQuads": 500,
+    "parentSum": 37000,
+    "parentMean": 74
+  },
+  "interpretation": "Actual fresh mounted MCP worker computed join against retained broker graph and deposited native reference; mounted owner retrieved reference and performed dependent query and independent formula verification. Bulk graph not printed in captured actions.",
+  "limitations": [
+    "Single deterministic graph join; not semantic model-quality evaluation or general scalability evidence",
+    "No runtime source/config edits or git operations; receipt files remain uncommitted",
+    "Parent received bounded graph count and aggregates; strict complete transcript no-relay audit unavailable"
+  ],
+  "missingEvidence": [
+    "Total model tokens, transport bytes and peak memory unavailable",
+    "Full transcript visibility audit unavailable",
+    "Git revision/diff omitted under no-git scope; source content hashes in plan"
+  ],
+  "incidents": [
+    "runtimeInfo TypeError corrected using capabilities",
+    "sandbox socket EPERM corrected with authorized elevated service start",
+    "invalid graph name corrected without reset",
+    "early result slot read returned FORBIDDEN; succeeded after actual worker deposit"
+  ],
+  "finalization": {
+    "capturedBeforeStateLoss": true,
+    "evidenceSha256": {
+      "plan.json": "fe6867258704049888e2a864834b8cb17b7caebca11d3a2abd6606da4e553004",
+      "checks.json": "78a80ebf6afd72528193fa5c1dc92933a3a6c2e365f2430e099ffc208864084a",
+      "parent-evidence.json": "2480b84a619b7d0447769b8c4051e533fa20310be0a0f196c0c4b8935707dfb5",
+      "parent-completion.json": "fa1aab91f9e62f662df0adc1ddb2697000afc72df0f85a9ec992e9324d405aaa",
+      "worker-evidence.json": "3386787b2eccd51ea915979e37aea40606c36584f198590ef31f1e362a19707a"
+    }
+  }
+}

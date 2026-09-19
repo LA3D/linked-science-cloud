@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "id": "complete-mediated-public-retrieval",
+      "status": "passed",
+      "observed": 45
+    },
+    {
+      "id": "first-worker-query-deposit",
+      "status": "not-measured",
+      "limitation": "Automatic approval review rejected actions before execution; exact evidence retained."
+    },
+    {
+      "id": "authorized-worker-attempt-2",
+      "status": "passed",
+      "evidence": "worker-attempt-2-evidence.json"
+    },
+    {
+      "id": "owner-native-reference-reuse",
+      "status": "passed"
+    },
+    {
+      "id": "exact-native-set-equality",
+      "status": "passed",
+      "observed": true
+    },
+    {
+      "id": "dependent-jaccard",
+      "status": "passed",
+      "observed": {
+        "shared": 18,
+        "union": 27,
+        "jaccard": 0.6666666666666666
+      }
+    }
+  ]
+}

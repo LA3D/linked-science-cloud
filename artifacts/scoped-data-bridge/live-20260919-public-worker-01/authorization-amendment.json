@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-19T14:05:05.259935+00:00",
+  "userMessage": "I authorize the experiment",
+  "scope": "Fresh attempt 2 query and local test-slot deposit using public UniProt retained graph; first worker approval rejections remain in worker-evidence.json",
+  "workerAttempt": 2,
+  "outputSlot": "real-worker-result-2"
+}

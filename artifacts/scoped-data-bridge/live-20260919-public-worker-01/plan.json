@@ -1,0 +1,31 @@
+{
+  "runId": "live-20260919-public-worker-01",
+  "frozenAt": "2026-09-19T13:59:43.444103+00:00",
+  "protocol": "scoped-data-bridge/live-public-computation-v1",
+  "authorization": "Originating user explicitly authorized bounded public scientific SPARQL data worker test",
+  "scope": "One remote focused CONSTRUCT for P69905 and P68871 classifications; one fresh mounted-MCP worker joining shared GO classifications; parent dependent union/intersection calculation",
+  "endpointEvidence": "Service description retrieved through realWs.resources from https://sparql.uniprot.org/; sd:endpoint verified https://sparql.uniprot.org/sparql and void:property verified core:classifiedWith",
+  "query": "CONSTRUCT { ?protein <http://purl.uniprot.org/core/classifiedWith> ?term } WHERE { VALUES ?protein { <http://purl.uniprot.org/uniprot/P69905> <http://purl.uniprot.org/uniprot/P68871> } ?protein <http://purl.uniprot.org/core/classifiedWith> ?term FILTER(STRSTARTS(STR(?term), \"http://purl.obolibrary.org/obo/GO_\")) }",
+  "workerRule": "Join both specified proteins on same classification term; CONSTRUCT term urn:sharedBy each protein",
+  "checks": [
+    "complete remote subgraph retained",
+    "fresh worker mounting persistence role",
+    "scoped query derived reference deposited",
+    "owner retrieves and queries derived reference",
+    "owner independent RDF set intersection equals derived terms",
+    "parent Jaccard intersection/union computed from retained data"
+  ],
+  "budgets": {
+    "workers": 1,
+    "repetitions": 1,
+    "wallTimeMs": 600000,
+    "grantTtlMs": 300000,
+    "brokerReadBudgets": "defaults",
+    "toolOutputBytes": 4096
+  },
+  "limits": [
+    "No biological functional equivalence claim",
+    "No general scale or model-quality inference",
+    "No strict total transcript/transport token accounting"
+  ]
+}

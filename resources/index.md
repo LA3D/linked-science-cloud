@@ -1,6 +1,6 @@
 # Linked Science Cloud orientation index
 
-This is a small directory for agent orientation. It is not an allowlist, health monitor, query plan, capability catalog, or claim that a source is currently reachable. A listed source still requires current approval, bounded transport, and a receipt. An unavailable route or empty result is not evidence of global absence.
+This is a small directory for agent orientation. It is not an allowlist, health monitor, query plan, capability catalog, or claim that a source is currently reachable. Goal-relevant anonymous public reads use the broker's default authority, bounds and receipts; authenticated, sensitive, mutating, bulk and export actions need their appropriate authority. An unavailable route or empty result is not evidence of global absence.
 
 Choose the route that best preserves the evidence needed for the question. A cloud may expose a graph endpoint, ontology, conventional API, downloadable data, documentation, or several of these. API responses are useful evidence, but a flattened API projection is not interchangeable with the source graph. Retain native payloads and record explicit identifier or assertion mappings when combining routes.
 
@@ -12,7 +12,7 @@ Choose the route that best preserves the evidence needed for the question. A clo
 | [Rhea](https://www.rhea-db.org/) | Expert-curated biochemical reactions | [SPARQL](https://sparql.rhea-db.org/sparql), website and downloads | Rhea reaction identifiers; ChEBI participant IRIs |
 | [ChEBI](https://www.ebi.ac.uk/chebi/) | Chemical entities and ontology hierarchy | [official web/API entry point](https://www.ebi.ac.uk/chebi/), [OLS](https://www.ebi.ac.uk/ols4/ontologies/chebi), [IDSM projection](https://idsm.elixir-czech.cz/sparql/endpoint/chebi) | `CHEBI:` accessions and ChEBI ontology IRIs; the IDSM graph is a third-party projection |
 | [SwissLipids](https://www.swisslipids.org/) | Lipid structures, metabolism, and cross-references | [beta SPARQL endpoint](https://beta.sparql.swisslipids.org/sparql), website and downloads | SwissLipids identifiers; ChEBI and reaction links where supplied |
-| [WikiPathways](https://www.wikipathways.org/) | Community-curated biological pathways | [SPARQL](https://sparql.wikipathways.org/sparql), [ontology](https://vocabularies.wikipathways.org/wp.owl), website/API | WikiPathways identifiers; WP vocabulary; database cross-reference predicates |
+| [WikiPathways](https://www.wikipathways.org/) | Community-curated biological pathways | [SPARQL](https://sparql.wikipathways.org/sparql), [verified example and source notes](sources/wikipathways.md), [ontology](https://vocabularies.wikipathways.org/wp.owl), website/API | WikiPathways identifiers; WP vocabulary; database cross-reference predicates |
 
 ## Comparative biology, expression, and interaction
 
@@ -27,7 +27,7 @@ Choose the route that best preserves the evidence needed for the question. A clo
 
 | Source | Scientific role | Candidate starting points | Identifier or vocabulary anchors |
 | --- | --- | --- | --- |
-| [Identifiers.org](https://identifiers.org/) | Registry and resolution of life-science identifiers | [SPARQL](https://sparql.api.identifiers.org/sparql), resolver/API | compact identifiers, namespaces, provider records |
+| [Identifiers.org](https://identifiers.org/) | Registry and resolution of life-science identifiers | [SPARQL](https://sparql.api.identifiers.org/sparql), [verified example and source notes](sources/identifiers-org.md), resolver/API | compact identifiers, namespaces, provider records; `owl:sameAs`, VoID, DCAT and IDOT |
 | [Bioregistry](https://bioregistry.io/) | Registry mappings and prefix normalization | [SPARQL](https://bioregistry.io/sparql), website/API | prefixes, collections, provider mappings |
 | [Wikidata](https://www.wikidata.org/) | Broad cross-domain identifier bridge | [Wikidata Query Service](https://query.wikidata.org/sparql), [QLever Wikidata](https://qlever.cs.uni-freiburg.de/api/wikidata) | Q-identifiers, properties, external identifiers; services are distinct projections/runtimes |
 | [MeSH RDF](https://id.nlm.nih.gov/mesh/) | Biomedical subject headings and hierarchy | [SPARQL](https://id.nlm.nih.gov/mesh/sparql), RDF browser/downloads | MeSH descriptors, concepts, qualifiers, and tree numbers |

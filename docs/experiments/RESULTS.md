@@ -18,6 +18,10 @@ This is the durable index of executed experiment results. Methodology dossiers d
 
 | Date | Run | Outcome | Durability | Durable record |
 | --- | --- | --- | --- | --- |
+| 2026-09-19 | Public worker first attempt | Partial: approval review blocked query/deposit | Partial | [Receipt](../../artifacts/scoped-data-bridge/live-20260919-public-worker-01/worker-attempt-1-receipt.json) |
+| 2026-09-19 | Public UniProt worker join and overlap | Passed after explicit approval; first worker blocked | Partial | [Receipt](../../artifacts/scoped-data-bridge/live-20260919-public-worker-01/receipt.json) |
+| 2026-09-19 | Identifiers.org and WikiPathways examples | Passed | Partial | [Receipt](../../artifacts/endpoint-examples/20260919/receipt.json) |
+| 2026-09-19 | Fresh worker synthetic join, 2,048 items | Passed | Partial | [Receipt](../../artifacts/scoped-data-bridge/live-20260919-worker-compute-01/receipt.json) |
 | 2026-09-09 | E1 fixture preparation | Failed | Partial | [Receipt](../../artifacts/scoped-data-bridge/20260909-e1-worker-01/receipt.json) |
 | 2026-09-09 | E1 fresh worker 1 | Passed: namespace probe | Partial | [Receipt](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-01-retry/receipt.json) |
 | 2026-09-09 | E1 fresh worker 2 | Passed: namespace probe | Partial | [Receipt](../../artifacts/scoped-data-bridge/bridge-20260909-e1-worker-02/receipt.json) |

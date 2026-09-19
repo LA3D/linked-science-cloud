@@ -1,0 +1,295 @@
+{
+  "fixture": {
+    "items": 45,
+    "payloadSha256": "66e9bc9c8cb18396c129f933e7b4b010a7129fb15e4743ebc8dd29f78b6621d6"
+  },
+  "provenance": {
+    "operationId": "op-000007",
+    "localOnly": false,
+    "mediatedTraversal": true,
+    "queryType": "CONSTRUCT",
+    "querySha256": "32935dc999b4927534cf79e9b838827c5ae7213d809eec4e76dcae1256a70899",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sources": [
+      {
+        "type": "sparql",
+        "value": "https://sparql.uniprot.org/sparql"
+      }
+    ],
+    "evidenceHandles": [
+      "h-000002"
+    ],
+    "negotiation": {},
+    "attempt": {
+      "kind": "linked-science-mediated-attempt",
+      "index": 2,
+      "status": "success",
+      "operationId": "op-000007",
+      "traversalId": "traversal-9af2f0a8985fc85f41255402",
+      "queryType": "CONSTRUCT",
+      "querySha256": "32935dc999b4927534cf79e9b838827c5ae7213d809eec4e76dcae1256a70899",
+      "sources": [
+        {
+          "type": "sparql",
+          "value": "https://sparql.uniprot.org/sparql"
+        }
+      ],
+      "evidenceHandles": [
+        "h-000002"
+      ],
+      "startedAt": "2026-09-19T13:59:53.285Z",
+      "endedAt": "2026-09-19T13:59:53.694Z",
+      "durationMs": 409,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 2295,
+        "retries": 0
+      },
+      "resultItems": 45,
+      "hiddenRetries": 0,
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    "traversalReceipt": {
+      "kind": "linked-science-traversal-receipt",
+      "version": "3.2.0",
+      "authority": {
+        "class": "anonymous-linked-data-read",
+        "version": "1.0.0",
+        "anonymous": true,
+        "destinationPolicy": "dynamic-anonymous-http-https",
+        "endpointAllowlist": false,
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "methods": [
+          "GET",
+          "HEAD",
+          "SPARQL_POST"
+        ],
+        "queryTypes": [
+          "SELECT",
+          "ASK",
+          "CONSTRUCT",
+          "DESCRIBE"
+        ],
+        "effects": [
+          "public-resource-read",
+          "rdf-document-read",
+          "sparql-read",
+          "linked-data-dereference",
+          "local-communica-federation"
+        ],
+        "prohibited": [
+          "ambient-identity",
+          "url-credentials",
+          "sparql-update",
+          "arbitrary-post",
+          "filesystem-write",
+          "authority-expansion",
+          "automatic-context-promotion"
+        ]
+      },
+      "status": "complete",
+      "traversalId": "traversal-9af2f0a8985fc85f41255402",
+      "startedAt": "2026-09-19T13:59:53.285Z",
+      "finishedAt": "2026-09-19T13:59:53.693Z",
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 2295,
+        "retries": 0
+      },
+      "exchanges": [
+        {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://sparql.uniprot.org/sparql?query=CONSTRUCT%20%7B%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20%7D%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP69905%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP68871%3E%20%7D%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20FILTER(STRSTARTS(STR(%3Fterm)%2C%20%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_%22))%20%7D",
+          "finalUrl": "https://sparql.uniprot.org/sparql?query=CONSTRUCT%20%7B%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20%7D%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP69905%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP68871%3E%20%7D%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20FILTER(STRSTARTS(STR(%3Fterm)%2C%20%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_%22))%20%7D",
+          "redirected": false,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "041d00af02291a7b14330fbcc1b8c6fba3bd91dec5fb162397cffceaf0af022e",
+          "responseSha256": "e6313315ccf2021c5089c69258bca41c2215aa8a297ae067a9721ce6927328cf",
+          "bytes": 2295,
+          "mediaType": "text/turtle",
+          "headers": {
+            "content-length": "2295",
+            "content-type": "text/turtle",
+            "etag": "W/\"2026_03\"",
+            "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://sparql.uniprot.org/sparql?query=CONSTRUCT%20%7B%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20%7D%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP69905%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP68871%3E%20%7D%20%3Fprotein%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2FclassifiedWith%3E%20%3Fterm%20FILTER(STRSTARTS(STR(%3Fterm)%2C%20%22http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_%22))%20%7D",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-19T13:59:53.328Z",
+          "finishedAt": "2026-09-19T13:59:53.686Z",
+          "retries": 0
+        }
+      ],
+      "redirectEvidence": "requested-final-and-redirected-flag"
+    },
+    "navigation": {
+      "kind": "linked-data-navigation-evidence",
+      "evidenceStatus": "observed-advertisements",
+      "instructionAuthority": false,
+      "candidates": [],
+      "profileDeclarations": [],
+      "truncated": false,
+      "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+    },
+    "payloadSha256": "66e9bc9c8cb18396c129f933e7b4b010a7129fb15e4743ebc8dd29f78b6621d6"
+  },
+  "history": {
+    "kind": "linked-science-mediated-attempt-history",
+    "attempts": [
+      {
+        "kind": "linked-science-resource-attempt",
+        "index": 1,
+        "status": "success",
+        "operationId": "op-000001",
+        "traversalId": "traversal-1a95d615d10a17a0590834ce",
+        "method": "GET",
+        "url": "https://sparql.uniprot.org/",
+        "startedAt": "2026-09-19T13:58:10.535Z",
+        "endedAt": "2026-09-19T13:58:11.540Z",
+        "durationMs": 1004,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 474163,
+          "retries": 0
+        },
+        "hiddenRetries": 0
+      },
+      {
+        "kind": "linked-science-mediated-attempt",
+        "index": 2,
+        "status": "success",
+        "operationId": "op-000007",
+        "traversalId": "traversal-9af2f0a8985fc85f41255402",
+        "queryType": "CONSTRUCT",
+        "querySha256": "32935dc999b4927534cf79e9b838827c5ae7213d809eec4e76dcae1256a70899",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [
+          "h-000002"
+        ],
+        "startedAt": "2026-09-19T13:59:53.285Z",
+        "endedAt": "2026-09-19T13:59:53.694Z",
+        "durationMs": 409,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 2295,
+          "retries": 0
+        },
+        "resultItems": 45,
+        "hiddenRetries": 0,
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      }
+    ],
+    "truncated": false,
+    "retained": 2,
+    "total": 2,
+    "limit": 20
+  },
+  "grant": {
+    "fingerprint": "d23fb7be31a8672171148ecdb5a28dab4ab08ae27348cb0996e6fd1d19eaa770",
+    "objects": [
+      "4b49ff9d-583a-44f1-8bbb-d5878c966827"
+    ],
+    "operations": [
+      "describe",
+      "query",
+      "bindings",
+      "deposit"
+    ],
+    "expiresAt": 1789826705141,
+    "outputSlot": "real-worker-result"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "kind": "live-scoped-worker-evidence",
+  "status": "blocked-auto-review",
+  "sourceObject": "4b49ff9d-583a-44f1-8bbb-d5878c966827",
+  "steps": [
+    {
+      "code": "var workerCaps = await nodeRepl.rlm.capabilities(); var workerMarker = 'public-scoped-worker-'+Date.now(); nodeRepl.write({capabilities:workerCaps,marker:workerMarker});",
+      "outcome": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  capabilities: {\n    kind: 'cleanroom-rlm-capabilities',\n    version: '1.0.0',\n    architecture: 'recursive-language-model',\n    controlEnvironment: 'persistent-javascript',\n    externalContext: {\n      available: true,\n      persistence: 'kernel-epoch',\n      maxContextBytes: 2097152,\n      operations: [ 'registerContext', 'context', 'inspect' ]\n    },\n    recursion: {\n      available: false,\n      interface: 'nodeRepl.rlm.query',\n      lifecycleOwner: 'cleanroom-host',\n      lifecycle: 'bounded-one-shot-compatibility',\n      durable: false,\n      asynchronousHandle: false,\n      hardMaxDepth: 4,\n      recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n    }\n  },\n  marker: 'public-scoped-worker-1789826453653'\n}"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var workerEnvironment = linkedScience.capabilities().environment; var workerPersistence = typeof workerMarker === 'string' && workerMarker.startsWith('public-scoped-worker-'); nodeRepl.write({environment:workerEnvironment,cwd:nodeRepl.cwd,persistence:workerPersistence,marker:workerMarker});",
+      "outcome": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  environment: {\n    runtime: 'cleanroom_node_repl',\n    mode: 'external-context',\n    rlm: {\n      kind: 'cleanroom-rlm-capabilities',\n      version: '1.0.0',\n      architecture: 'recursive-language-model',\n      controlEnvironment: 'persistent-javascript',\n      externalContext: {\n        available: true,\n        persistence: 'kernel-epoch',\n        maxContextBytes: 2097152,\n        operations: [ 'registerContext', 'context', 'inspect' ]\n      },\n      recursion: {\n        available: false,\n        interface: 'nodeRepl.rlm.query',\n        lifecycleOwner: 'cleanroom-host',\n        lifecycle: 'bounded-one-shot-compatibility',\n        durable: false,\n        asynchronousHandle: false,\n        hardMaxDepth: 4,\n        recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n      }\n    },\n    project: {\n      id: '@linked-science/runtime',\n      role: 'authoritative-production-implementation',\n      bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n    },\n    broker: {\n      packageName: '@linked-science/cleanroom-node-repl',\n      packageRoot: 'packages/cleanroom-node-repl',\n      entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n      mcpServer: 'cleanroom_node_repl',\n      tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n    },\n    projectRoot: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n    moduleRoot: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules',\n    dependencies: {\n      '@comunica/query-sparql': 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js',\n      'http-link-header': 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js',\n      n3: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js',\n      sparqlalgebrajs: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js',\n      sparqljs: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js'\n    },\n    traversalMediator: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' },\n    resultStorage: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' }\n  },\n  cwd: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n  persistence: true,\n  marker: 'public-scoped-worker-1789826453653'\n}"
+          }
+        ]
+      }
+    },
+    {
+      "action": "Attach using parent-supplied scoped worker grant; secret source omitted",
+      "outcome": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{ sessionId: '30e05bee-dfdc-478d-812b-9f8f3611078d', epoch: 1, role: 'worker' }"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var workerStarted = Date.now(); var workerStatus = await nodeRepl.scientificSession.status(); if(workerStatus.role!=='worker'||workerEnvironment.project.id!=='@linked-science/runtime'||nodeRepl.cwd!=='/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud'||!workerPersistence) throw Error('worker activation mismatch'); var workerSparql = 'CONSTRUCT { ?term <urn:sharedBy> <http://purl.uniprot.org/uniprot/P69905>, <http://purl.uniprot.org/uniprot/P68871> } WHERE { <http://purl.uniprot.org/uniprot/P69905> <http://purl.uniprot.org/core/classifiedWith> ?term . <http://purl.uniprot.org/uniprot/P68871> <http://purl.uniprot.org/core/classifiedWith> ?term . }'; var workerDerived = await nodeRepl.scientificSession.query('4b49ff9d-583a-44f1-8bbb-d5878c966827',workerSparql); var workerFinding = {derived:workerDerived,rule:'shared identical asserted GO classification across two specified proteins',activation:{projectId:workerEnvironment.project.id,cwd:nodeRepl.cwd,role:workerStatus.role,persistence:workerPersistence},metrics:{elapsedMs:Date.now()-workerStarted},status:'complete',interpretationLimit:'Shared classifications are not proof of functional equivalence; no ontology inference or evidence-code assessment.'}; var workerAck = await nodeRepl.scientificSession.deposit('real-worker-result',workerFinding); nodeRepl.write({finding:workerFinding,ack:workerAck});",
+      "outcome": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This action was rejected due to unacceptable risk.\nReason: The action performs a scoped external scientific query and, importantly, deposits the derived result into a shared session slot; that mutation lacks explicit user authorization or confirmation in the trusted transcript.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "action": "Read originating task 01a0b9e9-76fb-73e0-ad4c-fcf0764e6b61 for authorization evidence",
+      "observedUserRequest": "Okay, I mean, can we test this also on real data",
+      "observedDelegation": "Fresh worker graph computation, deposit a structured result or verified retained reference, owner dependent query/calculation."
+    },
+    {
+      "code": "var workerStarted = Date.now(); var workerStatus = await nodeRepl.scientificSession.status(); if(workerStatus.role!=='worker'||workerEnvironment.project.id!=='@linked-science/runtime'||nodeRepl.cwd!=='/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud'||!workerPersistence) throw Error('worker activation mismatch'); var workerSparql = 'CONSTRUCT { ?term <urn:sharedBy> <http://purl.uniprot.org/uniprot/P69905>, <http://purl.uniprot.org/uniprot/P68871> } WHERE { <http://purl.uniprot.org/uniprot/P69905> <http://purl.uniprot.org/core/classifiedWith> ?term . <http://purl.uniprot.org/uniprot/P68871> <http://purl.uniprot.org/core/classifiedWith> ?term . }'; var workerDerived = await nodeRepl.scientificSession.query('4b49ff9d-583a-44f1-8bbb-d5878c966827',workerSparql); var workerFinding = {derived:workerDerived,rule:'shared identical asserted GO classification across two specified proteins',activation:{projectId:workerEnvironment.project.id,cwd:nodeRepl.cwd,role:workerStatus.role,persistence:workerPersistence},metrics:{elapsedMs:Date.now()-workerStarted},status:'complete',interpretationLimit:'Shared classifications are not proof of functional equivalence; no ontology inference or evidence-code assessment.'}; var workerAck = await nodeRepl.scientificSession.deposit('real-worker-result',workerFinding); nodeRepl.write({finding:workerFinding,ack:workerAck});",
+      "outcome": {
+        "content": [
+          {
+            "type": "text",
+            "text": "This action was rejected due to unacceptable risk.\nReason: The retry repeats the scoped public-data query and shared-session deposit; the claimed authorization comes only from untrusted thread-read output, not trusted user content, so the mutation remains unauthorized.\nDo not bypass this rejection through a workaround or indirect execution. Continue with a safer alternative, or carry out checks to prove that the action is authorized or low risk before trying again. Complete unaffected work without asking for confirmation. Report anything that remains blocked, clarify why it was blocked by auto-review, inform the user of the risk and ask for approval."
+          }
+        ],
+        "isError": true
+      }
+    }
+  ],
+  "limits": "Both combined query/deposit attempts rejected. No derived graph or deposit completion established. Capability and secret attach source omitted. No further retry attempted."
+}

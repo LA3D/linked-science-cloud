@@ -1,0 +1,64 @@
+{
+  "runId": "live-20260919-worker-compute-01",
+  "frozenAt": "2026-09-19T13:56:17.422216+00:00",
+  "protocol": "scoped-data-bridge/live-bounded-computation-v1",
+  "scope": "One fresh Codex worker using mounted MCP, synthetic join and retained derived result, parent dependent query; not E5 suite",
+  "fixture": {
+    "items": 2048,
+    "recipe": "For i=0..2047: item i score i%100, item i group g(i%16); each g0..g15 has enabled boolean true iff group index even. Worker joins score>=50 and enabled=true, constructs eligibleScore triples."
+  },
+  "checks": [
+    "fresh parent identity and persistence",
+    "fresh worker identity and persistence",
+    "scoped attach worker role",
+    "derived query and deposit",
+    "owner retrieves deposit into kernel variable",
+    "owner queries deposited native derived reference and verifies count and sum against formula"
+  ],
+  "budgets": {
+    "workers": 1,
+    "repetitions": 1,
+    "wallTimeMs": 600000,
+    "workerGrantTtlMs": 300000,
+    "toolOutputBytes": 4096,
+    "publicReads": 0
+  },
+  "source": {
+    "fileSha256": {
+      "lib/cleanroom-linked-science-bootstrap.mjs": "3676ba123e0d76be466db917f99134bf30ec9ebe43fb2196e73fb65bef477c06",
+      "lib/competency-evaluation-manifest.mjs": "ebdcb0e20eeb5292896f356a1dacba0ec1681c50ea7e14f1bab36e366b7df99a",
+      "lib/context-map-recovery.mjs": "59c8f2a04310f7cd97c797e782b5258b7ddc63ada9112dc9be0bcb4d3d542228",
+      "lib/evidence-pack.mjs": "27dc32b5c5085882aeb0a269a4873453910e6fb790e85d89b56ed5157883a676",
+      "lib/experiment-result-registry.mjs": "3a3ffbb61c58ff270688766238ae7db895d026799a70654dd2d4c800bbc0d40d",
+      "lib/guarded-documentation-fetch.mjs": "54e8ae3e99152e153fe5b57c44de9d82b3c2762f36921e22bc6d4c3fba16f078",
+      "lib/guarded-evidence-acquisition.mjs": "76233169fbedc81f0751e2e22cf2d68ab0ffd8b83e5b3d3a216c476e21cc6aa4",
+      "lib/guarded-sparql-transport.mjs": "fa80c53d24210292070ca8a46def0ce66c86dd90c4c59d300095a1052cad5af3",
+      "lib/linked-data-affordances.mjs": "25221c3e4b7eb1375e209e18787b9ef31a9d2ae67e8e930612b73c21e63f5a6a",
+      "lib/linked-data-source-profiles.mjs": "87be3508cb6b79e4bea3108b8fede9fb49b339d32b118c6ca73fbb63b73fcccb",
+      "lib/linked-science-project-identity.mjs": "779ac360cb86d912b9d87c71cbf6a4e6789402cb7f59100737b0239e3ca50bb5",
+      "lib/linked-science-runtime.mjs": "7ebb4e4fe4935b8a2e88212e02bee28be5cc96145d782d5ff3b9385a93d8a9f6",
+      "lib/orientation-map.mjs": "77adbcab8fd79480ea4fb6776565a5e7cb18a7f5441903870b734988ab18e695",
+      "lib/repl-linked-data-session.mjs": "88d426ee555510daefa6230bc259b3c2fb4e73e28c267699ed7d7e72011a2c7c",
+      "lib/runtime-discovery-evaluation.mjs": "4bb83c11319420b23b56753b5ed06903fe03fcd75a02bfceba5148a55afb98dd",
+      "lib/trajectory-evaluation.mjs": "353193e9e2f81ddcdc29e8dfe0cc9c8f7a30f79be62cc69d8c5901e1a5a0c376",
+      "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs": "ea2eff7d74b364e3c2dd23d627247529c8083d2ae3005cb6c2aaa58500a52d14",
+      "packages/cleanroom-node-repl/src/mediated-traversal.mjs": "a958a2fa4b1a2f201695f53872a341b643844887b02ec0f053208660d009ab8a",
+      "packages/cleanroom-node-repl/src/peek-runtime.mjs": "8e010eae0f873507200f93ae191bd3e6cb596eedf2d7bbb848460f3941f9a400",
+      "packages/cleanroom-node-repl/src/private-linked-science-traversal.mjs": "aa7a325fba41b56a19f4e5329edaa7d0f4a4984ab53e5b033f9385e7bf3a7622",
+      "packages/cleanroom-node-repl/src/repl-kernel-child.mjs": "421d689fd5a913df1a32c991e1e9d0a00028fc5799729355efd3873d0a2596f1",
+      "packages/cleanroom-node-repl/src/result-spool.mjs": "6a1a3ea4cca1ab830d4c5e6487e62e22b829144f8383a6e16efc4eabf2c849cf",
+      "packages/cleanroom-node-repl/src/scientific-session-client.mjs": "fa2218ab100db16b3c31348916bb83ea7a90f00deeda8987dc189ac9558183f6",
+      "packages/cleanroom-node-repl/src/scientific-session-mcp.mjs": "8ce26de1ab118db2ef3d54a6f3abb965275c53ef773599fade0c594eb9d2b52b",
+      "packages/cleanroom-node-repl/src/scientific-session-runtime.mjs": "cdacd0e5615d848226b4e961b47cfe077ef42d758d5f6e71021694bdb602a0ba",
+      "packages/cleanroom-node-repl/src/scientific-session-server.mjs": "63a49dc244091f8be3506306791797693a419b0ed8606d43b40a8a786656a2fd",
+      "packages/cleanroom-node-repl/src/scientific-session-service.mjs": "cddf849b05eaaa74f231d958d1587d5cfdc22116f335bb905beccde315b93f4a"
+    },
+    "commit": null,
+    "dirtyDiffSha256": null,
+    "limitation": "No git operations requested; source file hashes used instead of git revision/diff."
+  },
+  "preflightIncidents": [
+    "runtimeInfo call TypeError; corrected using documented capabilities()",
+    "sandbox socket listen EPERM; elevated isolated service start succeeded"
+  ]
+}

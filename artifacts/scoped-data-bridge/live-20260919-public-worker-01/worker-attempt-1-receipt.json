@@ -1,0 +1,13 @@
+{
+  "runId": "live-20260919-public-worker-01-attempt-1",
+  "outcome": "partial",
+  "evidenceLevel": "resident-audited",
+  "durability": "partial",
+  "recordedAt": "2026-09-19T14:09:55.913620+00:00",
+  "observed": "Actual worker activated, persisted a marker and attached; query/deposit rejected twice by automatic approval review before execution",
+  "evidencePath": "worker-evidence.json",
+  "missingEvidence": [
+    "No completed graph query, deposited result or parent continuation in this attempt"
+  ],
+  "followup": "Direct user approval led to separately recorded fresh worker attempt 2; see receipt.json"
+}

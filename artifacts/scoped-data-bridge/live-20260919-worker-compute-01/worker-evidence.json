@@ -1,0 +1,59 @@
+{
+  "kind": "live-scoped-worker-computation-evidence",
+  "date": "2026-09-19",
+  "tools": "mcp__cleanroom_node_repl__js",
+  "actions": {
+    "activation": "var workerActivation = {environment:linkedScience.capabilities().environment,cwd:nodeRepl.cwd,rlm:nodeRepl.rlm.capabilities()}; var workerMarker='worker-activation-20260919'; nodeRepl.write(workerActivation);",
+    "persistenceAndAttachment": "var workerPersistence = workerMarker === 'worker-activation-20260919'; await nodeRepl.scientificSession.attach(<redacted connection capability>); var workerStatus = await nodeRepl.scientificSession.status(); nodeRepl.write({persistence:workerPersistence,status:workerStatus});",
+    "describe": "var workerSourceMetadata = await nodeRepl.scientificSession.describe('8d2bc845-0b8f-471c-ac74-3be29859dd79'); nodeRepl.write(workerSourceMetadata);",
+    "compute": "var workerStarted = Date.now(); var workerDerived = await nodeRepl.scientificSession.query('8d2bc845-0b8f-471c-ac74-3be29859dd79', 'CONSTRUCT { ?item <urn:eligibleScore> ?score } WHERE { ?item <urn:score> ?score ; <urn:group> ?group . ?group <urn:enabled> true . FILTER(?score >= 50) }'); var workerElapsed = Date.now()-workerStarted; nodeRepl.write({derived:workerDerived,elapsedMs:workerElapsed});",
+    "deposit": "var workerDeposit = await nodeRepl.scientificSession.deposit('live-worker-result', {derived:workerDerived,rule:'score>=50 and group enabled',activation:{projectId:workerActivation.environment.project.id,cwd:workerActivation.cwd,role:workerStatus.role,persistence:workerPersistence},metrics:{elapsedMs:workerElapsed},status:'complete'}); nodeRepl.write(workerDeposit);"
+  },
+  "observations": {
+    "activation": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  environment: {\n    runtime: 'cleanroom_node_repl',\n    mode: 'external-context',\n    rlm: {\n      kind: 'cleanroom-rlm-capabilities',\n      version: '1.0.0',\n      architecture: 'recursive-language-model',\n      controlEnvironment: 'persistent-javascript',\n      externalContext: {\n        available: true,\n        persistence: 'kernel-epoch',\n        maxContextBytes: 2097152,\n        operations: [ 'registerContext', 'context', 'inspect' ]\n      },\n      recursion: {\n        available: false,\n        interface: 'nodeRepl.rlm.query',\n        lifecycleOwner: 'cleanroom-host',\n        lifecycle: 'bounded-one-shot-compatibility',\n        durable: false,\n        asynchronousHandle: false,\n        hardMaxDepth: 4,\n        recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n      }\n    },\n    project: {\n      id: '@linked-science/runtime',\n      role: 'authoritative-production-implementation',\n      bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n    },\n    broker: {\n      packageName: '@linked-science/cleanroom-node-repl',\n      packageRoot: 'packages/cleanroom-node-repl',\n      entrypoint: 'packages/cleanroom-node-repl/src/cleanroom-mcp.mjs',\n      mcpServer: 'cleanroom_node_repl',\n      tools: [ 'js', 'js_reset', 'js_add_node_module_dir' ]\n    },\n    projectRoot: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n    moduleRoot: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules',\n    dependencies: {\n      '@comunica/query-sparql': 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js',\n      'http-link-header': 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js',\n      n3: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js',\n      sparqlalgebrajs: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js',\n      sparqljs: 'file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js'\n    },\n    traversalMediator: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' },\n    resultStorage: { available: true, owner: 'cleanroom-broker', exposure: 'private-runtime-only' }\n  },\n  cwd: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n  rlm: {\n    kind: 'cleanroom-rlm-capabilities',\n    version: '1.0.0',\n    architecture: 'recursive-language-model',\n    controlEnvironment: 'persistent-javascript',\n    externalContext: {\n      available: true,\n      persistence: 'kernel-epoch',\n      maxContextBytes: 2097152,\n      operations: [ 'registerContext', 'context', 'inspect' ]\n    },\n    recursion: {\n      available: false,\n      interface: 'nodeRepl.rlm.query',\n      lifecycleOwner: 'cleanroom-host',\n      lifecycle: 'bounded-one-shot-compatibility',\n      durable: false,\n      asynchronousHandle: false,\n      hardMaxDepth: 4,\n      recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n    }\n  }\n}"
+        }
+      ]
+    },
+    "attachment": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{ persistence: true, status: { sessionId: '30e05bee-dfdc-478d-812b-9f8f3611078d', epoch: 1, role: 'worker' } }"
+        }
+      ]
+    },
+    "describe": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  object: '8d2bc845-0b8f-471c-ac74-3be29859dd79',\n  kind: 'quads',\n  count: 4112,\n  columns: [ 'subject', 'predicate', 'object', 'graph' ],\n  epoch: '5d1c4645-d74f-46ee-9950-10a2bfd21ce1:live-20260919-worker-compute-01:1'\n}"
+        }
+      ]
+    },
+    "compute": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  derived: {\n    object: '2089d4b1-e8da-47c4-8b09-5a831695602c',\n    kind: 'quads',\n    count: 500,\n    epoch: '5d1c4645-d74f-46ee-9950-10a2bfd21ce1:live-20260919-worker-compute-01:1'\n  },\n  elapsedMs: 293\n}"
+        }
+      ]
+    },
+    "deposit": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{ slot: 'live-worker-result', status: 'deposited' }"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "No graph payload or item rows printed.",
+    "No aggregate query performed.",
+    "Parent independently retrieves slot and queries native result."
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-09-19T14:11:50.131792+00:00",
+  "checkout": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "startingCommit": "d267ca56fe2f6fa1c4cadacbb710f1f22927ab6c",
+  "taskBranch": "codex/live-worker-endpoint-examples",
+  "checks": {
+    "npm test": {
+      "passed": 218,
+      "failed": 1,
+      "skipped": 0,
+      "remainingFailure": "test/cleanroom-linked-science-bootstrap.test.mjs:69 hard-codes codex-repl/packages path; pre-existing valid moved-checkout .codex/config.toml does not match. Left unrelated config/test unchanged."
+    },
+    "npm run smoke": "passed",
+    "npm run linked-science:verify": "passed",
+    "npm run evaluation:results:validate": {
+      "status": "passed",
+      "runs": 61
+    },
+    "relativeMarkdownLinks": "passed",
+    "receiptEvidenceHashes": "passed",
+    "capabilitySecretScan": "passed",
+    "git diff --check": "passed"
+  },
+  "initialFailures": [
+    "Sandbox local socket restrictions; rerun with approved elevated execution",
+    "Registry documentationPaths under resources rejected; corrected to docs/experiments/RESULTS.md",
+    "Registry test expected 57 old records; updated to 61 and partial count 37"
+  ],
+  "cleanup": {
+    "testWorkspacesDisposed": true,
+    "isolatedServiceStopped": true,
+    "workersCompleted": 3,
+    "kernelReset": false
+  },
+  "sourceChanges": "Documentation, receipts, registry and corresponding expected test counts only. No runtime implementation or configuration edits.",
+  "durabilityNote": "Earlier synthetic receipt recorded no-git/uncommitted scope at capture time; subsequent user authorization for endpoint documentation enabled required local Git handoff. This later record does not alter frozen observations.",
+  "unrelatedChanges": [
+    ".codex/config.toml"
+  ]
+}
