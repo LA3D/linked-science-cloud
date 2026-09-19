@@ -34,6 +34,8 @@ Verification: `npm test`, `npm run smoke`, `npm run linked-science:verify`, `git
 
 ## Optional research
 
+The [wiki-memory implementation plan](docs/tasks/wiki-memory-continual-learning.md) specifies reuse of Codex history, reviewed procedural wiki records, skill validation and release/rollback. It is planning only; runtime scientific memory, implementation and evaluations require separate authorization.
+
 The [RLM paper](https://arxiv.org/html/2512.24601v2) motivates keeping large context external and inspecting it programmatically. Its REPL-only ablation is a useful baseline; depth-one model calls should first demonstrate value on semantic work that SPARQL does not finish, such as interpreting annotations. Durable asynchronous child sessions are a separate hypothesis.
 
 The [PEEK paper](https://arxiv.org/html/2605.19932v1) motivates reusable orientation across questions over recurring context. First compare the current small map with no-map/manual-map controls. A Distiller/Cartographer/Evictor policy needs its own measured gain and authorization; it is not implemented by maintaining a handle catalog.
