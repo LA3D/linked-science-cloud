@@ -20,6 +20,7 @@
   },
   "type": "module",
   "scripts": {
+    "codex:configure": "node scripts/configure-project-mcp.mjs",
     "smoke": "node scripts/smoke.mjs",
     "test": "node scripts/validate-repository-boundaries.mjs && node --test",
     "boundaries:validate": "node scripts/validate-repository-boundaries.mjs",

@@ -1,5 +1,5 @@
 import { lstat, readFile, readdir, realpath } from 'node:fs/promises';
-import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -142,7 +142,8 @@ export async function validateRepositoryBoundaries({ root = projectRoot, configT
   if (/^\[mcp_servers\.node_repl\]/mu.test(config)) failures.push('.codex/config.toml must not register the bundled node_repl');
   if (/^\[permissions\.[^\]]+\.network\.domains\]/mu.test(config)) failures.push('.codex/config.toml must not use a hostname allowlist as the Linked Science traversal boundary');
   const server = configSection(config, `mcp_servers.${expected.broker.mcpServer}`);
-  if (quotedScalar(server.get('command')) !== 'node') failures.push('.codex/config.toml must launch the project broker with node');
+  const command = quotedScalar(server.get('command'));
+  if (command !== 'node' && !(command && isAbsolute(command) && ['node', 'node.exe'].includes(basename(command)))) failures.push('.codex/config.toml must launch the project broker with node');
   const args = quotedValues(server.get('args') ?? '');
   const expectedEntrypoint = resolve(root, expected.broker.entrypoint);
   if (!sameStrings(args, [ expectedEntrypoint ])) failures.push(`.codex/config.toml args must name only ${expectedEntrypoint}`);

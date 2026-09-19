@@ -14,6 +14,10 @@ For native composition, prefer `ws.rdf.source(handle)`. `rdf.clone` explicitly c
 
 ## Activation and diagnosis
 
+For a fresh clone or a moved checkout, run `npm ci`, `npm run codex:configure`, and `npm run linked-science:verify` in the runtime package root before opening a task. The configuration step records that machine's absolute Node executable and checkout paths while preserving approvals. `node --version` in Terminal alone does not establish the desktop app's executable lookup. The project has a required MCP server, so startup failure blocks task creation. Do not disable the requirement to label an unavailable runtime as working. See the [official MCP configuration documentation](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
+
+The workstation path below is its saved location, not a required directory layout on other machines. The bootstrap derives and validates the root from its own source location. Runtime identity and persistence must still be checked after configuring a different checkout.
+
 For configuration, fresh-agent evaluation, suspected wrong runtime or an activation claim, observe:
 
 - server `cleanroom_node_repl` and exactly `js`, `js_reset`, `js_add_node_module_dir`;

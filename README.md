@@ -6,6 +6,18 @@ This checkout is the authoritative implementation at `/Users/cvardema/dev/git/LA
 
 ## Use the REPL
 
+On **each new machine or checkout**, first run these commands in the folder containing this `package.json`:
+
+```sh
+npm ci
+npm run codex:configure
+npm run linked-science:verify
+```
+
+Then restart the desktop app and open the project. Setup rewrites only the project MCP's `command`, `args`, and `cwd` using this checkout and the absolute Node executable running setup. It preserves tool approvals and the required-server setting; it does not edit global configuration or install anything itself. Keep these machine-specific config edits local, and rerun setup after moving the checkout or replacing Node. Use a Node version with `node:sqlite` available without extra flags; setup checks that import before writing. Dependencies must be installed locally; Git does not carry `node_modules`.
+
+The checked-in config contains the original workstation paths. Without setup, another checkout can fail before task creation with `cleanroom_node_repl: No such file or directory (os error 2)`. A missing configured working directory or a Node executable unavailable to the desktop app can cause this startup failure. See [runtime discovery](docs/agent/runtime-discovery.md) for the live check.
+
 The project `cleanroom_node_repl` broker initializes `linkedScience` / `ls` before the first evaluation in each kernel:
 
 ```js
