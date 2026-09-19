@@ -1,6 +1,6 @@
 # Implementation PLAN: wiki memory and reviewed skill evolution
 
-- **Status:** Planning complete for review, 2026-09-19; implementation and evaluation are not authorized by this plan.
+- **Status:** Authorized phase-0 foundation implemented, 2026-09-19; later phases and learning evaluations remain proposed. See the implementation record below.
 - **Owner:** Codex coordinates work; a repository maintainer reviews wiki revisions and releases. The scientific runtime remains the evidence/session service.
 - **Scope:** Reuse Codex history, preserve selected scientific evidence, maintain a versioned procedural wiki, propose one atomic skill change, validate it, then release or reject it with a durable record.
 - **Authority:** The user authorized this plan and documentation. No runtime code, skills, hooks, memory settings, transcript exports, learning runs or model evaluations are being implemented or enabled now. Later phase execution requires an appropriate task authorization; ordinary authorized public reads retain the existing broker contract.
@@ -277,7 +277,7 @@ Migration is additive and reversible. Existing experiment registry records remai
 
 A first implementation is complete only when durable references survive worker/session loss, wiki revisions retain evidence and counterexamples, a candidate remains undiscovered until release, evaluation records actual isolation/memory/loading limits, and full-bundle activation/rollback is demonstrated on fresh episodes. Mechanism success does not establish long-term learning quality, scientific truth or scalability.
 
-**Exact next action after implementation authorization:** phase 0 only—write versioned record contracts and a bounded history/receipt coverage fixture, freeze the skill baseline, and prove which missing joins require a sidecar. Do not install hooks or design a new archive first. No additional decision is needed to save/review this plan. Before a real pilot, material choices are (a) which selected task evidence the user permits retaining beyond references, (b) a supported host connection or manual import mode, and (c) a genuinely isolated evaluator/memory treatment. Defaults above allow synthetic contract work while these are resolved.
+**Next implementation boundary:** the authorized phase-0 foundation below is complete. Before phase 1, select and authorize a bounded host-history input and its retention scope; then test the import adapter against its actual observable schema. Do not install hooks or design a new archive first. No additional decision is needed to save/review this plan. Before a real pilot, material choices are (a) which selected task evidence the user permits retaining beyond references, (b) a supported host connection or manual import mode, and (c) a genuinely isolated evaluator/memory treatment. Defaults above allow synthetic contract work while these are resolved.
 
 Planning delivery uses the configured checkout `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`, starting commit `c6ed4c1e6ba8e0a3a706ee768330444e9695be29`, on `codex/wiki-memory-plan`. No new worktree, global configuration changes, private transcript reads, runtime/skill implementation or learning evaluation is part of this delivery. The older absolute ownership path in some project documents is not copied into proposed module contracts; resolve roots from the current validated checkout.
 
@@ -286,3 +286,30 @@ Documentation verification must include relative links, consistency of task/road
 Planning checks on 2026-09-19: changed Markdown relative links resolve; task index, roadmap and context router point to this single plan; whitespace/diff checks pass; `npm run smoke` passes. Required offline `npm test` repeats the preceding baseline: 218 passed, one failed at `test/cleanroom-linked-science-bootstrap.test.mjs:69` because it expects the old path. No skill was changed, so skill validation/behavioral evaluation is deferred to implementation. The only unrelated dirty file is `.codex/config.toml`; it is excluded from the documentation commit.
 
 User clarification incorporated on 2026-09-19: Science Cloud wiki memory is separate from the user's Obsidian wikimemory. Planned optional Obsidian display/export/sync/import integration was removed; the existing literature-note citation remains research provenance only. No Obsidian files were read or modified for this correction.
+
+
+## 12. Phase-0 implementation record — 2026-09-19
+
+The authorized first step implements four version-1.0.0 contracts: [episode](../../schemas/wiki-learning/episode.schema.json), [objective](../../schemas/wiki-learning/objective.schema.json), [evidence](../../schemas/wiki-learning/evidence.schema.json), and [outcome](../../schemas/wiki-learning/outcome.schema.json). [Contract validation](../../lib/wiki-learning/contracts.mjs) enforces bounded JSON records, closed fields, ordered objective revisions and objective-specific operation joins. This is a deliberately small schema vocabulary, not a general JSON Schema engine. Structural checks reject capability-shaped extra fields and hidden/accessor properties; they are not a general secret scanner or proof that free text is safe to retain.
+
+The [frozen baseline](../../artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json) contains all six current REPL skill files and five direct linked repository documents, preserving file bytes and executable modes. Its digest is `db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03`. The manifest explicitly excludes recursive documentation dependencies, remote contents and host/model configuration. Discovery and loading are `not-observed`. This snapshot is outside active skill roots and changes no active skill.
+
+The [synthetic development episode](../../test/fixtures/wiki-learning/development/scope-change/episode.json) uses fabricated observable task/turn/item events joined to an actual local runtime `results.profile` receipt. A one-edge query satisfies the initial smoke objective; a later request for the full directed structure remains partial with missing visualization evidence. The fixture covers durable source bytes, receipt-only evidence, a historical handle, reconstruction and missing output. The second tool event has no retained operation correlation, so its join remains unresolved. This demonstrates the need for an explicit correlation field in that fixture; it does not establish a gap in live host history or justify installing a hook.
+
+[Evidence inspection](../../lib/wiki-learning/evidence.mjs) verifies confined relative references, SHA-256 file bytes, JSON selectors, task/item identities and operation correlation. Its result is explicitly `reference-integrity-only`: a passed inspection does not grade scientific correctness or satisfy every objective. Missing saved bytes produce a partial report; corrupt bytes and false joins fail. Receipt availability never implies saved result payload or a live handle. File checks protect ordinary local artifact integrity; they are not a hostile same-user filesystem isolation boundary.
+
+The [focused tests](../../test/wiki-learning/phase0.test.mjs) generate a fresh local RDF query, reset its workspace, observe `LS_STALE_WORKSPACE`, and inspect the durable references without the session. They also reject reuse of the earlier smoke outcome for the later objective, forged operation correlation, path escapes, unsupported record versions, invented synthetic memory treatment and modified baseline bytes/modes. Host memory use/generation remain unknown. The checked-in fixture is a software test, not a scientific/model evaluation or reconstructed private conversation.
+
+Reproduce the offline checks from this checkout:
+
+```sh
+node --test test/wiki-learning/phase0.test.mjs
+node scripts/wiki-learning/validate.mjs
+node scripts/wiki-learning/snapshot-baseline.mjs verify artifacts/wiki-learning/baselines/repl-20260919-phase0
+```
+
+`create` in place of `verify` writes only a new destination under `artifacts/wiki-learning/baselines/` and refuses overwrite. The fixture validator reads the fixed saved development fixture; it is not a live history importer. No dependencies were added. Pattern/proposal/evaluation/release contracts, host compatibility probing, selected history import, wiki maintenance, candidate construction, activation/rollback and evaluations remain future work. No hooks, private history, Obsidian data, external sources or host-memory settings were accessed or changed for this implementation.
+
+Delivery starts at `db34264a4902fcdc465c107b3fc26de8b52c9ffe` in `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`, on `codex/wiki-memory-phase0`. The unrelated `.codex/config.toml` edit is preserved and excluded. Verification and final commit/main integration are reported in the completion handoff.
+
+Phase-0 verification: all 10 focused tests and the saved fixture/baseline validator pass; `npm run smoke`, changed-document relative-link checks and `git diff --check` pass. Full `npm test`: 229/230 pass; the sole failure repeats the pre-existing old-`codex-repl` path assertion at `test/cleanroom-linked-science-bootstrap.test.mjs:69`. No runtime configuration change or workaround was made.

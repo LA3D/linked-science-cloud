@@ -1,0 +1,79 @@
+{
+  "fixture": "synthetic-observable-items-not-a-Codex-export",
+  "thread": {
+    "id": "synthetic-task",
+    "turns": [
+      {
+        "id": "turn-1",
+        "items": [
+          {
+            "id": "message-1",
+            "type": "userMessage",
+            "content": [
+              {
+                "type": "text",
+                "text": "Check that a query can read the local pathway fixture."
+              }
+            ]
+          },
+          {
+            "id": "tool-1",
+            "type": "mcpToolCall",
+            "server": "cleanroom_node_repl",
+            "tool": "js",
+            "status": "completed",
+            "arguments": {
+              "code": "/* synthetic observable projection of the local query */"
+            },
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"operationId\":\"op-000002\",\"count\":1}"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "turn-2",
+        "items": [
+          {
+            "id": "message-2",
+            "type": "userMessage",
+            "content": [
+              {
+                "type": "text",
+                "text": "Now show the whole pathway with interaction directions."
+              }
+            ]
+          },
+          {
+            "id": "tool-2",
+            "type": "mcpToolCall",
+            "server": "cleanroom_node_repl",
+            "tool": "js",
+            "status": "completed",
+            "arguments": {
+              "code": "/* selected operation not retained in this fixture */"
+            },
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "No operation identifier captured"
+                }
+              ]
+            }
+          },
+          {
+            "id": "answer-2",
+            "type": "agentMessage",
+            "text": "The earlier query was a smoke check; no complete diagram is retained."
+          }
+        ]
+      }
+    ]
+  }
+}

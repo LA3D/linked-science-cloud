@@ -1,0 +1,2 @@
+<urn:a> <urn:activates> <urn:b> .
+<urn:b> <urn:inhibits> <urn:c> .

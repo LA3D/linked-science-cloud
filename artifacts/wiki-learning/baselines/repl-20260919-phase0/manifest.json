@@ -1,0 +1,99 @@
+{
+  "format": "linked-science-skill-baseline/v1",
+  "sourceRoot": ".agents/skills/linked-data-repl",
+  "scope": "complete-skill-directory-and-direct-repository-references",
+  "discovery": "not-observed",
+  "loading": "not-observed",
+  "outboundReferencePolicy": "navigation-not-snapshotted; no transitive repository or remote-content lock",
+  "outboundReferences": [
+    "docs/architecture/prime-linked-data-context-management.md",
+    "docs/architecture/rlm-linked-science-runtime.md",
+    "docs/architecture/scientific-session.md",
+    "docs/experiments/coordinator-worker-context-map.md",
+    "docs/experiments/jsmol-static-render.md",
+    "docs/experiments/large-result-export.md",
+    "docs/runtime/linked-science-api.schema.json",
+    "docs/runtime/routes.json",
+    "docs/tasks/uniprot-orientation-comparison.md"
+  ],
+  "files": [
+    {
+      "path": ".agents/skills/linked-data-repl/SKILL.md",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 5934,
+      "sha256": "336f6d775b1739b5cccb97c25c56c3b1976d0fbea204b6efb4fbe3934e632c0e"
+    },
+    {
+      "path": ".agents/skills/linked-data-repl/agents/openai.yaml",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 303,
+      "sha256": "ad21c577a7f642133a0a2797ce8460e131cb649bdd3bb3f2597d590e369068ac"
+    },
+    {
+      "path": ".agents/skills/linked-data-repl/references/guarded-evidence-acquisition.md",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 10999,
+      "sha256": "65cc1e9be063522eb7d91825dcb32b754be63bd5ad86385e720c35a716b2c633"
+    },
+    {
+      "path": ".agents/skills/linked-data-repl/references/identifiers-org-sparql.md",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 659,
+      "sha256": "4cca6fb32fffd90d017c801b1277dbedaf64bd99acd17fb5f75afc9d1ab44cb1"
+    },
+    {
+      "path": ".agents/skills/linked-data-repl/references/repl-environment.md",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 1827,
+      "sha256": "f73b87d663022a16ec5a360908461d9512ec241f8b657c91187e3d433ab4e9de"
+    },
+    {
+      "path": ".agents/skills/linked-data-repl/references/retained-state-and-presentation.md",
+      "role": "skill-file",
+      "mode": "0644",
+      "bytes": 3522,
+      "sha256": "003678ca9453997fe2fd23c968bd858e3e055562cc374258eae3a6f469e6265c"
+    },
+    {
+      "path": "docs/agent/runtime-discovery.md",
+      "role": "direct-repository-reference",
+      "mode": "0644",
+      "bytes": 6238,
+      "sha256": "69768f9be123b2e4f3a7e3a7c938011362b26d0a13c3a167bdb7530ad9d69c4b"
+    },
+    {
+      "path": "docs/agent/verification.md",
+      "role": "direct-repository-reference",
+      "mode": "0644",
+      "bytes": 2191,
+      "sha256": "b5910dfe7497a119c32cb8fcc28fa2b5d85ead0cb6fbddb64888824067521b75"
+    },
+    {
+      "path": "docs/architecture/bounded-presentation-handoff.md",
+      "role": "direct-repository-reference",
+      "mode": "0644",
+      "bytes": 1614,
+      "sha256": "bde1e6f254225022738bbada767899b66a1e08984f1d8a60a9e5bdb404ec42e5"
+    },
+    {
+      "path": "docs/architecture/orientation-cache-and-reset.md",
+      "role": "direct-repository-reference",
+      "mode": "0644",
+      "bytes": 4571,
+      "sha256": "4c03632d77483ecb8943b0bed9a90d153386a34ef1520f0caf8821dfdaed74d9"
+    },
+    {
+      "path": "docs/architecture/persistent-session-and-handles.md",
+      "role": "direct-repository-reference",
+      "mode": "0644",
+      "bytes": 2873,
+      "sha256": "6ebce4215932ada990d3e5fd98c21d10be491d7d2def7350b880cf7ac3b1c7ad"
+    }
+  ],
+  "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03"
+}

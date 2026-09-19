@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "synthetic-scope-change",
+  "host": {
+    "hostId": "synthetic-host",
+    "taskId": "synthetic-task",
+    "version": "not-observed",
+    "observableEvents": {
+      "path": "observable-events.json",
+      "sha256": "dc55bbccaa4ec7f38b3c30728328586cba58983e3d09d68a692e3bd243cd3529",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "not-observed; synthetic fixture, no host memory access"
+    }
+  },
+  "capture": {
+    "kind": "synthetic",
+    "completeness": "partial",
+    "gaps": [
+      "Synthetic observable projection, not live Codex capture",
+      "Second action has no retained scientific operation correlation",
+      "No visualization artifact retained"
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "6.4.0",
+    "sessionState": "lost"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "turn-1",
+      "itemId": "message-1",
+      "kind": "userMessage",
+      "sequence": 1,
+      "objectiveIds": [
+        "objective-1"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "turn-1",
+      "itemId": "tool-1",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "objective-1"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "turn-2",
+      "itemId": "message-2",
+      "kind": "userMessage",
+      "sequence": 3,
+      "objectiveIds": [
+        "objective-2"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "turn-2",
+      "itemId": "tool-2",
+      "kind": "mcpToolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "objective-2"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "turn-2",
+      "itemId": "answer-2",
+      "kind": "agentMessage",
+      "sequence": 5,
+      "objectiveIds": [
+        "objective-2"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "objective-1",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Check local query operation",
+      "acceptance": [
+        "Query completes over local fixture"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "objective-2",
+      "previousId": "objective-1",
+      "eventId": "event-3",
+      "statement": "Show complete pathway structure",
+      "acceptance": [
+        "Deliver a visual of both directed typed interactions"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "source",
+      "kind": "durable-artifact",
+      "artifact": {
+        "path": "pathway.ttl",
+        "sha256": "e9103eae2918c082f3495b456d95bcae8f86106c10a1cd76ad42140a499f5ea6",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "urn:synthetic:pathway",
+        "revision": "fixture-v1",
+        "representation": "text/turtle"
+      },
+      "description": "Saved complete two-edge synthetic source",
+      "completion": "scoped-complete",
+      "missingEvidence": []
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "query-receipt",
+      "kind": "receipt-only",
+      "artifact": {
+        "path": "query-profile.json",
+        "sha256": "9cf37160be8c16d527e71c4d3227942339c7891ff33232ce830ec17a9a519bef",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": {
+        "sessionId": null,
+        "workspace": "wiki-phase0-fixture",
+        "handleId": "h-000002",
+        "epoch": "20e3c865-28ec-44e6-a603-b8570fb225e7:wiki-phase0-fixture:1",
+        "state": "historical"
+      },
+      "source": {
+        "identity": "urn:synthetic:pathway",
+        "revision": "fixture-v1",
+        "representation": "text/turtle"
+      },
+      "description": "Existing results.profile receipt from the local runtime",
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full query bindings were not saved"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "old-result",
+      "kind": "historical-handle",
+      "artifact": null,
+      "historicalHandle": {
+        "sessionId": null,
+        "workspace": "wiki-phase0-fixture",
+        "handleId": "h-000002",
+        "epoch": "20e3c865-28ec-44e6-a603-b8570fb225e7:wiki-phase0-fixture:1",
+        "state": "historical"
+      },
+      "source": {
+        "identity": "urn:synthetic:pathway",
+        "revision": "fixture-v1",
+        "representation": "text/turtle"
+      },
+      "description": "Old result reference after runtime reset",
+      "completion": "unknown",
+      "missingEvidence": [
+        "Native result is unavailable after reset"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "reconstruction",
+      "kind": "reconstructed",
+      "artifact": {
+        "path": "reconstruction.txt",
+        "sha256": "9c4e500640747c29f048a9b1dd98f587ac030bc779e3a81b4f8894610a3bb2ee",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "urn:synthetic:pathway",
+        "revision": "fixture-v1",
+        "representation": "text/turtle"
+      },
+      "description": "Labeled synthetic reconstruction, not a machine observation",
+      "completion": "unknown",
+      "missingEvidence": [
+        "Exact second action and result missing"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "diagram",
+      "kind": "missing",
+      "artifact": null,
+      "historicalHandle": null,
+      "source": {
+        "identity": "urn:synthetic:pathway",
+        "revision": "fixture-v1",
+        "representation": "text/turtle"
+      },
+      "description": "Requested visualization was not retained",
+      "completion": "unknown",
+      "missingEvidence": [
+        "No diagram artifact available"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "id": "join-1",
+      "eventId": "event-2",
+      "objectiveId": "objective-1",
+      "evidenceId": "query-receipt",
+      "operationId": "op-000002",
+      "traversalId": null,
+      "basis": "explicit",
+      "note": "Bounded tool result and saved profile share the operation identifier"
+    },
+    {
+      "id": "join-2",
+      "eventId": "event-4",
+      "objectiveId": "objective-2",
+      "evidenceId": null,
+      "operationId": null,
+      "traversalId": null,
+      "basis": "unresolved",
+      "note": "Selected host action omitted scientific correlation; timestamps do not establish a join"
+    }
+  ],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "outcome-1",
+      "objectiveId": "objective-1",
+      "kind": "machine-check",
+      "status": "passed",
+      "claim": "Local query produced one result",
+      "evidenceIds": [
+        "query-receipt"
+      ],
+      "missingEvidence": []
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "outcome-2",
+      "objectiveId": "objective-2",
+      "kind": "agent-judgment",
+      "status": "partial",
+      "claim": "Smoke query does not establish delivery of a full pathway diagram",
+      "evidenceIds": [
+        "diagram",
+        "reconstruction"
+      ],
+      "missingEvidence": [
+        "No visualization or second-action receipt"
+      ]
+    }
+  ]
+}

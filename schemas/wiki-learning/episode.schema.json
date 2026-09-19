@@ -1,0 +1,344 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Linked Science wiki-learning episode v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+    },
+    "host": {
+      "type": "object",
+      "properties": {
+        "hostId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "taskId": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "observableEvents": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "hashDomain": {
+              "const": "file-bytes"
+            },
+            "pointer": {
+              "type": "string",
+              "maxLength": 1024
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "hashDomain",
+            "pointer"
+          ],
+          "additionalProperties": false
+        },
+        "memory": {
+          "type": "object",
+          "properties": {
+            "use": {
+              "enum": [
+                "unknown",
+                "not-observed",
+                "enabled",
+                "disabled"
+              ]
+            },
+            "generation": {
+              "enum": [
+                "unknown",
+                "not-observed",
+                "enabled",
+                "disabled"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          },
+          "required": [
+            "use",
+            "generation",
+            "basis"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "hostId",
+        "taskId",
+        "version",
+        "observableEvents",
+        "memory"
+      ],
+      "additionalProperties": false
+    },
+    "capture": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "synthetic",
+            "selected-import",
+            "reconstructed"
+          ]
+        },
+        "completeness": {
+          "enum": [
+            "complete-within-scope",
+            "partial"
+          ]
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "minItems": 0,
+          "maxItems": 128
+        }
+      },
+      "required": [
+        "kind",
+        "completeness",
+        "gaps"
+      ],
+      "additionalProperties": false
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "const": "@linked-science/runtime"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "sessionState": {
+          "enum": [
+            "not-observed",
+            "lost",
+            "closed"
+          ]
+        }
+      },
+      "required": [
+        "projectId",
+        "version",
+        "sessionState"
+      ],
+      "additionalProperties": false
+    },
+    "skillBaseline": {
+      "type": "object",
+      "properties": {
+        "manifestPath": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "discovery": {
+          "const": "not-observed"
+        },
+        "loading": {
+          "const": "not-observed"
+        }
+      },
+      "required": [
+        "manifestPath",
+        "digest",
+        "discovery",
+        "loading"
+      ],
+      "additionalProperties": false
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "turnId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "itemId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "kind": {
+            "enum": [
+              "userMessage",
+              "agentMessage",
+              "mcpToolCall"
+            ]
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "objectiveIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+            },
+            "minItems": 1,
+            "maxItems": 128
+          }
+        },
+        "required": [
+          "id",
+          "turnId",
+          "itemId",
+          "kind",
+          "sequence",
+          "objectiveIds"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "$ref": "objective.schema.json"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "evidence.schema.json"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "joins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "eventId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "objectiveId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+          },
+          "evidenceId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 4096
+          },
+          "operationId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 4096
+          },
+          "traversalId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 4096
+          },
+          "basis": {
+            "enum": [
+              "explicit",
+              "verified-content",
+              "inferred",
+              "unresolved"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "id",
+          "eventId",
+          "objectiveId",
+          "evidenceId",
+          "operationId",
+          "traversalId",
+          "basis",
+          "note"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 128
+    },
+    "outcomes": {
+      "type": "array",
+      "items": {
+        "$ref": "outcome.schema.json"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "host",
+    "capture",
+    "runtime",
+    "skillBaseline",
+    "events",
+    "objectives",
+    "evidence",
+    "joins",
+    "outcomes"
+  ],
+  "additionalProperties": false
+}

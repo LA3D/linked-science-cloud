@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Linked Science wiki-learning evidence v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$"
+    },
+    "kind": {
+      "enum": [
+        "durable-artifact",
+        "receipt-only",
+        "historical-handle",
+        "reconstructed",
+        "missing"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "artifact": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "hashDomain": {
+              "const": "file-bytes"
+            },
+            "pointer": {
+              "type": "string",
+              "maxLength": 1024
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "hashDomain",
+            "pointer"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "historicalHandle": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "sessionId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 4096
+            },
+            "workspace": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "handleId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "epoch": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "state": {
+              "const": "historical"
+            }
+          },
+          "required": [
+            "sessionId",
+            "workspace",
+            "handleId",
+            "epoch",
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 4096
+        },
+        "representation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        }
+      },
+      "required": [
+        "identity",
+        "revision",
+        "representation"
+      ],
+      "additionalProperties": false
+    },
+    "completion": {
+      "enum": [
+        "scoped-complete",
+        "partial",
+        "unknown"
+      ]
+    },
+    "missingEvidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "minItems": 0,
+      "maxItems": 128
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "kind",
+    "description",
+    "artifact",
+    "historicalHandle",
+    "source",
+    "completion",
+    "missingEvidence"
+  ],
+  "additionalProperties": false
+}
