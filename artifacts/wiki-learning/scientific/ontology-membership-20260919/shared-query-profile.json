@@ -1,0 +1,73 @@
+{
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000009",
+    "type": "bindings",
+    "epoch": "ad9139f3-5d9a-4729-979d-4d1e68e36d69:ontology-membership-20260919:1",
+    "label": "query-result"
+  },
+  "type": "bindings",
+  "count": 18,
+  "columns": [
+    "go"
+  ],
+  "fingerprints": [
+    "ebd340d1ed87a86c2dd3af5e918cc64828702802dda1e3ca94ace073e5ff2453",
+    "01175e818ce8eb2b81a95ffbd8a4b83a5b8eb917f339039a81acd13a03448c61",
+    "c62f814b8541a60344aaaee8f01d7b558dd693dce850bd0ceb5f5aca8fcfe19c",
+    "4a8cf2f9bbcb0d699b98f0ead5d75f5afa4447c4de35329fc4026a319dcf5557"
+  ],
+  "lineage": {
+    "kind": "communica-query",
+    "operationId": "op-000010",
+    "sourceHandles": [
+      "h-000005",
+      "h-000006"
+    ],
+    "querySha256": "95e853066b2047e8bca30c465bc9b98429333d504432da952f52452b704b4c7f",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    }
+  },
+  "provenance": {
+    "operationId": "op-000010",
+    "localOnly": true,
+    "queryType": "SELECT",
+    "querySha256": "95e853066b2047e8bca30c465bc9b98429333d504432da952f52452b704b4c7f",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sourceHandles": [
+      "h-000005",
+      "h-000006"
+    ],
+    "sourceFingerprints": [
+      "ebd340d1ed87a86c2dd3af5e918cc64828702802dda1e3ca94ace073e5ff2453",
+      "01175e818ce8eb2b81a95ffbd8a4b83a5b8eb917f339039a81acd13a03448c61",
+      "c62f814b8541a60344aaaee8f01d7b558dd693dce850bd0ceb5f5aca8fcfe19c",
+      "4a8cf2f9bbcb0d699b98f0ead5d75f5afa4447c4de35329fc4026a319dcf5557"
+    ]
+  },
+  "completion": {
+    "kind": "linked-science-result-completion",
+    "status": "complete",
+    "complete": true,
+    "truncated": false,
+    "scope": "submitted-query",
+    "materialization": "atomic-before-handle-publication"
+  },
+  "bounds": {
+    "bytes": 1795,
+    "maxBytes": 32768
+  }
+}

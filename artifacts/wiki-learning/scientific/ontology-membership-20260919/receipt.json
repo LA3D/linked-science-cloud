@@ -1,0 +1,49 @@
+{
+  "format": "linked-science-scientific-workflow-receipt/v1",
+  "runId": "ontology-membership-20260919",
+  "outcome": "passed",
+  "evidenceLevel": "machine-receipt",
+  "durability": "partial",
+  "question": "Which GO IRIs are asserted for both human hemoglobin alpha (P69905) and beta (P68871) in the retrieved UniProt records, and what relation does the source schema define?",
+  "runtimeConnection": {
+    "mountedProbe": "CONNECTION_CLOSED; no execution or mounted identity proof",
+    "actual": "fresh repository-owned stdio MCP; identity and persistence verified",
+    "projectId": "@linked-science/runtime"
+  },
+  "checks": {
+    "alpha": 20,
+    "beta": 25,
+    "shared": 18,
+    "exactSetEquality": true,
+    "membershipCount": 45,
+    "retainedQueryOperation": "op-000008"
+  },
+  "interpretation": "Asserted GO identifier overlap in two retrieved records, not ontology hierarchy, full pathway or functional equivalence",
+  "sourceAsOf": "2026-09-19T15:41:32.500Z",
+  "missingEvidence": [
+    "Full retrieved RDF source bytes not durably exported; hashes and parsed profiles retained",
+    "No transfer/model-learning evaluation",
+    "No independently verified protein release headers; schema release is not assumed for protein records"
+  ],
+  "capturedBeforeSessionLoss": true,
+  "sessionStateAtCapture": "live; retained graphs/results checked in exchange 7",
+  "hashes": {
+    "alpha-profile.json": "0051f94eac664204d5550638489a8aab5943061260e0e472e27b27ad2b66b9a4",
+    "answer.json": "3c19962ead18297203bbd01f88ca0e1619817ec36bd368d8ffe254c0ed415726",
+    "beta-profile.json": "9733218a91510f4cd3cc3e596fd0c852ec93db95bd7976ca0ce086dca50654ed",
+    "broker-session.mjs": "4376c3daf4fefea802238e9191a2ed669e9dc7d962c6baba3f1aa6d7ecb68343",
+    "episode.json": "1997d5c5dabee2964a2d84e2af08f2b7876f4bc36abdc42cc0f8eb00425b4537",
+    "exchange-1.json": "5a4dc05197bcf5d92a4e49cf0b0b2263f0684dc1074e6bd6ef4deadd2d881a29",
+    "exchange-2.json": "5acca742e5feb678038714aac122408fb3e7ed18b7b70f63c572b7c21587a003",
+    "exchange-3.json": "05014a31fcd25b86c795585ff89e7858671c317c0fe0bf4eed9cabf17ec5bf4c",
+    "exchange-4.json": "cb437653d30653e0344189fad7523238727e0b32062ba80a7e19ae7d1b628a52",
+    "exchange-5.json": "b3ec3c287de6ce11d283506c3e7ed0dcb70c21733bca61f42f3cf45ff22884fa",
+    "exchange-6.json": "b117433bcf99919ab8d20d1c2a19ebd7653ebb64ebe272e48fc27a738d9b0fdf",
+    "exchange-7.json": "1b7748bb43071b8ddb50b524ef952b7e340410d0c2274a93574237c1bef9a9c9",
+    "membership-query-profile.json": "554a7c4e4bfbc6b38f5143f8c5ec65ca48625f9cc03319edd8e670cfa63dd191",
+    "membership.svg": "306388e003eecea14fcd4d729dc2c9ef6f97b6a241cae026f6b13981698d2413",
+    "observable-events.json": "3256b2ed3c18e40f9b96460f914dff19cb9de4c4e2753c923f2417af28ef5970",
+    "shared-query-profile.json": "0c84769a3cf0c012250246362a2869f33265d95ac9aa1ac539d5bcab355c2e7f",
+    "tools.json": "fcbe0744f53634584a87a19389cc392f2cdf7b3d9d1ab8061b14f32c5102bc0c"
+  }
+}

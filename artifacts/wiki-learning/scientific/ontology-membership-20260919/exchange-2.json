@@ -1,0 +1,36 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-2",
+  "observedAt": "2026-09-19T15:41:32.500Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "nodeRepl.write(JSON.stringify({persistence:corpusSentinel+1})); var sciResources={}; for(var [key,url] of [['schema','https://purl.uniprot.org/core/'],['alpha','https://rest.uniprot.org/uniprotkb/P69905.ttl'],['beta','https://rest.uniprot.org/uniprotkb/P68871.ttl']]) { try { var res=await sci.resources.get(url,{headers:{accept:'text/turtle, application/rdf+xml;q=0.9'},role:key}); sciResources[key]=res; nodeRepl.write(JSON.stringify({key,metadata:sci.resources.inspect(res)})); } catch(e){nodeRepl.write(JSON.stringify({key,error:e.code,message:e.message,receipt:e.receipt}));} }",
+    "timeout_ms": 60000,
+    "max_output_bytes": 14000
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"persistence\":42}"
+        },
+        {
+          "type": "text",
+          "text": "{\"key\":\"schema\",\"metadata\":{\"kind\":\"linked-science-resource-inspection\",\"representation\":\"metadata\",\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000001\",\"type\":\"resource\",\"epoch\":\"ad9139f3-5d9a-4729-979d-4d1e68e36d69:ontology-membership-20260919:1\",\"label\":\"schema\"},\"ok\":true,\"status\":200,\"statusText\":\"\",\"url\":\"https://sparql.uniprot.org/sparql/?query=PREFIX%20up:%3chttp://purl.uniprot.org/core/%3e%20DESCRIBE%20up:%20FROM%20up:\",\"redirected\":true,\"headers\":{\"content-length\":\"2697\",\"content-type\":\"text/turtle\",\"etag\":\"W/\\\"2026_03\\\"\",\"vary\":\"Negotiate,Accept,Accept-Encoding,Content-Type\"},\"mediaType\":\"text/turtle\",\"bytes\":2697,\"sha256\":\"4fc40fa78b36be0e992fff11d7104f68f54666de5b18a6a9302f3b566221f5ba\",\"provenance\":{\"operationId\":\"op-000001\",\"payloadSha256\":\"4fc40fa78b36be0e992fff11d7104f68f54666de5b18a6a9302f3b566221f5ba\",\"mediatedTraversal\":true},\"bounds\":{\"bytes\":875,\"maxBytes\":32768}}}"
+        },
+        {
+          "type": "text",
+          "text": "{\"key\":\"alpha\",\"metadata\":{\"kind\":\"linked-science-resource-inspection\",\"representation\":\"metadata\",\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000002\",\"type\":\"resource\",\"epoch\":\"ad9139f3-5d9a-4729-979d-4d1e68e36d69:ontology-membership-20260919:1\",\"label\":\"alpha\"},\"ok\":true,\"status\":200,\"statusText\":\"\",\"url\":\"https://rest.uniprot.org/uniprotkb/P69905.ttl\",\"redirected\":false,\"headers\":{\"content-type\":\"text/turtle\",\"vary\":\"Accept, Accept-Encoding, X-UniProt-Release, X-API-Deployment-Date, User-Agent\"},\"mediaType\":\"text/turtle\",\"bytes\":499656,\"sha256\":\"ebd340d1ed87a86c2dd3af5e918cc64828702802dda1e3ca94ace073e5ff2453\",\"provenance\":{\"operationId\":\"op-000002\",\"payloadSha256\":\"ebd340d1ed87a86c2dd3af5e918cc64828702802dda1e3ca94ace073e5ff2453\",\"mediatedTraversal\":true},\"bounds\":{\"bytes\":789,\"maxBytes\":32768}}}"
+        },
+        {
+          "type": "text",
+          "text": "{\"key\":\"beta\",\"metadata\":{\"kind\":\"linked-science-resource-inspection\",\"representation\":\"metadata\",\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000003\",\"type\":\"resource\",\"epoch\":\"ad9139f3-5d9a-4729-979d-4d1e68e36d69:ontology-membership-20260919:1\",\"label\":\"beta\"},\"ok\":true,\"status\":200,\"statusText\":\"\",\"url\":\"https://rest.uniprot.org/uniprotkb/P68871.ttl\",\"redirected\":false,\"headers\":{\"content-type\":\"text/turtle\",\"vary\":\"Accept, Accept-Encoding, X-UniProt-Release, X-API-Deployment-Date, User-Agent\"},\"mediaType\":\"text/turtle\",\"bytes\":589281,\"sha256\":\"c62f814b8541a60344aaaee8f01d7b558dd693dce850bd0ceb5f5aca8fcfe19c\",\"provenance\":{\"operationId\":\"op-000003\",\"payloadSha256\":\"c62f814b8541a60344aaaee8f01d7b558dd693dce850bd0ceb5f5aca8fcfe19c\",\"mediatedTraversal\":true},\"bounds\":{\"bytes\":788,\"maxBytes\":32768}}}"
+        }
+      ]
+    }
+  }
+}

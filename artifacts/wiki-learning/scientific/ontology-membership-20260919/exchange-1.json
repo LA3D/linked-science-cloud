@@ -1,0 +1,22 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-1",
+  "observedAt": "2026-09-19T15:41:19.053Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var corpusSentinel=41; var sci=linkedScience.open({contextKey:'ontology-membership-20260919'}); nodeRepl.write(JSON.stringify({cwd:nodeRepl.cwd,environment:linkedScience.capabilities().environment,rlm:nodeRepl.rlm.capabilities(),question:'Which GO IRIs are asserted for both human hemoglobin alpha (P69905) and beta (P68871) in the retrieved UniProt records, and what relation does the source schema define?'}));"
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cwd\":\"/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud\",\"environment\":{\"runtime\":\"cleanroom_node_repl\",\"mode\":\"external-context\",\"rlm\":{\"kind\":\"cleanroom-rlm-capabilities\",\"version\":\"1.0.0\",\"architecture\":\"recursive-language-model\",\"controlEnvironment\":\"persistent-javascript\",\"externalContext\":{\"available\":true,\"persistence\":\"kernel-epoch\",\"maxContextBytes\":2097152,\"operations\":[\"registerContext\",\"context\",\"inspect\"]},\"recursion\":{\"available\":false,\"interface\":\"nodeRepl.rlm.query\",\"lifecycleOwner\":\"cleanroom-host\",\"lifecycle\":\"bounded-one-shot-compatibility\",\"durable\":false,\"asynchronousHandle\":false,\"hardMaxDepth\":4,\"recovery\":\"Continue with local external-context operations, or run under a host configured with an RLM provider.\"}},\"project\":{\"id\":\"@linked-science/runtime\",\"role\":\"authoritative-production-implementation\",\"bootstrapEntrypoint\":\"lib/cleanroom-linked-science-bootstrap.mjs\"},\"broker\":{\"packageName\":\"@linked-science/cleanroom-node-repl\",\"packageRoot\":\"packages/cleanroom-node-repl\",\"entrypoint\":\"packages/cleanroom-node-repl/src/cleanroom-mcp.mjs\",\"mcpServer\":\"cleanroom_node_repl\",\"tools\":[\"js\",\"js_reset\",\"js_add_node_module_dir\"]},\"projectRoot\":\"/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud\",\"moduleRoot\":\"/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules\",\"dependencies\":{\"@comunica/query-sparql\":\"file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js\",\"http-link-header\":\"file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js\",\"n3\":\"file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js\",\"sparqlalgebrajs\":\"file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js\",\"sparqljs\":\"file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js\"},\"traversalMediator\":{\"available\":true,\"owner\":\"cleanroom-broker\",\"exposure\":\"private-runtime-only\"},\"resultStorage\":{\"available\":true,\"owner\":\"cleanroom-broker\",\"exposure\":\"private-runtime-only\"}},\"rlm\":{\"kind\":\"cleanroom-rlm-capabilities\",\"version\":\"1.0.0\",\"architecture\":\"recursive-language-model\",\"controlEnvironment\":\"persistent-javascript\",\"externalContext\":{\"available\":true,\"persistence\":\"kernel-epoch\",\"maxContextBytes\":2097152,\"operations\":[\"registerContext\",\"context\",\"inspect\"]},\"recursion\":{\"available\":false,\"interface\":\"nodeRepl.rlm.query\",\"lifecycleOwner\":\"cleanroom-host\",\"lifecycle\":\"bounded-one-shot-compatibility\",\"durable\":false,\"asynchronousHandle\":false,\"hardMaxDepth\":4,\"recovery\":\"Continue with local external-context operations, or run under a host configured with an RLM provider.\"}},\"question\":\"Which GO IRIs are asserted for both human hemoglobin alpha (P69905) and beta (P68871) in the retrieved UniProt records, and what relation does the source schema define?\"}"
+        }
+      ]
+    }
+  }
+}

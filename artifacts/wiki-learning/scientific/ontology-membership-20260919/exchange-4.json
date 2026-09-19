@@ -1,0 +1,24 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-4",
+  "observedAt": "2026-09-19T15:43:37.881Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var membershipQuery='SELECT DISTINCT ?protein ?go WHERE { VALUES ?protein { <http://purl.uniprot.org/uniprot/P69905> <http://purl.uniprot.org/uniprot/P68871> } ?protein <http://purl.uniprot.org/core/classifiedWith> ?go . FILTER(STRSTARTS(STR(?go), \"http://purl.obolibrary.org/obo/GO_\")) } ORDER BY ?protein ?go'; var memberships=await sci.query.run({sources:[ga,gb],sparql:membershipQuery}); nodeRepl.write(JSON.stringify({memberships:sci.results.profile(memberships),rows:await sci.results.page(memberships,{limit:100,maxBytes:12000})}));",
+    "max_output_bytes": 17000
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 6,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":false,\"error\":{\"code\":\"LS_BOUND_EXCEEDED\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"limit must be an integer from 0 to 10\",\"stage\":\"projection\",\"recoveryDocument\":\"recovery\",\"retryable\":true,\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}},\"receipt\":{\"status\":\"failed\",\"stage\":\"projection\",\"code\":\"LS_BOUND_EXCEEDED\",\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}}}}}"
+        }
+      ],
+      "isError": true
+    }
+  }
+}

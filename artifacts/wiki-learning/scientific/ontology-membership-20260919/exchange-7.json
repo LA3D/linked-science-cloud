@@ -1,0 +1,22 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-7",
+  "observedAt": "2026-09-19T15:44:14.770Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var nn=(await import('n3')).DataFactory.namedNode;var nativeSets=[];for(var [h,acc] of [[ga,'P69905'],[gb,'P68871']]){var values=new Set();for await(var q of sci.rdf.source(h).match(nn('http://purl.uniprot.org/uniprot/'+acc),nn('http://purl.uniprot.org/core/classifiedWith'),null,null)){if(q.object.value.startsWith('http://purl.obolibrary.org/obo/GO_'))values.add(q.object.value);}nativeSets.push(values);}var nativeShared=[...nativeSets[0]].filter(x=>nativeSets[1].has(x)).sort();var checks={alpha:nativeSets[0].size,beta:nativeSets[1].size,shared:nativeShared.length,exactSetEquality:JSON.stringify(nativeShared)===JSON.stringify([...sharedIds].sort()),membershipCount:compactRows.length,retainedQueryOperation:sci.results.profile(memberships).provenance.operationId};nodeRepl.write(JSON.stringify({checks}));"
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 9,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"checks\":{\"alpha\":20,\"beta\":25,\"shared\":18,\"exactSetEquality\":true,\"membershipCount\":45,\"retainedQueryOperation\":\"op-000008\"}}"
+        }
+      ]
+    }
+  }
+}

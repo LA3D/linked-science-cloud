@@ -1,0 +1,313 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "ontology-membership-20260919",
+  "host": {
+    "hostId": "repository-stdio",
+    "taskId": "ontology-membership-20260919",
+    "version": "project broker; actual JSON-RPC exchange records",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/observable-events.json",
+      "sha256": "3256b2ed3c18e40f9b96460f914dff19cb9de4c4e2753c923f2417af28ef5970",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No model-memory settings inspected; host performed symbolic calls"
+    }
+  },
+  "capture": {
+    "kind": "direct-runtime",
+    "completeness": "partial",
+    "gaps": [
+      "Mounted Desktop connection failed; fresh actual project stdio broker used and identified separately",
+      "Host task IDs are not asserted for project-broker exchange IDs",
+      "Source documents retained only in live kernel; hashes, profiles, compact answer and exact requests saved",
+      "No WikiPathways pathway or full GO closure retrieved; experiment concerns asserted ontology membership",
+      "One overlong terminal input was cleared before submission; no tool exchange claimed for it"
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "6.4.0",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "scientific-run",
+      "itemId": "exchange-1",
+      "kind": "mcpToolCall",
+      "sequence": 1,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "scientific-run",
+      "itemId": "exchange-2",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "scientific-run",
+      "itemId": "exchange-3",
+      "kind": "mcpToolCall",
+      "sequence": 3,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "scientific-run",
+      "itemId": "exchange-4",
+      "kind": "mcpToolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "scientific-run",
+      "itemId": "exchange-5",
+      "kind": "mcpToolCall",
+      "sequence": 5,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "scientific-run",
+      "itemId": "exchange-6",
+      "kind": "mcpToolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    },
+    {
+      "id": "event-7",
+      "turnId": "scientific-run",
+      "itemId": "exchange-7",
+      "kind": "mcpToolCall",
+      "sequence": 7,
+      "objectiveIds": [
+        "shared-go"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "shared-go",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Which GO IRIs are asserted for both human hemoglobin alpha (P69905) and beta (P68871) in the retrieved UniProt records, and what relation does the source schema define?",
+      "acceptance": [
+        "Inspect source-owned predicate definition",
+        "Retrieve bounded complete protein records through project mediator",
+        "Compute asserted GO intersection and independently check native sets",
+        "Preserve a clearly scoped inspectable membership view and distinguish display limits from retained result completeness"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "alpha",
+      "kind": "receipt-only",
+      "description": "Observed parsed source profile and broker provenance",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/alpha-profile.json",
+        "sha256": "0051f94eac664204d5550638489a8aab5943061260e0e472e27b27ad2b66b9a4",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://rest.uniprot.org/uniprotkb/P69905.ttl",
+        "revision": "ebd340d1ed87a86c2dd3af5e918cc64828702802dda1e3ca94ace073e5ff2453",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "beta",
+      "kind": "receipt-only",
+      "description": "Observed parsed source profile and broker provenance",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/beta-profile.json",
+        "sha256": "9733218a91510f4cd3cc3e596fd0c852ec93db95bd7976ca0ce086dca50654ed",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://rest.uniprot.org/uniprotkb/P68871.ttl",
+        "revision": "c62f814b8541a60344aaaee8f01d7b558dd693dce850bd0ceb5f5aca8fcfe19c",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "shared-query",
+      "kind": "receipt-only",
+      "description": "Actual completed query profile",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/shared-query-profile.json",
+        "sha256": "0c84769a3cf0c012250246362a2869f33265d95ac9aa1ac539d5bcab355c2e7f",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "query:shared-go",
+        "revision": "95e853066b2047e8bca30c465bc9b98429333d504432da952f52452b704b4c7f",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "membership-query",
+      "kind": "receipt-only",
+      "description": "Retained query profile after display failure",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/membership-query-profile.json",
+        "sha256": "554a7c4e4bfbc6b38f5143f8c5ec65ca48625f9cc03319edd8e670cfa63dd191",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "query:memberships",
+        "revision": "1e11ff9cee31eeca5ff426f30cd1f55f427154405057b7fe8ceb02f5d102cb3f",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "display-failure",
+      "kind": "receipt-only",
+      "description": "Observed projection failure, not failed retrieval",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-4.json",
+        "sha256": "cb437653d30653e0344189fad7523238727e0b32062ba80a7e19ae7d1b628a52",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "runtime:projection",
+        "revision": "6.4.0",
+        "representation": "application/json"
+      },
+      "completion": "unknown",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "outcome-check",
+      "kind": "receipt-only",
+      "description": "Independent native set comparison within the actual runtime",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-7.json",
+        "sha256": "1b7748bb43071b8ddb50b524ef952b7e340410d0c2274a93574237c1bef9a9c9",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "runtime:independent-native-check",
+        "revision": "6.4.0",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source graph bytes not durably exported; historical handles cannot restore live state"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "id": "join-5",
+      "eventId": "event-5",
+      "objectiveId": "shared-go",
+      "evidenceId": "membership-query",
+      "operationId": "op-000008",
+      "traversalId": null,
+      "basis": "explicit",
+      "note": "Operation identifier and complete profile derived from the same actual broker tool output"
+    },
+    {
+      "id": "join-6",
+      "eventId": "event-6",
+      "objectiveId": "shared-go",
+      "evidenceId": "shared-query",
+      "operationId": "op-000010",
+      "traversalId": null,
+      "basis": "explicit",
+      "note": "Operation identifier and complete profile derived from the same actual broker tool output"
+    }
+  ],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "projection-failed",
+      "objectiveId": "shared-go",
+      "kind": "machine-check",
+      "status": "failed",
+      "claim": "Display request with limit 100 was rejected; no query failure inferred",
+      "evidenceIds": [
+        "display-failure"
+      ],
+      "missingEvidence": []
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "answer-checked",
+      "objectiveId": "shared-go",
+      "kind": "machine-check",
+      "status": "passed",
+      "claim": "20 alpha and 25 beta GO memberships; 18 shared; native set comparison agrees exactly",
+      "evidenceIds": [
+        "shared-query",
+        "membership-query",
+        "outcome-check"
+      ],
+      "missingEvidence": []
+    }
+  ]
+}

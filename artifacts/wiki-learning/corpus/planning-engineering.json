@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "planning-engineering-exclusion",
+  "episode": {
+    "path": "artifacts/wiki-learning/episodes/wikiskill-planning-20260919/episode.json",
+    "sha256": "b5353fd3474ef38369e5b38eb896ca6ea55a8acfbc168950899bb586c091e464",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "engineering",
+    "basis": "User scope correction: scientific RLM/REPL workflows, including retrieval and operations; software-development planning is not learning content.",
+    "scientificObjectiveIds": [],
+    "excludedObjectiveIds": [
+      "plan",
+      "separate",
+      "phase0",
+      "phase1"
+    ]
+  },
+  "units": []
+}

@@ -1,0 +1,12 @@
+{
+  "format": "linked-science-corpus-exclusions/v1",
+  "basis": "User scope correction: scientific RLM/REPL workflows, including retrieval and operations; software-development planning is not learning content.",
+  "episodes": [
+    {
+      "id": "wikiskill-planning-selected-20260919",
+      "sha256": "b5353fd3474ef38369e5b38eb896ca6ea55a8acfbc168950899bb586c091e464",
+      "classification": "engineering-test-evidence",
+      "reason": "Planning/importer fixture; retain provenance, exclude pattern extraction. Obsidian separation is an architectural constraint, not a scientific lesson."
+    }
+  ]
+}

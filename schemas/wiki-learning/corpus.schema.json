@@ -1,0 +1,331 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Scientific workflow corpus eligibility v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "episode": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hashDomain": {
+          "const": "file-bytes"
+        },
+        "pointer": {
+          "type": "string",
+          "maxLength": 1024
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "hashDomain",
+        "pointer"
+      ],
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "classification": {
+          "enum": [
+            "engineering",
+            "scientific",
+            "mixed"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "scientificObjectiveIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "maxItems": 128
+        },
+        "excludedObjectiveIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "maxItems": 128
+        }
+      },
+      "required": [
+        "classification",
+        "basis",
+        "scientificObjectiveIds",
+        "excludedObjectiveIds"
+      ],
+      "additionalProperties": false
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "objectiveId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "anchors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 128
+          },
+          "actionWitnesses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "eventId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 4096
+                },
+                "exchange": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 4096
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "hashDomain": {
+                      "const": "file-bytes"
+                    },
+                    "pointer": {
+                      "type": "string",
+                      "maxLength": 1024
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256",
+                    "hashDomain",
+                    "pointer"
+                  ],
+                  "additionalProperties": false
+                },
+                "outputIndex": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "key": {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                "kind": {
+                  "enum": [
+                    "retrieval",
+                    "query",
+                    "retained-state",
+                    "failure",
+                    "declaration"
+                  ]
+                }
+              },
+              "required": [
+                "eventId",
+                "exchange",
+                "outputIndex",
+                "key",
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 128
+          },
+          "outcomeWitness": {
+            "type": "object",
+            "properties": {
+              "eventId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "exchange": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "hashDomain": {
+                    "const": "file-bytes"
+                  },
+                  "pointer": {
+                    "type": "string",
+                    "maxLength": 1024
+                  }
+                },
+                "required": [
+                  "path",
+                  "sha256",
+                  "hashDomain",
+                  "pointer"
+                ],
+                "additionalProperties": false
+              },
+              "outputIndex": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "key": {
+                "type": "string",
+                "maxLength": 128
+              },
+              "kind": {
+                "enum": [
+                  "retrieval",
+                  "query",
+                  "retained-state",
+                  "failure",
+                  "declaration"
+                ]
+              }
+            },
+            "required": [
+              "eventId",
+              "exchange",
+              "outputIndex",
+              "key",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          "outcome": {
+            "enum": [
+              "success",
+              "failure",
+              "partial"
+            ]
+          },
+          "lessonKind": {
+            "enum": [
+              "procedure",
+              "scientific-finding"
+            ]
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "sourceEvidenceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 128
+          },
+          "freshness": {
+            "type": "object",
+            "properties": {
+              "asOf": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "revalidateWhen": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              }
+            },
+            "required": [
+              "asOf",
+              "revalidateWhen"
+            ],
+            "additionalProperties": false
+          },
+          "validation": {
+            "const": "candidate-not-generalized"
+          },
+          "missingEvidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 128
+          }
+        },
+        "required": [
+          "id",
+          "objectiveId",
+          "anchors",
+          "actionWitnesses",
+          "outcomeWitness",
+          "outcome",
+          "lessonKind",
+          "claim",
+          "scope",
+          "sourceEvidenceIds",
+          "freshness",
+          "validation",
+          "missingEvidence"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 128
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "episode",
+    "review",
+    "units"
+  ],
+  "additionalProperties": false
+}

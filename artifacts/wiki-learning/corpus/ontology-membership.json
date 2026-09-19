@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "ontology-membership-corpus",
+  "episode": {
+    "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/episode.json",
+    "sha256": "1997d5c5dabee2964a2d84e2af08f2b7876f4bc36abdc42cc0f8eb00425b4537",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Authorized scientific question about two proteins and asserted ontology membership. Retrieval/schema inspection/query/recovery occur directly within that objective; no development/planning objective included.",
+    "scientificObjectiveIds": [
+      "shared-go"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "objectiveId": "shared-go",
+      "anchors": [
+        "http://purl.uniprot.org/uniprot/P69905",
+        "http://purl.uniprot.org/uniprot/P68871"
+      ],
+      "sourceEvidenceIds": [
+        "alpha",
+        "beta"
+      ],
+      "freshness": {
+        "asOf": "2026-09-19T15:41:32.500Z",
+        "revalidateWhen": "Reacquire source versions/hashes for a current scientific finding; rerun procedure after runtime/API changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "id": "asserted-go-finding",
+      "actionWitnesses": [
+        {
+          "eventId": "event-3",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-3.json",
+            "sha256": "05014a31fcd25b86c795585ff89e7858671c317c0fe0bf4eed9cabf17ec5bf4c",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "schema",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-6.json",
+            "sha256": "b117433bcf99919ab8d20d1c2a19ebd7653ebb64ebe272e48fc27a738d9b0fdf",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-7",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-7.json",
+          "sha256": "1b7748bb43071b8ddb50b524ef952b7e340410d0c2274a93574237c1bef9a9c9",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "scientific-finding",
+      "claim": "The retrieved alpha and beta records share 18 asserted GO identifiers",
+      "scope": "Only these two source hashes and exact classifiedWith relation; no functional equivalence or ontology closure"
+    },
+    {
+      "objectiveId": "shared-go",
+      "anchors": [
+        "http://purl.uniprot.org/uniprot/P69905",
+        "http://purl.uniprot.org/uniprot/P68871"
+      ],
+      "sourceEvidenceIds": [
+        "alpha",
+        "beta"
+      ],
+      "freshness": {
+        "asOf": "2026-09-19T15:41:32.500Z",
+        "revalidateWhen": "Reacquire source versions/hashes for a current scientific finding; rerun procedure after runtime/API changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "id": "display-failure",
+      "actionWitnesses": [
+        {
+          "eventId": "event-5",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-5.json",
+            "sha256": "b3ec3c287de6ce11d283506c3e7ed0dcb70c21733bca61f42f3cf45ff22884fa",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        },
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-4.json",
+            "sha256": "cb437653d30653e0344189fad7523238727e0b32062ba80a7e19ae7d1b628a52",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "failure"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-4",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-4.json",
+          "sha256": "cb437653d30653e0344189fad7523238727e0b32062ba80a7e19ae7d1b628a52",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "failure"
+      },
+      "outcome": "failure",
+      "lessonKind": "procedure",
+      "claim": "A projection bound failure does not establish that the completed query or retained handle was lost",
+      "scope": "Observed limit=100 error in this scientific workflow; inspect the actual typed repair before retrying"
+    },
+    {
+      "objectiveId": "shared-go",
+      "anchors": [
+        "http://purl.uniprot.org/uniprot/P69905",
+        "http://purl.uniprot.org/uniprot/P68871"
+      ],
+      "sourceEvidenceIds": [
+        "alpha",
+        "beta"
+      ],
+      "freshness": {
+        "asOf": "2026-09-19T15:41:32.500Z",
+        "revalidateWhen": "Reacquire source versions/hashes for a current scientific finding; rerun procedure after runtime/API changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "id": "retained-recovery",
+      "actionWitnesses": [
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-4.json",
+            "sha256": "cb437653d30653e0344189fad7523238727e0b32062ba80a7e19ae7d1b628a52",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "failure"
+        },
+        {
+          "eventId": "event-5",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-5.json",
+            "sha256": "b3ec3c287de6ce11d283506c3e7ed0dcb70c21733bca61f42f3cf45ff22884fa",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-6.json",
+            "sha256": "b117433bcf99919ab8d20d1c2a19ebd7653ebb64ebe272e48fc27a738d9b0fdf",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-7",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/ontology-membership-20260919/exchange-7.json",
+          "sha256": "1b7748bb43071b8ddb50b524ef952b7e340410d0c2274a93574237c1bef9a9c9",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "Bounded display and native iteration recovered the complete retained memberships for independent checking",
+      "scope": "Observed recovery with these runtime APIs; one case is not general validated learning"
+    }
+  ]
+}

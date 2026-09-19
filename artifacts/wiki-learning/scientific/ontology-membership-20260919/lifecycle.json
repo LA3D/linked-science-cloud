@@ -1,0 +1,7 @@
+{
+  "format": "linked-science-run-lifecycle/v1",
+  "state": "closed",
+  "closure": "stdio client received CLOSE, then process group interrupted after stdin shutdown did not terminate the process",
+  "durableReceiptAndRegistryValidatedBeforeClosure": true,
+  "retainedHandles": "historical; no residency or restoration claim"
+}

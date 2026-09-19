@@ -1,0 +1,27 @@
+# Scientific workflow corpus boundary and observed episode
+
+On 2026-09-19 the user limited wiki learning to scientific RLM/REPL workflows, including source discovery, retrieval, representation inspection, computations, retained-state operations and failures within those workflows. Repository development, configuration and planning fixtures are engineering evidence, not scientific learning content. Obsidian separation is a project architectural constraint, not a learned scientific pattern.
+
+## Method and authority
+
+The authorized run asked which GO identifiers are asserted for both human hemoglobin alpha (P69905) and beta (P68871), and what the source predicate means. The question was declared in actual broker exchange 1 before retrieval. This is one scientific workflow observation, not a model evaluation, preregistered experiment or transfer demonstration. UniProt was chosen for a bounded ontology-membership comparison; no WikiPathways pathway, ontology hierarchy or complete biological network is claimed.
+
+The mounted Desktop MCP returned `CONNECTION_CLOSED` before executing the identity probe. A fresh stdio connection to this checkout's actual `cleanroom-mcp.mjs` verified project ID, production role, broker package, working directory and persistence across calls. This establishes that connection's identity, not successful Desktop mounting. All four public reads crossed the project broker's private anonymous-read mediator under its defaults; no raw Fetch, credentials, bulk ingestion or configuration change was used. The run-specific client saves each bounded tool response immediately. It has no network implementation of its own.
+
+## Actual evidence
+
+The [artifact directory](../../artifacts/wiki-learning/scientific/ontology-membership-20260919/receipt.json) preserves actual JSON-RPC exchanges, source profiles, exact query lineage, compact answer and a [membership matrix](../../artifacts/wiki-learning/scientific/ontology-membership-20260919/membership.svg). The root UniProt schema resource redirected to a 2,697-byte Turtle description; the specific `classifiedWith` definition was 518 bytes with schema ETag `2026_03`. It describes a concept classifying a resource, with Protein domain and Concept range. Two complete retrieved protein representations (499,656 and 589,281 bytes) parsed into 11,161 and 13,205 triples. Source bytes stayed in the live kernel; saved payload hashes identify the observed versions, and do not restore them.
+
+The full selected query contains 45 distinct protein–GO memberships: 20 alpha and 25 beta. Their intersection contains 18 GO identifiers; the union contains 27. Independent native RDF/JS matching and set comparison agree exactly with the SPARQL result. This is **asserted annotation overlap**, not ontology closure, evidence-code comparison, hierarchy equivalence or functional equivalence. Protein release headers were not retained by the broker's response metadata; observation time and exact payload hashes supply snapshot identity. The schema ETag alone does not prove that all resources share a release.
+
+Exchange 4 records a real projection failure: `limit:100` exceeded the runtime's maximum 10. The completed query remained resident. Exchange 5 successfully inspected the same operation with a ten-row page, explicitly truncated as a display. Exchange 6 iterated the complete retained result and ran the intersection; exchange 7 checked it independently. The failure, successful recovery and source-version-dependent finding are distinct candidate learning units. No generalized procedural improvement or transfer has been validated.
+
+## Durable semantics and limitations
+
+Episode 1.1 adds `direct-runtime` capture: objective declaration and action IDs come from observed project broker exchanges, not fabricated Codex user messages. Existing version-1.0 episodes remain readable. The normalized view is checked against raw tool outputs; file hashes establish integrity and correlation, not cryptographic attestation against a malicious repository editor. A reviewed scientific scope plus real action/outcome witnesses is required; a self-assigned scientific label is insufficient.
+
+The corpus filter distinguishes procedural candidates from source-dependent scientific findings, requires evidence scope and revalidation conditions for both, and excludes incomplete units from the ready candidate set. Both successes and observed failures may qualify within a scientific objective. Engineering objectives in mixed records must be explicitly excluded. This first witness adapter accepts the saved project-stdio exchange format; importing other genuine live host formats needs a corresponding verified adapter rather than relabeling a summary.
+
+The earlier planning episode is retained unchanged, with a separate exclusion overlay and its original hash. It remains an engineering importer test. Default corpus selection only considers explicitly supplied eligibility records; unclassified files are not automatically learned from. There is no maintainer model, active skill edit, release, automatic memory injection or Obsidian integration.
+
+The compact answer is saved, but complete source graphs, labels for all GO terms, model token accounting, general scientific correctness and transfer are not established. The SVG is a faithful matrix of selected membership edges, not a pathway diagram. Source versions must be checked again for current scientific use. A receipt and registry entry are captured and validated before closing the live broker.

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="818" viewBox="0 0 760 818" role="img" aria-label="Asserted GO memberships for hemoglobin alpha and beta">
+<rect width="100%" height="100%" fill="#fff"/>
+<g font-family="Arial,sans-serif" fill="#172536">
+<text x="24" y="30" font-size="21">Asserted GO membership — retrieved UniProt records</text>
+<text x="24" y="56" font-size="13">Protein → GO via up:classifiedWith · 20 alpha · 25 beta · 18 shared</text>
+<text x="24" y="78" font-size="12">Snapshot 2026-09-19 · no ontology closure, functional equivalence or pathway claim</text>
+<text x="24" y="111" font-size="14">GO identifier</text>
+<text x="260" y="111" font-size="14">Alpha P69905</text>
+<text x="405" y="111" font-size="14">Beta P68871</text>
+<text x="550" y="111" font-size="14">Shared</text>
+<rect x="16" y="119" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="135" font-size="13">GO:0005344</text>
+<circle cx="310" cy="131" r="5" fill="#1765a3"/>
+<circle cx="452" cy="131" r="5" fill="#1765a3"/>
+<text x="560" y="135" font-size="13" fill="#146147">yes</text>
+<text x="24" y="159" font-size="13">GO:0005506</text>
+<circle cx="310" cy="155" r="5" fill="#1765a3"/>
+<rect x="16" y="167" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="183" font-size="13">GO:0005576</text>
+<circle cx="310" cy="179" r="5" fill="#1765a3"/>
+<circle cx="452" cy="179" r="5" fill="#1765a3"/>
+<text x="560" y="183" font-size="13" fill="#146147">yes</text>
+<text x="24" y="207" font-size="13">GO:0005829</text>
+<circle cx="310" cy="203" r="5" fill="#1765a3"/>
+<circle cx="452" cy="203" r="5" fill="#1765a3"/>
+<text x="560" y="207" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="215" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="231" font-size="13">GO:0005833</text>
+<circle cx="310" cy="227" r="5" fill="#1765a3"/>
+<circle cx="452" cy="227" r="5" fill="#1765a3"/>
+<text x="560" y="231" font-size="13" fill="#146147">yes</text>
+<text x="24" y="255" font-size="13">GO:0006954</text>
+<circle cx="310" cy="251" r="5" fill="#1765a3"/>
+<circle cx="452" cy="251" r="5" fill="#1765a3"/>
+<text x="560" y="255" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="263" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="279" font-size="13">GO:0015670</text>
+<circle cx="310" cy="275" r="5" fill="#1765a3"/>
+<circle cx="452" cy="275" r="5" fill="#1765a3"/>
+<text x="560" y="279" font-size="13" fill="#146147">yes</text>
+<text x="24" y="303" font-size="13">GO:0015671</text>
+<circle cx="310" cy="299" r="5" fill="#1765a3"/>
+<circle cx="452" cy="299" r="5" fill="#1765a3"/>
+<text x="560" y="303" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="311" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="327" font-size="13">GO:0016020</text>
+<circle cx="310" cy="323" r="5" fill="#1765a3"/>
+<text x="24" y="351" font-size="13">GO:0019825</text>
+<circle cx="310" cy="347" r="5" fill="#1765a3"/>
+<circle cx="452" cy="347" r="5" fill="#1765a3"/>
+<text x="560" y="351" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="359" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="375" font-size="13">GO:0020037</text>
+<circle cx="310" cy="371" r="5" fill="#1765a3"/>
+<circle cx="452" cy="371" r="5" fill="#1765a3"/>
+<text x="560" y="375" font-size="13" fill="#146147">yes</text>
+<text x="24" y="399" font-size="13">GO:0030185</text>
+<circle cx="310" cy="395" r="5" fill="#1765a3"/>
+<circle cx="452" cy="395" r="5" fill="#1765a3"/>
+<text x="560" y="399" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="407" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="423" font-size="13">GO:0030492</text>
+<circle cx="452" cy="419" r="5" fill="#1765a3"/>
+<text x="24" y="447" font-size="13">GO:0031721</text>
+<circle cx="452" cy="443" r="5" fill="#1765a3"/>
+<rect x="16" y="455" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="471" font-size="13">GO:0031838</text>
+<circle cx="310" cy="467" r="5" fill="#1765a3"/>
+<circle cx="452" cy="467" r="5" fill="#1765a3"/>
+<text x="560" y="471" font-size="13" fill="#146147">yes</text>
+<text x="24" y="495" font-size="13">GO:0042542</text>
+<circle cx="310" cy="491" r="5" fill="#1765a3"/>
+<circle cx="452" cy="491" r="5" fill="#1765a3"/>
+<text x="560" y="495" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="503" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="519" font-size="13">GO:0042744</text>
+<circle cx="310" cy="515" r="5" fill="#1765a3"/>
+<circle cx="452" cy="515" r="5" fill="#1765a3"/>
+<text x="560" y="519" font-size="13" fill="#146147">yes</text>
+<text x="24" y="543" font-size="13">GO:0045429</text>
+<circle cx="452" cy="539" r="5" fill="#1765a3"/>
+<rect x="16" y="551" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="567" font-size="13">GO:0048821</text>
+<circle cx="310" cy="563" r="5" fill="#1765a3"/>
+<circle cx="452" cy="563" r="5" fill="#1765a3"/>
+<text x="560" y="567" font-size="13" fill="#146147">yes</text>
+<text x="24" y="591" font-size="13">GO:0070062</text>
+<circle cx="310" cy="587" r="5" fill="#1765a3"/>
+<circle cx="452" cy="587" r="5" fill="#1765a3"/>
+<text x="560" y="591" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="599" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="615" font-size="13">GO:0070293</text>
+<circle cx="452" cy="611" r="5" fill="#1765a3"/>
+<text x="24" y="639" font-size="13">GO:0070527</text>
+<circle cx="452" cy="635" r="5" fill="#1765a3"/>
+<rect x="16" y="647" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="663" font-size="13">GO:0071682</text>
+<circle cx="310" cy="659" r="5" fill="#1765a3"/>
+<circle cx="452" cy="659" r="5" fill="#1765a3"/>
+<text x="560" y="663" font-size="13" fill="#146147">yes</text>
+<text x="24" y="687" font-size="13">GO:0072562</text>
+<circle cx="310" cy="683" r="5" fill="#1765a3"/>
+<circle cx="452" cy="683" r="5" fill="#1765a3"/>
+<text x="560" y="687" font-size="13" fill="#146147">yes</text>
+<rect x="16" y="695" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="711" font-size="13">GO:0098869</text>
+<circle cx="310" cy="707" r="5" fill="#1765a3"/>
+<circle cx="452" cy="707" r="5" fill="#1765a3"/>
+<text x="560" y="711" font-size="13" fill="#146147">yes</text>
+<text x="24" y="735" font-size="13">GO:1904724</text>
+<circle cx="452" cy="731" r="5" fill="#1765a3"/>
+<rect x="16" y="743" width="720" height="24" fill="#f0f4f8"/>
+<text x="24" y="759" font-size="13">GO:1904813</text>
+<circle cx="452" cy="755" r="5" fill="#1765a3"/>
+</g></svg>
