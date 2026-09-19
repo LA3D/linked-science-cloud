@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "d5d3febd-5a2a-48f8-92c1-ee2ed7e61cca",
+  "recordedAt": "2026-09-19T17:50:41.468Z",
+  "assessment": "unknown",
+  "note": "Offline retrieval mechanics only; no scientific benefit measured.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "retained-query-after-display-limit"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

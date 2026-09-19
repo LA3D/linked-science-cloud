@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "eb2ea760-77a5-4201-99a5-a119add26655",
+  "recordedAt": "2026-09-19T17:50:41.468Z",
+  "mode": "on",
+  "querySha256": "daaddbf842bdbed60f34574c80c6e2f5586c0d18943ffab20b6121693d9be338",
+  "revision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "candidates": [
+    {
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 9,
+      "matchedTerms": [
+        "asserted",
+        "overlap",
+        "uniprot"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

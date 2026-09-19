@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "3e2b97e0-bf91-40c4-8316-ffd61ca6aa10",
+  "recordedAt": "2026-09-19T17:50:10.694Z",
+  "mode": "on",
+  "querySha256": "f5a70f9bf853ab20ac27137e9188f06840a8306cd78567e466ff7a9e877b6b13",
+  "revision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "candidates": [
+    {
+      "id": "retained-query-after-display-limit",
+      "title": "Completed query retained after an oversized display request",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 12,
+      "matchedTerms": [
+        "completed",
+        "query",
+        "display",
+        "limit"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

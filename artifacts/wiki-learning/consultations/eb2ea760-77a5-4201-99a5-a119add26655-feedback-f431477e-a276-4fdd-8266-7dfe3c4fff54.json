@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "eb2ea760-77a5-4201-99a5-a119add26655",
+  "recordedAt": "2026-09-19T17:50:41.528Z",
+  "assessment": "unknown",
+  "note": "Offline retrieval mechanics only; no scientific benefit measured.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "hemoglobin-go-overlap-20260919"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

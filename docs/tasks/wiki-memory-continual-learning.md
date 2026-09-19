@@ -394,3 +394,10 @@ The [seven regression tests](../../test/wiki-learning/wiki-revisions.test.mjs) c
 ## 16. Independent evidence review
 
 The [bounded saved-evidence review](wiki-independent-recovery-review.md) used the discovered maintainer skill in the current task. Three independent candidate groups were inspected; none was admitted as an independent scientific recovery episode. The outcome is inconclusive and registered with selected input hashes. Both wiki patterns and HEAD remain unchanged; no unsupported proposal or promotion was made. The next useful evidence is a second directly witnessed scientific recovery episode, with lifecycle boundary controls kept separate from in-scope counterexamples.
+
+
+## 17. Authorized selective retrieval during scientific work
+
+The user authorized connecting stored patterns to ordinary scientific tasks. This extends the earlier maintenance-only scope. The [selective retrieval implementation](wiki-selective-retrieval.md) uses an updated Linked Data REPL skill, a host-side search/read helper and consultation/feedback receipts. Pattern content remains advisory data, with proposed hypotheses distinct from reviewed candidates and source snapshots. No runtime provider or global prompt injection is involved.
+
+The paired on/off retrieval check passes for the two known seed patterns and an unrelated query; this measures selection and delivery mechanics, not independent scientific benefit. Both patterns remain proposed. The original frozen skill baseline is preserved, and a separate retrieval baseline records the changed skill. An updated-skill fresh-task activation and independent scientific on/off trial remain unmeasured.

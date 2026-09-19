@@ -138,8 +138,8 @@ test('evidence paths reject traversal, absolute paths and symlink escape', async
   await assert.rejects(inspectEpisodeEvidence(fixture, { root: directory }), /Symlink/u);
 });
 
-test('baseline covers all current skill files and direct references with reproducible hash, not activation', async () => {
-  const described = await describeSkillBaseline(root);
+test('frozen baseline preserves historical skill files and references with reproducible hash, not activation', async () => {
+  const described = await describeSkillBaseline(join(root, destination, 'files'));
   const verified = await verifySkillBaseline({ root, destination });
   assert.equal(described.digest, verified.digest);
   assert.equal(described.digest, fixture.skillBaseline.digest);
@@ -155,7 +155,7 @@ test('snapshot refuses overwrite and detects altered, added and executable files
   const manifest = JSON.parse(await readFile(join(root, destination, 'manifest.json'), 'utf8'));
   for (const file of manifest.files) {
     await mkdir(join(directory, file.path, '..'), { recursive: true });
-    await cp(join(root, file.path), join(directory, file.path));
+    await cp(join(root, destination, 'files', file.path), join(directory, file.path));
   }
   const first = await snapshotSkillBaseline({ root: directory, destination });
   assert.equal(first.digest, manifest.digest);
