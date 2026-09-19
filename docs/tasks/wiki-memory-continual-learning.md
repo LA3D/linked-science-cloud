@@ -12,7 +12,7 @@ The first implementation is **procedural learning between episodes**. The wiki i
 
 Reuse three existing assets before adding machinery: Codex's task history, its host-managed distilled memory, and Linked Science's receipts/native graph service. Do not create a duplicate universal transcript recorder or make hooks a prerequisite. First compare actual bounded host history with the scientific receipt fields needed for a selected episode; add a small join record for measured gaps. The wiki, candidates and release receipts have project-specific semantics that host memory does not replace.
 
-Canonical reviewed wiki content will be versioned Markdown with validated metadata under `wiki/`. Machine-owned episode, intervention and release records will live under `artifacts/wiki-learning/`. Candidate and archived skill bundles stay under that artifact tree, outside all discovered skill roots. Active releases alone enter `.agents/skills/`. Obsidian is an optional generated display, and RDF is an optional rebuildable index. Neither is a second editable authority.
+Canonical reviewed wiki content will be versioned Markdown with validated metadata under `wiki/`. Machine-owned episode, intervention and release records will live under `artifacts/wiki-learning/`. Candidate and archived skill bundles stay under that artifact tree, outside all discovered skill roots. Active releases alone enter `.agents/skills/`. Science Cloud wiki memory is an independent repository-owned system, separate from the user's Obsidian wikimemory. It has no shared store, runtime dependency, display/export route, synchronization or import integration with that system. An optional repository-derived RDF index remains rebuildable from the canonical records.
 
 Use the existing [scientific session](../architecture/scientific-session.md) for bounded selected data and worker findings. Add no scheduler, model provider, memory installer or learning API to the three-tool MCP. The [goal-loop boundary](../experiments/goal-loop-state-graph.md), mediated authority, provenance and lifetime contracts remain protected.
 
@@ -20,7 +20,7 @@ Use the existing [scientific session](../architecture/scientific-session.md) for
 
 [WikiSkill paper](https://drive.google.com/file/d/1c1K0yGmQJGb3KUdbj1Cu17KQYJ7NFrE3/view) distinguishes immutable source traces, an evolving wiki, and reversible active skills with rationale. Its maintainer compares successes/failures; its proposer uses evidence to make one atomic change; validation accepts or rolls back the skill while rejected interventions remain in wiki history. The paper's maximum-eight, five-failure/three-success sample is an experimental setting, not this project's universal policy. The task agent in the paper normally cannot read the wiki and receives skills in full; Codex's selective discovery/loading needs separate tests. Wiki diagnoses remain hypotheses, not established causes.
 
-Planning inputs were the supplied full architecture review (`/private/tmp/wikiskill-linked-science-architecture-review-20260919.md`) and the existing detailed paper note (`/Users/cvardema/Obsidian/obsidian/03 - Resources/Literature/@tang-2026-wikiskill.md`). This plan does not claim a fresh full-PDF review or reproduce the paper's performance results. It incorporates two corrections to that review: reuse existing Codex history before adding hooks, and retain normal implicit discovery for released maintainer/proposer skills rather than making them explicit-only.
+Planning inputs were the supplied full architecture review (`/private/tmp/wikiskill-linked-science-architecture-review-20260919.md`) and the existing detailed paper note (`/Users/cvardema/Obsidian/obsidian/03 - Resources/Literature/@tang-2026-wikiskill.md`). The literature note is research provenance only, not a runtime dependency or connection to the user's Obsidian wikimemory. This plan does not claim a fresh full-PDF review or reproduce the paper's performance results. It incorporates two corrections to that review: reuse existing Codex history before adding hooks, and retain normal implicit discovery for released maintainer/proposer skills rather than making them explicit-only.
 
 The motivating development episode is the reported shift from endpoint smoke testing to understanding/visualizing a real WikiPathways structure. The agent reportedly retained a small RDF slice after the objective changed and failed to establish equivalence with the requested representation/revision. That account is a **reconstructed development hypothesis** until its specific task events and artifacts are joined. The [endpoint receipt](../../artifacts/endpoint-examples/20260919/receipt.json) proves a successful WP1560 metadata query; it does not prove pathway visualization, full structure, revision equivalence, or that this exact metadata response caused the later failure.
 
@@ -113,7 +113,7 @@ lib/wiki-learning/
   adapters/codex-skills.mjs        # discovery/loading observations on supported client
 scripts/wiki-learning/
   import-episode.mjs  validate.mjs  propose.mjs  evaluate.mjs  release.mjs
-  build-index.mjs                  # optional Markdown/RDF/Obsidian view generation
+  build-index.mjs                  # repository Markdown/RDF index generation
 schemas/wiki-learning/*.schema.json
 test/wiki-learning/*.test.mjs
 test/fixtures/wiki-learning/development/   # synthetic public examples only
@@ -127,7 +127,7 @@ test/fixtures/wiki-learning/development/   # synthetic public examples only
 
 One coordinator performs compare-and-swap writes against a base wiki revision. Workers produce proposals and findings; they cannot silently replace canonical pages or write intervention outcomes. The user/repository maintainer approves semantic promotion and a release within the authorized task; routine deterministic validation does not need repeated permission. Rejected proposals and measurements survive rollback. Incorrect wiki hypotheses can be marked contradicted, superseded or withdrawn while retaining an audit link. "Persistent wiki" never means "all previous advice remains true."
 
-An optional Obsidian view includes canonical ID, revision/hash and backlink, and is generated only to an explicitly authorized destination. Edits there become import proposals with conflict checks, not automatic two-way synchronization. The optional RDF index is regenerated from canonical metadata and receipts, uses provenance links, and is discarded/rebuilt on hash mismatch. It never promotes RDF source text into instructions.
+The optional repository-derived RDF index is regenerated from canonical metadata and receipts, uses provenance links, and is discarded/rebuilt on hash mismatch. It never promotes RDF source text into instructions. All proposed storage, maintenance and presentation remain within Science Cloud; no Obsidian integration is planned.
 
 ## 5. Versioned data contracts
 
@@ -205,7 +205,7 @@ Each phase is a future implementation slice with code, fixtures and review. No p
 
 ### Phase 6 — Optional views, transfer and separately scoped scientific memory
 
-**Code proposed if justified:** `build-index.mjs` RDF/Obsidian modes, query/read adapter for reviewed metadata, and bounded freshness/applicability tests. Introduce only after useful queries or display needs justify them.
+**Code proposed if justified:** `build-index.mjs` repository Markdown/RDF modes, query/read adapter for reviewed metadata, and bounded freshness/applicability tests. Introduce only after repository navigation or cross-pattern queries justify them.
 
 **Acceptance:** Regeneration is deterministic from canonical records; derived views cannot override reviews. Measure transfer to another pathway/ontology family and future broker-mediated real-source cases separately. Runtime scientific-memory retrieval is a new treatment with source/revision/expiry, contradiction, instruction separation and contamination controls. Compare it against procedural-only releases; do not relabel procedural-learning gains as memory-retrieval gains.
 
@@ -284,3 +284,5 @@ Planning delivery uses the configured checkout `/Users/cvardema/dev/git/LA3D/age
 Documentation verification must include relative links, consistency of task/roadmap routing, the complete diff and whitespace. Repository-mandated tests/smoke are offline software checks, not authorization for a scientific/model evaluation. Known preceding baseline: 218/219 tests passed; the remaining bootstrap test hard-codes `codex-repl` despite the valid moved checkout configuration. Preserve that unrelated configuration edit and report any remaining failure rather than claiming a clean suite. This plan creates no experiment-result entry and no new memory record.
 
 Planning checks on 2026-09-19: changed Markdown relative links resolve; task index, roadmap and context router point to this single plan; whitespace/diff checks pass; `npm run smoke` passes. Required offline `npm test` repeats the preceding baseline: 218 passed, one failed at `test/cleanroom-linked-science-bootstrap.test.mjs:69` because it expects the old path. No skill was changed, so skill validation/behavioral evaluation is deferred to implementation. The only unrelated dirty file is `.codex/config.toml`; it is excluded from the documentation commit.
+
+User clarification incorporated on 2026-09-19: Science Cloud wiki memory is separate from the user's Obsidian wikimemory. Planned optional Obsidian display/export/sync/import integration was removed; the existing literature-note citation remains research provenance only. No Obsidian files were read or modified for this correction.
