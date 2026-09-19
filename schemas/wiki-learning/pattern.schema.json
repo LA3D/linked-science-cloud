@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Linked Science pattern v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,79}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "lessonKind": {
+      "enum": [
+        "procedure",
+        "scientific-finding"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "reviewed",
+        "contradicted",
+        "superseded",
+        "withdrawn"
+      ]
+    },
+    "validation": {
+      "const": "candidate-not-generalized"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "applicability": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "competingExplanations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "missingEvidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "revalidateWhen": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "corpus": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "hashDomain": {
+                "const": "file-bytes"
+              },
+              "pointer": {
+                "const": ""
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "hashDomain",
+              "pointer"
+            ],
+            "additionalProperties": false
+          },
+          "unitId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "evidenceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "minItems": 1,
+            "maxItems": 32
+          },
+          "eventIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "minItems": 1,
+            "maxItems": 32
+          },
+          "operationIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "minItems": 0,
+            "maxItems": 32
+          }
+        },
+        "required": [
+          "corpus",
+          "unitId",
+          "evidenceIds",
+          "eventIds",
+          "operationIds"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "relations": {
+      "type": "object",
+      "properties": {
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        },
+        "contradicts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,79}$"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "supersedes",
+        "contradicts"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "lessonKind",
+    "status",
+    "validation",
+    "claim",
+    "applicability",
+    "competingExplanations",
+    "missingEvidence",
+    "revalidateWhen",
+    "citations",
+    "relations"
+  ],
+  "additionalProperties": false
+}

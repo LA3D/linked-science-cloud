@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "ontology-membership-seed-20260919",
+  "baseRevision": null,
+  "batch": {
+    "purpose": "Seed separately typed, proposed scientific candidates from the authorized saved episode, including observed failure and recovery.",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+        "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 3,
+    "outcomeStrata": [
+      "success",
+      "failure"
+    ],
+    "omittedMaterial": [
+      "Engineering planning record excluded by corpus policy.",
+      "No new acquisition, independent counterexample or transfer evidence included."
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "retained-query-after-display-limit",
+      "title": "Completed query retained after an oversized display request",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "In the saved scientific comparison, a page request with limit 100 failed against a maximum of 10. A later bounded page and native iteration recovered the complete retained result without repeating source retrieval. This demonstrates recovery in that episode, not all errors.",
+      "applicability": "A completed query with an independently observed retained handle and a typed presentation-bound error in the same live epoch. Check the actual error and handle status; do not infer retention after reset, disposal, timeout or kernel loss.",
+      "competingExplanations": [
+        "The successful recovery may depend on this runtime version and small result; no transfer comparison separates those factors.",
+        "A presentation failure and a retrieval/query failure can look similar in prose but have different lifecycle effects."
+      ],
+      "missingEvidence": [
+        "No independent counterexample or transfer episode has been observed.",
+        "No causal model-quality or general recovery guarantee has been measured."
+      ],
+      "revalidateWhen": "Recheck lifecycle and display contracts after runtime/API changes; inspect current handle validity before reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-failure",
+          "eventIds": [
+            "event-4",
+            "event-5"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query"
+          ],
+          "operationIds": [
+            "op-000008"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "retained-recovery",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000008",
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured source versions contain 20 asserted GO identifiers for P69905 and 25 for P68871, 45 distinct protein-GO memberships, and 18 shared identifiers. Native matching agreed with the local query.",
+      "applicability": "Only the two protein source hashes recorded by the cited episode and the classifiedWith relation at the recorded observation time. This is annotation overlap, not ontology closure, functional equivalence or a procedure.",
+      "competingExplanations": [
+        "Different source versions, annotation choices or relation semantics can change the counts."
+      ],
+      "missingEvidence": [
+        "No current-source reacquisition; source payload hashes identify an old snapshot, not present-day truth.",
+        "No ontology hierarchy, evidence-code or functional-equivalence analysis."
+      ],
+      "revalidateWhen": "Reacquire current representations and check source hashes and relation semantics before making a current scientific claim.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "asserted-go-finding",
+          "eventIds": [
+            "event-3",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}

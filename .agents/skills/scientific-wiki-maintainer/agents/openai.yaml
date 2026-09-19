@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Wiki Maintainer"
+  short_description: "Maintain cited scientific workflow candidates and history"
+  default_prompt: "Use $scientific-wiki-maintainer to review selected scientific workflow evidence and propose a cited wiki revision."

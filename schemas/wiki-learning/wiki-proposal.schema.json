@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Linked Science wiki-proposal v1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,79}$"
+    },
+    "baseRevision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "batch": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "selectedCorpus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "hashDomain": {
+                "const": "file-bytes"
+              },
+              "pointer": {
+                "const": ""
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "hashDomain",
+              "pointer"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "maxUnits": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "outcomeStrata": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "success",
+              "failure",
+              "partial"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 3
+        },
+        "omittedMaterial": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "purpose",
+        "selectedCorpus",
+        "maxUnits",
+        "outcomeStrata",
+        "omittedMaterial"
+      ],
+      "additionalProperties": false
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "pattern.schema.json"
+      },
+      "minItems": 1,
+      "maxItems": 16
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "baseRevision",
+    "batch",
+    "changes"
+  ],
+  "additionalProperties": false
+}

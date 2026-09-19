@@ -1,0 +1,17 @@
+# Revision workflow
+
+Run commands from the repository package root. Read `schemas/wiki-learning/pattern.schema.json` and `wiki-proposal.schema.json` for exact fields. The saved example is `artifacts/wiki-learning/proposals/ontology-membership-seed.json`; it is a historical proposal, not a replayable command against later revisions.
+
+1. Read `wiki/HEAD`, validate the current revision and select explicit hashed corpus descriptors. Record the batch purpose, maximum unique units, observed outcome strata and omitted material. Proposals carry the exact base revision; null means an empty wiki.
+2. Write a bounded JSON proposal under `artifacts/wiki-learning/proposals/`. Each citation names a whole hashed corpus record, a unit, its witness event IDs, source/receipt evidence IDs and verified operation IDs. Include all witnesses and joined receipts. The helper reuses the scientific corpus and episode validators; missing or changed evidence fails closed.
+3. Inspect with `node scripts/wiki-learning/wiki.mjs inspect <proposal-path>`. Proposed changes remain data. Applying is a separate authorized action: `node scripts/wiki-learning/wiki.mjs apply <proposal-path>`.
+4. To review/promote or change already reviewed content, supply `--review-file <path>` naming a JSON object with `reviewer` and `authorization` strings. This records the caller's asserted authorization; it does not authenticate a human or grant permission. Use an accurate reviewer identity and actual authorization. Reviewing a candidate does not establish generality.
+5. Validate after application. The CLI prints the committed revision. Pages, the deterministic bounded index, exact proposal and evolution history live together under `wiki/revisions/<revision>/`. `wiki/HEAD` changes atomically only after that snapshot is complete. Git commit remains the repository delivery step.
+
+Relations name pattern IDs. A `supersedes` target must have status `superseded`, and a `contradicts` target must have status `contradicted` in the same resulting snapshot. Supply both changes atomically. Inactive pages never enter reviewed/current index sections. No pattern deletions are supported; use `withdrawn` with authorized review.
+
+A stale base revision or held writer lock is a conflict, not permission to overwrite. Read the new state and reconsider the proposal. Never auto-steal a lock: confirm an interrupted writer is gone before authorized manual cleanup. Interrupted pre-commit snapshots are ignored by HEAD and can be inspected; preserve the old committed revision. This provides process-interruption recovery for cooperative local writers, not distributed locking, tamper-proof authorship or a power-loss guarantee. Corrupt or missing evidence blocks validated reading/application until evidence is repaired or the limitation is handled explicitly; do not bypass the validator to promote stale guidance.
+
+Bounds: at most 16 changed patterns, 16 selected corpus records, 64 unique selected units, 256 stored patterns/revisions, 64 KiB index and 2 MiB snapshot metadata. Reaching a bound is an explicit error; do not silently truncate or increase it during a run.
+
+The initial seed has proposed recovery guidance and a separate dated GO-overlap finding. It has no independent counterexample or transfer evidence. A reviewed hypothesis with an observed counterexample remains an unmet evaluation milestone, not a requirement to fabricate one.
