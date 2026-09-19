@@ -1,0 +1,188 @@
+{
+  "sourceFiles": [
+    "runtime-call-04.json",
+    "runtime-call-05.json"
+  ],
+  "rows": [
+    {
+      "sample": "urn:sample:1",
+      "group": "B",
+      "value": 22
+    },
+    {
+      "sample": "urn:sample:10",
+      "group": "B",
+      "value": 9
+    },
+    {
+      "sample": "urn:sample:11",
+      "group": "C",
+      "value": 26
+    },
+    {
+      "sample": "urn:sample:12",
+      "group": "A",
+      "value": 43
+    },
+    {
+      "sample": "urn:sample:13",
+      "group": "B",
+      "value": 60
+    },
+    {
+      "sample": "urn:sample:14",
+      "group": "C",
+      "value": 77
+    },
+    {
+      "sample": "urn:sample:15",
+      "group": "A",
+      "value": 11
+    },
+    {
+      "sample": "urn:sample:16",
+      "group": "B",
+      "value": 28
+    },
+    {
+      "sample": "urn:sample:17",
+      "group": "C",
+      "value": 45
+    },
+    {
+      "sample": "urn:sample:18",
+      "group": "A",
+      "value": 62
+    },
+    {
+      "sample": "urn:sample:19",
+      "group": "B",
+      "value": 79
+    },
+    {
+      "sample": "urn:sample:2",
+      "group": "C",
+      "value": 39
+    },
+    {
+      "sample": "urn:sample:20",
+      "group": "C",
+      "value": 13
+    },
+    {
+      "sample": "urn:sample:21",
+      "group": "A",
+      "value": 30
+    },
+    {
+      "sample": "urn:sample:22",
+      "group": "B",
+      "value": 47
+    },
+    {
+      "sample": "urn:sample:23",
+      "group": "C",
+      "value": 64
+    },
+    {
+      "sample": "urn:sample:24",
+      "group": "A",
+      "value": 81
+    },
+    {
+      "sample": "urn:sample:25",
+      "group": "B",
+      "value": 15
+    },
+    {
+      "sample": "urn:sample:26",
+      "group": "C",
+      "value": 32
+    },
+    {
+      "sample": "urn:sample:27",
+      "group": "A",
+      "value": 49
+    },
+    {
+      "sample": "urn:sample:28",
+      "group": "B",
+      "value": 66
+    },
+    {
+      "sample": "urn:sample:29",
+      "group": "C",
+      "value": 83
+    },
+    {
+      "sample": "urn:sample:3",
+      "group": "A",
+      "value": 56
+    },
+    {
+      "sample": "urn:sample:30",
+      "group": "A",
+      "value": 17
+    },
+    {
+      "sample": "urn:sample:31",
+      "group": "B",
+      "value": 34
+    },
+    {
+      "sample": "urn:sample:32",
+      "group": "C",
+      "value": 51
+    },
+    {
+      "sample": "urn:sample:33",
+      "group": "A",
+      "value": 68
+    },
+    {
+      "sample": "urn:sample:34",
+      "group": "B",
+      "value": 85
+    },
+    {
+      "sample": "urn:sample:35",
+      "group": "C",
+      "value": 19
+    },
+    {
+      "sample": "urn:sample:36",
+      "group": "A",
+      "value": 36
+    },
+    {
+      "sample": "urn:sample:4",
+      "group": "B",
+      "value": 73
+    },
+    {
+      "sample": "urn:sample:5",
+      "group": "C",
+      "value": 7
+    },
+    {
+      "sample": "urn:sample:6",
+      "group": "A",
+      "value": 24
+    },
+    {
+      "sample": "urn:sample:7",
+      "group": "B",
+      "value": 41
+    },
+    {
+      "sample": "urn:sample:8",
+      "group": "C",
+      "value": 58
+    },
+    {
+      "sample": "urn:sample:9",
+      "group": "A",
+      "value": 75
+    }
+  ]
+}

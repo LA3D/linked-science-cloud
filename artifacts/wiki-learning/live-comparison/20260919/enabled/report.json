@@ -1,0 +1,81 @@
+{
+  "arm": "enabled",
+  "contextKey": "memory-enabled-20260919-a7dbda26",
+  "skillPathsRead": [
+    "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/.agents/skills/linked-data-repl/SKILL.md"
+  ],
+  "skillReferencePathsRead": [
+    ".agents/skills/linked-data-repl/references/scientific-memory.md"
+  ],
+  "otherDocumentationRead": [
+    "README.md",
+    "docs/agent/context-routing.md",
+    "docs/agent/runtime-discovery.md"
+  ],
+  "identityEvidence": [
+    "runtime-call-01.json#/response"
+  ],
+  "persistenceEvidence": [
+    "runtime-call-01.json#/response",
+    "runtime-call-02.json#/response",
+    "runtime-call-04.json#/response"
+  ],
+  "recoveryChoices": [
+    "Required unchanged next call failed with LS_BOUND_EXCEEDED at projection, limit maximum 10.",
+    "Checked same-epoch inventory, profile and surviving marker before reuse.",
+    "Read original complete query result at offsets 0,10,20,30 with limit 10.",
+    "Derived statistics exclusively from saved native query-result pages using derive-answer.py; strict >45 excludes observed value 45."
+  ],
+  "runtimeCallCount": 6,
+  "runtimeCallsAfterRequiredAttempt": 3,
+  "repeatedQueryCountAfterFailure": 0,
+  "graphLoadCountAfterFailure": 0,
+  "totalQueryCount": 1,
+  "totalGraphLoadCount": 1,
+  "runtimeCaptureFiles": [
+    "runtime-call-01.json",
+    "runtime-call-02.json",
+    "runtime-call-03.json",
+    "runtime-call-04.json",
+    "runtime-call-05.json",
+    "runtime-call-06.json"
+  ],
+  "captureGaps": [],
+  "memoryReceipts": {
+    "search": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-search-c0c44c4c-4581-4b75-883b-1d038d46e0b8.json",
+    "read": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-read-a79f8bc3-cfc2-4e43-9d6e-63e9181ad1d7.json",
+    "feedback": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-feedback-2109d4da-38b2-4416-b18e-58c13ee631fd.json"
+  },
+  "memoryAssessment": {
+    "assessment": "helped",
+    "status": "agent-self-report-not-causal-benefit",
+    "actualOutcomeEvidence": [
+      "runtime-call-03.json",
+      "runtime-call-04.json",
+      "runtime-call-05.json",
+      "answer.json"
+    ],
+    "limitation": "The skill and typed runtime error also explain repair; this single arm cannot isolate memory's causal contribution."
+  },
+  "coverageEvidence": [
+    "runtime-call-02.json",
+    "runtime-call-04.json",
+    "runtime-call-05.json",
+    "observed-rows.json",
+    "derive-answer.py"
+  ],
+  "elapsedSecondsMeasured": 93.836,
+  "elapsedMeasurementScope": "After initial skill/README/fixture reads through pre-disposal report creation.",
+  "limitations": [
+    "Local synthetic assay only; no biological inference.",
+    "No evaluator, protocol, parent history, other arm or implementation source inspected.",
+    "Memory entry read included its bounded historical claim/citation metadata; cited earlier result files were not opened.",
+    "Responses saved as complete tool-return JSON immediately after each call; no reconstructed or omitted runtime outputs.",
+    "Registry outside permitted write scope was not modified."
+  ],
+  "disposal": {
+    "status": "completed",
+    "evidence": "runtime-call-06.json",
+    "scope": "Only trial workspace; no kernel reset"
+  }
+}

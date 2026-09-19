@@ -1,0 +1,52 @@
+{
+  "format": "wiki-live-pilot-answer-score/v1",
+  "scope": "numeric-answer-and-reported-coverage-only",
+  "arms": {
+    "enabled": {
+      "checks": [
+        {
+          "group": "A",
+          "count": true,
+          "mean": true
+        },
+        {
+          "group": "B",
+          "count": true,
+          "mean": true
+        },
+        {
+          "group": "C",
+          "count": true,
+          "mean": true
+        }
+      ],
+      "winners": true,
+      "coverageReported": true,
+      "numericAnswerCorrect": true,
+      "answerSha256": "328d449fa8f73ca101e635b1e3eff28b5c5067814ee44f925276bfa2319a5f42"
+    },
+    "disabled": {
+      "checks": [
+        {
+          "group": "A",
+          "count": true,
+          "mean": true
+        },
+        {
+          "group": "B",
+          "count": true,
+          "mean": true
+        },
+        {
+          "group": "C",
+          "count": true,
+          "mean": true
+        }
+      ],
+      "winners": true,
+      "coverageReported": true,
+      "numericAnswerCorrect": true,
+      "answerSha256": "328d449fa8f73ca101e635b1e3eff28b5c5067814ee44f925276bfa2319a5f42"
+    }
+  }
+}

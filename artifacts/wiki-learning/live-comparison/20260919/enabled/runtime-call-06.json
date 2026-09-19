@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "code": "await trial.dispose(); nodeRepl.write({disposed:true,contextKey:'memory-enabled-20260919-a7dbda26'});",
+    "title": "Dispose only the enabled arm workspace"
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{ disposed: true, contextKey: 'memory-enabled-20260919-a7dbda26' }"
+      }
+    ]
+  }
+}

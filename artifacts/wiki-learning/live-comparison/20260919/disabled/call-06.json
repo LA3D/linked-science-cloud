@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "code": "var observedRows = observedPages.flatMap(p=>p.rows); var groupStats = Object.fromEntries(['A','B','C'].map(g=>{var values=observedRows.filter(r=>r.group.value===g && Number(r.value.value)>45).map(r=>Number(r.value.value)); return [g,{count:values.length,mean:values.reduce((a,b)=>a+b,0)/values.length}];})); var fullCoverage = observedPages.every((p,i)=>p.offset===i*10 && p.total===36) && observedRows.length===36 && new Set(observedRows.map(r=>r.sample.value)).size===36 && observedPages.at(-1).truncated===false && trial.results.profile(assayResult).completion.complete; var trialAnswer={groups:groupStats,winners:Object.keys(groupStats).filter(g=>groupStats[g].count===Math.max(...Object.values(groupStats).map(s=>s.count))),coverage:{rowsObserved:observedRows.length,complete:fullCoverage}}; nodeRepl.write(JSON.stringify(trialAnswer));",
+    "title": "Aggregate observed query rows and establish coverage"
+  },
+  "rawResponse": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"groups\":{\"A\":{\"count\":6,\"mean\":65.16666666666667},\"B\":{\"count\":6,\"mean\":68.33333333333333},\"C\":{\"count\":5,\"mean\":66.6}},\"winners\":[\"A\",\"B\"],\"coverage\":{\"rowsObserved\":36,\"complete\":true}}"
+      }
+    ]
+  }
+}

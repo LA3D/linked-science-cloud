@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "a7dbda26-c8dc-47ce-91eb-e38cfeb3651b",
+  "recordedAt": "2026-09-19T18:01:39.039Z",
+  "revision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "patternId": "retained-query-after-display-limit",
+  "patternSha256": "39b864c3f914e4972e4e78b2ccbea4de1243f863d671c215e6168beb9f16780f",
+  "helpfulness": "unknown"
+}

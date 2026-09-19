@@ -1,0 +1,76 @@
+{
+  "format": "wiki-live-comparison-audit/v1",
+  "scope": "saved-page-content-and-captured-runtime-calls",
+  "arms": {
+    "enabled": {
+      "savedRuntimeCalls": 6,
+      "pageOffsets": [
+        0,
+        10,
+        20,
+        30
+      ],
+      "rowsIndependentlyParsed": 36,
+      "groupsFromSavedPages": {
+        "A": {
+          "count": 6,
+          "mean": 65.16666666666667
+        },
+        "B": {
+          "count": 6,
+          "mean": 68.33333333333333
+        },
+        "C": {
+          "count": 5,
+          "mean": 66.6
+        }
+      },
+      "queryRepeatsAfterFailure": 0,
+      "graphReloadsAfterFailure": 0,
+      "requiredError": "LS_BOUND_EXCEEDED",
+      "identityMarkersObserved": true,
+      "persistenceMarkerObserved": true,
+      "ownWorkspaceDisposed": true,
+      "callsCapturedBy": "worker; complete host event stream not independently obtained"
+    },
+    "disabled": {
+      "savedRuntimeCalls": 7,
+      "pageOffsets": [
+        0,
+        10,
+        20,
+        30
+      ],
+      "rowsIndependentlyParsed": 36,
+      "groupsFromSavedPages": {
+        "A": {
+          "count": 6,
+          "mean": 65.16666666666667
+        },
+        "B": {
+          "count": 6,
+          "mean": 68.33333333333333
+        },
+        "C": {
+          "count": 5,
+          "mean": 66.6
+        }
+      },
+      "queryRepeatsAfterFailure": 0,
+      "graphReloadsAfterFailure": 0,
+      "requiredError": "LS_BOUND_EXCEEDED",
+      "identityMarkersObserved": true,
+      "persistenceMarkerObserved": true,
+      "ownWorkspaceDisposed": true,
+      "callsCapturedBy": "worker; complete host event stream not independently obtained"
+    }
+  },
+  "memory": {
+    "enabledSelectedPattern": "retained-query-after-display-limit",
+    "readReceipt": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-read-a79f8bc3-cfc2-4e43-9d6e-63e9181ad1d7.json",
+    "feedback": "helped",
+    "feedbackScope": "agent-reported-assessment-not-causal-benefit",
+    "disabledNoMemory": "worker-reported; no independent complete file-access audit"
+  },
+  "sharedDataEquality": true
+}

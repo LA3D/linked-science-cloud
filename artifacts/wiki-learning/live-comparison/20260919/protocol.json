@@ -1,0 +1,37 @@
+{
+  "format": "wiki-memory-live-comparison-protocol/v1",
+  "date": "2026-09-19",
+  "baseCommit": "5f7f46e",
+  "arms": [
+    "enabled",
+    "disabled"
+  ],
+  "replicatesPerArm": 1,
+  "forkParentHistory": false,
+  "fixtureSha256": "98f5fa282a70f391e55c04256d69d5905bc6543eafa3404a377c18687fefe95c",
+  "criteria": [
+    "Correct counts and means for all groups and maximum group",
+    "Runtime evidence of complete coverage",
+    "No unnecessary graph reload or query repeat after presentation failure",
+    "Scoped interpretation: proposed memory is not authority or handle validity",
+    "Observed skill read, retrieval/read/feedback receipts when relevant"
+  ],
+  "limits": {
+    "maxRuntimeCalls": 12,
+    "maxPostFailureCalls": 8,
+    "publicReads": 0
+  },
+  "controls": [
+    "Same prompt except arm and memory policy",
+    "Same inherited model/settings requested; actual model telemetry may be unavailable",
+    "Separate worker contexts; shared filesystem isolated by instructions, not OS enforcement",
+    "No source-code/fixture-formula shortcut as sole answer evidence",
+    "Control cannot read wiki, retrieval results, other arm or evaluator material"
+  ],
+  "limitations": [
+    "One pair, synthetic data, known failure chosen to match one candidate",
+    "Both workers share base skill guidance about bounded display and result completeness",
+    "Tool response capture by workers must be audited; unobserved calls remain uncertain",
+    "Not a blinded population estimate or causal model-quality proof"
+  ]
+}

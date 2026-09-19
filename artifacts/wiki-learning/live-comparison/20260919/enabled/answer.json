@@ -1,0 +1,24 @@
+{
+  "groups": {
+    "A": {
+      "count": 6,
+      "mean": 65.16666666666667
+    },
+    "B": {
+      "count": 6,
+      "mean": 68.33333333333333
+    },
+    "C": {
+      "count": 5,
+      "mean": 66.6
+    }
+  },
+  "winners": [
+    "A",
+    "B"
+  ],
+  "coverage": {
+    "rowsObserved": 36,
+    "complete": true
+  }
+}

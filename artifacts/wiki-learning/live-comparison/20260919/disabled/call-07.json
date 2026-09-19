@@ -1,0 +1,14 @@
+{
+  "arguments": {
+    "code": "await trial.dispose(); nodeRepl.write({disposed:true,contextKey:'memory-disabled-1789840890935'});",
+    "title": "Dispose only this trial workspace after saving evidence"
+  },
+  "rawResponse": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{ disposed: true, contextKey: 'memory-disabled-1789840890935' }"
+      }
+    ]
+  }
+}

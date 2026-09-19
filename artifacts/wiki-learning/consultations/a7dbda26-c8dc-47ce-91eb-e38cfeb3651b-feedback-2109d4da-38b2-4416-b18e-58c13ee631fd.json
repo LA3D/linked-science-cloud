@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "a7dbda26-c8dc-47ce-91eb-e38cfeb3651b",
+  "recordedAt": "2026-09-19T18:02:35.340Z",
+  "assessment": "helped",
+  "note": "Self-report: the consulted candidate informed checking retained handles and repairing only pagination. Saved actual calls show a presentation-bound failure, surviving handles, and complete 36-row coverage without another query or graph load. This does not establish causal benefit; runtime error and skill also provide repair guidance.",
+  "evidence": [
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/answer.json",
+      "sha256": "328d449fa8f73ca101e635b1e3eff28b5c5067814ee44f925276bfa2319a5f42",
+      "hashDomain": "file-bytes",
+      "pointer": "/coverage"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-04.json",
+      "sha256": "f6d37422e4498691c35fe6a1c16340d43403444fbc0ca7565656f0edd92d97d0",
+      "hashDomain": "file-bytes",
+      "pointer": "/response"
+    }
+  ],
+  "consultedPatternIds": [
+    "retained-query-after-display-limit"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

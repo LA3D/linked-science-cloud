@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "nodeRepl.write(await trial.results.page(assayResult,{limit:100}));",
+    "title": "Required unchanged display attempt"
+  },
+  "rawResponse": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"ok\":false,\"error\":{\"code\":\"LS_BOUND_EXCEEDED\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"limit must be an integer from 0 to 10\",\"stage\":\"projection\",\"recoveryDocument\":\"recovery\",\"retryable\":true,\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}},\"receipt\":{\"status\":\"failed\",\"stage\":\"projection\",\"code\":\"LS_BOUND_EXCEEDED\",\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}}}}}"
+      }
+    ],
+    "isError": true
+  }
+}

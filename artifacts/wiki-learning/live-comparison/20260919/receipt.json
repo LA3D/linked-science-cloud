@@ -1,0 +1,177 @@
+{
+  "format": "linked-science-memory-live-pilot/v1",
+  "id": "wiki-memory-live-pilot-20260919",
+  "date": "2026-09-19",
+  "outcome": "passed",
+  "benefit": "not-established",
+  "baseCommit": "5f7f46e6b652bd31275b67c9acd4e070e3cbc772",
+  "workerIds": {
+    "enabled": "01a0bad4-5751-7130-95c1-b037e900675a",
+    "disabled": "01a0bad4-580d-7b53-9965-09c3af3b43d3"
+  },
+  "forkContext": false,
+  "fixtureSha256": "98f5fa282a70f391e55c04256d69d5905bc6543eafa3404a377c18687fefe95c",
+  "results": {
+    "enabled": {
+      "correct": true,
+      "rowsObserved": 36,
+      "runtimeCalls": 6,
+      "queryRepeats": 0,
+      "graphReloads": 0,
+      "memoryPatternRead": true,
+      "skillRead": "worker-reported",
+      "agentFeedback": "helped",
+      "elapsedSecondsReported": 93.836,
+      "aggregation": "host Python over saved query pages"
+    },
+    "disabled": {
+      "correct": true,
+      "rowsObserved": 36,
+      "runtimeCalls": 7,
+      "queryRepeats": 0,
+      "graphReloads": 0,
+      "memoryPatternRead": false,
+      "skillRead": "worker-reported",
+      "elapsedSecondsReported": 75.903,
+      "aggregation": "in-kernel JavaScript over observed query pages"
+    }
+  },
+  "interpretation": "Fresh enabled worker delivered a relevant proposed pattern with outcome feedback. Both arms answered correctly and recovered without repeated query or graph load. One fewer MCP call in enabled arm is explained by host-side aggregation and cannot establish efficiency benefit; enabled arm also incurred memory retrieval overhead.",
+  "missingEvidence": [
+    "Independent complete worker file/tool-access audit; skill reads and baseline abstention rely on worker reports plus observed receipts.",
+    "Matched end-to-end token/cost telemetry; elapsed times exclude initial reading and cleanup.",
+    "Repeated independent scientific tasks, randomized arms and evidence of causal benefit.",
+    "Fresh desktop task activation distinct from fresh-context subagent activation."
+  ],
+  "patternStatus": "unchanged-proposed",
+  "inputs": [
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/answer-scores.json",
+      "sha256": "9118fcc1c22801d1a5fb2df25a11327d8b2936cf3b11ddd4b2913ab58085980e"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/audit.json",
+      "sha256": "96effc1893b90592bb89227bae26884843eaccaccc99d0a7aa46fb5803b7dbfa"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/audit.py",
+      "sha256": "e1ef6b1f8866f4a9f79fd4ecf2ae2f6e9a58dc6b40eef13d4cca37056058edba"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/answer.json",
+      "sha256": "328d449fa8f73ca101e635b1e3eff28b5c5067814ee44f925276bfa2319a5f42"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-01.json",
+      "sha256": "219d39fbc8f666fc52ef77cc0e995fe1bf7998f6b8c3b84a65522133cf1bb07e"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-02.json",
+      "sha256": "692e0847032998c83c362ebc921f766c89d9946b244e9a3f0bd3dff0e8de8279"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-03.json",
+      "sha256": "634e3a26ad86dea6699ece76004327c30c14c16e4fad1a6453af1c06546d5085"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-04.json",
+      "sha256": "aac28e81715fdc391a8abcd7bd3cb2dfee515ed2ef5ae75b64fcc8d717877af5"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-05.json",
+      "sha256": "15fe2358909c7805ece63b82c74d676e0c3c97a57d4b79e9da37a86cafa4e3f1"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-06.json",
+      "sha256": "97270919b845f4922c0bd6250bfd1d901d7372d106adc2dad8911049d5e52684"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/call-07.json",
+      "sha256": "376d7e8e452ef1fe5623f37f1e15d9834ccf4149babafef109dd88615afd847b"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/report.json",
+      "sha256": "efcfa7f0792f3f6d5ac2f48f05f92bd6348c414fdbd290cf2cd51e6831474960"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/disabled/worker-prompt.txt",
+      "sha256": "7aaf3a7c122d0e197ed0ca742f2281e93b55d73d95e71961f06fcaec9dd131b0"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/answer.json",
+      "sha256": "328d449fa8f73ca101e635b1e3eff28b5c5067814ee44f925276bfa2319a5f42"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/derive-answer.py",
+      "sha256": "95f2c5ba909fb0d152c421a1093f11262940f30a9ee45d65ef5b6011baf872c3"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/memory-feedback.json",
+      "sha256": "35f321ce30552ec7fec1eb59e35666a057da6528cef6468520a3869f574108b9"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/observed-rows.json",
+      "sha256": "c1dad9dafb3a93ae26957854b5488a73cd90b95fa7b1107525214763774f87e3"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/report.json",
+      "sha256": "787190671245e7f1e6de239423880d0d184ce2ca2404cbe2dace957178a6e514"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-01.json",
+      "sha256": "e3e8eaba1aa16e164e9f95e0b9dc04200e010bfee0334d794b1fe15d34d71196"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-02.json",
+      "sha256": "cae198b0cf6e52e1976611938495032fe266acded420a64c6b976c6a3ea9d247"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-03.json",
+      "sha256": "418798fbbb283a500519a3d926c1e7ef6958d7b9f01ff6a79b4bda99739b5d5a"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-04.json",
+      "sha256": "f6d37422e4498691c35fe6a1c16340d43403444fbc0ca7565656f0edd92d97d0"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-05.json",
+      "sha256": "ac28e98aac89a836149dd34406ef560431b5cca0534da3bdeb8b04fe0bae7a92"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/runtime-call-06.json",
+      "sha256": "485effabc498f7709bccd788b41a8c30f7f0495065938593609ca4f8083241d6"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/enabled/worker-prompt.txt",
+      "sha256": "6a8eb393ff5b524a5989a42fb91807c5d2b09329023ce33a28e05d0dfd1c692e"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/evaluator.json",
+      "sha256": "c36cb091c3fcb125b68180cb9a4fb5577eb8032824e91d9ac6f4b4c9c038d218"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/fixture.json",
+      "sha256": "98f5fa282a70f391e55c04256d69d5905bc6543eafa3404a377c18687fefe95c"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/protocol.json",
+      "sha256": "8223e25eb4e49d9c013c8db082343be3f9dbb793c6bdc6648ca3f4ec65633783"
+    },
+    {
+      "path": "artifacts/wiki-learning/live-comparison/20260919/score-answers.mjs",
+      "sha256": "9d0354bf2c771113044eded184a982ab4f61be1c0348cb60e04c451b5d3644da"
+    },
+    {
+      "path": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-search-c0c44c4c-4581-4b75-883b-1d038d46e0b8.json",
+      "sha256": "9894e958eeb9d1f6f3f6ee0289a0a74d53733488dede2d0d9218204185ed1adc"
+    },
+    {
+      "path": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-read-a79f8bc3-cfc2-4e43-9d6e-63e9181ad1d7.json",
+      "sha256": "0877fbbfbb1fe40e2313eab5d494ab59afa43e7206cd44b912b10f1484a2ca7d"
+    },
+    {
+      "path": "artifacts/wiki-learning/consultations/a7dbda26-c8dc-47ce-91eb-e38cfeb3651b-feedback-2109d4da-38b2-4416-b18e-58c13ee631fd.json",
+      "sha256": "d16d024720f6935fc404c59ce58e3adfdf17fde567dcfd1e706b8e91c03cd96c"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "arm": "disabled",
+  "contextKey": "memory-disabled-1789840890935",
+  "status": "complete",
+  "skillPathsRead": [
+    "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/.agents/skills/linked-data-repl/SKILL.md"
+  ],
+  "otherFilesRead": [
+    "README.md",
+    "docs/agent/context-routing.md",
+    "docs/agent/runtime-discovery.md",
+    "artifacts/wiki-learning/live-comparison/20260919/fixture.json"
+  ],
+  "identityEvidence": [
+    "call-01.json"
+  ],
+  "persistenceEvidence": [
+    "call-01.json",
+    "call-02.json",
+    "call-04.json",
+    "call-05.json"
+  ],
+  "outcomeEvidence": [
+    "call-04.json",
+    "call-05.json",
+    "call-06.json",
+    "answer.json"
+  ],
+  "recoveryChoices": [
+    "Used LS_BOUND_EXCEEDED local repair: limit 10.",
+    "Reused original query handle and paged offsets 0,10,20,30.",
+    "Computed strict >45 aggregates from observed page rows; checked 36 unique samples, contiguous pages, complete profile and final nontruncated page.",
+    "No query rerun, graph reload, kernel reset, external retrieval or memory consultation."
+  ],
+  "runtimeCallCount": 7,
+  "runtimeCallsAfterRequiredAttempt": 4,
+  "repeatedQueryCountAfterFailure": 0,
+  "graphLoadCountAfterFailure": 0,
+  "totalQueryCount": 1,
+  "totalGraphLoadCount": 1,
+  "memorySearchReceiptPaths": [],
+  "memoryReadReceiptPaths": [],
+  "memoryFeedbackReceiptPaths": [],
+  "memoryOutcome": {
+    "consulted": false,
+    "selfReport": "No-memory baseline solved using runtime error repair and retained native query results.",
+    "causalBenefit": "Not assessed; this arm alone establishes no causal memory benefit.",
+    "evidence": [
+      "call-03.json",
+      "call-04.json",
+      "call-05.json",
+      "call-06.json"
+    ]
+  },
+  "captureGaps": [],
+  "elapsedTime": {
+    "seconds": 75.903,
+    "scope": "Measured from after initial skill/README/fixture read to pre-disposal save; excludes initial read and cleanup."
+  },
+  "limitations": [
+    "Local synthetic assay only; no biological inference.",
+    "Means represented as JavaScript floating-point numbers.",
+    "Runtime raw responses saved as returned tool objects; no omitted outputs invented.",
+    "Experiment registry not modified because writes are restricted to this arm."
+  ],
+  "disposal": {
+    "status": "complete",
+    "scope": "only trial workspace",
+    "evidence": "call-07.json"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "format": "wiki-memory-scientific-fixture/v1",
+  "scientificStatus": "local synthetic assay; no biological inference",
+  "setupCode": "var trial=linkedScience.open({contextKey:'MEMORY_TRIAL_CONTEXT'}); var ttl='@prefix ex: <urn:assay:> .\\n'; for(var i=1;i<=36;i++){ttl+='<urn:sample:'+i+'> ex:group '+JSON.stringify(['A','B','C'][i%3])+'; ex:value '+(((i*17)%83)+5)+' .\\n';} var assayGraph=await trial.graphs.load({name:'synthetic-assay',kind:'instance-data',text:ttl}); var assayResult=await trial.query.run({sources:[assayGraph],sparql:'SELECT ?sample ?group ?value WHERE { ?sample <urn:assay:group> ?group; <urn:assay:value> ?value } ORDER BY ?sample'}); nodeRepl.write({inventory:trial.inventory(),profile:trial.results.profile(assayResult)});",
+  "requiredNextCode": "nodeRepl.write(await trial.results.page(assayResult,{limit:100}));",
+  "question": "For each assay group A, B and C, report the number of samples with value strictly greater than 45 and the mean value among those qualifying samples; identify the group(s) with the largest qualifying count. Establish coverage of the entire query result. Recover from the required display attempt as you judge appropriate, without changing the scientific question."
+}
