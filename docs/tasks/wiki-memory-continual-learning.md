@@ -1,10 +1,12 @@
 # Implementation PLAN: wiki memory and reviewed skill evolution
 
-- **Status:** Phase-0/1 engineering foundations implemented; scientific-workflow corpus eligibility and one evidence-backed scientific episode added on 2026-09-19. Engineering planning episodes are excluded from learning. Wiki maintenance, skill evolution and transfer evaluations remain proposed.
+- **Status (2026-09-20):** Scientific corpus, wiki maintenance and selective retrieval implemented. A fresh-context pilot established functional use, not incremental benefit; two seed patterns remain proposed. Reasoning integration is the next dependency for learning when to use inference. See the [current reasoning-to-memory handoff](reasoning-and-wiki-guidance.md). Skill evolution/release remains future work.
 - **Owner:** Codex coordinates work; a repository maintainer reviews wiki revisions and releases. The scientific runtime remains the evidence/session service.
 - **Scope:** Learn only from scientific RLM/REPL objectives, their retrieval/representation/computation/retained-state actions and observed outcomes, including failures. Development/configuration/planning fixtures are engineering evidence, excluded from learning. Future reviewed procedural wiki and release stages remain separate from source-version-dependent scientific findings.
-- **Authority:** The user authorized this plan and documentation. No runtime code, skills, hooks, memory settings, transcript exports, learning runs or model evaluations are being implemented or enabled now. Later phase execution requires an appropriate task authorization; ordinary authorized public reads retain the existing broker contract.
+- **Authority:** This document began as an authorized plan; dated sections and linked task records distinguish subsequent authorized implementation and evaluations. The current update records priorities and handoff only; it does not execute the future reasoning integration, trials or pattern promotion. Ordinary authorized public reads retain the existing broker contract.
 - **Dependency:** Preserve the existing frozen UniProt baseline and its isolation. This planning work may proceed now; learning/evaluation cannot silently contaminate that baseline. Durable RDF storage is a separate [task](durable-dataset-persistence.md).
+
+Earlier sections preserve the original phase design. Later dated records and the current handoff govern implementation status; historical statements that retrieval or maintenance are unimplemented are not current status.
 
 ## 1. Decisions and boundaries
 
@@ -401,3 +403,12 @@ The [bounded saved-evidence review](wiki-independent-recovery-review.md) used th
 The user authorized connecting stored patterns to ordinary scientific tasks. This extends the earlier maintenance-only scope. The [selective retrieval implementation](wiki-selective-retrieval.md) uses an updated Linked Data REPL skill, a host-side search/read helper and consultation/feedback receipts. Pattern content remains advisory data, with proposed hypotheses distinct from reviewed candidates and source snapshots. No runtime provider or global prompt injection is involved.
 
 The paired on/off retrieval check passes for the two known seed patterns and an unrelated query; this measures selection and delivery mechanics, not independent scientific benefit. Both patterns remain proposed. The original frozen skill baseline is preserved, and a separate retrieval baseline records the changed skill. An updated-skill fresh-task activation and independent scientific on/off trial remain unmeasured.
+
+
+## 18. Reasoning surface before reasoning guidance — 2026-09-20
+
+The [fresh-context pilot](wiki-live-comparison.md) is complete: both arms recovered correctly, so selective retrieval is functional but incremental benefit remains unestablished. The two existing patterns remain proposed.
+
+The user selected reasoning-aware scientific memory as a continuation of this work. First establish deterministic reasoning over the shared RDF/JS surface, then capture eligible scientific uses and failures, then propose evidence-backed guidance about when to use SPARQL, reasoning, or a scoped worker. The [Eyeron compatibility experiments](../experiments/eyeron-compatibility.md) precede production integration deliberately: 15 bounded checks pass, but they do not establish a production adapter, no-relay delegation or general OWL conformance. Installation and engineering compatibility records are not automatically eligible scientific memory.
+
+Use [Reasoning integration and scientific wiki guidance](reasoning-and-wiki-guidance.md) as the current cross-agent handoff for dependencies, acceptance evidence and the exact next action. This retains the wiki work; it supplies the missing tool behavior and scientific evidence from which useful new patterns can be learned. No reasoning pattern, skill release or promotion is created by this planning update.
