@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "17f3e90d-0748-4150-8abb-9a378614a5cf",
+  "recordedAt": "2026-09-20T16:29:01.513Z",
+  "mode": "on",
+  "querySha256": "eba37fd591f102002628e831b6cbcdaffcc6b9072c6f424891ce57bb2acefa6b",
+  "revision": "86b9049a61425844c233403c150716d30e368e1735e5d299a0bbd612b56aa460",
+  "candidates": [
+    {
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 13,
+      "matchedTerms": [
+        "uniprot",
+        "named",
+        "graph",
+        "schema",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 10,
+      "matchedTerms": [
+        "uniprot",
+        "graph",
+        "resource",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "uniprot-catalog-display-bound",
+      "title": "Respect bounded projections when inspecting a graph catalog",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "uniprot",
+        "graph"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "uniprot-discovery-20260920",
+  "baseRevision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "batch": {
+    "purpose": "Record UniProt graph structure and narrowly witnessed discovery/display lessons",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+        "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+        "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 3,
+    "outcomeStrata": [
+      "success",
+      "failure"
+    ],
+    "omittedMaterial": [
+      "Earlier timeout trajectory is retrospective only; see companion notes.",
+      "No transfer evaluation, full schema extraction, or inference-quality evidence."
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured UniProt service description advertises these named graphs and triple counts (metadata, not measured remote contents): http://purl.uniprot.org/core = 2835; http://sparql.uniprot.org/chebi = 3426039; http://sparql.uniprot.org/citationmapping = 244587074; http://sparql.uniprot.org/citations = 30730282; http://sparql.uniprot.org/database = 2407; http://sparql.uniprot.org/diseases = 91009; http://sparql.uniprot.org/enzymes = 156569; http://sparql.uniprot.org/go = 655968; http://sparql.uniprot.org/journal = 43700; http://sparql.uniprot.org/keywords = 11752; http://sparql.uniprot.org/locations = 6314; http://sparql.uniprot.org/obsolete = 2504600781; http://sparql.uniprot.org/pathways = 12363; http://sparql.uniprot.org/proteomes = 44980518; http://sparql.uniprot.org/taxonomy = 70047936; http://sparql.uniprot.org/tissues = 4115; http://sparql.uniprot.org/uniparc = 198735586260; http://sparql.uniprot.org/uniprot = 37329393214; http://sparql.uniprot.org/uniref = 5375029833; https://sparql.rhea-db.org/rhea = 2053334; https://sparql.uniprot.org/.well-known/sparql-examples = 1405. The core graph IRI has no trailing slash; vocabulary terms use http://purl.uniprot.org/core/. Official catalog: https://sparql.uniprot.org/.well-known/void .",
+      "applicability": "UniProt endpoint discovery. A graph IRI identifies a dataset partition, not automatically statement-level provenance or a dereferenceable document. Retain exact IRIs; HTTP and HTTPS are not interchangeable graph names.",
+      "competingExplanations": [
+        "Published metadata may lag actual endpoint contents; this capture does not independently count remote triples."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A mediated service-description read followed by local SPARQL produced a complete graph-name inventory. Use the official catalog and per-graph documentation to orient queries; do not infer graph names solely from vocabulary namespaces. A catalog read is not schema extraction or proof of endpoint reasoning support.",
+      "applicability": "Source-owned RDF service descriptions, native retained RDF and bounded local projections. Keep source version/hash and distinguish advertised metadata from queried data. Resource guide and retrospective limits: artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/README.md (companion documentation, not additional validated corpus evidence).",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-catalog-display-bound",
+      "title": "Respect bounded projections when inspecting a graph catalog",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A display limit of 30 was rejected with LS_BOUND_EXCEEDED (maximum 10). A subsequent fresh capture paged in batches of ten and checked all catalog rows. The first kernel was closed; this is NOT evidence of same-handle recovery or that an earlier remote query succeeded.",
+      "applicability": "Distinguish presentation-bound errors from network timeouts. Inspect typed repair information; page within the documented limit without adding SPARQL LIMIT merely to fit the prompt.",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+            "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-bound",
+          "eventIds": [
+            "event-2",
+            "event-3"
+          ],
+          "evidenceIds": [
+            "service"
+          ],
+          "operationIds": []
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}

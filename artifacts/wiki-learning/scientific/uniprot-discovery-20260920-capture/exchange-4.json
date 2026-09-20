@@ -1,0 +1,24 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-4",
+  "observedAt": "2026-09-20T16:26:08.081Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var names=page.rows.map(r=>r.name.value);nodeRepl.write(JSON.stringify({checks:{retainedQueryOperation:profile.provenance.operationId,complete:profile.provenance.completion.complete,allRowsDisplayed:page.rows.length===page.total,uniqueGraphNames:new Set(names).size===names.length,corePresent:names.includes('http://purl.uniprot.org/core'),goPresent:names.includes('http://sparql.uniprot.org/go')},names}));",
+    "max_output_bytes": 24000,
+    "timeout_ms": 60000
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"checks\":{\"retainedQueryOperation\":\"op-000003\",\"complete\":true,\"allRowsDisplayed\":true,\"uniqueGraphNames\":true,\"corePresent\":true,\"goPresent\":true},\"names\":[\"http://purl.uniprot.org/core\",\"http://sparql.uniprot.org/chebi\",\"http://sparql.uniprot.org/citationmapping\",\"http://sparql.uniprot.org/citations\",\"http://sparql.uniprot.org/database\",\"http://sparql.uniprot.org/diseases\",\"http://sparql.uniprot.org/enzymes\",\"http://sparql.uniprot.org/go\",\"http://sparql.uniprot.org/journal\",\"http://sparql.uniprot.org/keywords\",\"http://sparql.uniprot.org/locations\",\"http://sparql.uniprot.org/obsolete\",\"http://sparql.uniprot.org/pathways\",\"http://sparql.uniprot.org/proteomes\",\"http://sparql.uniprot.org/taxonomy\",\"http://sparql.uniprot.org/tissues\",\"http://sparql.uniprot.org/uniparc\",\"http://sparql.uniprot.org/uniprot\",\"http://sparql.uniprot.org/uniref\",\"https://sparql.rhea-db.org/rhea\",\"https://sparql.uniprot.org/.well-known/sparql-examples\"]}"
+        }
+      ]
+    }
+  }
+}

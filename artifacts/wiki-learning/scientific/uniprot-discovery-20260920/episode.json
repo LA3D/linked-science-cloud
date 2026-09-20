@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "uniprot-discovery-20260920",
+  "host": {
+    "hostId": "repository-stdio",
+    "taskId": "uniprot-discovery-20260920",
+    "version": "project broker; actual JSON-RPC exchange records",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920/observable-events.json",
+      "sha256": "7bb708543eba49d97472f140fa47a68b6e01a95394107bd53dbc6eb01083f4f4",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No model-memory settings inspected; host performed symbolic calls"
+    }
+  },
+  "capture": {
+    "kind": "direct-runtime",
+    "completeness": "partial",
+    "gaps": [
+      "Fresh metadata capture, not a reconstruction of earlier ontology inspection.",
+      "Actual project stdio broker, not the expired mounted Desktop session.",
+      "Source payloads remain ephemeral; metadata hashes, raw exchanges, bounded projections and query receipts saved.",
+      "No complete core schema extraction or reasoning performed."
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "6.5.0",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/uniprot-discovery-20260920/manifest.json",
+    "digest": "120cf7561f9a456c8dc770d2eaeb00ca98ac6e4af3c6433ef529ce66db0d16b7",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "scientific-run",
+      "itemId": "exchange-1",
+      "kind": "mcpToolCall",
+      "sequence": 1,
+      "objectiveIds": [
+        "discover-uniprot"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "scientific-run",
+      "itemId": "exchange-2",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "discover-uniprot"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "scientific-run",
+      "itemId": "exchange-3",
+      "kind": "mcpToolCall",
+      "sequence": 3,
+      "objectiveIds": [
+        "discover-uniprot"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "discover-uniprot",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "What named graph and resource structure does UniProt publish for schema-aware scientific query and reasoning selection?",
+      "acceptance": [
+        "Retrieve source-owned service metadata",
+        "Enumerate exact named graph identities and advertised sizes",
+        "Distinguish metadata discovery from successful schema extraction"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "service",
+      "kind": "receipt-only",
+      "description": "Mediated source metadata and response fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920/source.json",
+        "sha256": "dd9b94b5f31b993c286356ff647c0a1ddc72d056aebca59a8b3e2d4571d69d99",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.uniprot.org/",
+        "revision": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+        "representation": "text/turtle"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    }
+  ],
+  "joins": [],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "display-failed",
+      "objectiveId": "discover-uniprot",
+      "kind": "machine-check",
+      "status": "failed",
+      "claim": "Display limit 30 exceeded runtime maximum 10",
+      "evidenceIds": [
+        "service"
+      ],
+      "missingEvidence": []
+    }
+  ]
+}

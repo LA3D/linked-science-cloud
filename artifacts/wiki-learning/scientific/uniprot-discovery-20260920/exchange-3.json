@@ -1,0 +1,25 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-3",
+  "observedAt": "2026-09-20T16:25:48.600Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var query=await ws.query.run({sources:[graph],sparql:'PREFIX sd: <http://www.w3.org/ns/sparql-service-description#> PREFIX void: <http://rdfs.org/ns/void#> SELECT ?name ?triples WHERE { ?g sd:name ?name; sd:graph ?d. OPTIONAL { ?d void:triples ?triples } } ORDER BY ?name'});var profile=ws.results.profile(query);var page=await ws.results.page(query,{limit:30});nodeRepl.write(JSON.stringify({profile,page}));",
+    "max_output_bytes": 24000,
+    "timeout_ms": 60000
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":false,\"error\":{\"code\":\"LS_BOUND_EXCEEDED\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"limit must be an integer from 0 to 10\",\"stage\":\"projection\",\"recoveryDocument\":\"recovery\",\"retryable\":true,\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}},\"receipt\":{\"status\":\"failed\",\"stage\":\"projection\",\"code\":\"LS_BOUND_EXCEEDED\",\"repair\":{\"kind\":\"linked-science-local-validation-repair\",\"scope\":\"local-call\",\"phase\":\"projection\",\"allowed\":true,\"field\":\"limit\",\"expected\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":10},\"action\":\"Use limit between 0 and 10; this changes only the bounded model-visible projection.\",\"budgetImpact\":{\"liveRequests\":0}}}}}"
+        }
+      ],
+      "isError": true
+    }
+  }
+}

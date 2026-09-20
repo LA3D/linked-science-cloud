@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "uniprot-discovery-20260920-capture-corpus",
+  "episode": {
+    "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/episode.json",
+    "sha256": "cb3d38327cc1308bd428d68b1e90d139ce53957d1a4cc59e582ec190440ed0b9",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Source-owned schema exploration for scientific query selection; no engineering objectives",
+    "scientificObjectiveIds": [
+      "discover-uniprot"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "catalog",
+      "objectiveId": "discover-uniprot",
+      "anchors": [
+        "https://sparql.uniprot.org/"
+      ],
+      "sourceEvidenceIds": [
+        "service"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T16:26:08.040Z",
+        "revalidateWhen": "Endpoint release or runtime change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-2.json",
+            "sha256": "17e840a747849fa515551f8a643779805571b87a85be8ae5cdb8a7cd132b19d2",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-3",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-3.json",
+            "sha256": "b6588a6a7385225406f02dce434ad8bfe7631c69cad0759d066282e3daa8f010",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-4",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-4.json",
+          "sha256": "df8eab69dc9eb5d321eb9d647077a96a514bd5618fe6fe7e1a08ef380a1459e2",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "scientific-finding",
+      "claim": "Published named graph inventory",
+      "scope": "This capture only"
+    },
+    {
+      "id": "catalog-discovery",
+      "objectiveId": "discover-uniprot",
+      "anchors": [
+        "https://sparql.uniprot.org/"
+      ],
+      "sourceEvidenceIds": [
+        "service"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T16:26:08.040Z",
+        "revalidateWhen": "Endpoint release or runtime change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-2.json",
+            "sha256": "17e840a747849fa515551f8a643779805571b87a85be8ae5cdb8a7cd132b19d2",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-3",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-3.json",
+            "sha256": "b6588a6a7385225406f02dce434ad8bfe7631c69cad0759d066282e3daa8f010",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-4",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/exchange-4.json",
+          "sha256": "df8eab69dc9eb5d321eb9d647077a96a514bd5618fe6fe7e1a08ef380a1459e2",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "Discover exact graph identities using service metadata and local SPARQL",
+      "scope": "This capture only"
+    }
+  ]
+}

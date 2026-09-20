@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "uniprot-discovery-20260920-corpus",
+  "episode": {
+    "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920/episode.json",
+    "sha256": "be73db117f3a81e0d514794bd81b1060787bcf4445a636249505a9291e77148c",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Source-owned schema exploration for scientific query selection; no engineering objectives",
+    "scientificObjectiveIds": [
+      "discover-uniprot"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "display-bound",
+      "objectiveId": "discover-uniprot",
+      "anchors": [
+        "https://sparql.uniprot.org/"
+      ],
+      "sourceEvidenceIds": [
+        "service"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T16:25:48.561Z",
+        "revalidateWhen": "Endpoint release or runtime change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920/exchange-2.json",
+            "sha256": "96e7bc1f2181e28ad299919dfec6040232d1e787097cc192c1c34da0a9eadcff",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/uniprot-discovery-20260920/exchange-3.json",
+          "sha256": "ed6e02f69024e4ed22334d9a3910f319bdc863c85e625dc0b1de463708f6d558",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "failure"
+      },
+      "outcome": "failure",
+      "lessonKind": "procedure",
+      "claim": "Display bound rejected",
+      "scope": "This capture only"
+    }
+  ]
+}

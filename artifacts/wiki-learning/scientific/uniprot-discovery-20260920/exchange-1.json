@@ -1,0 +1,24 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-1",
+  "observedAt": "2026-09-20T16:25:47.519Z",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var question=\"What named graph and resource structure does UniProt publish for schema-aware scientific query and reasoning selection?\"; var ws=linkedScience.open({contextKey:'uniprot-discovery-capture'});nodeRepl.write(JSON.stringify({question}));",
+    "max_output_bytes": 24000,
+    "timeout_ms": 60000
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"question\":\"What named graph and resource structure does UniProt publish for schema-aware scientific query and reasoning selection?\"}"
+        }
+      ]
+    }
+  }
+}

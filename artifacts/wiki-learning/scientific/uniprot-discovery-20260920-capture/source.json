@@ -1,0 +1,33 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000001",
+    "type": "resource",
+    "epoch": "3ad49f26-31bb-4073-909f-1653453e8606:uniprot-discovery-capture:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://sparql.uniprot.org/",
+  "redirected": false,
+  "headers": {
+    "content-type": "text/turtle",
+    "etag": "W/\"2026_03\"",
+    "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+  },
+  "mediaType": "text/turtle",
+  "bytes": 474163,
+  "sha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+  "provenance": {
+    "operationId": "op-000001",
+    "payloadSha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 771,
+    "maxBytes": 32768
+  }
+}

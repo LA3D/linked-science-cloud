@@ -1,0 +1,346 @@
+{
+  "thread": {
+    "id": "uniprot-discovery-20260920",
+    "turns": [
+      {
+        "id": "scientific-run",
+        "items": [
+          {
+            "id": "exchange-1",
+            "type": "mcpToolCall",
+            "result": {
+              "structuredContent": {
+                "observed": {
+                  "question": "What named graph and resource structure does UniProt publish for schema-aware scientific query and reasoning selection?"
+                },
+                "question": "What named graph and resource structure does UniProt publish for schema-aware scientific query and reasoning selection?"
+              }
+            }
+          },
+          {
+            "id": "exchange-2",
+            "type": "mcpToolCall",
+            "result": {
+              "structuredContent": {
+                "observed": {
+                  "source": {
+                    "kind": "linked-science-resource-inspection",
+                    "representation": "metadata",
+                    "handle": {
+                      "kind": "linked-science-handle",
+                      "id": "h-000001",
+                      "type": "resource",
+                      "epoch": "4fb09437-ec27-4604-b471-23009affb110:uniprot-discovery-capture:1",
+                      "label": "resource-response"
+                    },
+                    "ok": true,
+                    "status": 200,
+                    "statusText": "",
+                    "url": "https://sparql.uniprot.org/",
+                    "redirected": false,
+                    "headers": {
+                      "content-type": "text/turtle",
+                      "etag": "W/\"2026_03\"",
+                      "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+                    },
+                    "mediaType": "text/turtle",
+                    "bytes": 474163,
+                    "sha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+                    "provenance": {
+                      "operationId": "op-000001",
+                      "payloadSha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+                      "mediatedTraversal": true
+                    },
+                    "bounds": {
+                      "bytes": 771,
+                      "maxBytes": 32768
+                    }
+                  },
+                  "graphProfile": {
+                    "handle": {
+                      "kind": "linked-science-handle",
+                      "id": "h-000002",
+                      "type": "instance-data",
+                      "epoch": "4fb09437-ec27-4604-b471-23009affb110:uniprot-discovery-capture:1",
+                      "label": "uniprot-service-description"
+                    },
+                    "type": "instance-data",
+                    "count": 6670,
+                    "fingerprints": [
+                      "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+                      "cfd4e445e5e7fc48b9d5080fbd6cccf32ee1831f38317e7cd97ee229d7cfc130"
+                    ],
+                    "lineage": {
+                      "kind": "resource-rdf-parse",
+                      "operationId": "op-000002",
+                      "sourceResource": "h-000001",
+                      "format": "text/turtle"
+                    },
+                    "provenance": {
+                      "operationId": "op-000002",
+                      "localOnly": false,
+                      "sourceResource": "h-000001",
+                      "format": "text/turtle",
+                      "sourceFingerprint": "cfd4e445e5e7fc48b9d5080fbd6cccf32ee1831f38317e7cd97ee229d7cfc130",
+                      "resourceProvenance": {
+                        "operationId": "op-000001",
+                        "localOnly": false,
+                        "mediatedTraversal": true,
+                        "resource": {
+                          "requestedUrl": "https://sparql.uniprot.org/",
+                          "method": "GET",
+                          "headers": {}
+                        },
+                        "attempt": {
+                          "kind": "linked-science-resource-attempt",
+                          "index": 1,
+                          "status": "success",
+                          "operationId": "op-000001",
+                          "traversalId": "traversal-f08e5b5f63b4b65a55fb769f",
+                          "method": "GET",
+                          "url": "https://sparql.uniprot.org/",
+                          "startedAt": "2026-09-20T16:25:47.526Z",
+                          "endedAt": "2026-09-20T16:25:48.514Z",
+                          "durationMs": 988,
+                          "budgets": {
+                            "maxQueryChars": 16384,
+                            "maxRequestBodyBytes": 64000,
+                            "maxDurationMs": 300000,
+                            "maxRequestMs": 20000,
+                            "maxRequests": 16,
+                            "maxFanOut": 8,
+                            "maxConcurrency": 4,
+                            "maxResponseBytes": 2000000,
+                            "maxTotalBytes": 10000000,
+                            "maxResultItems": 500
+                          },
+                          "usage": {
+                            "requests": 1,
+                            "fanOut": 1,
+                            "bytes": 474163,
+                            "retries": 0
+                          },
+                          "hiddenRetries": 0
+                        },
+                        "traversalReceipt": {
+                          "kind": "linked-science-traversal-receipt",
+                          "version": "3.2.0",
+                          "authority": {
+                            "class": "anonymous-linked-data-read",
+                            "version": "1.0.0",
+                            "anonymous": true,
+                            "destinationPolicy": "dynamic-anonymous-http-https",
+                            "endpointAllowlist": false,
+                            "schemes": [
+                              "http",
+                              "https"
+                            ],
+                            "methods": [
+                              "GET",
+                              "HEAD",
+                              "SPARQL_POST"
+                            ],
+                            "queryTypes": [
+                              "SELECT",
+                              "ASK",
+                              "CONSTRUCT",
+                              "DESCRIBE"
+                            ],
+                            "effects": [
+                              "public-resource-read",
+                              "rdf-document-read",
+                              "sparql-read",
+                              "linked-data-dereference",
+                              "local-communica-federation"
+                            ],
+                            "prohibited": [
+                              "ambient-identity",
+                              "url-credentials",
+                              "sparql-update",
+                              "arbitrary-post",
+                              "filesystem-write",
+                              "authority-expansion",
+                              "automatic-context-promotion"
+                            ]
+                          },
+                          "status": "complete",
+                          "traversalId": "traversal-f08e5b5f63b4b65a55fb769f",
+                          "startedAt": "2026-09-20T16:25:47.527Z",
+                          "finishedAt": "2026-09-20T16:25:48.513Z",
+                          "budgets": {
+                            "maxQueryChars": 16384,
+                            "maxRequestBodyBytes": 64000,
+                            "maxDurationMs": 300000,
+                            "maxRequestMs": 20000,
+                            "maxRequests": 16,
+                            "maxFanOut": 8,
+                            "maxConcurrency": 4,
+                            "maxResponseBytes": 2000000,
+                            "maxTotalBytes": 10000000,
+                            "maxResultItems": 500
+                          },
+                          "usage": {
+                            "requests": 1,
+                            "fanOut": 1,
+                            "bytes": 474163,
+                            "retries": 0
+                          },
+                          "exchanges": [
+                            {
+                              "kind": "linked-science-fetch-exchange",
+                              "version": "3.2.0",
+                              "index": 1,
+                              "status": "success",
+                              "requestedUrl": "https://sparql.uniprot.org/",
+                              "finalUrl": "https://sparql.uniprot.org/",
+                              "redirected": false,
+                              "method": "GET",
+                              "httpStatus": 200,
+                              "requestSha256": "b8409cc266d2b346bfd9e41135df9fb6d32efd6e8ff389fd39a7b3b10e43e26a",
+                              "responseSha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+                              "bytes": 474163,
+                              "mediaType": "text/turtle",
+                              "headers": {
+                                "content-type": "text/turtle",
+                                "etag": "W/\"2026_03\"",
+                                "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+                              },
+                              "responseHeadersTruncated": false,
+                              "navigation": {
+                                "kind": "linked-data-navigation-evidence",
+                                "responseUrl": "https://sparql.uniprot.org/",
+                                "links": [],
+                                "profiles": [],
+                                "profileDeclarations": [],
+                                "malformedLinkHeader": false,
+                                "truncated": false,
+                                "trust": "untrusted-candidate-evidence"
+                              },
+                              "startedAt": "2026-09-20T16:25:47.539Z",
+                              "finishedAt": "2026-09-20T16:25:48.510Z",
+                              "retries": 0
+                            }
+                          ],
+                          "redirectEvidence": "requested-final-and-redirected-flag"
+                        },
+                        "exchange": {
+                          "kind": "linked-science-fetch-exchange",
+                          "version": "3.2.0",
+                          "index": 1,
+                          "status": "success",
+                          "requestedUrl": "https://sparql.uniprot.org/",
+                          "finalUrl": "https://sparql.uniprot.org/",
+                          "redirected": false,
+                          "method": "GET",
+                          "httpStatus": 200,
+                          "requestSha256": "b8409cc266d2b346bfd9e41135df9fb6d32efd6e8ff389fd39a7b3b10e43e26a",
+                          "responseSha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+                          "bytes": 474163,
+                          "mediaType": "text/turtle",
+                          "headers": {
+                            "content-type": "text/turtle",
+                            "etag": "W/\"2026_03\"",
+                            "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+                          },
+                          "responseHeadersTruncated": false,
+                          "navigation": {
+                            "kind": "linked-data-navigation-evidence",
+                            "responseUrl": "https://sparql.uniprot.org/",
+                            "links": [],
+                            "profiles": [],
+                            "profileDeclarations": [],
+                            "malformedLinkHeader": false,
+                            "truncated": false,
+                            "trust": "untrusted-candidate-evidence"
+                          },
+                          "startedAt": "2026-09-20T16:25:47.539Z",
+                          "finishedAt": "2026-09-20T16:25:48.510Z",
+                          "retries": 0
+                        },
+                        "navigation": {
+                          "kind": "linked-data-navigation-evidence",
+                          "evidenceStatus": "observed-advertisements",
+                          "instructionAuthority": false,
+                          "candidates": [],
+                          "profileDeclarations": [],
+                          "truncated": false,
+                          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+                        },
+                        "payloadSha256": "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75"
+                      }
+                    },
+                    "residency": {
+                      "kind": "resident-rdf-dataset",
+                      "indexed": true,
+                      "scope": "workspace-epoch"
+                    },
+                    "bounds": {
+                      "bytes": 5014,
+                      "maxBytes": 32768
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "exchange-3",
+            "type": "mcpToolCall",
+            "result": {
+              "structuredContent": {
+                "observed": {
+                  "ok": false,
+                  "error": {
+                    "code": "LS_BOUND_EXCEEDED",
+                    "name": "LinkedScienceRuntimeError",
+                    "message": "limit must be an integer from 0 to 10",
+                    "stage": "projection",
+                    "recoveryDocument": "recovery",
+                    "retryable": true,
+                    "repair": {
+                      "kind": "linked-science-local-validation-repair",
+                      "scope": "local-call",
+                      "phase": "projection",
+                      "allowed": true,
+                      "field": "limit",
+                      "expected": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      },
+                      "action": "Use limit between 0 and 10; this changes only the bounded model-visible projection.",
+                      "budgetImpact": {
+                        "liveRequests": 0
+                      }
+                    },
+                    "receipt": {
+                      "status": "failed",
+                      "stage": "projection",
+                      "code": "LS_BOUND_EXCEEDED",
+                      "repair": {
+                        "kind": "linked-science-local-validation-repair",
+                        "scope": "local-call",
+                        "phase": "projection",
+                        "allowed": true,
+                        "field": "limit",
+                        "expected": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        },
+                        "action": "Use limit between 0 and 10; this changes only the bounded model-visible projection.",
+                        "budgetImpact": {
+                          "liveRequests": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -55,3 +55,9 @@ No embedded model, external scientific retrieval, dependency installation, globa
 ### Live activation delivery — 2026-09-20
 
 From `7641551` on `codex/live-reasoning-activation`: mounted runtime 6.5.0 and pinned Eyeron verified; an isolated service and fresh Codex worker completed the frozen synthetic ontology task. All 16 owner-audited checks pass, including result availability after worker closure and source-release invalidation. Protocol, rejected TTL request/amendment, redacted exchanges, worker report, pre-cleanup receipt, final receipt and cleanup are retained under `artifacts/eyeron/live-20260920/`; result registry entry `eyeron-live-scoped-20260920`. Owner capability was never printed; worker capability is redacted. Workspace disposed after registration; old handles are historical. No wiki change or push.
+
+## UniProt discovery maintenance — 2026-09-20
+
+Saved [fresh source discovery and resource guidance](../../artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/README.md), with two actual stdio capture attempts, hashed corpus records and a [three-entry proposal](../../artifacts/wiki-learning/proposals/uniprot-discovery-20260920.json). Applied as **proposed**, candidate-not-generalized wiki entries: release-specific named graph catalog, metadata-first graph discovery, and bounded catalog presentation. Earlier timeouts remain retrospective notes, not successful extraction or new raw witnesses. The unchanged Linked Data skill's selective memory path can retrieve these candidates. No human review or semantic promotion is asserted.
+
+Next: acquire the complete schema or a scientifically justified module, preserve graph/version/blank-node structure, and compare asserted-data SPARQL with relation-specific rules and counterexamples. This maintenance capture does not complete that reasoning comparison.

@@ -1,0 +1,68 @@
+{
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000003",
+    "type": "bindings",
+    "epoch": "3ad49f26-31bb-4073-909f-1653453e8606:uniprot-discovery-capture:1",
+    "label": "query-result"
+  },
+  "type": "bindings",
+  "count": 21,
+  "columns": [
+    "triples",
+    "name"
+  ],
+  "fingerprints": [
+    "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+    "cfd4e445e5e7fc48b9d5080fbd6cccf32ee1831f38317e7cd97ee229d7cfc130"
+  ],
+  "lineage": {
+    "kind": "communica-query",
+    "operationId": "op-000003",
+    "sourceHandles": [
+      "h-000002"
+    ],
+    "querySha256": "9018606629c82043af944a6e51634c741d94b745b1e5f7d8ff27b21feb403b47",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    }
+  },
+  "provenance": {
+    "operationId": "op-000003",
+    "localOnly": true,
+    "queryType": "SELECT",
+    "querySha256": "9018606629c82043af944a6e51634c741d94b745b1e5f7d8ff27b21feb403b47",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sourceHandles": [
+      "h-000002"
+    ],
+    "sourceFingerprints": [
+      "d45d9a7deff6cf5750ed66efd0834ed084ffdd47673f1f85d786930aef7fec75",
+      "cfd4e445e5e7fc48b9d5080fbd6cccf32ee1831f38317e7cd97ee229d7cfc130"
+    ]
+  },
+  "completion": {
+    "kind": "linked-science-result-completion",
+    "status": "complete",
+    "complete": true,
+    "truncated": false,
+    "scope": "submitted-query",
+    "materialization": "atomic-before-handle-publication"
+  },
+  "bounds": {
+    "bytes": 1514,
+    "maxBytes": 32768
+  }
+}

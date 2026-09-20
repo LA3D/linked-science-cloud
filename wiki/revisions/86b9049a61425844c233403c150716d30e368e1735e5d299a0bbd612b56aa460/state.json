@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "1.0.0",
+  "revision": "86b9049a61425844c233403c150716d30e368e1735e5d299a0bbd612b56aa460",
+  "parent": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+  "patterns": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured source versions contain 20 asserted GO identifiers for P69905 and 25 for P68871, 45 distinct protein-GO memberships, and 18 shared identifiers. Native matching agreed with the local query.",
+      "applicability": "Only the two protein source hashes recorded by the cited episode and the classifiedWith relation at the recorded observation time. This is annotation overlap, not ontology closure, functional equivalence or a procedure.",
+      "competingExplanations": [
+        "Different source versions, annotation choices or relation semantics can change the counts."
+      ],
+      "missingEvidence": [
+        "No current-source reacquisition; source payload hashes identify an old snapshot, not present-day truth.",
+        "No ontology hierarchy, evidence-code or functional-equivalence analysis."
+      ],
+      "revalidateWhen": "Reacquire current representations and check source hashes and relation semantics before making a current scientific claim.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "asserted-go-finding",
+          "eventIds": [
+            "event-3",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "retained-query-after-display-limit",
+      "title": "Completed query retained after an oversized display request",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "In the saved scientific comparison, a page request with limit 100 failed against a maximum of 10. A later bounded page and native iteration recovered the complete retained result without repeating source retrieval. This demonstrates recovery in that episode, not all errors.",
+      "applicability": "A completed query with an independently observed retained handle and a typed presentation-bound error in the same live epoch. Check the actual error and handle status; do not infer retention after reset, disposal, timeout or kernel loss.",
+      "competingExplanations": [
+        "The successful recovery may depend on this runtime version and small result; no transfer comparison separates those factors.",
+        "A presentation failure and a retrieval/query failure can look similar in prose but have different lifecycle effects."
+      ],
+      "missingEvidence": [
+        "No independent counterexample or transfer episode has been observed.",
+        "No causal model-quality or general recovery guarantee has been measured."
+      ],
+      "revalidateWhen": "Recheck lifecycle and display contracts after runtime/API changes; inspect current handle validity before reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-failure",
+          "eventIds": [
+            "event-4",
+            "event-5"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query"
+          ],
+          "operationIds": [
+            "op-000008"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "retained-recovery",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000008",
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-catalog-display-bound",
+      "title": "Respect bounded projections when inspecting a graph catalog",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A display limit of 30 was rejected with LS_BOUND_EXCEEDED (maximum 10). A subsequent fresh capture paged in batches of ten and checked all catalog rows. The first kernel was closed; this is NOT evidence of same-handle recovery or that an earlier remote query succeeded.",
+      "applicability": "Distinguish presentation-bound errors from network timeouts. Inspect typed repair information; page within the documented limit without adding SPARQL LIMIT merely to fit the prompt.",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+            "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-bound",
+          "eventIds": [
+            "event-2",
+            "event-3"
+          ],
+          "evidenceIds": [
+            "service"
+          ],
+          "operationIds": []
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured UniProt service description advertises these named graphs and triple counts (metadata, not measured remote contents): http://purl.uniprot.org/core = 2835; http://sparql.uniprot.org/chebi = 3426039; http://sparql.uniprot.org/citationmapping = 244587074; http://sparql.uniprot.org/citations = 30730282; http://sparql.uniprot.org/database = 2407; http://sparql.uniprot.org/diseases = 91009; http://sparql.uniprot.org/enzymes = 156569; http://sparql.uniprot.org/go = 655968; http://sparql.uniprot.org/journal = 43700; http://sparql.uniprot.org/keywords = 11752; http://sparql.uniprot.org/locations = 6314; http://sparql.uniprot.org/obsolete = 2504600781; http://sparql.uniprot.org/pathways = 12363; http://sparql.uniprot.org/proteomes = 44980518; http://sparql.uniprot.org/taxonomy = 70047936; http://sparql.uniprot.org/tissues = 4115; http://sparql.uniprot.org/uniparc = 198735586260; http://sparql.uniprot.org/uniprot = 37329393214; http://sparql.uniprot.org/uniref = 5375029833; https://sparql.rhea-db.org/rhea = 2053334; https://sparql.uniprot.org/.well-known/sparql-examples = 1405. The core graph IRI has no trailing slash; vocabulary terms use http://purl.uniprot.org/core/. Official catalog: https://sparql.uniprot.org/.well-known/void .",
+      "applicability": "UniProt endpoint discovery. A graph IRI identifies a dataset partition, not automatically statement-level provenance or a dereferenceable document. Retain exact IRIs; HTTP and HTTPS are not interchangeable graph names.",
+      "competingExplanations": [
+        "Published metadata may lag actual endpoint contents; this capture does not independently count remote triples."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A mediated service-description read followed by local SPARQL produced a complete graph-name inventory. Use the official catalog and per-graph documentation to orient queries; do not infer graph names solely from vocabulary namespaces. A catalog read is not schema extraction or proof of endpoint reasoning support.",
+      "applicability": "Source-owned RDF service descriptions, native retained RDF and bounded local projections. Keep source version/hash and distinguish advertised metadata from queried data. Resource guide and retrospective limits: artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/README.md (companion documentation, not additional validated corpus evidence).",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ],
+  "history": [
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "ontology-membership-seed-20260919",
+      "proposalSha256": "5d1d417a6aa8c92a997927047633a8ed3bffb64ee72a41ce18b5ac7e94043316",
+      "baseRevision": null,
+      "appliedAt": "2026-09-19T17:06:45.560Z",
+      "review": null,
+      "batch": {
+        "purpose": "Seed separately typed, proposed scientific candidates from the authorized saved episode, including observed failure and recovery.",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 3,
+        "outcomeStrata": [
+          "success",
+          "failure"
+        ],
+        "omittedMaterial": [
+          "Engineering planning record excluded by corpus policy.",
+          "No new acquisition, independent counterexample or transfer evidence included."
+        ]
+      },
+      "changes": [
+        {
+          "id": "retained-query-after-display-limit",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "hemoglobin-go-overlap-20260919",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "uniprot-discovery-20260920",
+      "proposalSha256": "d62997ea3782fec72ff1173da75b3cbc543772daa977695e5f16dd803d488e1a",
+      "baseRevision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+      "appliedAt": "2026-09-20T16:28:25.894Z",
+      "review": null,
+      "batch": {
+        "purpose": "Record UniProt graph structure and narrowly witnessed discovery/display lessons",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+            "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 3,
+        "outcomeStrata": [
+          "success",
+          "failure"
+        ],
+        "omittedMaterial": [
+          "Earlier timeout trajectory is retrospective only; see companion notes.",
+          "No transfer evaluation, full schema extraction, or inference-quality evidence."
+        ]
+      },
+      "changes": [
+        {
+          "id": "uniprot-named-graphs-20260920",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "uniprot-service-metadata-discovery",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "uniprot-catalog-display-bound",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    }
+  ],
+  "files": {
+    "patterns/hemoglobin-go-overlap-20260919.md": "8ec0802beaf11bef778982ffc57e6a68e395cc7ddc8bb2578bd2448c24629b3e",
+    "patterns/retained-query-after-display-limit.md": "d858c1931c497936da065f330fde9b5ab5e76c766ae2ff495cb998ef3334b6d5",
+    "patterns/uniprot-catalog-display-bound.md": "99dc23f1c41c42af02c1bda09a7b48ec85bf6ceffa06d3edbfffd3e87ee405b1",
+    "patterns/uniprot-named-graphs-20260920.md": "548dc41211d4d3cc32c32b5377afd96c8031ff761a9cc73160691fd3b67061b9",
+    "patterns/uniprot-service-metadata-discovery.md": "5db9e03b79e6ecbf590314ce6b34225cb49868ed6fa55ac0a68e0abdd438735c",
+    "index.md": "e92978dfacb3fa17fab95b41de56d7453d48dbc08b71e1d2d744d7f0ea176ae0",
+    "evolution.jsonl": "60ba7c9c0a0c28774dfe15b8a5e788038adf07cf83fd19e2d3bf1564d5c7fedb"
+  }
+}
