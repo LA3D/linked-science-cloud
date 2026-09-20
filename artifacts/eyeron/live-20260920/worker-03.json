@@ -1,0 +1,15 @@
+{
+  "tool": "mcp__cleanroom_node_repl__js",
+  "arguments": {
+    "code": "var assertions = []; for await (var row of nodeRepl.scientificSession.bindings(directQ.object)) { assertions.push(Object.fromEntries([...row].map(([k,v])=>[k,v.value]))); } nodeRepl.write(assertions);",
+    "title": "Read bounded assertion query results"
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[\n  { s: 'urn:assay:s1', o: 'urn:assay:ExcitatoryNeuron', p: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' },\n  {\n    s: 'urn:assay:ExcitatoryNeuron',\n    o: 'urn:assay:Neuron',\n    p: 'http://www.w3.org/2000/01/rdf-schema#subClassOf'\n  },\n  { s: 'urn:assay:s2', o: 'urn:assay:Astrocyte', p: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' },\n  { s: 'urn:assay:Neuron', o: 'urn:assay:Cell', p: 'http://www.w3.org/2000/01/rdf-schema#subClassOf' },\n  { s: 'urn:assay:s3', o: 'urn:assay:Reagent', p: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' },\n  { s: 'urn:assay:GlialCell', o: 'urn:assay:Cell', p: 'http://www.w3.org/2000/01/rdf-schema#subClassOf' },\n  { s: 'urn:assay:Astrocyte', o: 'urn:assay:GlialCell', p: 'http://www.w3.org/2000/01/rdf-schema#subClassOf' }\n]"
+      }
+    ]
+  }
+}

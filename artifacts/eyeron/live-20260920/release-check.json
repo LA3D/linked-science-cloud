@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "await liveWs.release(liveFacts);var invalidated=false;var invalidationCode;try{await nodeRepl.scientificSession.result('assay-finding')}catch(e){invalidated=true;invalidationCode=e.code}nodeRepl.write(JSON.stringify({invalidated,invalidationCode}));",
+    "title": "Verify source release invalidates dependent finding",
+    "max_output_bytes": 1000
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"invalidated\":true,\"invalidationCode\":\"LS_RELEASED_HANDLE\"}"
+      }
+    ]
+  }
+}

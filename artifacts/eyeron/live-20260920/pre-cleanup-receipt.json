@@ -1,0 +1,93 @@
+{
+  "id": "eyeron-live-scoped-20260920",
+  "format": "linked-science-live-reasoning-receipt/v1",
+  "date": "2026-09-20",
+  "outcome": "passed",
+  "stage": "before-worker-closure",
+  "checks": {
+    "runtime": true,
+    "engineAvailable": true,
+    "ownerSession": true,
+    "sourceCount": true,
+    "cells": true,
+    "neurons": true,
+    "workerCells": true,
+    "workerNeurons": true,
+    "complete": true,
+    "derivedCount": true,
+    "assertionsUnchanged": true,
+    "directCells": true,
+    "workerDirectCells": true,
+    "proofUnverified": true
+  },
+  "evidence": [
+    {
+      "path": "artifacts/eyeron/live-20260920/protocol.json",
+      "sha256": "025ae4ed872dc5a444804d4e32ff23a2383a540784f34dfac7aa349a7c0ddc1b"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/protocol-amendment.json",
+      "sha256": "80e577ea10da7ded3f6b8eaf89cd168ab532aa7587ffad918f6efd5e60eb4e23"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/grant-rejected.json",
+      "sha256": "09354dd966b4e68de2b38aa85d4e3a5d18e4df274e84a7552489217d3ba01943"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/grant.json",
+      "sha256": "3658141c2d30907bd1468bd377e342ce915bf332a9ce842076dc4b6eaeeddfa3"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/create.json",
+      "sha256": "f22e774f3f1ccaf4695bc8de54710b90a03a0c81ef51e9d895ca306109208ea6"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/source.json",
+      "sha256": "a6e35c95181107bc4445dd218fd7e833849c9608fab1c783c3fb99408607aefc"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-prompt.txt",
+      "sha256": "7ad121c9415e203bb37b53d18b96400f8fdfdde4bef06d7b359c944f4837cfd5"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/owner-audit.json",
+      "sha256": "912cfb64127057440d4b969344ece68aa5bfb8b6d202df5dba9614a22085cd58"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-report.json",
+      "sha256": "6bd3acf6356e939646e8759a1841c11736f4d45307a5333101786ce6141007c7"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-00.json",
+      "sha256": "8f75dac3587081995fab659170768b9aec228a4fa2ba942af5d27874f3284fbd"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-01.json",
+      "sha256": "1f30e07b9b34dd84843f45cdd07551db7608c974f2ea4dd27196c5393f1b064d"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-02.json",
+      "sha256": "62f13b0bb3ffc0ce727c05dd1fef6fb9ecc38b0e6ab27dea1212ed5fa19bed9f"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-03.json",
+      "sha256": "155b327efadae1b1e375d0b2088c45e8427a1c09a7009aa31bc2d431c58897bb"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-04.json",
+      "sha256": "7d3f403b845c01349395eef6dd4ebddcedcafc7125d71c8bc6fa53956f75d147"
+    },
+    {
+      "path": "artifacts/eyeron/live-20260920/worker-05.json",
+      "sha256": "12e4c6d64d2ab98e7fa869b819b6ce166a4ddfe056a99809b2c4f0aacb5abcef"
+    }
+  ],
+  "limitations": [
+    "Single synthetic case; no quality or cost comparison",
+    "Shared filesystem instruction isolation, not OS isolation",
+    "No complete host context or transport audit",
+    "Proof is unverified raw excerpt; no conclusion-directed explanation"
+  ],
+  "worker": "Fresh Codex subagent; actual saved MCP exchanges, owner independently checked deposit against native queries",
+  "wikiPromotion": false
+}

@@ -1,6 +1,6 @@
 # Reasoning integration and scientific wiki guidance
 
-- **Status:** First runtime slice implemented and verified: bounded N3 adapter, retained derived objects, scoped reasoning and raw proof inspection. Desktop activation and a fresh model-driven scientific episode remain next. See the [runtime contract](../architecture/deterministic-reasoning.md).
+- **Status:** First runtime slice implemented and verified: bounded N3 adapter, retained derived objects, scoped reasoning and raw proof inspection. Desktop activation and one fresh scoped-worker synthetic ontology task now pass; scientific corpus eligibility and counterexample design remain next. See the [runtime contract](../architecture/deterministic-reasoning.md).
 - **Updated:** 2026-09-20, following the user's request to preserve the reasoning/wiki order of operations across agent instances.
 - **Owner:** Codex coordinates goals and scoped workers; the project owns the evidence/session layer. No separate model provider or workflow scheduler is planned.
 - **Scope:** Add deterministic reasoning to the symbolic RDF/JS surface, then learn evidence-backed scientific guidance about its use through the existing wiki system.
@@ -11,12 +11,12 @@
 | Area | Established | Remaining |
 | --- | --- | --- |
 | Scientific wiki | [Maintenance](scientific-wiki-maintainer-handoff.md), [selective retrieval](wiki-selective-retrieval.md), and a [fresh-context pilot](wiki-live-comparison.md) exist. | Two seed patterns remain proposed; incremental scientific benefit and automatic skill evolution are not established. |
-| Deterministic reasoning | [Compatibility experiments](../experiments/eyeron-compatibility.md), followed by the [bounded N3 runtime surface](../architecture/deterministic-reasoning.md): separate inferred RDF, provenance, proof inspection and explicit lifetime. | Fresh desktop activation, conclusion-directed explanation, proof checking, SPARQL-RL adapter and larger-scale evidence remain. |
-| Shared scientific state | Scoped `reason` and `explain` operations retain derived graphs/proofs in the owning session. A real-engine two-step subclass test verifies worker deposit, disconnect, owner query and source-release invalidation. | Automated client tests establish the protocol; they are not a fresh Codex-worker scientific evaluation or token-cost study. |
+| Deterministic reasoning | [Compatibility experiments](../experiments/eyeron-compatibility.md), followed by the [bounded N3 runtime surface](../architecture/deterministic-reasoning.md): separate inferred RDF, provenance, proof inspection and explicit lifetime. | Conclusion-directed explanation, proof checking, SPARQL-RL adapter and larger-scale evidence remain. |
+| Shared scientific state | Scoped `reason` and `explain` operations retain derived graphs/proofs in the owning session. A real-engine two-step subclass test verifies worker deposit, disconnect, owner query and source-release invalidation. | A live fresh Codex worker also passed one synthetic classification task; broad scientific quality and token-cost comparisons remain unmeasured. |
 
 ## Sequence and acceptance gates
 
-Gate 1 is implemented for the documented first profile. Gate 2 has automated owner/worker evidence; a fresh model-driven scientific episode remains. Gates 3–5 remain future work.
+Gate 1 is implemented for the documented first profile. Gate 2 has automated owner/worker evidence and a [live fresh-worker result](../experiments/eyeron-compatibility.md#live-scoped-worker-activation--2026-09-20). Gates 3–5 remain future work.
 
 1. **Specify and implement the reasoning operation.** Inputs are retained graph references, versioned rules and an explicit graph policy. Keep asserted and inferred graphs separate. Define supported rule semantics, blank-node scope, bounded execution/cancellation, completion admission, engine/input/rule provenance, optional proof capability and invalidation on input or epoch changes. Incomplete execution must not become a successful empty graph. Test these contracts before advertising the surface.
 2. **Demonstrate scoped scientific use.** Use a small ontology question requiring an inference chain. A Codex-managed worker accesses scoped inputs, invokes deterministic reasoning, queries the derived graph and deposits structured findings with evidence references. The parent aggregates by reference. Record actual bridge exchanges, coverage and lifecycle behavior; do not claim no-relay operation from manually passing triples through model-visible output. Worker departure must not destroy session-owned results still needed by the parent.
@@ -34,7 +34,7 @@ PEEK/orientation should carry compact validity, scope, count and provenance refe
 
 ## Exact next action
 
-Load a fresh project broker and scientific session service (restart the desktop MCP and any old service process), follow [runtime discovery](../agent/runtime-discovery.md), and check runtime 6.5.0 plus `ws.reasoning.capabilities().available`. Then run a small scientific ontology task through a fresh scoped Codex worker, saving the actual task/operation/evidence joins and result receipt before cleanup. Record the protocol before the run and register its receipt. Use the [runtime contract](../architecture/deterministic-reasoning.md); distinguish observed inference from authoritative premises and capture when SPARQL alone would suffice. Only then select eligible evidence for candidate wiki guidance.
+Review the [live scoped-worker receipt](../../artifacts/eyeron/live-20260920/receipt.json) for scientific corpus eligibility using the existing episode/event/operation joins. It establishes the small variable-to-reasoner-to-variable round trip, not a general lesson that inference is always useful. Design a paired task where direct assertions or a SPARQL property path suffices, and a failure/incomplete case, before proposing a narrowly scoped reasoning-use memory. Keep raw proof inspection distinct from verified explanation. No wiki promotion follows automatically.
 
 ## Durable handoff
 
@@ -50,3 +50,8 @@ Implementation starts at `46b1a4f` on `codex/reasoning-surface` in the authorita
 The adapter checks pinned Wasm bytes, imposes a linear-memory maximum, runs under worker heap/time/output bounds, and rejects unsupported I/O/time/dynamic builtins. Total RSS is not a precise memory ceiling. Assertions stay separate; source release/reset prevents later derived reads and late publication. The engine path remains machine-specific. An already-mounted broker is not activation evidence for this new code.
 
 No embedded model, external scientific retrieval, dependency installation, global configuration change, wiki promotion or push was performed. Final commit/main ancestry and upstream status are reported in the completion response. Unrelated `.codex/config.toml` and `artifacts/structure-viewer/` are preserved.
+
+
+### Live activation delivery — 2026-09-20
+
+From `7641551` on `codex/live-reasoning-activation`: mounted runtime 6.5.0 and pinned Eyeron verified; an isolated service and fresh Codex worker completed the frozen synthetic ontology task. All 16 owner-audited checks pass, including result availability after worker closure and source-release invalidation. Protocol, rejected TTL request/amendment, redacted exchanges, worker report, pre-cleanup receipt, final receipt and cleanup are retained under `artifacts/eyeron/live-20260920/`; result registry entry `eyeron-live-scoped-20260920`. Owner capability was never printed; worker capability is redacted. Workspace disposed after registration; old handles are historical. No wiki change or push.

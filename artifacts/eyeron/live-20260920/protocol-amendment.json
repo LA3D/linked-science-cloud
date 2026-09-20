@@ -1,0 +1,1 @@
+{"change":"Grant TTL reduced to 300000ms before worker launch because service idle TTL caps grants at five minutes. Original 600000ms request rejected; scientific fixture and scoring unchanged."}

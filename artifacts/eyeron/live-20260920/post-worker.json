@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "var postWorkerResult = await nodeRepl.scientificSession.result('assay-finding'); var postWorkerQ=await nodeRepl.scientificSession.query(postWorkerResult.value.derived.object,'SELECT ?s WHERE {?s a <urn:assay:Cell>}'); var postCells=[];for await(var row of nodeRepl.scientificSession.bindings(postWorkerQ.object))postCells.push(row.get('s').value);nodeRepl.write(JSON.stringify({cells:postCells.sort(),session:await nodeRepl.scientificSession.status()}));",
+    "title": "Verify owner can query inference after worker closure",
+    "max_output_bytes": 1500
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"cells\":[\"urn:assay:s1\",\"urn:assay:s2\"],\"session\":{\"sessionId\":\"0db06a8f-2c46-4526-b564-75ee8abee07a\",\"epoch\":1,\"role\":\"owner\"}}"
+      }
+    ]
+  }
+}

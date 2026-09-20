@@ -1,0 +1,69 @@
+{
+  "id": "eyeron-live-scoped-20260920",
+  "version": 1,
+  "scope": "One synthetic ontology task through a fresh Codex worker using the mounted project MCP and isolated scientific session",
+  "runtime": "6.5.0",
+  "engine": "Eyeron 0.5.13",
+  "question": "Which samples are Cells and which are Neurons under explicit instance-subclass propagation? Distinguish asserted from inferred classifications and absence of derivation from negation.",
+  "fixture": {
+    "namespace": "urn:assay:",
+    "types": {
+      "s1": "ExcitatoryNeuron",
+      "s2": "Astrocyte",
+      "s3": "Reagent"
+    },
+    "subclasses": [
+      [
+        "ExcitatoryNeuron",
+        "Neuron"
+      ],
+      [
+        "Neuron",
+        "Cell"
+      ],
+      [
+        "Astrocyte",
+        "GlialCell"
+      ],
+      [
+        "GlialCell",
+        "Cell"
+      ]
+    ]
+  },
+  "expected": {
+    "Cells": [
+      "urn:assay:s1",
+      "urn:assay:s2"
+    ],
+    "Neurons": [
+      "urn:assay:s1"
+    ],
+    "derivedQuads": 4,
+    "sourceQuads": 7,
+    "directCellAssertions": 0
+  },
+  "checks": [
+    "mounted identity and session ownership",
+    "fresh worker attaches with scoped grant",
+    "worker obtains evidence through bridge, runs rules and deposits references",
+    "owner independently queries derived object and checks assertions unchanged",
+    "owner reads result after worker closure",
+    "source release invalidates result access"
+  ],
+  "memory": "No wiki consultation in worker for this activation experiment",
+  "limits": {
+    "inputBytes": 65536,
+    "outputBytes": 65536,
+    "proofBytes": 65536,
+    "reasoningTimeoutMs": 10000,
+    "grantTtlMs": 600000
+  },
+  "limitations": [
+    "Single synthetic case; no quality or cost comparison",
+    "Shared filesystem instruction isolation, not OS isolation",
+    "No complete host context or transport audit",
+    "Proof is unverified raw excerpt; no conclusion-directed explanation"
+  ],
+  "recording": "Save raw tool exchanges and hashed receipt before worker closure or session disposal; redact capabilities; registry entry before cleanup"
+}

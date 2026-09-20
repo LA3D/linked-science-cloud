@@ -1,0 +1,16 @@
+{
+  "arguments": {
+    "code": "nodeRepl.write(JSON.stringify(await liveWs.dispose()));",
+    "title": "Dispose only the experiment workspace after evidence capture",
+    "max_output_bytes": 1000
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\":\"disposed\",\"contextKey\":\"live-reasoning-20260920\",\"epoch\":\"ec44bd8a-93a1-40a4-abe7-09380086a9a7:live-reasoning-20260920:1\",\"releasedHandles\":7}"
+      }
+    ]
+  },
+  "note": "Experiment workspace disposed; no whole-kernel reset. Mounted owner remains attached to the isolated service, subject to its idle lifetime."
+}

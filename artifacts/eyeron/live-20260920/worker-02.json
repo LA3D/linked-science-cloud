@@ -1,0 +1,19 @@
+{
+  "tool": "mcp__cleanroom_node_repl__js",
+  "arguments": {
+    "code": "nodeRepl.write(await nodeRepl.scientificSession.status()); var directQ = await nodeRepl.scientificSession.query('074766c4-9474-4232-8789-0ce4bb18034c', 'PREFIX : <urn:assay:> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?s ?p ?o WHERE { { ?s a ?o . BIND(<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> AS ?p) } UNION { ?s rdfs:subClassOf ?o . BIND(rdfs:subClassOf AS ?p) } }'); nodeRepl.write(directQ);",
+    "title": "Inspect scoped assertions and subclass relations"
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{ sessionId: '0db06a8f-2c46-4526-b564-75ee8abee07a', epoch: 1, role: 'worker' }"
+      },
+      {
+        "type": "text",
+        "text": "{\n  object: '1f86a459-6981-4d6d-bc84-bc2a63c9a8cb',\n  kind: 'bindings',\n  count: 7,\n  epoch: 'ec44bd8a-93a1-40a4-abe7-09380086a9a7:live-reasoning-20260920:1'\n}"
+      }
+    ]
+  }
+}

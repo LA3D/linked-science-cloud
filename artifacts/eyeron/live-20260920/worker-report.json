@@ -1,0 +1,73 @@
+{
+  "status": "completed-and-deposited",
+  "sessionId": "0db06a8f-2c46-4526-b564-75ee8abee07a",
+  "source": "074766c4-9474-4232-8789-0ce4bb18034c",
+  "slot": "assay-finding",
+  "calls": [
+    {
+      "file": "worker-00.json",
+      "tool": "exec_command",
+      "purpose": "Read skill and project runtime documentation"
+    },
+    {
+      "file": "worker-01.json",
+      "tool": "mcp__cleanroom_node_repl__js",
+      "title": "Attach scoped scientific worker"
+    },
+    {
+      "file": "worker-02.json",
+      "tool": "mcp__cleanroom_node_repl__js",
+      "title": "Inspect scoped assertions and subclass relations"
+    },
+    {
+      "file": "worker-03.json",
+      "tool": "mcp__cleanroom_node_repl__js",
+      "title": "Read bounded assertion query results"
+    },
+    {
+      "file": "worker-04.json",
+      "tool": "mcp__cleanroom_node_repl__js",
+      "title": "Apply explicit instance-subclass rule and inspect bounded proof"
+    },
+    {
+      "file": "worker-05.json",
+      "tool": "mcp__cleanroom_node_repl__js",
+      "title": "Read classifications and deposit assay finding"
+    }
+  ],
+  "capture": "Actual documentation-read and scientific MCP arguments/responses serialized directly from tool returns; attach capability redacted. Evidence-writing apply_patch calls are the capture mechanism.",
+  "ruleIntent": {
+    "id": "assay-instance-subclass",
+    "version": "1",
+    "semantics": "If sample rdf:type class and class rdfs:subClassOf superclass, derive sample rdf:type superclass; repeat to closure.",
+    "graphPolicy": "default-graph-only"
+  },
+  "findings": {
+    "cells": [
+      "urn:assay:s1",
+      "urn:assay:s2"
+    ],
+    "neurons": [
+      "urn:assay:s1"
+    ],
+    "directCellAssertions": 0,
+    "derived": "319119fc-05f5-4f56-b2c5-6bb2fad196dd",
+    "proof": "091e6fa0-f4d4-4656-aeff-fb02fba8c24e",
+    "operationId": "op-000003"
+  },
+  "limitations": [
+    "Synthetic source and explicit caller-supplied N3 rule only; no general OWL claim.",
+    "No entailment is not negation.",
+    "Proof inspection capped at 1024 bytes; excerpt truncated and unverified.",
+    "Published references depend on source and session lifetime.",
+    "Parent aggregation has not been observed."
+  ],
+  "controls": {
+    "wikiConsulted": false,
+    "protocolFixtureEvaluatorRead": false,
+    "externalReads": false,
+    "sourceChanges": false,
+    "sessionDisposedOrReset": false
+  },
+  "lifecycle": "Session left open awaiting parent acknowledgement of saved evidence."
+}

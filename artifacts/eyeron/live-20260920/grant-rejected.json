@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":false,\"error\":{\"code\":\"INVALID_ARGUMENT\",\"name\":\"Error\",\"message\":\"Invalid grant scope or TTL\"}}"
+    }
+  ],
+  "isError": true
+}

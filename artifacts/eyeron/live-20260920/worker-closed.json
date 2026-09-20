@@ -1,0 +1,5 @@
+{
+  "previous_status": {
+    "completed": "Deposited `assay-finding`.\n\n- Derived Cells: `urn:assay:s1`, `urn:assay:s2`.\n- Derived Neuron: `urn:assay:s1`.\n- Direct Cell assertions: **0**.\n- Missing entailment is not negation. Proof excerpt is unverified.\n\n[Saved report and call references](/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/eyeron/live-20260920/worker-report.json). Session left open awaiting parent acknowledgement."
+  }
+}

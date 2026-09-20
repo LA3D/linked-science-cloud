@@ -1,0 +1,15 @@
+{
+  "tool": "mcp__cleanroom_node_repl__js",
+  "arguments": {
+    "code": "nodeRepl.write(await nodeRepl.scientificSession.attach({socketPath:'/private/tmp/ls-reasoning-live.BvXO8M/session.sock',sessionId:'0db06a8f-2c46-4526-b564-75ee8abee07a',capability:'[REDACTED]'}));",
+    "title": "Attach scoped scientific worker"
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{ sessionId: '0db06a8f-2c46-4526-b564-75ee8abee07a', epoch: 1, role: 'worker' }"
+      }
+    ]
+  }
+}

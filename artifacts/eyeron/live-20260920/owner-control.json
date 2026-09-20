@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "var directCellQ = await liveWs.query.run({sources:[liveFacts],sparql:'SELECT ?s WHERE {?s a <urn:assay:Cell>}'}); nodeRepl.write(JSON.stringify({sourceCount:liveWs.results.profile(liveFacts).count,directCellAssertions:liveWs.results.profile(directCellQ).count,session:await nodeRepl.scientificSession.status()}));",
+    "title": "Check owner-side asserted-data control",
+    "max_output_bytes": 1000
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"sourceCount\":7,\"directCellAssertions\":0,\"session\":{\"sessionId\":\"0db06a8f-2c46-4526-b564-75ee8abee07a\",\"epoch\":1,\"role\":\"owner\"}}"
+      }
+    ]
+  }
+}

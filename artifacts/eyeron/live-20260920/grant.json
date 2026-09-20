@@ -1,0 +1,19 @@
+{
+  "capability": "[REDACTED]",
+  "sessionId": "0db06a8f-2c46-4526-b564-75ee8abee07a",
+  "epoch": 1,
+  "objects": [
+    "074766c4-9474-4232-8789-0ce4bb18034c"
+  ],
+  "operations": [
+    "describe",
+    "match",
+    "query",
+    "bindings",
+    "reason",
+    "explain",
+    "deposit"
+  ],
+  "outputSlot": "assay-finding",
+  "expiresAt": 1789920156630
+}

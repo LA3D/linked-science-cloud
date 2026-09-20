@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "var reasoningLiveConnection = await nodeRepl.scientificSession.create({socketPath:'/private/tmp/ls-reasoning-live.BvXO8M/session.sock'}); nodeRepl.write({sessionId:reasoningLiveConnection.sessionId,role:reasoningLiveConnection.role});",
+    "title": "Create isolated scientific session without printing owner capability",
+    "max_output_bytes": 1000
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{ sessionId: '0db06a8f-2c46-4526-b564-75ee8abee07a', role: 'owner' }"
+      }
+    ]
+  }
+}
