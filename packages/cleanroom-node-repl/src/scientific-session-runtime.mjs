@@ -61,6 +61,29 @@ function copyJson(value, seen = new Set(), depth = 0, budget = {bytes:0,nodes:0,
   return output;
 }
 
+// Shared preflight for both the wire boundary and direct owner calls. Limit
+// names match the host adapter; engine ceilings/minimums remain parent-owned.
+export function validateReasoningArgs(operation, args) {
+  const fields = (value, allowed) => {
+    if (!value || typeof value !== 'object' || Array.isArray(value) ||
+        Object.keys(value).some(key => !allowed.includes(key))) error('SESSION_REASONING_OPTIONS');
+  };
+  fields(args, operation === 'reason' ? ['object','rules','graphPolicy','proof','limits'] : ['object','maxBytes']);
+  if (operation === 'explain') {
+    if (args.maxBytes !== undefined && (!Number.isSafeInteger(args.maxBytes) || args.maxBytes < 256 || args.maxBytes > 64*1024)) error('SESSION_REASONING_OPTIONS');
+    return;
+  }
+  fields(args.rules, ['id','version','text']);
+  if (['id','version','text'].some(key => typeof args.rules[key] !== 'string' || !args.rules[key].trim()) ||
+      Buffer.byteLength(JSON.stringify(args.rules)) > 64*1024) error('SESSION_REASONING_RULES');
+  if (args.graphPolicy !== 'default-graph-only') error('SESSION_REASONING_GRAPH_POLICY');
+  if (args.proof !== undefined && typeof args.proof !== 'boolean') error('SESSION_REASONING_OPTIONS');
+  if (args.limits !== undefined) {
+    fields(args.limits, ['timeoutMs','maxInputBytes','maxRulesBytes','maxRules','maxOutputBytes','maxProofBytes','wasmMemoryMiB','workerHeapMiB']);
+    if (Object.values(args.limits).some(value => !Number.isSafeInteger(value) || value < 1)) error('SESSION_REASONING_OPTIONS');
+  }
+}
+
 // Native handles never leave this registry. Remote references are meaningful
 // only after the service has authorized a connection, object and operation.
 export function createScientificSessionRuntime({control}) {
@@ -87,16 +110,20 @@ export function createScientificSessionRuntime({control}) {
     objects.set(id,{workspace,value:copy,kind:'json',version:1,bytes});jsonBytes+=bytes;jsonObjects++;
     return {object:id,kind:'json',version:1,bytes};
   };
-  const dispatch=async ({operation,args={}}) => {
+  const dispatch=async ({operation,args={},scope}) => {
     if(operation==='deposit') {
       if(typeof args.slot!=='string'||!args.slot||typeof args.value!=='object'||args.value===null)error('SESSION_OUTPUT_SCHEMA');
       bounded(args.value);
       if(outputs.has(args.slot))error('SESSION_DUPLICATE_DEPOSIT');
-      outputs.set(args.slot,structuredClone(args.value));return {slot:args.slot,status:'deposited'};
+      const dependencies=[...new Set(scope?.objects??[])];
+      for(const id of dependencies)resolve(id);
+      outputs.set(args.slot,{value:structuredClone(args.value),dependencies});return {slot:args.slot,status:'deposited'};
     }
     if(operation==='result') {
       if(!outputs.has(args.slot))error('SESSION_RESULT_PENDING');
-      return bounded({slot:args.slot,value:structuredClone(outputs.get(args.slot))});
+      const saved=outputs.get(args.slot);
+      for(const id of saved.dependencies)resolve(id);
+      return bounded({slot:args.slot,value:structuredClone(saved.value)});
     }
     const r=resolve(args.object);
     if(operation==='describe'&&r.kind==='json')return {object:args.object,kind:'json',version:r.version,bytes:r.bytes};
@@ -113,7 +140,42 @@ export function createScientificSessionRuntime({control}) {
       return bounded({object:args.object,version:r.version,value:structuredClone(value),...page});
     }
     if(r.kind==='json')error('SESSION_OBJECT_KIND');
-    if(operation==='describe') {const p=r.workspace.results.profile(r.handle);return {object:args.object,kind:r.kind,count:p.count,columns:p.columns,epoch:r.handle.epoch};}
+    if(operation==='explain') {
+      validateReasoningArgs(operation,args);
+      if(!r.run)error('SESSION_REASONING_RUN');
+      const excerpt=await r.workspace.reasoning.explain(r.run,args.maxBytes===undefined?{}:{maxBytes:args.maxBytes});
+      resolve(args.object);
+      return bounded(copyJson(excerpt));
+    }
+    if(operation==='reason') {
+      validateReasoningArgs(operation,args);
+      if(typeof r.workspace.reasoning?.run!=='function')error('SESSION_REASONING_UNAVAILABLE');
+      // Never flatten named graphs silently, even with a permissive engine adapter.
+      for await(const quad of r.workspace.rdf.source(r.handle).match()) {
+        resolve(args.object);
+        if(quad.graph.termType!=='DefaultGraph')error('SESSION_REASONING_NAMED_GRAPH');
+      }
+      const run=await r.workspace.reasoning.run({sources:[r.handle],rules:args.rules,graphPolicy:args.graphPolicy,
+        proof:args.proof??false,...(args.limits===undefined?{}:{limits:args.limits})});
+      const published=[];
+      try {
+        resolve(args.object);
+        const report=bounded(copyJson({...run.report, scopedReasoning:{source:args.object,ruleStatus:'worker-supplied-hypotheses',proofStatus:'unverified'}}));
+        const derived=publish(r.workspace,run.derived);published.push(derived.object);
+        Object.assign(objects.get(derived.object),{parent:args.object,run,report});
+        let proof=null;
+        if(run.proof) {
+          proof=publish(r.workspace,run.proof);published.push(proof.object);
+          objects.get(proof.object).parent=derived.object;
+        }
+        return bounded({derived,proof,report});
+      } catch(e) {
+        for(const id of published)objects.delete(id);
+        await Promise.allSettled([run.derived,run.proof].filter(Boolean).map(handle=>r.workspace.release(handle)));
+        throw e;
+      }
+    }
+    if(operation==='describe') {const p=r.workspace.results.profile(r.handle);return bounded({object:args.object,kind:r.kind,count:p.count,columns:p.columns,epoch:r.handle.epoch,...(r.run?{report:r.report}:{})});}
     if(operation==='match') {
       await loadDataFactory();
       const {offset,limit}=paging(args),pattern=args.pattern??{};
@@ -161,6 +223,8 @@ export function createScientificSessionRuntime({control}) {
     status:()=>control({operation:'status',args:{}}),
     describe:object=>request('describe',{object}),
     query:(object,sparql)=>request('query',{object,sparql}),
+    reason:(object,options={})=>request('reason',{...options,object}),
+    explain:(object,options={})=>request('explain',{...options,object}),
     deposit:(slot,value)=>request('deposit',{slot,value}),
     result:slot=>request('result',{slot}),
     source(object) {

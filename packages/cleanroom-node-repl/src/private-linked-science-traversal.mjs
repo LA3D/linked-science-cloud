@@ -1,3 +1,9 @@
+const PRIVATE_REASONERS = new WeakMap();
+export function registerLinkedSciencePrivateReasoner(cleanroom, reasoner) {
+  if (PRIVATE_REASONERS.has(cleanroom)) throw new Error("Reasoner already registered");
+  PRIVATE_REASONERS.set(cleanroom, reasoner);
+}
+
 const PRIVATE_TRAVERSALS = new WeakMap();
 const PRIVATE_RESULT_STORES = new WeakMap();
 
@@ -31,5 +37,6 @@ export async function setupLinkedScienceWithPrivateTraversal({ cleanroom, ...opt
     ...options,
     traversal: PRIVATE_TRAVERSALS.get(cleanroom),
     resultStorage: PRIVATE_RESULT_STORES.get(cleanroom),
+    reasoning: PRIVATE_REASONERS.get(cleanroom),
   });
 }

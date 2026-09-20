@@ -39,6 +39,8 @@ Public resource reads use `ws.resources.get(url)`. Its response-like object supp
 
 Read the [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md) for normal use, [runtime discovery](docs/agent/runtime-discovery.md) for diagnostics, or the [generated API schema](docs/runtime/linked-science-api.schema.json) for exact signatures.
 
+Optional [deterministic N3 reasoning](docs/architecture/deterministic-reasoning.md) runs through a bounded host adapter and retains inferred RDF separately. Inspect `ws.reasoning.capabilities()` before use; installation is machine-specific and no model provider is embedded.
+
 ## What the runtime preserves
 
 | Property | Implementation |

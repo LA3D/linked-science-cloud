@@ -1,3 +1,4 @@
+import { createEyeronReasoner } from "./eyeron-reasoning.mjs";
 import { fork } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { realpathSync } from "node:fs";
@@ -182,9 +183,12 @@ export class KernelBroker {
     resultSpoolOptions,
     bootstrapLinkedScience = true,
     sessionControl = null,
+    reasoner, reasoningOptions,
   } = {}) {
     this.cwd = realpathSync(resolve(cwd));
     this.provider = provider;
+    this.reasoner = reasoner ?? createEyeronReasoner(reasoningOptions);
+    this.reasoningControllers = new Map();
     this.sessionControl = sessionControl;
     this.checkpointRoot = checkpointRoot ? resolve(checkpointRoot) : null;
     this.maxOldSpaceMb = maxOldSpaceMb;
@@ -252,6 +256,8 @@ export class KernelBroker {
     });
     child.once("exit", () => {
       const owner = { token: hostCapabilityToken, epoch: kernelEpoch };
+      this.reasoningControllers.get(child)?.abort();
+      this.reasoningControllers.delete(child);
       this.traversal.abortOwner(owner, "kernel-exit");
       this.resultSpool.releaseOwner(owner);
       if (this.child === child) this.child = null;
@@ -296,6 +302,12 @@ export class KernelBroker {
       if (method === 'scientificSession.control') {
         if (!this.sessionControl) throw Object.assign(new Error('Scientific session adapter is not connected'), {code:'SESSION_UNAVAILABLE'});
         value = await this.sessionControl(args);
+      }
+      else if (method === "reasoning.capabilities") value = await this.reasoner.capabilities();
+      else if (method === "reasoning.run") {
+        let controller = this.reasoningControllers.get(child);
+        if (!controller) { controller = new AbortController(); this.reasoningControllers.set(child, controller); }
+        value = await this.reasoner.run(args, { signal: controller.signal });
       }
       else if (method === "rlm.query") value = await this._recursiveQuery(args);
       else if (method === "traversal.capabilities") value = this.traversal.capabilities();
@@ -385,6 +397,8 @@ export class KernelBroker {
     if (!child) return;
     const owner = { token: this.hostCapabilityToken, epoch: this.epoch };
     this.child = null;
+    this.reasoningControllers.get(child)?.abort();
+    this.reasoningControllers.delete(child);
     this.hostCapabilityToken = null;
     this.traversal.abortOwner(owner, "kernel-replaced");
     this.resultSpool.releaseOwner(owner);
@@ -471,7 +485,9 @@ export class KernelBroker {
   }
 
   close() {
-    return this._terminate().finally(() => this.resultSpool.close());
+    return this._terminate().finally(async () => {
+      try { await this.reasoner.close?.(); } finally { this.resultSpool.close(); }
+    });
   }
 }
 

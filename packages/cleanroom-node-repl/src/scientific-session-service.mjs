@@ -1,4 +1,5 @@
 import net from 'node:net';
+import { validateReasoningArgs } from './scientific-session-runtime.mjs';
 import { lstat, chmod, unlink } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { randomBytes, randomUUID } from 'node:crypto';
@@ -6,7 +7,7 @@ import { Parser } from 'sparqljs';
 import { KernelBroker } from './cleanroom-mcp.mjs';
 
 export const MAX_FRAME_BYTES = 512 * 1024;
-const operations = new Set(['describe', 'match', 'bindings', 'query', 'deposit', 'result', 'jsonRead']);
+const operations = new Set(['describe', 'match', 'bindings', 'query', 'deposit', 'result', 'jsonRead', 'reason', 'explain']);
 const fail = (code, message) => Object.assign(new Error(message), { code });
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const positive = value => Number.isSafeInteger(value) && value > 0;
@@ -17,7 +18,7 @@ function fields(value, allowed) {
 }
 const validJsonPath=path=>Array.isArray(path)&&path.length<=32&&path.every(key=>(typeof key==='string'&&key.length<=200)||(Number.isSafeInteger(key)&&key>=0));
 function scopedArgs(operation, args, grant) {
-  const allowed = { describe: ['object'], match: ['object', 'pattern', 'offset', 'limit'], bindings: ['object', 'offset', 'limit'], query: ['object', 'sparql'], deposit: ['slot', 'value'], result: ['slot'], jsonRead: ['object','path','version','offset','limit'] };
+  const allowed = { reason: ['object','rules','graphPolicy','proof','limits'], explain: ['object','maxBytes'], describe: ['object'], match: ['object', 'pattern', 'offset', 'limit'], bindings: ['object', 'offset', 'limit'], query: ['object', 'sparql'], deposit: ['slot', 'value'], result: ['slot'], jsonRead: ['object','path','version','offset','limit'] };
   if (!operations.has(operation) || !grant.operations.includes(operation)) throw fail('FORBIDDEN', 'Operation is outside the grant');
   fields(args, allowed[operation]);
   if (operation === 'deposit' || operation === 'result') {
@@ -30,6 +31,7 @@ function scopedArgs(operation, args, grant) {
     if(!validJsonPath(path)||args.version!==1)throw fail('INVALID_ARGUMENT','Invalid JSON path or version');
     if(grant.jsonPaths&&!grant.jsonPaths[args.object]?.some(prefix=>prefix.length<=path.length&&prefix.every((key,i)=>String(key)===String(path[i]))))throw fail('FORBIDDEN','JSON path is outside the grant');
   }
+  if (operation === 'reason' || operation === 'explain') validateReasoningArgs(operation, args);
   if (operation === 'query') {
     if (typeof args.sparql !== 'string' || Buffer.byteLength(args.sparql) > 65536) throw fail('INVALID_ARGUMENT', 'sparql is required');
     let parsed;
@@ -172,7 +174,8 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
         const grant = connection.auth.grant;
         if (!grant) throw fail('FORBIDDEN', 'Scoped request requires a worker grant connection');
         scopedArgs(args.operation, args.args, grant);
-        if (args.operation === 'query' && grant.objects.length >= maxGrantObjects) throw fail('CAPACITY', 'Grant object capacity reached');
+        const additions = args.operation === 'reason' ? (args.args.proof === true ? 2 : 1) : args.operation === 'query' ? 1 : 0;
+        if (grant.objects.length + additions > maxGrantObjects) throw fail('CAPACITY', 'Grant object capacity reached');
         const scope = { sessionId: session.id, epoch: grant.epoch, objects: grant.objects, operations: grant.operations, ...(grant.outputSlot ? { outputSlot: grant.outputSlot } : {}) };
         const broker = session.broker;
         async function dispatch(operation, data) {
@@ -198,6 +201,11 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
           for (const source of grant.sourceObjects) await dispatch('describe', { object: source });
         }
         const result = await dispatch(args.operation, args.args);
+        if (args.operation === 'reason') {
+          const refs = [result?.derived, ...(result?.proof ? [result.proof] : [])];
+          if (refs.length > additions || refs.some(ref => !name(ref?.object) || typeof ref.kind !== 'string') || !object(result?.report)) throw fail('DISPATCH_FAILED', 'Reasoning did not return retained references and metadata');
+          for (const ref of refs) if (!grant.objects.includes(ref.object)) grant.objects.push(ref.object);
+        }
         if (args.operation === 'query') {
           if (!name(result?.object) || typeof result.kind !== 'string' || !Number.isSafeInteger(result.count) || result.count < 0) throw fail('DISPATCH_FAILED', 'Query did not return a valid retained object');
           if (!grant.objects.includes(result.object)) grant.objects.push(result.object);

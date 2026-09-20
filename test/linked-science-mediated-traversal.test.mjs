@@ -334,7 +334,7 @@ test('complete RDF document acquisition retains native quads and projects only s
   };
   const broker = new MediatedTraversalBroker({ fetchImpl: rdfFetch(calls) });
   const workspace = (await setupLinkedScience({ nodeRepl: {}, traversal: traversalAdapter(broker), peek })).open({ contextKey: 'ontology-document' });
-  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'dispose', 'epoch', 'evidence', 'graph', 'graphs', 'inventory', 'orientation', 'query', 'rdf', 'release', 'resources', 'results', 'schema', 'traversal' ]);
+  assert.deepEqual(Object.keys(workspace).sort(), [ 'contextKey', 'dispose', 'epoch', 'evidence', 'graph', 'graphs', 'inventory', 'orientation', 'query', 'rdf', 'reasoning', 'release', 'resources', 'results', 'schema', 'traversal' ]);
   const handle = await runMediatedQuery(workspace, {
     sources: [ { value: 'http://data.example/many.ttl', negotiation: {
       accept: 'text/turtle; profile="https://example.test/profile/request"',

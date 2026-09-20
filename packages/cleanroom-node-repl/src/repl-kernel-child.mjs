@@ -9,6 +9,7 @@ import { createScientificSessionRuntime } from './scientific-session-runtime.mjs
 
 import {
   registerLinkedSciencePrivateResultStore,
+  registerLinkedSciencePrivateReasoner,
   registerLinkedSciencePrivateTraversal,
 } from "./private-linked-science-traversal.mjs";
 
@@ -304,6 +305,7 @@ function createKernel() {
   Object.freeze(nodeRepl);
   registerLinkedSciencePrivateTraversal(nodeRepl, linkedScienceTraversal);
   registerLinkedSciencePrivateResultStore(nodeRepl, linkedScienceResultStorage);
+  registerLinkedSciencePrivateReasoner(nodeRepl, Object.freeze({ capabilities: () => hostCallStrict("reasoning.capabilities", {}), run: args => hostCallStrict("reasoning.run", args) }));
   server.context.nodeRepl = nodeRepl;
   return server;
 }

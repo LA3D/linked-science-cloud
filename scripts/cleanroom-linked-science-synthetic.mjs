@@ -55,7 +55,7 @@ try {
   assert.match(persistent, /mode: 'external-context'/u);
 
   const booted = text(await tool('js', { code: bootstrap, timeout_ms: 120_000 }));
-  assert.match(booted, /version: '6\.4\.0'/u);
+  assert.match(booted, /version: '6\.5\.0'/u);
   assert.match(booted, /runtime: 'cleanroom_node_repl'/u);
   assert.match(booted, /id: '@linked-science\/runtime'/u);
   assert.match(booted, /role: 'authoritative-production-implementation'/u);
@@ -102,7 +102,7 @@ try {
     persistence: true,
     projectRoot,
     moduleRoot,
-    facadeVersion: '6.4.0',
+    facadeVersion: '6.5.0',
     localSynthetic: true,
     reset: { bindingsCleared: true, facadeAutomaticallyRebuilt: true, rlmRebootstrapped: true, peekSurvived: true, oldHandles: 'stale' },
   }, null, 2));
