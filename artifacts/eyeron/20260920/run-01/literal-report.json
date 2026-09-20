@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "output": "@prefix : <urn:bio:> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n_:x :q \"café\"@fr .\n_:x :q 01 .\n",
+  "statistics": {
+    "iterations": 3,
+    "matchSteps": 0,
+    "explicitFacts": 2,
+    "derivedFacts": 2,
+    "rules": 1
+  }
+}

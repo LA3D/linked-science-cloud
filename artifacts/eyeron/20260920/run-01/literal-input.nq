@@ -1,0 +1,2 @@
+_:x <urn:bio:p> "café"@fr .
+_:x <urn:bio:p> "01"^^<http://www.w3.org/2001/XMLSchema#integer> .

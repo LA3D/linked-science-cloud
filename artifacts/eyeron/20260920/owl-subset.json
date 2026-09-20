@@ -1,0 +1,16 @@
+{
+  "rules": "@prefix : <urn:bio:> . @prefix owl: <http://www.w3.org/2002/07/owl#> . @prefix log: <http://www.w3.org/2000/10/swap/log#> . { ?p a owl:TransitiveProperty . ?a ?p ?b . ?b ?p ?c } => { ?a ?p ?c } . { ?p owl:inverseOf ?q . ?a ?p ?b } => { ?b ?q ?a } .",
+  "data": "@prefix : <urn:bio:> . @prefix owl: <http://www.w3.org/2002/07/owl#> . @prefix log: <http://www.w3.org/2000/10/swap/log#> . :upstream a owl:TransitiveProperty; owl:inverseOf :downstream . :a :upstream :b . :b :upstream :c .",
+  "report": {
+    "ok": true,
+    "output": "@prefix : <urn:bio:> .\n\n:a :upstream :c .\n:b :downstream :a .\n:c :downstream :b .\n:c :downstream :a .\n",
+    "statistics": {
+      "iterations": 3,
+      "matchSteps": 8,
+      "explicitFacts": 4,
+      "derivedFacts": 4,
+      "rules": 2
+    }
+  },
+  "scope": "explicit transitive-property and inverse-property rules only; not complete OWL RL"
+}

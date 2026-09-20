@@ -1,0 +1,75 @@
+@prefix : <urn:bio:> .
+@prefix pe: <https://eyereasoner.github.io/pe#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:s a :Cell .
+:Neuron rdfs:subClassOf :Entity .
+:s a :Entity .
+
+{ :s a :Cell . } pe:why {
+  { :s a :Cell . }
+    pe:by [ pe:rule "session-program"; pe:line 2 ];
+    pe:binding
+      [ pe:var "c"; pe:value :Neuron ],
+      [ pe:var "d"; pe:value :Cell ],
+      [ pe:var "s"; pe:value :s ];
+    pe:uses
+      { :s a :Neuron . },
+      { :Neuron rdfs:subClassOf :Cell . }.
+
+  { :s a :Neuron . }
+    pe:by [ pe:fact "<unknown>" ].
+
+  { :Neuron rdfs:subClassOf :Cell . }
+    pe:by [ pe:fact "<unknown>" ].
+}.
+
+{ :Neuron rdfs:subClassOf :Entity . } pe:why {
+  { :Neuron rdfs:subClassOf :Entity . }
+    pe:by [ pe:rule "session-program"; pe:line 2 ];
+    pe:binding
+      [ pe:var "a"; pe:value :Neuron ],
+      [ pe:var "b"; pe:value :Cell ],
+      [ pe:var "c"; pe:value :Entity ];
+    pe:uses
+      { :Neuron rdfs:subClassOf :Cell . },
+      { :Cell rdfs:subClassOf :Entity . }.
+
+  { :Neuron rdfs:subClassOf :Cell . }
+    pe:by [ pe:fact "<unknown>" ].
+
+  { :Cell rdfs:subClassOf :Entity . }
+    pe:by [ pe:fact "<unknown>" ].
+}.
+
+{ :s a :Entity . } pe:why {
+  { :s a :Entity . }
+    pe:by [ pe:rule "session-program"; pe:line 2 ];
+    pe:binding
+      [ pe:var "c"; pe:value :Cell ],
+      [ pe:var "d"; pe:value :Entity ],
+      [ pe:var "s"; pe:value :s ];
+    pe:uses
+      { :s a :Cell . },
+      { :Cell rdfs:subClassOf :Entity . }.
+
+  { :s a :Cell . }
+    pe:by [ pe:rule "session-program"; pe:line 2 ];
+    pe:binding
+      [ pe:var "c"; pe:value :Neuron ],
+      [ pe:var "d"; pe:value :Cell ],
+      [ pe:var "s"; pe:value :s ];
+    pe:uses
+      { :s a :Neuron . },
+      { :Neuron rdfs:subClassOf :Cell . }.
+
+  { :s a :Neuron . }
+    pe:by [ pe:fact "<unknown>" ].
+
+  { :Neuron rdfs:subClassOf :Cell . }
+    pe:by [ pe:fact "<unknown>" ].
+
+  { :Cell rdfs:subClassOf :Entity . }
+    pe:by [ pe:fact "<unknown>" ].
+}.

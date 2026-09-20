@@ -1,0 +1,147 @@
+{
+  "format": "linked-science-eyeron-receipt/v1",
+  "id": "eyeron-compatibility-20260920",
+  "date": "2026-09-20",
+  "outcome": "partial",
+  "checksPassed": 15,
+  "checksTotal": 15,
+  "interpretation": "Basic native/serialized RDF reasoning compatibility observed, including mounted REPL round trip; named graph, blank-node, proof and session semantics require adapter contracts.",
+  "evidence": [
+    {
+      "path": "artifacts/eyeron/20260920/audit.json",
+      "sha256": "7364a405864d3d5f0859d1e3856ee663d4c8bc9ea77d4554393915ec5ddc3786"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/blank-node-batches.json",
+      "sha256": "f269452636caf653eb2de2cc322688b4234c981c839a81f8427bf8c27b2ad9bf"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/installation.json",
+      "sha256": "e7c9edda85040bf70684605ba18cebf0453cdd48cdc7660c7e744d87f26365e0"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/mounted-inference.json",
+      "sha256": "ff94e438c3f5bfb0bf67d551bf58e6ed53f4155eae8dd45fce74be546cecc238"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/mounted-result.json",
+      "sha256": "55d85254a7f24df9d889afdcb75e55f1c983088809b18a728da8fb3980619929"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/mounted-source.json",
+      "sha256": "8ff7d8bd75ecec5d5b791e42318a3e5890320002648e698a90f79857a7684ef6"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/named-corrected.json",
+      "sha256": "775dfe2d0bbcc279863e8ebaf0bb456b2a9e5ee3bc99f622a0382e8f9d517756"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/named-explicit.json",
+      "sha256": "56f128f6b535fbe917ea476099099ab7a9cbda87d1d94691ee5cc824c8d49256"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/owl-subset.json",
+      "sha256": "ff5b649a63991e2249602a5ed084872af178ee7ce9e32d595dd4a6f0715c8921"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/proof-shape.json",
+      "sha256": "689e4dd882e92b71f5810b925c1a5fa2cada29a420c10e1b3872a765c478d23d"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/protocol.json",
+      "sha256": "7a69d137fee124ecb014baaf6c53f0b63f67346b358c2bb381a8d35d4110fed6"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/backward.n3",
+      "sha256": "dae7b8d62371625d3486d9c512f2dc77a9b51f56c2c990107a5a799de00cd459"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/cleanup.json",
+      "sha256": "b061a0dc2955340cb0d4f5baaea815b5a4e08f9cbb5253ba2d36479b69e01003"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/facts.ttl",
+      "sha256": "7d8d3a0583036f310da3eeca5250bdd1e3b3cf8ddac9d7c711fde227d14202a0"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/independent-batch.json",
+      "sha256": "4868b031a9559d3d797a6ead873328f506e67e06c81419d3a1d69055a4c2bd30"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/limited-cli.json",
+      "sha256": "aca3345177a9f1a81d1b79263cd3fa3d0bb460f7f5162bd0a8766cce4e4b3cc5"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/literal-input.nq",
+      "sha256": "fea0af9058045c8d72692905949e9c0544065439db8abdbe4e97d74586a39e2e"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/literal-report.json",
+      "sha256": "0425cbd542ecf4c9fc6b6f1de056ecc06805b8f01bc36b16161297abf24cbca5"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/malformed.json",
+      "sha256": "284873a274525af4f13408eb349e10daf2ddc471f77a9eead9d7d6980e804b71"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/n3-report.json",
+      "sha256": "67db22688c48e2f6355f0f3f1a373df5a9ecfc43e3d20ef99ca7db66bbdc7e88"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/named-input.nq",
+      "sha256": "3ef2e5e67c34b35c3d9d3371db4d4ca7fde7a877b6a74e7f4cb7adf18294dee6"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/named-report.json",
+      "sha256": "02b8835a722f87ec3699405768a741a5e41f3f0bb34320bb47cf12a220446ebb"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/peek-proposal.json",
+      "sha256": "4b8bc4420bcd77d385b59ae509c7b44d24a44fbc02fde1e980ffb72e78fa07ae"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/proof.n3",
+      "sha256": "1bda14be74eef85f124b0da9d1a05353552da5fa2e08f7dc25de0c2945f04b6b"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/results.json",
+      "sha256": "dda9ab88156f8f21c69eb5ded4fae75e8b6f881f532d9238b7462de5a3b1d080"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/retained-query.json",
+      "sha256": "5cd08086b1ad9943368a97c27cdfda880c0740f68ba10ff52f530ae796dad257"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/rules.n3",
+      "sha256": "cc56509d988f14d726c0362fcb9e58c05e7cc5163449e8f970c05331d3231f5a"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/rules.srl",
+      "sha256": "d83a541cba70ac6578aa28f7733812c17f920b9254f4b38b44e3999c278c995a"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/source.nq",
+      "sha256": "473d2c0ae62d802f272db59e61afb9a23e375178cddc910df0b9f08edf662684"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/srl-output.ttl",
+      "sha256": "37a06e8e5fb70bf647dd0103141834351e17799c3b1c4562c0660e885df04ae7"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/run-01/srl-proof-cli.json",
+      "sha256": "d309b25810b6f2581b2e747500a3295d0cccde2b72e38b9df1f5a811e7599768"
+    },
+    {
+      "path": "artifacts/eyeron/20260920/mounted-cleanup.json",
+      "sha256": "0b691d38d6c93c70c2607b93047475255586d7e433f28e28159d1083dd77b10c"
+    }
+  ],
+  "missingEvidence": [
+    "Full OWL RL or OWL DL conformance",
+    "Independent proof verification and formula-scoping equivalence",
+    "Broker-owned no-relay inference bridge, cancellation and memory limits",
+    "Incremental truth maintenance and automatic derivation invalidation",
+    "Scale, cost benefit and learned PEEK policy"
+  ],
+  "cleanup": "Recorded experiment workspace disposed after primary receipt registration; no whole-kernel reset."
+}

@@ -1,0 +1,12 @@
+{
+  "args": [
+    "--max-backward-depth",
+    "0",
+    "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/eyeron/20260920/run-01/backward.n3"
+  ],
+  "status": 1,
+  "signal": null,
+  "error": null,
+  "stdout": "",
+  "stderr": "eyeron: reasoning incomplete (limits reached: backward-depth limit)\n"
+}

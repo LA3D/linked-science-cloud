@@ -1,0 +1,1 @@
+PREFIX : <urn:bio:> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> DATA { :s a :Neuron . :Neuron rdfs:subClassOf :Cell . :Cell rdfs:subClassOf :Entity . } RULE { ?s a ?d } WHERE { ?s a ?c . ?c rdfs:subClassOf ?d } RULE { ?a rdfs:subClassOf ?c } WHERE { ?a rdfs:subClassOf ?b . ?b rdfs:subClassOf ?c }

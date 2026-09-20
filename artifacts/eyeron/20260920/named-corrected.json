@@ -1,0 +1,16 @@
+{
+  "rules": "@prefix : <urn:bio:> . @prefix log: <http://www.w3.org/2000/10/swap/log#> . { ?g log:nameOf ?f . ?f log:includes { ?s a :Neuron } } => { ?s a :Cell } .",
+  "report": {
+    "ok": true,
+    "output": "@prefix : <urn:bio:> .\n\n:s a :Cell .\n",
+    "statistics": {
+      "iterations": 3,
+      "matchSteps": 12,
+      "explicitFacts": 2,
+      "derivedFacts": 1,
+      "rules": 1
+    }
+  },
+  "correction": "Named RDF graphs are represented by graph log:nameOf formula; the earlier direct log:includes attempt was inappropriate.",
+  "scope": "Explicit extraction from named formula into default graph; no implicit union"
+}

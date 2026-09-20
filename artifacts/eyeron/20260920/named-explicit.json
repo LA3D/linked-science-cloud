@@ -1,0 +1,15 @@
+{
+  "rules": "@prefix : <urn:bio:> . @prefix owl: <http://www.w3.org/2002/07/owl#> . @prefix log: <http://www.w3.org/2000/10/swap/log#> . { ?g log:includes { ?s a :Neuron } } => { ?s a :Cell } .",
+  "report": {
+    "ok": true,
+    "output": "",
+    "statistics": {
+      "iterations": 2,
+      "matchSteps": 2,
+      "explicitFacts": 2,
+      "derivedFacts": 0,
+      "rules": 1
+    }
+  },
+  "scope": "Explicit quoted-graph access; output deliberately in default graph, not graph-preserving inference"
+}

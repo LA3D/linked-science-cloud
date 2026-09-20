@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "error": {
+    "code": "parse_error",
+    "message": "expected IRI or prefixed name, got this",
+    "display": "session-data:1:1: expected IRI or prefixed name, got this\nthis is not RDF\n^",
+    "editor": "data",
+    "line": 1,
+    "column": 1,
+    "details": null
+  }
+}

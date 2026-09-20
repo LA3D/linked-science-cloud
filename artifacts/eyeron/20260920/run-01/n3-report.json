@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "output": "@prefix : <urn:bio:> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n\n:s a :Cell .\n:Neuron rdfs:subClassOf :Entity .\n:s a :Entity .\n",
+  "statistics": {
+    "iterations": 3,
+    "matchSteps": 19,
+    "explicitFacts": 3,
+    "derivedFacts": 3,
+    "rules": 2
+  }
+}

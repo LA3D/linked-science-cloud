@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "output": "",
+  "statistics": {
+    "iterations": 2,
+    "matchSteps": 0,
+    "explicitFacts": 2,
+    "derivedFacts": 0,
+    "rules": 2
+  }
+}

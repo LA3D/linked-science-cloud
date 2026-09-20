@@ -1,0 +1,6 @@
+@prefix : <urn:bio:> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:s a :Cell .
+:Neuron rdfs:subClassOf :Entity .
+:s a :Entity .

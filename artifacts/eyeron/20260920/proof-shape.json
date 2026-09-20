@@ -1,0 +1,35 @@
+{
+  "quads": 98,
+  "graphTermTypes": [
+    "DefaultGraph",
+    "BlankNode"
+  ],
+  "namedGraphs": [
+    "n3-0",
+    "n3-2",
+    "n3-1",
+    "n3-7",
+    "n3-8",
+    "n3-9",
+    "n3-11",
+    "n3-13",
+    "n3-15",
+    "n3-14",
+    "n3-20",
+    "n3-21",
+    "n3-22",
+    "n3-24",
+    "n3-26",
+    "n3-28",
+    "n3-27",
+    "n3-33",
+    "n3-34",
+    "n3-35",
+    "n3-40",
+    "n3-41",
+    "n3-42",
+    "n3-44",
+    "n3-46"
+  ],
+  "warning": "Parser maps formula structure to graphs; parseability alone does not verify N3 scoping or proof validity."
+}

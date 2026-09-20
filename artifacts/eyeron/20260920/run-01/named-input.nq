@@ -1,0 +1,2 @@
+<urn:bio:s> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:bio:Neuron> <urn:g1> .
+<urn:bio:Neuron> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <urn:bio:Cell> <urn:g2> .

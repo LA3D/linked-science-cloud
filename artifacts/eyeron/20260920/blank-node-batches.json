@@ -1,0 +1,5 @@
+{
+  "one": "@prefix : <urn:bio:> .\n\n_:x :q \"one\" .\n",
+  "two": "@prefix : <urn:bio:> .\n\n_:x :q \"two\" .\n",
+  "warning": "Same lexical blank-node label in distinct input batches must be scoped independently; do not concatenate strings assuming global identity."
+}

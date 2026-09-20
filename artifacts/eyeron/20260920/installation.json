@@ -1,0 +1,16 @@
+{
+  "format": "linked-science-eyeron-installation/v1",
+  "source": "/Users/cvardema/.local/share/linked-science/eyeron-v0.5.13",
+  "sourceUrl": "https://github.com/eyereasoner/eyeron",
+  "tag": "v0.5.13",
+  "commit": "b46a18e5653f4b203f9c2292e4142f01868e202b",
+  "binary": "/Users/cvardema/.local/bin/eyeron",
+  "binarySha256": "d3340c618dc36d5ec20e00c5462a3d69997de88823809b050db4a5ffb0131134",
+  "version": "0.5.13",
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)",
+  "cargo": "cargo 1.98.1 (797e8a9bc 2026-08-05) (Homebrew)",
+  "node": "v26.8.2",
+  "method": "Homebrew rust; cargo install --path pinned source --root /Users/cvardema/.local --bin eyeron",
+  "lockFilePresent": false,
+  "note": "Source tag pinned. Cargo install did not use --locked; local resolved lock hash records build dependencies. Use explicit binary path; no shell PATH or project MCP changes."
+}

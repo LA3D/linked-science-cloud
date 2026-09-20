@@ -1,0 +1,68 @@
+{
+  "format": "linked-science-eyeron-audit/v1",
+  "checks": [
+    {
+      "id": "equivalent-subclass-closure",
+      "pass": true
+    },
+    {
+      "id": "host-rdfjs-retention",
+      "pass": true
+    },
+    {
+      "id": "no-implicit-named-graph-union",
+      "pass": true
+    },
+    {
+      "id": "literal-language-and-lexical-form",
+      "pass": true
+    },
+    {
+      "id": "proof-emitted-and-parseable",
+      "pass": true
+    },
+    {
+      "id": "srl-proof-explicitly-unsupported",
+      "pass": true
+    },
+    {
+      "id": "malformed-input-rejected",
+      "pass": true
+    },
+    {
+      "id": "limit-is-failure-not-empty-success",
+      "pass": true
+    },
+    {
+      "id": "session-batches-independent",
+      "pass": true
+    },
+    {
+      "id": "bounded-orientation-proposal",
+      "pass": true
+    },
+    {
+      "id": "explicit-owl-rule-subset",
+      "pass": true
+    },
+    {
+      "id": "explicit-named-formula-access",
+      "pass": true
+    },
+    {
+      "id": "blank-node-labels-reused-across-batches",
+      "pass": true
+    },
+    {
+      "id": "mounted-persistence-and-query",
+      "pass": true
+    },
+    {
+      "id": "mounted-types",
+      "pass": true
+    }
+  ],
+  "passed": 15,
+  "total": 15,
+  "scope": "bounded fixtures; supported behavior and explicitly detected integration gaps"
+}

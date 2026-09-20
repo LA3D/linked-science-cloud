@@ -1,0 +1,18 @@
+{
+  "format":"linked-science-eyeron-protocol/v1",
+  "date":"2026-09-20",
+  "source":"https://github.com/eyereasoner/eyeron",
+  "tag":"v0.5.13",
+  "commit":"b46a18e5653f4b203f9c2292e4142f01868e202b",
+  "scope":"Synthetic offline compatibility experiments, installation authorized; production inference API and learned PEEK policy not implemented",
+  "experiments":[
+    "E1: equivalent N3 and SPARQL-RL subclass closure, asserted data remains separate",
+    "E2: RDF/JS Source serialization, inferred graph retention and Comunica query",
+    "E3: named-graph boundaries, blank-node identity and literal round trip",
+    "E4: N3 proof representation and SRL proof availability",
+    "E5: explicit incomplete reasoning and malformed input",
+    "E6: reusable Wasm program session with independent data batches and bounded orientation summary"
+  ],
+  "bounds":{"maxInputBytes":65536,"maxOutputBytes":131072,"cliTimeoutMs":10000,"maxRetainedQuads":100},
+  "acceptance":"Compare observed results against explicit fixture expectations. Record mismatches as adapter gaps; never infer full OWL RL conformance or graph equivalence from syntax support."
+}

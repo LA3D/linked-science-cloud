@@ -1,0 +1,15 @@
+{
+  "arguments": {
+    "code": "await erWs.dispose();nodeRepl.write(JSON.stringify({contextKey:'eyeron-compatibility-20260920',disposed:true,scope:'only experiment workspace'}));",
+    "title": "Release the recorded Eyeron experiment workspace",
+    "max_output_bytes": 1000
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"contextKey\":\"eyeron-compatibility-20260920\",\"disposed\":true,\"scope\":\"only experiment workspace\"}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "linked-science-page",
+  "operationId": "op-000004",
+  "source": {
+    "kind": "linked-science-handle",
+    "id": "h-000003",
+    "type": "bindings",
+    "epoch": "59792645-9904-4ea0-9907-32137e12d7ab:eyeron-compatibility:1",
+    "label": "query-result"
+  },
+  "columns": [
+    "type"
+  ],
+  "offset": 0,
+  "total": 3,
+  "provenance": {
+    "operationId": "op-000003",
+    "localOnly": true,
+    "queryType": "SELECT",
+    "querySha256": "45a3eb44574db98695df098692459ab070a3de1559a1d3c19ce760b5680589c2",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sourceHandles": [
+      "h-000001",
+      "h-000002"
+    ],
+    "sourceFingerprints": [
+      "b30fe08407250c0068f41512b3b87c99a1eb9bfaad1184402033810a319810a2",
+      "114d4a5911ead60f7c7f23864d58cbe517b0dfd797d89d3ce0753aaaaf155dd9"
+    ]
+  },
+  "rows": [
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "urn:bio:Cell"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "urn:bio:Entity"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "urn:bio:Neuron"
+      }
+    }
+  ],
+  "truncated": false,
+  "bounds": {
+    "rows": 3,
+    "maxRows": 10,
+    "cells": 3,
+    "maxCells": 100,
+    "bytes": 1102,
+    "maxBytes": 32768
+  }
+}

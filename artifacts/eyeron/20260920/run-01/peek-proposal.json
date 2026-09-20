@@ -1,0 +1,11 @@
+{
+  "kind": "reasoning-orientation-proposal",
+  "engine": "eyeron",
+  "version": "0.5.13",
+  "inputSha256": "473d2c0ae62d802f272db59e61afb9a23e375178cddc910df0b9f08edf662684",
+  "rulesSha256": "cc56509d988f14d726c0362fcb9e58c05e7cc5163449e8f970c05331d3231f5a",
+  "derivedCount": 3,
+  "complete": true,
+  "proofArtifact": "proof.n3",
+  "scope": "explicit subclass rules; no persistent engine data; no OWL profile guarantee"
+}

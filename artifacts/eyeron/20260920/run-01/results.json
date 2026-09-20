@@ -1,0 +1,102 @@
+{
+  "format": "linked-science-eyeron-experiments/v1",
+  "engineVersion": "0.5.13",
+  "wasmSha256": "d97a3e9e35d4c12960a46570eb20ab32287ef8d07e88dc7aa04c0c1b70fbd88d",
+  "binaryVersion": "0.5.13",
+  "observations": [
+    {
+      "id": "E1",
+      "expectedDerived": 3,
+      "n3Exact": true,
+      "srlExact": true,
+      "outputsEqual": true,
+      "scope": "two explicit RDFS rules, not full OWL conformance"
+    },
+    {
+      "id": "E2",
+      "inputQuads": 3,
+      "assertedQuadsAfter": 3,
+      "inferredQuads": 3,
+      "queryRows": 3,
+      "types": [
+        "urn:bio:Cell",
+        "urn:bio:Entity",
+        "urn:bio:Neuron"
+      ],
+      "scope": "host runtime instance, mounted MCP checked separately"
+    },
+    {
+      "id": "E3",
+      "namedResult": {
+        "ok": true,
+        "output": "",
+        "statistics": {
+          "iterations": 2,
+          "matchSteps": 0,
+          "explicitFacts": 2,
+          "derivedFacts": 0,
+          "rules": 2
+        }
+      },
+      "literalResult": [
+        {
+          "subject": "b5_x",
+          "subjectType": "BlankNode",
+          "value": "café",
+          "language": "fr",
+          "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        },
+        {
+          "subject": "b5_x",
+          "subjectType": "BlankNode",
+          "value": "01",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+        }
+      ],
+      "namedGraphs": "Named input must not be silently flattened; determine explicit graph policy from this observation."
+    },
+    {
+      "id": "E4",
+      "n3ProofBytes": 2014,
+      "rdfJsProofParse": {
+        "accepted": true,
+        "quads": 98
+      },
+      "srlProofStatus": 1,
+      "srlProofError": "eyeron: --proof is not yet supported for SPARQL 1.2 RL rule sets\n",
+      "proofVerified": false
+    },
+    {
+      "id": "E5",
+      "malformedRejected": true,
+      "limited": {
+        "args": [
+          "--max-backward-depth",
+          "0",
+          "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/eyeron/20260920/run-01/backward.n3"
+        ],
+        "status": 1,
+        "signal": null,
+        "error": null,
+        "stdout": "",
+        "stderr": "eyeron: reasoning incomplete (limits reached: backward-depth limit)\n"
+      },
+      "acceptance": "Incomplete execution must not be admitted as an empty successful inference."
+    },
+    {
+      "id": "E6",
+      "independentBatchDerived": 0,
+      "retainedPriorData": false,
+      "orientationBytes": 387,
+      "orientationApplied": false,
+      "note": "Same compiled program, second batch lacks subclass facts; no cross-batch materialized store."
+    }
+  ],
+  "limitations": [
+    "Small synthetic fixtures only",
+    "No full OWL RL conformance",
+    "Proof emitted but not independently verified",
+    "No production adapter or PEEK policy installed"
+  ]
+}

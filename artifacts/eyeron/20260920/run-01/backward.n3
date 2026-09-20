@@ -1,0 +1,2 @@
+@prefix : <urn:bio:> . @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+{ :s :a :o } <= { :s :b :o } . { :s :b :o } <= { :s :c :o } . :s :c :o . { :s :a :o } => { :s :done :o } .

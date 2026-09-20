@@ -1,0 +1,11 @@
+{
+  "args": [
+    "--proof",
+    "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/artifacts/eyeron/20260920/run-01/rules.srl"
+  ],
+  "status": 1,
+  "signal": null,
+  "error": null,
+  "stdout": "",
+  "stderr": "eyeron: --proof is not yet supported for SPARQL 1.2 RL rule sets\n"
+}

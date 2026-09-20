@@ -1,0 +1,2 @@
+@prefix : <urn:bio:> . @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+{ ?s a ?c . ?c rdfs:subClassOf ?d } => { ?s a ?d } . { ?a rdfs:subClassOf ?b . ?b rdfs:subClassOf ?c } => { ?a rdfs:subClassOf ?c } .
