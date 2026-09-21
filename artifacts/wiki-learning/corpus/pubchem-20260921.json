@@ -1,0 +1,268 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "pubchem-20260921-corpus",
+  "episode": {
+    "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/episode.json",
+    "sha256": "07f3c14886aec92a0aa11140219492097e174efbb35cdc0e85322d56bd82f182",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Actual scientific ontology/endpoint/context operations and retained checks; repository engineering excluded",
+    "scientificObjectiveIds": [
+      "pubchem-method"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "ontology-method",
+      "objectiveId": "pubchem-method",
+      "anchors": [
+        "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl"
+      ],
+      "sourceEvidenceIds": [
+        "schema",
+        "sio",
+        "cheminf",
+        "uniprot",
+        "assay"
+      ],
+      "freshness": {
+        "asOf": "2026-09-21T13:41:53.618Z",
+        "revalidateWhen": "Ontology or endpoint release, imports, term meaning, query scope or assay alignment changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-6",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+          "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "For opaque scientific identifiers, load authoritative ontology definitions into symbolic context, inspect labels, textual definitions and structural relationships, enumerate imports, and selectively follow dependencies relevant to the question. Record unloaded or unresolved dependencies; do not claim full import closure. Distinguish identifier families even when they share a namespace. Missing prose definitions may require inspecting parent properties rather than inventing meaning. PubChem's SIO and CHEMINF term resolution is a worked example of this general method.",
+      "scope": "Single directly captured scientific trajectory; historical failures retained only as explicitly labeled narrative"
+    },
+    {
+      "id": "term-usage",
+      "objectiveId": "pubchem-method",
+      "anchors": [
+        "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl"
+      ],
+      "sourceEvidenceIds": [
+        "schema",
+        "sio",
+        "cheminf",
+        "uniprot",
+        "assay"
+      ],
+      "freshness": {
+        "asOf": "2026-09-21T13:41:53.618Z",
+        "revalidateWhen": "Ontology or endpoint release, imports, term meaning, query scope or assay alignment changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-6",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+          "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "Separate a term's schema definition from its occurrence in the actual endpoint dataset. A broad term-usage query timing out leaves usage unresolved. Focused existence probes can answer narrower questions, but a false answer covers only the tested pattern. Imported parent concepts can remain semantically relevant even when not directly instantiated. In the PubChem example, focused IAO and CHEMINF checks were positive and two particular CDK type checks were negative.",
+      "scope": "Single directly captured scientific trajectory; historical failures retained only as explicitly labeled narrative"
+    },
+    {
+      "id": "crosswalk-assay",
+      "objectiveId": "pubchem-method",
+      "anchors": [
+        "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl"
+      ],
+      "sourceEvidenceIds": [
+        "schema",
+        "sio",
+        "cheminf",
+        "uniprot",
+        "assay"
+      ],
+      "freshness": {
+        "asOf": "2026-09-21T13:41:53.618Z",
+        "revalidateWhen": "Ontology or endpoint release, imports, term meaning, query scope or assay alignment changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-6",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+          "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "Follow explicit protein cross-references to combine annotation with assay evidence, retaining relationship type, organism, assay provenance, units and qualifiers. Keep greater-than values as bounds and preserve unresolved isoform or mutation alignment. Cross-references are not automatically identity assertions or proof a destination graph is loaded. An illustrative LIMIT sample is not a comprehensive survey or comparable potency ranking. PubChem EGFR and UniProt P00533 provide the worked example.",
+      "scope": "Single directly captured scientific trajectory; historical failures retained only as explicitly labeled narrative"
+    },
+    {
+      "id": "source-snapshot",
+      "objectiveId": "pubchem-method",
+      "anchors": [
+        "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl"
+      ],
+      "sourceEvidenceIds": [
+        "schema",
+        "sio",
+        "cheminf",
+        "uniprot",
+        "assay"
+      ],
+      "freshness": {
+        "asOf": "2026-09-21T13:41:53.618Z",
+        "revalidateWhen": "Ontology or endpoint release, imports, term meaning, query scope or assay alignment changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "source",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+            "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-6",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/exchange-6.json",
+          "sha256": "d501642e866a6ce02e1faeb800599b9623ef35f948f772731cbac98dde361c50",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "scientific-finding",
+      "claim": "Dated capture of the PubChem session: the SHACL model referenced 20 SIO and 29 CHEMINF identifiers; ontology inspection resolved labels and inspected selected CHEMINF dependencies. EGFR cross-references and illustrative assay measurements were retained separately from UniProt annotation. Exact counts, queries, qualifiers and source fingerprints belong to the cited capture, not timeless dataset guarantees.",
+      "scope": "Single directly captured scientific trajectory; historical failures retained only as explicitly labeled narrative"
+    }
+  ]
+}

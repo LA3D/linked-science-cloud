@@ -1,0 +1,34 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000009",
+    "type": "resource",
+    "epoch": "f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://raw.githubusercontent.com/micheldumontier/semanticscience/master/ontology/sio/release/sio-release.owl",
+  "redirected": true,
+  "headers": {
+    "content-length": "1478858",
+    "content-type": "text/plain; charset=utf-8",
+    "etag": "\"7aa5f7bb64dc147a15ac7d4f51b8bdd722e510a487628c73526a8e38770c0e17\"",
+    "vary": "Authorization,Accept-Encoding"
+  },
+  "mediaType": "text/plain",
+  "bytes": 1478858,
+  "sha256": "1b1efb7e193416e5ed1f5e41da9b3d42da12c0d2001304fa1b6bb75ef01a54a6",
+  "provenance": {
+    "operationId": "op-000011",
+    "payloadSha256": "1b1efb7e193416e5ed1f5e41da9b3d42da12c0d2001304fa1b6bb75ef01a54a6",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 937,
+    "maxBytes": 32768
+  }
+}

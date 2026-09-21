@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "pubchem-20260921",
+  "baseRevision": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+  "batch": {
+    "purpose": "Preserve general ontology methodology with PubChem worked evidence, endpoint-use distinctions and assay-context interpretation",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+        "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 4,
+    "outcomeStrata": [
+      "success"
+    ],
+    "omittedMaterial": [
+      "Original MCP transport envelopes are not reconstructed.",
+      "Ontology term summaries initially collected only dcterms descriptions; later dc descriptions and rdfs comments for SIO were inspected separately in conversation.",
+      "Original failed query and parser-error envelopes not included here.",
+      "Retained handles describe capture-time residency, not future residency.",
+      "Original failed parser/query receipt not recovered; those recovery narratives remain retrospective.",
+      "Endpoint pages preserve original complete-result provenance but crosswalk/reference displays are partial; full rows not exported.",
+      "No independent transfer test, model-benefit comparison or biological validation.",
+      "Source representations retained earlier September 21; later local capture is not a network rerun.",
+      "Skill baseline reused from unchanged same-day maintenance snapshot; not proof of original skill loading.",
+      "No duplicate paging-recovery pattern; existing wiki covers that mechanism."
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "For opaque scientific identifiers, load authoritative ontology definitions into symbolic context, inspect labels, textual definitions and structural relationships, enumerate imports, and selectively follow dependencies relevant to the question. Record unloaded or unresolved dependencies; do not claim full import closure. Distinguish identifier families even when they share a namespace. Missing prose definitions may require inspecting parent properties rather than inventing meaning. PubChem's SIO and CHEMINF term resolution is a worked example of this general method.",
+      "applicability": "Scientific schema exploration and ontology-driven query design across domains, particularly when identifiers are opaque or definitions depend on imported modules.",
+      "competingExplanations": [
+        "Successful resolution may depend on these ontologies' annotation coverage and organization.",
+        "A task needing only a few known terms may be served by a smaller authoritative representation."
+      ],
+      "missingEvidence": [
+        "One PubChem trajectory does not demonstrate transfer or causal advantage across other scientific tasks.",
+        "Full recursive import closure and reasoning completeness were not established.",
+        "No controlled comparison against alternatives to symbolic ontology inspection."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-method",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Separate a term's schema definition from its occurrence in the actual endpoint dataset. A broad term-usage query timing out leaves usage unresolved. Focused existence probes can answer narrower questions, but a false answer covers only the tested pattern. Imported parent concepts can remain semantically relevant even when not directly instantiated. In the PubChem example, focused IAO and CHEMINF checks were positive and two particular CDK type checks were negative.",
+      "applicability": "Checking actual scientific dataset vocabulary use after ontology or SHACL inspection, especially after a broad endpoint query times out.",
+      "competingExplanations": [
+        "Probe outcomes depend on endpoint release, triple position and exact pattern.",
+        "The broad query may fail because of plan cost rather than vocabulary size alone."
+      ],
+      "missingEvidence": [
+        "No complete term-use enumeration or global absence claim.",
+        "No comparative query-performance experiment; narrowed queries changed scope.",
+        "Historical timeout recovery is reported in the selected transcript; later capture does not reconstruct a missing failed broker receipt."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "term-usage",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "protein-assay-crosswalk-context",
+      "title": "Join protein and assay evidence while preserving measurement context",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Follow explicit protein cross-references to combine annotation with assay evidence, retaining relationship type, organism, assay provenance, units and qualifiers. Keep greater-than values as bounds and preserve unresolved isoform or mutation alignment. Cross-references are not automatically identity assertions or proof a destination graph is loaded. An illustrative LIMIT sample is not a comprehensive survey or comparable potency ranking. PubChem EGFR and UniProt P00533 provide the worked example.",
+      "applicability": "Cross-source biological interpretation joining protein annotations to compound–assay–measurement records.",
+      "competingExplanations": [
+        "Matching protein-record identity can coexist with different experimental constructs and assay systems.",
+        "Different values for the same compound may reflect assay conditions rather than conflicting evidence."
+      ],
+      "missingEvidence": [
+        "No verified isoform or mutation alignment for every assay.",
+        "No independent biological validation or comprehensive inhibitor survey.",
+        "Assay systems differ; no normalized cross-assay potency comparison or selectivity claim."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "crosswalk-assay",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "pubchem-ontology-egfr-20260921",
+      "title": "PubChem ontology and EGFR evidence snapshot (2026-09-21)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Dated capture of the PubChem session: the SHACL model referenced 20 SIO and 29 CHEMINF identifiers; ontology inspection resolved labels and inspected selected CHEMINF dependencies. EGFR cross-references and illustrative assay measurements were retained separately from UniProt annotation. Exact counts, queries, qualifiers and source fingerprints belong to the cited capture, not timeless dataset guarantees.",
+      "applicability": "The captured September 21 PubChem/QLever representations and submitted query scopes only.",
+      "competingExplanations": [
+        "Endpoint and ontology releases can change counts, annotations and mappings."
+      ],
+      "missingEvidence": [
+        "No guarantee of present-day endpoint contents or complete ontology closure.",
+        "No exhaustive assay retrieval or independent validation of all external references."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "source-snapshot",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}

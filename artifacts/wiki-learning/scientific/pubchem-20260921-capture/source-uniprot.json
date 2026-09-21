@@ -1,0 +1,32 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000027",
+    "type": "resource",
+    "epoch": "f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://rest.uniprot.org/uniprotkb/P00533.json",
+  "redirected": false,
+  "headers": {
+    "content-type": "application/json",
+    "vary": "accept,accept-encoding,x-uniprot-release,x-api-deployment-date, User-Agent"
+  },
+  "mediaType": "application/json",
+  "bytes": 418611,
+  "sha256": "90c459656751eac791efc2f369f49145d38cc949f5b41bf628180ac0a6874b02",
+  "provenance": {
+    "operationId": "op-000038",
+    "payloadSha256": "90c459656751eac791efc2f369f49145d38cc949f5b41bf628180ac0a6874b02",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 811,
+    "maxBytes": 32768
+  }
+}

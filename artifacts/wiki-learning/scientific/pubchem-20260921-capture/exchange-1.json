@@ -1,0 +1,22 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-1",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "nodeRepl.write({captureObjective:'Capture current retained PubChem schema and ontology evidence for user-authorized wiki memory; local operations only, no new source retrieval; this is a later capture, not an original transport trace.',capturedAt:new Date().toISOString(),contextKey:'pubchem-connection-walkthrough'});",
+    "max_output_bytes": 2000,
+    "title": "Declare local scientific evidence capture"
+  },
+  "response": {
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  captureObjective: 'Capture current retained PubChem schema and ontology evidence for user-authorized wiki memory; local operations only, no new source retrieval; this is a later capture, not an original transport trace.',\n  capturedAt: '2026-09-21T13:41:38.340Z',\n  contextKey: 'pubchem-connection-walkthrough'\n}"
+        }
+      ]
+    }
+  },
+  "captureNote": "Exact new mounted project MCP arguments/result; wrapper does not invent original transport request IDs."
+}

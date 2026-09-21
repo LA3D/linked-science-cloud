@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "pubchem-20260921-capture",
+  "host": {
+    "hostId": "mounted-project-mcp",
+    "taskId": "pubchem-20260921-capture",
+    "version": "Mounted project broker; exact new result envelopes captured by originating PubChem task",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/observable-events.json",
+      "sha256": "f3123b856502789db352f12e8ecb5d9932b717af79e485f929b3e2b3cf8de78b",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No model-memory settings inspected; host performed symbolic calls"
+    }
+  },
+  "capture": {
+    "kind": "direct-runtime",
+    "completeness": "partial",
+    "gaps": [
+      "Original MCP transport envelopes are not reconstructed.",
+      "Ontology term summaries initially collected only dcterms descriptions; later dc descriptions and rdfs comments for SIO were inspected separately in conversation.",
+      "Original failed query and parser-error envelopes not included here.",
+      "Retained handles describe capture-time residency, not future residency.",
+      "Original failed parser/query receipt not recovered; those recovery narratives remain retrospective.",
+      "Endpoint pages preserve original complete-result provenance but crosswalk/reference displays are partial; full rows not exported.",
+      "No independent transfer test, model-benefit comparison or biological validation.",
+      "Source representations retained earlier September 21; later local capture is not a network rerun.",
+      "Skill baseline reused from unchanged same-day maintenance snapshot; not proof of original skill loading."
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "6.5.0",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/wikipathways-20260921/manifest.json",
+    "digest": "120cf7561f9a456c8dc770d2eaeb00ca98ac6e4af3c6433ef529ce66db0d16b7",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "retained-capture",
+      "itemId": "exchange-1",
+      "kind": "mcpToolCall",
+      "sequence": 1,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "retained-capture",
+      "itemId": "exchange-2",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "retained-capture",
+      "itemId": "exchange-3",
+      "kind": "mcpToolCall",
+      "sequence": 3,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "retained-capture",
+      "itemId": "exchange-4",
+      "kind": "mcpToolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "retained-capture",
+      "itemId": "exchange-5",
+      "kind": "mcpToolCall",
+      "sequence": 5,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "retained-capture",
+      "itemId": "exchange-6",
+      "kind": "mcpToolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "pubchem-method"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "pubchem-method",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Capture current retained PubChem schema and ontology evidence for user-authorized wiki memory; local operations only, no new source retrieval; this is a later capture, not an original transport trace.",
+      "acceptance": [
+        "Resolve scientific term meanings and selected dependencies in retained symbolic context",
+        "Separate endpoint usage and source semantics",
+        "Preserve assay measurement context and evidence limitations"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema",
+      "kind": "receipt-only",
+      "description": "Captured inspection of retained source metadata and fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/source-schema.json",
+        "sha256": "ee88d298e51d8fdcaff78eac0473578145fd87e01404f2aef93ff108ad5000c5",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl",
+        "revision": "936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf",
+        "representation": "text/plain"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "sio",
+      "kind": "receipt-only",
+      "description": "Captured inspection of retained source metadata and fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/source-sio.json",
+        "sha256": "68168c113b5a1e9f9be10e84e2e5d4c4678b555f58722e255c8ff15d9c4426f7",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://raw.githubusercontent.com/micheldumontier/semanticscience/master/ontology/sio/release/sio-release.owl",
+        "revision": "1b1efb7e193416e5ed1f5e41da9b3d42da12c0d2001304fa1b6bb75ef01a54a6",
+        "representation": "text/plain"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "cheminf",
+      "kind": "receipt-only",
+      "description": "Captured inspection of retained source metadata and fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/source-cheminf.json",
+        "sha256": "3aaa16ab25e828a9731cd5ea3527b0953d780af4935928fbf6218e58e6939e56",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://raw.githubusercontent.com/semanticchemistry/semanticchemistry/master/ontology/cheminf.owl",
+        "revision": "f83a0f0254db17cbc7abf3384cb98b3a40c84b3b304a6e4d3b3382878faab002",
+        "representation": "text/plain"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot",
+      "kind": "receipt-only",
+      "description": "Captured inspection of retained source metadata and fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/source-uniprot.json",
+        "sha256": "5ef7e69a7cde24cf9a58f3c10df7f5e24e19127d5490b6c39ecfdbb5a900cddf",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://rest.uniprot.org/uniprotkb/P00533.json",
+        "revision": "90c459656751eac791efc2f369f49145d38cc949f5b41bf628180ac0a6874b02",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "assay",
+      "kind": "receipt-only",
+      "description": "Captured inspection of retained source metadata and fingerprint",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/source-assay.json",
+        "sha256": "745a8b361bea6074130b6e619658486df2a4bc6f794fd049083cd08279f5159e",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/assay/aid/650681/description/JSON",
+        "revision": "755d11f27e1cc0a4f25bdd47515ccb6046c32aaeda0c0f37888915e01084c1ee",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "local-query",
+      "kind": "receipt-only",
+      "description": "Actual local schema-count query profile",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/query-profile.json",
+        "sha256": "3908fb9af9e91977ed2306f921df3dddb624b703bd3911baed9a03458489d487",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl",
+        "revision": "936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Complete source payloads and original transport envelopes not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "outcomes",
+      "kind": "receipt-only",
+      "description": "Directly captured ontology annotations, endpoint result pages and contextual checks",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/pubchem-20260921-capture/observed-outcomes.json",
+        "sha256": "1fa16a7e52c53f1143062f03d7a0667953a5cf7e23eb805ae6a65e47b21d0d74",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl",
+        "revision": null,
+        "representation": "application/json"
+      },
+      "completion": "unknown",
+      "missingEvidence": [
+        "Complete source payloads and original transport envelopes not exported"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "id": "join-local-query",
+      "eventId": "event-6",
+      "objectiveId": "pubchem-method",
+      "evidenceId": "local-query",
+      "operationId": "op-000045",
+      "traversalId": null,
+      "basis": "explicit",
+      "note": "Operation ID and complete profile observed in exact supplement; do not confuse later capture with original endpoint queries."
+    }
+  ],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "capture-checks",
+      "objectiveId": "pubchem-method",
+      "kind": "machine-check",
+      "status": "passed",
+      "claim": "Local schema count matches retained quad count; all enumerated SIO and CHEMINF terms have labels.",
+      "evidenceIds": [
+        "local-query",
+        "outcomes"
+      ],
+      "missingEvidence": []
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000032",
+    "type": "bindings",
+    "epoch": "f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1",
+    "label": "query-result"
+  },
+  "type": "bindings",
+  "count": 1,
+  "columns": [
+    "triples"
+  ],
+  "fingerprints": [
+    "936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf",
+    "426342b09330530dc2e5dc6a149d768e5a1bc55aeab381daab8e4093d8c5d9fe"
+  ],
+  "lineage": {
+    "kind": "communica-query",
+    "operationId": "op-000045",
+    "sourceHandles": [
+      "h-000008"
+    ],
+    "querySha256": "fbbf3ff6f97222bfe6deacc33f85db8e1ea629f90650ede71baa114b5fa0f087",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    }
+  },
+  "provenance": {
+    "operationId": "op-000045",
+    "localOnly": true,
+    "queryType": "SELECT",
+    "querySha256": "fbbf3ff6f97222bfe6deacc33f85db8e1ea629f90650ede71baa114b5fa0f087",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sourceHandles": [
+      "h-000008"
+    ],
+    "sourceFingerprints": [
+      "936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf",
+      "426342b09330530dc2e5dc6a149d768e5a1bc55aeab381daab8e4093d8c5d9fe"
+    ]
+  },
+  "completion": {
+    "kind": "linked-science-result-completion",
+    "status": "complete",
+    "complete": true,
+    "truncated": false,
+    "scope": "submitted-query",
+    "materialization": "atomic-before-handle-publication"
+  },
+  "bounds": {
+    "bytes": 1511,
+    "maxBytes": 32768
+  }
+}

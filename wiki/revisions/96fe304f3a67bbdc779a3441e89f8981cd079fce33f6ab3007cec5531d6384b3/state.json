@@ -1,0 +1,963 @@
+{
+  "schemaVersion": "1.0.0",
+  "revision": "96fe304f3a67bbdc779a3441e89f8981cd079fce33f6ab3007cec5531d6384b3",
+  "parent": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+  "patterns": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured source versions contain 20 asserted GO identifiers for P69905 and 25 for P68871, 45 distinct protein-GO memberships, and 18 shared identifiers. Native matching agreed with the local query.",
+      "applicability": "Only the two protein source hashes recorded by the cited episode and the classifiedWith relation at the recorded observation time. This is annotation overlap, not ontology closure, functional equivalence or a procedure.",
+      "competingExplanations": [
+        "Different source versions, annotation choices or relation semantics can change the counts."
+      ],
+      "missingEvidence": [
+        "No current-source reacquisition; source payload hashes identify an old snapshot, not present-day truth.",
+        "No ontology hierarchy, evidence-code or functional-equivalence analysis."
+      ],
+      "revalidateWhen": "Reacquire current representations and check source hashes and relation semantics before making a current scientific claim.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "asserted-go-finding",
+          "eventIds": [
+            "event-3",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "For opaque scientific identifiers, load authoritative ontology definitions into symbolic context, inspect labels, textual definitions and structural relationships, enumerate imports, and selectively follow dependencies relevant to the question. Record unloaded or unresolved dependencies; do not claim full import closure. Distinguish identifier families even when they share a namespace. Missing prose definitions may require inspecting parent properties rather than inventing meaning. PubChem's SIO and CHEMINF term resolution is a worked example of this general method.",
+      "applicability": "Scientific schema exploration and ontology-driven query design across domains, particularly when identifiers are opaque or definitions depend on imported modules.",
+      "competingExplanations": [
+        "Successful resolution may depend on these ontologies' annotation coverage and organization.",
+        "A task needing only a few known terms may be served by a smaller authoritative representation."
+      ],
+      "missingEvidence": [
+        "One PubChem trajectory does not demonstrate transfer or causal advantage across other scientific tasks.",
+        "Full recursive import closure and reasoning completeness were not established.",
+        "No controlled comparison against alternatives to symbolic ontology inspection."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-method",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "protein-assay-crosswalk-context",
+      "title": "Join protein and assay evidence while preserving measurement context",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Follow explicit protein cross-references to combine annotation with assay evidence, retaining relationship type, organism, assay provenance, units and qualifiers. Keep greater-than values as bounds and preserve unresolved isoform or mutation alignment. Cross-references are not automatically identity assertions or proof a destination graph is loaded. An illustrative LIMIT sample is not a comprehensive survey or comparable potency ranking. PubChem EGFR and UniProt P00533 provide the worked example.",
+      "applicability": "Cross-source biological interpretation joining protein annotations to compound–assay–measurement records.",
+      "competingExplanations": [
+        "Matching protein-record identity can coexist with different experimental constructs and assay systems.",
+        "Different values for the same compound may reflect assay conditions rather than conflicting evidence."
+      ],
+      "missingEvidence": [
+        "No verified isoform or mutation alignment for every assay.",
+        "No independent biological validation or comprehensive inhibitor survey.",
+        "Assay systems differ; no normalized cross-assay potency comparison or selectivity claim."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "crosswalk-assay",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "pubchem-ontology-egfr-20260921",
+      "title": "PubChem ontology and EGFR evidence snapshot (2026-09-21)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Dated capture of the PubChem session: the SHACL model referenced 20 SIO and 29 CHEMINF identifiers; ontology inspection resolved labels and inspected selected CHEMINF dependencies. EGFR cross-references and illustrative assay measurements were retained separately from UniProt annotation. Exact counts, queries, qualifiers and source fingerprints belong to the cited capture, not timeless dataset guarantees.",
+      "applicability": "The captured September 21 PubChem/QLever representations and submitted query scopes only.",
+      "competingExplanations": [
+        "Endpoint and ontology releases can change counts, annotations and mappings."
+      ],
+      "missingEvidence": [
+        "No guarantee of present-day endpoint contents or complete ontology closure.",
+        "No exhaustive assay retrieval or independent validation of all external references."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "source-snapshot",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "retained-query-after-display-limit",
+      "title": "Completed query retained after an oversized display request",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "In the saved scientific comparison, a page request with limit 100 failed against a maximum of 10. A later bounded page and native iteration recovered the complete retained result without repeating source retrieval. This demonstrates recovery in that episode, not all errors.",
+      "applicability": "A completed query with an independently observed retained handle and a typed presentation-bound error in the same live epoch. Check the actual error and handle status; do not infer retention after reset, disposal, timeout or kernel loss.",
+      "competingExplanations": [
+        "The successful recovery may depend on this runtime version and small result; no transfer comparison separates those factors.",
+        "A presentation failure and a retrieval/query failure can look similar in prose but have different lifecycle effects."
+      ],
+      "missingEvidence": [
+        "No independent counterexample or transfer episode has been observed.",
+        "No causal model-quality or general recovery guarantee has been measured."
+      ],
+      "revalidateWhen": "Recheck lifecycle and display contracts after runtime/API changes; inspect current handle validity before reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-failure",
+          "eventIds": [
+            "event-4",
+            "event-5"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query"
+          ],
+          "operationIds": [
+            "op-000008"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "retained-recovery",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7"
+          ],
+          "evidenceIds": [
+            "alpha",
+            "beta",
+            "display-failure",
+            "membership-query",
+            "shared-query",
+            "outcome-check"
+          ],
+          "operationIds": [
+            "op-000008",
+            "op-000010"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Separate a term's schema definition from its occurrence in the actual endpoint dataset. A broad term-usage query timing out leaves usage unresolved. Focused existence probes can answer narrower questions, but a false answer covers only the tested pattern. Imported parent concepts can remain semantically relevant even when not directly instantiated. In the PubChem example, focused IAO and CHEMINF checks were positive and two particular CDK type checks were negative.",
+      "applicability": "Checking actual scientific dataset vocabulary use after ontology or SHACL inspection, especially after a broad endpoint query times out.",
+      "competingExplanations": [
+        "Probe outcomes depend on endpoint release, triple position and exact pattern.",
+        "The broad query may fail because of plan cost rather than vocabulary size alone."
+      ],
+      "missingEvidence": [
+        "No complete term-use enumeration or global absence claim.",
+        "No comparative query-performance experiment; narrowed queries changed scope.",
+        "Historical timeout recovery is reported in the selected transcript; later capture does not reconstruct a missing failed broker receipt."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "term-usage",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-catalog-display-bound",
+      "title": "Respect bounded projections when inspecting a graph catalog",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A display limit of 30 was rejected with LS_BOUND_EXCEEDED (maximum 10). A subsequent fresh capture paged in batches of ten and checked all catalog rows. The first kernel was closed; this is NOT evidence of same-handle recovery or that an earlier remote query succeeded.",
+      "applicability": "Distinguish presentation-bound errors from network timeouts. Inspect typed repair information; page within the documented limit without adding SPARQL LIMIT merely to fit the prompt.",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+            "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "display-bound",
+          "eventIds": [
+            "event-2",
+            "event-3"
+          ],
+          "evidenceIds": [
+            "service"
+          ],
+          "operationIds": []
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "The captured UniProt service description advertises these named graphs and triple counts (metadata, not measured remote contents): http://purl.uniprot.org/core = 2835; http://sparql.uniprot.org/chebi = 3426039; http://sparql.uniprot.org/citationmapping = 244587074; http://sparql.uniprot.org/citations = 30730282; http://sparql.uniprot.org/database = 2407; http://sparql.uniprot.org/diseases = 91009; http://sparql.uniprot.org/enzymes = 156569; http://sparql.uniprot.org/go = 655968; http://sparql.uniprot.org/journal = 43700; http://sparql.uniprot.org/keywords = 11752; http://sparql.uniprot.org/locations = 6314; http://sparql.uniprot.org/obsolete = 2504600781; http://sparql.uniprot.org/pathways = 12363; http://sparql.uniprot.org/proteomes = 44980518; http://sparql.uniprot.org/taxonomy = 70047936; http://sparql.uniprot.org/tissues = 4115; http://sparql.uniprot.org/uniparc = 198735586260; http://sparql.uniprot.org/uniprot = 37329393214; http://sparql.uniprot.org/uniref = 5375029833; https://sparql.rhea-db.org/rhea = 2053334; https://sparql.uniprot.org/.well-known/sparql-examples = 1405. The core graph IRI has no trailing slash; vocabulary terms use http://purl.uniprot.org/core/. Official catalog: https://sparql.uniprot.org/.well-known/void .",
+      "applicability": "UniProt endpoint discovery. A graph IRI identifies a dataset partition, not automatically statement-level provenance or a dereferenceable document. Retain exact IRIs; HTTP and HTTPS are not interchangeable graph names.",
+      "competingExplanations": [
+        "Published metadata may lag actual endpoint contents; this capture does not independently count remote triples."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "A mediated service-description read followed by local SPARQL produced a complete graph-name inventory. Use the official catalog and per-graph documentation to orient queries; do not infer graph names solely from vocabulary namespaces. A catalog read is not schema extraction or proof of endpoint reasoning support.",
+      "applicability": "Source-owned RDF service descriptions, native retained RDF and bounded local projections. Keep source version/hash and distinguish advertised metadata from queried data. Resource guide and retrospective limits: artifacts/wiki-learning/scientific/uniprot-discovery-20260920-capture/README.md (companion documentation, not additional validated corpus evidence).",
+      "competingExplanations": [
+        "One observed episode does not establish transfer or causal improvement."
+      ],
+      "missingEvidence": [
+        "No independent transfer or counterexample evaluation.",
+        "Complete core schema extraction and relation-specific inference not established."
+      ],
+      "revalidateWhen": "Recheck source release, exact graph IRIs, and runtime API before operational reuse.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "catalog-discovery",
+          "eventIds": [
+            "event-2",
+            "event-3",
+            "event-4"
+          ],
+          "evidenceIds": [
+            "service",
+            "catalog-query"
+          ],
+          "operationIds": [
+            "op-000003"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use source-owned membership and interaction examples to select predicates, then inspect the ontology before adapting them. This trajectory used dcterms:isPartOf for membership and explicit wp:source|wp:target|wp:participants for involvement. The saved ontology uses rdfs:subClassOf between source/target and participants, not rdfs:subPropertyOf; do not silently treat those statements as property inference. DataNode is marked deprecated.",
+      "applicability": "WikiPathways schema exploration and SPARQL query construction; exact saved ontology only.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No comparison against ontology-only query design.",
+        "No transfer to another gene or endpoint.",
+        "Original example inspection envelopes not captured; retained source fingerprint and excerpt preserved."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "example-query",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-identifier-mapping-context",
+      "title": "Preserve context for WikiPathways identifier mappings",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use Identifiers.org IRIs as exact query keys and retain database mappings as source assertions. A human-pathway filter did not prevent the shared hgnc.symbol/TP53 node from returning both ENSG and ENSCAFG Ensembl mappings in the combined graph. Avoid treating every returned mapping as human or as exact gene/protein identity; use graph-specific provenance or independent validation before stronger claims.",
+      "applicability": "WikiPathways cross-links, identifier joins and organism filtering over a combined default graph.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "Exact originating named graphs were not inspected.",
+        "External UniProt, Ensembl and Wikidata destinations were not independently validated.",
+        "No claim about Identifiers.org resolver normalization or equivalence of alternate URL spellings."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "identifier-context",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-membership-explicit-interactions",
+      "title": "Separate WikiPathways membership from explicit interactions",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Resolve a gene identifier, restrict pathway organism, and separately query membership and explicit involvement. Require an interaction type before counting: the initial involvement query also returned a Complex. Preserve source and target roles, and count distinct interaction IRIs rather than type-joined rows. Binding direction does not establish irreversibility.",
+      "applicability": "WikiPathways gene-centered interaction subgraphs; default-graph assertions, not proof of direct physical interactions.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No comprehensive subclass inference or independent biological validation.",
+        "Interaction IRIs across pathways may describe the same biological mechanism."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "explicit-interaction",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-ontology-tag-selection",
+      "title": "Choose the WikiPathways tag predicate for the classification question",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Do not interpret all wp:ontologyTag values as Pathway Ontology terms. The independent retained TP53 query observed generic tags in 92 pathways and specific wp:pathwayOntologyTag values in 90. All 204 specific pathway-tag assertions also appeared under the generic predicate; do not add these as unique classifications. Generic tags also include curation and cell-type identifiers.",
+      "applicability": "WikiPathways classification queries over the saved TP53 pathway scope; generic vs specific tag selection.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No transfer to another pathway collection.",
+        "Subagent capture/profile is cited separately; it is not a reconstructed original host event or a verified local-query join.",
+        "No tag ontology labels or inferred classification closure validated."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "tag-selection",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity",
+            "tag-profile",
+            "tag-capture"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-tp53-20260920",
+      "title": "TP53 WikiPathways query snapshot (2026-09-20)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Queries anchored on wp:bdbEnsembl ENSG00000141510 and Homo sapiens pathways returned 92 membership pathways, 265 explicitly typed Interaction IRIs in 66 pathways, and 170 participant/endpoint nodes. Of these nodes 141 had bdbUniprot, 141 bdbEnsembl and 61 bdbWikidata mappings. Counts were recomputed from retained handles on September 21. These are source assertions in the submitted default-graph query scope, not unique biological mechanisms or independently verified mappings.",
+      "applicability": "Dated September 20 endpoint responses retained in this trajectory; descriptive snapshot only.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "Complete result rows not exported; exact membership/involvement query text, source hashes and compact counts retained.",
+        "No guarantee of current endpoint totals, species-pure mappings or graph-specific identity."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "tp53-snapshot",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ],
+  "history": [
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "ontology-membership-seed-20260919",
+      "proposalSha256": "5d1d417a6aa8c92a997927047633a8ed3bffb64ee72a41ce18b5ac7e94043316",
+      "baseRevision": null,
+      "appliedAt": "2026-09-19T17:06:45.560Z",
+      "review": null,
+      "batch": {
+        "purpose": "Seed separately typed, proposed scientific candidates from the authorized saved episode, including observed failure and recovery.",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/ontology-membership.json",
+            "sha256": "df4865ed31b60929bf2927e6ec3eb632435393d8f9dc69db9a10873740b1a1a1",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 3,
+        "outcomeStrata": [
+          "success",
+          "failure"
+        ],
+        "omittedMaterial": [
+          "Engineering planning record excluded by corpus policy.",
+          "No new acquisition, independent counterexample or transfer evidence included."
+        ]
+      },
+      "changes": [
+        {
+          "id": "retained-query-after-display-limit",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "hemoglobin-go-overlap-20260919",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "uniprot-discovery-20260920",
+      "proposalSha256": "d62997ea3782fec72ff1173da75b3cbc543772daa977695e5f16dd803d488e1a",
+      "baseRevision": "d3d83044abefa53ac9c019a4312f9020c678392272716e752c337e0543cd267f",
+      "appliedAt": "2026-09-20T16:28:25.894Z",
+      "review": null,
+      "batch": {
+        "purpose": "Record UniProt graph structure and narrowly witnessed discovery/display lessons",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920.json",
+            "sha256": "9c60bd726c2c73b38b7663690925e8f470c798f9a4c25f14f600493372e74ef6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          {
+            "path": "artifacts/wiki-learning/corpus/uniprot-discovery-20260920-capture.json",
+            "sha256": "7760e4206fcda2f35dc83503864f94753f9b2deeb582108fe5f90f0736a1a6ec",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 3,
+        "outcomeStrata": [
+          "success",
+          "failure"
+        ],
+        "omittedMaterial": [
+          "Earlier timeout trajectory is retrospective only; see companion notes.",
+          "No transfer evaluation, full schema extraction, or inference-quality evidence."
+        ]
+      },
+      "changes": [
+        {
+          "id": "uniprot-named-graphs-20260920",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "uniprot-service-metadata-discovery",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "uniprot-catalog-display-bound",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "wikipathways-20260921",
+      "proposalSha256": "0fecacef329c1fc4e25ee077f642f9db0290ae27401d171cf06f87678e2c5f39",
+      "baseRevision": "86b9049a61425844c233403c150716d30e368e1735e5d299a0bbd612b56aa460",
+      "appliedAt": "2026-09-21T13:08:28.911Z",
+      "review": null,
+      "batch": {
+        "purpose": "User-authorized incorporation of WikiPathways TP53 trajectory lessons as proposed candidates",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 5,
+        "outcomeStrata": [
+          "success"
+        ],
+        "omittedMaterial": [
+          "Original September 20 tool envelopes are not reconstructed; September 21 captures inspect still-resident original handles and source/query receipts.",
+          "No complete source documents or query rows exported; bounded projections, counts and receipt hashes saved.",
+          "Exchange 2 projection used undefined keys; exchange 3 corrects projection using string-or-variable keys without requerying.",
+          "No independent transfer test, biological validation, exact identity reasoning, or named-graph provenance disambiguation.",
+          "Skill baseline captured at maintenance time, not proof of historical loading."
+        ]
+      },
+      "changes": [
+        {
+          "id": "wikipathways-example-query-adaptation",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "wikipathways-membership-explicit-interactions",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "wikipathways-identifier-mapping-context",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "wikipathways-tp53-20260920",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "wikipathways-ontology-tag-selection",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "proposalId": "pubchem-20260921",
+      "proposalSha256": "6e99841bd528da8cf9b319f09cbb4b1ca2ea503e656d02a7d32254f67deb1fde",
+      "baseRevision": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+      "appliedAt": "2026-09-21T13:46:29.123Z",
+      "review": null,
+      "batch": {
+        "purpose": "Preserve general ontology methodology with PubChem worked evidence, endpoint-use distinctions and assay-context interpretation",
+        "selectedCorpus": [
+          {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          }
+        ],
+        "maxUnits": 4,
+        "outcomeStrata": [
+          "success"
+        ],
+        "omittedMaterial": [
+          "Original MCP transport envelopes are not reconstructed.",
+          "Ontology term summaries initially collected only dcterms descriptions; later dc descriptions and rdfs comments for SIO were inspected separately in conversation.",
+          "Original failed query and parser-error envelopes not included here.",
+          "Retained handles describe capture-time residency, not future residency.",
+          "Original failed parser/query receipt not recovered; those recovery narratives remain retrospective.",
+          "Endpoint pages preserve original complete-result provenance but crosswalk/reference displays are partial; full rows not exported.",
+          "No independent transfer test, model-benefit comparison or biological validation.",
+          "Source representations retained earlier September 21; later local capture is not a network rerun.",
+          "Skill baseline reused from unchanged same-day maintenance snapshot; not proof of original skill loading.",
+          "No duplicate paging-recovery pattern; existing wiki covers that mechanism."
+        ]
+      },
+      "changes": [
+        {
+          "id": "ontology-symbolic-context-selective-imports",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "schema-meaning-versus-endpoint-usage",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "protein-assay-crosswalk-context",
+          "from": null,
+          "to": "proposed"
+        },
+        {
+          "id": "pubchem-ontology-egfr-20260921",
+          "from": null,
+          "to": "proposed"
+        }
+      ],
+      "scope": "reference-integrity-not-scientific-truth"
+    }
+  ],
+  "files": {
+    "patterns/hemoglobin-go-overlap-20260919.md": "8ec0802beaf11bef778982ffc57e6a68e395cc7ddc8bb2578bd2448c24629b3e",
+    "patterns/ontology-symbolic-context-selective-imports.md": "73ebcd0cbc822feb5969845810ab3180aac0020fc108b312cd1f45b14e0abc4e",
+    "patterns/protein-assay-crosswalk-context.md": "846da93dce56a2238b4d7ccdef1eb16a8cad38edfa4ba6b650ebef7a872facd2",
+    "patterns/pubchem-ontology-egfr-20260921.md": "2253e1147fa76ab5e5bf50b562a0b3be8fb770c273d13c6f165c38fe7c2c13e2",
+    "patterns/retained-query-after-display-limit.md": "d858c1931c497936da065f330fde9b5ab5e76c766ae2ff495cb998ef3334b6d5",
+    "patterns/schema-meaning-versus-endpoint-usage.md": "ed8064b07aab957243c3b324c27170feecee5553f4c1800e6c04e847c56d6c7c",
+    "patterns/uniprot-catalog-display-bound.md": "99dc23f1c41c42af02c1bda09a7b48ec85bf6ceffa06d3edbfffd3e87ee405b1",
+    "patterns/uniprot-named-graphs-20260920.md": "548dc41211d4d3cc32c32b5377afd96c8031ff761a9cc73160691fd3b67061b9",
+    "patterns/uniprot-service-metadata-discovery.md": "5db9e03b79e6ecbf590314ce6b34225cb49868ed6fa55ac0a68e0abdd438735c",
+    "patterns/wikipathways-example-query-adaptation.md": "f35faae2525197fd6f850757f6d219065bb217c56ff30d57e7ddb4e9db637130",
+    "patterns/wikipathways-identifier-mapping-context.md": "683355a27f529133f262542d1b989df6dba5610f2da6be9c3647b04a7ebd0760",
+    "patterns/wikipathways-membership-explicit-interactions.md": "4e92fbeca53f53b3b82d91399b5a6e9fc7340b88d1efa1d792dbf1bc3b4ee0cd",
+    "patterns/wikipathways-ontology-tag-selection.md": "4c31d2378f1c700bc4b86898573a8341f5ed06e7152f2c69bd3d05ca82d2ea2f",
+    "patterns/wikipathways-tp53-20260920.md": "a68f71788fcdd83068429dac92f9b867ceb51a56cf7841dc92d743e3574fd9fa",
+    "index.md": "9199471ed5dd164f00e70f62498a12c3bbfe26ddf1b739a254a77ece857cad6a",
+    "evolution.jsonl": "82b65c1df91b5ef73a25cb6be3be770558a4ce0fbbad2083d4df15650c91004e"
+  }
+}

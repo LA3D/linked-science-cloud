@@ -1,0 +1,32 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000031",
+    "type": "resource",
+    "epoch": "f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/assay/aid/650681/description/JSON",
+  "redirected": false,
+  "headers": {
+    "content-type": "application/json",
+    "vary": "Accept-Encoding"
+  },
+  "mediaType": "application/json",
+  "bytes": 4875,
+  "sha256": "755d11f27e1cc0a4f25bdd47515ccb6046c32aaeda0c0f37888915e01084c1ee",
+  "provenance": {
+    "operationId": "op-000044",
+    "payloadSha256": "755d11f27e1cc0a4f25bdd47515ccb6046c32aaeda0c0f37888915e01084c1ee",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 779,
+    "maxBytes": 32768
+  }
+}

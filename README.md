@@ -1,8 +1,18 @@
 # Linked Science runtime
 
-Linked Science is a persistent scientific JavaScript REPL using RDF/JS, N3 and Comunica. Resources, graphs and complete query results stay outside the prompt behind handles. A small workspace API manages their lifetime and provenance; the project broker manages transport, bounds and private result storage.
+Linked Science is an MCP server that gives AI assistants persistent symbolic memory and context for scientific work. Resources, RDF graphs, ontologies and complete query results stay outside the prompt behind reusable handles. Assistants can inspect definitions, follow relevant ontology dependencies, compose queries and revisit evidence without placing entire datasets in the conversation.
 
-This checkout is the authoritative implementation at `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. The separate `node-repl-network-probe` repository and Codex's bundled generic REPL are not substitutes for this runtime.
+The execution interface is a persistent JavaScript REPL using RDF/JS, N3 and Comunica. A workspace API manages object lifetime and provenance; the project-owned broker manages transport, bounds and private result storage. This repository owns the Linked Science runtime and its MCP server. The separate `node-repl-network-probe` repository and Codex's bundled generic REPL are not substitutes.
+
+The project user reports testing integrations with OpenAI ChatGPT Desktop and Codex. Repository setup and verification below cover the project-owned broker and Codex registration; they do not establish compatibility with every MCP client or provide a verified ChatGPT Desktop setup procedure.
+
+Live symbolic state and durable learning serve different purposes. REPL handles retain working scientific objects for their session lifetime. The [scientific workflow wiki](wiki/README.md) stores cited, versioned findings and proposed workflow patterns for selective consultation in later tasks. Wiki records do not restore expired handles, and a proposed lesson is not an established general rule.
+
+## Research foundations
+
+[Recursive Language Models (RLM)](https://arxiv.org/html/2512.24601v2) treats large context as an external environment that a model can inspect programmatically and decompose, with recursive model calls available for selected subproblems. Linked Science adapts the external-context idea to scientific objects: graphs and ontologies remain available for symbolic querying while the assistant receives bounded observations. Model recursion is optional and capability-dependent; persistent context and native graph operations work without it. See the [runtime architecture](docs/architecture/rlm-linked-science-runtime.md) for the implemented boundary.
+
+[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://arxiv.org/abs/2608.27454), by Tang and colleagues, separates execution experience, accumulated knowledge and executable skills. It motivates this project's distinction between saved scientific evidence, a versioned learning wiki and changes to active procedures. The current implementation supports cited workflow candidates and dated findings, explicit maintenance, and selective search/read during scientific tasks. Automatic skill evolution is not implied: review and release are separate, and one episode does not establish generality. The [wiki-memory design](docs/tasks/wiki-memory-continual-learning.md) records the adaptation and differences from the paper.
 
 ## Use the REPL
 

@@ -1,0 +1,22 @@
+{
+  "format": "linked-science-observed-mcp-exchange/v1",
+  "eventId": "exchange-6",
+  "server": "repository-stdio-cleanroom_node_repl",
+  "tool": "js",
+  "arguments": {
+    "code": "var captureCountProfile=await pubchemWs.results.profile(captureSchemaProfile); nodeRepl.write(JSON.stringify({question:'Capture current retained PubChem schema and ontology evidence for user-authorized wiki memory; local operations only, no new source retrieval; this is a later capture, not an original transport trace.',source:await pubchemShaclResource.inspect(),profile:captureCountProfile,checks:{retainedQueryOperation:captureCountProfile.operationId??captureCountProfile.provenance?.operationId??null,countMatches:Number(captureSchemaProfilePage.rows[0].triples.value)===shapeQuads.length,allSioLabelsResolved:sioResolved.every(r=>r.label.length>0),allCheminfLabelsResolved:cheminfResolved.every(r=>r.annotations.some(a=>a.predicate==='http://www.w3.org/2000/01/rdf-schema#label'))}}));",
+    "max_output_bytes": 20000,
+    "title": "Verify retained ontology query lineage and outcomes"
+  },
+  "response": {
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"question\":\"Capture current retained PubChem schema and ontology evidence for user-authorized wiki memory; local operations only, no new source retrieval; this is a later capture, not an original transport trace.\",\"source\":{\"kind\":\"linked-science-resource-inspection\",\"representation\":\"metadata\",\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000007\",\"type\":\"resource\",\"epoch\":\"f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1\",\"label\":\"resource-response\"},\"ok\":true,\"status\":200,\"statusText\":\"OK\",\"url\":\"https://ftp.ncbi.nlm.nih.gov/pubchem/RDF/schema/model_shacl.ttl\",\"redirected\":false,\"headers\":{\"content-length\":\"63622\",\"content-type\":\"text/plain; charset=utf-8\",\"last-modified\":\"Sat, 05 Sep 2026 04:03:51 GMT\",\"vary\":\"Accept-Encoding\"},\"mediaType\":\"text/plain\",\"bytes\":63622,\"sha256\":\"936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf\",\"provenance\":{\"operationId\":\"op-000009\",\"payloadSha256\":\"936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf\",\"mediatedTraversal\":true},\"bounds\":{\"bytes\":846,\"maxBytes\":32768}},\"profile\":{\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000032\",\"type\":\"bindings\",\"epoch\":\"f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1\",\"label\":\"query-result\"},\"type\":\"bindings\",\"count\":1,\"columns\":[\"triples\"],\"fingerprints\":[\"936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf\",\"426342b09330530dc2e5dc6a149d768e5a1bc55aeab381daab8e4093d8c5d9fe\"],\"lineage\":{\"kind\":\"communica-query\",\"operationId\":\"op-000045\",\"sourceHandles\":[\"h-000008\"],\"querySha256\":\"fbbf3ff6f97222bfe6deacc33f85db8e1ea629f90650ede71baa114b5fa0f087\",\"completion\":{\"kind\":\"linked-science-result-completion\",\"status\":\"complete\",\"complete\":true,\"truncated\":false,\"scope\":\"submitted-query\",\"materialization\":\"atomic-before-handle-publication\"}},\"provenance\":{\"operationId\":\"op-000045\",\"localOnly\":true,\"queryType\":\"SELECT\",\"querySha256\":\"fbbf3ff6f97222bfe6deacc33f85db8e1ea629f90650ede71baa114b5fa0f087\",\"completion\":{\"kind\":\"linked-science-result-completion\",\"status\":\"complete\",\"complete\":true,\"truncated\":false,\"scope\":\"submitted-query\",\"materialization\":\"atomic-before-handle-publication\"},\"sourceHandles\":[\"h-000008\"],\"sourceFingerprints\":[\"936e1cf94ed269fafd69e1747347eaf5258cee599939c9283c862a34447c2baf\",\"426342b09330530dc2e5dc6a149d768e5a1bc55aeab381daab8e4093d8c5d9fe\"]},\"completion\":{\"kind\":\"linked-science-result-completion\",\"status\":\"complete\",\"complete\":true,\"truncated\":false,\"scope\":\"submitted-query\",\"materialization\":\"atomic-before-handle-publication\"},\"bounds\":{\"bytes\":1511,\"maxBytes\":32768}},\"checks\":{\"retainedQueryOperation\":\"op-000045\",\"countMatches\":true,\"allSioLabelsResolved\":true,\"allCheminfLabelsResolved\":true}}"
+        }
+      ]
+    }
+  },
+  "captureNote": "Exact new mounted project MCP arguments/result; wrapper does not invent original transport request IDs."
+}

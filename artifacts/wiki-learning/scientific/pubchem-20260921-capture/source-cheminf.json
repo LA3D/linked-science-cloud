@@ -1,0 +1,34 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000011",
+    "type": "resource",
+    "epoch": "f1d7d711-c103-4be1-9e1b-b6f1ae95cadb:pubchem-connection-walkthrough:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://raw.githubusercontent.com/semanticchemistry/semanticchemistry/master/ontology/cheminf.owl",
+  "redirected": true,
+  "headers": {
+    "content-length": "263845",
+    "content-type": "text/plain; charset=utf-8",
+    "etag": "\"16dd4da2b1eeda7c9d327fd7b5311e24d3cbb66ce7472268178418dd4fdb8339\"",
+    "vary": "Authorization,Accept-Encoding"
+  },
+  "mediaType": "text/plain",
+  "bytes": 263845,
+  "sha256": "f83a0f0254db17cbc7abf3384cb98b3a40c84b3b304a6e4d3b3382878faab002",
+  "provenance": {
+    "operationId": "op-000013",
+    "payloadSha256": "f83a0f0254db17cbc7abf3384cb98b3a40c84b3b304a6e4d3b3382878faab002",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 923,
+    "maxBytes": 32768
+  }
+}
