@@ -1,0 +1,33 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000001",
+    "type": "resource",
+    "epoch": "d9428368-4e33-405f-a205-7a7c0c3e8e4c:wikipathways-ontology-lookup:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://www.wikipathways.org/sparql.html",
+  "redirected": false,
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "last-modified": "Sun, 20 Sep 2026 15:17:13 GMT",
+    "vary": "Accept-Encoding"
+  },
+  "mediaType": "text/html",
+  "bytes": 68400,
+  "sha256": "a071545e01df51bb5cf4a00095604467d05b32c8c09665e75539bfe7a551274f",
+  "provenance": {
+    "operationId": "op-000001",
+    "payloadSha256": "a071545e01df51bb5cf4a00095604467d05b32c8c09665e75539bfe7a551274f",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 792,
+    "maxBytes": 32768
+  }
+}

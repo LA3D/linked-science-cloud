@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "523a1b29-a1c6-4bde-baa1-09c7e89bfd8e",
+  "recordedAt": "2026-09-21T13:08:55.688Z",
+  "mode": "on",
+  "querySha256": "e078dffc9c715b11b9e54a82d40539f4a4a4c7737e71df9598ebf63ca339f141",
+  "revision": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+  "candidates": [
+    {
+      "id": "wikipathways-identifier-mapping-context",
+      "title": "Preserve context for WikiPathways identifier mappings",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 9,
+      "matchedTerms": [
+        "wikipathways",
+        "identifier",
+        "mappings"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

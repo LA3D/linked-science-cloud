@@ -1,0 +1,35 @@
+{
+  "kind": "linked-science-resource-inspection",
+  "representation": "metadata",
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000002",
+    "type": "resource",
+    "epoch": "d9428368-4e33-405f-a205-7a7c0c3e8e4c:wikipathways-ontology-lookup:1",
+    "label": "resource-response"
+  },
+  "ok": true,
+  "status": 200,
+  "statusText": "",
+  "url": "https://vocabularies.wikipathways.org/wp.owl",
+  "redirected": false,
+  "headers": {
+    "content-length": "13467",
+    "content-type": "application/rdf+xml",
+    "etag": "\"683078c7-349b\"",
+    "last-modified": "Fri, 23 May 2025 13:31:51 GMT",
+    "vary": "Accept-Encoding"
+  },
+  "mediaType": "application/rdf+xml",
+  "bytes": 13467,
+  "sha256": "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+  "provenance": {
+    "operationId": "op-000002",
+    "payloadSha256": "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+    "mediatedTraversal": true
+  },
+  "bounds": {
+    "bytes": 853,
+    "maxBytes": 32768
+  }
+}

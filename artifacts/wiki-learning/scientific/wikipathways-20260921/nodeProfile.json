@@ -1,0 +1,236 @@
+{
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000008",
+    "type": "bindings",
+    "epoch": "d9428368-4e33-405f-a205-7a7c0c3e8e4c:tp53-wikipathways:1",
+    "label": "traversal-result"
+  },
+  "type": "bindings",
+  "count": 1951,
+  "columns": [
+    "node",
+    "p",
+    "value"
+  ],
+  "fingerprints": [
+    "3fc93702e1650ee2320362db246044aace3b49739eb2b9ad185caa5ed32483ff"
+  ],
+  "lineage": {
+    "kind": "communica-mediated-traversal",
+    "operationId": "op-000010",
+    "traversalId": "traversal-d03cb2bf94227074d8595602",
+    "querySha256": "fa71e4e62bbf68b08dcd532ba233757cda77e20baba4369bfed89b3b1fa69e54",
+    "evidenceHandles": [],
+    "payloadSha256": "3fc93702e1650ee2320362db246044aace3b49739eb2b9ad185caa5ed32483ff",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    }
+  },
+  "provenance": {
+    "operationId": "op-000010",
+    "localOnly": false,
+    "mediatedTraversal": true,
+    "queryType": "SELECT",
+    "querySha256": "fa71e4e62bbf68b08dcd532ba233757cda77e20baba4369bfed89b3b1fa69e54",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sources": [
+      {
+        "type": "sparql",
+        "value": "https://sparql.wikipathways.org/sparql"
+      }
+    ],
+    "evidenceHandles": [],
+    "negotiation": {},
+    "attempt": {
+      "kind": "linked-science-mediated-attempt",
+      "index": 8,
+      "status": "success",
+      "operationId": "op-000010",
+      "traversalId": "traversal-d03cb2bf94227074d8595602",
+      "queryType": "SELECT",
+      "querySha256": "fa71e4e62bbf68b08dcd532ba233757cda77e20baba4369bfed89b3b1fa69e54",
+      "sources": [
+        {
+          "type": "sparql",
+          "value": "https://sparql.wikipathways.org/sparql"
+        }
+      ],
+      "evidenceHandles": [],
+      "startedAt": "2026-09-20T17:34:48.535Z",
+      "endedAt": "2026-09-20T17:34:50.230Z",
+      "durationMs": 1696,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 495008,
+        "retries": 0
+      },
+      "resultItems": 1951,
+      "hiddenRetries": 0,
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    "traversalReceipt": {
+      "kind": "linked-science-traversal-receipt",
+      "version": "3.2.0",
+      "authority": {
+        "class": "anonymous-linked-data-read",
+        "version": "1.0.0",
+        "anonymous": true,
+        "destinationPolicy": "dynamic-anonymous-http-https",
+        "endpointAllowlist": false,
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "methods": [
+          "GET",
+          "HEAD",
+          "SPARQL_POST"
+        ],
+        "queryTypes": [
+          "SELECT",
+          "ASK",
+          "CONSTRUCT",
+          "DESCRIBE"
+        ],
+        "effects": [
+          "public-resource-read",
+          "rdf-document-read",
+          "sparql-read",
+          "linked-data-dereference",
+          "local-communica-federation"
+        ],
+        "prohibited": [
+          "ambient-identity",
+          "url-credentials",
+          "sparql-update",
+          "arbitrary-post",
+          "filesystem-write",
+          "authority-expansion",
+          "automatic-context-promotion"
+        ]
+      },
+      "status": "complete",
+      "traversalId": "traversal-d03cb2bf94227074d8595602",
+      "startedAt": "2026-09-20T17:34:48.536Z",
+      "finishedAt": "2026-09-20T17:34:50.230Z",
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 495008,
+        "retries": 0
+      },
+      "exchanges": [
+        {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://sparql.wikipathways.org/sparql",
+          "finalUrl": "https://sparql.wikipathways.org/sparql",
+          "redirected": false,
+          "method": "POST",
+          "httpStatus": 200,
+          "requestSha256": "e475e18cc53e1a39065f6d497d85e7cf3684dc6b4fd8244506ac9d2e8de85fcd",
+          "responseSha256": "a83285ac679a3ef8765444bac41388706c1828b3d7d24bef9cb1a3f6bf041a18",
+          "bytes": 495008,
+          "mediaType": "application/sparql-results+json",
+          "headers": {
+            "content-length": "495008",
+            "content-type": "application/sparql-results+json",
+            "vary": "Origin"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://sparql.wikipathways.org/sparql",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "queryType": "SELECT",
+          "querySha256": "fa71e4e62bbf68b08dcd532ba233757cda77e20baba4369bfed89b3b1fa69e54",
+          "startedAt": "2026-09-20T17:34:48.544Z",
+          "finishedAt": "2026-09-20T17:34:50.154Z",
+          "retries": 0
+        }
+      ],
+      "redirectEvidence": "requested-final-and-redirected-flag"
+    },
+    "navigation": {
+      "kind": "linked-data-navigation-evidence",
+      "evidenceStatus": "observed-advertisements",
+      "instructionAuthority": false,
+      "candidates": [],
+      "profileDeclarations": [],
+      "truncated": false,
+      "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+    },
+    "payloadSha256": "3fc93702e1650ee2320362db246044aace3b49739eb2b9ad185caa5ed32483ff"
+  },
+  "completion": {
+    "kind": "linked-science-result-completion",
+    "status": "complete",
+    "complete": true,
+    "truncated": false,
+    "scope": "submitted-query",
+    "materialization": "atomic-before-handle-publication"
+  },
+  "residency": {
+    "kind": "broker-stored-result",
+    "backend": "broker-sqlite",
+    "bytes": 531642,
+    "scope": "kernel-epoch"
+  },
+  "bounds": {
+    "bytes": 5244,
+    "maxBytes": 32768
+  }
+}

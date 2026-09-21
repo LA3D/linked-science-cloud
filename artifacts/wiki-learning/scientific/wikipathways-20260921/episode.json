@@ -1,0 +1,360 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "wikipathways-20260921-capture",
+  "host": {
+    "hostId": "mounted-project-mcp",
+    "taskId": "wikipathways-20260921-capture",
+    "version": "Actual mounted project broker; retained-state capture with observed MCP results",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/observable-events.json",
+      "sha256": "9b37ee79f5cffaa17a11666254a1c10884577b03cf5adbfae9bd01795c8059ea",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No model-memory settings inspected; host performed symbolic calls"
+    }
+  },
+  "capture": {
+    "kind": "direct-runtime",
+    "completeness": "partial",
+    "gaps": [
+      "Original September 20 tool envelopes are not reconstructed; September 21 captures inspect still-resident original handles and source/query receipts.",
+      "No complete source documents or query rows exported; bounded projections, counts and receipt hashes saved.",
+      "Exchange 2 projection used undefined keys; exchange 3 corrects projection using string-or-variable keys without requerying.",
+      "No independent transfer test, biological validation, exact identity reasoning, or named-graph provenance disambiguation.",
+      "Skill baseline captured at maintenance time, not proof of historical loading."
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "6.5.0",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/wikipathways-20260921/manifest.json",
+    "digest": "120cf7561f9a456c8dc770d2eaeb00ca98ac6e4af3c6433ef529ce66db0d16b7",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-5",
+      "turnId": "retained-evidence-capture",
+      "itemId": "exchange-5",
+      "kind": "mcpToolCall",
+      "sequence": 1,
+      "objectiveIds": [
+        "tp53-query"
+      ]
+    },
+    {
+      "id": "event-1",
+      "turnId": "retained-evidence-capture",
+      "itemId": "exchange-1",
+      "kind": "mcpToolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "tp53-query"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "retained-evidence-capture",
+      "itemId": "exchange-2",
+      "kind": "mcpToolCall",
+      "sequence": 3,
+      "objectiveIds": [
+        "tp53-query"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "retained-evidence-capture",
+      "itemId": "exchange-3",
+      "kind": "mcpToolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "tp53-query"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "retained-evidence-capture",
+      "itemId": "exchange-4",
+      "kind": "mcpToolCall",
+      "sequence": 5,
+      "objectiveIds": [
+        "tp53-query"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "tp53-query",
+      "previousId": null,
+      "eventId": "event-5",
+      "statement": "Find human TP53 pathway memberships, explicit interactions and database mappings using WikiPathways examples and ontology.",
+      "acceptance": [
+        "Distinguish membership from explicit interaction records",
+        "Preserve source-asserted identifier mappings and ontology semantics",
+        "Retain complete query handles with bounded observed counts"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "examples",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/source.json",
+        "sha256": "f42f6dbd29aa0fba3af70e36438601be7fa1365feafdb211a60447bfdc0bc385",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://www.wikipathways.org/sparql.html",
+        "revision": "a071545e01df51bb5cf4a00095604467d05b32c8c09665e75539bfe7a551274f",
+        "representation": "text/html"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "ontology",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/ontology.json",
+        "sha256": "f900b71899fbf02478b3c12fcc92b7e7b2e9f0aa5ed6a26b44da050d3b604820",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://vocabularies.wikipathways.org/wp.owl",
+        "revision": "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+        "representation": "application/rdf+xml"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema-query",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/query-profile.json",
+        "sha256": "4265c8a36d1c50f1b34068b843575b59fae780d6d7cb7bf3508af8cb9583fded",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://vocabularies.wikipathways.org/wp.owl",
+        "revision": "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "membership",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/membership-profile.json",
+        "sha256": "051d4c6fb274ff97ecc2dd21e648839dc3618e075f4098d2f0a0da7c12475c8b",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "f5827494376b88b714ece458c614204689291095f705cac0fc6381fe2a2fff03",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "interactions",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/interactionProfile.json",
+        "sha256": "5b0506dad67dacb4672e6e11fddd092f991546c6e69a5dfa5262de453fe5ec6c",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "c782d0a81bc4bc9269a0b1c8f9261bf9ff6255b82e8067165fca9e7feb52e0e3",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "participants",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/detailProfile.json",
+        "sha256": "3a4d50629a442c41fcc0bb0026969b1a67e938a87d67893541930c2b63aa4753",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "a2f83bfcb645f734865ddd0ae090414656cd959416fd845900fac3c9215844dc",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "mappings",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/nodeProfile.json",
+        "sha256": "184f440a08c9cbdb9d772db16383606648ca828ea0d7b3f288492a4868b9849e",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "3fc93702e1650ee2320362db246044aace3b49739eb2b9ad185caa5ed32483ff",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "identity",
+      "kind": "receipt-only",
+      "description": "Direct observation of retained source or query profile; no full payload export",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/mappingProfile.json",
+        "sha256": "5fd26b8380809404a64b8b5a754f248f44f46c6286b36dd90d6b3faa7aa63456",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "00f2ff9906373d36cbf5b308dd738331ddae084301e8d062f86dbd402ed4acaf",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full source or result payload not exported"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "tag-profile",
+      "kind": "receipt-only",
+      "description": "Independent subagent retained tag query profile; actual capture envelope saved adjacent",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-tags-20260921/profile.json",
+        "sha256": "9785433cd5fc523bd1c9fc4e7439671c6778f8c516916fdda30b6a57f81477a2",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": "22729e0ea6585057d58ccf1ca4bb0db430be72388e1b5c4869c513e8cf6963ea",
+        "representation": "application/json"
+      },
+      "completion": "scoped-complete",
+      "missingEvidence": [
+        "Full tag rows not exported; independent capture is not a joined local-query witness"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "tag-capture",
+      "kind": "receipt-only",
+      "description": "Exact independent subagent capture arguments/result including query and checks",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/wikipathways-tags-20260921/capture-json-exchange.json",
+        "sha256": "6771552b4eb86d42f6012cc0dabe063914264593e8069ff853714f5dab90109d",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "https://sparql.wikipathways.org/sparql",
+        "revision": null,
+        "representation": "application/json"
+      },
+      "completion": "unknown",
+      "missingEvidence": [
+        "Not a full host transcript"
+      ]
+    }
+  ],
+  "joins": [
+    {
+      "id": "join-schema",
+      "eventId": "event-2",
+      "objectiveId": "tp53-query",
+      "evidenceId": "schema-query",
+      "operationId": "op-000006",
+      "traversalId": null,
+      "basis": "explicit",
+      "note": "Local ontology query operation appears in actual profile observation and saved identical receipt; remote counts separately witnessed by retained profiles."
+    }
+  ],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "retained-checks",
+      "objectiveId": "tp53-query",
+      "kind": "machine-check",
+      "status": "passed",
+      "claim": "Native iteration row counts equal resident profiles; retained ontology query is complete.",
+      "evidenceIds": [
+        "schema-query",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings"
+      ],
+      "missingEvidence": []
+    }
+  ]
+}

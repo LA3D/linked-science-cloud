@@ -1,0 +1,200 @@
+{
+  "checks": {
+    "retainedQueryOperation": "op-000006",
+    "schemaRowsMatch": true,
+    "membershipRowsMatch": true,
+    "interactionRowsMatch": true,
+    "detailRowsMatch": true,
+    "nodeRowsMatch": true
+  },
+  "schemaRows": [
+    {
+      "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "value": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+      "value": "http://vocabularies.wikipathways.org/wp#DirectedInteraction",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+      "value": "source",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+      "value": "http://vocabularies.wikipathways.org/wp#DataNode",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://purl.obolibrary.org/obo/IAO_0000115",
+      "value": "The beginning terminus of an interaction.",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/2004/02/skos/core#inScheme",
+      "value": "http://vocabularies.wikipathways.org/wp#",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "value": "http://vocabularies.wikipathways.org/wp#participants",
+      "term": "http://vocabularies.wikipathways.org/wp#source"
+    },
+    {
+      "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "value": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+      "value": "http://vocabularies.wikipathways.org/wp#DirectedInteraction",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+      "value": "target",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://purl.obolibrary.org/obo/IAO_0000115",
+      "value": "The ending terminus of an interaction.",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://www.w3.org/2004/02/skos/core#inScheme",
+      "value": "http://vocabularies.wikipathways.org/wp#",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "value": "http://vocabularies.wikipathways.org/wp#participants",
+      "term": "http://vocabularies.wikipathways.org/wp#target"
+    },
+    {
+      "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "value": "http://www.w3.org/2002/07/owl#Class",
+      "term": "http://vocabularies.wikipathways.org/wp#GeneProduct"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+      "value": "GeneProduct",
+      "term": "http://vocabularies.wikipathways.org/wp#GeneProduct"
+    },
+    {
+      "predicate": "http://purl.obolibrary.org/obo/IAO_0000115",
+      "value": "An entity representing any product of a given gene, including DNA, RNA and Protein. This is the most generic representation of a gene-based biomolecule and is useful when more than one representation might be useful in the given context.",
+      "term": "http://vocabularies.wikipathways.org/wp#GeneProduct"
+    },
+    {
+      "predicate": "http://www.w3.org/2004/02/skos/core#inScheme",
+      "value": "http://vocabularies.wikipathways.org/wp#",
+      "term": "http://vocabularies.wikipathways.org/wp#GeneProduct"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "value": "http://vocabularies.wikipathways.org/wp#DataNode",
+      "term": "http://vocabularies.wikipathways.org/wp#GeneProduct"
+    },
+    {
+      "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "value": "http://www.w3.org/2002/07/owl#Class",
+      "term": "http://vocabularies.wikipathways.org/wp#Binding"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+      "value": "Binding",
+      "term": "http://vocabularies.wikipathways.org/wp#Binding"
+    },
+    {
+      "predicate": "http://purl.obolibrary.org/obo/IAO_0000115",
+      "value": "A binding interaction between two physical entities resulting in the formation of an explicit complex that is reversible without an external factor (e.g. protein complexes).",
+      "term": "http://vocabularies.wikipathways.org/wp#Binding"
+    },
+    {
+      "predicate": "http://www.w3.org/2004/02/skos/core#inScheme",
+      "value": "http://vocabularies.wikipathways.org/wp#",
+      "term": "http://vocabularies.wikipathways.org/wp#Binding"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "value": "http://vocabularies.wikipathways.org/wp#DirectedInteraction",
+      "term": "http://vocabularies.wikipathways.org/wp#Binding"
+    },
+    {
+      "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "value": "http://www.w3.org/2002/07/owl#Class",
+      "term": "http://vocabularies.wikipathways.org/wp#DataNode"
+    },
+    {
+      "predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+      "value": "DataNode",
+      "term": "http://vocabularies.wikipathways.org/wp#DataNode"
+    },
+    {
+      "predicate": "http://purl.obolibrary.org/obo/IAO_0000115",
+      "value": "Superclass; deprecated; do not use.",
+      "term": "http://vocabularies.wikipathways.org/wp#DataNode"
+    },
+    {
+      "predicate": "http://www.w3.org/2004/02/skos/core#inScheme",
+      "value": "http://vocabularies.wikipathways.org/wp#",
+      "term": "http://vocabularies.wikipathways.org/wp#DataNode"
+    }
+  ],
+  "counts": {
+    "membershipPathways": 92,
+    "typedInteractions": 265,
+    "interactionPathways": 66,
+    "nodes": 170,
+    "mappings": {
+      "bdbUniprot": 141,
+      "bdbEnsembl": 141,
+      "bdbWikidata": 61
+    }
+  },
+  "queries": {
+    "membership": "PREFIX wp: <http://vocabularies.wikipathways.org/wp#> PREFIX dcterms: <http://purl.org/dc/terms/> PREFIX dc: <http://purl.org/dc/elements/1.1/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?entity ?pathway ?wpid ?title WHERE { ?entity wp:bdbEnsembl <https://identifiers.org/ensembl/ENSG00000141510>; dcterms:isPartOf ?pathway . ?pathway a wp:Pathway; wp:organismName \"Homo sapiens\"; dcterms:identifier ?wpid; dc:title ?title . }",
+    "interactions": "PREFIX wp: <http://vocabularies.wikipathways.org/wp#> PREFIX dcterms: <http://purl.org/dc/terms/> PREFIX dc: <http://purl.org/dc/elements/1.1/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT DISTINCT ?interaction ?pathway ?type WHERE { ?tp wp:bdbEnsembl <https://identifiers.org/ensembl/ENSG00000141510> . ?interaction (wp:source|wp:target|wp:participants) ?tp; dcterms:isPartOf ?pathway; a ?type . ?pathway a wp:Pathway; wp:organismName \"Homo sapiens\" . }"
+  },
+  "mappingExample": [
+    {
+      "entity": "https://identifiers.org/hgnc.symbol/TP53",
+      "p": "http://vocabularies.wikipathways.org/wp#bdbEnsembl",
+      "id": "https://identifiers.org/ensembl/ENSCAFG00845024647"
+    },
+    {
+      "entity": "https://identifiers.org/hgnc.symbol/TP53",
+      "p": "http://vocabularies.wikipathways.org/wp#bdbEnsembl",
+      "id": "https://identifiers.org/ensembl/ENSG00000141510"
+    }
+  ],
+  "examples": [
+    {
+      "interaction": "http://rdf.wikipathways.org/Pathway/WP707_r141134/WP/Interaction/d2c14",
+      "pathway": "WP707",
+      "title": "DNA damage response",
+      "types": "Inhibition",
+      "source": "TP53/p53/P53",
+      "target": "CDC2/CDK1"
+    },
+    {
+      "interaction": "http://rdf.wikipathways.org/Pathway/WP707_r141134/WP/Interaction/id24ee58be",
+      "pathway": "WP707",
+      "title": "DNA damage response",
+      "types": "Inhibition",
+      "source": "MDM2",
+      "target": "TP53/p53/P53"
+    },
+    {
+      "interaction": "http://rdf.wikipathways.org/Pathway/WP707_r141134/WP/Interaction/ida902b91c",
+      "pathway": "WP707",
+      "title": "DNA damage response",
+      "types": "Inhibition",
+      "source": "TP53/p53/P53",
+      "target": "AKT1/AKT/Akt1/PKB/AKT"
+    }
+  ]
+}

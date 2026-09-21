@@ -1,0 +1,342 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "wikipathways-20260921-corpus",
+  "episode": {
+    "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/episode.json",
+    "sha256": "49662976bcb5086a3df8c4a4e5c71ea6fe61e48aa75ab39bd46fa9e3c4f8ed91",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Actual source-owned ontology query and retained biological query results; engineering excluded",
+    "scientificObjectiveIds": [
+      "tp53-query"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "example-query",
+      "objectiveId": "tp53-query",
+      "anchors": [
+        "https://vocabularies.wikipathways.org/wp.owl"
+      ],
+      "sourceEvidenceIds": [
+        "ontology",
+        "examples",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings",
+        "identity"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T17:33:40.500Z",
+        "revalidateWhen": "WikiPathways endpoint, examples, ontology, identifier mapping or query scope changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-1.json",
+            "sha256": "d0db62e74490e017c2a706d013b279a8d8ead07e7ff44b098621e5b42eba2f71",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "ontology",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-2.json",
+            "sha256": "477e07f9b90513cd4b9eeea8bf8f3e92caf2c71e73616ba56e99cee06b8259d9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-3.json",
+          "sha256": "234c3bb271e6f377cc79ee662644e50f91cb5916540bdfc0431a1f4112c20c85",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "example-query",
+      "scope": "One TP53 trajectory; retained-state capture with explicit omissions, not proof of transfer"
+    },
+    {
+      "id": "explicit-interaction",
+      "objectiveId": "tp53-query",
+      "anchors": [
+        "https://vocabularies.wikipathways.org/wp.owl"
+      ],
+      "sourceEvidenceIds": [
+        "ontology",
+        "examples",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings",
+        "identity"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T17:33:40.500Z",
+        "revalidateWhen": "WikiPathways endpoint, examples, ontology, identifier mapping or query scope changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-1.json",
+            "sha256": "d0db62e74490e017c2a706d013b279a8d8ead07e7ff44b098621e5b42eba2f71",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "ontology",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-2.json",
+            "sha256": "477e07f9b90513cd4b9eeea8bf8f3e92caf2c71e73616ba56e99cee06b8259d9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-3.json",
+          "sha256": "234c3bb271e6f377cc79ee662644e50f91cb5916540bdfc0431a1f4112c20c85",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "explicit-interaction",
+      "scope": "One TP53 trajectory; retained-state capture with explicit omissions, not proof of transfer"
+    },
+    {
+      "id": "identifier-context",
+      "objectiveId": "tp53-query",
+      "anchors": [
+        "https://vocabularies.wikipathways.org/wp.owl"
+      ],
+      "sourceEvidenceIds": [
+        "ontology",
+        "examples",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings",
+        "identity"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T17:33:40.500Z",
+        "revalidateWhen": "WikiPathways endpoint, examples, ontology, identifier mapping or query scope changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-1.json",
+            "sha256": "d0db62e74490e017c2a706d013b279a8d8ead07e7ff44b098621e5b42eba2f71",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "ontology",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-2.json",
+            "sha256": "477e07f9b90513cd4b9eeea8bf8f3e92caf2c71e73616ba56e99cee06b8259d9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-3.json",
+          "sha256": "234c3bb271e6f377cc79ee662644e50f91cb5916540bdfc0431a1f4112c20c85",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "identifier-context",
+      "scope": "One TP53 trajectory; retained-state capture with explicit omissions, not proof of transfer"
+    },
+    {
+      "id": "tp53-snapshot",
+      "objectiveId": "tp53-query",
+      "anchors": [
+        "https://vocabularies.wikipathways.org/wp.owl"
+      ],
+      "sourceEvidenceIds": [
+        "ontology",
+        "examples",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings",
+        "identity"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T17:33:40.500Z",
+        "revalidateWhen": "WikiPathways endpoint, examples, ontology, identifier mapping or query scope changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-1.json",
+            "sha256": "d0db62e74490e017c2a706d013b279a8d8ead07e7ff44b098621e5b42eba2f71",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "ontology",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-2.json",
+            "sha256": "477e07f9b90513cd4b9eeea8bf8f3e92caf2c71e73616ba56e99cee06b8259d9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-3.json",
+          "sha256": "234c3bb271e6f377cc79ee662644e50f91cb5916540bdfc0431a1f4112c20c85",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "scientific-finding",
+      "claim": "tp53-snapshot",
+      "scope": "One TP53 trajectory; retained-state capture with explicit omissions, not proof of transfer"
+    },
+    {
+      "id": "tag-selection",
+      "objectiveId": "tp53-query",
+      "anchors": [
+        "https://vocabularies.wikipathways.org/wp.owl"
+      ],
+      "sourceEvidenceIds": [
+        "ontology",
+        "examples",
+        "membership",
+        "interactions",
+        "participants",
+        "mappings",
+        "identity",
+        "tag-profile",
+        "tag-capture"
+      ],
+      "freshness": {
+        "asOf": "2026-09-20T17:33:40.500Z",
+        "revalidateWhen": "WikiPathways endpoint, examples, ontology, identifier mapping or query scope changes"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-1.json",
+            "sha256": "d0db62e74490e017c2a706d013b279a8d8ead07e7ff44b098621e5b42eba2f71",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "ontology",
+          "kind": "retrieval"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-2.json",
+            "sha256": "477e07f9b90513cd4b9eeea8bf8f3e92caf2c71e73616ba56e99cee06b8259d9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "profile",
+          "kind": "query"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/scientific/wikipathways-20260921/exchange-3.json",
+          "sha256": "234c3bb271e6f377cc79ee662644e50f91cb5916540bdfc0431a1f4112c20c85",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "checks",
+        "kind": "retained-state"
+      },
+      "outcome": "success",
+      "lessonKind": "procedure",
+      "claim": "Distinguish generic ontology tags from Pathway Ontology classifications",
+      "scope": "One TP53 trajectory; retained-state capture with explicit omissions, not proof of transfer"
+    }
+  ]
+}

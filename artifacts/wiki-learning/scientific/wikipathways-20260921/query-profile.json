@@ -1,0 +1,69 @@
+{
+  "handle": {
+    "kind": "linked-science-handle",
+    "id": "h-000006",
+    "type": "bindings",
+    "epoch": "d9428368-4e33-405f-a205-7a7c0c3e8e4c:wikipathways-ontology-lookup:1",
+    "label": "query-result"
+  },
+  "type": "bindings",
+  "count": 27,
+  "columns": [
+    "predicate",
+    "value",
+    "term"
+  ],
+  "fingerprints": [
+    "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+    "69b2dcdb6fefb34fa88ac04a71c57c1ee0eb79a3454c78eee0bd96e730fca796"
+  ],
+  "lineage": {
+    "kind": "communica-query",
+    "operationId": "op-000006",
+    "sourceHandles": [
+      "h-000003"
+    ],
+    "querySha256": "340509db851ccef094446d20171e2aaba5b29dd90c5c8917dc963c9419d54373",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    }
+  },
+  "provenance": {
+    "operationId": "op-000006",
+    "localOnly": true,
+    "queryType": "SELECT",
+    "querySha256": "340509db851ccef094446d20171e2aaba5b29dd90c5c8917dc963c9419d54373",
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "sourceHandles": [
+      "h-000003"
+    ],
+    "sourceFingerprints": [
+      "cc9736d2e53473ab1d2f5ae918189c6e0d275c55e48f845e026dcf7c40be4265",
+      "69b2dcdb6fefb34fa88ac04a71c57c1ee0eb79a3454c78eee0bd96e730fca796"
+    ]
+  },
+  "completion": {
+    "kind": "linked-science-result-completion",
+    "status": "complete",
+    "complete": true,
+    "truncated": false,
+    "scope": "submitted-query",
+    "materialization": "atomic-before-handle-publication"
+  },
+  "bounds": {
+    "bytes": 1527,
+    "maxBytes": 32768
+  }
+}

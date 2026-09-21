@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "523a1b29-a1c6-4bde-baa1-09c7e89bfd8e",
+  "recordedAt": "2026-09-21T13:09:10.140Z",
+  "revision": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+  "patternId": "wikipathways-identifier-mapping-context",
+  "patternSha256": "f660baff7d5045b3fd5abaab50cb774ceda68294cdf2692ec6bd3f7e867c54e9",
+  "helpfulness": "unknown"
+}

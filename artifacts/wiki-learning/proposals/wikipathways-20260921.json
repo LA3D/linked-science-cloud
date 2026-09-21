@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "wikipathways-20260921",
+  "baseRevision": "86b9049a61425844c233403c150716d30e368e1735e5d299a0bbd612b56aa460",
+  "batch": {
+    "purpose": "User-authorized incorporation of WikiPathways TP53 trajectory lessons as proposed candidates",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+        "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 5,
+    "outcomeStrata": [
+      "success"
+    ],
+    "omittedMaterial": [
+      "Original September 20 tool envelopes are not reconstructed; September 21 captures inspect still-resident original handles and source/query receipts.",
+      "No complete source documents or query rows exported; bounded projections, counts and receipt hashes saved.",
+      "Exchange 2 projection used undefined keys; exchange 3 corrects projection using string-or-variable keys without requerying.",
+      "No independent transfer test, biological validation, exact identity reasoning, or named-graph provenance disambiguation.",
+      "Skill baseline captured at maintenance time, not proof of historical loading."
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use source-owned membership and interaction examples to select predicates, then inspect the ontology before adapting them. This trajectory used dcterms:isPartOf for membership and explicit wp:source|wp:target|wp:participants for involvement. The saved ontology uses rdfs:subClassOf between source/target and participants, not rdfs:subPropertyOf; do not silently treat those statements as property inference. DataNode is marked deprecated.",
+      "applicability": "WikiPathways schema exploration and SPARQL query construction; exact saved ontology only.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No comparison against ontology-only query design.",
+        "No transfer to another gene or endpoint.",
+        "Original example inspection envelopes not captured; retained source fingerprint and excerpt preserved."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "example-query",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-membership-explicit-interactions",
+      "title": "Separate WikiPathways membership from explicit interactions",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Resolve a gene identifier, restrict pathway organism, and separately query membership and explicit involvement. Require an interaction type before counting: the initial involvement query also returned a Complex. Preserve source and target roles, and count distinct interaction IRIs rather than type-joined rows. Binding direction does not establish irreversibility.",
+      "applicability": "WikiPathways gene-centered interaction subgraphs; default-graph assertions, not proof of direct physical interactions.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No comprehensive subclass inference or independent biological validation.",
+        "Interaction IRIs across pathways may describe the same biological mechanism."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "explicit-interaction",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-identifier-mapping-context",
+      "title": "Preserve context for WikiPathways identifier mappings",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use Identifiers.org IRIs as exact query keys and retain database mappings as source assertions. A human-pathway filter did not prevent the shared hgnc.symbol/TP53 node from returning both ENSG and ENSCAFG Ensembl mappings in the combined graph. Avoid treating every returned mapping as human or as exact gene/protein identity; use graph-specific provenance or independent validation before stronger claims.",
+      "applicability": "WikiPathways cross-links, identifier joins and organism filtering over a combined default graph.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "Exact originating named graphs were not inspected.",
+        "External UniProt, Ensembl and Wikidata destinations were not independently validated.",
+        "No claim about Identifiers.org resolver normalization or equivalence of alternate URL spellings."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "identifier-context",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-tp53-20260920",
+      "title": "TP53 WikiPathways query snapshot (2026-09-20)",
+      "lessonKind": "scientific-finding",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Queries anchored on wp:bdbEnsembl ENSG00000141510 and Homo sapiens pathways returned 92 membership pathways, 265 explicitly typed Interaction IRIs in 66 pathways, and 170 participant/endpoint nodes. Of these nodes 141 had bdbUniprot, 141 bdbEnsembl and 61 bdbWikidata mappings. Counts were recomputed from retained handles on September 21. These are source assertions in the submitted default-graph query scope, not unique biological mechanisms or independently verified mappings.",
+      "applicability": "Dated September 20 endpoint responses retained in this trajectory; descriptive snapshot only.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "Complete result rows not exported; exact membership/involvement query text, source hashes and compact counts retained.",
+        "No guarantee of current endpoint totals, species-pure mappings or graph-specific identity."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "tp53-snapshot",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-ontology-tag-selection",
+      "title": "Choose the WikiPathways tag predicate for the classification question",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Do not interpret all wp:ontologyTag values as Pathway Ontology terms. The independent retained TP53 query observed generic tags in 92 pathways and specific wp:pathwayOntologyTag values in 90. All 204 specific pathway-tag assertions also appeared under the generic predicate; do not add these as unique classifications. Generic tags also include curation and cell-type identifiers.",
+      "applicability": "WikiPathways classification queries over the saved TP53 pathway scope; generic vs specific tag selection.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No transfer to another pathway collection.",
+        "Subagent capture/profile is cited separately; it is not a reconstructed original host event or a verified local-query join.",
+        "No tag ontology labels or inferred classification closure validated."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "tag-selection",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity",
+            "tag-profile",
+            "tag-capture"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}
