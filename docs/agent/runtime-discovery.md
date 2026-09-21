@@ -1,5 +1,7 @@
 # Linked Science runtime discovery
 
+For a fresh installation, follow the complete [agent installation guide](installation.md).
+
 ## Normal use
 
 The project broker initializes the validated `linkedScience` / `ls` facade before the first evaluation in each kernel. Open and reuse a workspace directly:
@@ -16,7 +18,7 @@ For native composition, prefer `ws.rdf.source(handle)`. `rdf.clone` explicitly c
 
 For a fresh clone or a moved checkout, run `npm ci`, `npm run codex:configure`, and `npm run linked-science:verify` in the runtime package root before opening a task. The configuration step records that machine's absolute Node executable and checkout paths while preserving approvals. `node --version` in Terminal alone does not establish the desktop app's executable lookup. The project has a required MCP server, so startup failure blocks task creation. Do not disable the requirement to label an unavailable runtime as working. See the [official MCP configuration documentation](https://learn.chatgpt.com/docs/extend/mcp?surface=cli).
 
-The workstation path below is its saved location, not a required directory layout on other machines. The bootstrap derives and validates the root from its own source location. Runtime identity and persistence must still be checked after configuring a different checkout.
+Use the selected checkout's absolute path, not a path copied from a different workstation. The bootstrap derives and validates the root from its own source location. Runtime identity and persistence must still be checked after configuring a different checkout.
 
 For configuration, fresh-agent evaluation, suspected wrong runtime or an activation claim, observe:
 
@@ -34,16 +36,16 @@ nodeRepl.write({
 });
 ```
 
-The authoritative checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its `.codex/config.toml` registers the project broker. The sibling experimental probe and bundled generic REPL cannot establish this project's identity or authority.
+The selected checkout owns this runtime. Its `.codex/config.toml` registers the project broker. The sibling experimental probe and bundled generic REPL cannot establish this project's identity or authority.
 
 Run `npm run linked-science:verify` for offline repository/MCP checks. Configuration and shell results do not prove task-level mounting. Restart an already-running broker after broker-code changes; after MCP configuration changes, fully restart Desktop and use a fresh Local task in the saved checkout.
 
 ## Explicit fallback bootstrap
 
-For an older broker or diagnostics, the same validated entrypoint remains available:
+For an older broker or diagnostics, the same validated entrypoint remains available. Replace `ABSOLUTE/CHECKOUT` with the verified installation path before running this example:
 
 ```js
-var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs');
+var { bootstrapLinkedScience } = await import('file:///ABSOLUTE/CHECKOUT/lib/cleanroom-linked-science-bootstrap.mjs');
 await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl });
 ```
 

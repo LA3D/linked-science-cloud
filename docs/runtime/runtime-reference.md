@@ -1,0 +1,55 @@
+# Runtime contracts and ownership
+
+Operational detail for [Linked Science](../../README.md). For setup, use the [agent installation guide](../agent/installation.md).
+
+## What the runtime preserves
+
+| Property | Implementation |
+| --- | --- |
+| Persistent state | Native values and epoch-scoped workspace handles |
+| Complete query answers | SELECT/ASK/CONSTRUCT/DESCRIBE without a harness-imposed LIMIT; operational exhaustion fails without a successful partial handle |
+| Large retained results | Private SQLite spooling for bindings and graph results; bag/set semantics preserved; indexed graph matching and counts |
+| Bounded observations | Independent page/table/schema/neighborhood limits and aggregate 32 KiB default text output |
+| Explicit lifetime | Release/disposal reclaim registry ownership, graph accounting and broker storage, including pending allocations |
+| Native composition | Streaming RDF/JS Sources and explicit mutable clones using N3/Comunica interfaces |
+| Source orientation | Automatic source metadata and experimental agent-proposed RDF evidence entries; separate ephemeral inventory |
+| Authority and provenance | Private broker-mediated anonymous reads, identity stripping, request/time/byte/fan-out bounds and automatic receipts |
+
+For recurring contexts, `nodeRepl.write(await ws.orientation.bootstrap({ maxBytes: 4096 }))` explicitly displays a bounded map on opening/resuming; `open()` remains synchronous and does not inject host prompts. The experimental `orientation.update` validates bounded native RDF/JS quad citations and source dependencies, not semantic truth. Empty, rejected or unavailable orientation leaves ordinary scientific work available. See the [experimental scope and comparison plan](../../docs/tasks/uniprot-orientation-comparison.md).
+
+Resident quotas use heap estimates and headroom checks. They do not prove every RDF term, query operator or arbitrary JavaScript program fits memory. Kernel OOM produces explicit epoch-loss recovery. Complete result storage does not imply bounded working memory for every join, sort or merge operation.
+
+## Ownership
+
+| Surface | Owner |
+| --- | --- |
+| Package identity | `@linked-science/runtime`, authoritative production implementation |
+| Facade / bootstrap | `lib/linked-science-runtime.mjs`, `lib/cleanroom-linked-science-bootstrap.mjs` |
+| Broker / persistent kernel | `packages/cleanroom-node-repl`, `@linked-science/cleanroom-node-repl` |
+| Project MCP | `.codex/config.toml`, `cleanroom_node_repl`, exactly `js`, `js_reset`, `js_add_node_module_dir` |
+| Goals / worker lifecycle | Codex |
+
+The external-context design is informed by RLM and source orientation by PEEK. Optional model recursion is advertised separately. Durable Prime sessions and learned PEEK policy are [research extensions](../../docs/architecture/prime-linked-data-context-management.md), not prerequisites for the scientific REPL. See the [current architecture](../../docs/architecture/rlm-linked-science-runtime.md) and [plan](../../PLAN.md).
+
+## Verification
+
+```sh
+npm test
+npm run smoke
+npm run linked-science:verify
+git diff --check
+```
+
+`linked-science:verify` launches the actual local JSON-RPC broker and verifies repository identity, tools, persistence, bootstrap and synthetic query/reset behavior. It performs no live traversal. It does not prove which broker a particular Codex task mounted; use [diagnostic discovery](../../docs/agent/runtime-discovery.md) for that claim. An already-running broker must be restarted to load broker-code changes.
+
+## Access and evidence boundaries
+
+Ordinary goal-relevant anonymous public scientific reads use the mediator's defaults; callers may request tighter bounds. Authenticated, sensitive, mutating, bulk-ingestion, export and evaluation actions need their own authority. No ambient raw Fetch or credentials are exposed to model code. Standard Fetch owns DNS/TLS/sockets/redirects; the broker owns identity, effects, bounds and receipts.
+
+A handle is not an artifact, a display is not a full result, and an orientation entry is not residency evidence. Empty queries and unavailable sources retain their exact scope. The disabled restricted network profile is historical and must not be re-enabled as an alternative transport path. PubChem-scale dumps require a separately authorized bulk-ingestion route.
+
+## Project records
+
+Use the [context router](../../docs/agent/context-routing.md), [task queue](../../docs/tasks/README.md), [roadmap](../../docs/ROADMAP.md), [source orientation index](../../resources/index.md) and [experiment result registry](../../docs/experiments/RESULTS.md). Historical dossiers and receipts remain evidence records. Summary-only trials do not establish open-ended navigation, and no successful UniProt competency answer is established. The large-result export protocol remains documentation only.
+
+Shared live scientific state across agent connections is available through the explicit [scientific session service](../../docs/architecture/scientific-session.md). The service owns the native kernel; reconnecting clients need session capabilities.

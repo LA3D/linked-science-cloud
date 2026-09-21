@@ -6,6 +6,7 @@ Root `AGENTS.md` supplies the always-on contract. Read the [project README](../.
 
 | Task type | Read next |
 | --- | --- |
+| Install or connect Linked Science | [Agent installation guide](installation.md), then [runtime discovery](runtime-discovery.md) for live identity and persistence checks. |
 | Use or change the scientific REPL | [Runtime discovery](runtime-discovery.md), then the normative [scientific REPL architecture](../architecture/rlm-linked-science-runtime.md), the [persistent JavaScript compatibility surface](../architecture/codeact-linked-science-runtime.md), and [ontology/schema objects](../architecture/ontology-and-schema-objects.md). |
 | Run or diagnose the persistent REPL | The [Linked Data REPL skill](../../.agents/skills/linked-data-repl/SKILL.md), then its environment reference; use [persistent session and handles](../architecture/persistent-session-and-handles.md) for the stable state model. |
 | Acquire documentation or traverse Linked Data | The skill's evidence-acquisition reference and [broker-mediated traversal architecture](../architecture/broker-owned-live-operations.md). Ordinary goal-relevant anonymous public reads use the broker defaults; consult a source-orientation entry or dossier when the question, vocabulary, provenance, or stakes warrant it. Authenticated, sensitive, mutating, bulk, export, and evaluation work remain separately governed. |

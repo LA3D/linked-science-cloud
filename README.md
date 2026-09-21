@@ -1,34 +1,48 @@
-# Linked Science runtime
+# Linked Science
 
-Linked Science is an MCP server that gives AI assistants persistent symbolic memory and context for scientific work. Resources, RDF graphs, ontologies and complete query results stay outside the prompt behind reusable handles. Assistants can inspect definitions, follow relevant ontology dependencies, compose queries and revisit evidence without placing entire datasets in the conversation.
+Linked Science provides AI assistants with a stateful interface to linked scientific data through MCP. It combines a persistent programming environment with RDF graphs, ontologies, and SPARQL queries, enabling an assistant to retrieve evidence, inspect its meaning, and build on retained context across successive operations.
 
-The execution interface is a persistent JavaScript REPL using RDF/JS, N3 and Comunica. A workspace API manages object lifetime and provenance; the project-owned broker manages transport, bounds and private result storage. This repository owns the Linked Science runtime and its MCP server. The separate `node-repl-network-probe` repository and Codex's bundled generic REPL are not substitutes.
+## What you can do
 
-The project user reports testing integrations with OpenAI ChatGPT Desktop and Codex. Repository setup and verification below cover the project-owned broker and Codex registration; they do not establish compatibility with every MCP client or provide a verified ChatGPT Desktop setup procedure.
+A question about a protein can span several scientific resources. In a [saved PubChem–UniProt session](artifacts/wiki-learning/scientific/pubchem-20260921-capture/README.md), the assistant:
 
-Live symbolic state and durable learning serve different purposes. REPL handles retain working scientific objects for their session lifetime. The [scientific workflow wiki](wiki/README.md) stores cited, versioned findings and proposed workflow patterns for selective consultation in later tasks. Wiki records do not restore expired handles, and a proposed lesson is not an established general rule.
+1. Retrieved and retained the PubChem schema and SIO/CHEMINF ontologies, resolving opaque identifiers into labels, definitions and relationships.
+2. Inspected ontology imports and followed relevant dependencies, keeping track of what remained unloaded.
+3. Checked actual term usage in PubChem's QLever endpoint, separately from what its schema defined.
+4. Followed an EGFR cross-reference to UniProt and combined protein annotation with PubChem assay records, preserving units, qualifiers and assay provenance.
+
+The result connected biological context with experimental evidence. Cross-references did not establish exact identity, selected imports did not establish complete ontology closure, and the illustrative assay sample was not a potency ranking or medical recommendation. The [scientific workflow wiki](wiki/README.md) preserves proposed lessons with evidence and scope for future tasks.
+
+## How it works
+
+Linked Science combines two symbolic systems:
+
+| Layer | What it represents | What the assistant can do |
+| --- | --- | --- |
+| Programming and working context | Persistent JavaScript/Node variables, objects, functions and handles | Retain resources and results, transform data, manage working context, and inspect selected portions without putting entire datasets in the prompt |
+| Scientific knowledge | RDF entities and relationships, ontology definitions, Linked Data identifiers and SPARQL endpoints | Interpret terms, navigate cross-references, query graphs and combine explicitly represented scientific evidence |
+
+The programming layer provides a workspace for computation; the knowledge layer supplies explicit scientific structure and semantics. RDF and SPARQL follow [W3C Semantic Web standards](https://www.w3.org/standards/semanticweb/). Native RDF/JS objects connect these layers, with N3 and Comunica supporting graph operations and queries. Loading an ontology makes its assertions available for inspection; it does not automatically perform full OWL inference.
+
+State persists across calls within its documented lifetime. Releasing a handle, disposing a workspace or resetting its context invalidates the affected objects. Kernel reset or process loss removes live bindings and state; a restart does not restore them. Explicitly saved artifacts and versioned wiki records are durable evidence, distinct from live handles. See [session lifetimes](docs/architecture/persistent-session-and-handles.md) and the separately activated [shared scientific-session service](docs/architecture/scientific-session.md).
+
+Public scientific reads pass through the project broker, which records provenance and enforces operational bounds. A bounded display is not a complete result, and an unavailable source is not evidence of absence. Authenticated access, bulk ingestion, exports and mutations have separate authority requirements. See the [runtime contracts](docs/runtime/runtime-reference.md).
 
 ## Research foundations
 
-[Recursive Language Models (RLM)](https://arxiv.org/html/2512.24601v2) treats large context as an external environment that a model can inspect programmatically and decompose, with recursive model calls available for selected subproblems. Linked Science adapts the external-context idea to scientific objects: graphs and ontologies remain available for symbolic querying while the assistant receives bounded observations. Model recursion is optional and capability-dependent; persistent context and native graph operations work without it. See the [runtime architecture](docs/architecture/rlm-linked-science-runtime.md) for the implemented boundary.
+[Recursive Language Models (RLM)](https://arxiv.org/html/2512.24601v2) treats large context as an external environment that a model can inspect programmatically and decompose, with recursive model calls for selected subproblems. Linked Science applies this external-context idea to retained scientific objects and bounded observations. Model recursion is optional and capability-dependent; persistent context and native graph operations work without it. The [runtime architecture](docs/architecture/rlm-linked-science-runtime.md) describes the implemented boundary.
 
-[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://arxiv.org/abs/2608.27454), by Tang and colleagues, separates execution experience, accumulated knowledge and executable skills. It motivates this project's distinction between saved scientific evidence, a versioned learning wiki and changes to active procedures. The current implementation supports cited workflow candidates and dated findings, explicit maintenance, and selective search/read during scientific tasks. Automatic skill evolution is not implied: review and release are separate, and one episode does not establish generality. The [wiki-memory design](docs/tasks/wiki-memory-continual-learning.md) records the adaptation and differences from the paper.
+[WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution](https://arxiv.org/abs/2608.27454), by Tang and colleagues, separates execution experience, accumulated knowledge and executable skills. It informs this project's saved scientific evidence, cited/versioned learning wiki and distinct active procedures. The implementation supports explicit maintenance and selective retrieval of workflow candidates and dated findings. Automatic skill evolution is not implied; review and release are separate, and one episode does not establish generality. The [wiki-memory design](docs/tasks/wiki-memory-continual-learning.md) explains the adaptation. Wiki memory neither replaces the live programming context nor restores expired handles.
 
-## Use the REPL
+## Get connected
 
-On **each new machine or checkout**, first run these commands in the folder containing this `package.json`:
+**Ask your agent to install Linked Science**, and point it to the **[agent installation guide](docs/agent/installation.md)**. The guide covers prerequisites, checkout selection, dependencies, client registration, restart, and live identity/persistence checks. It includes exact commands and failure routes.
 
-```sh
-npm ci
-npm run codex:configure
-npm run linked-science:verify
-```
+The documented automated setup targets Codex. The project user reports testing ChatGPT Desktop and Codex; a verified project-specific ChatGPT Desktop installation procedure has not yet been recorded. The guide distinguishes that gap from the tested local broker path. Future plugin packaging is planned, not an available installation method.
 
-Then restart the desktop app and open the project. Setup rewrites only the project MCP's `command`, `args`, and `cwd` using this checkout and the absolute Node executable running setup. It preserves tool approvals and the required-server setting; it does not edit global configuration or install anything itself. Keep these machine-specific config edits local, and rerun setup after moving the checkout or replacing Node. Use a Node version with `node:sqlite` available without extra flags; setup checks that import before writing. Dependencies must be installed locally; Git does not carry `node_modules`.
+## Use and extend
 
-The checked-in config contains the original workstation paths. Without setup, another checkout can fail before task creation with `cleanroom_node_repl: No such file or directory (os error 2)`. A missing configured working directory or a Node executable unavailable to the desktop app can cause this startup failure. See [runtime discovery](docs/agent/runtime-discovery.md) for the live check.
-
-The project `cleanroom_node_repl` broker initializes `linkedScience` / `ls` before the first evaluation in each kernel:
+Once the project MCP is connected, execute this through its `cleanroom_node_repl` JavaScript tool:
 
 ```js
 var ws = linkedScience.open({ contextKey: 'scientific-question' });
@@ -36,69 +50,16 @@ var graph = await ws.graphs.load({
   name: 'local-example', kind: 'instance-data',
   text: '<urn:sample> <urn:measurement> 42 .',
 });
-var result = await ws.query.run({ sources: [graph], sparql: 'SELECT * WHERE { ?s ?p ?o }' });
+var result = await ws.query.run({
+  sources: [graph], sparql: 'SELECT * WHERE { ?s ?p ?o }',
+});
 nodeRepl.write(await ws.results.page(result));
-await ws.release(result);
 ```
 
-Reuse workspaces and handles across calls. `ws.inventory()` lists retained handles. `await ws.dispose()` releases a workspace and its stored results; `await linkedScience.reset({ contextKey })` performs the same cleanup and advances the epoch. Other workspaces remain intact. Kernel reset clears all bindings and epoch-owned storage; the next evaluation rebuilds the facade.
+The graph and result remain available to subsequent calls. Use `await ws.release(result)` when finished with that result, or `await ws.dispose()` to release the workspace. Public resources use `ws.resources.get(url)`; remote RDF/SPARQL queries use `ws.traversal.query(...)`. Optional [N3 reasoning](docs/architecture/deterministic-reasoning.md) has separate capability and installation requirements.
 
-Use `ws.rdf.source(handle)` for native streaming RDF/JS composition. `ws.rdf.clone(handle)` explicitly copies a resident graph into a mutable N3 dataset; `rdf.dataset` remains a compatibility alias. A stored graph is an indexed source for native reads or later local SPARQL, without whole-result cloning.
-
-Public resource reads use `ws.resources.get(url)`. Its response-like object supports in-kernel text/JSON/binary composition and `resource.rdf({ name })`. General remote RDF queries and federation use `ws.traversal.query({ sources, sparql })`; specify a SPARQL service as `{ type: 'sparql', value: serviceUrl }`. The broker discovers destinations dynamically and records each exchange.
-
-Read the [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md) for normal use, [runtime discovery](docs/agent/runtime-discovery.md) for diagnostics, or the [generated API schema](docs/runtime/linked-science-api.schema.json) for exact signatures.
-
-Optional [deterministic N3 reasoning](docs/architecture/deterministic-reasoning.md) runs through a bounded host adapter and retains inferred RDF separately. Inspect `ws.reasoning.capabilities()` before use; installation is machine-specific and no model provider is embedded.
-
-## What the runtime preserves
-
-| Property | Implementation |
-| --- | --- |
-| Persistent state | Native values and epoch-scoped workspace handles |
-| Complete query answers | SELECT/ASK/CONSTRUCT/DESCRIBE without a harness-imposed LIMIT; operational exhaustion fails without a successful partial handle |
-| Large retained results | Private SQLite spooling for bindings and graph results; bag/set semantics preserved; indexed graph matching and counts |
-| Bounded observations | Independent page/table/schema/neighborhood limits and aggregate 32 KiB default text output |
-| Explicit lifetime | Release/disposal reclaim registry ownership, graph accounting and broker storage, including pending allocations |
-| Native composition | Streaming RDF/JS Sources and explicit mutable clones using N3/Comunica interfaces |
-| Source orientation | Automatic source metadata and experimental agent-proposed RDF evidence entries; separate ephemeral inventory |
-| Authority and provenance | Private broker-mediated anonymous reads, identity stripping, request/time/byte/fan-out bounds and automatic receipts |
-
-For recurring contexts, `nodeRepl.write(await ws.orientation.bootstrap({ maxBytes: 4096 }))` explicitly displays a bounded map on opening/resuming; `open()` remains synchronous and does not inject host prompts. The experimental `orientation.update` validates bounded native RDF/JS quad citations and source dependencies, not semantic truth. Empty, rejected or unavailable orientation leaves ordinary scientific work available. See the [experimental scope and comparison plan](docs/tasks/uniprot-orientation-comparison.md).
-
-Resident quotas use heap estimates and headroom checks. They do not prove every RDF term, query operator or arbitrary JavaScript program fits memory. Kernel OOM produces explicit epoch-loss recovery. Complete result storage does not imply bounded working memory for every join, sort or merge operation.
-
-## Ownership
-
-| Surface | Owner |
-| --- | --- |
-| Package identity | `@linked-science/runtime`, authoritative production implementation |
-| Facade / bootstrap | `lib/linked-science-runtime.mjs`, `lib/cleanroom-linked-science-bootstrap.mjs` |
-| Broker / persistent kernel | `packages/cleanroom-node-repl`, `@linked-science/cleanroom-node-repl` |
-| Project MCP | `.codex/config.toml`, `cleanroom_node_repl`, exactly `js`, `js_reset`, `js_add_node_module_dir` |
-| Goals / worker lifecycle | Codex |
-
-The external-context design is informed by RLM and source orientation by PEEK. Optional model recursion is advertised separately. Durable Prime sessions and learned PEEK policy are [research extensions](docs/architecture/prime-linked-data-context-management.md), not prerequisites for the scientific REPL. See the [current architecture](docs/architecture/rlm-linked-science-runtime.md) and [plan](PLAN.md).
-
-## Verification
-
-```sh
-npm test
-npm run smoke
-npm run linked-science:verify
-git diff --check
-```
-
-`linked-science:verify` launches the actual local JSON-RPC broker and verifies repository identity, tools, persistence, bootstrap and synthetic query/reset behavior. It performs no live traversal. It does not prove which broker a particular Codex task mounted; use [diagnostic discovery](docs/agent/runtime-discovery.md) for that claim. An already-running broker must be restarted to load broker-code changes.
-
-## Access and evidence boundaries
-
-Ordinary goal-relevant anonymous public scientific reads use the mediator's defaults; callers may request tighter bounds. Authenticated, sensitive, mutating, bulk-ingestion, export and evaluation actions need their own authority. No ambient raw Fetch or credentials are exposed to model code. Standard Fetch owns DNS/TLS/sockets/redirects; the broker owns identity, effects, bounds and receipts.
-
-A handle is not an artifact, a display is not a full result, and an orientation entry is not residency evidence. Empty queries and unavailable sources retain their exact scope. The disabled restricted network profile is historical and must not be re-enabled as an alternative transport path. PubChem-scale dumps require a separately authorized bulk-ingestion route.
-
-## Project records
-
-Use the [context router](docs/agent/context-routing.md), [task queue](docs/tasks/README.md), [roadmap](docs/ROADMAP.md), [source orientation index](resources/index.md) and [experiment result registry](docs/experiments/RESULTS.md). Historical dossiers and receipts remain evidence records. Summary-only trials do not establish open-ended navigation, and no successful UniProt competency answer is established. The large-result export protocol remains documentation only.
-
-Shared live scientific state across agent connections is available through the explicit [scientific session service](docs/architecture/scientific-session.md). The service owns the native kernel; reconnecting clients need session capabilities.
+- [Linked Data REPL skill](.agents/skills/linked-data-repl/SKILL.md): normal scientific work and selective wiki consultation.
+- [API schema](docs/runtime/linked-science-api.schema.json) and [runtime reference](docs/runtime/runtime-reference.md): operations, bounds and implementation ownership.
+- [Context router](docs/agent/context-routing.md): task-specific documentation.
+- [Contributor verification](docs/agent/verification.md) and [Git handoff](docs/agent/git-handoff.md): repository changes and delivery.
+- [Roadmap](docs/ROADMAP.md) and [experiment records](docs/experiments/RESULTS.md): plans and scoped evidence, not authorization to run future work.
