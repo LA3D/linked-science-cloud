@@ -8,6 +8,7 @@ Operational detail for [Linked Science](../../README.md). For setup, use the [ag
 | --- | --- |
 | Persistent state | Native values and epoch-scoped workspace handles |
 | Complete query answers | SELECT/ASK/CONSTRUCT/DESCRIBE without a harness-imposed LIMIT; operational exhaustion fails without a successful partial handle |
+| Large resources and artifacts | [Disk-backed byte handles](../architecture/large-resource-storage.md), bounded random/stream access and explicitly authorized durable materialization |
 | Large retained results | Private SQLite spooling for bindings and graph results; bag/set semantics preserved; indexed graph matching and counts |
 | Bounded observations | Independent page/table/schema/neighborhood limits and aggregate 32 KiB default text output |
 | Explicit lifetime | Release/disposal reclaim registry ownership, graph accounting and broker storage, including pending allocations |

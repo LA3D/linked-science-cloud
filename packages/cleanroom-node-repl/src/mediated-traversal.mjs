@@ -1,4 +1,5 @@
 import { createHash, randomBytes } from "node:crypto";
+import { ResourceStorage } from "./resource-storage.mjs";
 
 import { Parser as SparqlParser } from "sparqljs";
 import httpLinkHeader from "http-link-header";
@@ -227,11 +228,14 @@ async function readBoundedBody(response, perResponse, remaining, signal) {
   if (!response.body) return Buffer.alloc(0);
   const reader = response.body.getReader();
   const chunks = [];
+  const abort = () => { reader.cancel(signal.reason).catch(() => {}); };
+  signal.addEventListener('abort', abort, { once: true });
   let size = 0;
   try {
     while (true) {
       if (signal.aborted) throw signal.reason ?? mediatorError("MEDIATOR_ABORTED", "Traversal request was aborted");
       const { done, value } = await reader.read();
+      if (signal.aborted) throw signal.reason ?? mediatorError('MEDIATOR_ABORTED', 'Traversal request was aborted');
       if (done) break;
       const chunk = Buffer.from(value);
       size += chunk.length;
@@ -243,6 +247,9 @@ async function readBoundedBody(response, perResponse, remaining, signal) {
     await reader.cancel(error).catch(() => {});
     if (!Number.isInteger(error.bytesRead)) error.bytesRead = size;
     throw error;
+  } finally {
+    signal.removeEventListener('abort', abort);
+    reader.releaseLock();
   }
   return Buffer.concat(chunks, size);
 }
@@ -257,11 +264,13 @@ function responseFromBytes(bytes, response, headers) {
 }
 
 export class MediatedTraversalBroker {
-  constructor({ fetchImpl = globalThis.fetch, now = () => new Date().toISOString() } = {}) {
+  constructor({ fetchImpl = globalThis.fetch, now = () => new Date().toISOString(), resourceStorage, resourceStorageOptions } = {}) {
     if (typeof fetchImpl !== "function") throw new TypeError("A standards-compatible Fetch implementation is required");
     this.fetchImpl = fetchImpl;
     this.now = now;
     this.sessions = new Map();
+    this.pendingRequests = new Set();
+    this.resources = resourceStorage ?? new ResourceStorage(resourceStorageOptions);
   }
 
   capabilities() {
@@ -282,6 +291,7 @@ export class MediatedTraversalBroker {
       }),
       transport: Object.freeze({ implementation: "standard-fetch", redirectEvidence: "requested-final-and-redirected-flag", dnsTls: "platform" }),
       retries: 0,
+      resourceStorage: this.resources.capabilities(),
       hardBudgets: HARD_BUDGETS,
       defaultBudgets: DEFAULT_BUDGETS,
       receipts: Object.freeze({ exchange: EXCHANGE_KIND, aggregate: RECEIPT_KIND, navigation: "linked-data-navigation-evidence" }),
@@ -300,6 +310,26 @@ export class MediatedTraversalBroker {
     };
     this.sessions.set(id, session);
     return Object.freeze({ traversalId: id, authority: this.capabilities().authority, effectiveBudgets: session.budgets, startedAt });
+  }
+
+  async beginResource(options = {}, owner = {}) {
+    if (!options || typeof options !== 'object' || Object.keys(options).some(key => !['maxBytes', 'timeoutMs', 'budgets'].includes(key))) throw mediatorError('RESOURCE_LIMIT_INVALID', 'Storage options are maxBytes, timeoutMs and tighter budgets');
+    const capacity = await this.resources.capacity();
+    const maxBytes = positiveInteger(options.maxBytes, Math.floor(capacity.availableBytes / 2), Number.MAX_SAFE_INTEGER, 'maxBytes');
+    if (maxBytes > capacity.availableBytes) throw mediatorError('RESOURCE_CAPACITY', `Requested ${maxBytes} bytes; ${capacity.availableBytes} available after reserve and quota`);
+    const timeoutMs = positiveInteger(options.timeoutMs, 3_600_000, 86_400_000, 'timeoutMs');
+    const begun = this.beginTraversal(options.budgets ?? {}, owner);
+    const session = this.sessions.get(begun.traversalId);
+    const requested = options.budgets ?? {};
+    session.budgets = Object.freeze({ ...session.budgets, maxRequests: 1, maxConcurrency: 1,
+      maxResponseBytes: Math.min(maxBytes, requested.maxResponseBytes ?? maxBytes),
+      maxTotalBytes: Math.min(maxBytes, requested.maxTotalBytes ?? maxBytes),
+      maxRequestMs: Math.min(timeoutMs, requested.maxRequestMs ?? timeoutMs),
+      maxDurationMs: Math.min(timeoutMs, requested.maxDurationMs ?? timeoutMs) });
+    session.deadline = Date.now() + session.budgets.maxDurationMs;
+    session.storage = { maxBytes: Math.min(session.budgets.maxResponseBytes, session.budgets.maxTotalBytes) };
+    session.progress = { bytes: 0, totalBytes: null, state: 'pending', capacity };
+    return { ...begun, effectiveBudgets: session.budgets, storage: session.progress };
   }
 
   #session(id, owner) {
@@ -322,9 +352,24 @@ export class MediatedTraversalBroker {
     };
   }
 
-  async request({ traversalId, request }, owner = {}) {
+  request(args, owner = {}) {
+    const promise = this.#request(args, owner);
+    const pending = { owner, promise };
+    this.pendingRequests.add(pending);
+    promise.finally(() => this.pendingRequests.delete(pending)).catch(() => {});
+    return promise;
+  }
+
+  async releaseOwner(owner, reason = 'kernel-replaced') {
+    this.abortOwner(owner, reason);
+    await Promise.allSettled([...this.pendingRequests].filter(p => p.owner.token === owner.token && p.owner.epoch === owner.epoch).map(p => p.promise));
+    await this.resources.releaseOwner(owner);
+  }
+
+  async #request({ traversalId, request }, owner = {}) {
     const session = this.#session(traversalId, owner);
     const validated = validateRequest(request, session.budgets);
+    if (session.storage && validated.method !== "GET") throw mediatorError("MEDIATOR_METHOD_DENIED", "Stored acquisition permits GET only");
     if (session.requests >= session.budgets.maxRequests) throw mediatorError("MEDIATOR_REQUEST_LIMIT", "Traversal request bound is exhausted");
     if (session.active >= session.budgets.maxConcurrency) throw mediatorError("MEDIATOR_CONCURRENCY_LIMIT", "Traversal concurrency bound is exhausted");
     const origin = validated.url.origin;
@@ -341,8 +386,11 @@ export class MediatedTraversalBroker {
     const timeout = Math.min(session.budgets.maxRequestMs, remainingDuration);
     const timer = setTimeout(() => controller.abort(mediatorError("MEDIATOR_REQUEST_TIMEOUT", "Request deadline elapsed")), timeout);
     const requestSha256 = sha256({ url: validated.url.href, method: validated.method, headers: Object.fromEntries(validated.headers), body: validated.body });
+    let response;
+    let stored;
+    let storedCommitted = false;
     try {
-      const response = await this.fetchImpl(validated.url, {
+      response = await this.fetchImpl(validated.url, {
         method: validated.method,
         headers: validated.headers,
         body: validated.method === "POST" ? validated.body : undefined,
@@ -352,8 +400,44 @@ export class MediatedTraversalBroker {
       });
       const sanitizedHeaders = sanitizeResponseHeaders(response.headers);
       const headers = sanitizedHeaders.headers;
-      const bytes = await readBoundedBody(response, session.budgets.maxResponseBytes, session.budgets.maxTotalBytes - session.bytes, controller.signal);
-      session.bytes += bytes.length;
+      let bytes;
+      let payload;
+      if (session.storage) {
+        stored = await this.resources.begin(session.storage, owner);
+        const advertised = headers['content-length'];
+        const length = advertised === undefined ? null : Number(advertised);
+        session.progress.totalBytes = Number.isSafeInteger(length) && length >= 0 ? length : null;
+        if (length > stored.maxBytes && !headers['content-encoding']) throw mediatorError('RESOURCE_BYTE_LIMIT', `Content-Length ${length} exceeds transfer maxBytes ${stored.maxBytes}`);
+        session.progress.state = 'receiving';
+        const reader = response.body?.getReader();
+        const abort = () => { reader?.cancel(controller.signal.reason).catch(() => {}); };
+        controller.signal.addEventListener('abort', abort, { once: true });
+        try {
+          while (reader) {
+            if (controller.signal.aborted) throw controller.signal.reason;
+            const { done, value } = await reader.read();
+            if (controller.signal.aborted) throw controller.signal.reason;
+            if (done) break;
+            // Account received bytes even when a storage limit rejects a chunk.
+            session.bytes += value.byteLength;
+            session.progress.bytes = session.bytes;
+            for (let offset = 0; offset < value.byteLength; offset += 64 * 1024) {
+              await this.resources.write(stored.storageId, value.subarray(offset, offset + 64 * 1024), owner);
+            }
+          }
+        } finally {
+          controller.signal.removeEventListener('abort', abort);
+          await reader?.cancel().catch(() => {});
+          reader?.releaseLock();
+        }
+        if (controller.signal.aborted) throw controller.signal.reason;
+        payload = await this.resources.commit(stored.storageId, owner);
+        storedCommitted = true;
+      } else {
+        bytes = await readBoundedBody(response, session.budgets.maxResponseBytes, session.budgets.maxTotalBytes - session.bytes, controller.signal);
+        session.bytes += bytes.length;
+        payload = { bytes: bytes.length, sha256: sha256(bytes) };
+      }
       const finalUrl = response.url || validated.url.href;
       const finalOrigin = normalizeUrl(finalUrl).origin;
       const completedOrigins = new Set(session.origins).add(finalOrigin);
@@ -363,22 +447,34 @@ export class MediatedTraversalBroker {
       const exchange = Object.freeze({
         kind: EXCHANGE_KIND, version: PROTOCOL_VERSION, index, status: response.ok ? "success" : "http-error",
         requestedUrl: validated.url.href, finalUrl, redirected: Boolean(response.redirected), method: validated.method,
-        httpStatus: response.status, requestSha256, responseSha256: sha256(bytes), bytes: bytes.length,
+        httpStatus: response.status, requestSha256, responseSha256: payload.sha256, bytes: payload.bytes,
         mediaType: String(headers["content-type"] ?? "").split(";", 1)[0].trim().toLowerCase(), headers,
         responseHeadersTruncated: sanitizedHeaders.truncated, navigation,
         queryType: validated.query?.type, querySha256: validated.query?.sha256, startedAt, finishedAt: this.now(), retries: 0,
       });
       session.exchanges.push(exchange);
       if (!response.ok) throw mediatorError("MEDIATOR_HTTP_ERROR", `Linked Data request failed with status ${response.status}`);
-      return Object.freeze({ status: response.status, statusText: response.statusText, url: finalUrl, redirected: Boolean(response.redirected), headers, bodyBase64: bytes.toString("base64"), exchange });
+      if (controller.signal.aborted) throw controller.signal.reason;
+      if (stored) {
+        session.progress.state = 'complete';
+        this.resources.get(stored.storageId, owner).provenance = { exchange, traversalReceipt: this.#receipt(session, 'complete') };
+      }
+      return Object.freeze({ status: response.status, statusText: response.statusText, url: finalUrl, redirected: Boolean(response.redirected), headers, ...(stored ? { stored: payload } : { bodyBase64: bytes.toString("base64") }), exchange });
     } catch (error) {
+      if (session.storage) await response?.body?.cancel().catch(() => {});
+      if (session.progress) session.progress.state = 'failed';
+      if (stored) {
+        if (storedCommitted) await this.resources.release({ storageId: stored.storageId }, owner);
+        else await this.resources.discard(stored.storageId, owner);
+      }
       const failedBytes = Number.isInteger(error.bytesRead) ? error.bytesRead : 0;
       if (failedBytes > 0) session.bytes += failedBytes;
       if (!session.exchanges.some(item => item.index === index)) {
         session.exchanges.push(Object.freeze({
           kind: EXCHANGE_KIND, version: PROTOCOL_VERSION, index, status: "failure", requestedUrl: validated.url.href,
           method: validated.method, requestSha256, queryType: validated.query?.type, querySha256: validated.query?.sha256,
-          bytes: failedBytes, startedAt, finishedAt: this.now(), retries: 0,
+          ...(response ? { httpStatus: response.status, finalUrl: response.url || validated.url.href, redirected: Boolean(response.redirected) } : {}),
+          bytes: session.storage ? session.bytes : failedBytes, startedAt, finishedAt: this.now(), retries: 0,
           failure: Object.freeze({ code: error.code ?? (controller.signal.aborted ? "MEDIATOR_REQUEST_TIMEOUT" : "MEDIATOR_FETCH_FAILED") }),
         }));
       }
@@ -402,6 +498,7 @@ export class MediatedTraversalBroker {
       traversalId: session.id, startedAt: session.startedAt, ...(status === "active" ? { observedAt: timestamp } : { finishedAt: timestamp }), budgets: session.budgets,
       usage: Object.freeze({ requests: session.requests, fanOut: session.origins.size, bytes: session.bytes, retries: 0 }),
       exchanges: Object.freeze([ ...session.exchanges ]),
+      ...(session.progress ? { progress: { ...session.progress, elapsedMs: Date.now() - Date.parse(session.startedAt), maxBytes: session.storage.maxBytes } } : {}),
       redirectEvidence: "requested-final-and-redirected-flag",
       ...(failureCode ? { failure: Object.freeze({ code: failureCode }) } : {}),
     });

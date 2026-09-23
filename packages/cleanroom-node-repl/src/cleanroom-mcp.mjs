@@ -194,7 +194,7 @@ export class KernelBroker {
     this.maxOldSpaceMb = maxOldSpaceMb;
     this.bootstrapLinkedScience = bootstrapLinkedScience && this.cwd === realpathSync(resolve(KERNEL_ROOT, '../../..'));
     this.peek = new PeekRegistry({ policy: peekPolicy });
-    this.traversal = traversalBroker ?? new MediatedTraversalBroker(traversalOptions);
+    this.traversal = traversalBroker ?? new MediatedTraversalBroker({ ...traversalOptions, resourceStorageOptions: { artifactRoot: resolve(this.cwd, "artifacts/resources"), ...traversalOptions?.resourceStorageOptions } });
     this.resultSpool = resultSpool ?? new ResultSpoolRegistry(resultSpoolOptions);
     this.moduleRoots = [];
     this.child = null;
@@ -260,6 +260,7 @@ export class KernelBroker {
       this.reasoningControllers.delete(child);
       this.traversal.abortOwner(owner, "kernel-exit");
       this.resultSpool.releaseOwner(owner);
+      this.traversal.releaseOwner(owner, "kernel-exit").catch(() => {});
       if (this.child === child) this.child = null;
     });
     // `close` follows `exit` once stdio has drained, so the stderr tail that
@@ -312,6 +313,11 @@ export class KernelBroker {
       else if (method === "rlm.query") value = await this._recursiveQuery(args);
       else if (method === "traversal.capabilities") value = this.traversal.capabilities();
       else if (method === "traversal.begin") value = this.traversal.beginTraversal(args.budgets, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "resources.begin") value = await this.traversal.beginResource(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "resources.capacity") value = await this.traversal.resources.capacity();
+      else if (method === "resources.read") value = await this.traversal.resources.read(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "resources.release") value = await this.traversal.resources.release(args, { token: this.hostCapabilityToken, epoch: this.epoch });
+      else if (method === "resources.materialize") value = await this.traversal.resources.materialize(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.request") value = await this.traversal.request(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.snapshot") value = this.traversal.snapshotTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
       else if (method === "traversal.finish") value = this.traversal.finishTraversal(args, { token: this.hostCapabilityToken, epoch: this.epoch });
@@ -332,6 +338,14 @@ export class KernelBroker {
       else if (method === "peek.checkpoint") value = await this._checkpoint(args.contextId, args.path);
       else if (method === "peek.restore") value = await this._restore(args.path);
       else throw Object.assign(new Error("Unknown host capability"), { code: "UNKNOWN_HOST_CAPABILITY" });
+      if (child !== this.child) {
+        // A delayed allocation must not survive the epoch whose child requested it.
+        if (method === 'resources.begin' && value?.traversalId) {
+          const session = this.traversal.sessions.get(value.traversalId);
+          if (session) this.traversal.abortTraversal({ traversalId: value.traversalId }, session.owner);
+        }
+        return;
+      }
       respond(true, value);
     } catch (error) {
       const receipt = typeof error?.receipt?.kind === "string" && error.receipt.kind.startsWith("linked-science-traversal-") &&
@@ -402,6 +416,7 @@ export class KernelBroker {
     this.hostCapabilityToken = null;
     this.traversal.abortOwner(owner, "kernel-replaced");
     this.resultSpool.releaseOwner(owner);
+    await this.traversal.releaseOwner(owner, "kernel-replaced");
     if (child.exitCode === null && child.signalCode === null) {
       await new Promise((resolveExit) => {
         child.once("exit", resolveExit);

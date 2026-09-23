@@ -75,6 +75,9 @@
     ],
     "resources": [
       "get",
+      "start",
+      "capacity",
+      "materialize",
       "inspect",
       "parseRdf",
       "history"
@@ -121,6 +124,9 @@
     "query.run",
     "traversal.query",
     "resources.get",
+    "resources.start",
+    "resources.capacity",
+    "resources.materialize",
     "resources.inspect",
     "resources.parseRdf",
     "rdf.dataset",

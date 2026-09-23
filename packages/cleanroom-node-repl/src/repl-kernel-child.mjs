@@ -222,6 +222,11 @@ async function serializedRequest(input, init = {}) {
 }
 
 const linkedScienceTraversal = Object.freeze({
+  beginResource: options => hostCallStrict("resources.begin", options),
+  resourceCapacity: () => hostCallStrict("resources.capacity", {}),
+  readResource: (storageId, options = {}) => hostCallStrict("resources.read", { ...options, storageId }),
+  releaseResource: storageId => hostCallStrict("resources.release", { storageId }),
+  materializeResource: (storageId, options = {}) => hostCallStrict("resources.materialize", { ...options, storageId }),
   capabilities: () => hostCallStrict("traversal.capabilities", {}),
   beginTraversal: (budgets = {}) => hostCallStrict("traversal.begin", { budgets }),
   request: (traversalId, request) => hostCallStrict("traversal.request", { traversalId, request }),
