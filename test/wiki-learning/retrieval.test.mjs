@@ -77,12 +77,13 @@ test('input bounds, unselected IDs and symlink receipt storage fail closed',asyn
  await assert.rejects(searchMemory({root,query:'query display'}),/unsafe consultation/);
 });
 
-test('retrieval skill has its own complete baseline while the historical baseline stays intact',async()=>{
+test('historical skill baselines stay intact while the active skill evolves',async()=>{
  const {describeSkillBaseline,verifySkillBaseline}=await import('../../lib/wiki-learning/baseline.mjs');
  const {fileURLToPath}=await import('node:url');const root=fileURLToPath(repo);
  const current=await describeSkillBaseline(root);
  const saved=await verifySkillBaseline({root,destination:'artifacts/wiki-learning/baselines/repl-20260919-retrieval'});
- assert.equal(current.digest,saved.digest);
+ assert.equal(saved.status,'passed');
+ assert.notEqual(current.digest,saved.digest);
  assert.ok(current.files.some(f=>f.path.endsWith('references/scientific-memory.md')));
  const old=await verifySkillBaseline({root,destination:'artifacts/wiki-learning/baselines/repl-20260919-phase0'});
  assert.notEqual(old.digest,current.digest);

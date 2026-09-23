@@ -18,3 +18,5 @@ Use the [maintainer skill](../.agents/skills/scientific-wiki-maintainer/SKILL.md
 ## Retrieval during scientific work
 
 The Linked Data REPL skill now consults a [bounded search/read helper](../.agents/skills/linked-data-repl/references/scientific-memory.md) on relevant task entry or unfamiliar errors. It delivers selected entries explicitly, records consultations and preserves proposed status. See the [retrieval handoff](../docs/tasks/wiki-selective-retrieval.md) for comparison evidence and limitations. This is selective advisory retrieval, not unconditional injection of wiki pages.
+
+A reusable lesson noticed during authorized scientific work may initiate the same maintainer workflow without per-lesson confirmation. Prefer concise updates to existing patterns, preserve provisional status and require eligible episode evidence. This authorizes local learning, not extra acquisition, evaluations or active-skill evolution. Unsupported capture formats or missing witnesses remain explicit gaps; natural activation is still to be observed during real use.
