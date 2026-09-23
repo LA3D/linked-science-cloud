@@ -6,6 +6,7 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
+| [Large resources and durable artifacts](large-resource-artifacts.md) | Implemented; acceptance acquisition verified | Disk-backed handles, bounded computation and durable local artifact handoff. | Restart existing Desktop broker for new APIs; viewer playback awaits independent workspace-root binding repair. |
 | [Scoped data bridge](scoped-data-bridge.md) | E4 semantic round trips verified | Three scoped model runs returned correct findings into owner state; no-relay audit remains partial. | E5 bounded scale/recovery remains unrun. |
 | [Portable MCP startup](portable-mcp-startup.md) | Per-checkout setup | Derive Node and checkout paths for another machine; preserve approvals. | Run setup and verify live activation on the laptop. |
 | [UniProt orientation comparison](uniprot-orientation-comparison.md) | Experimental implementation verified offline | Plan automatic source bookkeeping and agent-proposed semantic entries using existing UniProt material and a fresh second context. | Review offline implementation evidence; a fresh-agent semantic comparison remains unrun and separately scoped. |

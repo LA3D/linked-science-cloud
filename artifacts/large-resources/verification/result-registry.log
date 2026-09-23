@@ -1,0 +1,13 @@
+
+> @linked-science/runtime@0.0.0 evaluation:results:validate
+> node scripts/validate-experiment-results.mjs
+
+file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/lib/experiment-result-registry.mjs:105
+  if (missing.length > 0) throw new Error(`experiment dossiers missing registry status: ${missing.join(', ')}`);
+                                ^
+
+Error: experiment dossiers missing registry status: docs/experiments/scientific-trajectory-evidence.md
+    at validateExperimentResultRepository (file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/lib/experiment-result-registry.mjs:105:33)
+    at async file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/scripts/validate-experiment-results.mjs:9:16
+
+Node.js v26.9.0

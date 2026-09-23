@@ -1,0 +1,82 @@
+{
+  "state": "running",
+  "status": {
+    "kind": "linked-science-traversal-receipt",
+    "version": "3.2.0",
+    "authority": {
+      "class": "anonymous-linked-data-read",
+      "version": "1.0.0",
+      "anonymous": true,
+      "destinationPolicy": "dynamic-anonymous-http-https",
+      "endpointAllowlist": false,
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "methods": [
+        "GET",
+        "HEAD",
+        "SPARQL_POST"
+      ],
+      "queryTypes": [
+        "SELECT",
+        "ASK",
+        "CONSTRUCT",
+        "DESCRIBE"
+      ],
+      "effects": [
+        "public-resource-read",
+        "rdf-document-read",
+        "sparql-read",
+        "linked-data-dereference",
+        "local-communica-federation"
+      ],
+      "prohibited": [
+        "ambient-identity",
+        "url-credentials",
+        "sparql-update",
+        "arbitrary-post",
+        "filesystem-write",
+        "authority-expansion",
+        "automatic-context-promotion"
+      ]
+    },
+    "status": "active",
+    "traversalId": "traversal-066c5f1d685513b67f6b9991",
+    "startedAt": "2026-09-23T18:52:49.923Z",
+    "observedAt": "2026-09-23T18:52:50.930Z",
+    "budgets": {
+      "maxQueryChars": 16384,
+      "maxRequestBodyBytes": 64000,
+      "maxDurationMs": 3600000,
+      "maxRequestMs": 3600000,
+      "maxRequests": 1,
+      "maxFanOut": 8,
+      "maxConcurrency": 1,
+      "maxResponseBytes": 1073741824,
+      "maxTotalBytes": 1073741824,
+      "maxResultItems": 1000
+    },
+    "usage": {
+      "requests": 1,
+      "fanOut": 1,
+      "bytes": 1070421,
+      "retries": 0
+    },
+    "exchanges": [],
+    "progress": {
+      "bytes": 1070421,
+      "totalBytes": 3683576,
+      "state": "receiving",
+      "capacity": {
+        "freeBytes": 652952461312,
+        "reserveBytes": 268435456,
+        "retainedBytes": 173213,
+        "availableBytes": 652684025856
+      },
+      "elapsedMs": 1008,
+      "maxBytes": 1073741824
+    },
+    "redirectEvidence": "requested-final-and-redirected-flag"
+  }
+}

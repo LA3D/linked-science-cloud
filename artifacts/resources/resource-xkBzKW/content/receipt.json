@@ -1,0 +1,158 @@
+{
+  "kind": "linked-science-resource-artifact",
+  "version": "1.0.0",
+  "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xkBzKW/content/structure.pdb",
+  "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xkBzKW/content/receipt.json",
+  "bytes": 173213,
+  "sha256": "00a81322dcb7be6c5392c1f2f5091f0ce82d8b78af837680c8f4484e955b619d",
+  "createdAt": "2026-09-23T18:52:52.015Z",
+  "durability": "independent-of-kernel-and-handle",
+  "source": {
+    "exchange": {
+      "kind": "linked-science-fetch-exchange",
+      "version": "3.2.0",
+      "index": 1,
+      "status": "success",
+      "requestedUrl": "https://mdposit.mddbr.eu/api/rest/current/projects/MD-A007YH/files/structure.pdb",
+      "finalUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/structure.pdb",
+      "redirected": true,
+      "method": "GET",
+      "httpStatus": 200,
+      "requestSha256": "95ddf398a19b737cc83b111537132ce75f657c0d99510df965edf9961ee4318c",
+      "responseSha256": "00a81322dcb7be6c5392c1f2f5091f0ce82d8b78af837680c8f4484e955b619d",
+      "bytes": 173213,
+      "mediaType": "chemical/x-pdb",
+      "headers": {
+        "content-length": "173213",
+        "content-type": "chemical/x-pdb"
+      },
+      "responseHeadersTruncated": false,
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "responseUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/structure.pdb",
+        "links": [],
+        "profiles": [],
+        "profileDeclarations": [],
+        "malformedLinkHeader": false,
+        "truncated": false,
+        "trust": "untrusted-candidate-evidence"
+      },
+      "startedAt": "2026-09-23T18:52:47.906Z",
+      "finishedAt": "2026-09-23T18:52:48.916Z",
+      "retries": 0
+    },
+    "traversalReceipt": {
+      "kind": "linked-science-traversal-receipt",
+      "version": "3.2.0",
+      "authority": {
+        "class": "anonymous-linked-data-read",
+        "version": "1.0.0",
+        "anonymous": true,
+        "destinationPolicy": "dynamic-anonymous-http-https",
+        "endpointAllowlist": false,
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "methods": [
+          "GET",
+          "HEAD",
+          "SPARQL_POST"
+        ],
+        "queryTypes": [
+          "SELECT",
+          "ASK",
+          "CONSTRUCT",
+          "DESCRIBE"
+        ],
+        "effects": [
+          "public-resource-read",
+          "rdf-document-read",
+          "sparql-read",
+          "linked-data-dereference",
+          "local-communica-federation"
+        ],
+        "prohibited": [
+          "ambient-identity",
+          "url-credentials",
+          "sparql-update",
+          "arbitrary-post",
+          "filesystem-write",
+          "authority-expansion",
+          "automatic-context-promotion"
+        ]
+      },
+      "status": "complete",
+      "traversalId": "traversal-d71d7a3d9dff3a4997f68e89",
+      "startedAt": "2026-09-23T18:52:47.906Z",
+      "finishedAt": "2026-09-23T18:52:48.916Z",
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 3600000,
+        "maxRequestMs": 3600000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 1073741824,
+        "maxTotalBytes": 1073741824,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 2,
+        "bytes": 173213,
+        "retries": 0
+      },
+      "exchanges": [
+        {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://mdposit.mddbr.eu/api/rest/current/projects/MD-A007YH/files/structure.pdb",
+          "finalUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/structure.pdb",
+          "redirected": true,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "95ddf398a19b737cc83b111537132ce75f657c0d99510df965edf9961ee4318c",
+          "responseSha256": "00a81322dcb7be6c5392c1f2f5091f0ce82d8b78af837680c8f4484e955b619d",
+          "bytes": 173213,
+          "mediaType": "chemical/x-pdb",
+          "headers": {
+            "content-length": "173213",
+            "content-type": "chemical/x-pdb"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/structure.pdb",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-23T18:52:47.906Z",
+          "finishedAt": "2026-09-23T18:52:48.916Z",
+          "retries": 0
+        }
+      ],
+      "progress": {
+        "bytes": 173213,
+        "totalBytes": 173213,
+        "state": "receiving",
+        "capacity": {
+          "freeBytes": 652952653824,
+          "reserveBytes": 268435456,
+          "retainedBytes": 0,
+          "availableBytes": 652684218368
+        },
+        "elapsedMs": 1010,
+        "maxBytes": 1073741824
+      },
+      "redirectEvidence": "requested-final-and-redirected-flag"
+    }
+  }
+}

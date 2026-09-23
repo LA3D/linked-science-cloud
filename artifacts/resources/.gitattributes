@@ -1,0 +1,3 @@
+# Preserve scientific file bytes and keep bulk payloads out of source diffs.
+*.pdb binary
+*.xtc binary

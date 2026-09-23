@@ -1,0 +1,39 @@
+{
+  "kind": "implementation-verification",
+  "recordedAt": "2026-09-23T19:02:58.159169+00:00",
+  "implementationCommit": "7d42b34",
+  "checkout": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "checks": {
+    "npm test": {
+      "passed": 299,
+      "failed": 2,
+      "total": 301,
+      "environment": "escalated local fixtures after sandbox denied loopback/socket tests"
+    },
+    "npm run smoke": "passed",
+    "npm run linked-science:verify": "passed",
+    "git diff --check": "passed for source; artifact PDB/XTC byte preservation and raw log whitespace use scoped .gitattributes",
+    "relativeMarkdownLinks": {
+      "files": 6,
+      "missing": 0
+    },
+    "npm run evaluation:results:validate": "blocked by unrelated pre-existing unregistered dossier",
+    "newRegistryEntryAndReferencedPaths": "passed"
+  },
+  "unrelatedFailures": [
+    "test/cleanroom-linked-science-bootstrap.test.mjs hardcodes codex-repl path; existing modified .codex/config.toml correctly points at this requested checkout",
+    "test/experiment-result-registry.test.mjs and registry validator reject pre-existing untracked docs/experiments/scientific-trajectory-evidence.md without a registry status"
+  ],
+  "newFocusedTests": 7,
+  "scaleReceipt": "artifacts/large-resources/scale-1gib.json",
+  "liveReceipt": "artifacts/large-resources/mdposit-20260923/2026-09-23T18-52-46-638Z/receipt.json",
+  "viewerStatus": {
+    "evidence": "coordinator-reported",
+    "sourceThread": "01a0ceba-02b4-78f2-b303-693ae007aff0",
+    "pdbRendered": true,
+    "playback": "blocked",
+    "reason": "Workspace read access is unavailable because active workspace roots were not bound to this viewer session",
+    "sameFolderCopyDidNotResolve": true
+  },
+  "desktopMcpParentReloaded": false
+}

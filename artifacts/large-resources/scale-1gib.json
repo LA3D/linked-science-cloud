@@ -1,0 +1,13 @@
+{
+  "kind": "offline-resource-scale-verification",
+  "bytes": 1073741824,
+  "sha256": "96b9eb2b7b335112e3bad183b333ede042f7dc23f6af6c59318faf7a099ed775",
+  "elapsedMs": 1752,
+  "rssStart": 54575104,
+  "rssMax": 68845568,
+  "rssGrowth": 14270464,
+  "chunkBytes": 65536,
+  "network": "synthetic-injected-fetch",
+  "noWholeBodyIpc": true,
+  "cleanup": true
+}

@@ -1,0 +1,158 @@
+{
+  "kind": "linked-science-resource-artifact",
+  "version": "1.0.0",
+  "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-feZXBI/content/trajectory.xtc",
+  "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-feZXBI/content/receipt.json",
+  "bytes": 3683576,
+  "sha256": "07958cbbf451be8a2084618d97fe12bf1bf19929c24529afe4acb09b2bd053f6",
+  "createdAt": "2026-09-23T18:52:52.034Z",
+  "durability": "independent-of-kernel-and-handle",
+  "source": {
+    "exchange": {
+      "kind": "linked-science-fetch-exchange",
+      "version": "3.2.0",
+      "index": 1,
+      "status": "success",
+      "requestedUrl": "https://mdposit.mddbr.eu/api/rest/current/projects/MD-A007YH/files/trajectory.xtc",
+      "finalUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/trajectory.xtc",
+      "redirected": true,
+      "method": "GET",
+      "httpStatus": 200,
+      "requestSha256": "6b2cf11398c558793fb5d4e85f62bf14eb8896ff04a83d9d8d378a7d59100c4c",
+      "responseSha256": "07958cbbf451be8a2084618d97fe12bf1bf19929c24529afe4acb09b2bd053f6",
+      "bytes": 3683576,
+      "mediaType": "application/octet-stream",
+      "headers": {
+        "content-length": "3683576",
+        "content-type": "application/octet-stream"
+      },
+      "responseHeadersTruncated": false,
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "responseUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/trajectory.xtc",
+        "links": [],
+        "profiles": [],
+        "profileDeclarations": [],
+        "malformedLinkHeader": false,
+        "truncated": false,
+        "trust": "untrusted-candidate-evidence"
+      },
+      "startedAt": "2026-09-23T18:52:49.923Z",
+      "finishedAt": "2026-09-23T18:52:51.415Z",
+      "retries": 0
+    },
+    "traversalReceipt": {
+      "kind": "linked-science-traversal-receipt",
+      "version": "3.2.0",
+      "authority": {
+        "class": "anonymous-linked-data-read",
+        "version": "1.0.0",
+        "anonymous": true,
+        "destinationPolicy": "dynamic-anonymous-http-https",
+        "endpointAllowlist": false,
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "methods": [
+          "GET",
+          "HEAD",
+          "SPARQL_POST"
+        ],
+        "queryTypes": [
+          "SELECT",
+          "ASK",
+          "CONSTRUCT",
+          "DESCRIBE"
+        ],
+        "effects": [
+          "public-resource-read",
+          "rdf-document-read",
+          "sparql-read",
+          "linked-data-dereference",
+          "local-communica-federation"
+        ],
+        "prohibited": [
+          "ambient-identity",
+          "url-credentials",
+          "sparql-update",
+          "arbitrary-post",
+          "filesystem-write",
+          "authority-expansion",
+          "automatic-context-promotion"
+        ]
+      },
+      "status": "complete",
+      "traversalId": "traversal-066c5f1d685513b67f6b9991",
+      "startedAt": "2026-09-23T18:52:49.923Z",
+      "finishedAt": "2026-09-23T18:52:51.415Z",
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 3600000,
+        "maxRequestMs": 3600000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 1073741824,
+        "maxTotalBytes": 1073741824,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 2,
+        "bytes": 3683576,
+        "retries": 0
+      },
+      "exchanges": [
+        {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://mdposit.mddbr.eu/api/rest/current/projects/MD-A007YH/files/trajectory.xtc",
+          "finalUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/trajectory.xtc",
+          "redirected": true,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "6b2cf11398c558793fb5d4e85f62bf14eb8896ff04a83d9d8d378a7d59100c4c",
+          "responseSha256": "07958cbbf451be8a2084618d97fe12bf1bf19929c24529afe4acb09b2bd053f6",
+          "bytes": 3683576,
+          "mediaType": "application/octet-stream",
+          "headers": {
+            "content-length": "3683576",
+            "content-type": "application/octet-stream"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/trajectory.xtc",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-23T18:52:49.923Z",
+          "finishedAt": "2026-09-23T18:52:51.415Z",
+          "retries": 0
+        }
+      ],
+      "progress": {
+        "bytes": 3683576,
+        "totalBytes": 3683576,
+        "state": "receiving",
+        "capacity": {
+          "freeBytes": 652952461312,
+          "reserveBytes": 268435456,
+          "retainedBytes": 173213,
+          "availableBytes": 652684025856
+        },
+        "elapsedMs": 1492,
+        "maxBytes": 1073741824
+      },
+      "redirectEvidence": "requested-final-and-redirected-flag"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "cwd": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "project": {
+    "id": "@linked-science/runtime",
+    "role": "authoritative-production-implementation",
+    "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+  },
+  "storage": {
+    "kind": "linked-science-resource-storage",
+    "storage": "disk",
+    "durability": "kernel-epoch",
+    "maxReadBytes": 1048576,
+    "reserveBytes": 268435456,
+    "maxStorageBytes": null,
+    "capacityPolicy": "available-filesystem-minus-reserve-and-shared-quota",
+    "maxConcurrentTransfers": 4,
+    "materialization": true
+  },
+  "capacity": {
+    "freeBytes": 652952645632,
+    "reserveBytes": 268435456,
+    "retainedBytes": 0,
+    "availableBytes": 652684210176
+  }
+}

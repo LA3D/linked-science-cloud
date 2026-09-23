@@ -1,0 +1,82 @@
+{
+  "state": "running",
+  "status": {
+    "kind": "linked-science-traversal-receipt",
+    "version": "3.2.0",
+    "authority": {
+      "class": "anonymous-linked-data-read",
+      "version": "1.0.0",
+      "anonymous": true,
+      "destinationPolicy": "dynamic-anonymous-http-https",
+      "endpointAllowlist": false,
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "methods": [
+        "GET",
+        "HEAD",
+        "SPARQL_POST"
+      ],
+      "queryTypes": [
+        "SELECT",
+        "ASK",
+        "CONSTRUCT",
+        "DESCRIBE"
+      ],
+      "effects": [
+        "public-resource-read",
+        "rdf-document-read",
+        "sparql-read",
+        "linked-data-dereference",
+        "local-communica-federation"
+      ],
+      "prohibited": [
+        "ambient-identity",
+        "url-credentials",
+        "sparql-update",
+        "arbitrary-post",
+        "filesystem-write",
+        "authority-expansion",
+        "automatic-context-promotion"
+      ]
+    },
+    "status": "active",
+    "traversalId": "traversal-d71d7a3d9dff3a4997f68e89",
+    "startedAt": "2026-09-23T18:52:47.906Z",
+    "observedAt": "2026-09-23T18:52:48.910Z",
+    "budgets": {
+      "maxQueryChars": 16384,
+      "maxRequestBodyBytes": 64000,
+      "maxDurationMs": 3600000,
+      "maxRequestMs": 3600000,
+      "maxRequests": 1,
+      "maxFanOut": 8,
+      "maxConcurrency": 1,
+      "maxResponseBytes": 1073741824,
+      "maxTotalBytes": 1073741824,
+      "maxResultItems": 1000
+    },
+    "usage": {
+      "requests": 1,
+      "fanOut": 1,
+      "bytes": 173213,
+      "retries": 0
+    },
+    "exchanges": [],
+    "progress": {
+      "bytes": 173213,
+      "totalBytes": 173213,
+      "state": "receiving",
+      "capacity": {
+        "freeBytes": 652952653824,
+        "reserveBytes": 268435456,
+        "retainedBytes": 0,
+        "availableBytes": 652684218368
+      },
+      "elapsedMs": 1004,
+      "maxBytes": 1073741824
+    },
+    "redirectEvidence": "requested-final-and-redirected-flag"
+  }
+}

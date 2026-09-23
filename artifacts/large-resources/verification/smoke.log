@@ -1,0 +1,5 @@
+
+> @linked-science/runtime@0.0.0 smoke
+> node scripts/smoke.mjs
+
+synthetic Communica SELECT passed: Alex

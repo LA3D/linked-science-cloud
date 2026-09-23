@@ -1,0 +1,59 @@
+
+> @linked-science/runtime@0.0.0 linked-science:verify
+> node scripts/validate-repository-boundaries.mjs && npm run cleanroom:check && node scripts/cleanroom-linked-science-synthetic.mjs
+
+{
+  "status": "passed",
+  "root": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "project": {
+    "packageName": "@linked-science/runtime",
+    "repositoryRole": "authoritative-production-implementation",
+    "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs",
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    }
+  },
+  "productionFiles": 78
+}
+
+> @linked-science/runtime@0.0.0 cleanroom:check
+> npm --prefix packages/cleanroom-node-repl run check
+
+
+> @linked-science/cleanroom-node-repl@0.6.0 check
+> node --check src/cleanroom-mcp.mjs && node --check src/repl-kernel-child.mjs && node --check src/peek-runtime.mjs && node --check src/result-spool.mjs && node --check src/mediated-traversal.mjs && node --check src/private-linked-science-traversal.mjs && node -e "Promise.all([import('./src/cleanroom-mcp.mjs'), import('./src/peek-runtime.mjs'), import('./src/result-spool.mjs'), import('./src/mediated-traversal.mjs'), import('./src/private-linked-science-traversal.mjs')]).then(([mcp, peek, spool, traversal, privateTraversal]) => { if (typeof mcp.createRequestHandler !== 'function' || typeof peek.PeekRegistry !== 'function' || typeof spool.ResultSpoolRegistry !== 'function' || typeof traversal.MediatedTraversalBroker !== 'function' || typeof privateTraversal.hasLinkedSciencePrivateTraversal !== 'function') process.exit(1) })" && node --check src/scientific-session-runtime.mjs && node --check src/scientific-session-service.mjs && node --check src/scientific-session-client.mjs && node --check src/scientific-session-mcp.mjs && node --check src/scientific-session-server.mjs
+
+{
+  "ok": true,
+  "server": "cleanroom_node_repl",
+  "project": {
+    "id": "@linked-science/runtime",
+    "role": "authoritative-production-implementation"
+  },
+  "brokerPackage": "@linked-science/cleanroom-node-repl",
+  "tools": [
+    "js",
+    "js_reset",
+    "js_add_node_module_dir"
+  ],
+  "persistence": true,
+  "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+  "facadeVersion": "6.5.0",
+  "localSynthetic": true,
+  "reset": {
+    "bindingsCleared": true,
+    "facadeAutomaticallyRebuilt": true,
+    "rlmRebootstrapped": true,
+    "peekSurvived": true,
+    "oldHandles": "stale"
+  }
+}

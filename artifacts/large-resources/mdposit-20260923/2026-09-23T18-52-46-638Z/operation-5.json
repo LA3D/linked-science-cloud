@@ -1,0 +1,35 @@
+{
+  "state": "complete",
+  "status": {
+    "kind": "linked-science-resource-inspection",
+    "representation": "metadata",
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000002",
+      "type": "resource",
+      "epoch": "c218b1a4-ac93-47fd-b50a-c55d849fa7c3:mdposit-default-pair:1",
+      "label": "resource-response"
+    },
+    "ok": true,
+    "status": 200,
+    "statusText": "OK",
+    "url": "https://jsc.mddbr.eu/api/rest/current/projects/A0008/files/structure.pdb",
+    "redirected": true,
+    "headers": {
+      "content-length": "173213",
+      "content-type": "chemical/x-pdb"
+    },
+    "mediaType": "chemical/x-pdb",
+    "bytes": 173213,
+    "sha256": "00a81322dcb7be6c5392c1f2f5091f0ce82d8b78af837680c8f4484e955b619d",
+    "provenance": {
+      "operationId": "op-000002",
+      "payloadSha256": "00a81322dcb7be6c5392c1f2f5091f0ce82d8b78af837680c8f4484e955b619d",
+      "mediatedTraversal": true
+    },
+    "bounds": {
+      "bytes": 766,
+      "maxBytes": 32768
+    }
+  }
+}
