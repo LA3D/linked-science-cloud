@@ -13,13 +13,14 @@ async function registry() {
 }
 
 test('experiment result registry grades every run and every dossier', async () => {
-  const result = await validateExperimentResultRepository({ projectRoot, registry: await registry() });
+  const input = await registry();
+  const result = await validateExperimentResultRepository({ projectRoot, registry: input });
   assert.equal(result.status, 'passed');
-  assert.equal(result.runs, 67);
-  assert.equal(result.complete, 13);
-  assert.equal(result.partial, 43);
-  assert.equal(result.summaryOnly, 11);
-  assert.equal(result.experimentDocuments, 15);
+  assert.equal(result.runs, input.runs.length);
+  assert.equal(result.complete, input.runs.filter(run => run.durability === 'complete').length);
+  assert.equal(result.partial, input.runs.filter(run => run.durability === 'partial').length);
+  assert.equal(result.summaryOnly, input.runs.filter(run => run.durability === 'summary-only').length);
+  assert.equal(result.experimentDocuments, input.documents.length);
 });
 
 test('partial or summary-only evidence must identify what is missing', async () => {

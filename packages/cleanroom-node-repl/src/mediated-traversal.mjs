@@ -16,6 +16,8 @@ const IDENTITY_HEADERS = new Set([
   "x-api-key", "x-forwarded-for", "x-forwarded-host", "x-real-ip",
 ]);
 const SAFE_REQUEST_HEADERS = new Set([ "accept", "accept-profile", "content-type", "prefer", "user-agent" ]);
+// Identify the actual client without inheriting user identity or impersonating a browser.
+const DEFAULT_USER_AGENT = "LinkedScience/1.0";
 const SAFE_RESPONSE_HEADERS = new Set([
   "content-encoding", "content-length", "content-profile", "content-type", "etag", "last-modified", "link", "location",
   "preference-applied", "vary",
@@ -100,6 +102,7 @@ function normalizeHeaders(input = {}) {
     result.set(name, value);
   }
   if (!result.has("accept")) result.set("accept", DEFAULT_ACCEPT);
+  if (!result.has("user-agent")) result.set("user-agent", DEFAULT_USER_AGENT);
   result.set("accept-encoding", "identity");
   return result;
 }

@@ -21,6 +21,27 @@ async function localServer(handler) {
   return { url: `http://127.0.0.1:${address.port}`, close: () => new Promise(resolve => server.close(resolve)) };
 }
 
+test("identifies anonymous broker requests with an honest product User-Agent", async () => {
+  const seen = [];
+  const broker = new MediatedTraversalBroker({ fetchImpl: async (_url, options) => {
+    seen.push(options);
+    return new Response('{}', { status: options.headers.has('user-agent') ? 200 : 403,
+      headers: { 'content-type': 'application/json' } });
+  } });
+  for (const headers of [{ authorization: 'secret', cookie: 'private=1' }, { 'user-agent': 'LinkedScience-Diagnostics/1.0' }]) {
+    const traversal = begin(broker);
+    const result = await broker.request({ traversalId: traversal.traversalId,
+      request: { url: 'https://example.test/prediction', headers } }, owner);
+    assert.equal(result.exchange.httpStatus, 200);
+    assert.equal(result.exchange.retries, 0);
+  }
+  assert.equal(seen[0].headers.get('user-agent'), 'LinkedScience/1.0');
+  assert.equal(seen[1].headers.get('user-agent'), 'LinkedScience-Diagnostics/1.0');
+  assert.equal(seen[0].headers.has('authorization'), false);
+  assert.equal(seen[0].headers.has('cookie'), false);
+  assert.equal(seen[0].credentials, 'omit');
+});
+
 test("attests one immutable anonymous-read authority over standard Fetch", () => {
   const capability = new MediatedTraversalBroker().capabilities();
   assert.equal(capability.kind, "linked-science-anonymous-read-mediator");

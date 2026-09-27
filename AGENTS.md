@@ -1,6 +1,6 @@
 # Agent guide
 
-This repository is the authoritative production implementation of the Linked Science persistent RDF/Communica runtime and its project-owned clean-room REPL broker. The authoritative saved checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Begin with the [README](README.md), then use the [context router](docs/agent/context-routing.md) to load only the material needed for the current task.
+This repository is the authoritative production implementation of the Linked Science persistent RDF/Communica runtime and its project-owned clean-room REPL broker. The selected installation checkout owns the runtime; derive its root from the bootstrap source location and verify the mounted broker identity. Do not copy another workstation’s checkout path. Begin with the [README](README.md), then use the [context router](docs/agent/context-routing.md) to load only the material needed for the current task.
 
 ## Authoritative project boundary
 

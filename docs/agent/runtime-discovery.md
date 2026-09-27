@@ -23,7 +23,7 @@ Use the selected checkout's absolute path, not a path copied from a different wo
 For configuration, fresh-agent evaluation, suspected wrong runtime or an activation claim, observe:
 
 - server `cleanroom_node_repl` and exactly `js`, `js_reset`, `js_add_node_module_dir`;
-- `nodeRepl.cwd` equal to the authoritative checkout;
+- `nodeRepl.cwd` equal to the selected, validated checkout;
 - project ID `@linked-science/runtime`, role `authoritative-production-implementation`, broker package `@linked-science/cleanroom-node-repl`;
 - one binding surviving a second call, and structured `nodeRepl.rlm.capabilities()`; and
 - the requested effect actually available through the private mediator.

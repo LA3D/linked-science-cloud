@@ -116,4 +116,4 @@ Report installation complete only after the offline check **and** these mounted 
 | Sentinel missing in second call | Check whether calls used the same connection and whether reset/process loss occurred; do not claim cross-call persistence |
 | Optional engine/provider unavailable | Report that capability separately; do not treat installation as proof of reasoning or model recursion |
 
-The broader test suite has a known assertion tied to an original `codex-repl` checkout path. That is not a reason to copy another machine's paths into configuration. Keep that failure separate from the actual offline/live activation checks. See [verification](verification.md) for contributor checks and [runtime discovery](runtime-discovery.md) for lifetime/recovery details.
+Configuration checks derive their expected entrypoint from the selected checkout. See [verification](verification.md) for contributor checks and [runtime discovery](runtime-discovery.md) for lifetime/recovery details.

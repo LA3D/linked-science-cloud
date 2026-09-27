@@ -6,7 +6,7 @@
     "linkedScience",
     "ls"
   ],
-  "bootstrap": "var { bootstrapLinkedScience } = await import('file:///Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/lib/cleanroom-linked-science-bootstrap.mjs'); await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl, projectRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl', moduleRoot: '/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules' })",
+  "bootstrap": "var { bootstrapLinkedScience } = await import('file:///ABSOLUTE/CHECKOUT/lib/cleanroom-linked-science-bootstrap.mjs'); await bootstrapLinkedScience({ host: globalThis, cleanroom: nodeRepl })",
   "bootstrapEnvironment": {
     "mcp": "cleanroom_node_repl",
     "project": {
@@ -25,8 +25,8 @@
         "js_add_node_module_dir"
       ]
     },
-    "projectRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl",
-    "moduleRoot": "/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl/node_modules",
+    "projectRoot": "ABSOLUTE/CHECKOUT (derived and validated from the bootstrap source location)",
+    "moduleRoot": "ABSOLUTE/CHECKOUT/node_modules",
     "rlmContext": "linked-science:runtime",
     "orientationOwner": "cleanroom-broker",
     "resultStorage": {

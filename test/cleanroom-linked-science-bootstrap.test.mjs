@@ -65,8 +65,8 @@ test('active project config registers only the consumer-owned clean-room MCP wit
   const config = await readFile(new URL('../.codex/config.toml', import.meta.url), 'utf8');
   const disabled = await readFile(new URL('../.codex/config.restricted-profile.toml.disabled', import.meta.url), 'utf8');
   assert.match(config, /^\[mcp_servers\.cleanroom_node_repl\]/u);
-  assert.match(config, new RegExp(`cwd = "${LINKED_SCIENCE_PROJECT_ROOT}"`));
-  assert.match(config, /codex-repl\/packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u);
+  assert.ok(config.includes(`cwd = ${JSON.stringify(LINKED_SCIENCE_PROJECT_ROOT)}`));
+  assert.ok(config.includes(JSON.stringify(`${LINKED_SCIENCE_PROJECT_ROOT}/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs`)));
   assert.doesNotMatch(config, /node-repl-network-probe/u);
   assert.doesNotMatch(config, /default_permissions|network_proxy|mcp_servers\.node_repl/u);
   assert.match(disabled, /default_permissions = "science-tools-linked-data"/u);
@@ -87,7 +87,7 @@ test('bootstrap validates roots and declared dependency resolution before instal
   assert.equal(inspected.broker.packageName, '@linked-science/cleanroom-node-repl');
   assert.equal(inspected.broker.mcpServer, 'cleanroom_node_repl');
   assert.deepEqual(inspected.broker.tools, [ 'js', 'js_reset', 'js_add_node_module_dir' ]);
-  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'sparqlalgebrajs', 'sparqljs' ]);
+  assert.deepEqual(Object.keys(inspected.dependencies), [ '@comunica/query-sparql', 'http-link-header', 'n3', 'rdfxml-streaming-parser', 'sparqlalgebrajs', 'sparqljs' ]);
   assert.equal(Object.values(inspected.dependencies).every(url => url.startsWith('file:') && url.includes('/node_modules/')), true);
 
   const host = {};

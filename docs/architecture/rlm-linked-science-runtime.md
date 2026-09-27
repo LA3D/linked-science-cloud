@@ -27,6 +27,8 @@ Each workspace has one registry of resources, graph evidence and typed results. 
 
 Release cannot erase JavaScript copies already obtained by the caller. Native query work already running may unwind after invalidation; physical execution limits remain the final bound. No stale handle is silently reacquired or restored.
 
+Resource parsing supports Turtle, N-Triples, N-Quads, TriG and RDF/XML (`application/rdf+xml`). RDF/XML parses retained bytes with the resource URL as its base IRI and preserves native RDF/JS terms. DTD/DOCTYPE declarations are rejected, with no external entity resolution or hidden retrieval. A format option selects a parser; it does not convert a serialization.
+
 ## Native RDF/JS
 
 `rdf.source(handle)` returns a read-only RDF/JS Source supporting `match` and `countQuads`. It supports both resident N3 stores and broker-stored graph results. The view exposes neither a mutable store nor transport authority and rejects new reads after release/disposal.

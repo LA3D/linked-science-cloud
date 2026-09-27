@@ -5,7 +5,7 @@ description: Use the persistent Linked Science REPL for public resources, native
 
 # Linked Data REPL
 
-Use the project `cleanroom_node_repl` for scientific JavaScript work. Large resources, graphs and complete results stay outside the prompt; native RDF/JS and Comunica operations select useful evidence. The authoritative checkout is `/Users/cvardema/dev/git/LA3D/linked-science-cloud/codex-repl`. Its broker and facade are distinct from the sibling experimental probe and the bundled generic REPL.
+Use the project `cleanroom_node_repl` for scientific JavaScript work. Large resources, graphs and complete results stay outside the prompt; native RDF/JS and Comunica operations select useful evidence. Use the selected installation checkout, whose root is derived from the bootstrap source location and checked against the mounted broker identity. Its broker and facade are distinct from the sibling experimental probe and the bundled generic REPL.
 
 ## Start and reuse
 
