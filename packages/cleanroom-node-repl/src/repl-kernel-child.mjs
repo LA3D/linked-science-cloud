@@ -5,6 +5,7 @@ import { PassThrough } from "node:stream";
 import { inspect } from "node:util";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { resolve, sep } from "node:path";
+import { createHandoffRuntime } from './handoff-runtime.mjs';
 import { createScientificSessionRuntime } from './scientific-session-runtime.mjs';
 
 import {
@@ -147,6 +148,7 @@ function rlmCapabilities() {
       maxContextBytes: MAX_CONTEXT_BYTES,
       operations: Object.freeze(["registerContext", "context", "inspect"]),
     }),
+    handoff: Object.freeze({interface: "nodeRepl.rlm.handoff", availability: "await handoff.capabilities()", executionOwner: "Codex", continuation: "named-versioned-replayable"}),
     recursion: Object.freeze({
       available: recursionAvailable,
       interface: "nodeRepl.rlm.query",
@@ -162,7 +164,11 @@ function rlmCapabilities() {
   });
 }
 
+const scientificSession = createScientificSessionRuntime({control: args => hostCallStrict('scientificSession.control', args)});
+const handoff = createHandoffRuntime({call: (operation,args) => hostCallStrict('handoff.control',{operation,args}),scientificSession});
+
 const rlm = Object.freeze({
+  handoff,
   get mode() {
     return process.env.CLEANROOM_RLM_PROVIDER === "configured" ? "recursive" : "external-context";
   },
@@ -204,6 +210,7 @@ const rlm = Object.freeze({
 });
 
 const peek = Object.freeze({
+  durable: (activity, options = {}) => handoff.map(activity, options),
   begin: (contextId, options = {}) => hostCall("peek.begin", { contextId, options }),
   current: (contextId) => hostCall("peek.current", { contextId }),
   edit: (contextId, edits) => hostCall("peek.edit", { contextId, edits }),
@@ -277,7 +284,7 @@ function createKernel() {
     tmpDir: { enumerable: true, value: process.env.TMPDIR ?? "/tmp" },
     requestMeta: { enumerable: true, get: () => currentRequestMeta },
     rlm: { enumerable: true, value: rlm },
-    scientificSession: { enumerable: true, value: createScientificSessionRuntime({control: args => hostCallStrict('scientificSession.control', args)}) },
+    scientificSession: { enumerable: true, value: scientificSession },
     peek: { enumerable: true, value: peek },
   });
   Object.defineProperties(nodeRepl, {

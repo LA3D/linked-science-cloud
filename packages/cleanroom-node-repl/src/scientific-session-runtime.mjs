@@ -220,6 +220,7 @@ export function createScientificSessionRuntime({control}) {
     create:args=>control({operation:'create',args}),
     attach:args=>control({operation:'attach',args}),
     grant:args=>control({operation:'grant',args}),
+    revoke:args=>control({operation:'revoke',args}),
     status:()=>control({operation:'status',args:{}}),
     describe:object=>request('describe',{object}),
     query:(object,sparql)=>request('query',{object,sparql}),

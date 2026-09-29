@@ -29,3 +29,7 @@ Late queries/derivations cannot publish results into the disposed workspace. Alr
 Source graphs preserve ordered duplicate-aware evidence; RDF query stores use set semantics. Solution sequences preserve bag semantics. Queries never acquire a successful handle for an operationally truncated result; bounded pages remain independent projections. Full scientific data stays outside the prompt.
 
 Kernel reset removes bindings, workspaces and epoch-owned storage. The broker's source-orientation map may survive but cannot restore data or authorize reacquisition. See [orientation/reset](orientation-cache-and-reset.md) and [runtime discovery](../agent/runtime-discovery.md).
+
+## Explicit durable snapshots
+
+With a configured private host store, the [durable RLM handoff](durable-rlm-handoff.md) saves supported RDF/JSON snapshots separately from live handles and epoch-scoped result spools. Explicit selected-activity loading creates fresh handles; old handles stay stale. No kernel reset implicitly saves or reloads data.

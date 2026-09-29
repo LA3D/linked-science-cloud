@@ -1,0 +1,22 @@
+✔ full RDF/JSON selection, nested synthesis, completed eval boundaries, restart and composition (1457.186041ms)
+✔ pending discovery survives failed eval and truncated output; same-evaluation dispatch rejected (353.460667ms)
+✔ named graph terms, bindings bags, source release, workspace reset, stale handles and code mismatch (708.533625ms)
+✔ existing scratch-worker scientificSession bridge reads saved copies and revokes request grant (1362.159375ms)
+✔ restored JSON uses fresh epoch-bound handles and bounded projections (692.753583ms)
+✔ durable acceptance, revision CAS, retries, nested identities and uncertain dispatch (13.971084ms)
+✔ transaction crash injection before/after prepare, dispatch, accept and advance commit (6.497667ms)
+✔ scope isolation, explicitly selected shared references, pins, removal and cancellation (6.285125ms)
+✔ bounds, code mismatches, retention and protocol depth derived from parent identity (4.693875ms)
+✔ JSON and RDF validation reject coercion, getters, malformed terms and format corruption (4.11225ms)
+✔ root confinement, quotas and concurrent independent connections accept only once (11.767709ms)
+✔ real host SIGKILL around prepare/dispatch/accept/advance recovers atomic durable state (925.801833ms)
+✔ cancelling an ancestor preserves already accepted descendant receipts (6.4515ms)
+✔ reopening an activity excludes previously selected historical shared versions (3.884416ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4707.292125

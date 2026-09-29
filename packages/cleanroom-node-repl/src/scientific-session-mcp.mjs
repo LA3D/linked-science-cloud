@@ -29,6 +29,7 @@ export class ScientificSessionMcpAdapter {
     if(!this.client)throw Object.assign(new Error('Create or attach to a scientific session first'),{code:'SESSION_UNAVAILABLE'});
     if(operation==='status')return this.client.status();
     if(operation==='grant')return this.client.grant(args);
+    if(operation==='revoke')return this.client.revoke(args);
     if(operation==='request')return this.client.request(args.operation,args.args);
     throw Object.assign(new Error('Unsupported session control'),{code:'SESSION_OPERATION'});
   }

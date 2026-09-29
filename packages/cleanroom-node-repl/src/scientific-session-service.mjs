@@ -114,6 +114,13 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
     const { sourceObjects, ...publicGrant } = grant;
     return publicGrant;
   }
+  function revokeGrant(session, args) {
+    fields(args,['capability']);
+    if(typeof args.capability!=='string')throw fail('INVALID_ARGUMENT','Grant capability required');
+    const revoked=session.grants.delete(args.capability);
+    // Slots remain reserved: revocation never permits duplicate deposits.
+    return {revoked};
+  }
   async function handle(connection, method, args) {
     if (closing) throw fail('SERVICE_CLOSED', 'Service is shutting down');
     if (method === 'create') {
@@ -128,6 +135,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
       broker.sessionControl = async ({ operation, args: controlArgs = {} }) => {
         if (session.closed || closing) throw fail('SESSION_CLOSED', 'Session is closed');
         if (operation === 'grant') return issueGrant(session, controlArgs);
+        if (operation === 'revoke') return revokeGrant(session, controlArgs);
         if (operation === 'status') { fields(controlArgs, []); syncEpoch(session); return { sessionId: id, epoch: session.epoch, role: 'owner' }; }
         if (operation === 'closeSession') throw fail('REENTRANT_CONTROL', 'Close the session through an external owner connection');
         throw fail('FORBIDDEN', 'Unsupported owner kernel control operation');
@@ -166,6 +174,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
         if (typeof args.code !== 'string' || !positive(timeoutMs) || timeoutMs > requestTimeoutMs || !positive(maxOutputBytes) || maxOutputBytes > MAX_FRAME_BYTES / 4) throw fail('INVALID_ARGUMENT', 'Invalid execution bounds');
         try { return await session.broker.execute(args.code, { timeoutMs, maxOutputBytes, requestMeta }); } finally { syncEpoch(session); }
       }
+      if (method === 'revoke') return revokeGrant(session,args);
       if (method === 'grant') {
         return issueGrant(session, args);
       }

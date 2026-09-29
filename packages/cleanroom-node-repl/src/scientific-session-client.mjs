@@ -66,6 +66,7 @@ export async function connectScientificSession({ socketPath, requestTimeoutMs = 
     reset: () => call('reset'),
     addModuleDir: path => call('addModuleDir', { path }),
     grant: args => call('grant', args),
+    revoke: args => call('revoke', args),
     request: (operation, args = {}) => call('request', { operation, args }),
     status: () => call('status'),
     closeSession: () => call('closeSession'),

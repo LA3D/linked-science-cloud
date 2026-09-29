@@ -9,6 +9,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { PeekRegistry } from "./peek-runtime.mjs";
 import { MediatedTraversalBroker } from "./mediated-traversal.mjs";
+import { HandoffStore } from "./handoff-store.mjs";
 import { ResultSpoolRegistry } from "./result-spool.mjs";
 
 export const SERVER_NAME = "cleanroom-node-repl";
@@ -181,6 +182,7 @@ export class KernelBroker {
     traversalOptions,
     resultSpool,
     resultSpoolOptions,
+    handoffRoot = null, handoffOptions = {},
     bootstrapLinkedScience = true,
     sessionControl = null,
     reasoner, reasoningOptions,
@@ -196,6 +198,8 @@ export class KernelBroker {
     this.peek = new PeekRegistry({ policy: peekPolicy });
     this.traversal = traversalBroker ?? new MediatedTraversalBroker({ ...traversalOptions, resourceStorageOptions: { artifactRoot: resolve(this.cwd, "artifacts/resources"), ...traversalOptions?.resourceStorageOptions } });
     this.resultSpool = resultSpool ?? new ResultSpoolRegistry(resultSpoolOptions);
+    this.handoff = handoffRoot ? new HandoffStore({...handoffOptions,root:handoffRoot,deniedRoots:[this.cwd,KERNEL_ROOT]}) : null;
+    this.evaluation = 0;
     this.moduleRoots = [];
     this.child = null;
     this.ready = null;
@@ -260,6 +264,7 @@ export class KernelBroker {
       this.reasoningControllers.delete(child);
       this.traversal.abortOwner(owner, "kernel-exit");
       this.resultSpool.releaseOwner(owner);
+      this.handoff?.dropOwner(owner);
       this.traversal.releaseOwner(owner, "kernel-exit").catch(() => {});
       if (this.child === child) this.child = null;
     });
@@ -303,6 +308,12 @@ export class KernelBroker {
       if (method === 'scientificSession.control') {
         if (!this.sessionControl) throw Object.assign(new Error('Scientific session adapter is not connected'), {code:'SESSION_UNAVAILABLE'});
         value = await this.sessionControl(args);
+      }
+      else if (method === 'handoff.control') {
+        if (!this.handoff) {
+          if(args.operation==='capabilities')value={available:false,reasonCode:'HANDOFF_STORAGE_UNCONFIGURED'};
+          else throw Object.assign(new Error('Host must configure a private durable handoffRoot'),{code:'HANDOFF_STORAGE_UNCONFIGURED'});
+        } else value=this.handoff.call(args.operation,args.args,{token:this.hostCapabilityToken,epoch:this.epoch,evaluation:this.evaluation});
       }
       else if (method === "reasoning.capabilities") value = await this.reasoner.capabilities();
       else if (method === "reasoning.run") {
@@ -427,6 +438,7 @@ export class KernelBroker {
 
   execute(code, { timeoutMs = DEFAULT_TIMEOUT_MS, maxOutputBytes = DEFAULT_MAX_OUTPUT_BYTES, requestMeta = {} } = {}) {
     return this._enqueue(async () => {
+      this.evaluation++;
       let timer;
       const timeout = new Promise((_resolve, reject) => {
         timer = setTimeout(() => reject(Object.assign(new Error("JavaScript execution timed out; the kernel was replaced"), { code: "KERNEL_TIMEOUT" })), timeoutMs);
@@ -501,7 +513,7 @@ export class KernelBroker {
 
   close() {
     return this._terminate().finally(async () => {
-      try { await this.reasoner.close?.(); } finally { this.resultSpool.close(); }
+      try { await this.reasoner.close?.(); } finally { this.resultSpool.close(); this.handoff?.close(); }
     });
   }
 }
