@@ -50,8 +50,8 @@ function scopedArgs(operation, args, grant) {
  * session: KernelBroker cannot safely cancel one evaluation while preserving its
  * kernel. A worker timing out before dispatch is detached without killing the session.
  */
-export async function startScientificSessionService({ socketPath, brokerFactory = () => new KernelBroker({ provider: null }), idleTtlMs = 300_000, requestTimeoutMs = 30_000, maxPending = 32, maxSessions = 32, maxConnections = 64, maxGrants = 128, maxGrantObjects = 1024 } = {}) {
-  if (typeof socketPath !== 'string' || !socketPath.startsWith('/') || ![idleTtlMs, requestTimeoutMs, maxPending, maxSessions, maxConnections, maxGrants, maxGrantObjects].every(positive)) throw fail('INVALID_ARGUMENT', 'Invalid service options');
+export async function startScientificSessionService({ socketPath, brokerFactory = () => new KernelBroker({ provider: null }), idleTtlMs = 86_400_000, requestTimeoutMs = 30_000, maxPending = 32, maxSessions = 32, maxConnections = 64, maxGrants = 128, maxGrantObjects = 1024, maxGrantTtlMs = 300_000 } = {}) {
+  if (typeof socketPath !== 'string' || !socketPath.startsWith('/') || ![idleTtlMs, requestTimeoutMs, maxPending, maxSessions, maxConnections, maxGrants, maxGrantObjects, maxGrantTtlMs].every(positive)) throw fail('INVALID_ARGUMENT', 'Invalid service options');
   const directory = dirname(socketPath);
   const metadata = await lstat(directory);
   if (!metadata.isDirectory() || metadata.isSymbolicLink() || metadata.uid !== process.getuid() || (metadata.mode & 0o777) !== 0o700) throw fail('SOCKET_DIRECTORY', 'Socket directory must be user-owned and mode 0700');
@@ -73,6 +73,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
     session.closing.finally(() => cleanups.delete(session.closing)).catch(() => {});
     return session.closing;
   }
+  const kernelAlive = session => Boolean(session.broker.child && !session.broker.child.killed && session.broker.child.exitCode == null && session.broker.child.signalCode == null);
   function syncEpoch(session) {
     if (session.broker.epoch !== session.epoch || !session.broker.child || session.broker.child.killed || session.broker.child.exitCode != null || session.broker.child.signalCode != null) {
       session.grants.clear();
@@ -102,7 +103,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
     syncEpoch(session);
     fields(args, ['objects', 'operations', 'ttlMs', 'outputSlot', 'jsonPaths']);
     const { objects, operations: requested, ttlMs = 60_000, outputSlot, jsonPaths } = args;
-    if (!Array.isArray(objects) || objects.length > Math.min(128, maxGrantObjects) || !objects.every(name) || !Array.isArray(requested) || !requested.length || requested.length > operations.size || !requested.every(op => operations.has(op)) || !positive(ttlMs) || ttlMs > idleTtlMs || (outputSlot !== undefined && !name(outputSlot)) || (requested.some(op => ['deposit', 'result'].includes(op)) && !outputSlot)) throw fail('INVALID_ARGUMENT', 'Invalid grant scope or TTL');
+    if (!Array.isArray(objects) || objects.length > Math.min(128, maxGrantObjects) || !objects.every(name) || !Array.isArray(requested) || !requested.length || requested.length > operations.size || !requested.every(op => operations.has(op)) || !positive(ttlMs) || ttlMs > maxGrantTtlMs || (outputSlot !== undefined && !name(outputSlot)) || (requested.some(op => ['deposit', 'result'].includes(op)) && !outputSlot)) throw fail('INVALID_ARGUMENT', 'Invalid grant scope or TTL');
     if(jsonPaths!==undefined&&(!object(jsonPaths)||Object.entries(jsonPaths).some(([id,paths])=>!objects.includes(id)||!Array.isArray(paths)||!paths.length||paths.length>32||!paths.every(validJsonPath))))throw fail('INVALID_ARGUMENT','Invalid JSON path scope');
     for (const [key, grant] of session.grants) if (grant.expiresAt <= Date.now()) session.grants.delete(key);
     if (session.grants.size >= maxGrants) throw fail('CAPACITY', 'Grant capacity reached');
@@ -131,12 +132,12 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
       if (sessions.has(id)) throw fail('SESSION_EXISTS', 'Session id is already in use');
       if (sessions.size >= maxSessions) throw fail('CAPACITY', 'Session capacity reached');
       const broker = brokerFactory({ sessionId: id });
-      const session = { id, broker, capability: token(), grants: new Map(), slots: new Set(), epoch: broker.epoch, lastUsed: Date.now(), queue: Promise.resolve(), busy: 0, closed: false };
+      const session = { id, instanceId: randomUUID(), broker, capability: token(), grants: new Map(), slots: new Set(), epoch: broker.epoch, lastUsed: Date.now(), queue: Promise.resolve(), busy: 0, closed: false };
       broker.sessionControl = async ({ operation, args: controlArgs = {} }) => {
         if (session.closed || closing) throw fail('SESSION_CLOSED', 'Session is closed');
         if (operation === 'grant') return issueGrant(session, controlArgs);
         if (operation === 'revoke') return revokeGrant(session, controlArgs);
-        if (operation === 'status') { fields(controlArgs, []); syncEpoch(session); return { sessionId: id, epoch: session.epoch, role: 'owner' }; }
+        if (operation === 'status') { fields(controlArgs, []); syncEpoch(session); return { sessionId: id, instanceId: session.instanceId, kernelAlive: kernelAlive(session), epoch: session.epoch, role: 'owner' }; }
         if (operation === 'closeSession') throw fail('REENTRANT_CONTROL', 'Close the session through an external owner connection');
         throw fail('FORBIDDEN', 'Unsupported owner kernel control operation');
       };
@@ -145,7 +146,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
       try {
         await serialized(session, () => broker.execute('void 0', { timeoutMs: requestTimeoutMs, maxOutputBytes: 1024 }));
         session.epoch = broker.epoch;
-        return { sessionId: id, capability: session.capability, epoch: session.epoch, role: 'owner' };
+        return { sessionId: id, instanceId: session.instanceId, kernelAlive: kernelAlive(session), capability: session.capability, epoch: session.epoch, role: 'owner' };
       } catch (error) { await closeSession(session); throw error; }
     }
     if (method === 'attach') {
@@ -158,12 +159,12 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
       if (args.capability !== session.capability && (!grant || grant.expiresAt <= Date.now() || grant.epoch !== session.epoch)) throw fail('UNAUTHORIZED', 'Invalid session capability');
       connection.auth = { session, ...(grant ? { grant } : {}) };
       session.lastUsed = Date.now();
-      return { sessionId: session.id, epoch: session.epoch, role: grant ? 'worker' : 'owner' };
+      return { sessionId: session.id, instanceId: session.instanceId, kernelAlive: kernelAlive(session), epoch: session.epoch, role: grant ? 'worker' : 'owner' };
     }
     const session = authorize(connection, !['request', 'status'].includes(method));
     return serialized(session, async () => {
       authorize(connection, !['request', 'status'].includes(method));
-      if (method === 'status') { fields(args, []); return { sessionId: session.id, epoch: session.epoch, role: connection.auth.grant ? 'worker' : 'owner' }; }
+      if (method === 'status') { fields(args, []); return { sessionId: session.id, instanceId: session.instanceId, kernelAlive: kernelAlive(session), epoch: session.epoch, role: connection.auth.grant ? 'worker' : 'owner' }; }
       if (method === 'closeSession') { fields(args, []); await closeSession(session); return { closed: true }; }
       if (method === 'reset') { fields(args, []); session.grants.clear(); session.slots.clear(); const result = await session.broker.reset(); session.epoch = session.broker.epoch; return result; }
       if (method === 'addModuleDir') { fields(args, ['path']); return session.broker.addModuleDir(args.path); }
@@ -229,7 +230,11 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
     const connection = { socket, auth: null, buffer: Buffer.alloc(0), stopped: false, pending: 0, lastId: 0, queue: Promise.resolve() };
     connections.add(connection);
     socket.on('error', () => {});
-    socket.on('close', () => { connections.delete(connection); });
+    socket.on('close', () => {
+      connections.delete(connection);
+      // A detached owner's grace starts at disconnect, not its last evaluation.
+      if (connection.auth && !connection.auth.grant) connection.auth.session.lastUsed = Date.now();
+    });
     function reply(value) {
       let line = JSON.stringify(value);
       if (Buffer.byteLength(line) > MAX_FRAME_BYTES) line = JSON.stringify({ id: value.id, error: { code: 'FRAME_TOO_LARGE', message: 'Response exceeds frame limit' } });
@@ -277,7 +282,12 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
   });
   await new Promise((done, reject) => { server.once('error', reject); server.listen(socketPath, () => { server.off('error', reject); done(); }); });
   try { await chmod(socketPath, 0o600); socketIdentity = await lstat(socketPath); } catch (error) { server.close(); throw error; }
-  const sweep = setInterval(() => { for (const session of sessions.values()) if (!session.busy && Date.now() - session.lastUsed >= idleTtlMs) closeSession(session).catch(() => {}); }, Math.min(idleTtlMs, 1000));
+  const sweep = setInterval(() => {
+    for (const session of sessions.values()) {
+      const ownerConnected = [...connections].some(c => !c.socket.destroyed && !c.timedOut && c.auth?.session === session && !c.auth.grant);
+      if (!ownerConnected && !session.busy && Date.now() - session.lastUsed >= idleTtlMs) closeSession(session).catch(() => {});
+    }
+  }, Math.min(idleTtlMs, 1000));
   sweep.unref();
   return {
     socketPath,

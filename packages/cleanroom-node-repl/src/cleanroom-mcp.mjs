@@ -1,3 +1,4 @@
+import { sessionControlSchema, validSessionControl } from './scientific-session-recovery.mjs';
 import { createEyeronReasoner } from "./eyeron-reasoning.mjs";
 import { fork } from "node:child_process";
 import { randomBytes } from "node:crypto";
@@ -94,7 +95,8 @@ const TOOLS = Object.freeze([
       type: "object",
       required: ["code"],
       properties: {
-        code: { type: "string", description: "JavaScript code to execute with top-level await." },
+        code: { type: "string", description: "JavaScript code to execute with top-level await. Use an empty string for a host session-control request." },
+        session: { ...sessionControlSchema, description: "Host session control, available even when the scientific kernel is gone. Requires empty code. Reconnect never replays interrupted code; recover explicitly permits a new owner session; restore loads only bookmarked snapshots." },
         timeout_ms: { type: "integer", minimum: 1, maximum: MAX_TIMEOUT_MS },
         max_output_bytes: { type: "integer", minimum: 256, maximum: MAX_OUTPUT_BYTES, description: "Aggregate text-output budget for this evaluation. Defaults to 32768 bytes." },
         title: { type: "string", maxLength: 200 },
@@ -520,9 +522,10 @@ export class KernelBroker {
 
 function validateJsArguments(args) {
   if (!plainObject(args) || typeof args.code !== "string" || Buffer.byteLength(args.code, "utf8") > MAX_CODE_BYTES) return false;
-  if (Object.keys(args).some((key) => !["code", "timeout_ms", "max_output_bytes", "title"].includes(key))) return false;
+  if (Object.keys(args).some((key) => !["code", "timeout_ms", "max_output_bytes", "title", "session"].includes(key))) return false;
   if (args.timeout_ms !== undefined && (!Number.isInteger(args.timeout_ms) || args.timeout_ms < 1 || args.timeout_ms > MAX_TIMEOUT_MS)) return false;
   if (args.max_output_bytes !== undefined && (!Number.isInteger(args.max_output_bytes) || args.max_output_bytes < 256 || args.max_output_bytes > MAX_OUTPUT_BYTES)) return false;
+  if (args.session !== undefined && (args.code.trim() !== "" || !validSessionControl(args.session))) return false;
   return args.title === undefined || (typeof args.title === "string" && args.title.length <= 200);
 }
 
@@ -548,6 +551,15 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
     try {
       if (name === "js") {
         if (!validateJsArguments(args)) throw Object.assign(new Error("Invalid js arguments"), { code: "INVALID_ARGUMENT" });
+        if (args.session !== undefined) {
+          if (typeof broker.sessionCommand !== "function") throw Object.assign(new Error("This broker does not support shared-session control"), {code:"SESSION_UNAVAILABLE"});
+          const result = await broker.sessionCommand(args.session);
+          let text = JSON.stringify(result);
+          if (Buffer.byteLength(text) > (args.max_output_bytes ?? DEFAULT_MAX_OUTPUT_BYTES)) {
+            text = JSON.stringify({action:args.session.action,completed:true,outputOmitted:true,restored:result.restored??null,repair:"Inspect session status with a larger output budget; do not repeat the action."});
+          }
+          return rpcResult(request.id, {content:[{type:"text",text}]});
+        }
         return rpcResult(request.id, await broker.execute(args.code, {
           timeoutMs: args.timeout_ms ?? DEFAULT_TIMEOUT_MS,
           maxOutputBytes: args.max_output_bytes ?? DEFAULT_MAX_OUTPUT_BYTES,

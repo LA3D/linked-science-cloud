@@ -106,6 +106,8 @@ test('standalone launcher owns a session independently of client lifetime',async
   try {
     const ready=await Promise.race([once(lines,'line'),exit.then(()=>{throw Error('Launcher exited before readiness');}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Launcher readiness timed out')),5000);})]);
     assert.equal(JSON.parse(ready[0]).status,'ready');
+    assert.equal(JSON.parse(ready[0]).idleTtlMs,86400000);
+    assert.equal(JSON.parse(ready[0]).idlePolicy,'detached-only');
   }finally{clearTimeout(timer);lines.close();}
   client=await connectScientificSession({socketPath});
   const session=await client.create();
