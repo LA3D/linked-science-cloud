@@ -1,6 +1,6 @@
 # Durable RLM yield-and-resume implementation
 
-- **Status:** Resumed with explicit user authorization; implementation and final verification complete, awaiting coordinator review of the focused follow-up commit. No integration or live activation.
+- **Status:** Implementation, final verification and independent coordinator review complete. Local-main integration awaits explicit user approval after automatic approval review rejected the integration request. No integration or live activation.
 - **Authorization:** The user explicitly approved this general-purpose implementation and requested a separate implementation chat on 2026-09-29. Source/tests/docs and bounded local synthetic recovery artifacts are authorized. Configuration, installation, push, provider activation and restarting the active scientific session remain outside this task.
 - **Checkout:** `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`
 - **Branch/start:** `codex/durable-rlm-handoff`, starting at `485cb2786850e02414fcbfce9856f05d2a2cc51f` on local `main`.
@@ -49,7 +49,7 @@ Historical checkpoint: the user explicitly requested a graceful pause to close t
 
 ## Resumed review and final verification
 
-The user authorized resumption and independent review by the coordinating chat. The coordinator reported no remaining identified code blockers after reviewing fixes and independently rerunning targeted tests. Integration remains explicitly on hold until the coordinator inspects the final committed diff and releases that hold.
+The user authorized resumption and independent review by the coordinating chat. The coordinator reported no remaining identified code blockers after reviewing fixes and independently rerunning targeted tests. The coordinator completed review of `1d6a28583f4d2630dff8b34795155fc412f58c38` with no remaining identified code blockers. Automatic approval review then rejected the coordinator’s local-main integration request because it requires explicit user authorization. The coordinator will ask the user; integration remains on hold pending that explicit approval.
 
 Review findings resolved:
 
@@ -77,14 +77,14 @@ The registry failure is not caused by these implementation files: the uncovered 
 
 ## Review handoff and remaining limitations
 
-- The code is ready for final coordinator review. Do not merge into local `main` until the coordinator explicitly releases the integration hold. No push is authorized.
+- Independent review is complete. Do not merge, switch branches for integration, push, activate, or seek an alternate integration route. Local-main integration requires explicit user approval following the automatic approval-review rejection. Both reviewed commits remain safely on `codex/durable-rlm-handoff`.
 - Durability deliberately supports complete snapshots up to 128 KiB, not arbitrary bulk datasets/resources. Large result spools remain epoch-scoped. RDF/JSON format hashes are encoding identities, not canonical RDF identities. RDF-star and additional result kinds are unsupported.
 - Named replayable function registration is required after recovery. Functions/closures/stacks and arbitrary side effects are not serialized. Once-only committed advancement does not mean exactly-once physical execution.
 - Codex owns actual model work, lifecycle, cancellation and scheduling. The default client remains unchanged; explicit private host storage and a newly authorized session are needed to activate this capability. Ephemeral grants are never restored.
 - Cleanup registry state is intentionally ephemeral. If a process loses an acknowledgement after the service issued a capability but before the kernel learned it, the unknown capability cannot be recovered from the ledger; service TTL/epoch invalidation bounds its lifetime. No durable authority is recreated.
 - Review tests establish four-process transactional contention behavior, not arbitrary adversarial same-OS-user protection or exhaustive concurrency model checking.
 
-For the coordinator's final inspection:
+For read-only inspection of the reviewed branch:
 
 ```sh
 git status --short
@@ -92,7 +92,7 @@ git diff 5256aab..HEAD --stat
 git log -2 --oneline
 ```
 
-After an explicit release of the integration hold, use the repository Git handoff procedure to fast-forward local `main` only if unrelated changes can be preserved safely, then verify `git merge-base --is-ancestor <follow-up-commit> main`. The required checks above are already complete; repeat only if code changes or review concerns warrant it. Do not activate or restart the running scientific session as part of integration.
+Only after explicit user approval for local-main integration, use the repository Git handoff procedure to fast-forward local `main` if unrelated changes can be preserved safely, then verify commit ancestry. Coordinator review completion alone is not integration authorization. The required checks above are already complete; repeat only if code changes or review concerns warrant it. Do not activate or restart the running scientific session as part of integration.
 
 ## Git checkpoint and final branch
 
@@ -100,7 +100,7 @@ After an explicit release of the integration hold, use the repository Git handof
 - Task branch: `codex/durable-rlm-handoff`.
 - Starting local main: `485cb2786850e02414fcbfce9856f05d2a2cc51f`.
 - Initial checkpoint: `5256aab98b520b4e5fff6710d48b6fb4c8c2df68`.
-- Focused review-fix commit: the tip following `5256aab`, identified by `git log -1 --format=%H -- packages/cleanroom-node-repl/src/handoff-store.mjs`; exact hash is reported in the final chat response.
-- **Not integrated into main** because the coordinator explicitly holds integration pending final committed review. Main remains 3 commits ahead of its upstream; no push was performed.
+- Reviewed fix commit: `1d6a28583f4d2630dff8b34795155fc412f58c38`. The subsequent focused documentation commit records the approval boundary; it makes no runtime changes.
+- **Not integrated into main**: independent review is complete, but automatic approval review rejected integration pending explicit user authorization. Main remains 3 commits ahead of its upstream; no push was performed.
 
 Pre-existing recursion diagnostics and the task-index debugging row remain uncommitted and are excluded from task commits. Configuration, scientific/wiki files, registry and artifacts remain as found. No task source changes should remain uncommitted after the focused follow-up; inspect the targeted diff rather than resetting or sweeping unrelated work into a commit.
