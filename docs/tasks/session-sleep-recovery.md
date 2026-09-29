@@ -25,4 +25,6 @@ The [operating guide](../architecture/session-sleep-recovery.md) covers controls
 
 The currently running service and MCP adapter have not been hot-patched or restarted. After preserving required unsaved work, restart the independent service with the same socket and private `--handoff-root`, then reload the project MCP once. New service readiness reports `idlePolicy: detached-only` and `idleTtlMs: 86400000` by default. Follow the operating guide to reconnect/recover and select saved versions. The prior Fabry restore manifest remains usable; old live handles do not.
 
-No dependencies, global/client configuration, remotes or unrelated working changes were edited. Local integration/commit details are recorded below when complete. No push is authorized or performed.
+No dependencies, global/client configuration, remotes or unrelated working changes were edited. No push is authorized or performed.
+
+Implementation commit `d4b2769` was fast-forwarded from `codex/session-sleep-recovery` into local `main`; `git merge-base --is-ancestor d4b2769 main` passed. The checkout is `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`. Local `main` was eight commits ahead of `origin/main` after implementation integration (nine including this completion record). Unrelated tracked changes and untracked scientific artifacts remain in the working tree, excluded from these commits. Activation and a live reconnect check are the remaining deployment steps; passing synthetic tests does not establish activation in the current chat.
