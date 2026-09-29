@@ -1,6 +1,6 @@
 # Task: Add durable dataset persistence to the clean-room runtime
 
-- **Status:** Bounded persistence implemented within the explicitly authorized durable RLM handoff slice; verified, pending final integration review
+- **Status:** Bounded persistence implemented within the explicitly authorized durable RLM handoff slice; verified and integrated into local main
 - **Owner/task:** [Durable RLM handoff](durable-rlm-handoff.md)
 - **Scope:** Design and implement an explicit host-mediated artifact layer for RDF datasets constructed or retrieved in the project-owned clean-room REPL. Do not broaden child filesystem authority or alter evaluation isolation.
 - **Authorization boundary:** The 2026-09-29 handoff implementation authorizes source/tests/docs and bounded synthetic recovery artifacts. Live activation, configuration, dependencies and unrestricted exports remain separately governed.
