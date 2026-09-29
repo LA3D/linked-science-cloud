@@ -15,7 +15,9 @@ export function jsonCopy(value, maxBytes = 65536) {
     if(array && v.length>100000)fail('HANDOFF_JSON_DEPTH');
     seen.add(v); charge(2);
     const out = array ? [] : Object.create(null);
-    for (const key of Reflect.ownKeys(v).sort()) {
+    const keys=Reflect.ownKeys(v);
+    if(keys.some(key=>typeof key!=='string'))fail('HANDOFF_JSON');
+    for (const key of keys.sort()) {
       if (array && key === 'length') continue;
       const d = Object.getOwnPropertyDescriptor(v, key);
       if (typeof key !== 'string' || !d.enumerable || !Object.hasOwn(d, 'value')) fail('HANDOFF_JSON');
@@ -38,7 +40,7 @@ export function validateContract(contract, value, validateValue = true) {
   fields(contract, ['type','required','properties','maxBytes']);
   if (contract.type !== 'object') fail('HANDOFF_CONTRACT');
   integer(contract.maxBytes, 1, 32768);
-  if (!Array.isArray(contract.required) || contract.required.length > 32 || !contract.properties || Array.isArray(contract.properties)) fail('HANDOFF_CONTRACT');
+  if (!Array.isArray(contract.required) || contract.required.length > 32 || !contract.properties || typeof contract.properties!=='object' || Array.isArray(contract.properties)) fail('HANDOFF_CONTRACT');
   const types = ['string','number','boolean','object','array','null'];
   if (Object.keys(contract.properties).length > 32 || Object.entries(contract.properties).some(([k,v]) => !name(k) || !types.includes(v)) || contract.required.some(k => !Object.hasOwn(contract.properties,k))) fail('HANDOFF_CONTRACT');
   if (!validateValue) return;
@@ -66,14 +68,17 @@ export function validateSnapshot(snapshot) {
   if (!Array.isArray(snapshot.items) || snapshot.items.length > 10000) fail('HANDOFF_ITEMS');
   if (snapshot.kind === 'rdf') {
     if (!['sequence','set'].includes(snapshot.semantics)) fail('HANDOFF_FORMAT');
+    if(snapshot.semantics==='sequence'&&!['ontology','schema','shacl','instance-data','inferred-graph'].includes(snapshot.metadata.kind))fail('HANDOFF_FORMAT');
     for (const q of snapshot.items) { if (!Array.isArray(q) || q.length !== 4) fail('HANDOFF_RDF'); q.forEach(rdfTerm); }
     if (snapshot.semantics === 'set' && new Set(snapshot.items.map(q => JSON.stringify(q))).size !== snapshot.items.length) fail('HANDOFF_RDF_SET');
   } else {
     if (snapshot.semantics !== 'bag-sequence') fail('HANDOFF_FORMAT');
+    const columns=snapshot.metadata.columns;
+    if(!Array.isArray(columns)||columns.length>100||columns.some(c=>typeof c!=='string'||!c||c.length>200)||new Set(columns).size!==columns.length)fail('HANDOFF_BINDINGS_COLUMNS');
     for (const row of snapshot.items) {
       if (!Array.isArray(row) || row.length > 100) fail('HANDOFF_BINDINGS');
       const seen = new Set();
-      for (const pair of row) { if (!Array.isArray(pair) || pair.length !== 2 || typeof pair[0] !== 'string' || seen.has(pair[0])) fail('HANDOFF_BINDINGS'); seen.add(pair[0]); rdfTerm(pair[1],2); }
+      for (const pair of row) { if (!Array.isArray(pair) || pair.length !== 2 || typeof pair[0] !== 'string' || !columns.includes(pair[0]) || seen.has(pair[0])) fail('HANDOFF_BINDINGS'); seen.add(pair[0]); rdfTerm(pair[1],2); }
     }
   }
 }

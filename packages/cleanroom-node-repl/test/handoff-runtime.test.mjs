@@ -118,3 +118,38 @@ test('restored JSON uses fresh epoch-bound handles and bounded projections',asyn
  await assert.rejects(b.execute('h.readJson(ws,j)'),{code:'LS_RELEASED_HANDLE'});
  assert.equal((await read(b,'nodeRepl.peek.durable(a)')).items[0].status,'saved');
 });
+
+test('discovery alone recovers unacknowledged start, accepted continuation and completed result',async t=>{
+ const f=await setup(t);let b=f.broker;
+ await exec(b,registration+`var a=await h.open({label:'discovery-only'});await h.start(a,{step:{name:'select',version:'1'},state:{count:2}});`);
+ // Discard all volatile computation/request/activity IDs, as after lost output.
+ b=await f.restart();await exec(b,registration+`var a=await h.open({id:(await h.activities()).items.find(a=>a.label==='discovery-only').id});var c=(await h.computations(a)).items[0];`);
+ assert.equal((await read(b,'c')).status,'ready');
+ await exec(b,'await h.run(a,c.id);');
+ await exec(b,'var p=(await h.pending(a)).items[0];await h.dispatch(a,p.id);await h.accept(a,p.id,[],{text:"accepted before lost ack"});');
+ b=await f.restart();await exec(b,registration+`var a=await h.open({id:(await h.activities()).items.find(a=>a.label==='discovery-only').id});var c=(await h.computations(a)).items[0];`);
+ assert.equal((await read(b,'h.pending(a)')).total,0);
+ assert.equal((await read(b,'c')).status,'ready');assert.equal((await read(b,'c')).revision,2);
+ await exec(b,'await h.run(a,c.id);');
+ b=await f.restart();await exec(b,registration+`var a=await h.open({id:(await h.activities()).items.find(a=>a.label==='discovery-only').id});var c=(await h.computations(a)).items[0];`);
+ assert.equal((await read(b,'c')).status,'complete');
+ assert.equal((await read(b,'h.read(a,c.id)')).value.text,'accepted before lost ack');
+});
+
+test('bindings snapshots preserve declared columns for empty, unbound and spooled rows',async t=>{
+ const {broker:b}=await setup(t);
+ await exec(b,`var h=nodeRepl.rlm.handoff,a=await h.open({label:'binding-columns'}),ws=linkedScience.open({contextKey:'binding-columns'});
+ var graph=await ws.graphs.load({name:'empty',kind:'instance-data',text:''});
+ var empty=await ws.query.run({sources:[graph],sparql:'SELECT ?s ?never WHERE { ?s <urn:p> ?o }'});
+ var partial=await ws.query.run({sources:[graph],sparql:'SELECT ?s ?never WHERE { VALUES ?s { <urn:s> } }'});
+ var spilled=await ws.query.run({sources:[graph],sparql:'SELECT ?s ?never WHERE { VALUES ?hidden { '+Array(1200).fill('1').join(' ')+' } }'});
+ var refs=await Promise.all([empty,partial,spilled].map(handle=>h.save(a,ws,handle)));
+ var originals=[empty,partial,spilled].map(handle=>ws.results.profile(handle));
+ var restored=await Promise.all(refs.map(ref=>h.load(a,ref,ws)));`);
+ const result=await read(b,'({originals,restored:restored.map(handle=>ws.results.profile(handle))})');
+ assert.equal(result.originals[2].residency.kind,'broker-stored-result');
+ for(let i=0;i<3;i++) {
+   assert.deepEqual(result.restored[i].columns,['s','never']);assert.equal(result.restored[i].count,result.originals[i].count);
+ }
+ assert.deepEqual(result.restored.map(p=>p.count),[0,1,1200]);
+});

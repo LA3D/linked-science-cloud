@@ -1,6 +1,6 @@
 # Durable RLM yield-and-resume implementation
 
-- **Status:** Paused at the user’s explicit request on 2026-09-29; deterministic checkpoint verified; no live activation.
+- **Status:** Resumed with explicit user authorization; implementation and final verification complete, awaiting coordinator review of the focused follow-up commit. No integration or live activation.
 - **Authorization:** The user explicitly approved this general-purpose implementation and requested a separate implementation chat on 2026-09-29. Source/tests/docs and bounded local synthetic recovery artifacts are authorized. Configuration, installation, push, provider activation and restarting the active scientific session remain outside this task.
 - **Checkout:** `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`
 - **Branch/start:** `codex/durable-rlm-handoff`, starting at `485cb2786850e02414fcbfce9856f05d2a2cc51f` on local `main`.
@@ -15,7 +15,7 @@ The existing uncommitted recursion capability diagnostic in `repl-kernel-child.m
 
 ## Pause checkpoint and evidence
 
-The user explicitly requested a graceful pause to close the laptop. Resume **only on the user's request in this same chat**. No tracked goal was active (`get_goal` returned null). No live process or REPL binding is needed for recovery. All task test processes finished or were specifically stopped; the user's existing scientific session was not reset or restarted.
+Historical checkpoint: the user explicitly requested a graceful pause to close the laptop. That pause was subsequently revoked by explicit user authorization to resume and obtain independent review. No tracked goal was active (`get_goal` returned null). No live process or REPL binding is needed for recovery. All task test processes finished or were specifically stopped; the user's existing scientific session was not reset or restarted.
 
 - Mounted project identity and binding persistence were verified through `cleanroom_node_repl`; direct provider absent. The reference-only workspace may remain in that live kernel, but implementation recovery does not depend on it.
 - Upstream RLM LocalREPL was inspected through the private public-read mediator; the architecture contract records the comparison and the mutable URL limitation.
@@ -47,30 +47,60 @@ The user explicitly requested a graceful pause to close the laptop. Resume **onl
 - `README.md`, `docs/architecture/{durable-rlm-handoff,persistent-session-and-handles}.md`, `docs/tasks/{README,durable-dataset-persistence,durable-rlm-handoff}.md`: API, scope reconciliation and durable handoff.
 - `artifacts/implementation-checkpoints/durable-rlm-handoff-20260929/`: saved logs and checkpoint notes.
 
-## Remaining work after explicit resumption
+## Resumed review and final verification
 
-1. Inspect the named branch/commit and preserved unrelated work; read this brief and the architecture contract. Do not restart the active scientific session.
-2. Finish the broader implementation review: hostile/corrupt storage handling, concurrent first-accept contention across host processes (current coverage proves transactional CAS, physical crash recovery and concurrent identical retries, but is not an exhaustive multiprocess race stress test), and explicit service-launcher activation-path tests. Review bounded step/result contracts and documentation discoverability before calling the overall implementation complete.
-3. Run final full repository checks **only after resumption**, because checkpoint fixes landed after the earlier full run. Record the unrelated registry failure separately if it still exists. Do not change global/project client configuration or run live model verification implicitly.
-4. Make any necessary focused follow-up commits, then integrate into local `main` when safe. No push is authorized.
+The user authorized resumption and independent review by the coordinating chat. The coordinator reported no remaining identified code blockers after reviewing fixes and independently rerunning targeted tests. Integration remains explicitly on hold until the coordinator inspects the final committed diff and releases that hold.
 
-Exact starting commands after resumption (in the checkout above):
+Review findings resolved:
+
+1. **Late grant / cleanup races:** provisional allocations remain tracked until settled; terminal requests fence and revoke late grants. Cleanup is serialized per request, retains retryable partial progress, handles already-invalidated resources and does not inspect another activity's leases. Acceptance/cancellation return honest cleanup-pending status. Deterministic tests include acceptance/cancellation during deferred allocation and failed late revocation followed by repair.
+2. **Lost computation identity:** bounded `computations(activity,...)` inventory exposes all computation lifecycle states, step identities, revisions and request links. Restart tests discard every volatile activity/computation/request ID and discover both an unacknowledged start and a continuation whose acceptance already removed the request from `pending`.
+3. **Binding fidelity:** declared columns are saved, validated and restored, including empty results, never-bound projections and spooled all-unbound solution bags.
+4. **Storage and concurrent startup:** confinement is checked before directory creation; database and sidecar file types/links/size are checked; database creation is private; payload/envelope format checks precede loading. The SQLite busy timeout is set before the first schema/journal operation. Pending requests reserve terminal-commit space. Physical crash and four-process first-accept tests cover recovery and concurrent retries.
+5. **Launcher isolation/recovery:** a real isolated `scientific-session-server.mjs --handoff-root ...` process is restarted in the synthetic test. The same named session recovers saved JSON; sibling and fresh session stores stay isolated. No user MCP/service was activated or restarted.
+
+Final source verification, after the review fixes:
+
+| Command | Result |
+| --- | --- |
+| `node --test packages/cleanroom-node-repl/test/handoff-races.test.mjs packages/cleanroom-node-repl/test/handoff-store.test.mjs packages/cleanroom-node-repl/test/handoff-runtime.test.mjs` | Intermediate review fixes: 20 passed |
+| `node --test packages/cleanroom-node-repl/test/handoff-store.test.mjs packages/cleanroom-node-repl/test/handoff-races.test.mjs packages/cleanroom-node-repl/test/handoff-launcher.test.mjs` | Final storage/launcher/race hardening: 19 passed |
+| `npm test` | **345 passed, 1 failed, 346 total**; sole failure is the unchanged pre-existing registry coverage gap for `docs/experiments/scientific-trajectory-evidence.md` |
+| `npm run smoke` | Passed |
+| `npm run linked-science:verify` | Passed; offline identity/broker/runtime evidence only |
+| `git diff --check` / focused staged diff check | Passed |
+| Changed documentation relative-link check | Passed |
+
+The final full suite includes all **26 handoff-specific tests** (13 store, 7 runtime, 5 races, 1 launcher), plus fixture-file discovery by the Node test runner. No new runtime test failure remains. [Final verification logs](../../artifacts/implementation-checkpoints/durable-rlm-handoff-20260929/review/README.md) are separate from the earlier pause-checkpoint evidence.
+
+The registry failure is not caused by these implementation files: the uncovered dossier was already untracked at task start, and the registry was already dirty. They remain outside this change. Do not silently fix or commit unrelated scientific records. Default tests use synthetic data only; no live native Codex model execution/quality, provider activation or universal native-tool recursion enforcement is claimed.
+
+## Review handoff and remaining limitations
+
+- The code is ready for final coordinator review. Do not merge into local `main` until the coordinator explicitly releases the integration hold. No push is authorized.
+- Durability deliberately supports complete snapshots up to 128 KiB, not arbitrary bulk datasets/resources. Large result spools remain epoch-scoped. RDF/JSON format hashes are encoding identities, not canonical RDF identities. RDF-star and additional result kinds are unsupported.
+- Named replayable function registration is required after recovery. Functions/closures/stacks and arbitrary side effects are not serialized. Once-only committed advancement does not mean exactly-once physical execution.
+- Codex owns actual model work, lifecycle, cancellation and scheduling. The default client remains unchanged; explicit private host storage and a newly authorized session are needed to activate this capability. Ephemeral grants are never restored.
+- Cleanup registry state is intentionally ephemeral. If a process loses an acknowledgement after the service issued a capability but before the kernel learned it, the unknown capability cannot be recovered from the ledger; service TTL/epoch invalidation bounds its lifetime. No durable authority is recreated.
+- Review tests establish four-process transactional contention behavior, not arbitrary adversarial same-OS-user protection or exhaustive concurrency model checking.
+
+For the coordinator's final inspection:
 
 ```sh
 git status --short
-git branch --show-current
-git log -3 --oneline
-node --test packages/cleanroom-node-repl/test/handoff-store.test.mjs packages/cleanroom-node-repl/test/handoff-runtime.test.mjs
-npm test
-npm run smoke
-npm run linked-science:verify
-git diff --check
+git diff 5256aab..HEAD --stat
+git log -2 --oneline
 ```
 
-The Unix-socket tests need the same local execution approval used during this task when the outer sandbox denies socket creation. No dependencies were installed. See the architecture contract for precise subsequent opt-in activation; do not perform it merely to resume source review.
+After an explicit release of the integration hold, use the repository Git handoff procedure to fast-forward local `main` only if unrelated changes can be preserved safely, then verify `git merge-base --is-ancestor <follow-up-commit> main`. The required checks above are already complete; repeat only if code changes or review concerns warrant it. Do not activate or restart the running scientific session as part of integration.
 
-## Git checkpoint
+## Git checkpoint and final branch
 
-Checkpoint changes are committed on `codex/durable-rlm-handoff`; identify the implementation commit with `git log -1 --format=%H -- packages/cleanroom-node-repl/src/handoff-store.mjs`. The final chat response records the exact hash. Local `main` remains at starting commit `485cb2786850e02414fcbfce9856f05d2a2cc51f`, already 3 commits ahead of its upstream at task start/checkpoint. **Not integrated into main**: the user requested this pause before final review/verification. Keep the named branch; no worktree was created.
+- Checkout: `/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud`; no separate worktree.
+- Task branch: `codex/durable-rlm-handoff`.
+- Starting local main: `485cb2786850e02414fcbfce9856f05d2a2cc51f`.
+- Initial checkpoint: `5256aab98b520b4e5fff6710d48b6fb4c8c2df68`.
+- Focused review-fix commit: the tip following `5256aab`, identified by `git log -1 --format=%H -- packages/cleanroom-node-repl/src/handoff-store.mjs`; exact hash is reported in the final chat response.
+- **Not integrated into main** because the coordinator explicitly holds integration pending final committed review. Main remains 3 commits ahead of its upstream; no push was performed.
 
-Pre-existing modifications to the recursion diagnostics and task-index debugging row remain uncommitted and are excluded using focused index contents. Configuration, scientific/wiki files, registry and artifacts remain untouched and uncommitted as found. No task source changes should remain outside the checkpoint commit; confirm with the targeted diff when resuming. Do not reset or sweep unrelated work into a future commit.
+Pre-existing recursion diagnostics and the task-index debugging row remain uncommitted and are excluded from task commits. Configuration, scientific/wiki files, registry and artifacts remain as found. No task source changes should remain uncommitted after the focused follow-up; inspect the targeted diff rather than resetting or sweeping unrelated work into a commit.

@@ -1,6 +1,6 @@
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, lstatSync, realpathSync, chmodSync } from 'node:fs';
-import { resolve, join, sep } from 'node:path';
+import { mkdirSync, lstatSync, realpathSync, chmodSync, openSync, closeSync, fsyncSync } from 'node:fs';
+import { resolve, join, sep, dirname, basename } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fail, jsonCopy, digest, name, integer, fields, validateSnapshot, validateContract } from './handoff-values.mjs';
 
@@ -17,33 +17,69 @@ export class HandoffStore {
     this.maxBytes = integer(maxBytes, 4096, 256*1024*1024);
     if (typeof root !== 'string' || !root.startsWith('/')) fail('HANDOFF_ROOT');
     this.root = resolve(root);
+    // Resolve existing ancestors before creating anything. A rejected child-
+    // readable root must not leave even an empty directory behind.
+    let ancestor=this.root;const suffix=[];
+    for(;;) {
+      try {lstatSync(ancestor);break;}catch(error){if(error.code!=='ENOENT')throw error;suffix.unshift(basename(ancestor));ancestor=dirname(ancestor);}
+    }
+    const projected=join(realpathSync(ancestor),...suffix);
+    if (deniedRoots.some(p => {const r=realpathSync(p); return projected===r||projected.startsWith(r+sep);})) fail('HANDOFF_ROOT_READABLE_BY_CHILD');
     mkdirSync(this.root, {recursive:true, mode:0o700});
     const stat = lstatSync(this.root);
     if (stat.isSymbolicLink() || !stat.isDirectory() || stat.uid !== process.getuid() || (stat.mode & 0o777) !== 0o700) fail('HANDOFF_ROOT');
     this.root=realpathSync(this.root);
-    if (deniedRoots.some(p => {const r=realpathSync(p); return this.root === r || this.root.startsWith(r+sep);})) fail('HANDOFF_ROOT_READABLE_BY_CHILD');
     const path = join(this.root,'handoff.sqlite');
-    try { const s=lstatSync(path); if (!s.isFile() || s.isSymbolicLink() || s.nlink!==1 || s.uid!==process.getuid()) fail('HANDOFF_ROOT'); } catch(e) { if(e.code!=='ENOENT')throw e; }
-    this.db = new DatabaseSync(path); chmodSync(path,0o600);
-    this.db.exec(`PRAGMA journal_mode=DELETE; PRAGMA synchronous=FULL; PRAGMA busy_timeout=5000;
-      CREATE TABLE IF NOT EXISTS ledger (id INTEGER PRIMARY KEY CHECK(id=1), format INTEGER NOT NULL, payload TEXT NOT NULL, sha TEXT NOT NULL);`);
-    this.db.exec(`PRAGMA max_page_count=${Math.ceil(this.maxBytes*3/4096)+64}`);
+    this.maxPhysicalBytes=this.maxBytes*3+256*1024;
+    for(const candidate of [path,`${path}-journal`,`${path}-wal`,`${path}-shm`]) {
+      try {
+        const metadata=lstatSync(candidate);
+        if(!metadata.isFile()||metadata.isSymbolicLink()||metadata.nlink!==1||metadata.uid!==process.getuid())fail('HANDOFF_ROOT');
+        if(metadata.size>this.maxPhysicalBytes)fail('HANDOFF_QUOTA');
+      } catch(error) {if(error.code!=='ENOENT')throw error;}
+    }
     this.instance = randomUUID(); this.sessions = new Map(); this.registrations = new Map(); this.fault=fault;
-    this.transaction('initialize', state => state);
+    try {
+      // Create with private permissions before SQLite can write the first page.
+      try {closeSync(openSync(path,'wx',0o600));}catch(error){if(error.code!=='EEXIST')throw error;}
+      chmodSync(path,0o600);
+      this.db = new DatabaseSync(path);
+      this.db.exec('PRAGMA busy_timeout=5000');
+      if(lstatSync(path).size>0&&!this.db.prepare("SELECT name FROM sqlite_schema WHERE name='ledger' AND type='table'").get())fail('HANDOFF_FORMAT');
+      this.db.exec(`PRAGMA busy_timeout=5000; PRAGMA trusted_schema=OFF; PRAGMA journal_mode=DELETE; PRAGMA synchronous=FULL;
+        CREATE TABLE IF NOT EXISTS ledger (id INTEGER PRIMARY KEY CHECK(id=1), format INTEGER NOT NULL, payload TEXT NOT NULL, sha TEXT NOT NULL);`);
+      const pageSize=this.db.prepare('PRAGMA page_size').get().page_size;
+      this.db.exec(`PRAGMA max_page_count=${Math.floor(this.maxPhysicalBytes/pageSize)}`);
+      this.transaction('initialize', () => null);
+      // Publish newly created directory entries before acknowledging initialization.
+      for(let directory=this.root;;directory=dirname(directory)) {
+        const fd=openSync(directory,'r');try{fsyncSync(fd);}finally{closeSync(fd);}
+        if(directory===realpathSync(ancestor))break;
+        if(directory===dirname(directory))break;
+      }
+    } catch(error) {this.db?.close();throw error;}
   }
   transaction(operation, fn) {
     this.db.exec('BEGIN IMMEDIATE');
     let result;
     try {
+      const size=this.db.prepare('SELECT length(CAST(payload AS BLOB)) AS bytes FROM ledger WHERE id=1').get();
+      if(size&&(!Number.isSafeInteger(size.bytes)||size.bytes>this.maxBytes))fail('HANDOFF_QUOTA');
       const row=this.db.prepare('SELECT * FROM ledger WHERE id=1').get();
       let state=empty();
       if(row) {
         if(row.format!==1 || digest(row.payload)!==row.sha)fail('HANDOFF_INTEGRITY');
-        state=JSON.parse(row.payload); if(state.format!==1)fail('HANDOFF_FORMAT');
+        try {state=JSON.parse(row.payload);}catch{fail('HANDOFF_FORMAT');}
+        fields(state,['format','activities','data','computations','requests']);
+        if(state.format!==1)fail('HANDOFF_FORMAT');
+        for(const key of ['activities','data','computations','requests'])if(!state[key]||typeof state[key]!=='object'||Array.isArray(state[key]))fail('HANDOFF_FORMAT');
       }
       result=fn(state);
       const payload=JSON.stringify(state);
-      if(Buffer.byteLength(payload)>this.maxBytes)fail('HANDOFF_QUOTA');
+      // Pending requests reserve enough space for a maximal result/receipt or
+      // cancellation, so unrelated saves cannot exhaust their terminal commit.
+      const reserve=Object.values(state.requests).filter(r=>!terminal(r)).reduce((total,r)=>total+r.contract.maxBytes+1024,0);
+      if(Buffer.byteLength(payload)+reserve>this.maxBytes)fail('HANDOFF_QUOTA');
       this.fault(`${operation}:before-commit`);
       this.db.prepare('INSERT OR REPLACE INTO ledger VALUES (1,1,?,?)').run(payload,digest(payload));
       this.db.exec('COMMIT');
@@ -69,6 +105,7 @@ export class HandoffStore {
     const d=Object.hasOwn(state.data,ref.id)?state.data[ref.id]:null;
     if(!d || d.version!==ref.version || (d.activity!==session.activity && !session.shared.some(r=>r.id===ref.id && r.version===ref.version)))fail('HANDOFF_INPUT_SCOPE');
     if(digest(d.snapshot)!==d.version)fail('HANDOFF_INTEGRITY');
+    validateSnapshot(d.snapshot);
     return d;
   }
   computation(state, id, session) {
@@ -112,7 +149,7 @@ export class HandoffStore {
       const epoch=randomUUID();this.sessions.set(epoch,{owner:owner.token,activity:id,shared});return {id,epoch};
     }
     const session=this.session(args.activity,owner);
-    const allowed={save:['snapshot'],load:['ref'],list:['offset','limit'],start:['step','state','inputs','parentRequest'],read:['computation'],advance:['computation','revision','outcome'],pending:['offset','limit'],status:['request'],dispatch:['request'],dispatched:['request','child'],reconcile:['request','decision','child'],accept:['request','inputs','result'],cancel:['request'],remove:['ref'],removeActivity:[]};
+    const allowed={save:['snapshot'],load:['ref'],list:['offset','limit'],start:['step','state','inputs','parentRequest'],read:['computation'],computations:['offset','limit'],advance:['computation','revision','outcome'],pending:['offset','limit'],status:['request'],dispatch:['request'],dispatched:['request','child'],reconcile:['request','decision','child'],accept:['request','inputs','result'],cancel:['request'],remove:['ref'],removeActivity:[]};
     if(!allowed[operation])fail('HANDOFF_OPERATION');fields(args,['activity',...allowed[operation]]);
     return this.transaction(operation,state=>{
       if(!state.activities[session.activity])fail('HANDOFF_SCOPE');
@@ -146,8 +183,13 @@ export class HandoffStore {
         let depth=0,parent=null;
         if(args.parentRequest) {parent=this.request(state,args.parentRequest,session);if(terminal(parent))fail('HANDOFF_STATE'); depth=this.computation(state,parent.computation,session).depth+1;}
         if(depth>state.activities[session.activity].budgets.maxDepth || Object.values(state.computations).filter(c=>c.activity===session.activity).length>=128)fail('HANDOFF_BUDGET');
-        const id=randomUUID(); state.computations[id]={id,activity:session.activity,parentRequest:parent?.id??null,depth,step:args.step,state:jsonCopy(args.state??null),inputs,revision:0,status:'ready',result:null};
+        const id=randomUUID(); state.computations[id]={id,activity:session.activity,parentRequest:parent?.id??null,depth,step:args.step,state:jsonCopy(args.state??null),inputs,revision:0,status:'ready',result:null,createdAt:Date.now()};
         return {id,revision:0,status:'ready'};
+      }
+      if(operation==='computations') {
+        const offset=integer(args.offset??0,0,128),limit=integer(args.limit??16,1,32);
+        const rows=Object.values(state.computations).filter(c=>c.activity===session.activity);
+        return {total:rows.length,items:rows.slice(offset,offset+limit).map(c=>({id:c.id,status:c.status,revision:c.revision,step:c.step,parentRequest:c.parentRequest,request:c.request??null,createdAt:c.createdAt??null})),nextOffset:offset+limit<rows.length?offset+limit:null};
       }
       if(operation==='read') {
         const c=this.computation(state,args.computation,session);this.registered(c.step,owner);
@@ -185,6 +227,7 @@ export class HandoffStore {
       }
       if(operation==='dispatched'||operation==='reconcile') {
         if(terminal(r)||r.status==='prepared')fail('HANDOFF_STATE');
+        if(operation==='dispatched'&&r.dispatchInstance!==this.instance)fail('HANDOFF_DISPATCH_UNCERTAIN');
         if(r.events.length>=64)fail('HANDOFF_BUDGET');
         if(operation==='reconcile'&&!['not-dispatched','child-reported'].includes(args.decision))fail('HANDOFF_RECONCILE');
         if(args.decision==='not-dispatched') {r.status='prepared';delete r.child;}

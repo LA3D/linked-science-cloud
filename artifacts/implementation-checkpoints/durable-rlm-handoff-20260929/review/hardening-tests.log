@@ -1,0 +1,27 @@
+✔ opt-in service launcher recovers a selected named session and isolates sibling durable stores (1964.598542ms)
+✔ accept fences a pending grant and revokes late allocation (1.454667ms)
+✔ cancel fences a pending grant and revokes late allocation (0.5745ms)
+✔ partial cleanup retries only unreleased resources and concurrent retries serialize (0.247875ms)
+✔ cancelling one activity does not inspect or revoke another activity lease (0.215083ms)
+✔ late grant with failed revocation stays discoverable for cleanup retry (0.200041ms)
+✔ durable acceptance, revision CAS, retries, nested identities and uncertain dispatch (30.747375ms)
+✔ transaction crash injection before/after prepare, dispatch, accept and advance commit (11.661375ms)
+✔ scope isolation, explicitly selected shared references, pins, removal and cancellation (14.227792ms)
+✔ bounds, code mismatches, retention and protocol depth derived from parent identity (9.87275ms)
+✔ JSON and RDF validation reject coercion, getters, malformed terms and format corruption (10.983333ms)
+✔ root confinement, quotas and concurrent independent connections accept only once (43.401666ms)
+✔ real host SIGKILL around prepare/dispatch/accept/advance recovers atomic durable state (947.543042ms)
+✔ cancelling an ancestor preserves already accepted descendant receipts (14.579208ms)
+✔ reopening an activity excludes previously selected historical shared versions (9.133ms)
+✔ true multiprocess first-accept contention commits one receipt and every identical retry recovers it (507.6885ms)
+✔ storage preflights roots/sidecars/physical size and rejects corrupt envelopes before loading (12.731208ms)
+✔ pending request reserves terminal commit space against later data saves (38.890709ms)
+✔ startup waits for a bounded existing SQLite exclusive writer before querying schema (278.979708ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2082.880417

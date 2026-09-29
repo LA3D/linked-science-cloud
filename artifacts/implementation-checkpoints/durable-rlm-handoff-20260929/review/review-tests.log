@@ -1,0 +1,28 @@
+✔ accept fences a pending grant and revokes late allocation (1.4375ms)
+✔ cancel fences a pending grant and revokes late allocation (0.597541ms)
+✔ partial cleanup retries only unreleased resources and concurrent retries serialize (0.239083ms)
+✔ cancelling one activity does not inspect or revoke another activity lease (0.196209ms)
+✔ full RDF/JSON selection, nested synthesis, completed eval boundaries, restart and composition (1341.399291ms)
+✔ pending discovery survives failed eval and truncated output; same-evaluation dispatch rejected (319.791458ms)
+✔ named graph terms, bindings bags, source release, workspace reset, stale handles and code mismatch (654.304125ms)
+✔ existing scratch-worker scientificSession bridge reads saved copies and revokes request grant (1244.392584ms)
+✔ restored JSON uses fresh epoch-bound handles and bounded projections (627.596042ms)
+✔ discovery alone recovers unacknowledged start, accepted continuation and completed result (1388.102167ms)
+✔ bindings snapshots preserve declared columns for empty, unbound and spooled rows (667.60325ms)
+✔ durable acceptance, revision CAS, retries, nested identities and uncertain dispatch (12.629ms)
+✔ transaction crash injection before/after prepare, dispatch, accept and advance commit (6.516375ms)
+✔ scope isolation, explicitly selected shared references, pins, removal and cancellation (5.968458ms)
+✔ bounds, code mismatches, retention and protocol depth derived from parent identity (3.779084ms)
+✔ JSON and RDF validation reject coercion, getters, malformed terms and format corruption (3.991958ms)
+✔ root confinement, quotas and concurrent independent connections accept only once (11.224125ms)
+✔ real host SIGKILL around prepare/dispatch/accept/advance recovers atomic durable state (869.10675ms)
+✔ cancelling an ancestor preserves already accepted descendant receipts (5.56075ms)
+✔ reopening an activity excludes previously selected historical shared versions (4.235208ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6374.910584

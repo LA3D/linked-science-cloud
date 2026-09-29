@@ -174,3 +174,57 @@ test('reopening an activity excludes previously selected historical shared versi
  f.call('removeActivity',{activity:other});f.call('removeActivity',{activity:f.activity});
  assert.equal(f.call('activities').total,0);
 });
+
+test('true multiprocess first-accept contention commits one receipt and every identical retry recovers it',async t=>{
+ const {fork}=await import('node:child_process');const {once}=await import('node:events');
+ const f=fixture(t),p=f.prepare();f.owner.evaluation++;f.call('dispatch',{activity:f.activity,request:p.request});
+ const children=[];
+ t.after(async()=>{for(const child of children)if(child.exitCode===null&&child.signalCode===null){const exited=once(child,'exit');child.kill();await exited;}});
+ for(let i=0;i<4;i++) {
+   const child=fork(new URL('./fixtures/handoff-contender.mjs',import.meta.url),[JSON.stringify({root:f.root,activity:f.activity.id,request:p.request,inputs:[f.ref],result:{text:'concurrent identical synthesis'}})],{stdio:['ignore','ignore','pipe','ipc']});
+   children.push(child);assert.equal((await once(child,'message'))[0].ready,true);
+ }
+ const first=children.map(child=>once(child,'message'));for(const child of children)child.send('accept');
+ const firstResults=(await Promise.all(first)).map(([r])=>r);
+ const accepted=firstResults.find(r=>r.receipt)?.receipt;assert.ok(accepted);
+ assert.ok(firstResults.every(r=>r.receipt?.id===accepted.id||r.error==='HANDOFF_DISPATCH_UNCERTAIN'));
+ const retry=children.map(child=>once(child,'message'));for(const child of children)child.send('retry');
+ assert.ok((await Promise.all(retry)).every(([r])=>r.receipt?.id===accepted.id));
+ assert.equal(f.call('read',{activity:f.activity,computation:p.computation}).revision,2);
+ for(const child of children){const exited=once(child,'exit');child.send('close');await exited;}
+});
+
+test('storage preflights roots/sidecars/physical size and rejects corrupt envelopes before loading',async t=>{
+ const {existsSync,writeFileSync}=await import('node:fs');const {digest}=await import('../src/handoff-values.mjs');
+ const root=mkdtempSync(join(tmpdir(),'handoff-hostile-'));t.after(()=>rmSync(root,{recursive:true,force:true}));
+ throws(()=>new HandoffStore({root:join(root,'new'),deniedRoots:[root]}),'HANDOFF_ROOT_READABLE_BY_CHILD');assert.equal(existsSync(join(root,'new')),false);
+ const target=join(root,'outside');writeFileSync(target,'unchanged');symlinkSync(target,join(root,'handoff.sqlite-journal'));
+ throws(()=>new HandoffStore({root}),'HANDOFF_ROOT');assert.equal(readFileSync(target,'utf8'),'unchanged');rmSync(join(root,'handoff.sqlite-journal'));
+ writeFileSync(join(root,'handoff.sqlite'),Buffer.alloc(300000));throws(()=>new HandoffStore({root,maxBytes:4096}),'HANDOFF_QUOTA');
+ const f=fixture(t);const db=new DatabaseSync(join(f.root,'handoff.sqlite'));
+ const malformed=JSON.stringify({format:1,activities:[],data:{},computations:{},requests:{}});db.prepare('UPDATE ledger SET payload=?,sha=?').run(malformed,digest(malformed));db.close();
+ throws(()=>f.call('activities'),'HANDOFF_FORMAT');
+});
+
+test('pending request reserves terminal commit space against later data saves',t=>{
+ for(const finish of ['accept','cancel']) {
+   const f=fixture(t,{maxBytes:8192}),p=f.prepare();f.owner.evaluation++;f.call('dispatch',{activity:f.activity,request:p.request});
+   let exhausted=false;
+   for(let i=0;i<20;i++) {try{f.call('save',{activity:f.activity,snapshot:{...snapshot,items:'x'.repeat(800)}});}catch(error){assert.equal(error.code,'HANDOFF_QUOTA');exhausted=true;break;}}
+   assert.equal(exhausted,true);
+   if(finish==='accept')assert.equal(f.call('accept',{activity:f.activity,request:p.request,inputs:[f.ref],result:{text:'x'.repeat(900)}}).continuationRevision,2);
+   else assert.equal(f.call('cancel',{activity:f.activity,request:p.request}).status,'cancelled');
+ }
+});
+
+test('startup waits for a bounded existing SQLite exclusive writer before querying schema',async t=>{
+ const {fork}=await import('node:child_process');const {once}=await import('node:events');
+ const f=fixture(t);f.store.db.exec('BEGIN EXCLUSIVE');
+ const child=fork(new URL('./fixtures/handoff-open.mjs',import.meta.url),[f.root],{stdio:['ignore','ignore','pipe','ipc']});
+ const exited=once(child,'exit');
+ t.after(()=>{if(child.exitCode===null&&child.signalCode===null)child.kill();});
+ assert.equal((await once(child,'message'))[0].starting,true);
+ const opened=once(child,'message');
+ await new Promise(resolve=>setTimeout(resolve,150));f.store.db.exec('COMMIT');
+ assert.deepEqual((await opened)[0],{opened:true});await exited;
+});
