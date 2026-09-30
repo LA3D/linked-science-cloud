@@ -1,0 +1,22 @@
+{
+  "status": "wiki-applied-local-integration-blocked",
+  "checkout": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+  "branch": "codex/okn-exploration-memory",
+  "startingCommit": "49d1ea2e0ddc0da83787b0860d25f78b27189737",
+  "evidenceCommit": "c4ce0dc",
+  "reachableFromMain": false,
+  "mainAheadOfUpstream": false,
+  "verification": {
+    "wikiInspect": "passed",
+    "wikiValidate": "passed",
+    "smoke": "passed",
+    "diffCheck": "passed",
+    "npmTest": "failed: socket listen permission errors and pre-existing scientific-trajectory dossier missing registry status"
+  },
+  "uncommitted": "Pre-existing runtime, corpus machinery, prior wiki revisions and artifacts remain untouched; wiki/HEAD has this applied revision on top of a pre-existing uncommitted head change",
+  "nextAction": "Integrate pre-existing trajectory adapter and prior wiki revisions, then commit the intended wiki/HEAD and merge the evidence branch into local main after verification. Do not sweep unrelated changes.",
+  "notCapturedAsPattern": [
+    "RDKit depiction workflow remains in installed skill and card artifacts; not added to this wiki batch"
+  ],
+  "scope": "Procedural hypotheses, not certified scientific findings"
+}
