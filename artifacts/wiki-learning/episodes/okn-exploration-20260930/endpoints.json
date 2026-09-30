@@ -1,0 +1,58 @@
+{
+  "kind": "dated-source-navigation-record",
+  "asOf": "2026-09-30",
+  "evidence": {
+    "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+    "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "scope": "Recorded from this session, not a health guarantee or exhaustive catalog",
+  "resources": [
+    {
+      "role": "OKN discovery portal",
+      "url": "https://okn.us/",
+      "status": "read"
+    },
+    {
+      "role": "OKN Fabric registry",
+      "url": "https://registry.okn.us/registry/",
+      "status": "advertised; registry inventory not exhaustively queried"
+    },
+    {
+      "role": "OKN query documentation",
+      "url": "https://registry.okn.us/query/query-page/",
+      "status": "read"
+    },
+    {
+      "role": "Cross-OKN SPARQL",
+      "url": "https://apps.okn.us/federation/sparql",
+      "status": "queries succeeded"
+    },
+    {
+      "role": "OKN query examples",
+      "url": "https://github.com/frink-okn/okn-registry/tree/main/docs/registry/queries",
+      "status": "selected examples read"
+    },
+    {
+      "role": "FIO ontology",
+      "url": "http://w3id.org/fio/v1/fio",
+      "status": "retrieved and parsed"
+    },
+    {
+      "role": "QLever PubChem",
+      "url": "https://qlever.dev/api/pubchem",
+      "status": "three compound records queried"
+    },
+    {
+      "role": "QLever OSM Planet",
+      "url": "https://qlever.dev/api/osm-planet",
+      "status": "feature and revised spatial queries succeeded"
+    },
+    {
+      "role": "QLever GeoSPARQL documentation",
+      "url": "https://docs.qlever.dev/geosparql/",
+      "status": "read"
+    }
+  ]
+}

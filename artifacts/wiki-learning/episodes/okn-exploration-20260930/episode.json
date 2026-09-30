@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "1.2.0",
+  "id": "okn-exploration-20260930",
+  "host": {
+    "hostId": "local",
+    "taskId": "01a0f34b-4b23-7b80-82b9-407d62fb278f",
+    "version": "Local Codex selected rollout; build not attested",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+      "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "Selected task evidence only"
+    }
+  },
+  "capture": {
+    "kind": "selected-trajectory",
+    "completeness": "partial",
+    "gaps": [
+      "Only selected conversation and tool exchanges retained; no complete dataset export",
+      "Voice guidance is quoted transcript, not original audio",
+      "No isolated causal test of the spatial-query recovery",
+      "No direct-runtime scientific-finding certification; these are procedural candidates",
+      "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "not-observed",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-4",
+      "turnId": "01a0f353-0a06-7c53-924a-79be56b80280",
+      "itemId": "msg_01a0f353-0a44-7af1-b4db-11756961b425",
+      "kind": "userMessage",
+      "sequence": 4,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "01a0f353-0a06-7c53-924a-79be56b80280",
+      "itemId": "call_dCLEe3XNUtFnxH51PPIMXmtI",
+      "kind": "toolCall",
+      "sequence": 5,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "01a0f35e-9e18-73a2-88b4-bd65a967be69",
+      "itemId": "call_GoDjQixV17Dlmhlc9X9SqqVs",
+      "kind": "toolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-7",
+      "turnId": "01a0f360-ae80-70e1-bcd3-972b832046bf",
+      "itemId": "call_MmrI19tdGgKPNMtxfBjmLYBU",
+      "kind": "toolCall",
+      "sequence": 7,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-8",
+      "turnId": "01a0f360-ae80-70e1-bcd3-972b832046bf",
+      "itemId": "call_zoZcC2bn6JFvR1YCmNsVnLKA",
+      "kind": "toolCall",
+      "sequence": 8,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-9",
+      "turnId": "01a0f362-2e15-79b1-bcf1-767486050ec1",
+      "itemId": "call_A0Ye1OwXYAVA0GfWeMgkSvWx",
+      "kind": "toolCall",
+      "sequence": 9,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-10",
+      "turnId": "01a0f371-e634-7813-8727-cc3c32ec73ec",
+      "itemId": "msg_01a0f371-e695-7821-a091-ab07e81f874b",
+      "kind": "userMessage",
+      "sequence": 10,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-11",
+      "turnId": "01a0f371-e634-7813-8727-cc3c32ec73ec",
+      "itemId": "call_Ht7YsqKtE0MjMa0rBprIZgkZ",
+      "kind": "toolCall",
+      "sequence": 11,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-12",
+      "turnId": "01a0f371-e634-7813-8727-cc3c32ec73ec",
+      "itemId": "call_0uSeC8gzzoST9ScyCH6z4XoZ",
+      "kind": "toolCall",
+      "sequence": 12,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-13",
+      "turnId": "01a0f376-ec05-7531-adde-1e9912dcc3c6",
+      "itemId": "msg_01a0f377-7551-7bf1-b448-b1c217ef1962",
+      "kind": "userMessage",
+      "sequence": 13,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    },
+    {
+      "id": "event-14",
+      "turnId": "01a0f376-ec05-7531-adde-1e9912dcc3c6",
+      "itemId": "msg_01a0f378-067d-7111-9701-99733ef14c8b",
+      "kind": "userMessage",
+      "sequence": 14,
+      "objectiveIds": [
+        "okn-exploration"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "okn-exploration",
+      "previousId": null,
+      "eventId": "event-4",
+      "statement": "Explore OKN resources, query examples, PFAS semantics and cross-resource spatial enrichment with user guidance",
+      "acceptance": [
+        "Preserve discovery decisions and limitations"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "selected-trajectory",
+      "kind": "durable-artifact",
+      "description": "Selected original user guidance and observed tool exchanges, not complete scientific result witnesses",
+      "artifact": {
+        "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+        "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "codex-task:01a0f34b-4b23-7b80-82b9-407d62fb278f",
+        "revision": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+        "representation": "linked-science-codex-trajectory/v1"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Only selected conversation and tool exchanges retained; no complete dataset export",
+        "Voice guidance is quoted transcript, not original audio",
+        "No isolated causal test of the spatial-query recovery",
+        "No direct-runtime scientific-finding certification; these are procedural candidates",
+        "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+      ]
+    }
+  ],
+  "joins": [],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "guided-discovery",
+      "objectiveId": "okn-exploration",
+      "kind": "agent-judgment",
+      "status": "partial",
+      "claim": "Selected process supports hypotheses about catalog discovery, examples, semantic screening and spatial recovery",
+      "evidenceIds": [
+        "selected-trajectory"
+      ],
+      "missingEvidence": [
+        "Only selected conversation and tool exchanges retained; no complete dataset export",
+        "Voice guidance is quoted transcript, not original audio",
+        "No isolated causal test of the spatial-query recovery",
+        "No direct-runtime scientific-finding certification; these are procedural candidates",
+        "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+      ]
+    }
+  ]
+}

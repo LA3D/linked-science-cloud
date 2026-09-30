@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "okn-exploration-20260930",
+  "episode": {
+    "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/episode.json",
+    "sha256": "ec61118d93321918b6543d91a74accb4a2eb4a03595ba01d4721f4590487327d",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Acting assistant reviewed selected user guidance and scientific query exchanges; no human review or independent outcome certification claimed",
+    "scientificObjectiveIds": [
+      "okn-exploration"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "guided-introspection",
+      "objectiveId": "okn-exploration",
+      "anchors": [
+        "https://apps.okn.us/federation/sparql"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-5",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-7",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-8",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-9",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-10",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-11",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-12",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-13",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+            "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-14",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/okn-exploration-20260930/trajectory.json",
+          "sha256": "9fe02c1f8e4b75200904259911a6acab832a8867dc7ebd8d1fd1a250c01402df",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "user-guidance"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "claim": "Source discovery and example inspection guide scoped graph exploration; spatial execution and scientific meaning need separate checks",
+      "scope": "Human-guided OKN/PubChem/OSM exploration on 2026-09-30",
+      "sourceEvidenceIds": [
+        "selected-trajectory"
+      ],
+      "freshness": {
+        "asOf": "2026-09-30",
+        "revalidateWhen": "Catalog, schemas, endpoints, query engines or scientific question change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "Only selected conversation and tool exchanges retained; no complete dataset export",
+        "Voice guidance is quoted transcript, not original audio",
+        "No isolated causal test of the spatial-query recovery",
+        "No direct-runtime scientific-finding certification; these are procedural candidates",
+        "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+      ],
+      "evidenceBasis": "trajectory-procedure"
+    }
+  ]
+}

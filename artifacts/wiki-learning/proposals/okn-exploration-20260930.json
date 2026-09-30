@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "okn-exploration-20260930",
+  "baseRevision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "batch": {
+    "purpose": "Capture user-guided OKN catalog introspection, source examples, semantic screening and spatial query recovery",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/okn-exploration-20260930.json",
+        "sha256": "bf2d05342d9d5690093619c5114085487b57bffdee7f83f73746d3f2a6372b05",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+        "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+        "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 16,
+    "outcomeStrata": [
+      "partial",
+      "success"
+    ],
+    "omittedMaterial": [
+      "Only selected conversation and tool exchanges retained; no complete dataset export",
+      "Voice guidance is quoted transcript, not original audio",
+      "No isolated causal test of the spatial-query recovery",
+      "No direct-runtime scientific-finding certification; these are procedural candidates",
+      "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "catalog-resource-rediscovery",
+      "title": "Rediscover resources through a catalog without conflating catalog and query service",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use OKN Fabric as a discovery entry point: inspect its registry, service documentation, examples and available graph metadata at task time. Preserve advertised versus tested status. The catalog can evolve; this episode does not establish a growth rate. Distinguish the registry/catalog from the cross-OKN endpoint, documented here as a combined triplestore. Saved endpoint addresses are dated navigation hints, not an exhaustive or permanent resource inventory.",
+      "applicability": "Human-guided discovery across scientific catalogs and SPARQL services; source-specific observations are dated",
+      "competingExplanations": [
+        "Different datasets, engine versions or tagging coverage can change results"
+      ],
+      "missingEvidence": [
+        "Only selected conversation and tool exchanges retained; no complete dataset export",
+        "Voice guidance is quoted transcript, not original audio",
+        "No isolated causal test of the spatial-query recovery",
+        "No direct-runtime scientific-finding certification; these are procedural candidates",
+        "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+      ],
+      "revalidateWhen": "Source catalog, schema, endpoint behavior or question changes",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/okn-exploration-20260930.json",
+            "sha256": "bf2d05342d9d5690093619c5114085487b57bffdee7f83f73746d3f2a6372b05",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "guided-introspection",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10",
+            "event-11",
+            "event-12",
+            "event-13",
+            "event-14"
+          ],
+          "evidenceIds": [
+            "selected-trajectory"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "industry-screening-versus-emissions",
+      "title": "Separate industry screening and spatial proximity from emissions attribution",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Inspect the class and collection definitions before ranking facilities. Potential-PFAS-user industry collections support screening counts, not confirmed-emitter or release rankings. Count distinct identifiers at comparable industry granularity, disclose overlapping classifications, and retain sample material, date, units and spatial relation when enriching measurements. A nearby mapped facility is not an attributed contamination source.",
+      "applicability": "Human-guided discovery across scientific catalogs and SPARQL services; source-specific observations are dated",
+      "competingExplanations": [
+        "Different datasets, engine versions or tagging coverage can change results"
+      ],
+      "missingEvidence": [
+        "Only selected conversation and tool exchanges retained; no complete dataset export",
+        "Voice guidance is quoted transcript, not original audio",
+        "No isolated causal test of the spatial-query recovery",
+        "No direct-runtime scientific-finding certification; these are procedural candidates",
+        "Historical skill baseline reference retained for schema compatibility; active skill loading/version not certified"
+      ],
+      "revalidateWhen": "Source catalog, schema, endpoint behavior or question changes",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/okn-exploration-20260930.json",
+            "sha256": "bf2d05342d9d5690093619c5114085487b57bffdee7f83f73746d3f2a6372b05",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "guided-introspection",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10",
+            "event-11",
+            "event-12",
+            "event-13",
+            "event-14"
+          ],
+          "evidenceIds": [
+            "selected-trajectory"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use source-owned membership and interaction examples to select predicates, then inspect the ontology before adapting them. This trajectory used dcterms:isPartOf for membership and explicit wp:source|wp:target|wp:participants for involvement. The saved ontology uses rdfs:subClassOf between source/target and participants, not rdfs:subPropertyOf; do not silently treat those statements as property inference. DataNode is marked deprecated. Generalization suggested by the OKN episode: discover source-maintained query examples through service documentation, advertised well-known resources or linked repositories; use examples to learn vocabulary, graph scope, joins and engine syntax before adapting them. Check the executable query against its description: the OKN InvitroDB example said both ICE and ToxCast but did not enforce a named-graph intersection. The user also cited UniProt example discovery; its exact well-known URL was not reverified in this episode.",
+      "applicability": "WikiPathways schema exploration and SPARQL query construction; exact saved ontology only.",
+      "competingExplanations": [
+        "Results depend on the submitted query, endpoint default graph and source mapping conventions; this episode does not isolate the causal benefit of the procedure."
+      ],
+      "missingEvidence": [
+        "No comparison against ontology-only query design.",
+        "No transfer to another gene or endpoint.",
+        "Original example inspection envelopes not captured; retained source fingerprint and excerpt preserved."
+      ],
+      "revalidateWhen": "Source or endpoint release, graph scoping, ontology serialization, identifier mappings or query objective changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/wikipathways-20260921.json",
+            "sha256": "09d9014808c2665e0ef66b4a0ce68436183b3ece547b891d852fa6082e086bf9",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "example-query",
+          "evidenceIds": [
+            "ontology",
+            "examples",
+            "schema-query",
+            "membership",
+            "interactions",
+            "participants",
+            "mappings",
+            "identity"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "operationIds": [
+            "op-000006"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/okn-exploration-20260930.json",
+            "sha256": "bf2d05342d9d5690093619c5114085487b57bffdee7f83f73746d3f2a6372b05",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "guided-introspection",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10",
+            "event-11",
+            "event-12",
+            "event-13",
+            "event-14"
+          ],
+          "evidenceIds": [
+            "selected-trajectory"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "federation-failure-hop-diagnosis",
+      "title": "Locate federation failures at the broker, coordinator or downstream hop",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Audit the published query against extraction and every modification before blaming infrastructure: endpoint spelling, prefixes, scope, VALUES, normalization and limits. Identify where SERVICE executes from exchanges; a single-source client may delegate the whole query. Preserve the exact query and full error body when available. When separately authorized, compare the identical query, coordinator, method and equivalent headers with curl, retaining redirects, HTTP status, timing and client differences. Distinguish a broker deadline/budget error from a coordinator response that embeds a downstream failure. Use minimal SERVICE and equivalent direct-component queries as diagnostics, not replacement federation. On 2026-09-27, independent curl exposed UniProt reporting Bgee 403 inside its own 400 response; direct Bgee queries worked. Treat that as a dated access observation, not a universal endpoint rule or evidence of migration. If a body is unavailable or empty, keep the cause unresolved rather than inventing it. In the user-guided OSM episode, check feature tags and geometry paths and compare endpoint-native execution before treating an empty mediated spatial result as absence. A revised direct QLever query using geometry variables and full geometry returned features after empty results/timeouts; a centroid variant was empty. Multiple details changed, so no single root cause was isolated. Preserve failed attempts and successful query shape without claiming causality.",
+      "applicability": "SPARQL SERVICE federation HTTP 400/403, endpoint/broker troubleshooting, exact-query audits and remote access diagnosis after unexpected failures.",
+      "competingExplanations": [
+        "Matching HTTP status alone does not establish matching causes; minimal tests may have empty bodies.",
+        "The downstream protection rule, remote client identity and policy-change date were not established."
+      ],
+      "missingEvidence": [
+        "One dated trajectory; no general Bgee availability conclusion.",
+        "This corpus certifies selected process eligibility, not a direct-runtime machine outcome or curl authorization for future tasks."
+      ],
+      "revalidateWhen": "Endpoint policy, coordinator engine/planning, transport, query syntax or source release changes; recheck before reusing a dated failure diagnosis.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "coordinator-failure-localization",
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "curl-exception",
+            "query-audit",
+            "failure-comparison"
+          ],
+          "operationIds": []
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/okn-exploration-20260930.json",
+            "sha256": "bf2d05342d9d5690093619c5114085487b57bffdee7f83f73746d3f2a6372b05",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "guided-introspection",
+          "eventIds": [
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10",
+            "event-11",
+            "event-12",
+            "event-13",
+            "event-14"
+          ],
+          "evidenceIds": [
+            "selected-trajectory"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}
