@@ -27,10 +27,9 @@ export async function managedConfiguration({ root = checkoutRoot, socketPath, ha
   assertLinkedScienceProjectManifest(JSON.parse(await readFile(join(root, 'package.json'), 'utf8')));
   const checkoutKey = hash(root).slice(0, 16);
   const store = join(homedir(), 'Library/Application Support/LinkedScience/managed', checkoutKey);
-  socketPath ??= `/private/tmp/linked-science-managed-${process.getuid()}-${checkoutKey}/session.sock`;
   handoffRoot ??= join(store, 'handoff');
   connectionRoot ??= join(store, 'connections');
-  if (![socketPath, handoffRoot, connectionRoot].every(p => typeof p === 'string' && p.startsWith('/'))) throw fail('INVALID_CONFIGURATION', 'Managed paths must be absolute');
+  if (![handoffRoot, connectionRoot, ...(socketPath === undefined ? [] : [socketPath])].every(p => typeof p === 'string' && p.startsWith('/'))) throw fail('INVALID_CONFIGURATION', 'Managed paths must be absolute');
   // Source identity rejects reuse after runtime changes, including uncommitted edits.
   const digest = createHash('sha256');
   async function add(path) {
@@ -40,7 +39,11 @@ export async function managedConfiguration({ root = checkoutRoot, socketPath, ha
     else if (/\.(mjs|json)$/u.test(path)) { digest.update(path); digest.update(await readFile(join(root, path))); }
   }
   for (const path of ['lib', 'packages/cleanroom-node-repl/src', 'package.json', 'package-lock.json']) await add(path);
-  return { root, socketPath, handoffRoot, connectionRoot, fingerprint: digest.digest('hex') };
+  const fingerprint = digest.digest('hex');
+  // New runtime generations get a separate service. Keep connection records
+  // shared so an old chat cannot silently acquire a replacement empty session.
+  socketPath ??= `/private/tmp/linked-science-managed-${process.getuid()}-${checkoutKey}-${fingerprint.slice(0, 16)}/session.sock`;
+  return { root, socketPath, handoffRoot, connectionRoot, fingerprint };
 }
 
 export async function withPrivateLock(directory, name, operation, { timeoutMs = 6500 } = {}) {

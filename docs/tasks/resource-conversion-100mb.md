@@ -24,3 +24,13 @@ The mounted chat MCP separately demonstrated authoritative project identity and 
 The task is retained on its named branch. Local `main` is at `e2e973bcde7b5ffa0edd0fa7182cfff799a78fc9`, equal to its upstream at verification time. The starting checkout is three pre-existing commits ahead of main and contains substantial unrelated edits. Fast-forward integration would include those pre-existing commits, while switching to main also crosses unrelated dirty files. Integration is therefore deferred; do not force it or sweep unrelated work into this commit. No packages were installed, no configuration was edited, and nothing was pushed.
 
 Next action for live use: deliberately establish a fresh scientific kernel and verify `linkedScience.capabilities().budgets.maxResidentResourceBytes === 100000000` before reusing the ENVO loading procedure. Resolve the unrelated registry failure and prior-branch integration separately.
+
+## Managed startup follow-up
+
+The user's requested new local chat subsequently failed its MCP handshake. The configured authoritative managed launcher was correct, but it exited with `INCOMPATIBLE_SERVICE`: the old occupied checkout-wide socket advertised the previous source fingerprint. The low-level ENVO verification above had not exercised managed startup.
+
+Default managed sockets now include the runtime fingerprint. New chats start or reuse a separate compatible generation without killing, resetting, or replacing the older service. Handoff and connection stores remain stable. An existing chat's saved connection pointing to a different socket still fails explicitly with `PRIVATE_CONNECTION`; this preserves the no-silent-recreation contract. Existing adapters and their scientific state remain on the old service. Explicit socket overrides retain strict mismatch rejection. The user's local `.codex/config.toml` remains untouched.
+
+Real managed stdio initialization, three-tool discovery, authoritative identity, 100,000,000-byte capabilities, and a binding surviving two calls were verified against the unchanged project configuration's launcher. Disposable managed tests cover generation selection, concurrent attachment, old-session preservation, and rejection of cross-generation implicit recreation. The initial diagnostic used a 100-second execution timeout unsupported by the managed service; repeating with 30 seconds verified execution. This is separate from the startup fix and the prior scientific CONSTRUCT timeout.
+
+Follow-up checks: all 9 managed-startup tests pass; full suite 367/368 pass with only the same unrelated registry failure; smoke, offline runtime verification, documentation link checks and diff checks pass.

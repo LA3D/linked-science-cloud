@@ -16,17 +16,46 @@ async function fixture(t) {
   const root = await mkdtemp('/private/tmp/ls-managed-test-'); await chmod(root, 0o700);
   const config = await managedConfiguration({ socketPath: join(root, 'session.sock'), handoffRoot: join(root, 'handoff'), connectionRoot: join(root, 'connections') });
   const adapters = [];
+  const sockets = [config.socketPath];
   t.after(async () => {
     for (const adapter of adapters) await adapter.close();
-    let client;
-    try { client = await connectScientificSession({socketPath:config.socketPath,requestTimeoutMs:300}); const info = await client.serviceInfo(); if(info.pid)process.kill(info.pid,'SIGTERM'); } catch {} finally { client?.close(); }
+    for (const socketPath of sockets) {
+      let client;
+      try { client = await connectScientificSession({socketPath,requestTimeoutMs:300}); const info = await client.serviceInfo(); if(info.pid)process.kill(info.pid,'SIGTERM'); } catch {} finally { client?.close(); }
+    }
     for(let i=0;i<50;i++){try{await lstat(config.socketPath);await delay(20)}catch{break}}
     await rm(root,{recursive:true,force:true});
   });
-  return { root, config, adapters, async adapter(){const a=await startManagedMcp(config);adapters.push(a);return a} };
+  return { root, config, adapters, sockets, async adapter(){const a=await startManagedMcp(config);adapters.push(a);return a} };
 }
 const call=(handler,name,args,threadId)=>handler({jsonrpc:'2.0',id:1,method:'tools/call',params:{name,arguments:args,_meta:{threadId}}});
 const output=result=>result.result.content.map(c=>c.text??'').join('');
+
+test('default socket is runtime-generation scoped while connection records remain stable', async () => {
+  const config = await managedConfiguration();
+  assert.ok(config.socketPath.endsWith(`-${config.fingerprint.slice(0,16)}/session.sock`));
+  const again = await managedConfiguration();
+  assert.equal(again.socketPath, config.socketPath);
+  assert.equal(again.connectionRoot, config.connectionRoot);
+});
+
+test('a separate runtime socket admits a new chat without replacing an existing chat', async t => {
+  const f = await fixture(t);
+  const old = await f.adapter();
+  const thread = randomUUID();
+  await old.prepare({threadId:thread});
+  await old.execute('var generationSentinel=42');
+  const secondRoot = join(f.root, 'next');
+  await mkdir(secondRoot, {mode:0o700});
+  const nextConfig = {...f.config, socketPath:join(secondRoot,'session.sock')};
+  f.sockets.push(nextConfig.socketPath);
+  const next = await startManagedMcp(nextConfig); f.adapters.push(next);
+  await assert.rejects(next.prepare({threadId:thread}), {code:'PRIVATE_CONNECTION'});
+  assert.match((await old.execute('nodeRepl.write(generationSentinel)')).content[0].text,/42/);
+  const fresh = await startManagedMcp(nextConfig); f.adapters.push(fresh);
+  await fresh.prepare({threadId:randomUUID()});
+  assert.match((await fresh.execute('nodeRepl.write(linkedScience.capabilities().budgets.maxResidentResourceBytes)')).content[0].text,/100000000/);
+});
 
 test('cold startup, concurrent reuse, chat isolation, private reconnect and reset', async t => {
   const f=await fixture(t);const [a,b]=await Promise.all([f.adapter(),f.adapter()]);
