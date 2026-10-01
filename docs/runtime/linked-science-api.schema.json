@@ -17,7 +17,7 @@
     "broker": {
       "packageName": "@linked-science/cleanroom-node-repl",
       "packageRoot": "packages/cleanroom-node-repl",
-      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "entrypoint": "packages/cleanroom-node-repl/src/managed-scientific-mcp.mjs",
       "mcpServer": "cleanroom_node_repl",
       "tools": [
         "js",

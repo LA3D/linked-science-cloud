@@ -52,13 +52,15 @@ The [configuration script](../../scripts/configure-project-mcp.mjs) validates th
 
 | Field | Generated value |
 | --- | --- |
-| `command` | Absolute Node executable used to run setup |
-| `args` | Absolute path to `packages/cleanroom-node-repl/src/cleanroom-mcp.mjs` |
+| `command` | Absolute Node executable path, preserving an existing PATH symlink to avoid a versioned executable pin |
+| `args` | Absolute path to `packages/cleanroom-node-repl/src/managed-scientific-mcp.mjs` |
 | `cwd` | Resolved absolute checkout root |
 
 The script preserves other settings, including tool approvals and the required-server flag. It does not edit global configuration or install dependencies itself. Review `.codex/config.toml` after setup and keep machine-specific paths local; do not include them in a project commit. Rerun setup when moving the checkout or replacing its Node executable. Missing/duplicate setup fields cause an error rather than an inferred configuration rewrite.
 
 `linked-science:verify` runs repository boundary checks, broker syntax/import checks, and an offline synthetic test against the actual local JSON-RPC broker. It checks identity, advertised tools, bootstrap and persistence/reset behavior in its own test process. It makes no live scientific retrieval and cannot prove that the current desktop task mounted that broker.
+
+The registered launcher automatically starts or reuses a separate persistent scientific service. Its first tool call selects the chat using Codex host metadata. See [managed scientific startup](../architecture/managed-scientific-startup.md) for identity, private reconnect storage, compatibility and explicit recovery limits. Existing manually launched sessions and handoffs remain separate.
 
 ## Restart and reconnect
 

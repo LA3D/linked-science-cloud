@@ -31,8 +31,8 @@ test('root package identity cannot be downgraded to a generic REPL experiment', 
 test('project config must name the exact repository-owned broker entrypoint', async () => {
   const config = await readFile(new URL('../.codex/config.toml', import.meta.url), 'utf8');
   await assert.rejects(
-    validateRepositoryBoundaries({ configText: config.replace(/packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u, 'scripts/smoke.mjs') }),
-    /args must name only .*packages\/cleanroom-node-repl\/src\/cleanroom-mcp\.mjs/u,
+    validateRepositoryBoundaries({ configText: config.replace(/packages\/cleanroom-node-repl\/src\/managed-scientific-mcp\.mjs/u, 'scripts/smoke.mjs') }),
+    /args must name only .*packages\/cleanroom-node-repl\/src\/managed-scientific-mcp\.mjs/u,
   );
 });
 

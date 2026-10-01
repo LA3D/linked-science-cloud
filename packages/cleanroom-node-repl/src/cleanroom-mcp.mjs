@@ -551,6 +551,7 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
     try {
       if (name === "js") {
         if (!validateJsArguments(args)) throw Object.assign(new Error("Invalid js arguments"), { code: "INVALID_ARGUMENT" });
+        if (typeof broker.prepare === "function") await broker.prepare(plainObject(request.params?._meta) ? request.params._meta : {}, args.session);
         if (args.session !== undefined) {
           if (typeof broker.sessionCommand !== "function") throw Object.assign(new Error("This broker does not support shared-session control"), {code:"SESSION_UNAVAILABLE"});
           const result = await broker.sessionCommand(args.session);
@@ -568,10 +569,12 @@ export function createRequestHandler({ broker = new KernelBroker() } = {}) {
       }
       if (name === "js_reset") {
         if (!plainObject(args) || Object.keys(args).length !== 0) throw Object.assign(new Error("Invalid js_reset arguments"), { code: "INVALID_ARGUMENT" });
+        if (typeof broker.prepare === "function") await broker.prepare(plainObject(request.params?._meta) ? request.params._meta : {});
         return rpcResult(request.id, { content: [{ type: "text", text: JSON.stringify(await broker.reset()) }] });
       }
       if (name === "js_add_node_module_dir") {
         if (!plainObject(args) || Object.keys(args).length !== 1 || typeof args.path !== "string") throw Object.assign(new Error("Invalid module-dir arguments"), { code: "INVALID_ARGUMENT" });
+        if (typeof broker.prepare === "function") await broker.prepare(plainObject(request.params?._meta) ? request.params._meta : {});
         return rpcResult(request.id, { content: [{ type: "text", text: JSON.stringify(await broker.addModuleDir(args.path)) }] });
       }
       throw Object.assign(new Error("Unknown tool"), { code: "UNKNOWN_TOOL" });

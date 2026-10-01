@@ -1,11 +1,22 @@
 import { access, readFile, realpath, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { delimiter, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertLinkedScienceProjectManifest, LINKED_SCIENCE_PROJECT_IDENTITY } from '../lib/linked-science-project-identity.mjs';
 
+// Preserve an executable symlink rather than process.execPath's versioned target.
+export async function stableNodePath({ execPath = process.execPath, path = process.env.PATH ?? '' } = {}) {
+  const actual = await realpath(execPath);
+  for (const directory of path.split(delimiter).filter(Boolean)) {
+    const candidate = resolve(directory, process.platform === 'win32' ? 'node.exe' : 'node');
+    try { if (await realpath(candidate) === actual) { await access(candidate, constants.X_OK); return candidate; } } catch {}
+  }
+  return execPath;
+}
+
 // Explicit, per-checkout setup: never edits global Codex configuration or installs dependencies.
-export async function configureProjectMcp({ root = resolve(dirname(fileURLToPath(import.meta.url)), '..'), nodePath = process.execPath } = {}) {
+export async function configureProjectMcp({ root = resolve(dirname(fileURLToPath(import.meta.url)), '..'), nodePath } = {}) {
+  nodePath ??= await stableNodePath();
   root = await realpath(resolve(root));
   const manifest = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
   assertLinkedScienceProjectManifest(manifest);

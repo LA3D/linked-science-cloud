@@ -60,6 +60,7 @@ export async function connectScientificSession({ socketPath, requestTimeoutMs = 
   }
   const close = () => { finish(); socket.destroy(); };
   return Object.freeze({
+    serviceInfo: () => call('serviceInfo'),
     create: (args = {}) => call('create', args),
     attach: args => call('attach', args),
     execute: (code, options = {}) => call('execute', { code, options }),

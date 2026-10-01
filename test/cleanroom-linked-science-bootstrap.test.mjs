@@ -66,7 +66,7 @@ test('active project config registers only the consumer-owned clean-room MCP wit
   const disabled = await readFile(new URL('../.codex/config.restricted-profile.toml.disabled', import.meta.url), 'utf8');
   assert.match(config, /^\[mcp_servers\.cleanroom_node_repl\]/u);
   assert.ok(config.includes(`cwd = ${JSON.stringify(LINKED_SCIENCE_PROJECT_ROOT)}`));
-  assert.ok(config.includes(JSON.stringify(`${LINKED_SCIENCE_PROJECT_ROOT}/packages/cleanroom-node-repl/src/cleanroom-mcp.mjs`)));
+  assert.ok(config.includes(JSON.stringify(`${LINKED_SCIENCE_PROJECT_ROOT}/packages/cleanroom-node-repl/src/managed-scientific-mcp.mjs`)));
   assert.doesNotMatch(config, /node-repl-network-probe/u);
   assert.doesNotMatch(config, /default_permissions|network_proxy|mcp_servers\.node_repl/u);
   assert.match(disabled, /default_permissions = "science-tools-linked-data"/u);

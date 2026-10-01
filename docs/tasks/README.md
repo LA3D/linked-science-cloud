@@ -23,6 +23,7 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Durable outcome |
 | --- | --- | --- |
+| [Managed scientific startup](managed-scientific-startup.md) | Implemented and desktop activation verified | Automatic detached service readiness and isolated chat attachment/reconnect using verified Codex host metadata. |
 | [Scientific REPL simplification](repl-simplification.md) | Complete | Added explicit release/disposal with race-safe storage cleanup, native streaming RDF/JS Sources and explicit clones, automatic validated startup, and reusable source orientation separate from inventory. Reduced the active plan; Prime/provider/policy work remains optional research. |
 | [Heap-aligned residency, bindings spill, and indexed spool](heap-aligned-residency-indexed-spool.md) | Complete | Derived resident-graph quotas from the kernel heap with a live headroom check and `KERNEL_OOM` classification, spilled large `SELECT` solutions to broker storage, and made stored quad results indexed sources with pattern pushdown and exact counts. |
 | [Complete out-of-core graph-query results](out-of-core-graph-results.md) | Complete | Added private epoch-owned SQLite spooling for complete large `CONSTRUCT`/`DESCRIBE` results, streaming symbolic reuse, quota atomicity, reset cleanup, aggregate output bounds, structural `SERVICE` detection, and corrected sample configuration. |

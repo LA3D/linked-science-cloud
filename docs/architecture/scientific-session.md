@@ -1,6 +1,6 @@
 # Shared scientific sessions
 
-The registered MCP entrypoint now creates a session-capable adapter. Before explicit attachment it behaves as an independent scratch REPL. An independently running local session service owns the scientific kernel, native RDF/JS objects and retained query results. MCP disconnect closes a client and its scratch kernel; it does not close the scientific session.
+The project registration uses [managed scientific startup](managed-scientific-startup.md) for automatic service readiness and chat attachment. The low-level session-capable adapter still behaves as an independent scratch REPL before explicit attachment. An independently running local session service owns the scientific kernel, native RDF/JS objects and retained query results. MCP disconnect closes a client and its scratch kernel; it does not close the scientific session.
 
 Codex still owns model calls, worker dispatch and continuation. This implementation supplies the scoped data/result bridge, not automatic recursive model execution or a second agent scheduler.
 
@@ -20,7 +20,7 @@ Remote `query(object, sparql)` accepts local queries over the granted source. Da
 
 Paging currently repeats a stream scan up to the requested offset. It supports complete iteration without display-page truncation, but is not a scalable cursor store. Concurrent mutation between pages does not provide snapshot isolation. Page limit is 128 items, individual result/deposit limit 128 KiB, wire frame limit 512 KiB; exceeding a bound is an error, never evidence of complete results. Large values, richer result schemas, cursor efficiency and further object adapters remain future work.
 
-## Activation after saving changes
+## Explicit legacy activation after saving changes
 
 Keep the service in a separate terminal/process if it must survive a desktop restart. Start it with a new private socket directory:
 
@@ -28,7 +28,7 @@ Keep the service in a separate terminal/process if it must survive a desktop res
 node packages/cleanroom-node-repl/src/scientific-session-server.mjs /private/tmp/linked-science-session/session.sock
 ```
 
-The launcher prints readiness and the canonical socket path. It will not replace an existing socket. The project MCP registration stays at its existing entrypoint; a freshly loaded entrypoint selects the adapter. Restart the desktop after saving this implementation, then perform the project [runtime discovery](../agent/runtime-discovery.md). Shell tests alone do not prove the mounted MCP changed.
+The launcher prints readiness and the canonical socket path. It will not replace an existing socket. This explicit service remains separate from the managed project service; use the low-level adapter for explicit legacy attachment. Restart the desktop after saving this implementation, then perform the project [runtime discovery](../agent/runtime-discovery.md). Shell tests alone do not prove the mounted MCP changed.
 
 In a fresh owner REPL, create and retain the returned connection information:
 

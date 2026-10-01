@@ -50,7 +50,7 @@ function scopedArgs(operation, args, grant) {
  * session: KernelBroker cannot safely cancel one evaluation while preserving its
  * kernel. A worker timing out before dispatch is detached without killing the session.
  */
-export async function startScientificSessionService({ socketPath, brokerFactory = () => new KernelBroker({ provider: null }), idleTtlMs = 86_400_000, requestTimeoutMs = 30_000, maxPending = 32, maxSessions = 32, maxConnections = 64, maxGrants = 128, maxGrantObjects = 1024, maxGrantTtlMs = 300_000 } = {}) {
+export async function startScientificSessionService({ socketPath, serviceInfo = null, brokerFactory = () => new KernelBroker({ provider: null }), idleTtlMs = 86_400_000, requestTimeoutMs = 30_000, maxPending = 32, maxSessions = 32, maxConnections = 64, maxGrants = 128, maxGrantObjects = 1024, maxGrantTtlMs = 300_000 } = {}) {
   if (typeof socketPath !== 'string' || !socketPath.startsWith('/') || ![idleTtlMs, requestTimeoutMs, maxPending, maxSessions, maxConnections, maxGrants, maxGrantObjects, maxGrantTtlMs].every(positive)) throw fail('INVALID_ARGUMENT', 'Invalid service options');
   const directory = dirname(socketPath);
   const metadata = await lstat(directory);
@@ -124,6 +124,7 @@ export async function startScientificSessionService({ socketPath, brokerFactory 
   }
   async function handle(connection, method, args) {
     if (closing) throw fail('SERVICE_CLOSED', 'Service is shutting down');
+    if (method === 'serviceInfo') { fields(args, []); if (!serviceInfo) throw fail('INCOMPATIBLE_SERVICE', 'Service has no managed identity'); return serviceInfo; }
     if (method === 'create') {
       fields(args, ['sessionId']);
       if (connection.auth) throw fail('ALREADY_ATTACHED', 'Detach before creating another session');
