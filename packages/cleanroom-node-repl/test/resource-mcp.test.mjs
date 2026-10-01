@@ -7,6 +7,31 @@ import { fileURLToPath } from 'node:url';
 import { createRequestHandler, KernelBroker } from '../src/cleanroom-mcp.mjs';
 
 const cwd = fileURLToPath(new URL('../../..', import.meta.url));
+test('whole-resource admission preserves heap headroom below the 100MB ceiling', async t => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'resource-heap-')));
+  const chunk = Buffer.alloc(64 * 1024, 32);
+  const broker = new KernelBroker({ cwd, maxOldSpaceMb: 256, traversalOptions: {
+    resourceStorageOptions: { tempRoot: root, reserveBytes: 0 },
+    fetchImpl: async () => {
+      let n = 0;
+      return new Response(new ReadableStream({ pull(c) { if (n++ < 160) c.enqueue(chunk); else c.close(); } }));
+    },
+  } });
+  t.after(async () => { await broker.close(); await rm(root, { recursive: true, force: true }); });
+  const handle = createRequestHandler({ broker });
+  const response = await handle({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'js', arguments: {
+    timeout_ms: 120000,
+    code: `var ws=linkedScience.open({contextKey:'heap-resource'}); var r=await ws.resources.get('https://example.test/ontology',{storage:'disk',maxBytes:11000000}); var before=ws.inventory(); var failure; try { await r.rdf({name:'heap-ontology',format:'application/rdf+xml'}); } catch(e) { failure=e.code; } nodeRepl.write({failure, bytes:(await r.inspect()).bytes, ceiling:linkedScience.capabilities().budgets.maxResidentResourceBytes, unchanged:JSON.stringify(before)===JSON.stringify(ws.inventory())}); await ws.dispose();`,
+  } } });
+  const output = response.result.content.find(x => x.type === 'text')?.text;
+  assert.equal(response.result.isError, undefined, output);
+  assert.match(output, /failure: 'LS_KERNEL_HEAP_BOUND'/);
+  assert.match(output, /bytes: 10485760/);
+  assert.match(output, /ceiling: 100000000/);
+  assert.match(output, /unchanged: true/);
+  assert.notEqual(broker.child, null);
+});
+
 test('actual MCP retains disk resources across calls, streams analysis and exports beyond reset', async t => {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'resource-mcp-')));
   const chunk = Buffer.alloc(64 * 1024, 23);
@@ -33,7 +58,8 @@ test('actual MCP retains disk resources across calls, streams analysis and expor
   assert.match(output, /total: 4259840/);
   assert.match(output, /broker-stored-resource/);
   assert.match(output, /truncated: true/);
-  assert.equal(await run(`try { await r.text(); } catch(e) { nodeRepl.write(e.code); }`), 'LS_RESOURCE_WORKING_MEMORY');
+  assert.equal(await run(`nodeRepl.write((await r.text()).length)`), String(65*chunk.length));
+  assert.equal(await run(`nodeRepl.write(linkedScience.capabilities().budgets.maxResidentResourceBytes)`), '100000000');
   const artifact = JSON.parse(await run(`var artifact=await r.materialize({name:'sample.bin',authorized:true}); nodeRepl.write(JSON.stringify(artifact))`));
   assert.equal(await run(`await ws.release(r); try { await r.read(); } catch(e) { nodeRepl.write(e.code); }`), 'LS_RELEASED_HANDLE');
   assert.equal(broker.traversal.resources.records.size, 0);
