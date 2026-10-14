@@ -151,6 +151,8 @@ function rlmCapabilities() {
     handoff: Object.freeze({interface: "nodeRepl.rlm.handoff", availability: "await handoff.capabilities()", executionOwner: "Codex", continuation: "named-versioned-replayable"}),
     recursion: Object.freeze({
       available: recursionAvailable,
+      reasonCode: recursionAvailable ? null : "RLM_PROVIDER_UNAVAILABLE",
+      providerAttachment: recursionAvailable ? "host-callback" : "none",
       interface: "nodeRepl.rlm.query",
       lifecycleOwner: "cleanroom-host",
       lifecycle: "bounded-one-shot-compatibility",
@@ -159,7 +161,7 @@ function rlmCapabilities() {
       hardMaxDepth: 4,
       recovery: recursionAvailable
         ? "Use a bounded provider call only when decomposition benefits from a recursive model invocation."
-        : "Continue with local external-context operations, or run under a host configured with an RLM provider.",
+        : "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one.",
     }),
   });
 }

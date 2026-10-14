@@ -653,6 +653,8 @@ test("external-context RLM mode provides symbolic contexts and reports recursion
   assert.match(text(symbolic), /architecture: 'recursive-language-model'/u);
   assert.match(text(symbolic), /controlEnvironment: 'persistent-javascript'/u);
   assert.match(text(symbolic), /available: false/u);
+  assert.match(text(symbolic), /reasonCode: 'RLM_PROVIDER_UNAVAILABLE'/u);
+  assert.match(text(symbolic), /providerAttachment: 'none'/u);
   assert.match(text(recursive), /RLM_PROVIDER_UNAVAILABLE/);
 });
 
@@ -672,6 +674,8 @@ test("configured recursive provider is broker-mediated and bounded", async (t) =
   }));
 
   assert.match(text(response), /available: true/u);
+  assert.match(text(response), /providerAttachment: 'host-callback'/u);
+  assert.match(text(response), /reasonCode: null/u);
   assert.match(text(response), /result: 'nested:3456'/u);
   assert.equal(seen.length, 1);
   assert.equal(seen[0].budget.depth, 1);
