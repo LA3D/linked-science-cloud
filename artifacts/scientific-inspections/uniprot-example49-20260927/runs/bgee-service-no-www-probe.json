@@ -1,0 +1,179 @@
+{
+  "name": "bgee-service-no-www-probe",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT ?entity WHERE { SERVICE <https://bgee.org/sparql/> { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000180316>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?entity . } }",
+  "startedAt": "2026-09-27T13:12:31.972Z",
+  "elapsedMs": 740,
+  "status": "failed",
+  "error": {
+    "code": "MEDIATOR_HTTP_ERROR",
+    "message": "Linked Data request failed with status 400",
+    "receipt": {
+      "status": "failed",
+      "stage": "resource-read",
+      "code": "MEDIATOR_HTTP_ERROR",
+      "operationId": "op-000015",
+      "traversalId": "traversal-c62599fd9756ca5ce8482d76",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-c62599fd9756ca5ce8482d76",
+        "startedAt": "2026-09-27T13:12:31.972Z",
+        "finishedAt": "2026-09-27T13:12:32.711Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "http-error",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fentity%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fbgee.org%2Fsparql%2F%3E%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000180316%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3Fentity%20.%20%7D%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fentity%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fbgee.org%2Fsparql%2F%3E%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000180316%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3Fentity%20.%20%7D%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 400,
+            "requestSha256": "4487e00adc915d06f4a75541c24ba73c9e2c04059214c952b1c453ef4b7f706d",
+            "responseSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "mediaType": "text/html",
+            "headers": {
+              "content-length": "0",
+              "content-type": "text/html;charset=UTF-8",
+              "etag": "W/\"2026_032026-09-27\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fentity%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fbgee.org%2Fsparql%2F%3E%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000180316%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3Fentity%20.%20%7D%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:12:31.973Z",
+            "finishedAt": "2026-09-27T13:12:32.710Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 0,
+          "totalBytes": 0,
+          "state": "failed",
+          "capacity": {
+            "freeBytes": 645161070592,
+            "reserveBytes": 268435456,
+            "retainedBytes": 847016,
+            "availableBytes": 644892635136
+          },
+          "elapsedMs": 739,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "resource-failed"
+        }
+      },
+      "attempt": {
+        "kind": "linked-science-resource-attempt",
+        "index": 15,
+        "status": "failed",
+        "operationId": "op-000015",
+        "traversalId": "traversal-c62599fd9756ca5ce8482d76",
+        "method": "GET",
+        "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fentity%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fbgee.org%2Fsparql%2F%3E%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000180316%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3Fentity%20.%20%7D%20%7D&format=json",
+        "startedAt": "2026-09-27T13:12:31.972Z",
+        "endedAt": "2026-09-27T13:12:32.711Z",
+        "durationMs": 739,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_HTTP_ERROR",
+        "hiddenRetries": 0
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "cause": "Error: Linked Data request failed with status 400"
+    }
+  }
+}

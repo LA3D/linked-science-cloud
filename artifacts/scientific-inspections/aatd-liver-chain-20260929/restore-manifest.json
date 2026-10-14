@@ -1,0 +1,37 @@
+{
+  "socketPath": "/private/tmp/linked-science-session/session.sock",
+  "sessionId": "aatd-liver-chain-20260929",
+  "selection": {
+    "activityId": "b5ef1199-74d0-4f75-ad95-04f1eb3e2827",
+    "snapshots": [
+      {
+        "name": "edges",
+        "ref": {
+          "id": "7eb7778f-1204-4ab4-9af0-231112653837",
+          "version": "a87848b5aa32e018391046f466078a7902c8effdd22ce54df4f48922719651f3"
+        }
+      },
+      {
+        "name": "query",
+        "ref": {
+          "id": "cebf95d4-3329-4423-a857-60c6fafe71f2",
+          "version": "386780a581e2508f8859076d2b78c7cc40d5ebf48e1c704556623d5710a3ce5d"
+        }
+      },
+      {
+        "name": "evidence",
+        "ref": {
+          "id": "dbd6395b-c24f-4d94-9af1-910662ba10ac",
+          "version": "97e28aa4f02b33b2fb66e88f9f4cd2da4c6999908db4f3c06c73883d516e902f"
+        }
+      },
+      {
+        "name": "synthesis",
+        "ref": {
+          "id": "5bcc046f-a09f-4081-a94b-9241cd6ad36a",
+          "version": "475bd22cd517ea0c40c1329bd4f0c6c1d6595a46fa44152f298635e7bac7415b"
+        }
+      }
+    ]
+  }
+}

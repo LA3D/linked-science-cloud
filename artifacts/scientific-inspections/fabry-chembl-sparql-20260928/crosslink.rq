@@ -1,0 +1,1 @@
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?link WHERE {<http://purl.uniprot.org/uniprot/P06280> rdfs:seeAlso ?link . FILTER(CONTAINS(STR(?link),"chembl"))}

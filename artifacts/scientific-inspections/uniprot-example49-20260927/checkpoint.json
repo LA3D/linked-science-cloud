@@ -1,0 +1,580 @@
+{
+  "publishedQuery": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT\n  DISTINCT\n    ?chebi\n    ?reaction\n    ?protein ?ensemblGene\n    ?anatomicEntityLabel\n    ?anatomicEntity\nWHERE {\n  SERVICE <https://sparql.rhea-db.org/sparql> {\n    ?reaction rdfs:subClassOf rh:Reaction .\n    ?reaction rh:equation ?reactionEquation .\n    ?reaction rh:side ?reactionSide .\n    ?reactionSide rh:contains ?participant .\n    ?participant rh:compound ?compound .\n    ?compound rh:chebi ?chebi .\n    ?chebi rdfs:subClassOf* CHEBI:52639\n}\n  ?protein up:organism taxon:9606 .\n  ?protein up:annotation ?a .\n  ?a a up:Catalytic_Activity_Annotation .\n  ?a up:catalyticActivity ?ca .\n  ?ca up:catalyzedReaction ?reaction .\n  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .\n  SERVICE  <https://www.bgee.org/sparql/> {\n    ?gene genex:isExpressedIn ?anatomicEntity .\n    ?gene lscr:xrefEnsemblGene ?ensemblGene .\n    ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n  }\n}",
+  "revisedQuery": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT\n  DISTINCT\n    ?chebi\n    ?reaction\n    ?protein ?ensemblGene\n    ?anatomicEntityLabel\n    ?anatomicEntity\nWHERE {\n  SERVICE <https://sparql.rhea-db.org/sparql> {\n    ?reaction rdfs:subClassOf rh:Reaction .\n    ?reaction rh:equation ?reactionEquation .\n    ?reaction rh:side ?reactionSide .\n    ?reactionSide rh:contains ?participant .\n    ?participant rh:compound ?compound .\n    ?compound rh:chebi ?chebi .\n    ?chebi rdfs:subClassOf* CHEBI:16113\n}\n  ?protein up:organism taxon:9606 .\n  ?protein up:annotation ?a .\n  ?a a up:Catalytic_Activity_Annotation .\n  ?a up:catalyticActivity ?ca .\n  ?ca up:catalyzedReaction ?reaction .\n  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGeneVersioned .\n  BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), \"[.][0-9]+$\", \"\")) AS ?ensemblGene)\n  SERVICE  <https://www.bgee.org/sparql/> {\n    ?gene genex:isExpressedIn ?anatomicEntity .\n    ?gene lscr:xrefEnsemblGene ?ensemblGene .\n    ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n  }\n}",
+  "boundedQuery": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {\n SERVICE <https://sparql.uniprot.org/sparql> {\n VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}\n ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .\n ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .\n BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), \"[.][0-9]+$\", \"\")) AS ?ensemblGene)\n }\n SERVICE <https://sparql.rhea-db.org/sparql> {\n VALUES ?reaction {<http://rdf.rhea-db.org/21812>}\n ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .\n ?chebi rdfs:subClassOf* CHEBI:16113 .\n }\n SERVICE <https://www.bgee.org/sparql/> {\n VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}\n ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .\n ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n }\n}",
+  "environment": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "external-context",
+    "rlm": {
+      "kind": "cleanroom-rlm-capabilities",
+      "version": "1.0.0",
+      "architecture": "recursive-language-model",
+      "controlEnvironment": "persistent-javascript",
+      "externalContext": {
+        "available": true,
+        "persistence": "kernel-epoch",
+        "maxContextBytes": 2097152,
+        "operations": [
+          "registerContext",
+          "context",
+          "inspect"
+        ]
+      },
+      "recursion": {
+        "available": false,
+        "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+        "providerAttachment": "none",
+        "interface": "nodeRepl.rlm.query",
+        "lifecycleOwner": "cleanroom-host",
+        "lifecycle": "bounded-one-shot-compatibility",
+        "durable": false,
+        "asynchronousHandle": false,
+        "hardMaxDepth": 4,
+        "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+      }
+    },
+    "project": {
+      "id": "@linked-science/runtime",
+      "role": "authoritative-production-implementation",
+      "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+    },
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    },
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+    "dependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+      "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+      "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+      "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+    },
+    "traversalMediator": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    },
+    "resultStorage": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    }
+  },
+  "pageArtifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uaA2Zo/content/published-examples.html",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uaA2Zo/content/receipt.json",
+    "bytes": 76266,
+    "sha256": "d08738295f2f7ad154e082ed0401a395857f9ff4d822f41de0953a6a8c0f090c",
+    "createdAt": "2026-09-27T13:09:35.393Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+        "finalUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "15fd6447ac5d6e6e1ee88a718b089adad83eb6322d9ec88e3e1a6cd898963712",
+        "responseSha256": "d08738295f2f7ad154e082ed0401a395857f9ff4d822f41de0953a6a8c0f090c",
+        "bytes": 76266,
+        "mediaType": "text/html",
+        "headers": {
+          "content-type": "text/html;charset=UTF-8",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:09:34.655Z",
+        "finishedAt": "2026-09-27T13:09:35.372Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-7d32e39e8c7ac40b3f23a756",
+        "startedAt": "2026-09-27T13:09:34.646Z",
+        "finishedAt": "2026-09-27T13:09:35.372Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 3600000,
+          "maxRequestMs": 3600000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 322442829824,
+          "maxTotalBytes": 322442829824,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 76266,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+            "finalUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "15fd6447ac5d6e6e1ee88a718b089adad83eb6322d9ec88e3e1a6cd898963712",
+            "responseSha256": "d08738295f2f7ad154e082ed0401a395857f9ff4d822f41de0953a6a8c0f090c",
+            "bytes": 76266,
+            "mediaType": "text/html",
+            "headers": {
+              "content-type": "text/html;charset=UTF-8",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:09:34.655Z",
+            "finishedAt": "2026-09-27T13:09:35.372Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 76266,
+          "totalBytes": null,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645154095104,
+            "reserveBytes": 268435456,
+            "retainedBytes": 0,
+            "availableBytes": 644885659648
+          },
+          "elapsedMs": 726,
+          "maxBytes": 322442829824
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "runCount": 18,
+  "runs": [
+    {
+      "name": "published-original",
+      "status": "failed",
+      "elapsedMs": 1599,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "rhea-component",
+      "status": "success",
+      "elapsedMs": 876,
+      "count": 161
+    },
+    {
+      "name": "uniprot-access",
+      "status": "success",
+      "elapsedMs": 420,
+      "count": 1
+    },
+    {
+      "name": "bgee-access",
+      "status": "success",
+      "elapsedMs": 594,
+      "count": 1
+    },
+    {
+      "name": "published-rhea-uniprot",
+      "status": "success",
+      "elapsedMs": 10922,
+      "count": 776
+    },
+    {
+      "name": "chemical-definition",
+      "status": "success",
+      "elapsedMs": 4251,
+      "count": 1
+    },
+    {
+      "name": "published-original-canonical",
+      "status": "failed",
+      "elapsedMs": 1371,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "bgee-service-access",
+      "status": "failed",
+      "elapsedMs": 515,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "bgee-gene-mapping",
+      "status": "success",
+      "elapsedMs": 855,
+      "count": 246
+    },
+    {
+      "name": "cholesterol-rhea-uniprot",
+      "status": "success",
+      "elapsedMs": 13087,
+      "count": 355
+    },
+    {
+      "name": "bgee-service-real-pattern",
+      "status": "failed",
+      "elapsedMs": 292,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "cholesterol-normalized-federation",
+      "status": "failed",
+      "elapsedMs": 1802,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "bgee-service-no-www-probe",
+      "status": "failed",
+      "elapsedMs": 740,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "bgee-schema-labels",
+      "status": "success",
+      "elapsedMs": 507,
+      "count": 3
+    },
+    {
+      "name": "bounded-three-service-delegated-post",
+      "status": "failed",
+      "elapsedMs": 1807,
+      "error": "Linked Data request failed with status 400"
+    },
+    {
+      "name": "cholesterol-bgee-component",
+      "status": "success",
+      "elapsedMs": 660,
+      "count": 83
+    },
+    {
+      "name": "protein-example-label",
+      "status": "success",
+      "elapsedMs": 470,
+      "count": 1
+    },
+    {
+      "name": "uniprot-schema-definitions",
+      "status": "success",
+      "elapsedMs": 171,
+      "count": 3
+    }
+  ],
+  "cholesterol": {
+    "rows": 355,
+    "proteins": 178,
+    "genes": 58,
+    "reactions": 55
+  },
+  "exampleExpression": [
+    {
+      "ensemblGene": {
+        "type": "uri",
+        "value": "http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910"
+      },
+      "anatomicEntity": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002107"
+      },
+      "anatomicEntityLabel": {
+        "type": "literal",
+        "value": "liver"
+      }
+    },
+    {
+      "ensemblGene": {
+        "type": "uri",
+        "value": "http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910"
+      },
+      "anatomicEntity": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002108"
+      },
+      "anatomicEntityLabel": {
+        "type": "literal",
+        "value": "small intestine"
+      }
+    }
+  ],
+  "artifacts": {
+    "page": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uaA2Zo/content/published-examples.html",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uaA2Zo/content/receipt.json",
+      "sha256": "d08738295f2f7ad154e082ed0401a395857f9ff4d822f41de0953a6a8c0f090c",
+      "bytes": 76266
+    },
+    "rhea-component": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-H8M19I/content/rhea-component.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-H8M19I/content/receipt.json",
+      "sha256": "11e2675693729a71354ccc4bb5d013daf4a9f142c28cd019e458e16e1f04571c",
+      "bytes": 96472
+    },
+    "uniprot-access": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Qe1Pk2/content/uniprot-access.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Qe1Pk2/content/receipt.json",
+      "sha256": "5af92a6f739b55943d59c7dbf4af727ff9bda9de26334047c7028a6b9d651367",
+      "bytes": 258
+    },
+    "bgee-access": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-e46gaN/content/bgee-access.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-e46gaN/content/receipt.json",
+      "sha256": "73092955218161cee2fdfe0adffd81097979b1902f5f857f04871511f90bbd5c",
+      "bytes": 224
+    },
+    "published-rhea-uniprot": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dy2jJg/content/published-rhea-uniprot.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dy2jJg/content/receipt.json",
+      "sha256": "491f17b07bda11eebe2b79a5769cde3e74aa7670b9c842ecc5fdc3a55a103e92",
+      "bytes": 398732
+    },
+    "chemical-definition": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-lkx8KB/content/chemical-definition.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-lkx8KB/content/receipt.json",
+      "sha256": "f4320c53d84793fd3b9512b1b26031e3981c4003238778f80d8966498071415b",
+      "bytes": 346
+    },
+    "bgee-gene-mapping": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-6GLFv9/content/bgee-gene-mapping.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-6GLFv9/content/receipt.json",
+      "sha256": "f3ade063a8a01294f2675b5ff094155288c4f491b1c410c4f92ed0069ba0dd45",
+      "bytes": 92384
+    },
+    "cholesterol-rhea-uniprot": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-gUSlJq/content/cholesterol-rhea-uniprot.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-gUSlJq/content/receipt.json",
+      "sha256": "b981d05f3ae652bb3d9529504d1531559efa7f9c19754a931f80678864aef2b2",
+      "bytes": 182334
+    },
+    "bgee-schema-labels": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dNoWjr/content/bgee-schema-labels.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dNoWjr/content/receipt.json",
+      "sha256": "bc65d861726db6e50496e0cec5b84e5e9ddc3c9e1f15032614ad98de7f336a7d",
+      "bytes": 2482
+    },
+    "cholesterol-bgee-component": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-y0J7J4/content/cholesterol-bgee-component.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-y0J7J4/content/receipt.json",
+      "sha256": "3867cb9bbd0d5d47fc2f7c0bcc6ba84b2751ea871b7ff5ec7a2fb8eef601d074",
+      "bytes": 23325
+    },
+    "protein-example-label": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-onPTHi/content/protein-example-label.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-onPTHi/content/receipt.json",
+      "sha256": "7f16c38110e4c54ce9861fcd993dcb36912b1944324204cfdd75428eb0f0788c",
+      "bytes": 354
+    },
+    "uniprot-schema-definitions": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-btXKwW/content/uniprot-schema-definitions.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-btXKwW/content/receipt.json",
+      "sha256": "e027971122016072a6c46c706bc729da9ae6b74fb2e8ed622ffe17342ebde6c6",
+      "bytes": 856
+    }
+  },
+  "followupRunCount": 22,
+  "followupRuns": [
+    {
+      "name": "bgee-access",
+      "status": "success",
+      "elapsedMs": 594,
+      "count": 1
+    },
+    {
+      "name": "bgee-gene-mapping",
+      "status": "success",
+      "elapsedMs": 855,
+      "count": 246
+    },
+    {
+      "name": "bgee-schema-labels",
+      "status": "success",
+      "elapsedMs": 507,
+      "count": 3
+    },
+    {
+      "name": "bgee-service-access",
+      "status": "failed",
+      "elapsedMs": 515
+    },
+    {
+      "name": "bgee-service-no-www-probe",
+      "status": "failed",
+      "elapsedMs": 740
+    },
+    {
+      "name": "bgee-service-real-pattern",
+      "status": "failed",
+      "elapsedMs": 292
+    },
+    {
+      "name": "bounded-bgee-coordinator-federation",
+      "status": "failed",
+      "elapsedMs": 430
+    },
+    {
+      "name": "bounded-multisource-concurrency6",
+      "status": "failed",
+      "elapsedMs": 10031
+    },
+    {
+      "name": "bounded-multisource-federation",
+      "status": "failed",
+      "elapsedMs": 4423
+    },
+    {
+      "name": "bounded-subselect-federation",
+      "status": "failed",
+      "elapsedMs": 12850
+    },
+    {
+      "name": "bounded-three-service-delegated-post",
+      "status": "failed",
+      "elapsedMs": 1807
+    },
+    {
+      "name": "chemical-definition",
+      "status": "success",
+      "elapsedMs": 4251,
+      "count": 1
+    },
+    {
+      "name": "cholesterol-bgee-component",
+      "status": "success",
+      "elapsedMs": 660,
+      "count": 83
+    },
+    {
+      "name": "cholesterol-normalized-federation",
+      "status": "failed",
+      "elapsedMs": 1802
+    },
+    {
+      "name": "cholesterol-rhea-uniprot",
+      "status": "success",
+      "elapsedMs": 13087,
+      "count": 355
+    },
+    {
+      "name": "protein-example-label",
+      "status": "success",
+      "elapsedMs": 470,
+      "count": 1
+    },
+    {
+      "name": "published-original-canonical",
+      "status": "failed",
+      "elapsedMs": 1371
+    },
+    {
+      "name": "published-original",
+      "status": "failed",
+      "elapsedMs": 1599
+    },
+    {
+      "name": "published-rhea-uniprot",
+      "status": "success",
+      "elapsedMs": 10922,
+      "count": 776
+    },
+    {
+      "name": "rhea-component",
+      "status": "success",
+      "elapsedMs": 876,
+      "count": 161
+    },
+    {
+      "name": "uniprot-access",
+      "status": "success",
+      "elapsedMs": 420,
+      "count": 1
+    },
+    {
+      "name": "uniprot-schema-definitions",
+      "status": "success",
+      "elapsedMs": 171,
+      "count": 3
+    }
+  ],
+  "rootCauseReport": "ROOT-CAUSE.md",
+  "curlComparison": "curl-diagnostic/comparison.json"
+}

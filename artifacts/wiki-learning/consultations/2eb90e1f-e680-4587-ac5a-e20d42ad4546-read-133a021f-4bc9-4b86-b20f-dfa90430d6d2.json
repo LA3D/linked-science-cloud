@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "2eb90e1f-e680-4587-ac5a-e20d42ad4546",
+  "recordedAt": "2026-10-02T16:52:06.220Z",
+  "revision": "0d15ee85f7ff899d53aeba25ec44fe212201fc7266e7b612b0083004e562466a",
+  "patternId": "catalog-resource-rediscovery",
+  "patternSha256": "a6796e0ee9a75adc3809a6190daff2b03b926062f50a98c82378a0394f1849ed",
+  "helpfulness": "unknown"
+}

@@ -1,0 +1,171 @@
+{
+  "name": "chemical-definition",
+  "endpoint": "https://sparql.rhea-db.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT ?term ?label WHERE { ?term rdfs:label ?label . FILTER(LCASE(STR(?label))=\"cholesterol\") }",
+  "startedAt": "2026-09-27T13:11:01.046Z",
+  "elapsedMs": 4251,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-lkx8KB/content/chemical-definition.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-lkx8KB/content/receipt.json",
+    "bytes": 346,
+    "sha256": "f4320c53d84793fd3b9512b1b26031e3981c4003238778f80d8966498071415b",
+    "createdAt": "2026-09-27T13:11:05.287Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+        "finalUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "ca1febf30b6fc19b5130e6d20e3562da055b6b837f0c96ecde2d360aecdebe6e",
+        "responseSha256": "f4320c53d84793fd3b9512b1b26031e3981c4003238778f80d8966498071415b",
+        "bytes": 346,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "346",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:11:01.047Z",
+        "finishedAt": "2026-09-27T13:11:05.275Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-15eae9ab784aae3b096f4964",
+        "startedAt": "2026-09-27T13:11:01.046Z",
+        "finishedAt": "2026-09-27T13:11:05.275Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 346,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+            "finalUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "ca1febf30b6fc19b5130e6d20e3562da055b6b837f0c96ecde2d360aecdebe6e",
+            "responseSha256": "f4320c53d84793fd3b9512b1b26031e3981c4003238778f80d8966498071415b",
+            "bytes": 346,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "346",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20WHERE%20%7B%20%3Fterm%20rdfs%3Alabel%20%3Flabel%20.%20FILTER(LCASE(STR(%3Flabel))%3D%22cholesterol%22)%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:11:01.047Z",
+            "finishedAt": "2026-09-27T13:11:05.275Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 346,
+          "totalBytes": 346,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645176123392,
+            "reserveBytes": 268435456,
+            "retainedBytes": 571952,
+            "availableBytes": 644907687936
+          },
+          "elapsedMs": 4229,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 1
+}

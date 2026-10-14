@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-27T13:26:29.243Z",
+  "resourceHashesVerified": 12,
+  "sparqlQueriesParsed": 22,
+  "directCurlBgeeRows": 246,
+  "queryExtractionAudit": "passed",
+  "registrySchema": "passed",
+  "fullRegistryValidation": "pre-existing unregistered docs/experiments/scientific-trajectory-evidence.md",
+  "federationSuccess": false,
+  "infrastructureChanged": false
+}

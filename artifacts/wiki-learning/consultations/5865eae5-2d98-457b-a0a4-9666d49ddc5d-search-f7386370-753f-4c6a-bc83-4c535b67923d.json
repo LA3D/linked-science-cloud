@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "5865eae5-2d98-457b-a0a4-9666d49ddc5d",
+  "recordedAt": "2026-09-27T13:09:16.718Z",
+  "mode": "on",
+  "querySha256": "be8bf522579340a82825aaa7abbfbaae8fc9249245cc056f6733102da4d2bb1f",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "uniprot",
+        "service"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 4,
+      "matchedTerms": [
+        "uniprot",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "discovery-trajectory-20260923",
+  "episode": {
+    "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/episode.json",
+    "sha256": "098c8b335ba92d15dedc86651916001c27ed45dc9623e37e9f49b7b0d649c3f4",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Acting assistant reviewed selected scientific discovery actions and user corrections. Later engineering implementation is excluded from the selected episode; no human review or autonomous benefit asserted.",
+    "scientificObjectiveIds": [
+      "discovery"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "ontology-and-service-behavior",
+      "objectiveId": "discovery",
+      "anchors": [
+        "https://docs.identifiers.org/pages/sparql.html"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-3",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-5",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-7",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+          "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Consult source definitions and documented query behavior; virtual triples may not appear in a stored-predicate enumeration. Preserve overlooked documentation and user intervention.",
+      "scope": "User-guided scientific discovery process; not a certified source finding or autonomous performance result",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "retained-projection"
+      ],
+      "freshness": {
+        "asOf": "2026-09-23",
+        "revalidateWhen": "Provider behavior, registry mappings, ontology definitions or Wikidata statements change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "No independent transfer or causal benefit evidence",
+        "Voice corrections are frontend transcript excerpts",
+        "Tool displays may be bounded; agent summaries do not establish scientific truth"
+      ]
+    },
+    {
+      "id": "wikidata-service-discovery",
+      "objectiveId": "discovery",
+      "anchors": [
+        "https://query.wikidata.org/sparql"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-8",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-9",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-10",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-11",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-12",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-13",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+          "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Follow identifier properties to database items and advertised endpoints; use relevant instance/subclass relationships for additional service candidates.",
+      "scope": "User-guided scientific discovery process; not a certified source finding or autonomous performance result",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "retained-projection"
+      ],
+      "freshness": {
+        "asOf": "2026-09-23",
+        "revalidateWhen": "Provider behavior, registry mappings, ontology definitions or Wikidata statements change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "No independent transfer or causal benefit evidence",
+        "Voice corrections are frontend transcript excerpts",
+        "Tool displays may be bounded; agent summaries do not establish scientific truth"
+      ]
+    },
+    {
+      "id": "registry-crosswalk-lower-bound",
+      "objectiveId": "discovery",
+      "anchors": [
+        "https://sparql.api.identifiers.org/sparql"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-14",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-15",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-16",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+            "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-17",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+          "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Cross-check explicit mappings against registry namespaces and provider metadata; report lower bounds, aliases and deprecation separately.",
+      "scope": "User-guided scientific discovery process; not a certified source finding or autonomous performance result",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "retained-projection"
+      ],
+      "freshness": {
+        "asOf": "2026-09-23",
+        "revalidateWhen": "Provider behavior, registry mappings, ontology definitions or Wikidata statements change"
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "No independent transfer or causal benefit evidence",
+        "Voice corrections are frontend transcript excerpts",
+        "Tool displays may be bounded; agent summaries do not establish scientific truth"
+      ]
+    }
+  ]
+}

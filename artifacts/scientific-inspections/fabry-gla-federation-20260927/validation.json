@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-27T13:33:51.470Z",
+  "resourceHashesVerified": 5,
+  "queriesParsed": 6,
+  "resultRows": 8,
+  "protein": "P06280",
+  "directionalReactions": 2,
+  "rolesPerReaction": "2 substrates and 2 products",
+  "registrySchema": "passed",
+  "fullRegistryValidation": "pre-existing unregistered docs/experiments/scientific-trajectory-evidence.md"
+}

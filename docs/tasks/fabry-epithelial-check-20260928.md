@@ -1,0 +1,9 @@
+# Fabry kidney epithelial functional check
+
+Local queries over the already recovered four graphs found 0 exact CL:0002518 annotations versus 1 distinct mechanism/cell pair after rdfs:subClassOf* expansion, with exact kidney location UBERON:0002113. Match: renal glycosphingolipid storage and podocyte injury, annotated podocyte CL:0000653. The retained ontology witnesses two branches from podocyte through glomerular capsule epithelium, glomerular epithelium, glomerular cell and kidney corpuscule cell, via renal cortical epithelium or nephron epithelium, to kidney epithelial cell.
+
+Four curated edges form two accumulation-to-renal paths: via tissue-specific storage and via innate inflammation. Evidence includes a review (36334424), human biopsy case (27129690), and engineered podocyte transcriptomics (39100494). The additional inflammatory citation 39978321 was inspected only as a retained DisMech snippet, not independently retrieved. Named subclass traversal supplies classification; curated causal assertions and experimental evidence remain distinct. No OWL closure, EYE run, fresh source retrieval or global absence claim.
+
+[Receipt and complete small result pages](../../artifacts/scientific-inspections/fabry-epithelial-check-20260928/receipt.json). Exact queries are adjacent .rq files. Replay in the recovered workspace: read the selected .rq file with node:fs/promises, pass it to demoRecovery.fabryWs.query.run({sources:Object.values(demoRecovery.fabryGraphs),sparql}), then await results.page(handle,{limit:10}). If that workspace is absent, use the separately tested offline recovery instructions first; old epochs are not restored.
+
+Live new bindings: epiQueries, epiResults, epiPages. Original graph state preserved; new local SELECT handles retained. This is a bounded functional check, not a broad investigation. Registry validation remains blocked by the existing scientific-trajectory-evidence.md omission; no unrelated registry entries changed.

@@ -1,0 +1,70 @@
+{
+  "convert.py": {
+    "bytes": 8273,
+    "sha256": "1460ac239004a2175a46c3937f1f2b21c9c00aea1727c4b46790b106a80fdf24"
+  },
+  "ontology-excerpts.py": {
+    "bytes": 3726,
+    "sha256": "8d0d983580e81e579151839e6d327f06b8dd4229d4e21ce988331a14c560fba7"
+  },
+  "Fabry_Disease.yaml": {
+    "bytes": 146859,
+    "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc"
+  },
+  "schema/dismech.yaml": {
+    "bytes": 351418,
+    "sha256": "a6116937381cb49d03e0b7165dfca425662653881a34cc1e9705c8dbae3b6e4f"
+  },
+  "dismech_model.py": {
+    "bytes": 866211,
+    "sha256": "cffc8113388ecc8bdea744c14a162d33f6c3ffa6297821481b82f9fb92ec9e99"
+  },
+  "fabry-generated.ttl": {
+    "bytes": 253863,
+    "sha256": "1a43e9d6b86f486ee050cb53909def288264c74248c991bc422ad8d424d4ba6b"
+  },
+  "application-links.ttl": {
+    "bytes": 11814,
+    "sha256": "f4349ff35abfbdaa15035f6db4772ebadbf0cd1f73f9efb0776e30b6a451b72e"
+  },
+  "cl-excerpt.ttl": {
+    "bytes": 8522,
+    "sha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a"
+  },
+  "uberon-excerpt.ttl": {
+    "bytes": 8982,
+    "sha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee"
+  },
+  "field-audit.json": {
+    "bytes": 761803,
+    "sha256": "71cdfcd049cf2b8f9e7e7e6e84281eedddb8d52a9a9058b124bdaca0cbfe939f"
+  },
+  "conversion-report.json": {
+    "bytes": 22078,
+    "sha256": "f3d23d3fcac19a044d06ab2472d2ab6c346c4947978908df67b7d3ea7062cd8a"
+  },
+  "ontology-report.json": {
+    "bytes": 2006,
+    "sha256": "929dcd7878e9ebbb2ecd48958d00ea3a7cab67c7b7add28c2d1386e939f60f39"
+  },
+  "query-results.json": {
+    "bytes": 26274,
+    "sha256": "95556fe859411e1300bc729b2fb67a0107c05647144c33e6e0fc1883dbaf1c6b"
+  },
+  "replay-load.js": {
+    "bytes": 2267,
+    "sha256": "8c9e569da9fdfe64e0e744e9933ed7b83a49f86121b02584f9cd147928a18f77"
+  },
+  "README.md": {
+    "bytes": 11377,
+    "sha256": "97a8208330ae9f28da9c5f55474f843136135ea4b9c79241944bb3366bbe6d1c"
+  },
+  "checkpoint.json": {
+    "bytes": 34546,
+    "sha256": "8dd37b8ad886b977ef4973bf19699d176477b97a247ccd78571508385d54f937"
+  },
+  "commit-metadata.json": {
+    "bytes": 667,
+    "sha256": "10b094c9990967ae3ed1be00f67ffbec80e556f2cba935979b23c1ef30a9d668"
+  }
+}

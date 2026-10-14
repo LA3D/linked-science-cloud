@@ -1,0 +1,167 @@
+{
+  "name": "cholesterol-bgee-component",
+  "endpoint": "https://www.bgee.org/sparql/",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT DISTINCT ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910> <http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910.4>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity . ?anatomicEntity rdfs:label ?anatomicEntityLabel . }",
+  "startedAt": "2026-09-27T13:13:47.663Z",
+  "elapsedMs": 660,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-y0J7J4/content/cholesterol-bgee-component.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-y0J7J4/content/receipt.json",
+    "bytes": 23325,
+    "sha256": "3867cb9bbd0d5d47fc2f7c0bcc6ba84b2751ea871b7ff5ec7a2fb8eef601d074",
+    "createdAt": "2026-09-27T13:13:48.311Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+        "finalUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "8ce493de119ed3c38c10f76d8199d33058381060aec1e6f04265a04503df1a21",
+        "responseSha256": "3867cb9bbd0d5d47fc2f7c0bcc6ba84b2751ea871b7ff5ec7a2fb8eef601d074",
+        "bytes": 23325,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "23325",
+          "content-type": "application/sparql-results+json"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:13:47.664Z",
+        "finishedAt": "2026-09-27T13:13:48.299Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-05e66402a8bff881bf555e7a",
+        "startedAt": "2026-09-27T13:13:47.664Z",
+        "finishedAt": "2026-09-27T13:13:48.299Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 23325,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+            "finalUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "8ce493de119ed3c38c10f76d8199d33058381060aec1e6f04265a04503df1a21",
+            "responseSha256": "3867cb9bbd0d5d47fc2f7c0bcc6ba84b2751ea871b7ff5ec7a2fb8eef601d074",
+            "bytes": 23325,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "23325",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://www.bgee.org/sparql/?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3FensemblGene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20VALUES%20%3FensemblGene%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910.4%3E%7D%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%3B%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:13:47.664Z",
+            "finishedAt": "2026-09-27T13:13:48.299Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 23325,
+          "totalBytes": 23325,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645141229568,
+            "reserveBytes": 268435456,
+            "retainedBytes": 849498,
+            "availableBytes": 644872794112
+          },
+          "elapsedMs": 635,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 83
+}

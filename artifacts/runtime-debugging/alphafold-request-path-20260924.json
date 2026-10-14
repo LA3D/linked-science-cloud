@@ -1,0 +1,122 @@
+{
+  "kind": "runtime-integration-diagnostic",
+  "time": "2026-09-24T19:34:48.456Z",
+  "request": "fresh isolated KernelBroker MCP js resources.get anonymous GET with accept application/json",
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  identity: {\n    id: '@linked-science/runtime',\n    role: 'authoritative-production-implementation',\n    bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n  },\n  recordCount: 1,\n  accession: 'P69905',\n  history: {\n    kind: 'linked-science-mediated-attempt-history',\n    attempts: [\n      {\n        kind: 'linked-science-resource-attempt',\n        index: 1,\n        status: 'success',\n        operationId: 'op-000001',\n        traversalId: 'traversal-4588acee34c5384a372fac6f',\n        method: 'GET',\n        url: 'https://alphafold.ebi.ac.uk/api/prediction/P69905',\n        startedAt: '2026-09-24T19:34:48.078Z',\n        endedAt: '2026-09-24T19:34:48.453Z',\n        durationMs: 375,\n        budgets: {\n          maxQueryChars: 16384,\n          maxRequestBodyBytes: 64000,\n          maxDurationMs: 300000,\n          maxRequestMs: 20000,\n          maxRequests: 16,\n          maxFanOut: 8,\n          maxConcurrency: 4,\n          maxResponseBytes: 2000000,\n          maxTotalBytes: 10000000,\n          maxResultItems: 500\n        },\n        usage: { requests: 1, fanOut: 1, bytes: 1987, retries: 0 },\n        hiddenRetries: 0\n      }\n    ],\n    truncated: false,\n    retained: 1,\n    total: 1,\n    limit: 1\n  }\n}"
+        }
+      ]
+    }
+  },
+  "transportComparison": {
+    "evidenceStatus": "retrospective-summary",
+    "provenance": "Transcribed from actual functions.exec exec_command outputs in this task; original command output envelopes were not exported. Existing response field is the unchanged freshly saved MCP tool response.",
+    "client": {
+      "nodeVersion": "v26.9.0",
+      "versionEvidence": "Read from the same host after requests; request-time process version was not recorded.",
+      "transport": "Node globalThis.fetch via unchanged MediatedTraversalBroker",
+      "defaultUserAgent": "platform default; broker supplied no user-agent header",
+      "defaultUserAgentWireValue": null,
+      "defaultUserAgentLimitation": "No request wire capture was made; do not infer the actual platform header value from the request hash.",
+      "curlVersion": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0",
+      "undiciVersion": "8.10.2"
+    },
+    "controls": {
+      "accept": "application/json",
+      "acceptEncoding": "identity (set by broker)",
+      "credentials": "omit",
+      "maxRequestMs": 20000,
+      "sameBrokerInstance": true,
+      "sequence": "A/B/A, sequential requests",
+      "changedInput": "Only explicit user-agent request header: absent versus LinkedScience/1.0",
+      "execution": "Shell outside network sandbox with approved escalation, retaining broker anonymous-read controls"
+    },
+    "pairedExchanges": [
+      {
+        "label": "A1",
+        "userAgent": "platform-default",
+        "httpStatus": 403,
+        "startedAt": "2026-09-24T19:33:20.667Z",
+        "finishedAt": "2026-09-24T19:33:20.941Z",
+        "method": "GET",
+        "requestedUrl": "https://alphafold.ebi.ac.uk/api/prediction/P69905",
+        "redirected": false,
+        "retries": 0,
+        "bytes": 134,
+        "mediaType": "text/html",
+        "responseSha256": "c996c0469ef05ff6fdd1f7cefbc3f7e109bb21969de42fcf591498a828a7ad5f",
+        "requestSha256": "ba980154898d363a1049feedabad3e3600f9f51f0fd8e84f7b2ca7624f5f699d"
+      },
+      {
+        "label": "B",
+        "userAgent": "LinkedScience/1.0",
+        "httpStatus": 200,
+        "startedAt": "2026-09-24T19:33:20.942Z",
+        "finishedAt": "2026-09-24T19:33:21.044Z",
+        "method": "GET",
+        "requestedUrl": "https://alphafold.ebi.ac.uk/api/prediction/P69905",
+        "redirected": false,
+        "retries": 0,
+        "bytes": 1987,
+        "mediaType": "application/json",
+        "responseSha256": "af907bb73c411790ac6a24764314287e5cd331c0ed5b13eae9924ce45b27d8f9",
+        "requestSha256": "7a22bcdbe93e47479fd7b575d9f11adc09e02ba28c0013129c2ad220b32e36c2"
+      },
+      {
+        "label": "A2",
+        "userAgent": "platform-default",
+        "httpStatus": 403,
+        "startedAt": "2026-09-24T19:33:21.044Z",
+        "finishedAt": "2026-09-24T19:33:21.407Z",
+        "method": "GET",
+        "requestedUrl": "https://alphafold.ebi.ac.uk/api/prediction/P69905",
+        "redirected": false,
+        "retries": 0,
+        "bytes": 134,
+        "mediaType": "text/html",
+        "responseSha256": "c996c0469ef05ff6fdd1f7cefbc3f7e109bb21969de42fcf591498a828a7ad5f",
+        "requestSha256": "ba980154898d363a1049feedabad3e3600f9f51f0fd8e84f7b2ca7624f5f699d"
+      }
+    ],
+    "correctedBrokerExchange": {
+      "label": "fresh broker after default-header fix",
+      "userAgent": "LinkedScience/1.0 (broker default)",
+      "httpStatus": 200,
+      "startedAt": "2026-09-24T19:34:05.396Z",
+      "finishedAt": "2026-09-24T19:34:05.592Z",
+      "method": "GET",
+      "requestedUrl": "https://alphafold.ebi.ac.uk/api/prediction/P69905",
+      "redirected": false,
+      "retries": 0,
+      "bytes": 1987,
+      "mediaType": "application/json",
+      "responseSha256": "af907bb73c411790ac6a24764314287e5cd331c0ed5b13eae9924ce45b27d8f9",
+      "requestSha256": "7a22bcdbe93e47479fd7b575d9f11adc09e02ba28c0013129c2ad220b32e36c2"
+    },
+    "freshMcpBoundary": "The original response above confirms successful facade parsing, one record, accession and bytes. It does not contain HTTP status or response hash. The correctedBrokerExchange is a separate earlier fresh broker request; its status/hash must not be attributed to the MCP exchange.",
+    "curlComparison": {
+      "command": "curl -q --silent --show-error --max-time 20 --header 'Accept: application/json' --dump-header /tmp/af-transport-curl.headers --output /tmp/af-transport-curl.json --write-out 'http=%{http_code} bytes=%{size_download} seconds=%{time_total} redirects=%{num_redirects}\\n' https://alphafold.ebi.ac.uk/api/prediction/P69905",
+      "httpStatus": 200,
+      "bytes": 1987,
+      "totalSeconds": 0.174664,
+      "redirects": 0,
+      "responseSha256": "af907bb73c411790ac6a24764314287e5cd331c0ed5b13eae9924ce45b27d8f9",
+      "timestamp": null,
+      "timestampLimitation": "Exact curl request timestamp not captured; run preceded the 19:32:04 GMT matched-header response.",
+      "shellSandboxAttempt": "Initial non-escalated curl failed DNS resolution, exit 6; approved escalated curl then returned 200. This does not explain the independent broker 403."
+    },
+    "conclusion": "In this bounded comparison, supplying the truthful LinkedScience product User-Agent changed broker outcome from reproducible 403 to 200. The source or intermediary internal rejection rule remains unknown.",
+    "missingEvidence": [
+      "Request wire capture and exact platform default User-Agent",
+      "Server/intermediary policy logs",
+      "Exact timestamp for first successful curl",
+      "Status/hash in the saved fresh MCP projection"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "kind": "broker-source-exchanges",
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000001\",\"type\":\"resource\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"label\":\"resource-response\"},\"operationId\":\"op-000001\",\"url\":\"https://arxiv.org/html/2512.24601v1\",\"status\":200,\"bytes\":955832,\"sha256\":\"3c007f38a03f762e57cd31d7daa3337a79f8c153766aa96eb6cd1f524e3a0794\",\"startedAt\":\"2026-09-24T19:58:29.371Z\",\"finishedAt\":\"2026-09-24T19:58:29.661Z\"},{\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000002\",\"type\":\"resource\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"label\":\"resource-response\"},\"operationId\":\"op-000002\",\"url\":\"https://raw.githubusercontent.com/alexzhang13/rlm/main/rlm/core/rlm.py\",\"status\":200,\"bytes\":42530,\"sha256\":\"f7df6af55027159b2f428ff98c9b19beb872618ee88aa8fef62c9498fa1e0562\",\"startedAt\":\"2026-09-24T19:58:48.144Z\",\"finishedAt\":\"2026-09-24T19:58:48.387Z\"}]"
+      }
+    ]
+  }
+}

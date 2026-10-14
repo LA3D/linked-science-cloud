@@ -1,0 +1,8 @@
+PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
+PREFIX genex: <http://purl.org/genex#>
+PREFIX lscr: <http://purl.org/lscr#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rh: <http://rdf.rhea-db.org/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX up: <http://purl.uniprot.org/core/>
+SELECT ?s ?p ?o WHERE { VALUES ?s {rh:21112_L rh:21112_R rh:21113 rh:48021} ?s ?p ?o . FILTER(?p NOT IN (rh:htmlEquation,rh:citation)) }

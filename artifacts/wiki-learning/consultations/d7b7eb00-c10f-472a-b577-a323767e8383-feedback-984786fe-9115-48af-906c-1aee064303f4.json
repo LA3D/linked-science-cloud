@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "d7b7eb00-c10f-472a-b577-a323767e8383",
+  "recordedAt": "2026-09-24T18:19:11.615Z",
+  "assessment": "unknown",
+  "note": "Guidance consulted before one UniProt function-to-PDB SPARQL demonstration. Complete result retained in live REPL; no causal benefit assessment.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "wikidata-service-crosswalk",
+    "registry-crosswalk-lower-bounds"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

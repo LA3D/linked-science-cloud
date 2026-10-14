@@ -1,0 +1,9 @@
+# Same GLA measurement through SPARQL
+
+Direct query to https://idsm.elixir-czech.cz/sparql/endpoint/idsm returned one activity row for CHEMBL_ACT_1405782, assay CHEMBL831670, human target CHEMBL2524, compound CHEMBL110458: IC50 = 70.0 nM, original 0.07 uM. All these fields match the saved REST record. Assay description is inhibitory concentration against human alpha-galactosidase. Source document is CHEMBL1142734 (REST established DOI 10.1021/jm0495881).
+
+Then UniProt https://sparql.uniprot.org/sparql executed the saved federation query with SERVICE to IDSM. P06280 rdfs:seeAlso joins the identical ChEMBL target IRI; exact assay/activity VALUES bound the remote work. One complete row returned, 840 ms observed runtime. Broker saw one request to the UniProt coordinator; no direct observation of downstream transport timing. This is actual server-side SPARQL federation, not a REST fallback.
+
+The IDSM manual documents the endpoint namespace. Separate /chembl default/named-graph probes returned no exact records; a small sample showed molecular representations, while /idsm contained the assay records. Do not generalize the empty result to global absence. Dataset release was not established by the bounded version probe. No claim of matching REST release or RDF Portal ChEMBL32; RDF Portal was not queried.
+
+[Queries and result receipt](../../artifacts/scientific-inspections/fabry-chembl-sparql-20260928/receipt.json). Adjacent measurement.rq and federation.rq are exact tested queries. Replay with glaAssayWs.traversal.query({sources:[{type:'sparql',value:ENDPOINT}],sparql:QUERY}), using IDSM for measurement.rq and UniProt for federation.rq. Existing live results: chemblRdfResults.measurement and chemblRdfResults.federation; pages in chemblRdfPages. Future replay makes new public network requests; saved receipt is the offline fallback. All original assay interpretation limitations remain.

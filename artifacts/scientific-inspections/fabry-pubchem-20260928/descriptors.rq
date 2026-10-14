@@ -1,0 +1,1 @@
+SELECT ?a ?p ?o WHERE {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> <http://semanticscience.org/resource/SIO_000008> ?a . ?a ?p ?o }

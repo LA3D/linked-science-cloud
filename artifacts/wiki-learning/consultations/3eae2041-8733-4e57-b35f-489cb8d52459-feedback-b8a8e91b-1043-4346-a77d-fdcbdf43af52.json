@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "3eae2041-8733-4e57-b35f-489cb8d52459",
+  "recordedAt": "2026-09-24T17:40:24.268Z",
+  "assessment": "unknown",
+  "note": "Checkpoint-one preparation only. Selected guidance read; no remote scientific operation or outcome observed, so scientific helpfulness is unassessed.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "schema-meaning-versus-endpoint-usage",
+    "wikipathways-example-query-adaptation",
+    "uniprot-service-metadata-discovery"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

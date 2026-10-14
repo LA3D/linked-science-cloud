@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "2eb90e1f-e680-4587-ac5a-e20d42ad4546",
+  "recordedAt": "2026-10-02T16:51:55.958Z",
+  "mode": "on",
+  "querySha256": "0db48501a05898e73cc3755424db24ae9ea3d51c3974069232bddbc5e00fbca1",
+  "revision": "0d15ee85f7ff899d53aeba25ec44fe212201fc7266e7b612b0083004e562466a",
+  "candidates": [
+    {
+      "id": "catalog-resource-rediscovery",
+      "title": "Rediscover resources through a catalog without conflating catalog and query service",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 7,
+      "matchedTerms": [
+        "catalog",
+        "resource",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 4,
+      "matchedTerms": [
+        "catalog",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "resource",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

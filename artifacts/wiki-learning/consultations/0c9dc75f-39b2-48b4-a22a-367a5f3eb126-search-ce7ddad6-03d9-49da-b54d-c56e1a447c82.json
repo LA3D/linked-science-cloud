@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "0c9dc75f-39b2-48b4-a22a-367a5f3eb126",
+  "recordedAt": "2026-09-24T17:25:58.961Z",
+  "mode": "on",
+  "querySha256": "4c86ff99ef27a977d1c6632c63b383949a983c3fee01573e34173708fa3a3754",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 12,
+      "matchedTerms": [
+        "schema",
+        "meaning",
+        "endpoint",
+        "usage"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "uniprot-named-graphs-20260920",
+      "title": "UniProt named graph catalog and schema identity (2026-09-20)",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 4,
+      "matchedTerms": [
+        "schema",
+        "endpoint"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "f501cb7a-7a65-431c-b569-472dbba6bd30",
+  "recordedAt": "2026-09-29T12:34:48.827Z",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "patternId": "ontology-symbolic-context-selective-imports",
+  "patternSha256": "0ef1bfcc809a0d7da2fa96a280651b2874ceabda0e7d1c956dd6600b56b76f5a",
+  "helpfulness": "unknown"
+}

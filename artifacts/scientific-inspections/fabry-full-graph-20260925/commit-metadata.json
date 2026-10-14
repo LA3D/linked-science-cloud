@@ -1,0 +1,12 @@
+{
+  "pinnedRevision": "090fcc12aafac22e5e2b8454aab44ce6735579cb",
+  "commit": "090fcc12aafac22e5e2b8454aab44ce6735579cb",
+  "commitTree": "1925dee9d43850697fff5f08f27aa823ffcec612",
+  "revisionIsCommit": true,
+  "artifact": {
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-eGst1o/content/commitMetadata.txt",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-eGst1o/content/receipt.json",
+    "sha256": "234402ef5e9bbaeced032dd26f8158d13072691c4cb417ac39e98b0655769e3a",
+    "url": "https://api.github.com/repos/monarch-initiative/dismech/commits/main"
+  }
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="690" viewBox="0 0 1000 690"><title>MOSAIC semantic architecture</title><desc>Source datasets are described in place. Aim 1 maintains the semantic specification. Aim 2 creates conforming building-in-context records. Aim 3 supplies reusable expertise for agentic scientific workflows and evaluation feedback to Aim 1.</desc><rect width="1000" height="690" fill="white"/>
+<text x="24" y="30" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#172B3A" text-anchor="start">MOSAIC: from source data to scientifically usable records</text>
+<rect x="24" y="52" width="844" height="145" rx="5" fill="#F3EFF6" stroke="#675078" stroke-width="1.3"/>
+<text x="42" y="78" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#675078" text-anchor="start">AGENTIC SCIENTIFIC WORKFLOWS</text>
+<text x="42" y="104" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#172B3A" text-anchor="start">Regional / portfolio assessment</text>
+<text x="42" y="127" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">Cross-event sampling, fragilities, regional loss</text>
+<text x="485" y="104" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#172B3A" text-anchor="start">Functional recovery</text>
+<text x="485" y="127" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">Longitudinal linkage and multi-source fusion</text>
+<text x="42" y="155" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#172B3A" text-anchor="start">AIM 3  Reusable expertise: skills, queries, transformations, validity checks</text>
+<text x="42" y="180" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">Shared memory: findings, failures, corrections and reasons for specification changes</text>
+<polyline points="445,242 445,199" fill="none" stroke="#675078" stroke-width="2.5"/>
+<polygon points="445,199 449.78462087522354,208.90491812587945 440.21537912477646,208.90491812587945" fill="#675078"/>
+<text x="463" y="225" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#675078" text-anchor="start">records + expertise support existing agents</text>
+<rect x="24" y="244" width="844" height="181" rx="5" fill="#EDF5F7" stroke="#285B7B" stroke-width="1.3"/>
+<text x="42" y="271" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#285B7B" text-anchor="start">AIM 2  BUILDING-IN-CONTEXT RECORDS</text>
+<text x="42" y="296" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#172B3A" text-anchor="start">Atomic unit: a resolvable linked-data object for an individual structure</text>
+<text x="42" y="323" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#172B3A" text-anchor="start">Structure attributes + hazard intensity + site / exposure + function / criticality</text>
+<text x="42" y="349" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#172B3A" text-anchor="start">Pre-event, post-event and recovery observations linked in space and time</text>
+<text x="42" y="379" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#172B3A" text-anchor="start">Typed provenance: expert-assessed, machine-inferred, modeled or validated</text>
+<text x="42" y="405" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">Confidence + validation links + explicit coverage / absence states</text>
+<polyline points="445,468 445,427" fill="none" stroke="#285B7B" stroke-width="2.5"/>
+<polygon points="445,427 449.78462087522354,436.9049181258794 440.21537912477646,436.9049181258794" fill="#285B7B"/>
+<text x="463" y="452" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#285B7B" text-anchor="start">records conform to the specification</text>
+<rect x="24" y="470" width="844" height="99" rx="5" fill="#EEF5F1" stroke="#276A65" stroke-width="1.3"/>
+<text x="42" y="497" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#276A65" text-anchor="start">AIM 1  SEMANTIC INTEROPERABILITY LAYER</text>
+<text x="42" y="524" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" fill="#172B3A" text-anchor="start">Maintained specification: natural hazards FAIR Implementation Profile + CDIF mappings</text>
+<text x="42" y="550" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">Identifiers, meaning, structure, units, time, geography, access and conformance</text>
+<polyline points="445,602 445,571" fill="none" stroke="#276A65" stroke-width="2.5"/>
+<polygon points="445,571 449.78462087522354,580.9049181258795 440.21537912477646,580.9049181258795" fill="#276A65"/>
+<text x="463" y="591" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#276A65" text-anchor="start">describe and link in place</text>
+<rect x="24" y="604" width="844" height="61" rx="5" fill="#F7F8F9" stroke="#A6B3BC" stroke-width="1.3"/>
+<text x="42" y="628" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#172B3A" text-anchor="start">SOURCE DATASETS  •  Original repositories, formats and access conditions retained</text>
+<text x="42" y="652" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" fill="#172B3A" text-anchor="start">StEER / DesignSafe   |   Inventories / BIM   |   Imagery   |   Hazard, site and recovery data</text>
+<polyline points="868,155 883,155 883,520 870,520" fill="none" stroke="#675078" stroke-width="2.5" stroke-dasharray="7 5"/>
+<polygon points="870,520 879.9049181258795,515.2153791247765 879.9049181258795,524.7846208752235" fill="#675078"/>
+<text x="944" y="238" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#675078" text-anchor="middle">Evaluation</text>
+<text x="944" y="260" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#675078" text-anchor="middle">evidence</text>
+<text x="944" y="304" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#675078" text-anchor="middle">Revises</text>
+<text x="944" y="326" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" fill="#675078" text-anchor="middle">Aim 1</text>
+<text x="944" y="370" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#675078" text-anchor="middle">Held-out</text>
+<text x="944" y="391" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#675078" text-anchor="middle">events</text>
+<text x="24" y="685" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" fill="#172B3A" text-anchor="start">Solid arrows: description, conformance and use. Dashed arrow: evaluation feedback to the maintained specification.</text>
+</svg>

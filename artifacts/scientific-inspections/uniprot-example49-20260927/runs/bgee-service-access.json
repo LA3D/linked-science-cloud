@@ -1,0 +1,179 @@
+{
+  "name": "bgee-service-access",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "SELECT ?ok WHERE { SERVICE <https://www.bgee.org/sparql/> { BIND(1 AS ?ok) } }",
+  "startedAt": "2026-09-27T13:11:22.811Z",
+  "elapsedMs": 515,
+  "status": "failed",
+  "error": {
+    "code": "MEDIATOR_HTTP_ERROR",
+    "message": "Linked Data request failed with status 400",
+    "receipt": {
+      "status": "failed",
+      "stage": "resource-read",
+      "code": "MEDIATOR_HTTP_ERROR",
+      "operationId": "op-000009",
+      "traversalId": "traversal-d952126b955e4c08d8d29fb7",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-d952126b955e4c08d8d29fb7",
+        "startedAt": "2026-09-27T13:11:22.812Z",
+        "finishedAt": "2026-09-27T13:11:23.325Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "http-error",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fok%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%20BIND(1%20AS%20%3Fok)%20%7D%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fok%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%20BIND(1%20AS%20%3Fok)%20%7D%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 400,
+            "requestSha256": "983ab33e86923a01dedcd36d0b080edc24f1a69c51e152d19187b8a9ec830a8d",
+            "responseSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0,
+            "mediaType": "text/html",
+            "headers": {
+              "content-length": "0",
+              "content-type": "text/html;charset=UTF-8",
+              "etag": "W/\"2026_032026-09-27\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fok%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%20BIND(1%20AS%20%3Fok)%20%7D%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:11:22.812Z",
+            "finishedAt": "2026-09-27T13:11:23.323Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 0,
+          "totalBytes": 0,
+          "state": "failed",
+          "capacity": {
+            "freeBytes": 645165293568,
+            "reserveBytes": 268435456,
+            "retainedBytes": 572298,
+            "availableBytes": 644896858112
+          },
+          "elapsedMs": 513,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "resource-failed"
+        }
+      },
+      "attempt": {
+        "kind": "linked-science-resource-attempt",
+        "index": 9,
+        "status": "failed",
+        "operationId": "op-000009",
+        "traversalId": "traversal-d952126b955e4c08d8d29fb7",
+        "method": "GET",
+        "url": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fok%20WHERE%20%7B%20SERVICE%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%20BIND(1%20AS%20%3Fok)%20%7D%20%7D&format=json",
+        "startedAt": "2026-09-27T13:11:22.811Z",
+        "endedAt": "2026-09-27T13:11:23.325Z",
+        "durationMs": 514,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_HTTP_ERROR",
+        "hiddenRetries": 0
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "cause": "Error: Linked Data request failed with status 400"
+    }
+  }
+}

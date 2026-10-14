@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "f501cb7a-7a65-431c-b569-472dbba6bd30",
+  "recordedAt": "2026-09-29T12:34:14.429Z",
+  "mode": "on",
+  "querySha256": "3200d34a8a117724369734613251fc8c1149e9645945d09fcb26a18cd7905d0d",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 9,
+      "matchedTerms": [
+        "reaction",
+        "direction",
+        "ontology",
+        "predicate",
+        "context"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "wikipathways-ontology-tag-selection",
+      "title": "Choose the WikiPathways tag predicate for the classification question",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "ontology",
+        "predicate"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

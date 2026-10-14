@@ -1,0 +1,938 @@
+{
+  "counts": [
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/EvidenceItem"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "175",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Term"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "80",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/CausalEdge"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "49",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/PhenotypeDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "28",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Phenotype"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "24",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/BiologicalProcessDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "17",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Pathophysiology"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "16",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/CellTypeDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "16",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/AnatomicalEntityDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "14",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ModelMechanismLink"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "9",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Finding"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "6",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/DiseaseDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "6",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/OrganismDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "6",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/DifferentialDiagnosis"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "5",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/GeneDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "5",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Treatment"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "5",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ExperimentalModel"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "5",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/TreatmentDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "5",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Prevalence"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "4",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/TreatmentMechanismTarget"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "4",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Inheritance"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "3",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/MappingConsistency"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "3",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ModelVariable"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Biochemical"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ChemicalEntityDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/BiomarkerReadout"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/BiomarkerDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ExternalAssertion"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Genetic"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/InheritanceDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Subtype"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "2",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Disease"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/MondoMapping"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/MolecularFunctionDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ProgressionInfo"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/CellularComponentDescriptor"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/MechanisticHypothesis"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Definition"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Dataset"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/DiseaseMappings"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ICD11FMapping"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ICD10CMMapping"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/ComputationalModel"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    },
+    {
+      "type": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/PublicationReference"
+      },
+      "n": {
+        "termType": "Literal",
+        "value": "1",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    }
+  ],
+  "renal": [
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      },
+      "cell": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0000653"
+      },
+      "cellLabel": {
+        "termType": "Literal",
+        "value": "podocyte",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "cellParent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0002522"
+      },
+      "parentLabel": {
+        "termType": "Literal",
+        "value": "renal filtration cell",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "location": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "locationLabel": {
+        "termType": "Literal",
+        "value": "kidney",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:27129690",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "support": {
+        "termType": "Literal",
+        "value": "SUPPORT",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "snippet": {
+        "termType": "Literal",
+        "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      },
+      "cell": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0000653"
+      },
+      "cellLabel": {
+        "termType": "Literal",
+        "value": "podocyte",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "cellParent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0002522"
+      },
+      "parentLabel": {
+        "termType": "Literal",
+        "value": "renal filtration cell",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "location": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "locationLabel": {
+        "termType": "Literal",
+        "value": "kidney",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:36334424",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "support": {
+        "termType": "Literal",
+        "value": "SUPPORT",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "snippet": {
+        "termType": "Literal",
+        "value": "Damage leads to renal dysfunction and end-stage renal disease",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      },
+      "cell": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0000653"
+      },
+      "cellLabel": {
+        "termType": "Literal",
+        "value": "podocyte",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "cellParent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_1000450"
+      },
+      "parentLabel": {
+        "termType": "Literal",
+        "value": "epithelial cell of glomerular capsule",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "location": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "locationLabel": {
+        "termType": "Literal",
+        "value": "kidney",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:27129690",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "support": {
+        "termType": "Literal",
+        "value": "SUPPORT",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "snippet": {
+        "termType": "Literal",
+        "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      },
+      "cell": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_0000653"
+      },
+      "cellLabel": {
+        "termType": "Literal",
+        "value": "podocyte",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "cellParent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/CL_1000450"
+      },
+      "parentLabel": {
+        "termType": "Literal",
+        "value": "epithelial cell of glomerular capsule",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "location": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+      },
+      "locationLabel": {
+        "termType": "Literal",
+        "value": "kidney",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:36334424",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "support": {
+        "termType": "Literal",
+        "value": "SUPPORT",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "snippet": {
+        "termType": "Literal",
+        "value": "Damage leads to renal dysfunction and end-stage renal disease",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    }
+  ],
+  "causal": [
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Autophagy impairment",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Autophagy%20impairment"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Pathophysiology"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:39100494",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Mitochondrial dysfunction and oxidative stress",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Mitochondrial%20dysfunction%20and%20oxidative%20stress"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Pathophysiology"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:39100494",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Proteinuria",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Proteinuria"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Phenotype"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:28613767",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Chronic kidney disease",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Chronic%20kidney%20disease"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Phenotype"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:36334424",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Nephrotic syndrome",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Nephrotic%20syndrome"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Phenotype"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "ORPHA:324",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "targetText": {
+        "termType": "Literal",
+        "value": "Renal Globotriaosylceramide Inclusions",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "resolved": {
+        "termType": "NamedNode",
+        "value": "https://example.org/fabry-checkpoint/name/Renal%20Globotriaosylceramide%20Inclusions"
+      },
+      "targetType": {
+        "termType": "NamedNode",
+        "value": "https://w3id.org/monarch-initiative/dismech/Biochemical"
+      },
+      "reference": {
+        "termType": "Literal",
+        "value": "PMID:27129690",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    }
+  ],
+  "kidney": [
+    {
+      "parent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0000489"
+      },
+      "label": {
+        "termType": "Literal",
+        "value": "cavitated compound organ",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "parent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0005172"
+      },
+      "label": {
+        "termType": "Literal",
+        "value": "abdomen element",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "parent": {
+        "termType": "NamedNode",
+        "value": "http://purl.obolibrary.org/obo/UBERON_0015212"
+      },
+      "label": {
+        "termType": "Literal",
+        "value": "lateral structure",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    }
+  ],
+  "resolution": [
+    {
+      "edges": {
+        "termType": "Literal",
+        "value": "49",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      },
+      "resolved": {
+        "termType": "Literal",
+        "value": "49",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    }
+  ]
+}

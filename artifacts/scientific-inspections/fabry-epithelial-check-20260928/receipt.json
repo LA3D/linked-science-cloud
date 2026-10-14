@@ -1,0 +1,1082 @@
+{
+  "format": "fabry-kidney-epithelial-check/v1",
+  "recordedAt": "2026-09-28T11:38:56.383Z",
+  "context": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry",
+  "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+  "mode": "local retained graphs; no new retrieval",
+  "queries": {
+    "terms": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?term ?label ?definition WHERE { ?term rdfs:label ?label . FILTER(CONTAINS(LCASE(STR(?label)),\"epithelial\") || ?term=obo:CL_0000653) OPTIONAL {?term obo:IAO_0000115 ?definition} }",
+    "exact": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?m ?name ?cell ?label WHERE { ?m app:sourceName ?name; dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113 . VALUES ?cell {obo:CL_0002518} ?cell rdfs:label ?label }",
+    "expanded": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?m ?name ?cell ?label WHERE { ?m app:sourceName ?name; dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113 . ?cell rdfs:subClassOf* obo:CL_0002518 . ?cell rdfs:label ?label }",
+    "path": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?child ?childLabel ?parent ?parentLabel WHERE { obo:CL_0000653 rdfs:subClassOf* ?child . ?child rdfs:subClassOf ?parent; rdfs:label ?childLabel . ?parent rdfs:subClassOf* obo:CL_0002518; rdfs:label ?parentLabel . }",
+    "evidence": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?from ?to ?edge ?type ?e ?reference ?support ?snippet WHERE { ?m dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113 . ?cell rdfs:subClassOf* obo:CL_0002518 . ?acc dm:chemical_entities/dm:term obo:CHEBI_18313 . ?acc (dm:downstream/app:resolvedTarget)* ?src . ?src dm:downstream ?edge; app:sourceName ?from . ?edge app:resolvedTarget ?dst; dm:causal_link_type ?type . ?dst (dm:downstream/app:resolvedTarget)* ?m; app:sourceName ?to . OPTIONAL {?edge dm:evidence ?e . ?e dm:reference ?reference; dm:snippet ?snippet . OPTIONAL {?e dm:supports ?support}} }",
+    "nodeEvidence": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?name ?e ?reference ?support ?snippet WHERE { ?m app:sourceName ?name; dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113; dm:evidence ?e . ?cell rdfs:subClassOf* obo:CL_0002518 . ?e dm:reference ?reference; dm:snippet ?snippet . OPTIONAL {?e dm:supports ?support} }"
+  },
+  "results": {
+    "terms": {
+      "kind": "linked-science-page",
+      "operationId": "op-000015",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000009",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "term",
+        "label",
+        "definition"
+      ],
+      "offset": 0,
+      "total": 8,
+      "provenance": {
+        "operationId": "op-000014",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "503337dee4b139dc38284aa3834e17f815d64ab1a02f19f23af36b49095d20e2",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000003"
+        ],
+        "sourceFingerprints": [
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf"
+        ]
+      },
+      "rows": [
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000076"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "squamous epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "An epithelial cell that has a flattened morphology.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "A specialized kidney epithelial cell, contained within a glomerulus, that contains \"feet\" that interdigitate with the \"feet\" of other podocytes.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002584"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "renal cortical epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "An epithelial cell of the kidney cortex.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000449"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "epithelial cell of nephron",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "An epithelial cell that is part of the nephron.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000450"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "epithelial cell of glomerular capsule",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "An epithelial cell that is part of the glomerular capsule.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000510"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "kidney glomerular epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "Any kidney epithelial cell that is part of some glomerular epithelium.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000066"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "A cell that is usually found in a two-dimensional sheet with a free surface. The cell has a cytoskeleton that allows for tight cell to cell contact and for cell polarity where apical part is directed towards the lumen and the basal part to the basal lamina.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "term": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002518"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "kidney epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "definition": {
+            "termType": "Literal",
+            "value": "An epithelial cell of the kidney.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 8,
+        "maxRows": 10,
+        "cells": 24,
+        "maxCells": 100,
+        "bytes": 4277,
+        "maxBytes": 32768
+      }
+    },
+    "exact": {
+      "kind": "linked-science-page",
+      "operationId": "op-000019",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000011",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "m",
+        "name",
+        "cell",
+        "label"
+      ],
+      "offset": 0,
+      "total": 0,
+      "provenance": {
+        "operationId": "op-000018",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "886f24f7221d72e4b9a35fb5c96ec4250377a8dbac868c6298025db4fcb87d0b",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [],
+      "truncated": false,
+      "bounds": {
+        "rows": 0,
+        "maxRows": 10,
+        "cells": 0,
+        "maxCells": 100,
+        "bytes": 1138,
+        "maxBytes": 32768
+      }
+    },
+    "expanded": {
+      "kind": "linked-science-page",
+      "operationId": "op-000021",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000012",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "m",
+        "name",
+        "cell",
+        "label"
+      ],
+      "offset": 0,
+      "total": 1,
+      "provenance": {
+        "operationId": "op-000020",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "b15dd9a85e60c20fccc5c7f3707da6421d803306cca24c3240d8bcfc9b67ad62",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [
+        {
+          "m": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+          },
+          "name": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "cell": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "label": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 1,
+        "maxRows": 10,
+        "cells": 4,
+        "maxCells": 100,
+        "bytes": 1642,
+        "maxBytes": 32768
+      }
+    },
+    "path": {
+      "kind": "linked-science-page",
+      "operationId": "op-000023",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000013",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "child",
+        "childLabel",
+        "parent",
+        "parentLabel"
+      ],
+      "offset": 0,
+      "total": 8,
+      "provenance": {
+        "operationId": "op-000022",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "b1fa96a175cff38a73eaf01afb6ea2a8f1dd0b574a5e03540c350adcab556ca7",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000450"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of glomerular capsule",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000450"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of glomerular capsule",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000510"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "kidney glomerular epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000510"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "kidney glomerular epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000746"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "glomerular cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000746"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "glomerular cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000612"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "kidney corpuscule cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000612"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "kidney corpuscule cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002584"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "renal cortical epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000612"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "kidney corpuscule cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000449"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of nephron",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002584"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "renal cortical epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002518"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "kidney epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "child": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000449"
+          },
+          "childLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of nephron",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "parent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002518"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "kidney epithelial cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 8,
+        "maxRows": 10,
+        "cells": 32,
+        "maxCells": 100,
+        "bytes": 4772,
+        "maxBytes": 32768
+      }
+    },
+    "evidence": {
+      "kind": "linked-science-page",
+      "operationId": "op-000025",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000014",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "from",
+        "to",
+        "edge",
+        "type",
+        "e",
+        "reference",
+        "support",
+        "snippet"
+      ],
+      "offset": 0,
+      "total": 4,
+      "provenance": {
+        "operationId": "op-000024",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "916da7085214ba2a09dcabd4bc00e0b2a3ad0ea546b2a892eede6b97b03938c0",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [
+        {
+          "from": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "to": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2%2Fevidence%2F0"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Accumulation of GL3 in the kidney, heart, vasculature, neurons, skin, gastrointestinal tract and auditory system correlates to cellular damage and irreversible organ damage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "from": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "to": {
+            "termType": "Literal",
+            "value": "Innate immune activation and inflammation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F3"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F3%2Fevidence%2F0"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39978321",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "It has been demonstrated that intralysosomal accumulation of Gb3 and LysoGb3 triggers an inflammatory response.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "from": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "to": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "from": {
+            "termType": "Literal",
+            "value": "Innate immune activation and inflammation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "to": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F14%2Fdownstream%2F0"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F14%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39100494",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Functional analysis of differentially expressed genes showed their involvement in various pathways related to oxidative stress, inflammation, fatty acid metabolism, collagen and extracellular matrix homeostasis, kidney injury, apoptosis, autophagy, and cellular stress response.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 4,
+        "maxRows": 10,
+        "cells": 32,
+        "maxCells": 100,
+        "bytes": 6143,
+        "maxBytes": 32768
+      }
+    },
+    "nodeEvidence": {
+      "kind": "linked-science-page",
+      "operationId": "op-000027",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000015",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "name",
+        "e",
+        "reference",
+        "support",
+        "snippet"
+      ],
+      "offset": 0,
+      "total": 2,
+      "provenance": {
+        "operationId": "op-000026",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "2b1867aef1017d156b3c236e970f03ae48f0f8b49cc882b5e29bf04364e7cfcb",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [
+        {
+          "name": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fevidence%2F0"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "name": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fevidence%2F1"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Damage leads to renal dysfunction and end-stage renal disease",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 2,
+        "maxRows": 10,
+        "cells": 10,
+        "maxCells": 100,
+        "bytes": 2678,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "sources": {
+    "disease": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000001",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-disease"
+      },
+      "type": "instance-data",
+      "count": 2834,
+      "fingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000001"
+      },
+      "provenance": {
+        "operationId": "op-000001",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "recovered-disease"
+        },
+        "sourceFingerprint": "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 738,
+        "maxBytes": 32768
+      }
+    },
+    "links": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000002",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-links"
+      },
+      "type": "instance-data",
+      "count": 65,
+      "fingerprints": [
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000002"
+      },
+      "provenance": {
+        "operationId": "op-000002",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "recovered-links"
+        },
+        "sourceFingerprint": "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 732,
+        "maxBytes": 32768
+      }
+    },
+    "cl": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000003",
+        "type": "ontology",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-cl"
+      },
+      "type": "ontology",
+      "count": 154,
+      "fingerprints": [
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000003"
+      },
+      "provenance": {
+        "operationId": "op-000003",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "recovered-cl"
+        },
+        "sourceFingerprint": "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 717,
+        "maxBytes": 32768
+      }
+    },
+    "uberon": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000004",
+        "type": "ontology",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-uberon"
+      },
+      "type": "ontology",
+      "count": 141,
+      "fingerprints": [
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000004"
+      },
+      "provenance": {
+        "operationId": "op-000004",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "recovered-uberon"
+        },
+        "sourceFingerprint": "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 725,
+        "maxBytes": 32768
+      }
+    }
+  }
+}

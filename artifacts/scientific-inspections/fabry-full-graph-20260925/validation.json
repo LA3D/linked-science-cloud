@@ -1,0 +1,14 @@
+{
+  "resourceHashes": "27 checkpoint resource hashes verified; later commit metadata has its own broker receipt",
+  "sourceScalarLeaves": 1984,
+  "sourceToTypedChanges": 0,
+  "fieldAuditChecks": 2527,
+  "fieldAuditFailures": 0,
+  "causalEdges": 49,
+  "uniquelyResolvedTargets": 49,
+  "registrySchema": "passed",
+  "repositoryResultsValidation": "blocked-by-pre-existing-unregistered-dossier",
+  "blocker": "docs/experiments/scientific-trajectory-evidence.md",
+  "infrastructureRepaired": false,
+  "checkpointStopped": true
+}

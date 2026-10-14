@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "223673e3-034c-40a3-9d38-f16f6a94c666",
+  "recordedAt": "2026-09-25T10:40:26.899Z",
+  "mode": "on",
+  "querySha256": "0e09cd1319923f89207927b575dcf3c541b94ceeba1bcc05568096d0d5b9cc47",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "protein-assay-crosswalk-context",
+      "title": "Join protein and assay evidence while preserving measurement context",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "protein",
+        "cross"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,655 @@
+{
+  "format": "linked-science-full-record-checkpoint/v1",
+  "recordedAt": "2026-09-25T11:48:03.644Z",
+  "revision": "090fcc12aafac22e5e2b8454aab44ce6735579cb",
+  "runtime": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "external-context",
+    "rlm": {
+      "kind": "cleanroom-rlm-capabilities",
+      "version": "1.0.0",
+      "architecture": "recursive-language-model",
+      "controlEnvironment": "persistent-javascript",
+      "externalContext": {
+        "available": true,
+        "persistence": "kernel-epoch",
+        "maxContextBytes": 2097152,
+        "operations": [
+          "registerContext",
+          "context",
+          "inspect"
+        ]
+      },
+      "recursion": {
+        "available": false,
+        "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+        "providerAttachment": "none",
+        "interface": "nodeRepl.rlm.query",
+        "lifecycleOwner": "cleanroom-host",
+        "lifecycle": "bounded-one-shot-compatibility",
+        "durable": false,
+        "asynchronousHandle": false,
+        "hardMaxDepth": 4,
+        "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+      }
+    },
+    "project": {
+      "id": "@linked-science/runtime",
+      "role": "authoritative-production-implementation",
+      "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+    },
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    },
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+    "dependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+      "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+      "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+      "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+    },
+    "traversalMediator": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    },
+    "resultStorage": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    }
+  },
+  "graphs": {
+    "disease": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000028",
+        "type": "instance-data",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "fabry-full-disease"
+      },
+      "type": "instance-data",
+      "count": 2834,
+      "fingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000035"
+      },
+      "provenance": {
+        "operationId": "op-000035",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "fabry-full-disease"
+        },
+        "sourceFingerprint": "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 710,
+        "maxBytes": 32768
+      }
+    },
+    "links": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000029",
+        "type": "instance-data",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "fabry-full-links"
+      },
+      "type": "instance-data",
+      "count": 65,
+      "fingerprints": [
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000036"
+      },
+      "provenance": {
+        "operationId": "op-000036",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "fabry-full-links"
+        },
+        "sourceFingerprint": "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 704,
+        "maxBytes": 32768
+      }
+    },
+    "cl": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000030",
+        "type": "ontology",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "fabry-full-cl"
+      },
+      "type": "ontology",
+      "count": 154,
+      "fingerprints": [
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000037"
+      },
+      "provenance": {
+        "operationId": "op-000037",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "fabry-full-cl"
+        },
+        "sourceFingerprint": "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 689,
+        "maxBytes": 32768
+      }
+    },
+    "uberon": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000031",
+        "type": "ontology",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "fabry-full-uberon"
+      },
+      "type": "ontology",
+      "count": 141,
+      "fingerprints": [
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000038"
+      },
+      "provenance": {
+        "operationId": "op-000038",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "fabry-full-uberon"
+        },
+        "sourceFingerprint": "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 697,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "queries": {
+    "counts": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?type (COUNT(?s) AS ?n) WHERE { ?s a ?type } GROUP BY ?type ORDER BY DESC(?n)",
+    "renal": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?cell ?cellLabel ?cellParent ?parentLabel ?location ?locationLabel ?reference ?support ?snippet WHERE { ?mechanism a dm:Pathophysiology; dm:cell_types/dm:term ?cell; dm:locations/dm:term ?location; dm:evidence ?e . FILTER(?cell=obo:CL_0000653 && ?location=obo:UBERON_0002113) ?e dm:reference ?reference; dm:supports ?support; dm:snippet ?snippet . ?cell rdfs:label ?cellLabel; rdfs:subClassOf ?cellParent . ?cellParent rdfs:label ?parentLabel . ?location rdfs:label ?locationLabel . }",
+    "causal": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?targetText ?resolved ?targetType ?reference WHERE { ?m app:sourceName \"Renal glycosphingolipid storage and podocyte injury\"; dm:downstream ?edge . ?edge dm:target ?targetText; app:resolvedTarget ?resolved . ?resolved a ?targetType . OPTIONAL { ?edge dm:evidence/dm:reference ?reference } }",
+    "kidney": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?parent ?label WHERE { obo:UBERON_0002113 rdfs:subClassOf ?parent . ?parent rdfs:label ?label }",
+    "resolution": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT (COUNT(?edge) AS ?edges) (COUNT(?target) AS ?resolved) WHERE { ?edge a dm:CausalEdge . OPTIONAL { ?edge app:resolvedTarget ?target } }"
+  },
+  "artifacts": {
+    "repoRoot": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-FUlF5Q/content/repoRoot.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-FUlF5Q/content/receipt.json",
+      "sha256": "4ea5082c3fda6525127307227b7d05bf955787fe71aa6ec0e43bf7f29c84caa5",
+      "bytes": 15369,
+      "url": "https://api.github.com/repos/monarch-initiative/dismech/git/trees/main"
+    },
+    "pyproject-toml": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-etRIgz/content/pyproject-toml.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-etRIgz/content/receipt.json",
+      "sha256": "c405aea7cf8e4887ed876d00a15d763a39d0101818193da341399eb0cb880087",
+      "bytes": 9522,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/pyproject.toml"
+    },
+    "srcTree": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-phNhe3/content/srcTree.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-phNhe3/content/receipt.json",
+      "sha256": "3d8ca24f8bbee8c551510bf4beda60d9d7e4e0e6225c913007d19a1fd1d6b310",
+      "bytes": 48578,
+      "url": "https://api.github.com/repos/monarch-initiative/dismech/git/trees/e52df7b8dbf1b54beeaac3bc6f7a13b1b5e4e2ae?recursive=1"
+    },
+    "buildConfig": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-a317NT/content/buildConfig.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-a317NT/content/receipt.json",
+      "sha256": "796bd61bf470a84ce00c412a54de0c93951e8b6991d3e832e465ddc06cffbb06",
+      "bytes": 1445,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/config.yaml"
+    },
+    "justfile": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-i2dqY2/content/justfile.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-i2dqY2/content/receipt.json",
+      "sha256": "c9c5ddbf8094076e6db794bf0edf53af5adf7dff744f47b0aaea042fe2f0fa38",
+      "bytes": 14814,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/justfile"
+    },
+    "schema": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uYXzj7/content/schema.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uYXzj7/content/receipt.json",
+      "sha256": "a6116937381cb49d03e0b7165dfca425662653881a34cc1e9705c8dbae3b6e4f",
+      "bytes": 351418,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/dismech.yaml"
+    },
+    "projectBuild": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-oo6est/content/projectBuild.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-oo6est/content/receipt.json",
+      "sha256": "d101fe134bb9a5d6e439337176bad2cd35ad46d42c35b6551d17789cafc5e07f",
+      "bytes": 178849,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/project.justfile"
+    },
+    "fabry": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-j8hVln/content/fabry.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-j8hVln/content/receipt.json",
+      "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+      "bytes": 146859,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/kb/disorders/Fabry_Disease.yaml"
+    },
+    "datamodel": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-9vGjoZ/content/datamodel.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-9vGjoZ/content/receipt.json",
+      "sha256": "cffc8113388ecc8bdea744c14a162d33f6c3ffa6297821481b82f9fb92ec9e99",
+      "bytes": 866211,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/datamodel/dismech.py"
+    },
+    "import-channelopathies": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uflGVX/content/import-channelopathies.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-uflGVX/content/receipt.json",
+      "sha256": "a75369beaf209d0df90f8a7387e8a443fb542d5f3a577f0a232a8e0cbf360cd1",
+      "bytes": 1267,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/channelopathies.yaml"
+    },
+    "import-lysosomal_storage": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-a9Ktql/content/import-lysosomal_storage.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-a9Ktql/content/receipt.json",
+      "sha256": "dba9cf2028d8a3163e9ea28f387d23bf0b1ea0fb62a0e1ef88e871d12368d632",
+      "bytes": 1687,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/lysosomal_storage.yaml"
+    },
+    "import-mechanistic_nosology": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KGPrv2/content/import-mechanistic_nosology.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KGPrv2/content/receipt.json",
+      "sha256": "c659f3426e79f3ed2e3db3ebd354ce74cfd55cdb4f1395cdef447ba6309c3c6a",
+      "bytes": 2463,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/mechanistic_nosology.yaml"
+    },
+    "import-coarse_phenotype_terms": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-UoWBSc/content/import-coarse_phenotype_terms.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-UoWBSc/content/receipt.json",
+      "sha256": "a4fcf5d7e2bf438cee662c781a27d3d604636ea3620cf784abb37d1b8228ebd4",
+      "bytes": 7739,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/coarse_phenotype_terms.yaml"
+    },
+    "import-phenotype_category": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-FUO1Lu/content/import-phenotype_category.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-FUO1Lu/content/receipt.json",
+      "sha256": "f565c5da9fbb4016823024f17f3e651f90381399517380b2d541b859eb9347b0",
+      "bytes": 4819,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/phenotype_category.yaml"
+    },
+    "import-iuis_immunodeficiency": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-ijaKUz/content/import-iuis_immunodeficiency.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-ijaKUz/content/receipt.json",
+      "sha256": "49aaf4ee5ac4a1cfb9164c59a1f9705c36e2585cc3cf8e6134d42700a59f7517",
+      "bytes": 2380,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/iuis_immunodeficiency.yaml"
+    },
+    "import-exposure_classification": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-qEDGWM/content/import-exposure_classification.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-qEDGWM/content/receipt.json",
+      "sha256": "c1c48dbdc8ff39cc9cf372eb384edebf1dafd07769624ed61a17135d8f27dba7",
+      "bytes": 20669,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/exposure_classification.yaml"
+    },
+    "import-icdo_morphology": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-pZer3z/content/import-icdo_morphology.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-pZer3z/content/receipt.json",
+      "sha256": "987030c04dc3607a81348fc3e5f77efad53086f7767409a1e26c5ec1c0e9b452",
+      "bytes": 7779,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/icdo_morphology.yaml"
+    },
+    "import-ilo_occupational_diseases": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-zjixGM/content/import-ilo_occupational_diseases.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-zjixGM/content/receipt.json",
+      "sha256": "d9ccfb0da18c8a9aeb4d6dce411e587e1025df96b0d4fae6da00119efeab2964",
+      "bytes": 33925,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/ilo_occupational_diseases.yaml"
+    },
+    "import-harrisons_chapters": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-QZ0BIJ/content/import-harrisons_chapters.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-QZ0BIJ/content/receipt.json",
+      "sha256": "740a48013d3cfddc878edcf3f01f296a16027f4fa12bd3e320314520d879d5ac",
+      "bytes": 10063,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/harrisons_chapters.yaml"
+    },
+    "import-icimd": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-1ueO0f/content/import-icimd.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-1ueO0f/content/receipt.json",
+      "sha256": "6631e019502247f7eec55d6b2979c996ebefb86ae7d611b31ecb4c623e4ff4da",
+      "bytes": 27678,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/icimd.yaml"
+    },
+    "import-isds_skeletal_nosology": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-bILc2n/content/import-isds_skeletal_nosology.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-bILc2n/content/receipt.json",
+      "sha256": "75008bd4fc1fb1aef8d76d7589ad995ef296156b35beba621e3ac652d3690c36",
+      "bytes": 53239,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/isds_skeletal_nosology.yaml"
+    },
+    "import-nih_research_priorities": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-GNc7Y0/content/import-nih_research_priorities.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-GNc7Y0/content/receipt.json",
+      "sha256": "f10a6385fb6bd357cff5107b1f9eaead0d871297b2e4eae684c8dc359771efb9",
+      "bytes": 22673,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/nih_research_priorities.yaml"
+    },
+    "import-eu_occupational_schedule": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Rfjiir/content/import-eu_occupational_schedule.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Rfjiir/content/receipt.json",
+      "sha256": "f6af22f6a7955f94bd5810f544f58fdecaa51d643a6cf0ef936e69ac5ecb58dc",
+      "bytes": 39234,
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/eu_occupational_schedule.yaml"
+    },
+    "uberonTerm": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-mzfhvs/content/uberonTerm.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-mzfhvs/content/receipt.json",
+      "sha256": "efea8be75aca7097df4f57d397ae3743a1263fcd8c5e12ff753aabf8783e2572",
+      "bytes": 8653,
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/uberon/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0002113"
+    },
+    "clTerm": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-WDG77v/content/clTerm.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-WDG77v/content/receipt.json",
+      "sha256": "ce4ac0e8c136f92d2b75ed03be1df050481711fc4278a8c05eea5f78e283c561",
+      "bytes": 10759,
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/cl/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCL_0000653"
+    },
+    "clObo": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-9rvPV7/content/clObo.obo",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-9rvPV7/content/receipt.json",
+      "sha256": "73996c6349283e7a8cbd8183367a1cb810d0077e9c291ae0c72bd31e869f8c1c",
+      "bytes": 3347518,
+      "url": "https://purl.obolibrary.org/obo/cl/cl-basic.obo"
+    },
+    "uberonObo": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-08lESN/content/uberonObo.obo",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-08lESN/content/receipt.json",
+      "sha256": "b27618d347df171d0dbbfc6178217487b98b96424641b8c8b4ece77256e67a14",
+      "bytes": 12078648,
+      "url": "https://purl.obolibrary.org/obo/uberon/basic.obo"
+    }
+  },
+  "operations": [
+    {
+      "k": "repoTree",
+      "url": "https://api.github.com/repos/monarch-initiative/dismech/git/trees/main?recursive=1",
+      "accept": "application/json"
+    },
+    {
+      "k": "repoRoot",
+      "url": "https://api.github.com/repos/monarch-initiative/dismech/git/trees/main",
+      "accept": "application/json"
+    },
+    {
+      "k": "pyproject-toml",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/pyproject.toml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "Makefile",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/Makefile",
+      "accept": "text/plain"
+    },
+    {
+      "k": "srcTree",
+      "url": "https://api.github.com/repos/monarch-initiative/dismech/git/trees/e52df7b8dbf1b54beeaac3bc6f7a13b1b5e4e2ae?recursive=1",
+      "accept": "application/json"
+    },
+    {
+      "k": "schema",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/dismech.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "datamodel",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/datamodel/dismech.py",
+      "accept": "text/plain"
+    },
+    {
+      "k": "justfile",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/justfile",
+      "accept": "text/plain"
+    },
+    {
+      "k": "projectBuild",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/project.justfile",
+      "accept": "text/plain"
+    },
+    {
+      "k": "buildConfig",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/config.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "fabry",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/kb/disorders/Fabry_Disease.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-icdo_morphology",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/icdo_morphology.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-harrisons_chapters",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/harrisons_chapters.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-lysosomal_storage",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/lysosomal_storage.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-mechanistic_nosology",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/mechanistic_nosology.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-iuis_immunodeficiency",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/iuis_immunodeficiency.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-channelopathies",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/channelopathies.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-phenotype_category",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/phenotype_category.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-coarse_phenotype_terms",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/coarse_phenotype_terms.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-icimd",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/icimd.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-isds_skeletal_nosology",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/isds_skeletal_nosology.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-nih_research_priorities",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/nih_research_priorities.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-ilo_occupational_diseases",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/ilo_occupational_diseases.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-eu_occupational_schedule",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/eu_occupational_schedule.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-exposure_classification",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/exposure_classification.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-harrisons_chapters",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/harrisons_chapters.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-icimd",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/icimd.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-isds_skeletal_nosology",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/isds_skeletal_nosology.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-nih_research_priorities",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/nih_research_priorities.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "import-eu_occupational_schedule",
+      "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/090fcc12aafac22e5e2b8454aab44ce6735579cb/src/dismech/schema/classifications/eu_occupational_schedule.yaml",
+      "accept": "text/plain"
+    },
+    {
+      "k": "clTerm",
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/cl/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCL_0000653",
+      "accept": "application/json"
+    },
+    {
+      "k": "uberonTerm",
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/uberon/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUBERON_0002113",
+      "accept": "application/json"
+    }
+  ],
+  "ontology": {
+    "CL": {
+      "sourcePath": "artifacts/resources/resource-9rvPV7/content/clObo.obo",
+      "sourceSha256": "73996c6349283e7a8cbd8183367a1cb810d0077e9c291ae0c72bd31e869f8c1c",
+      "dataVersion": "cl/releases/2026-06-08/cl-basic.owl",
+      "seedIds": [
+        "CL:0000076",
+        "CL:0000101",
+        "CL:0000107",
+        "CL:0000115",
+        "CL:0000192",
+        "CL:0000653",
+        "CL:0000746",
+        "CL:0002129"
+      ],
+      "selectedClasses": 36,
+      "subClassAxioms": 46,
+      "triples": 154,
+      "missingIds": [],
+      "omittedTagOccurrences": {
+        "comment": 5,
+        "subset": 38,
+        "xref": 89,
+        "property_value": 49,
+        "synonym": 31,
+        "relationship": 4,
+        "alt_id": 2,
+        "creation_date": 8
+      },
+      "selection": "all record term IDs in this ontology plus recursive named is_a parents, max 400 classes",
+      "mappedTags": [
+        "id",
+        "name",
+        "def",
+        "is_a"
+      ],
+      "rdfSha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a"
+    },
+    "UBERON": {
+      "sourcePath": "artifacts/resources/resource-08lESN/content/uberonObo.obo",
+      "sourceSha256": "b27618d347df171d0dbbfc6178217487b98b96424641b8c8b4ece77256e67a14",
+      "dataVersion": "uberon/releases/2026-06-19/uberon-basic.owl",
+      "seedIds": [
+        "UBERON:0000010",
+        "UBERON:0000948",
+        "UBERON:0000965",
+        "UBERON:0001772",
+        "UBERON:0001981",
+        "UBERON:0002081",
+        "UBERON:0002097",
+        "UBERON:0002113"
+      ],
+      "selectedClasses": 34,
+      "subClassAxioms": 40,
+      "triples": 141,
+      "missingIds": [],
+      "omittedTagOccurrences": {
+        "subset": 87,
+        "synonym": 84,
+        "xref": 321,
+        "relationship": 64,
+        "property_value": 50,
+        "comment": 5
+      },
+      "selection": "all record term IDs in this ontology plus recursive named is_a parents, max 400 classes",
+      "mappedTags": [
+        "id",
+        "name",
+        "def",
+        "is_a"
+      ],
+      "rdfSha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee"
+    }
+  },
+  "resultsFile": "query-results.json",
+  "conversionFile": "conversion-report.json"
+}

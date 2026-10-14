@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "f06f0bf3-a05b-4840-ab03-61037edc622a",
+  "recordedAt": "2026-09-24T18:19:11.456Z",
+  "assessment": "unknown",
+  "note": "Guidance consulted before one UniProt function-to-PDB SPARQL demonstration. Complete result retained in live REPL; no causal benefit assessment.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "hemoglobin-go-overlap-20260919"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

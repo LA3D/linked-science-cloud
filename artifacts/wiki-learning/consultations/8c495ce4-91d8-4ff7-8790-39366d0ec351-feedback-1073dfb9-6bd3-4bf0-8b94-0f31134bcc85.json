@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "8c495ce4-91d8-4ff7-8790-39366d0ec351",
+  "recordedAt": "2026-09-27T13:41:21.116Z",
+  "assessment": "not-used",
+  "note": "Search match concerned PubChem/EGFR, not this renal evidence question; used saved Fabry artifacts and current publication sources.",
+  "evidence": [],
+  "consultedPatternIds": [],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

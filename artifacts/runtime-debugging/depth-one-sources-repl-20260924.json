@@ -1,0 +1,57 @@
+{
+  "kind": "depth-one-sources-and-repl-trajectory",
+  "sources": {
+    "paper": {
+      "url": "https://arxiv.org/html/2512.24601v1",
+      "sha256": "3c007f38a03f762e57cd31d7daa3337a79f8c153766aa96eb6cd1f524e3a0794",
+      "section": 5,
+      "excerpt": "max recursion depth of one (i.e. sub-calls are LMs)"
+    },
+    "authorsCode": {
+      "url": "https://raw.githubusercontent.com/alexzhang13/rlm/main/rlm/core/rlm.py",
+      "sha256": "f7df6af55027159b2f428ff98c9b19beb872618ee88aa8fef62c9498fa1e0562",
+      "observedLines": [
+        56,
+        350,
+        723,
+        734,
+        813
+      ],
+      "excerpts": [
+        "next_depth = self.depth + 1",
+        "if next_depth >= self.max_depth:"
+      ],
+      "summary": "Default maximum depth is one. Completion falls back at the cap; subcall derives next depth from host state and passes that value into a child below the cap."
+    }
+  },
+  "selectedInput": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"runId\":\"parent-mediated-20260924-1790279438842\",\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"selected\":{\"contextId\":\"parent-mediated-20260924-1790279438842\",\"start\":0,\"end\":93,\"totalLength\":16703,\"text\":\"SYNTHETIC FIXTURE; not scientific evidence.\\nA1: amber has 7 tokens.\\nA2: violet has 11 tokens.\"},\"fullBytes\":16703}"
+      }
+    ]
+  },
+  "retention": {
+    "code": "var depthOneChildText='{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"],\"denialCodes\":[\"DEPTH_LIMIT\",\"CALLER_IDENTITY_OVERRIDE\"]}';\nvar depthOneAnswer=JSON.parse(depthOneChildText);\nvar depthOneExpectedPassed=depthOneAnswer.total===cp2Oracle.total && depthOneAnswer.difference===cp2Oracle.difference && depthOneAnswer.larger===cp2Oracle.larger && JSON.stringify(depthOneAnswer.assertionIds)===JSON.stringify(cp2Oracle.assertionIds);\nif(!depthOneExpectedPassed || Buffer.byteLength(depthOneChildText)>2048)throw Error('Invalid child answer');\nvar depthOneRetained={sourceRunId:cp2Run,epoch:cp2Workspace.inventory().epoch,childThreadId:'01a0d503-787b-77c0-bd38-583a7817e07a',childKind:'isolated-programmatic-codex-leaf',answer:depthOneAnswer,evidenceClass:'synthetic-model-synthesis',expectedPassed:depthOneExpectedPassed};\nnodeRepl.rlm.registerContext(cp2Run+':depth-one-result',depthOneRetained);\nnodeRepl.write(JSON.stringify({retained:depthOneRetained,sentinel:cp2Sentinel,fullSourceLength:nodeRepl.rlm.inspect(cp2Run,{start:0,end:0}).totalLength,resultBytes:Buffer.byteLength(depthOneChildText),recursionAvailable:nodeRepl.rlm.capabilities().recursion.available}));",
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"retained\":{\"sourceRunId\":\"parent-mediated-20260924-1790279438842\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"childThreadId\":\"01a0d503-787b-77c0-bd38-583a7817e07a\",\"childKind\":\"isolated-programmatic-codex-leaf\",\"answer\":{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"],\"denialCodes\":[\"DEPTH_LIMIT\",\"CALLER_IDENTITY_OVERRIDE\"]},\"evidenceClass\":\"synthetic-model-synthesis\",\"expectedPassed\":true},\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"fullSourceLength\":16703,\"resultBytes\":129,\"recursionAvailable\":false}"
+        }
+      ]
+    }
+  },
+  "readback": {
+    "code": "nodeRepl.write(JSON.stringify({sentinel:cp2Sentinel,epoch:cp2Workspace.inventory().epoch,result:nodeRepl.rlm.inspect(cp2Run+':depth-one-result',{start:0,end:2048}),sourceLength:nodeRepl.rlm.inspect(cp2Run,{start:0,end:0}).totalLength}));",
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"result\":{\"contextId\":\"parent-mediated-20260924-1790279438842:depth-one-result\",\"start\":0,\"end\":451,\"totalLength\":451,\"text\":\"{\\\"sourceRunId\\\":\\\"parent-mediated-20260924-1790279438842\\\",\\\"epoch\\\":\\\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\\\",\\\"childThreadId\\\":\\\"01a0d503-787b-77c0-bd38-583a7817e07a\\\",\\\"childKind\\\":\\\"isolated-programmatic-codex-leaf\\\",\\\"answer\\\":{\\\"total\\\":18,\\\"difference\\\":4,\\\"larger\\\":\\\"violet\\\",\\\"assertionIds\\\":[\\\"A1\\\",\\\"A2\\\"],\\\"denialCodes\\\":[\\\"DEPTH_LIMIT\\\",\\\"CALLER_IDENTITY_OVERRIDE\\\"]},\\\"evidenceClass\\\":\\\"synthetic-model-synthesis\\\",\\\"expectedPassed\\\":true}\"},\"sourceLength\":16703}"
+        }
+      ]
+    }
+  }
+}

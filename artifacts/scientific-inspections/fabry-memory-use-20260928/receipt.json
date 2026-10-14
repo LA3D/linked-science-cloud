@@ -1,0 +1,693 @@
+{
+  "format": "fabry-worked-memory-use/v1",
+  "recordedAt": "2026-09-28T14:57:38.368Z",
+  "memory": {
+    "consultationId": "7f0f7dbe-47a8-497f-90cb-9e170b647a0c",
+    "pattern": "ontology-symbolic-context-selective-imports",
+    "status": "proposed",
+    "decision": "Check domain and annotation attachment explicitly before connecting normal chemistry to disease; retain historical participant-role scope."
+  },
+  "identity": {
+    "id": "@linked-science/runtime",
+    "role": "authoritative-production-implementation",
+    "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+  },
+  "context": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry",
+  "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+  "queries": {
+    "schema": "PREFIX up:<http://purl.uniprot.org/core/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?domain ?annotation ?reaction ?physiological WHERE { up:catalyzedPhysiologicalReaction rdfs:domain ?domain . <http://purl.uniprot.org/uniprot/P06280> up:annotation ?annotation . ?annotation up:catalyzedPhysiologicalReaction ?physiological; up:catalyticActivity/up:catalyzedReaction ?reaction }",
+    "anchor": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?name ?chemical WHERE { VALUES ?chemical {obo:CHEBI_18313} ?mechanism dm:chemical_entities/dm:term ?chemical; app:sourceName ?name . }\n",
+    "renal": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?e ?sourceName ?edge ?targetName ?type ?description ?intermediate ?reference ?evidenceSource ?snippet WHERE { VALUES (?sourceName ?targetName) { (\"Alpha-galactosidase A deficiency\" \"Lysosomal Gb3 and lyso-Gb3 accumulation\") (\"Lysosomal Gb3 and lyso-Gb3 accumulation\" \"Tissue-specific glycosphingolipid storage\") (\"Tissue-specific glycosphingolipid storage\" \"Renal glycosphingolipid storage and podocyte injury\") (\"Renal glycosphingolipid storage and podocyte injury\" \"Autophagy impairment\") } ?source app:sourceName ?sourceName; dm:downstream ?edge . ?edge dm:target ?targetName; app:resolvedTarget ?target; dm:causal_link_type ?type; dm:description ?description . OPTIONAL {?edge dm:intermediate_mechanisms ?intermediate} OPTIONAL {?edge dm:evidence ?e . ?e dm:reference ?reference; dm:evidence_source ?evidenceSource; dm:snippet ?snippet} }\n"
+  },
+  "pages": {
+    "schema": {
+      "kind": "linked-science-page",
+      "operationId": "op-000029",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000016",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "traversal-result"
+      },
+      "columns": [
+        "domain",
+        "annotation",
+        "reaction",
+        "physiological"
+      ],
+      "offset": 0,
+      "total": 2,
+      "provenance": {
+        "operationId": "op-000028",
+        "localOnly": false,
+        "mediatedTraversal": true,
+        "queryType": "SELECT",
+        "querySha256": "f149990ee4f5b154f697835b73a3e244d51c37ae836943b72162742e58a3f2f2",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "negotiation": {},
+        "attempt": {
+          "kind": "linked-science-mediated-attempt",
+          "index": 1,
+          "status": "success",
+          "operationId": "op-000028",
+          "traversalId": "traversal-8dc72edebd3e47d1077a850d",
+          "queryType": "SELECT",
+          "querySha256": "f149990ee4f5b154f697835b73a3e244d51c37ae836943b72162742e58a3f2f2",
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "startedAt": "2026-09-28T14:56:56.754Z",
+          "endedAt": "2026-09-28T14:56:57.198Z",
+          "durationMs": 444,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 1212,
+            "retries": 0
+          },
+          "resultItems": 2,
+          "hiddenRetries": 0,
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-8dc72edebd3e47d1077a850d",
+          "startedAt": "2026-09-28T14:56:56.754Z",
+          "finishedAt": "2026-09-28T14:56:57.198Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 1212,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+              "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "9cb764e502a73b274ec88a8051eda37b652e9c92c75b119b95c5238fe293d3d5",
+              "responseSha256": "0f4c4fba509bbff285303d91cbc1139cd74f407a47a5e14cb46bc4c75d7891c8",
+              "bytes": 1212,
+              "mediaType": "application/sparql-results+json",
+              "headers": {
+                "content-length": "1212",
+                "content-type": "application/sparql-results+json",
+                "etag": "W/\"2026_03\"",
+                "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-28T14:56:56.787Z",
+              "finishedAt": "2026-09-28T14:56:57.195Z",
+              "retries": 0
+            }
+          ],
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "payloadSha256": "5a9dcdb7fec67a73220ca024ee2fdfead96e82c200a09c3cfdc92bab3d8736c9"
+      },
+      "rows": [
+        {
+          "domain": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/core/Catalytic_Activity_Annotation"
+          },
+          "annotation": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/uniprot/P06280#SIP1B77654195D3F73D"
+          },
+          "reaction": {
+            "termType": "NamedNode",
+            "value": "http://rdf.rhea-db.org/21112"
+          },
+          "physiological": {
+            "termType": "NamedNode",
+            "value": "http://rdf.rhea-db.org/21113"
+          }
+        },
+        {
+          "domain": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/core/Catalytic_Activity_Annotation"
+          },
+          "annotation": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/uniprot/P06280#SIP74F5FFE78F9EF22E"
+          },
+          "reaction": {
+            "termType": "NamedNode",
+            "value": "http://rdf.rhea-db.org/48020"
+          },
+          "physiological": {
+            "termType": "NamedNode",
+            "value": "http://rdf.rhea-db.org/48021"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 2,
+        "maxRows": 10,
+        "cells": 8,
+        "maxCells": 100,
+        "bytes": 6814,
+        "maxBytes": 32768
+      }
+    },
+    "anchor": {
+      "kind": "linked-science-page",
+      "operationId": "op-000031",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000017",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "mechanism",
+        "name",
+        "chemical"
+      ],
+      "offset": 0,
+      "total": 1,
+      "provenance": {
+        "operationId": "op-000030",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "8894285ed1d9230a15d32d8c900c9ca71c211b569d0f9c355857fe53c819e943",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+        ]
+      },
+      "rows": [
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Lysosomal%20Gb3%20and%20lyso-Gb3%20accumulation"
+          },
+          "name": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "chemical": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 1,
+        "maxRows": 2,
+        "cells": 3,
+        "maxCells": 100,
+        "bytes": 1359,
+        "maxBytes": 32768
+      }
+    },
+    "renal": {
+      "kind": "linked-science-page",
+      "operationId": "op-000033",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000018",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "e",
+        "sourceName",
+        "edge",
+        "targetName",
+        "type",
+        "description",
+        "intermediate",
+        "reference",
+        "evidenceSource",
+        "snippet"
+      ],
+      "offset": 0,
+      "total": 5,
+      "provenance": {
+        "operationId": "op-000032",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "fd006217e53364705fb415237e6e368af93a2d3f6228d1571932a360f6fc60cf",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+        ]
+      },
+      "rows": [
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Alpha-galactosidase A deficiency",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Reduced alpha-galactosidase A activity prevents normal lysosomal clearance of Gb3 and related glycosphingolipids.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "OTHER",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Fabry disease (FD) is a rare lysosomal storage disorder, characterized by a reduction in α-galactosidase A enzyme activity and the progressive accumulation of globotriaosylceramide (GL3) and its metabolites in the cells of various organs.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "The shared lysosomal storage lesion occurs in multiple organ systems and must be interpreted in local tissue contexts.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "OTHER",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Accumulation of GL3 in the kidney, heart, vasculature, neurons, skin, gastrointestinal tract and auditory system correlates to cellular damage and irreversible organ damage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Kidney and podocyte substrate accumulation defines the renal branch and is the context for renal GL-3 tissue readouts.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "HUMAN_CLINICAL",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Autophagy impairment",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": {
+            "termType": "Literal",
+            "value": "lysosomal dysfunction in GLA-edited podocytes",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39100494",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "IN_VITRO",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Autophagy impairment",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": {
+            "termType": "Literal",
+            "value": "podocyte cellular stress response",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39100494",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "IN_VITRO",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 5,
+        "maxRows": 10,
+        "cells": 50,
+        "maxCells": 100,
+        "bytes": 8637,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "historicalRole": [
+    {
+      "reaction": "http://rdf.rhea-db.org/21113",
+      "role": "http://rdf.rhea-db.org/substrates",
+      "chemical": "http://purl.obolibrary.org/obo/CHEBI_18313"
+    }
+  ],
+  "roleSource": "artifacts/scientific-inspections/fabry-gla-federation-20260927/saved-result.json",
+  "operations": {
+    "schema": "fresh remote UniProt SELECT",
+    "anchor": "fresh local SELECT on retained graphs",
+    "renal": "fresh local SELECT on retained graphs",
+    "role": "historical saved Rhea federation rows inspected; not rerun",
+    "reasoner": "none"
+  },
+  "limitations": [
+    "Worked consultation-use example, not controlled benefit evaluation.",
+    "Prior task history already contained this lesson; no independent transfer claim.",
+    "Curated causal links and attached citations are not experimental causal proof.",
+    "No full ontology import closure or fresh literature review."
+  ]
+}

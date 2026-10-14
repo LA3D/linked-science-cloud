@@ -1,0 +1,2434 @@
+{
+  "format": "linked-science-fabry-extension/v1",
+  "recordedAt": "2026-09-25T12:00:35.476Z",
+  "runtime": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "external-context",
+    "rlm": {
+      "kind": "cleanroom-rlm-capabilities",
+      "version": "1.0.0",
+      "architecture": "recursive-language-model",
+      "controlEnvironment": "persistent-javascript",
+      "externalContext": {
+        "available": true,
+        "persistence": "kernel-epoch",
+        "maxContextBytes": 2097152,
+        "operations": [
+          "registerContext",
+          "context",
+          "inspect"
+        ]
+      },
+      "recursion": {
+        "available": false,
+        "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+        "providerAttachment": "none",
+        "interface": "nodeRepl.rlm.query",
+        "lifecycleOwner": "cleanroom-host",
+        "lifecycle": "bounded-one-shot-compatibility",
+        "durable": false,
+        "asynchronousHandle": false,
+        "hardMaxDepth": 4,
+        "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+      }
+    },
+    "project": {
+      "id": "@linked-science/runtime",
+      "role": "authoritative-production-implementation",
+      "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+    },
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    },
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+    "dependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+      "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+      "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+      "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+    },
+    "traversalMediator": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    },
+    "resultStorage": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    }
+  },
+  "question": "What does the protein associated with the Fabry mechanism do, and what structures and pathway evidence help explain it?",
+  "sourceGraph": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000028",
+      "type": "instance-data",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+      "label": "fabry-full-disease"
+    },
+    "type": "instance-data",
+    "count": 2834,
+    "fingerprints": [
+      "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e"
+    ],
+    "lineage": {
+      "kind": "materialized-local-graph",
+      "operationId": "op-000035"
+    },
+    "provenance": {
+      "operationId": "op-000035",
+      "source": {
+        "kind": "local-synthetic",
+        "id": "fabry-full-disease"
+      },
+      "sourceFingerprint": "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+      "localOnly": true
+    },
+    "residency": {
+      "kind": "resident-rdf-dataset",
+      "indexed": true,
+      "scope": "workspace-epoch"
+    },
+    "bounds": {
+      "bytes": 710,
+      "maxBytes": 32768
+    }
+  },
+  "sourceIdentifiers": {
+    "query": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> SELECT DISTINCT ?id ?type ?label WHERE { ?id a ?type . FILTER(isIRI(?id) && (CONTAINS(STR(?id),\"HGNC\") || CONTAINS(STR(?id),\"uniprot\") || CONTAINS(STR(?id),\"CHEBI_\") || CONTAINS(STR(?id),\"GO_\"))) OPTIONAL { ?id dm:label ?label } }",
+    "rows": [
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_135923"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "migalastat",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosylceramide",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0004557"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "alpha-galactosidase activity",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0005764"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "lysosome",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006687"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "glycosphingolipid metabolic process",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006915"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "apoptotic process",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006954"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "inflammatory response",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006956"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "complement activation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006986"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "response to unfolded protein",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0007179"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "transforming growth factor beta receptor signaling pathway",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0007249"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "canonical NF-kappaB signal transduction",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0019377"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "glycolipid catabolic process",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0030198"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "extracellular matrix organization",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0051881"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "regulation of mitochondrial membrane potential",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0061756"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "leukocyte adhesion to vascular endothelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0086001"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "cardiac muscle cell action potential",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0160269"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "sweat secretion",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0072593"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "reactive oxygen species metabolic process",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "id": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0006914"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/Term"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "autophagy",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "qualification": "Initial HGNC filter was case-sensitive and missed lowercase source URLs; explicit relationship query follows."
+  },
+  "sourceRelationships": {
+    "query": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> SELECT ?owner ?slot ?descriptor ?gene WHERE { ?owner ?slot ?descriptor . ?descriptor dm:term ?gene . FILTER(CONTAINS(LCASE(STR(?gene)),\"hgnc\")) }",
+    "rows": [
+      {
+        "owner": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Alpha-galactosidase%20A%20deficiency"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/genes"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fgenes%2F0"
+        },
+        "gene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/4296"
+        }
+      },
+      {
+        "owner": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/GLA"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/gene_term"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fgenetic%2F1%2Fgene_term"
+        },
+        "gene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/4296"
+        }
+      },
+      {
+        "owner": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/GLA%20gene%20mutations"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/gene_term"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fgenetic%2F0%2Fgene_term"
+        },
+        "gene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/4296"
+        }
+      },
+      {
+        "owner": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Autophagy%20impairment"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/genes"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F13%2Fgenes%2F0"
+        },
+        "gene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/11138"
+        }
+      },
+      {
+        "owner": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Fibrosis%20and%20extracellular%20matrix%20remodeling"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/genes"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F15%2Fgenes%2F0"
+        },
+        "gene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/11766"
+        }
+      }
+    ]
+  },
+  "hgnc": {
+    "status": "Approved",
+    "omim_id": [
+      "300644"
+    ],
+    "orphanet": 122153,
+    "alias_symbol": [
+      "GALA"
+    ],
+    "ensembl_gene_id": "ENSG00000102393",
+    "uniprot_ids": [
+      "P06280"
+    ],
+    "name": "galactosidase alpha",
+    "ucsc_id": "uc004ehl.2",
+    "entrez_id": "2717",
+    "pubmed_id": [
+      6323102,
+      3014515,
+      40300326
+    ],
+    "location": "Xq22.1",
+    "enzyme_id": [
+      "3.2.1.22"
+    ],
+    "lsdb": [
+      "Global Variome shared LOVD|https://databases.lovd.nl/shared/genes/GLA",
+      "LRG_672|http://ftp.ebi.ac.uk/pub/databases/lrgex/LRG_672.xml"
+    ],
+    "ena": [
+      "X16889"
+    ],
+    "date_modified": "2026-04-17T00:00:00Z",
+    "mane_select": [
+      "ENST00000218516.4",
+      "NM_000169.3"
+    ],
+    "mgd_id": [
+      "MGI:1347344"
+    ],
+    "symbol": "GLA",
+    "date_name_changed": "2015-11-18T00:00:00Z",
+    "ccds_id": [
+      "CCDS14484"
+    ],
+    "rgd_id": [
+      "RGD:1589721"
+    ],
+    "hgnc_id": "HGNC:4296",
+    "gene_group_id": [
+      1655
+    ],
+    "locus_group": "protein-coding gene",
+    "locus_type": "gene with protein product",
+    "agr": "HGNC:4296",
+    "vega_id": "OTTHUMG00000022026",
+    "uuid": "47a9a612-c163-43d3-923a-04fd3cf3b4ae",
+    "date_approved_reserved": "2001-06-22T00:00:00Z",
+    "gencc": "HGNC:4296",
+    "gene_group": [
+      "Galactosidases alpha"
+    ],
+    "refseq_accession": [
+      "NM_000169"
+    ]
+  },
+  "proteinSummary": {
+    "accession": "P06280",
+    "taxon": 9606,
+    "length": 429,
+    "audit": {
+      "firstPublicDate": "1988-01-01",
+      "lastAnnotationUpdateDate": "2026-09-02",
+      "lastSequenceUpdateDate": "1988-08-01",
+      "entryVersion": 253,
+      "sequenceVersion": 1
+    },
+    "comments": [
+      {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "source": "PubMed",
+                "id": "10838196"
+              },
+              {
+                "evidenceCode": "ECO:0000269",
+                "source": "PubMed",
+                "id": "8804427"
+              }
+            ],
+            "value": "Catalyzes the hydrolysis of glycosphingolipids and participates in their degradation in the lysosome"
+          }
+        ],
+        "commentType": "FUNCTION"
+      },
+      {
+        "commentType": "CATALYTIC ACTIVITY",
+        "reaction": {
+          "name": "Hydrolysis of terminal, non-reducing alpha-D-galactose residues in alpha-D-galactosides, including galactose oligosaccharides, galactomannans and galactolipids.",
+          "ecNumber": "3.2.1.22",
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "26415523"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "27211852"
+            }
+          ]
+        }
+      },
+      {
+        "commentType": "CATALYTIC ACTIVITY",
+        "reaction": {
+          "name": "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+          "reactionCrossReferences": [
+            {
+              "database": "Rhea",
+              "id": "RHEA:21112"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:4139"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:15377"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:17950"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:18313"
+            }
+          ],
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "10838196"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "8804427"
+            }
+          ]
+        },
+        "physiologicalReactions": [
+          {
+            "directionType": "left-to-right",
+            "reactionCrossReference": {
+              "database": "Rhea",
+              "id": "RHEA:21113"
+            },
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000305",
+                "source": "PubMed",
+                "id": "10838196"
+              },
+              {
+                "evidenceCode": "ECO:0000305",
+                "source": "PubMed",
+                "id": "8804427"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "commentType": "CATALYTIC ACTIVITY",
+        "reaction": {
+          "name": "a globoside Gb3Cer + H2O = a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose",
+          "reactionCrossReferences": [
+            {
+              "database": "Rhea",
+              "id": "RHEA:48020"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:4139"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:15377"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:79208"
+            },
+            {
+              "database": "ChEBI",
+              "id": "CHEBI:88154"
+            }
+          ],
+          "evidences": [
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "10838196"
+            },
+            {
+              "evidenceCode": "ECO:0000269",
+              "source": "PubMed",
+              "id": "8804427"
+            }
+          ]
+        },
+        "physiologicalReactions": [
+          {
+            "directionType": "left-to-right",
+            "reactionCrossReference": {
+              "database": "Rhea",
+              "id": "RHEA:48021"
+            },
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000305",
+                "source": "PubMed",
+                "id": "10838196"
+              },
+              {
+                "evidenceCode": "ECO:0000305",
+                "source": "PubMed",
+                "id": "8804427"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "texts": [
+          {
+            "evidences": [
+              {
+                "evidenceCode": "ECO:0000269",
+                "source": "PubMed",
+                "id": "15003450"
+              }
+            ],
+            "value": "Homodimer"
+          }
+        ],
+        "commentType": "SUBUNIT"
+      }
+    ]
+  },
+  "remote": {
+    "query": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> SELECT ?protein ?organism ?geneName ?link ?database WHERE { VALUES ?protein { <http://purl.uniprot.org/uniprot/P06280> } ?protein a up:Protein; up:organism ?organism; up:encodedBy/skos:prefLabel ?geneName; rdfs:seeAlso ?link . ?link up:database ?database . VALUES ?database { <http://purl.uniprot.org/database/PDB> <http://purl.uniprot.org/database/Reactome> <http://purl.uniprot.org/database/AlphaFoldDB> <http://purl.uniprot.org/database/HGNC> } }",
+    "profile": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000004",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-protein-extension-20260925:1",
+        "label": "traversal-result"
+      },
+      "type": "bindings",
+      "count": 35,
+      "columns": [
+        "protein",
+        "organism",
+        "geneName",
+        "link",
+        "database"
+      ],
+      "fingerprints": [
+        "ad16e24676ffc41bb27bfbccec5cb571c4f2e9b11fc8c1c822cb374febde91ca"
+      ],
+      "lineage": {
+        "kind": "communica-mediated-traversal",
+        "operationId": "op-000005",
+        "traversalId": "traversal-15f8db1fcc71c3f5bac40b1d",
+        "querySha256": "ba7fc747fcdb4aa3ac5a3c5d16b54138c146e2b0021432e0f32a683db5900be8",
+        "evidenceHandles": [],
+        "payloadSha256": "ad16e24676ffc41bb27bfbccec5cb571c4f2e9b11fc8c1c822cb374febde91ca",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000005",
+        "localOnly": false,
+        "mediatedTraversal": true,
+        "queryType": "SELECT",
+        "querySha256": "ba7fc747fcdb4aa3ac5a3c5d16b54138c146e2b0021432e0f32a683db5900be8",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "negotiation": {},
+        "attempt": {
+          "kind": "linked-science-mediated-attempt",
+          "index": 5,
+          "status": "success",
+          "operationId": "op-000005",
+          "traversalId": "traversal-15f8db1fcc71c3f5bac40b1d",
+          "queryType": "SELECT",
+          "querySha256": "ba7fc747fcdb4aa3ac5a3c5d16b54138c146e2b0021432e0f32a683db5900be8",
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "startedAt": "2026-09-25T11:57:06.680Z",
+          "endedAt": "2026-09-25T11:57:07.337Z",
+          "durationMs": 657,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 20293,
+            "retries": 0
+          },
+          "resultItems": 35,
+          "hiddenRetries": 0,
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-15f8db1fcc71c3f5bac40b1d",
+          "startedAt": "2026-09-25T11:57:06.681Z",
+          "finishedAt": "2026-09-25T11:57:07.337Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 20293,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://sparql.uniprot.org/sparql",
+              "finalUrl": "https://sparql.uniprot.org/sparql",
+              "redirected": false,
+              "method": "POST",
+              "httpStatus": 200,
+              "requestSha256": "25bcd482b5a942c9e08512e4aced3ff20445c3e11ea511388ef0736f0d10ba38",
+              "responseSha256": "0b9e20b9886004c7b0873f2f65e0529e3a073dbe511d86c48e2957ee6903258b",
+              "bytes": 20293,
+              "mediaType": "application/sparql-results+json",
+              "headers": {
+                "content-length": "20293",
+                "content-type": "application/sparql-results+json"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://sparql.uniprot.org/sparql",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "queryType": "SELECT",
+              "querySha256": "ba7fc747fcdb4aa3ac5a3c5d16b54138c146e2b0021432e0f32a683db5900be8",
+              "startedAt": "2026-09-25T11:57:06.710Z",
+              "finishedAt": "2026-09-25T11:57:07.332Z",
+              "retries": 0
+            }
+          ],
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "payloadSha256": "ad16e24676ffc41bb27bfbccec5cb571c4f2e9b11fc8c1c822cb374febde91ca"
+      },
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "bounds": {
+        "bytes": 5132,
+        "maxBytes": 32768
+      }
+    },
+    "rows": [
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7D"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7L"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/9AVS"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7J"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7I"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7H"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7G"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7F"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7E"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3TV8"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/6IBT"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/6IBR"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/6IBM"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/6IBK"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/4NXS"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3S5Z"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://identifiers.org/reactome/R-HSA-6798695"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/Reactome"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://identifiers.org/reactome/R-HSA-9840310"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/Reactome"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3HG4"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/hgnc/4296"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/HGNC"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3S5Y"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/8K7K"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3LXC"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3LXB"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3LXA"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3LX9"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3HG5"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/alphafolddb/P06280"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/AlphaFoldDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3HG3"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3HG2"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3GXT"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3GXP"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/3GXN"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/1R47"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        },
+        "geneName": {
+          "termType": "Literal",
+          "value": "GLA",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "link": {
+          "termType": "NamedNode",
+          "value": "http://rdf.wwpdb.org/pdb/1R46"
+        },
+        "database": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/database/PDB"
+        }
+      }
+    ]
+  },
+  "localJoin": {
+    "query": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?mechanism ?sourceGene ?protein ?proteinName ?organism WHERE { ?mechanism a dm:Pathophysiology; dm:genes/dm:term ?sourceGene . FILTER(CONTAINS(STR(?sourceGene),\"hgnc_id/\")) BIND(IRI(CONCAT(\"http://purl.uniprot.org/hgnc/\",STRAFTER(STR(?sourceGene),\"hgnc_id/\"))) AS ?xref) ?protein a up:Protein; rdfs:seeAlso ?xref; up:recommendedName/up:fullName ?proteinName; up:organism ?organism }",
+    "profile": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000041",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "query-result"
+      },
+      "type": "bindings",
+      "count": 1,
+      "columns": [
+        "mechanism",
+        "sourceGene",
+        "protein",
+        "proteinName",
+        "organism"
+      ],
+      "fingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+      ],
+      "lineage": {
+        "kind": "communica-query",
+        "operationId": "op-000067",
+        "sourceHandles": [
+          "h-000028",
+          "h-000040"
+        ],
+        "querySha256": "d3de8b853d7655f5533d9b173e27a77ff7cd00a905a4761ffeb696593246b268",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000067",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "d3de8b853d7655f5533d9b173e27a77ff7cd00a905a4761ffeb696593246b268",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000028",
+          "h-000040"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+        ]
+      },
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "bounds": {
+        "bytes": 1578,
+        "maxBytes": 32768
+      }
+    },
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Alpha-galactosidase%20A%20deficiency"
+        },
+        "sourceGene": {
+          "termType": "NamedNode",
+          "value": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/4296"
+        },
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "proteinName": {
+          "termType": "Literal",
+          "value": "Alpha-galactosidase A",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "organism": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/taxonomy/9606"
+        }
+      }
+    ]
+  },
+  "sharedGO": {
+    "query": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX up: <http://purl.uniprot.org/core/> SELECT ?mechanism ?slot ?term ?protein WHERE { ?mechanism a dm:Pathophysiology; ?slot ?descriptor . ?descriptor dm:term ?term . ?protein a up:Protein; up:classifiedWith ?term . FILTER(?term=<http://purl.obolibrary.org/obo/GO_0004557>) }",
+    "profile": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000042",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "query-result"
+      },
+      "type": "bindings",
+      "count": 1,
+      "columns": [
+        "mechanism",
+        "slot",
+        "term",
+        "protein"
+      ],
+      "fingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+      ],
+      "lineage": {
+        "kind": "communica-query",
+        "operationId": "op-000069",
+        "sourceHandles": [
+          "h-000028",
+          "h-000040"
+        ],
+        "querySha256": "d0cbe1f62658c14f287c5c1973c090f9f0853f98eed340a9474812a51461cd58",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000069",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "d0cbe1f62658c14f287c5c1973c090f9f0853f98eed340a9474812a51461cd58",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000028",
+          "h-000040"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+        ]
+      },
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "bounds": {
+        "bytes": 1554,
+        "maxBytes": 32768
+      }
+    },
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Alpha-galactosidase%20A%20deficiency"
+        },
+        "slot": {
+          "termType": "NamedNode",
+          "value": "https://w3id.org/monarch-initiative/dismech/molecular_functions"
+        },
+        "term": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/GO_0004557"
+        },
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        }
+      }
+    ]
+  },
+  "proteinGraphs": {
+    "extension": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000009",
+        "type": "instance-data",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-protein-extension-20260925:1",
+        "label": "fabry-human-protein"
+      },
+      "type": "instance-data",
+      "count": 7969,
+      "fingerprints": [
+        "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9",
+        "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+      ],
+      "lineage": {
+        "kind": "resource-rdf-parse",
+        "operationId": "op-000015",
+        "sourceResource": "h-000008",
+        "format": "text/turtle"
+      },
+      "provenance": {
+        "operationId": "op-000015",
+        "localOnly": false,
+        "sourceResource": "h-000008",
+        "format": "text/turtle",
+        "sourceFingerprint": "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c",
+        "resourceProvenance": {
+          "operationId": "op-000014",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "resource": {
+            "requestedUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+            "method": "GET",
+            "headers": {
+              "accept": "text/turtle"
+            }
+          },
+          "attempt": {
+            "kind": "linked-science-resource-attempt",
+            "index": 9,
+            "status": "success",
+            "operationId": "op-000014",
+            "traversalId": "traversal-dc75cb160ebe88c96a043c38",
+            "method": "GET",
+            "url": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+            "startedAt": "2026-09-25T11:57:36.714Z",
+            "endedAt": "2026-09-25T11:57:37.990Z",
+            "durationMs": 1276,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 20000,
+              "maxRequestMs": 20000,
+              "maxRequests": 1,
+              "maxFanOut": 8,
+              "maxConcurrency": 1,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 2000000,
+              "maxResultItems": 1000
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 340705,
+              "retries": 0
+            },
+            "hiddenRetries": 0
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-dc75cb160ebe88c96a043c38",
+            "startedAt": "2026-09-25T11:57:36.714Z",
+            "finishedAt": "2026-09-25T11:57:37.989Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 20000,
+              "maxRequestMs": 20000,
+              "maxRequests": 1,
+              "maxFanOut": 8,
+              "maxConcurrency": 1,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 2000000,
+              "maxResultItems": 1000
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 340705,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+                "finalUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "d50e31d0d28afd3f862f00e9d004c35d7a45d096d3aeacb606c25d0f18613d00",
+                "responseSha256": "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9",
+                "bytes": 340705,
+                "mediaType": "text/turtle",
+                "headers": {
+                  "content-type": "text/turtle",
+                  "vary": "Accept, Accept-Encoding, X-UniProt-Release, X-API-Deployment-Date, User-Agent"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-25T11:57:36.715Z",
+                "finishedAt": "2026-09-25T11:57:37.989Z",
+                "retries": 0
+              }
+            ],
+            "progress": {
+              "bytes": 340705,
+              "totalBytes": null,
+              "state": "complete",
+              "capacity": {
+                "freeBytes": 646273622016,
+                "reserveBytes": 268435456,
+                "retainedBytes": 21966050,
+                "availableBytes": 646005186560
+              },
+              "elapsedMs": 1275,
+              "maxBytes": 2000000
+            },
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "exchange": {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+            "finalUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "d50e31d0d28afd3f862f00e9d004c35d7a45d096d3aeacb606c25d0f18613d00",
+            "responseSha256": "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9",
+            "bytes": 340705,
+            "mediaType": "text/turtle",
+            "headers": {
+              "content-type": "text/turtle",
+              "vary": "Accept, Accept-Encoding, X-UniProt-Release, X-API-Deployment-Date, User-Agent"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-25T11:57:36.715Z",
+            "finishedAt": "2026-09-25T11:57:37.989Z",
+            "retries": 0
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9"
+        }
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 5413,
+        "maxBytes": 32768
+      }
+    },
+    "joinedCopy": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000040",
+        "type": "instance-data",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-full-graph-20260925:1",
+        "label": "fabry-extension-protein"
+      },
+      "type": "instance-data",
+      "count": 7969,
+      "fingerprints": [
+        "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000066"
+      },
+      "provenance": {
+        "operationId": "op-000066",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "fabry-extension-protein"
+        },
+        "sourceFingerprint": "a69c8dd4b539d6c8223234f7368c8bc1762b7b3e32abb49ebf10d4a28028149c",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 720,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "artifacts": {
+    "hgnc": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-MlHyEo/content/hgnc.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-MlHyEo/content/receipt.json",
+      "sha256": "8328827b1beaba7b69df174d92797afc14ff974b04d12ce42558289ebb68dbaf",
+      "bytes": 1147,
+      "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:4296"
+    },
+    "sparqlHelp": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-TITxAg/content/sparqlHelp.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-TITxAg/content/receipt.json",
+      "sha256": "fac9ae9256c199b3a26a8d1e5b4535b691af9faa2abdd36a1a17ed094d70704d",
+      "bytes": 28634,
+      "url": "https://sparql.uniprot.org/"
+    },
+    "protein": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-IKrGKi/content/protein.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-IKrGKi/content/receipt.json",
+      "sha256": "ab78ce755dada219e378672846d1dfec78f39f6378e4c248ca51d934c01a4719",
+      "bytes": 185818,
+      "url": "https://rest.uniprot.org/uniprotkb/P06280.json"
+    },
+    "pdb": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-I9VQ4Q/content/pdb.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-I9VQ4Q/content/receipt.json",
+      "sha256": "da744bc2228590a67458da791f476ac2f9947aa253701cabe5b2dd03e2d8784c",
+      "bytes": 18759,
+      "url": "https://data.rcsb.org/rest/v1/core/entry/1R46"
+    },
+    "alphafold": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-vYCya8/content/alphafold.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-vYCya8/content/receipt.json",
+      "sha256": "31f43ab66dea1decf68ac725685b7ba385a61d91d4bdb527092365ede52cede5",
+      "bytes": 2562,
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P06280"
+    },
+    "pathway": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-I8sw0o/content/pathway.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-I8sw0o/content/receipt.json",
+      "sha256": "24752e0fd0fa70ccda126b366765ecdca95f866aa49a7d5304b1fb840b971f9a",
+      "bytes": 25315,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-9840310"
+    },
+    "proteinRdf": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-omqtwr/content/proteinRdf.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-omqtwr/content/receipt.json",
+      "sha256": "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9",
+      "bytes": 340705,
+      "url": "https://rest.uniprot.org/uniprotkb/P06280.ttl"
+    },
+    "remoteResult": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KFRPRw/content/remoteResult.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KFRPRw/content/receipt.json",
+      "sha256": "0b9e20b9886004c7b0873f2f65e0529e3a073dbe511d86c48e2957ee6903258b",
+      "bytes": 20293,
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%20SELECT%20%3Fprotein%20%3Forganism%20%3FgeneName%20%3Flink%20%3Fdatabase%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%20%3Fprotein%20a%20up%3AProtein%3B%20up%3Aorganism%20%3Forganism%3B%20up%3AencodedBy%2Fskos%3AprefLabel%20%3FgeneName%3B%20rdfs%3AseeAlso%20%3Flink%20.%20%3Flink%20up%3Adatabase%20%3Fdatabase%20.%20VALUES%20%3Fdatabase%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FPDB%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FReactome%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FAlphaFoldDB%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FHGNC%3E%20%7D%20%7D"
+    },
+    "reaction": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-WKx97d/content/reaction.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-WKx97d/content/receipt.json",
+      "sha256": "0c5eb044639440e0e6a02abb01384115408358b5121e65e16c60b011ee7083b1",
+      "bytes": 9850,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-1605736"
+    },
+    "pdbEntity": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-7bgXFE/content/pdbEntity.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-7bgXFE/content/receipt.json",
+      "sha256": "9cc9d3e6a20c75b37ab4f612af8de647af33c96e9abc6fef953c2d8a39e9b1e3",
+      "bytes": 41928,
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1R46/1"
+    },
+    "catalyst": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-6IEkZH/content/catalyst.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-6IEkZH/content/receipt.json",
+      "sha256": "8032595181ced193b0f2f0bcf7598a259281c071d0eb9a2431866287ef6a2856",
+      "bytes": 958,
+      "url": "https://reactome.org/ContentService/data/query/1605696"
+    },
+    "pdbAssembly": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-v4Uru2/content/pdbAssembly.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-v4Uru2/content/receipt.json",
+      "sha256": "b9b363c863f2b7afa0529ee23b8de8ff47ca0e52b1e2a42d6395d4663602c7e8",
+      "bytes": 3141,
+      "url": "https://data.rcsb.org/rest/v1/core/assembly/1R46/1"
+    },
+    "complex": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-XomfaK/content/complex.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-XomfaK/content/receipt.json",
+      "sha256": "63dde3ed45915d340bd5aacee27bbd50051bc093b7bdd5970f20718a6c22bc62",
+      "bytes": 3371,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-1605744"
+    },
+    "pdbChain": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-1FsBTp/content/pdbChain.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-1FsBTp/content/receipt.json",
+      "sha256": "ac02415682a2a4ab54c55c797ed95f3e356fec4e153149367208b68172dfead7",
+      "bytes": 59175,
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity_instance/1R46/A"
+    },
+    "pathwayProtein": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-DnH1WN/content/pathwayProtein.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-DnH1WN/content/receipt.json",
+      "sha256": "076a8ac7f15d59d235bb2039e902076d43347475ab468fd6fed1e1e1b504a4dd",
+      "bytes": 7134,
+      "url": "https://reactome.org/ContentService/data/query/1605763"
+    }
+  },
+  "limitations": [
+    "VoID retrieval timed out; official service page supplied source-owned predicate examples and default graph metadata.",
+    "Initial website RDF GET returned 403. Follow-up diagnostic reproduced 403 in curl and succeeded through documented Rhea SPARQL; see rhea-diagnostic/receipt.json. Original representation route validity remains unknown.",
+    "Structure metadata inspected, not coordinate files or structural alignment.",
+    "SPARQL response artifact is a separate mediated GET replay; original native result retained.",
+    "No causal or clinical prediction; pathway assertion is not tissue-specific flux evidence.",
+    "HGNC IRI normalization is explicit in local SPARQL, not an owl:sameAs claim."
+  ],
+  "operationsFile": "operations.json",
+  "followupDiagnostic": "rhea-diagnostic/receipt.json"
+}

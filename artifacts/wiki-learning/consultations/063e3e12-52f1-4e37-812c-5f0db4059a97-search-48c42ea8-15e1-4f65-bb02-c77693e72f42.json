@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "063e3e12-52f1-4e37-812c-5f0db4059a97",
+  "recordedAt": "2026-10-02T17:20:15.364Z",
+  "mode": "on",
+  "querySha256": "90b842b030fb0eec19d29b43b15aa08ed44d3bdd9905d811d7b1d2f0589d39b2",
+  "revision": "0d15ee85f7ff899d53aeba25ec44fe212201fc7266e7b612b0083004e562466a",
+  "candidates": [
+    {
+      "id": "industry-screening-versus-emissions",
+      "title": "Separate industry screening and spatial proximity from emissions attribution",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 9,
+      "matchedTerms": [
+        "industry",
+        "screening",
+        "emissions"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

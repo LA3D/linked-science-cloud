@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-25T12:10:54.701Z",
+  "resourceHashesVerified": 16,
+  "remoteRows": 35,
+  "localHgncJoinRows": 1,
+  "sharedGoRows": 1,
+  "rheaRows": 4,
+  "brokerRequestHashVerified": true,
+  "curlStatus": 403,
+  "registrySchema": "passed",
+  "fullRegistryValidation": "blocked by pre-existing unregistered docs/experiments/scientific-trajectory-evidence.md",
+  "replayQualification": "Recipe reconstructed from saved queries and operation records; not an exact transcript; not rerun to avoid unnecessary network reads."
+}

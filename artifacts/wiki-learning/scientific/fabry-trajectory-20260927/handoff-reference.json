@@ -1,0 +1,11 @@
+{
+  "kind": "saved-handoff-reference",
+  "source": {
+    "path": "artifacts/scientific-inspections/fabry-renal-literature-20260927/PRESENTATION-HANDOFF.md",
+    "sha256": "2a45a4110d5f6044ae7c9d4f7f509230ce8cb7c9740daf54845172fb0c599450",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "excerpt": "# Fabry presentation handoff \u2014 saved investigation\n\nThis is a saved, previously executed investigation from September 25\u201327, 2026. Explain the results; no new or live execution is required. The fresh voice chat must not imply it has rerun the queries or recovered old live handles.",
+  "qualification": "Metadata reference to prior saved briefing; not a new execution or transcript dump."
+}

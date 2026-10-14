@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "5608e8c3-e177-4611-9c57-13bd359e69e0",
+  "recordedAt": "2026-09-24T17:04:03.493Z",
+  "mode": "on",
+  "querySha256": "7faf4df2c8b5d9cf0aeca04fd510732f3ce1facad3966f9947b93e73c51b689c",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 2,
+      "matchedTerms": [
+        "schema",
+        "definitions"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,1 @@
+PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?term ?label ?definition WHERE { ?term rdfs:label ?label . FILTER(CONTAINS(LCASE(STR(?label)),"epithelial") || ?term=obo:CL_0000653) OPTIONAL {?term obo:IAO_0000115 ?definition} }

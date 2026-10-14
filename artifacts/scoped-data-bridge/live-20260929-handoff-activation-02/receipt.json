@@ -1,0 +1,107 @@
+{
+  "format": "linked-science-live-handoff-activation-record/v1",
+  "date": "2026-09-29",
+  "outcome": "passed",
+  "scope": "One live synthetic Codex worker yield/deposit/accept/resume with duplicate and cleanup checks",
+  "roundtrip": {
+    "deposit": {
+      "slot": "49569f1d-fe56-4e86-b315-44336b1ebe8c",
+      "value": {
+        "text": "Synthetic fixture measurements are 7 and 11; their sum is 18. This is a local synthetic handoff test, not a scientific observation."
+      }
+    },
+    "acceptance": {
+      "id": "7dc4caaf-fd67-4fbd-9690-9a03049f5a10",
+      "request": "49569f1d-fe56-4e86-b315-44336b1ebe8c",
+      "activity": "40d1e6fa-1f92-44ca-bb1a-d5b69e329ed1",
+      "resultDigest": "ccd704c0adc11a7cd14d719e4277d250b2c5319cdd9e8ff496c3ec2fdf210b96",
+      "continuationRevision": 2,
+      "acceptedAt": 1790685156713,
+      "evidence": "host-committed-model-synthesis",
+      "cleanup": "complete"
+    },
+    "identicalRetry": true,
+    "completed": {
+      "computation": "331110e8-71c6-4c05-843f-9887de910590",
+      "status": "complete",
+      "revision": 3
+    },
+    "computation": {
+      "id": "331110e8-71c6-4c05-843f-9887de910590",
+      "activity": "40d1e6fa-1f92-44ca-bb1a-d5b69e329ed1",
+      "parentRequest": null,
+      "depth": 0,
+      "step": {
+        "digest": "8c90ff7869e587ad846e1136b6fa9e06e9fd6323af2a580122ce944e702cf2e2",
+        "name": "activation-compose",
+        "version": "1"
+      },
+      "state": {
+        "test": "synthetic-live-activation"
+      },
+      "inputs": [
+        {
+          "id": "29d4781a-9e4e-4448-a6d2-83f99dc98743",
+          "version": "932d16e91c10f1df214ebf4fa42ef481609030ff76525953c0ed22b10c395e0b"
+        }
+      ],
+      "revision": 3,
+      "status": "complete",
+      "result": {
+        "text": "Synthetic fixture measurements are 7 and 11; their sum is 18. This is a local synthetic handoff test, not a scientific observation."
+      },
+      "createdAt": 1790685074780,
+      "request": "49569f1d-fe56-4e86-b315-44336b1ebe8c",
+      "value": {
+        "kind": "model-synthesis",
+        "synthetic": true,
+        "text": "Synthetic fixture measurements are 7 and 11; their sum is 18. This is a local synthetic handoff test, not a scientific observation."
+      }
+    },
+    "pending": {
+      "total": 0,
+      "items": [],
+      "nextOffset": null
+    }
+  },
+  "boundary": {
+    "session": {
+      "sessionId": "linked-science-20260929-handoff-verification",
+      "epoch": 1,
+      "role": "owner"
+    },
+    "handoff": {
+      "available": true,
+      "version": 1,
+      "durability": "explicit-snapshot",
+      "maxDataBytes": 131072,
+      "maxItems": 10000,
+      "maxLedgerBytes": 33554432,
+      "modelExecution": false,
+      "retention": "until-explicit-remove",
+      "limitsScope": "registered-protocol-only"
+    },
+    "repeatRunCode": "HANDOFF_STATE",
+    "finalRevision": 3,
+    "pendingCount": 0
+  },
+  "worker": {
+    "task": "/root/approved_handoff_check",
+    "evidence": "worker-reported; deposited output independently observed by owner",
+    "observedValues": [
+      7,
+      11
+    ],
+    "computedSum": 18,
+    "postAcceptanceDescribeCode": "GRANT_EXPIRED"
+  },
+  "limitations": [
+    "Service restart recovery not exercised in this live run",
+    "Nested model work not exercised",
+    "No model-quality or general performance claim"
+  ],
+  "registryValidation": {
+    "status": "known pre-existing repository failure",
+    "reason": "docs/experiments/scientific-trajectory-evidence.md lacks registry status"
+  }
+}

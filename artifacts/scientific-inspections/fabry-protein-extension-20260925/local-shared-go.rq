@@ -1,0 +1,1 @@
+PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX up: <http://purl.uniprot.org/core/> SELECT ?mechanism ?slot ?term ?protein WHERE { ?mechanism a dm:Pathophysiology; ?slot ?descriptor . ?descriptor dm:term ?term . ?protein a up:Protein; up:classifiedWith ?term . FILTER(?term=<http://purl.obolibrary.org/obo/GO_0004557>) }

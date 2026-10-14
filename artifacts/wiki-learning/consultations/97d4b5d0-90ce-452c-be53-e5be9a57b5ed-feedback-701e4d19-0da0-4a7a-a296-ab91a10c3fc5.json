@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "97d4b5d0-90ce-452c-be53-e5be9a57b5ed",
+  "recordedAt": "2026-09-24T18:10:48.353Z",
+  "assessment": "unknown",
+  "note": "Crosswalk guidance consulted for preserving relationship and measurement context. One-hop PDB/BMRB inspection completed; causal benefit unassessed.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "protein-assay-crosswalk-context"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

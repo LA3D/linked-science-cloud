@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-09-27T21:50:23.258Z",
+  "runId": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f",
+  "secondCallPersistence": true,
+  "exactDemoAnchor": {
+    "kind": "linked-science-handle",
+    "id": "h-000008",
+    "type": "bindings",
+    "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+    "label": "query-result"
+  },
+  "gsdInventory": {
+    "kind": "linked-science-inventory",
+    "contextKey": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3",
+    "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+    "total": 2,
+    "residentGraphQuads": 3981,
+    "handles": [
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000001",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+        "label": "recovered-p35573"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000002",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+        "label": "query-result"
+      }
+    ],
+    "truncated": false,
+    "bounds": {
+      "bytes": 712,
+      "maxBytes": 32768
+    }
+  },
+  "fabryInventory": {
+    "kind": "linked-science-inventory",
+    "contextKey": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry",
+    "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+    "total": 8,
+    "residentGraphQuads": 3194,
+    "handles": [
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000001",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-disease"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000002",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-links"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000003",
+        "type": "ontology",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-cl"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000004",
+        "type": "ontology",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "recovered-uberon"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000005",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000006",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000007",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      },
+      {
+        "kind": "linked-science-handle",
+        "id": "h-000008",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+        "label": "query-result"
+      }
+    ],
+    "truncated": false,
+    "bounds": {
+      "bytes": 1900,
+      "maxBytes": 32768
+    }
+  }
+}

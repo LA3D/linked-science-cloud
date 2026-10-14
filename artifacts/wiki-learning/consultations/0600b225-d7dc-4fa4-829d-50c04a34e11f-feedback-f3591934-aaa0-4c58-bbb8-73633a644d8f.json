@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "0600b225-d7dc-4fa4-829d-50c04a34e11f",
+  "recordedAt": "2026-09-23T15:24:23.744Z",
+  "assessment": "unknown",
+  "note": "Consulted mapping-context guidance; live query returned a human pathway and an NCBI Gene node. No durable outcome artifact created for benefit assessment.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "wikipathways-identifier-mapping-context"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

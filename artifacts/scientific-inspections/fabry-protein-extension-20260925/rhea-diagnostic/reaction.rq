@@ -1,0 +1,1 @@
+PREFIX rh: <http://rdf.rhea-db.org/> SELECT DISTINCT ?rhea ?equation ?chebi WHERE { VALUES ?rhea { rh:21112 } ?rhea rh:equation ?equation . OPTIONAL { ?rhea rh:side/rh:contains/rh:compound ?compound . ?compound (rh:chebi|(rh:reactivePart/rh:chebi)|rh:underlyingChebi) ?chebi . } }

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "f501cb7a-7a65-431c-b569-472dbba6bd30",
+  "recordedAt": "2026-09-29T13:35:17.082Z",
+  "assessment": "unknown",
+  "note": "Read ontology-symbolic-context-selective-imports; freshly checked the physiological-reaction attachment before federating. Prior workflow already contained this query and lesson, so incremental benefit is not established.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "ontology-symbolic-context-selective-imports"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

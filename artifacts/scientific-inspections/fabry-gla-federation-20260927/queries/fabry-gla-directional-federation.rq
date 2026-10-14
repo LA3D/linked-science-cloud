@@ -1,0 +1,23 @@
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+PREFIX rh: <http://rdf.rhea-db.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?protein ?reaction ?physiologicalReaction ?equation ?role ?participant ?chebi ?chemicalName
+WHERE {
+  VALUES ?protein { <http://purl.uniprot.org/uniprot/P06280> }
+  ?protein up:organism taxon:9606; up:annotation ?annotation .
+  ?annotation a up:Catalytic_Activity_Annotation;
+    up:catalyticActivity/up:catalyzedReaction ?reaction;
+    up:catalyzedPhysiologicalReaction ?physiologicalReaction .
+  SERVICE <https://sparql.rhea-db.org/sparql> {
+    ?reaction rh:status rh:Approved;
+      rh:directionalReaction ?physiologicalReaction .
+    ?physiologicalReaction rh:equation ?equation; ?role ?side .
+    VALUES ?role { rh:substrates rh:products }
+    ?side rh:contains ?participant .
+    ?participant rh:compound ?compound .
+    ?compound rh:chebi ?chebi .
+    OPTIONAL { ?chebi rdfs:label ?chemicalName }
+  }
+}
+ORDER BY ?reaction ?role ?chebi

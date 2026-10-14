@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "78f6f61e-cb83-4307-8e29-ecacd116412a",
+  "recordedAt": "2026-09-27T14:04:42.476Z",
+  "mode": "on",
+  "querySha256": "99df41cb7d4a612e3cdcbda46714cd229f3b3ea2035caf5413f60c9a87584294",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "protein-assay-crosswalk-context",
+      "title": "Preserve experimental and claim context across biological joins",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 8,
+      "matchedTerms": [
+        "experimental",
+        "autophagy",
+        "claim",
+        "evidence"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

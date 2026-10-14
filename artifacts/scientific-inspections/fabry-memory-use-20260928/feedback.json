@@ -1,0 +1,12 @@
+{
+  "assessment": "unknown",
+  "note": "Lesson explicitly informed the predicate-domain check; execution succeeded. Prior history already contained the lesson, so incremental benefit is unknown.",
+  "evidence": [
+    {
+      "path": "artifacts/scientific-inspections/fabry-memory-use-20260928/receipt.json",
+      "sha256": "0f6c1d5744971c7130e5c404116795fe197cf8f3f5af34253b29a617c6b12aea",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    }
+  ]
+}

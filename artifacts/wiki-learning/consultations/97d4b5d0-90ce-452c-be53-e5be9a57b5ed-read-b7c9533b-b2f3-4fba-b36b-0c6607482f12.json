@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "97d4b5d0-90ce-452c-be53-e5be9a57b5ed",
+  "recordedAt": "2026-09-24T18:09:42.163Z",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "patternId": "protein-assay-crosswalk-context",
+  "patternSha256": "a1ab37104b9e8b44b06e22985b35f567ea1c39ff1e6d583b013951e087bb17ff",
+  "helpfulness": "unknown"
+}

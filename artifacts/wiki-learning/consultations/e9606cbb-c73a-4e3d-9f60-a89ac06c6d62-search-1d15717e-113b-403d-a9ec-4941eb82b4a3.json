@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "e9606cbb-c73a-4e3d-9f60-a89ac06c6d62",
+  "recordedAt": "2026-09-27T14:04:42.905Z",
+  "mode": "on",
+  "querySha256": "904c0c15ed7a1f144895bfa919874e17f24a13fb84638304c2205fa0d9f5d8e9",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "schema",
+        "values"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

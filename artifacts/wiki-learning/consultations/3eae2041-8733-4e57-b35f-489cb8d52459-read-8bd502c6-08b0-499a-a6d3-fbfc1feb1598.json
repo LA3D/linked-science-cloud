@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "3eae2041-8733-4e57-b35f-489cb8d52459",
+  "recordedAt": "2026-09-24T17:39:25.827Z",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "patternId": "wikipathways-example-query-adaptation",
+  "patternSha256": "ac3633f418e76201dd09fdad1e690fe483cd8b415b354b845cb02557c66b2859",
+  "helpfulness": "unknown"
+}

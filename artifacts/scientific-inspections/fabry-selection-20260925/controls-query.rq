@@ -1,0 +1,1 @@
+PREFIX app: <urn:fabry-demo:> SELECT ?mechanism ?selected WHERE { VALUES ?mechanism { app:renal app:controlOtherOrgan app:controlKidneyNoCell } BIND(EXISTS { ?mechanism a app:KidneyCellEvidenceSelectionCandidate } AS ?selected) }

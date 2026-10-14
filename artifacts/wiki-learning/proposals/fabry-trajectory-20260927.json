@@ -1,0 +1,388 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "fabry-trajectory-20260927",
+  "baseRevision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "batch": {
+    "purpose": "Integrate requested Fabry scientific trajectory lessons into three existing procedural patterns and two focused new candidates; preserve dated source observations and presentation handoff.",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+        "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+        "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+        "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 20,
+    "outcomeStrata": [
+      "partial",
+      "success"
+    ],
+    "omittedMaterial": [
+      "Unselected rollout, private reasoning and unrelated task history",
+      "No new scientific retrieval or performance evaluation",
+      "Delegated instructions are not retyped as original user messages; original standing epistemic guidance and observed actions are selected",
+      "Active skills remain unchanged because existing selective retrieval already routes to these proposed candidates"
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "For opaque scientific identifiers, load authoritative ontology definitions into symbolic context, inspect labels, textual definitions and structural relationships, enumerate imports, and selectively follow dependencies relevant to the question. Record unloaded or unresolved dependencies; do not claim full import closure. Distinguish identifier families even when they share a namespace. Missing prose definitions may require inspecting parent properties rather than inventing meaning. PubChem's SIO and CHEMINF term resolution is a worked example of this general method. For reaction federation, inspect property domain and actual attachment before adapting examples: a physiological-reaction predicate may belong to the annotation rather than the catalytic-activity object. Verify direction and participant-role predicates from the source; do not turn left/right suffixes, undirected reaction IDs or subclass traversal into physiological direction. Keep specific and broader chemical classes distinct. In the Fabry trajectory, source inspection preceded joining GLA annotations to Rhea substrates/products.",
+      "applicability": "Scientific schema exploration and ontology-driven query design across domains, particularly when identifiers are opaque or definitions depend on imported modules. Especially protein reaction chemistry, predicate domains, physiological direction and substrate/product ChEBI roles.",
+      "competingExplanations": [
+        "Successful resolution may depend on these ontologies' annotation coverage and organization.",
+        "A task needing only a few known terms may be served by a smaller authoritative representation."
+      ],
+      "missingEvidence": [
+        "One PubChem trajectory does not demonstrate transfer or causal advantage across other scientific tasks.",
+        "Full recursive import closure and reasoning completeness were not established.",
+        "No controlled comparison against alternatives to symbolic ontology inspection.",
+        "Fabry adds a selected process example, not full Rhea/UniProt ontology closure or an independent transfer test."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-method",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-bounded-federation",
+          "eventIds": [
+            "event-1",
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "predicate-probe",
+            "bounded-result",
+            "initial-timeout"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Separate a term's schema definition from its occurrence in the actual endpoint dataset. A broad term-usage query timing out leaves usage unresolved. Focused existence probes can answer narrower questions, but a false answer covers only the tested pattern. Imported parent concepts can remain semantically relevant even when not directly instantiated. In the PubChem example, focused IAO and CHEMINF checks were positive and two particular CDK type checks were negative. Also inspect documented service execution semantics before treating predicate enumeration as a capability inventory: virtual relationships may be generated only for supported bound query patterns. In the Identifiers.org trajectory, the assistant initially overlooked already retrieved documentation; user corrections and a supplied paper prompted recovery. When a SERVICE join times out, retain the exact failed query and receipt; timeout is not zero results. Check identifier mappings, then test explicitly labeled VALUES bounds inside the remote block using verified identifiers for the same scientific entity. Retain the source join and state the snapshot/refresh caveat: fixed values can miss later mappings. The Fabry GLA trajectory reports a 45-second timeout followed by eight rows in about 0.89 seconds with two verified reaction pairs. This observed speed difference does not establish the execution-plan cause; caching, load and changed query scope remain alternatives. Preserve the biological question when changing routes, rather than substituting an easier unrelated protein.",
+      "applicability": "Checking actual scientific dataset vocabulary use after ontology or SHACL inspection, especially after a broad endpoint query times out. Scientific SPARQL SERVICE federation timeout recovery, verified VALUES joins and refresh-sensitive mapping bounds.",
+      "competingExplanations": [
+        "Probe outcomes depend on endpoint release, triple position and exact pattern.",
+        "The broad query may fail because of plan cost rather than vocabulary size alone.",
+        "The bounded federation timing comparison was not randomized or repeated under controlled cache/load conditions."
+      ],
+      "missingEvidence": [
+        "No complete term-use enumeration or global absence claim.",
+        "No comparative query-performance experiment; narrowed queries changed scope.",
+        "Historical timeout recovery is reported in the selected transcript; later capture does not reconstruct a missing failed broker receipt.",
+        "The Identifiers.org extension is supported as a user-guided process observation, not an independent scientific finding or autonomous transfer test.",
+        "No proof that VALUES caused a particular remote execution plan or that bounded results discover future mappings."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "term-usage",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+            "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-and-service-behavior",
+          "evidenceIds": [
+            "selected-trajectory",
+            "retained-projection"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3",
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7"
+          ],
+          "operationIds": []
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-bounded-federation",
+          "eventIds": [
+            "event-1",
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7",
+            "event-8",
+            "event-9",
+            "event-10"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "predicate-probe",
+            "bounded-result",
+            "initial-timeout"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "protein-assay-crosswalk-context",
+      "title": "Preserve experimental and claim context across biological joins",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Follow explicit protein cross-references to combine annotation with assay evidence, retaining relationship type, organism, assay provenance, units and qualifiers. Keep greater-than values as bounds and preserve unresolved isoform or mutation alignment. Cross-references are not automatically identity assertions or proof a destination graph is loaded. An illustrative LIMIT sample is not a comprehensive survey or comparable potency ranking. PubChem EGFR and UniProt P00533 provide the worked example. For disease mechanism graphs, retrieve citations at their exact node/edge attachment, then inspect which passage is background, a measured result, review synthesis or interpretation. Record human case versus engineered in-vitro setting and abstract-only versus full-text access. In the Fabry renal inspection, a human biopsy case supported observed podocyte deposits/injury; a GLA-edited cell study measured enzyme activity/Gb3 and gene expression but cited earlier work for autophagic flux. Do not promote that background quote to a direct flux assay or proof of the injury-to-autophagy arrow. Distinguish source-asserted causality, identifier joins, ontology subclass traversal and an explicit EYE evidence-selection rule from biological inference. Deduplicate evidence items when ontology parents or intermediate mechanisms multiply query rows.",
+      "applicability": "Cross-source biological interpretation joining protein annotations to compound\u2013assay\u2013measurement records. Also cell-specific disease mechanisms, renal/podocyte literature evidence, causal-edge citations, human versus model experiments, and autophagy interpretation.",
+      "competingExplanations": [
+        "Matching protein-record identity can coexist with different experimental constructs and assay systems.",
+        "Different values for the same compound may reflect assay conditions rather than conflicting evidence.",
+        "Storage and injury co-occurrence in one treated human case does not isolate causality; transcriptomic pathway annotation is not a functional flux measurement."
+      ],
+      "missingEvidence": [
+        "No verified isoform or mutation alignment for every assay.",
+        "No independent biological validation or comprehensive inhibitor survey.",
+        "Assay systems differ; no normalized cross-assay potency comparison or selectivity claim.",
+        "Only three Fabry publications were inspected; two at abstract level. The separate autophagy-node citation was not retrieved, and the prior selection-rule audit was reused rather than rerun."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "crosswalk-assay",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "renal-claim-evidence",
+          "eventIds": [
+            "event-1",
+            "event-11",
+            "event-12",
+            "event-13",
+            "event-14",
+            "event-15"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "renal-evidence",
+            "rule-audit"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "federation-failure-hop-diagnosis",
+      "title": "Locate federation failures at the broker, coordinator or downstream hop",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Audit the published query against extraction and every modification before blaming infrastructure: endpoint spelling, prefixes, scope, VALUES, normalization and limits. Identify where SERVICE executes from exchanges; a single-source client may delegate the whole query. Preserve the exact query and full error body when available. When separately authorized, compare the identical query, coordinator, method and equivalent headers with curl, retaining redirects, HTTP status, timing and client differences. Distinguish a broker deadline/budget error from a coordinator response that embeds a downstream failure. Use minimal SERVICE and equivalent direct-component queries as diagnostics, not replacement federation. On 2026-09-27, independent curl exposed UniProt reporting Bgee 403 inside its own 400 response; direct Bgee queries worked. Treat that as a dated access observation, not a universal endpoint rule or evidence of migration. If a body is unavailable or empty, keep the cause unresolved rather than inventing it.",
+      "applicability": "SPARQL SERVICE federation HTTP 400/403, endpoint/broker troubleshooting, exact-query audits and remote access diagnosis after unexpected failures.",
+      "competingExplanations": [
+        "Matching HTTP status alone does not establish matching causes; minimal tests may have empty bodies.",
+        "The downstream protection rule, remote client identity and policy-change date were not established."
+      ],
+      "missingEvidence": [
+        "One dated trajectory; no general Bgee availability conclusion.",
+        "This corpus certifies selected process eligibility, not a direct-runtime machine outcome or curl authorization for future tasks."
+      ],
+      "revalidateWhen": "Endpoint policy, coordinator engine/planning, transport, query syntax or source release changes; recheck before reusing a dated failure diagnosis.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "coordinator-failure-localization",
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "curl-exception",
+            "query-audit",
+            "failure-comparison"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "saved-scientific-demo-handoff",
+      "title": "Preserve the scientific subject and explain saved investigations without rerunning",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Keep the named disease/protein and question stable when choosing an example or recovering a failed route; label any change of biological subject and correct it when it no longer answers the task. After a successful bounded investigation, save a self-contained explanation of the question, identifier path, exact query/result, evidence settings, failed attempts, uncertainty and meaningful next question. Separate preparation probes, actual SERVICE federation, local RDF queries, ontology traversal and explicit rule-derived selection. Report execution time separately from total preparation. Provide one captured fallback and optional replay with unmistakable live-versus-saved status. In a fresh voice/presentation chat asked to explain prior work, use the saved briefing without new scientific queries; do not claim historical handles are resident or that a replay occurred. The Fabry handoff illustrates this procedure; its earlier cholesterol demo choice was explicitly superseded.",
+      "applicability": "Fresh voice chats, scientific presentation/demo handoffs, retained REPL work, entity-preserving route changes, saved results and optional replay.",
+      "competingExplanations": [
+        "A coherent briefing can conceal missing links unless evidence settings and assertion/derivation boundaries remain explicit.",
+        "One observed fast query is not a guarantee of live-demo reliability."
+      ],
+      "missingEvidence": [
+        "No independent audience comprehension or transfer evaluation.",
+        "Live bindings may expire; saved files preserve evidence, not the original kernel.",
+        "Detailed task directions were received through delegation; selected reports are not relabeled as original human messages."
+      ],
+      "revalidateWhen": "The question/entity, source versions, artifact hashes, requested live-versus-explanatory mode or handle epoch changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+            "sha256": "88d9a3a5d15bfe7f145e82014922767afcdebd1513d7fa13def4f58c30d9b3ad",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "saved-scientific-handoff",
+          "eventIds": [
+            "event-1",
+            "event-4",
+            "event-8",
+            "event-13",
+            "event-16",
+            "event-17"
+          ],
+          "evidenceIds": [
+            "selected-trajectory",
+            "saved-handoff",
+            "bounded-result",
+            "rule-audit"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}

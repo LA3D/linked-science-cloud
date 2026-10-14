@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "1.2.0",
+  "id": "discovery-trajectory-20260923",
+  "host": {
+    "hostId": "local",
+    "taskId": "01a0ce67-ef08-7213-bf5e-b2d97cb935b4",
+    "version": "Codex local selected rollout; application build not attested",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+      "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No MEMORY.md or global memory state inspected"
+    }
+  },
+  "capture": {
+    "kind": "selected-trajectory",
+    "completeness": "partial",
+    "gaps": [
+      "Unselected history omitted",
+      "Voice messages are quoted frontend transcripts, not original audio",
+      "Tool text may be producer-truncated; no result completeness inferred",
+      "Host assertions and saved hashes are not cryptographic attestation"
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "not-observed",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "01a0ce71-6413-75a0-bc91-0a2c55c1535c",
+      "itemId": "msg_01a0ce71-6522-7fe0-8344-244be83a592e",
+      "kind": "userMessage",
+      "sequence": 1,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "01a0ce73-8fc1-74d3-a9fb-5e59309a4d4a",
+      "itemId": "msg_01a0ce73-d8fb-7843-8d8a-0d17808a1e1a",
+      "kind": "userMessage",
+      "sequence": 2,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "01a0ce74-c42c-7750-85cb-2391b4765094",
+      "itemId": "call_bMXVCPXCf3stNxadwomQvuGE",
+      "kind": "toolCall",
+      "sequence": 3,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "01a0ce74-c42c-7750-85cb-2391b4765094",
+      "itemId": "call_SDBmpfsDeIOXDU4y0Ux8dt3y",
+      "kind": "toolCall",
+      "sequence": 4,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "01a0ce77-7412-7501-94cf-52196f91210a",
+      "itemId": "msg_01a0ce77-74ca-7ae0-8606-08cb4a182637",
+      "kind": "userMessage",
+      "sequence": 5,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "01a0ce77-7412-7501-94cf-52196f91210a",
+      "itemId": "call_uyC987qyjCJIzAHUAFyuXxR5",
+      "kind": "toolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-7",
+      "turnId": "01a0ce79-6e4e-7973-ab5e-9b53675b0c20",
+      "itemId": "msg_08271893a7d546a1016ab3d56860a887d18ccea6b060e6b7cc",
+      "kind": "agentMessage",
+      "sequence": 7,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-8",
+      "turnId": "01a0ce7b-1586-7b21-8deb-3ff0bb9161af",
+      "itemId": "msg_01a0ce7b-16a3-7b02-9eb1-33f18bf7865d",
+      "kind": "userMessage",
+      "sequence": 8,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-9",
+      "turnId": "01a0ce7b-1586-7b21-8deb-3ff0bb9161af",
+      "itemId": "msg_01a0ce7b-3348-7b03-9421-75f281fdc6b6",
+      "kind": "userMessage",
+      "sequence": 9,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-10",
+      "turnId": "01a0ce7c-52c2-7b92-b8b6-432db3bddc2f",
+      "itemId": "call_WHqsWbv8WO5gQQSpkcEDx10g",
+      "kind": "toolCall",
+      "sequence": 10,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-11",
+      "turnId": "01a0ce7d-7307-7bc2-8e12-337a2f9f279e",
+      "itemId": "msg_01a0ce7d-740e-7cc2-ae30-dbc30823aea9",
+      "kind": "userMessage",
+      "sequence": 11,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-12",
+      "turnId": "01a0ce7d-ffc0-7023-b19e-30df0aaba913",
+      "itemId": "call_p9bBAxpa4a40qRySWvbMFT2L",
+      "kind": "toolCall",
+      "sequence": 12,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-13",
+      "turnId": "01a0ce7d-ffc0-7023-b19e-30df0aaba913",
+      "itemId": "msg_08271893a7d546a1016ab3d6b774e887d1b610bb1d4cacf125",
+      "kind": "agentMessage",
+      "sequence": 13,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-14",
+      "turnId": "01a0ce7f-06fc-7302-9eac-101561677566",
+      "itemId": "msg_01a0ce7f-07c8-7941-8383-3cccfa73fb80",
+      "kind": "userMessage",
+      "sequence": 14,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-15",
+      "turnId": "01a0ce7f-06fc-7302-9eac-101561677566",
+      "itemId": "call_n1gUS26CymFQSxp4H0hlqHXX",
+      "kind": "toolCall",
+      "sequence": 15,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-16",
+      "turnId": "01a0ce7f-06fc-7302-9eac-101561677566",
+      "itemId": "call_m2sI3W4A1FoGxJEc4RvZBPBu",
+      "kind": "toolCall",
+      "sequence": 16,
+      "objectiveIds": [
+        "discovery"
+      ]
+    },
+    {
+      "id": "event-17",
+      "turnId": "01a0ce7f-06fc-7302-9eac-101561677566",
+      "itemId": "msg_08271893a7d546a1016ab3d743758087d1bdf06d178976d4d6",
+      "kind": "agentMessage",
+      "sequence": 17,
+      "objectiveIds": [
+        "discovery"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "discovery",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Discover scientific data services using identifier mappings, ontologies, documentation and Wikidata, with user-guided corrections",
+      "acceptance": [
+        "Retain the user-guided decision trajectory",
+        "Distinguish advertised service candidates, tested queries, and unresolved matches"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "selected-trajectory",
+      "kind": "durable-artifact",
+      "description": "Selected original message content and call/output exchanges; reports remain reports",
+      "artifact": {
+        "path": "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+        "sha256": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "codex-task:01a0ce67-ef08-7213-bf5e-b2d97cb935b4",
+        "revision": "112df6531e2b1e585840ad620de97b2f169cb56ec9c5a03f77f6973a15c1ab68",
+        "representation": "linked-science-codex-trajectory/v1"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Unselected history omitted",
+        "Voice messages are quoted frontend transcripts, not original audio",
+        "Tool text may be producer-truncated; no result completeness inferred",
+        "Host assertions and saved hashes are not cryptographic attestation"
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "retained-projection",
+      "kind": "receipt-only",
+      "description": "Later bounded projection of retained runtime results and provenance; not the original call envelope",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/discovery-trajectory-20260923/desktop-retained-evidence.json",
+        "sha256": "b7be3f42f9727c73ea0a0a1d8c66f80a0eee778e77137aa998904578a930c210",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "linked-science:retained-session-projection",
+        "revision": "b7be3f42f9727c73ea0a0a1d8c66f80a0eee778e77137aa998904578a930c210",
+        "representation": "Desktop tool response containing retained pages and provenance"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Post-hoc projection, no original exchange join asserted",
+        "Only first pages retained; complete scientific result sets not exported"
+      ]
+    }
+  ],
+  "joins": [],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "guided-recovery",
+      "objectiveId": "discovery",
+      "kind": "agent-judgment",
+      "status": "partial",
+      "claim": "User corrections led from name guessing to ontology/service inspection and explicit Wikidata service discovery; overlap remained a lower bound",
+      "evidenceIds": [
+        "selected-trajectory",
+        "retained-projection"
+      ],
+      "missingEvidence": [
+        "No independent scientific validation or causal benefit test",
+        "No autonomous recovery claim",
+        "Only selected trajectory retained"
+      ]
+    }
+  ]
+}

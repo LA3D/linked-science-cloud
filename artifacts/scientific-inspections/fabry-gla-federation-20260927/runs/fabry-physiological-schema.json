@@ -1,0 +1,171 @@
+{
+  "name": "fabry-physiological-schema",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT ?s ?p ?o WHERE { {VALUES ?s {up:catalyzedPhysiologicalReaction} ?s ?p ?o} UNION {VALUES ?o {rh:21113 rh:48021} ?s up:catalyzedPhysiologicalReaction ?o . BIND(up:catalyzedPhysiologicalReaction AS ?p) FILTER(STRSTARTS(STR(?s),\"http://purl.uniprot.org/uniprot/P06280\"))} }",
+  "startedAt": "2026-09-27T13:29:26.137Z",
+  "elapsedMs": 744,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-0Byf5u/content/fabry-physiological-schema.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-0Byf5u/content/receipt.json",
+    "bytes": 2455,
+    "sha256": "0e0a68931b9f65286cf2371841179309dc6477d4a1e047c6310c070c62d8298f",
+    "createdAt": "2026-09-27T13:29:26.874Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "c9f6da377e0bc12efa9f4ef90b4ae78ce35ee4516ad0b13abf1a1ac240869b6f",
+        "responseSha256": "0e0a68931b9f65286cf2371841179309dc6477d4a1e047c6310c070c62d8298f",
+        "bytes": 2455,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "2455",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:29:26.138Z",
+        "finishedAt": "2026-09-27T13:29:26.859Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-3bb3b8cf60e177db77587edf",
+        "startedAt": "2026-09-27T13:29:26.138Z",
+        "finishedAt": "2026-09-27T13:29:26.860Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 2455,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "c9f6da377e0bc12efa9f4ef90b4ae78ce35ee4516ad0b13abf1a1ac240869b6f",
+            "responseSha256": "0e0a68931b9f65286cf2371841179309dc6477d4a1e047c6310c070c62d8298f",
+            "bytes": 2455,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "2455",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20%7BVALUES%20%3Fs%20%7Bup%3AcatalyzedPhysiologicalReaction%7D%20%3Fs%20%3Fp%20%3Fo%7D%20UNION%20%7BVALUES%20%3Fo%20%7Brh%3A21113%20rh%3A48021%7D%20%3Fs%20up%3AcatalyzedPhysiologicalReaction%20%3Fo%20.%20BIND(up%3AcatalyzedPhysiologicalReaction%20AS%20%3Fp)%20FILTER(STRSTARTS(STR(%3Fs)%2C%22http%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%22))%7D%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:29:26.138Z",
+            "finishedAt": "2026-09-27T13:29:26.859Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 2455,
+          "totalBytes": 2455,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645130616832,
+            "reserveBytes": 268435456,
+            "retainedBytes": 945688,
+            "availableBytes": 644862181376
+          },
+          "elapsedMs": 722,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 6
+}

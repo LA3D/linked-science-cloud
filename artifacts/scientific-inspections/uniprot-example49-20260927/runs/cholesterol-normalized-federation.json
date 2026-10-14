@@ -1,0 +1,178 @@
+{
+  "name": "cholesterol-normalized-federation",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT\n  DISTINCT\n    ?chebi\n    ?reaction\n    ?protein ?ensemblGene\n    ?anatomicEntityLabel\n    ?anatomicEntity\nWHERE {\n  SERVICE <https://sparql.rhea-db.org/sparql> {\n    ?reaction rdfs:subClassOf rh:Reaction .\n    ?reaction rh:equation ?reactionEquation .\n    ?reaction rh:side ?reactionSide .\n    ?reactionSide rh:contains ?participant .\n    ?participant rh:compound ?compound .\n    ?compound rh:chebi ?chebi .\n    ?chebi rdfs:subClassOf* CHEBI:16113\n}\n  ?protein up:organism taxon:9606 .\n  ?protein up:annotation ?a .\n  ?a a up:Catalytic_Activity_Annotation .\n  ?a up:catalyticActivity ?ca .\n  ?ca up:catalyzedReaction ?reaction .\n  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGeneVersioned .\n  BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), \"[.][0-9]+$\", \"\")) AS ?ensemblGene)\n  SERVICE  <https://www.bgee.org/sparql/> {\n    ?gene genex:isExpressedIn ?anatomicEntity .\n    ?gene lscr:xrefEnsemblGene ?ensemblGene .\n    ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n  }\n}",
+  "startedAt": "2026-09-27T13:12:30.170Z",
+  "elapsedMs": 1802,
+  "status": "failed",
+  "error": {
+    "code": "MEDIATOR_HTTP_ERROR",
+    "message": "Linked Data request failed with status 400",
+    "receipt": {
+      "status": "failed",
+      "stage": "resource-read",
+      "code": "MEDIATOR_HTTP_ERROR",
+      "operationId": "op-000014",
+      "traversalId": "traversal-1859cdaad44666c4de2b2265",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-1859cdaad44666c4de2b2265",
+        "startedAt": "2026-09-27T13:12:30.171Z",
+        "finishedAt": "2026-09-27T13:12:31.971Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 98304,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "http-error",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%0A%20%20DISTINCT%0A%20%20%20%20%3Fchebi%0A%20%20%20%20%3Freaction%0A%20%20%20%20%3Fprotein%20%3FensemblGene%0A%20%20%20%20%3FanatomicEntityLabel%0A%20%20%20%20%3FanatomicEntity%0AWHERE%20%7B%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rdfs%3AsubClassOf%20rh%3AReaction%20.%0A%20%20%20%20%3Freaction%20rh%3Aequation%20%3FreactionEquation%20.%0A%20%20%20%20%3Freaction%20rh%3Aside%20%3FreactionSide%20.%0A%20%20%20%20%3FreactionSide%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20%3Fchebi%20rdfs%3AsubClassOf*%20CHEBI%3A16113%0A%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%20.%0A%20%20%3Fprotein%20up%3Aannotation%20%3Fa%20.%0A%20%20%3Fa%20a%20up%3ACatalytic_Activity_Annotation%20.%0A%20%20%3Fa%20up%3AcatalyticActivity%20%3Fca%20.%0A%20%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%20.%0A%20%20%3Fprotein%20rdfs%3AseeAlso%20%2F%20up%3AtranscribedFrom%20%3FensemblGeneVersioned%20.%0A%20%20BIND(IRI(REPLACE(STR(%3FensemblGeneVersioned)%2C%20%22%5B.%5D%5B0-9%5D%2B%24%22%2C%20%22%22))%20AS%20%3FensemblGene)%0A%20%20SERVICE%20%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%0A%20%20%20%20%3Fgene%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%0A%20%20%20%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%20.%0A%20%20%20%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%0A%20%20%7D%0A%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%0A%20%20DISTINCT%0A%20%20%20%20%3Fchebi%0A%20%20%20%20%3Freaction%0A%20%20%20%20%3Fprotein%20%3FensemblGene%0A%20%20%20%20%3FanatomicEntityLabel%0A%20%20%20%20%3FanatomicEntity%0AWHERE%20%7B%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rdfs%3AsubClassOf%20rh%3AReaction%20.%0A%20%20%20%20%3Freaction%20rh%3Aequation%20%3FreactionEquation%20.%0A%20%20%20%20%3Freaction%20rh%3Aside%20%3FreactionSide%20.%0A%20%20%20%20%3FreactionSide%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20%3Fchebi%20rdfs%3AsubClassOf*%20CHEBI%3A16113%0A%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%20.%0A%20%20%3Fprotein%20up%3Aannotation%20%3Fa%20.%0A%20%20%3Fa%20a%20up%3ACatalytic_Activity_Annotation%20.%0A%20%20%3Fa%20up%3AcatalyticActivity%20%3Fca%20.%0A%20%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%20.%0A%20%20%3Fprotein%20rdfs%3AseeAlso%20%2F%20up%3AtranscribedFrom%20%3FensemblGeneVersioned%20.%0A%20%20BIND(IRI(REPLACE(STR(%3FensemblGeneVersioned)%2C%20%22%5B.%5D%5B0-9%5D%2B%24%22%2C%20%22%22))%20AS%20%3FensemblGene)%0A%20%20SERVICE%20%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%0A%20%20%20%20%3Fgene%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%0A%20%20%20%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%20.%0A%20%20%20%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%0A%20%20%7D%0A%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 400,
+            "requestSha256": "8296b78d112f735492bc960094dbc02141e9d4289cd5d63cb8168b7401b70013",
+            "responseSha256": "4be4b0afb679e58d582b3080d62821a0c7b7a77d9e65ad9cf3f3a484806cd132",
+            "bytes": 98304,
+            "mediaType": "text/html",
+            "headers": {
+              "content-type": "text/html;charset=UTF-8",
+              "etag": "W/\"2026_032026-09-27\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%0A%20%20DISTINCT%0A%20%20%20%20%3Fchebi%0A%20%20%20%20%3Freaction%0A%20%20%20%20%3Fprotein%20%3FensemblGene%0A%20%20%20%20%3FanatomicEntityLabel%0A%20%20%20%20%3FanatomicEntity%0AWHERE%20%7B%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rdfs%3AsubClassOf%20rh%3AReaction%20.%0A%20%20%20%20%3Freaction%20rh%3Aequation%20%3FreactionEquation%20.%0A%20%20%20%20%3Freaction%20rh%3Aside%20%3FreactionSide%20.%0A%20%20%20%20%3FreactionSide%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20%3Fchebi%20rdfs%3AsubClassOf*%20CHEBI%3A16113%0A%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%20.%0A%20%20%3Fprotein%20up%3Aannotation%20%3Fa%20.%0A%20%20%3Fa%20a%20up%3ACatalytic_Activity_Annotation%20.%0A%20%20%3Fa%20up%3AcatalyticActivity%20%3Fca%20.%0A%20%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%20.%0A%20%20%3Fprotein%20rdfs%3AseeAlso%20%2F%20up%3AtranscribedFrom%20%3FensemblGeneVersioned%20.%0A%20%20BIND(IRI(REPLACE(STR(%3FensemblGeneVersioned)%2C%20%22%5B.%5D%5B0-9%5D%2B%24%22%2C%20%22%22))%20AS%20%3FensemblGene)%0A%20%20SERVICE%20%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%0A%20%20%20%20%3Fgene%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%0A%20%20%20%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%20.%0A%20%20%20%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%0A%20%20%7D%0A%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:12:30.171Z",
+            "finishedAt": "2026-09-27T13:12:31.970Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 98304,
+          "totalBytes": null,
+          "state": "failed",
+          "capacity": {
+            "freeBytes": 645161046016,
+            "reserveBytes": 268435456,
+            "retainedBytes": 847016,
+            "availableBytes": 644892610560
+          },
+          "elapsedMs": 1800,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "resource-failed"
+        }
+      },
+      "attempt": {
+        "kind": "linked-science-resource-attempt",
+        "index": 14,
+        "status": "failed",
+        "operationId": "op-000014",
+        "traversalId": "traversal-1859cdaad44666c4de2b2265",
+        "method": "GET",
+        "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%0A%20%20DISTINCT%0A%20%20%20%20%3Fchebi%0A%20%20%20%20%3Freaction%0A%20%20%20%20%3Fprotein%20%3FensemblGene%0A%20%20%20%20%3FanatomicEntityLabel%0A%20%20%20%20%3FanatomicEntity%0AWHERE%20%7B%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rdfs%3AsubClassOf%20rh%3AReaction%20.%0A%20%20%20%20%3Freaction%20rh%3Aequation%20%3FreactionEquation%20.%0A%20%20%20%20%3Freaction%20rh%3Aside%20%3FreactionSide%20.%0A%20%20%20%20%3FreactionSide%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20%3Fchebi%20rdfs%3AsubClassOf*%20CHEBI%3A16113%0A%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%20.%0A%20%20%3Fprotein%20up%3Aannotation%20%3Fa%20.%0A%20%20%3Fa%20a%20up%3ACatalytic_Activity_Annotation%20.%0A%20%20%3Fa%20up%3AcatalyticActivity%20%3Fca%20.%0A%20%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%20.%0A%20%20%3Fprotein%20rdfs%3AseeAlso%20%2F%20up%3AtranscribedFrom%20%3FensemblGeneVersioned%20.%0A%20%20BIND(IRI(REPLACE(STR(%3FensemblGeneVersioned)%2C%20%22%5B.%5D%5B0-9%5D%2B%24%22%2C%20%22%22))%20AS%20%3FensemblGene)%0A%20%20SERVICE%20%20%3Chttps%3A%2F%2Fwww.bgee.org%2Fsparql%2F%3E%20%7B%0A%20%20%20%20%3Fgene%20genex%3AisExpressedIn%20%3FanatomicEntity%20.%0A%20%20%20%20%3Fgene%20lscr%3AxrefEnsemblGene%20%3FensemblGene%20.%0A%20%20%20%20%3FanatomicEntity%20rdfs%3Alabel%20%3FanatomicEntityLabel%20.%0A%20%20%7D%0A%7D&format=json",
+        "startedAt": "2026-09-27T13:12:30.170Z",
+        "endedAt": "2026-09-27T13:12:31.971Z",
+        "durationMs": 1801,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 98304,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_HTTP_ERROR",
+        "hiddenRetries": 0
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "cause": "Error: Linked Data request failed with status 400"
+    }
+  }
+}

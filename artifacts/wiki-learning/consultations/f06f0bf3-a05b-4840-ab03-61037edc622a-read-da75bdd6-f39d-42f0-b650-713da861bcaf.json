@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "f06f0bf3-a05b-4840-ab03-61037edc622a",
+  "recordedAt": "2026-09-24T18:16:43.613Z",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "patternId": "hemoglobin-go-overlap-20260919",
+  "patternSha256": "ed2f0b0ce3cb6c3130c345c7129f3d88cc1d769fb090db5b35f42561c2f77a08",
+  "helpfulness": "unknown"
+}

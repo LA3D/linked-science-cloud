@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "71dee279-eed1-4c4c-a7bc-e3304f9a057b",
+  "recordedAt": "2026-09-25T11:51:42.513Z",
+  "assessment": "unknown",
+  "note": "Consulted proposed selective-import guidance and recorded ontology excerpt boundaries. No controlled benefit attribution or wiki promotion was attempted.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "ontology-symbolic-context-selective-imports"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

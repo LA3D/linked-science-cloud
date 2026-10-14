@@ -1,0 +1,74 @@
+{
+  "CL": {
+    "sourcePath": "artifacts/resources/resource-9rvPV7/content/clObo.obo",
+    "sourceSha256": "73996c6349283e7a8cbd8183367a1cb810d0077e9c291ae0c72bd31e869f8c1c",
+    "dataVersion": "cl/releases/2026-06-08/cl-basic.owl",
+    "seedIds": [
+      "CL:0000076",
+      "CL:0000101",
+      "CL:0000107",
+      "CL:0000115",
+      "CL:0000192",
+      "CL:0000653",
+      "CL:0000746",
+      "CL:0002129"
+    ],
+    "selectedClasses": 36,
+    "subClassAxioms": 46,
+    "triples": 154,
+    "missingIds": [],
+    "omittedTagOccurrences": {
+      "comment": 5,
+      "subset": 38,
+      "xref": 89,
+      "property_value": 49,
+      "synonym": 31,
+      "relationship": 4,
+      "alt_id": 2,
+      "creation_date": 8
+    },
+    "selection": "all record term IDs in this ontology plus recursive named is_a parents, max 400 classes",
+    "mappedTags": [
+      "id",
+      "name",
+      "def",
+      "is_a"
+    ],
+    "rdfSha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a"
+  },
+  "UBERON": {
+    "sourcePath": "artifacts/resources/resource-08lESN/content/uberonObo.obo",
+    "sourceSha256": "b27618d347df171d0dbbfc6178217487b98b96424641b8c8b4ece77256e67a14",
+    "dataVersion": "uberon/releases/2026-06-19/uberon-basic.owl",
+    "seedIds": [
+      "UBERON:0000010",
+      "UBERON:0000948",
+      "UBERON:0000965",
+      "UBERON:0001772",
+      "UBERON:0001981",
+      "UBERON:0002081",
+      "UBERON:0002097",
+      "UBERON:0002113"
+    ],
+    "selectedClasses": 34,
+    "subClassAxioms": 40,
+    "triples": 141,
+    "missingIds": [],
+    "omittedTagOccurrences": {
+      "subset": 87,
+      "synonym": 84,
+      "xref": 321,
+      "relationship": 64,
+      "property_value": 50,
+      "comment": 5
+    },
+    "selection": "all record term IDs in this ontology plus recursive named is_a parents, max 400 classes",
+    "mappedTags": [
+      "id",
+      "name",
+      "def",
+      "is_a"
+    ],
+    "rdfSha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee"
+  }
+}

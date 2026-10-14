@@ -1,0 +1,3118 @@
+{
+  "format": "fabry-chembl-sparql-check/v1",
+  "recordedAt": "2026-09-28T11:48:41.901Z",
+  "queries": {
+    "inspect": "SELECT ?s ?p ?o WHERE { VALUES ?s { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> <http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524> } ?s ?p ?o }",
+    "graph": "SELECT ?g ?s ?p ?o WHERE { VALUES ?s { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> <http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524> } GRAPH ?g { ?s ?p ?o } }",
+    "schema": "SELECT ?s ?p ?o WHERE {?s ?p ?o} LIMIT 5",
+    "measurement": "PREFIX c: <http://rdf.ebi.ac.uk/terms/chembl#> PREFIX dct: <http://purl.org/dc/terms/> SELECT * WHERE {VALUES ?activity { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> } VALUES ?assay { <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> } ?assay c:hasActivity ?activity; c:hasTarget ?target; c:organismName ?species; dct:description ?description . ?activity c:hasMolecule ?molecule; c:hasDocument ?document; c:standardType ?type; c:standardValue ?value; c:standardUnits ?unit; c:standardRelation ?relation; c:value ?originalValue; c:units ?originalUnit .}",
+    "crosslink": "PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?link WHERE {<http://purl.uniprot.org/uniprot/P06280> rdfs:seeAlso ?link . FILTER(CONTAINS(STR(?link),\"chembl\"))}",
+    "federation": "PREFIX c: <http://rdf.ebi.ac.uk/terms/chembl#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { VALUES ?protein {<http://purl.uniprot.org/uniprot/P06280>} VALUES ?target {<http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524>} ?protein rdfs:seeAlso ?target . SERVICE <https://idsm.elixir-czech.cz/sparql/endpoint/idsm> { VALUES ?target {<http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524>} VALUES ?activity { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> } VALUES ?assay { <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> } ?assay c:hasActivity ?activity; c:hasTarget ?target; c:organismName ?species; dct:description ?description . ?activity c:hasMolecule ?molecule; c:hasDocument ?document; c:standardType ?type; c:standardValue ?value; c:standardUnits ?unit; c:standardRelation ?relation; c:value ?originalValue; c:units ?originalUnit .} }",
+    "version": "PREFIX owl:<http://www.w3.org/2002/07/owl#> PREFIX dct:<http://purl.org/dc/terms/> SELECT ?s ?p ?v WHERE { VALUES ?s { <http://rdf.ebi.ac.uk/resource/chembl> <http://rdf.ebi.ac.uk/dataset/chembl> } VALUES ?p {owl:versionInfo dct:hasVersion dct:issued} ?s ?p ?v }"
+  },
+  "results": {
+    "inspect": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000008",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 0,
+        "columns": [
+          "s",
+          "p",
+          "o"
+        ],
+        "fingerprints": [
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000008",
+          "traversalId": "traversal-129c5639693bcf912e106dd1",
+          "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+          "evidenceHandles": [],
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000008",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 8,
+            "status": "success",
+            "operationId": "op-000008",
+            "traversalId": "traversal-129c5639693bcf912e106dd1",
+            "queryType": "SELECT",
+            "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:45:16.540Z",
+            "endedAt": "2026-09-28T11:45:17.011Z",
+            "durationMs": 471,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "resultItems": 0,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-129c5639693bcf912e106dd1",
+            "startedAt": "2026-09-28T11:45:16.540Z",
+            "finishedAt": "2026-09-28T11:45:17.010Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "8dc52102f5f068eaf8a1527685dfdc85b62c348246015f3200c2ae08b3d9d09c",
+                "responseSha256": "ad70f01abd9ec308f1520403f4d3284acc764fa60dd7a245cd0f284018d56c7b",
+                "bytes": 75,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "75",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:45:16.580Z",
+                "finishedAt": "2026-09-28T11:45:16.999Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6156,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000009",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000008",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "s",
+          "p",
+          "o"
+        ],
+        "offset": 0,
+        "total": 0,
+        "provenance": {
+          "operationId": "op-000008",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 8,
+            "status": "success",
+            "operationId": "op-000008",
+            "traversalId": "traversal-129c5639693bcf912e106dd1",
+            "queryType": "SELECT",
+            "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:45:16.540Z",
+            "endedAt": "2026-09-28T11:45:17.011Z",
+            "durationMs": 471,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "resultItems": 0,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-129c5639693bcf912e106dd1",
+            "startedAt": "2026-09-28T11:45:16.540Z",
+            "finishedAt": "2026-09-28T11:45:17.010Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "8dc52102f5f068eaf8a1527685dfdc85b62c348246015f3200c2ae08b3d9d09c",
+                "responseSha256": "ad70f01abd9ec308f1520403f4d3284acc764fa60dd7a245cd0f284018d56c7b",
+                "bytes": 75,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "75",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:45:16.580Z",
+                "finishedAt": "2026-09-28T11:45:16.999Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "rows": [],
+        "truncated": false,
+        "bounds": {
+          "rows": 0,
+          "maxRows": 10,
+          "cells": 0,
+          "maxCells": 100,
+          "bytes": 5503,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "graph": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000009",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 0,
+        "columns": [
+          "g",
+          "s",
+          "p",
+          "o"
+        ],
+        "fingerprints": [
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000010",
+          "traversalId": "traversal-82c7fc00453d7be6fbad2237",
+          "querySha256": "e24f7be64f59dc6ae65ac67e53d316005452cc7427912a11d0d3c27bacd2eab9",
+          "evidenceHandles": [],
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000010",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "e24f7be64f59dc6ae65ac67e53d316005452cc7427912a11d0d3c27bacd2eab9",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 9,
+            "status": "success",
+            "operationId": "op-000010",
+            "traversalId": "traversal-82c7fc00453d7be6fbad2237",
+            "queryType": "SELECT",
+            "querySha256": "e24f7be64f59dc6ae65ac67e53d316005452cc7427912a11d0d3c27bacd2eab9",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:45:30.586Z",
+            "endedAt": "2026-09-28T11:45:31.024Z",
+            "durationMs": 438,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 80,
+              "retries": 0
+            },
+            "resultItems": 0,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-82c7fc00453d7be6fbad2237",
+            "startedAt": "2026-09-28T11:45:30.586Z",
+            "finishedAt": "2026-09-28T11:45:31.024Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 80,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fg%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fg%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "461d6aaef6a5faa71b2668355d60eccb690956edb25a3743a28f515153204b15",
+                "responseSha256": "dae3cd8bb4cc9f47651882b7567f458f1cd88649aac59124c7c6eaa901329c59",
+                "bytes": 80,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "80",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fg%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:45:30.593Z",
+                "finishedAt": "2026-09-28T11:45:31.021Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6262,
+          "maxBytes": 32768
+        }
+      },
+      "page": null
+    },
+    "schema": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000010",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 5,
+        "columns": [
+          "s",
+          "p",
+          "o"
+        ],
+        "fingerprints": [
+          "93f66fc52835456961e1aaa5c3c228c100071c30d60e6adc2970efc06a2e7083"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000012",
+          "traversalId": "traversal-83981cb710ace6aff45233ee",
+          "querySha256": "5722934e9e8f44e196e9e7da321bb7eed760a680e0ca2648c3c36fc553b9be81",
+          "evidenceHandles": [],
+          "payloadSha256": "93f66fc52835456961e1aaa5c3c228c100071c30d60e6adc2970efc06a2e7083",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000012",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "5722934e9e8f44e196e9e7da321bb7eed760a680e0ca2648c3c36fc553b9be81",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 10,
+            "status": "success",
+            "operationId": "op-000012",
+            "traversalId": "traversal-83981cb710ace6aff45233ee",
+            "queryType": "SELECT",
+            "querySha256": "5722934e9e8f44e196e9e7da321bb7eed760a680e0ca2648c3c36fc553b9be81",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:45:41.564Z",
+            "endedAt": "2026-09-28T11:45:42.145Z",
+            "durationMs": 581,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1458,
+              "retries": 0
+            },
+            "resultItems": 5,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-83981cb710ace6aff45233ee",
+            "startedAt": "2026-09-28T11:45:41.565Z",
+            "finishedAt": "2026-09-28T11:45:42.144Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1458,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%205",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%205",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "66496c7b08455649e8800caecbadfe6e29d8d12ca0bdd742bab796dd41bd0431",
+                "responseSha256": "2897d56563a1dd40415ac54f797bbe2dcefe4d9fc30ba9ca88077f9361d0819e",
+                "bytes": 1458,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "1458",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/chembl?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%205",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:45:41.569Z",
+                "finishedAt": "2026-09-28T11:45:42.136Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "93f66fc52835456961e1aaa5c3c228c100071c30d60e6adc2970efc06a2e7083"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5373,
+          "maxBytes": 32768
+        }
+      },
+      "page": null
+    },
+    "unified": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000011",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 171,
+        "columns": [
+          "s",
+          "p",
+          "o"
+        ],
+        "fingerprints": [
+          "0f6efb38aa07533da42988115f43900528f3b0712e3405618a8d4231f437cbf9"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000014",
+          "traversalId": "traversal-38904277f26c0bbdb4f73066",
+          "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+          "evidenceHandles": [],
+          "payloadSha256": "0f6efb38aa07533da42988115f43900528f3b0712e3405618a8d4231f437cbf9",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000014",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 11,
+            "status": "success",
+            "operationId": "op-000014",
+            "traversalId": "traversal-38904277f26c0bbdb4f73066",
+            "queryType": "SELECT",
+            "querySha256": "d518736bfa849b72a669b694f9f3d254b80c47cdf0f52f4b37bbdaecd052baf0",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:45:56.032Z",
+            "endedAt": "2026-09-28T11:45:58.866Z",
+            "durationMs": 2834,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 47785,
+              "retries": 0
+            },
+            "resultItems": 171,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-38904277f26c0bbdb4f73066",
+            "startedAt": "2026-09-28T11:45:56.032Z",
+            "finishedAt": "2026-09-28T11:45:58.864Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 47785,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "07d47176f75c7c7dab52ea200bb91c96922d6bb4dc760751862fb1df3bc293a6",
+                "responseSha256": "263fd57dec423d4eb6c9e1792b2408ceb5f771c8fe2d27bd9f1eb45e9de73d19",
+                "bytes": 47785,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=SELECT%20%3Fs%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Factivity%2FCHEMBL_ACT_1405782%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fassay%2FCHEMBL831670%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Ftarget%2FCHEMBL2524%3E%20%7D%20%3Fs%20%3Fp%20%3Fo%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:45:56.063Z",
+                "finishedAt": "2026-09-28T11:45:58.848Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "0f6efb38aa07533da42988115f43900528f3b0712e3405618a8d4231f437cbf9"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6139,
+          "maxBytes": 32768
+        }
+      },
+      "page": null
+    },
+    "measurement": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000012",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 1,
+        "columns": [
+          "activity",
+          "assay",
+          "description",
+          "document",
+          "molecule",
+          "originalUnit",
+          "originalValue",
+          "relation",
+          "species",
+          "target",
+          "type",
+          "unit",
+          "value"
+        ],
+        "fingerprints": [
+          "76c46f562fe8ff01892a30971138abfc1468d60cd9b52fa1e97d22fc6a6a0aac"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000034",
+          "traversalId": "traversal-8f5d8e01cba93a4eea8ce87b",
+          "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+          "evidenceHandles": [],
+          "payloadSha256": "76c46f562fe8ff01892a30971138abfc1468d60cd9b52fa1e97d22fc6a6a0aac",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000034",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 12,
+            "status": "success",
+            "operationId": "op-000034",
+            "traversalId": "traversal-8f5d8e01cba93a4eea8ce87b",
+            "queryType": "SELECT",
+            "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:46:44.136Z",
+            "endedAt": "2026-09-28T11:46:44.581Z",
+            "durationMs": 445,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1657,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-8f5d8e01cba93a4eea8ce87b",
+            "startedAt": "2026-09-28T11:46:44.136Z",
+            "finishedAt": "2026-09-28T11:46:44.581Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1657,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "185cb5936a41737dc2edf3f0d3506bd687036f4ce531c939efb3bbb8a9e336ee",
+                "responseSha256": "23a0de6fbdc7801b2a4615051d6a952f852113fd67de4d8603d9fc05a03707f2",
+                "bytes": 1657,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "1657",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+                "startedAt": "2026-09-28T11:46:44.162Z",
+                "finishedAt": "2026-09-28T11:46:44.577Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "76c46f562fe8ff01892a30971138abfc1468d60cd9b52fa1e97d22fc6a6a0aac"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5349,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000035",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000012",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "activity",
+          "assay",
+          "description",
+          "document",
+          "molecule",
+          "originalUnit",
+          "originalValue",
+          "relation",
+          "species",
+          "target",
+          "type",
+          "unit",
+          "value"
+        ],
+        "offset": 0,
+        "total": 1,
+        "provenance": {
+          "operationId": "op-000034",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 12,
+            "status": "success",
+            "operationId": "op-000034",
+            "traversalId": "traversal-8f5d8e01cba93a4eea8ce87b",
+            "queryType": "SELECT",
+            "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:46:44.136Z",
+            "endedAt": "2026-09-28T11:46:44.581Z",
+            "durationMs": 445,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1657,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-8f5d8e01cba93a4eea8ce87b",
+            "startedAt": "2026-09-28T11:46:44.136Z",
+            "finishedAt": "2026-09-28T11:46:44.581Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1657,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "185cb5936a41737dc2edf3f0d3506bd687036f4ce531c939efb3bbb8a9e336ee",
+                "responseSha256": "23a0de6fbdc7801b2a4615051d6a952f852113fd67de4d8603d9fc05a03707f2",
+                "bytes": 1657,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "1657",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "25430a9af78a0633aca348dc05fae9e687689b1eb3f233090fb27ac5fe7ad4aa",
+                "startedAt": "2026-09-28T11:46:44.162Z",
+                "finishedAt": "2026-09-28T11:46:44.577Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "76c46f562fe8ff01892a30971138abfc1468d60cd9b52fa1e97d22fc6a6a0aac"
+        },
+        "rows": [
+          {
+            "activity": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782"
+            },
+            "assay": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Inhibitory concentration against human alpha-galactosidase",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "document": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/document/CHEMBL1142734"
+            },
+            "molecule": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+            },
+            "originalUnit": {
+              "termType": "Literal",
+              "value": "uM",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "originalValue": {
+              "termType": "Literal",
+              "value": "0.07",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#double"
+            },
+            "relation": {
+              "termType": "Literal",
+              "value": "=",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "species": {
+              "termType": "Literal",
+              "value": "Homo sapiens",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "target": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "IC50",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "unit": {
+              "termType": "Literal",
+              "value": "nM",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "value": {
+              "termType": "Literal",
+              "value": "70.0",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 1,
+          "maxRows": 3,
+          "cells": 13,
+          "maxCells": 100,
+          "bytes": 6200,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "crosslink": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000013",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 1,
+        "columns": [
+          "link"
+        ],
+        "fingerprints": [
+          "ea477ca9bb0c30ec4e963d1900a3635b48bdc59cadf4302108aea76139ff2d4d"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000036",
+          "traversalId": "traversal-3451c381fd0e90b18c31d1c6",
+          "querySha256": "1d0a63369f0f4a95dba622cbc28018634d1fc2079323d393b54b528455233adb",
+          "evidenceHandles": [],
+          "payloadSha256": "ea477ca9bb0c30ec4e963d1900a3635b48bdc59cadf4302108aea76139ff2d4d",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000036",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "1d0a63369f0f4a95dba622cbc28018634d1fc2079323d393b54b528455233adb",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 13,
+            "status": "success",
+            "operationId": "op-000036",
+            "traversalId": "traversal-3451c381fd0e90b18c31d1c6",
+            "queryType": "SELECT",
+            "querySha256": "1d0a63369f0f4a95dba622cbc28018634d1fc2079323d393b54b528455233adb",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://sparql.uniprot.org/sparql"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:46:44.583Z",
+            "endedAt": "2026-09-28T11:46:45.141Z",
+            "durationMs": 558,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 248,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-3451c381fd0e90b18c31d1c6",
+            "startedAt": "2026-09-28T11:46:44.583Z",
+            "finishedAt": "2026-09-28T11:46:45.140Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 248,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "31fe29b41c9eb5062dc1b7a108c19bde2ffee7c5461d6a321f5da802ecd37a43",
+                "responseSha256": "574025e533481cd866316556f9171596d512e52b75b2b3a61552c27a734a4e18",
+                "bytes": 248,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "248",
+                  "content-type": "application/sparql-results+json",
+                  "etag": "W/\"2026_03\"",
+                  "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:46:44.617Z",
+                "finishedAt": "2026-09-28T11:46:45.137Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "ea477ca9bb0c30ec4e963d1900a3635b48bdc59cadf4302108aea76139ff2d4d"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5794,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000037",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000013",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "link"
+        ],
+        "offset": 0,
+        "total": 1,
+        "provenance": {
+          "operationId": "op-000036",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "1d0a63369f0f4a95dba622cbc28018634d1fc2079323d393b54b528455233adb",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 13,
+            "status": "success",
+            "operationId": "op-000036",
+            "traversalId": "traversal-3451c381fd0e90b18c31d1c6",
+            "queryType": "SELECT",
+            "querySha256": "1d0a63369f0f4a95dba622cbc28018634d1fc2079323d393b54b528455233adb",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://sparql.uniprot.org/sparql"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:46:44.583Z",
+            "endedAt": "2026-09-28T11:46:45.141Z",
+            "durationMs": 558,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 248,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-3451c381fd0e90b18c31d1c6",
+            "startedAt": "2026-09-28T11:46:44.583Z",
+            "finishedAt": "2026-09-28T11:46:45.140Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 248,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "31fe29b41c9eb5062dc1b7a108c19bde2ffee7c5461d6a321f5da802ecd37a43",
+                "responseSha256": "574025e533481cd866316556f9171596d512e52b75b2b3a61552c27a734a4e18",
+                "bytes": 248,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "248",
+                  "content-type": "application/sparql-results+json",
+                  "etag": "W/\"2026_03\"",
+                  "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20WHERE%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20rdfs%3AseeAlso%20%3Flink%20.%20FILTER(CONTAINS(STR(%3Flink)%2C%22chembl%22))%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:46:44.617Z",
+                "finishedAt": "2026-09-28T11:46:45.137Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "ea477ca9bb0c30ec4e963d1900a3635b48bdc59cadf4302108aea76139ff2d4d"
+        },
+        "rows": [
+          {
+            "link": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 1,
+          "maxRows": 3,
+          "cells": 1,
+          "maxCells": 100,
+          "bytes": 5238,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "federation": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000014",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 1,
+        "columns": [
+          "activity",
+          "assay",
+          "description",
+          "document",
+          "molecule",
+          "originalUnit",
+          "originalValue",
+          "protein",
+          "relation",
+          "species",
+          "target",
+          "type",
+          "unit",
+          "value"
+        ],
+        "fingerprints": [
+          "afcdc8724d1cbe8c932e1f5aec58c00b041af3544dfa89654a093b8bc8d97de8"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000038",
+          "traversalId": "traversal-4ec6dbdb61171f520708c4df",
+          "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+          "evidenceHandles": [],
+          "payloadSha256": "afcdc8724d1cbe8c932e1f5aec58c00b041af3544dfa89654a093b8bc8d97de8",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000038",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 14,
+            "status": "success",
+            "operationId": "op-000038",
+            "traversalId": "traversal-4ec6dbdb61171f520708c4df",
+            "queryType": "SELECT",
+            "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://sparql.uniprot.org/sparql"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:47:03.806Z",
+            "endedAt": "2026-09-28T11:47:04.646Z",
+            "durationMs": 840,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 2084,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-4ec6dbdb61171f520708c4df",
+            "startedAt": "2026-09-28T11:47:03.807Z",
+            "finishedAt": "2026-09-28T11:47:04.646Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 2084,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://sparql.uniprot.org/sparql",
+                "finalUrl": "https://sparql.uniprot.org/sparql",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "6993aea58e5a153d4e0fd61b4c399ab26c3042ebe633b377100efccb1afda310",
+                "responseSha256": "b677930f0f9fa6dc3ead4d2814acebab869cdbd5528d2cdbb32ac9d269e26635",
+                "bytes": 2084,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "2084",
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://sparql.uniprot.org/sparql",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+                "startedAt": "2026-09-28T11:47:03.816Z",
+                "finishedAt": "2026-09-28T11:47:04.640Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "afcdc8724d1cbe8c932e1f5aec58c00b041af3544dfa89654a093b8bc8d97de8"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5217,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000039",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000014",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "activity",
+          "assay",
+          "description",
+          "document",
+          "molecule",
+          "originalUnit",
+          "originalValue",
+          "protein",
+          "relation",
+          "species",
+          "target",
+          "type",
+          "unit",
+          "value"
+        ],
+        "offset": 0,
+        "total": 1,
+        "provenance": {
+          "operationId": "op-000038",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 14,
+            "status": "success",
+            "operationId": "op-000038",
+            "traversalId": "traversal-4ec6dbdb61171f520708c4df",
+            "queryType": "SELECT",
+            "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://sparql.uniprot.org/sparql"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:47:03.806Z",
+            "endedAt": "2026-09-28T11:47:04.646Z",
+            "durationMs": 840,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 2084,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-4ec6dbdb61171f520708c4df",
+            "startedAt": "2026-09-28T11:47:03.807Z",
+            "finishedAt": "2026-09-28T11:47:04.646Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 2084,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://sparql.uniprot.org/sparql",
+                "finalUrl": "https://sparql.uniprot.org/sparql",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "6993aea58e5a153d4e0fd61b4c399ab26c3042ebe633b377100efccb1afda310",
+                "responseSha256": "b677930f0f9fa6dc3ead4d2814acebab869cdbd5528d2cdbb32ac9d269e26635",
+                "bytes": 2084,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "2084",
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://sparql.uniprot.org/sparql",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "c5adedead958700b7d34f2d85b0c4d317997786eb85263a978e68d8aa138ec44",
+                "startedAt": "2026-09-28T11:47:03.816Z",
+                "finishedAt": "2026-09-28T11:47:04.640Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "afcdc8724d1cbe8c932e1f5aec58c00b041af3544dfa89654a093b8bc8d97de8"
+        },
+        "rows": [
+          {
+            "activity": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782"
+            },
+            "assay": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Inhibitory concentration against human alpha-galactosidase",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "document": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/document/CHEMBL1142734"
+            },
+            "molecule": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+            },
+            "originalUnit": {
+              "termType": "Literal",
+              "value": "uM",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "originalValue": {
+              "termType": "Literal",
+              "value": "0.07",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            },
+            "protein": {
+              "termType": "NamedNode",
+              "value": "http://purl.uniprot.org/uniprot/P06280"
+            },
+            "relation": {
+              "termType": "Literal",
+              "value": "=",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "species": {
+              "termType": "Literal",
+              "value": "Homo sapiens",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "target": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "IC50",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "unit": {
+              "termType": "Literal",
+              "value": "nM",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "value": {
+              "termType": "Literal",
+              "value": "70.0",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 1,
+          "maxRows": 2,
+          "cells": 14,
+          "maxCells": 100,
+          "bytes": 6154,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "version": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000015",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 0,
+        "columns": [
+          "s",
+          "p",
+          "v"
+        ],
+        "fingerprints": [
+          "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000040",
+          "traversalId": "traversal-5a2f0e179f8d40034e838fbb",
+          "querySha256": "c6982c83219ded73790195a5085ed004915744293f71ef4e1e44ed6fa3109df6",
+          "evidenceHandles": [],
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000040",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "c6982c83219ded73790195a5085ed004915744293f71ef4e1e44ed6fa3109df6",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 15,
+            "status": "success",
+            "operationId": "op-000040",
+            "traversalId": "traversal-5a2f0e179f8d40034e838fbb",
+            "queryType": "SELECT",
+            "querySha256": "c6982c83219ded73790195a5085ed004915744293f71ef4e1e44ed6fa3109df6",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:47:53.030Z",
+            "endedAt": "2026-09-28T11:47:54.995Z",
+            "durationMs": 1965,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "resultItems": 0,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-5a2f0e179f8d40034e838fbb",
+            "startedAt": "2026-09-28T11:47:53.031Z",
+            "finishedAt": "2026-09-28T11:47:54.995Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "ff65be995551f74ec974106c2f86db9a27dd1bfef6788fd51a0bb4fa4c3d02cc",
+                "responseSha256": "fb76e1b60b0e74b64996b87460d4523a466d02eac9d0053241479ee0e9a71c44",
+                "bytes": 75,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "75",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:47:53.035Z",
+                "finishedAt": "2026-09-28T11:47:54.991Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6364,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000041",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000015",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-gla-assay-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "s",
+          "p",
+          "v"
+        ],
+        "offset": 0,
+        "total": 0,
+        "provenance": {
+          "operationId": "op-000040",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "c6982c83219ded73790195a5085ed004915744293f71ef4e1e44ed6fa3109df6",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 15,
+            "status": "success",
+            "operationId": "op-000040",
+            "traversalId": "traversal-5a2f0e179f8d40034e838fbb",
+            "queryType": "SELECT",
+            "querySha256": "c6982c83219ded73790195a5085ed004915744293f71ef4e1e44ed6fa3109df6",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:47:53.030Z",
+            "endedAt": "2026-09-28T11:47:54.995Z",
+            "durationMs": 1965,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "resultItems": 0,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-5a2f0e179f8d40034e838fbb",
+            "startedAt": "2026-09-28T11:47:53.031Z",
+            "finishedAt": "2026-09-28T11:47:54.995Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 75,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                "finalUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "ff65be995551f74ec974106c2f86db9a27dd1bfef6788fd51a0bb4fa4c3d02cc",
+                "responseSha256": "fb76e1b60b0e74b64996b87460d4523a466d02eac9d0053241479ee0e9a71c44",
+                "bytes": 75,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-length": "75",
+                  "content-type": "application/sparql-results+json;charset=UTF-8",
+                  "vary": "Accept,Accept-Language,Accept-Encoding"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://idsm.elixir-czech.cz/sparql/endpoint/idsm?query=PREFIX%20owl%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%20PREFIX%20dct%3A%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%20SELECT%20%3Fs%20%3Fp%20%3Fv%20WHERE%20%7B%20VALUES%20%3Fs%20%7B%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fdataset%2Fchembl%3E%20%7D%20VALUES%20%3Fp%20%7Bowl%3AversionInfo%20dct%3AhasVersion%20dct%3Aissued%7D%20%3Fs%20%3Fp%20%3Fv%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:47:53.035Z",
+                "finishedAt": "2026-09-28T11:47:54.991Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "rows": [],
+        "truncated": false,
+        "bounds": {
+          "rows": 0,
+          "maxRows": 5,
+          "cells": 0,
+          "maxCells": 100,
+          "bytes": 5710,
+          "maxBytes": 32768
+        }
+      }
+    }
+  },
+  "restComparison": {
+    "activityId": 1405782,
+    "standardType": "IC50",
+    "value": "70.0",
+    "units": "nM",
+    "relation": "=",
+    "match": true
+  },
+  "datasetVersion": "Not established; bounded metadata probe empty. RDF Portal not queried.",
+  "manual": "https://idsm.elixir-czech.cz/sparql/doc/manual.html",
+  "limits": [
+    "Exact known record check, not broad assay discovery.",
+    "Separate /chembl endpoint returned zero for exact record probes; combined /idsm returned records.",
+    "Server-side SERVICE execution; broker observed one coordinator request, not downstream exchange details.",
+    "Inhibition IC50 is not Kd, clinical response or disease severity."
+  ]
+}

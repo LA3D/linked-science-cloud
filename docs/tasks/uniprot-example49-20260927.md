@@ -1,0 +1,5 @@
+# UniProt example 49 federation checkpoint
+
+The [2026-09-27 live test](../../artifacts/scientific-inspections/uniprot-example49-20260927/README.md) retrieved the exact published query and tested it in the saved project REPL. It targets N-acylsphingosine, not cholesterol, and lacks Ensembl version normalization. The original and explicit cholesterol revision returned HTTP 400; bounded diagnosis localized failure to UniProt’s Bgee SERVICE path without resolving its server-side cause. Successful component raw results and complete attempt receipts are saved. A live full-federation presentation demo is not supported. No infrastructure fix was attempted.
+
+Follow-up [root-cause diagnosis](../../artifacts/scientific-inspections/uniprot-example49-20260927/ROOT-CAUSE.md): curl reproduced the unchanged query and exposed a downstream Bgee 403 challenge reported by UniProt. Extraction audit passed. Multi-source Comunica attempts separately exposed budget exhaustion and `MEDIATOR_TRAVERSAL_BUSY` at finalization. No migration was verified, no complete three-service result was obtained, and no runtime fix was applied.

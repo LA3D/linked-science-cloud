@@ -1,0 +1,13 @@
+{
+  "kind": "codex-recursive-provider-boundary",
+  "recordedAt": "2026-09-24",
+  "mountedCapabilityResponse": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  cwd: '/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud',\n  rlm: {\n    kind: 'cleanroom-rlm-capabilities',\n    version: '1.0.0',\n    architecture: 'recursive-language-model',\n    controlEnvironment: 'persistent-javascript',\n    externalContext: {\n      available: true,\n      persistence: 'kernel-epoch',\n      maxContextBytes: 2097152,\n      operations: [ 'registerContext', 'context', 'inspect' ]\n    },\n    recursion: {\n      available: false,\n      interface: 'nodeRepl.rlm.query',\n      lifecycleOwner: 'cleanroom-host',\n      lifecycle: 'bounded-one-shot-compatibility',\n      durable: false,\n      asynchronousHandle: false,\n      hardMaxDepth: 4,\n      recovery: 'Continue with local external-context operations, or run under a host configured with an RLM provider.'\n    }\n  },\n  project: {\n    id: '@linked-science/runtime',\n    role: 'authoritative-production-implementation',\n    bootstrapEntrypoint: 'lib/cleanroom-linked-science-bootstrap.mjs'\n  }\n}"
+      }
+    ]
+  },
+  "scope": "Read-only capability checkpoint; no recursive provider, model turn, existing-session reset or saved configuration change."
+}

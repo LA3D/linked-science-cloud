@@ -1,0 +1,442 @@
+[
+  {
+    "key": "hgnc",
+    "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:4296",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "void",
+    "url": "https://sparql.uniprot.org/.well-known/void",
+    "accept": "text/turtle",
+    "kind": "API/resource GET",
+    "status": "failed",
+    "error": {
+      "code": "MEDIATOR_REQUEST_TIMEOUT",
+      "message": "Request deadline elapsed",
+      "receipt": {
+        "status": "failed",
+        "stage": "resource-read",
+        "code": "MEDIATOR_REQUEST_TIMEOUT",
+        "operationId": "op-000002",
+        "traversalId": "traversal-ed441c2da11a9054f51e1843",
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "aborted",
+          "traversalId": "traversal-ed441c2da11a9054f51e1843",
+          "startedAt": "2026-09-25T11:55:50.230Z",
+          "finishedAt": "2026-09-25T11:56:10.235Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 2000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 0,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "failure",
+              "requestedUrl": "https://sparql.uniprot.org/.well-known/void",
+              "method": "GET",
+              "requestSha256": "f6d8e006f80ba06047d6b809997f83e66b62fc9e57ce06832ef358779f307d1a",
+              "bytes": 0,
+              "startedAt": "2026-09-25T11:55:50.232Z",
+              "finishedAt": "2026-09-25T11:56:10.233Z",
+              "retries": 0,
+              "failure": {
+                "code": "MEDIATOR_REQUEST_TIMEOUT"
+              }
+            }
+          ],
+          "progress": {
+            "bytes": 0,
+            "totalBytes": null,
+            "state": "failed",
+            "capacity": {
+              "freeBytes": 646276046848,
+              "reserveBytes": 268435456,
+              "retainedBytes": 21751598,
+              "availableBytes": 646007611392
+            },
+            "elapsedMs": 20005,
+            "maxBytes": 2000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag",
+          "failure": {
+            "code": "resource-failed"
+          }
+        },
+        "attempt": {
+          "kind": "linked-science-resource-attempt",
+          "index": 2,
+          "status": "failed",
+          "operationId": "op-000002",
+          "traversalId": "traversal-ed441c2da11a9054f51e1843",
+          "method": "GET",
+          "url": "https://sparql.uniprot.org/.well-known/void",
+          "startedAt": "2026-09-25T11:55:50.230Z",
+          "endedAt": "2026-09-25T11:56:10.235Z",
+          "durationMs": 20005,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 2000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 0,
+            "retries": 0
+          },
+          "failureCode": "MEDIATOR_REQUEST_TIMEOUT",
+          "hiddenRetries": 0
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "cause": "Error: Request deadline elapsed"
+      }
+    }
+  },
+  {
+    "key": "sparqlHelp",
+    "url": "https://sparql.uniprot.org/",
+    "accept": "text/html",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "protein",
+    "url": "https://rest.uniprot.org/uniprotkb/P06280.json",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pdb",
+    "url": "https://data.rcsb.org/rest/v1/core/entry/1R46",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "alphafold",
+    "url": "https://alphafold.ebi.ac.uk/api/prediction/P06280",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pathway",
+    "url": "https://reactome.org/ContentService/data/query/R-HSA-9840310",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "proteinRdf",
+    "url": "https://rest.uniprot.org/uniprotkb/P06280.ttl",
+    "accept": "text/turtle",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "remoteResult",
+    "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20PREFIX%20skos%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%20SELECT%20%3Fprotein%20%3Forganism%20%3FgeneName%20%3Flink%20%3Fdatabase%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%20%3Fprotein%20a%20up%3AProtein%3B%20up%3Aorganism%20%3Forganism%3B%20up%3AencodedBy%2Fskos%3AprefLabel%20%3FgeneName%3B%20rdfs%3AseeAlso%20%3Flink%20.%20%3Flink%20up%3Adatabase%20%3Fdatabase%20.%20VALUES%20%3Fdatabase%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FPDB%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FReactome%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FAlphaFoldDB%3E%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FHGNC%3E%20%7D%20%7D",
+    "accept": "application/sparql-results+json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pdbEntity",
+    "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1R46/1",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "reaction",
+    "url": "https://reactome.org/ContentService/data/query/R-HSA-1605736",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "rhea",
+    "url": "https://www.rhea-db.org/rhea/21112/rdf",
+    "accept": "application/rdf+xml",
+    "kind": "API/resource GET",
+    "status": "failed",
+    "error": {
+      "code": "MEDIATOR_HTTP_ERROR",
+      "message": "Linked Data request failed with status 403",
+      "receipt": {
+        "status": "failed",
+        "stage": "resource-read",
+        "code": "MEDIATOR_HTTP_ERROR",
+        "operationId": "op-000019",
+        "traversalId": "traversal-e892a7e3cf72ed8dac75dbca",
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "aborted",
+          "traversalId": "traversal-e892a7e3cf72ed8dac75dbca",
+          "startedAt": "2026-09-25T11:58:47.635Z",
+          "finishedAt": "2026-09-25T11:58:47.815Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 2000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5576,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "http-error",
+              "requestedUrl": "https://www.rhea-db.org/rhea/21112/rdf",
+              "finalUrl": "https://www.rhea-db.org/rhea/21112/rdf",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 403,
+              "requestSha256": "77bead3a61d2462e03bc9ec6eb3427594b0c65737da2220ab32099cf24244caf",
+              "responseSha256": "9eddaf2e7a7c3f39405bf91b23dd9f23e92554c963ffd5a4004b70d4282c1d9e",
+              "bytes": 5576,
+              "mediaType": "text/html",
+              "headers": {
+                "content-length": "5576",
+                "content-type": "text/html; charset=UTF-8"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://www.rhea-db.org/rhea/21112/rdf",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-25T11:58:47.635Z",
+              "finishedAt": "2026-09-25T11:58:47.813Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 5576,
+            "totalBytes": 5576,
+            "state": "failed",
+            "capacity": {
+              "freeBytes": 646268903424,
+              "reserveBytes": 268435456,
+              "retainedBytes": 22425462,
+              "availableBytes": 646000467968
+            },
+            "elapsedMs": 180,
+            "maxBytes": 2000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag",
+          "failure": {
+            "code": "resource-failed"
+          }
+        },
+        "attempt": {
+          "kind": "linked-science-resource-attempt",
+          "index": 13,
+          "status": "failed",
+          "operationId": "op-000019",
+          "traversalId": "traversal-e892a7e3cf72ed8dac75dbca",
+          "method": "GET",
+          "url": "https://www.rhea-db.org/rhea/21112/rdf",
+          "startedAt": "2026-09-25T11:58:47.634Z",
+          "endedAt": "2026-09-25T11:58:47.815Z",
+          "durationMs": 181,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 2000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5576,
+            "retries": 0
+          },
+          "failureCode": "MEDIATOR_HTTP_ERROR",
+          "hiddenRetries": 0
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "cause": "Error: Linked Data request failed with status 403"
+      }
+    }
+  },
+  {
+    "key": "catalyst",
+    "url": "https://reactome.org/ContentService/data/query/1605696",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "complex",
+    "url": "https://reactome.org/ContentService/data/query/R-HSA-1605744",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pdbChain",
+    "url": "https://data.rcsb.org/rest/v1/core/polymer_entity_instance/1R46/A",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pdbAssembly",
+    "url": "https://data.rcsb.org/rest/v1/core/assembly/1R46/1",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  },
+  {
+    "key": "pathwayProtein",
+    "url": "https://reactome.org/ContentService/data/query/1605763",
+    "accept": "application/json",
+    "kind": "API/resource GET",
+    "status": "success"
+  }
+]

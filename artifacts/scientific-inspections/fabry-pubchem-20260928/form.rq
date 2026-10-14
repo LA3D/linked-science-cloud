@@ -1,0 +1,1 @@
+PREFIX v:<http://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary#> SELECT ?compound ?formula ?units WHERE {VALUES ?compound {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID11644097>} ?compound v:molecular_formula ?formula; v:covalent_unit_count ?units }

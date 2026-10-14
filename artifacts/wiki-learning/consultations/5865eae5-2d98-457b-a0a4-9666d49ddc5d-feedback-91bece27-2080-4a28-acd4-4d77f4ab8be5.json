@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "5865eae5-2d98-457b-a0a4-9666d49ddc5d",
+  "recordedAt": "2026-09-27T13:17:22.567Z",
+  "assessment": "unknown",
+  "note": "Consulted proposed service-metadata guidance; source schema and component tests informed diagnosis, but isolated benefit is not established.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "uniprot-service-metadata-discovery"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

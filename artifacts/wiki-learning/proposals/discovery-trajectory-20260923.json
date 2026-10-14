@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "discovery-trajectory-20260923",
+  "baseRevision": "96fe304f3a67bbdc779a3441e89f8981cd079fce33f6ab3007cec5531d6384b3",
+  "batch": {
+    "purpose": "Preserve user-guided scientific discovery lessons with typed selected-trajectory evidence; strengthen existing schema guidance",
+    "selectedCorpus": [
+      {
+        "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+        "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      {
+        "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+        "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      }
+    ],
+    "maxUnits": 4,
+    "outcomeStrata": [
+      "success",
+      "partial"
+    ],
+    "omittedMaterial": [
+      "Unselected conversation and private reasoning",
+      "Engineering implementation after the scientific episode",
+      "Full source datasets and complete result exports",
+      "No autonomous benefit or reviewed-status promotion"
+    ]
+  },
+  "changes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Separate a term's schema definition from its occurrence in the actual endpoint dataset. A broad term-usage query timing out leaves usage unresolved. Focused existence probes can answer narrower questions, but a false answer covers only the tested pattern. Imported parent concepts can remain semantically relevant even when not directly instantiated. In the PubChem example, focused IAO and CHEMINF checks were positive and two particular CDK type checks were negative. Also inspect documented service execution semantics before treating predicate enumeration as a capability inventory: virtual relationships may be generated only for supported bound query patterns. In the Identifiers.org trajectory, the assistant initially overlooked already retrieved documentation; user corrections and a supplied paper prompted recovery.",
+      "applicability": "Checking actual scientific dataset vocabulary use after ontology or SHACL inspection, especially after a broad endpoint query times out.",
+      "competingExplanations": [
+        "Probe outcomes depend on endpoint release, triple position and exact pattern.",
+        "The broad query may fail because of plan cost rather than vocabulary size alone."
+      ],
+      "missingEvidence": [
+        "No complete term-use enumeration or global absence claim.",
+        "No comparative query-performance experiment; narrowed queries changed scope.",
+        "Historical timeout recovery is reported in the selected transcript; later capture does not reconstruct a missing failed broker receipt.",
+        "The Identifiers.org extension is supported as a user-guided process observation, not an independent scientific finding or autonomous transfer test."
+      ],
+      "revalidateWhen": "Source versions, ontology imports, dataset release, question scope or assay/identifier alignment changes.",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/pubchem-20260921.json",
+            "sha256": "3bb81ff94d3779e7a7e06942c7c1ae72815e42e1fb562a52d77c9e1c401d7e68",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "term-usage",
+          "evidenceIds": [
+            "schema",
+            "sio",
+            "cheminf",
+            "uniprot",
+            "assay",
+            "local-query"
+          ],
+          "eventIds": [
+            "event-6"
+          ],
+          "operationIds": [
+            "op-000045"
+          ]
+        },
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+            "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "ontology-and-service-behavior",
+          "evidenceIds": [
+            "selected-trajectory",
+            "retained-projection"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-2",
+            "event-3",
+            "event-4",
+            "event-5",
+            "event-6",
+            "event-7"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "wikidata-service-crosswalk",
+      "title": "Discover candidate scientific services through Wikidata relationships",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Use Wikidata property definitions to connect an external identifier property to its database item through main Wikidata property (P1687), then to its advertised SPARQL endpoint (P5305). Relevant instance-of/subclass paths can broaden the candidate pool. Check definitions and source statements before constructing the query; validate candidate services separately. The observed trajectory was guided by the user, including the UniProt item and classification traversal.",
+      "applicability": "Follow identifier properties to database items and advertised endpoints; use relevant instance/subclass relationships for additional service candidates.",
+      "competingExplanations": [
+        "Useful results depend on metadata coverage and current service behavior",
+        "User-provided hints shaped this trajectory; no autonomous discovery advantage established"
+      ],
+      "missingEvidence": [
+        "No independent transfer or causal benefit evidence",
+        "Voice corrections are frontend transcript excerpts",
+        "Tool displays may be bounded; agent summaries do not establish scientific truth"
+      ],
+      "revalidateWhen": "Provider behavior, registry mappings, ontology definitions or Wikidata statements change",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+            "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "wikidata-service-discovery",
+          "evidenceIds": [
+            "selected-trajectory",
+            "retained-projection"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-8",
+            "event-9",
+            "event-10",
+            "event-11",
+            "event-12",
+            "event-13"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "registry-crosswalk-lower-bounds",
+      "title": "Treat registry overlap as a verified lower bound when crosswalks are incomplete",
+      "lessonKind": "procedure",
+      "status": "proposed",
+      "validation": "candidate-not-generalized",
+      "claim": "Verify explicit identifier-prefix crosswalks against the registry and investigate aliases or entity-specific namespaces using source-owned metadata. Count distinct databases separately from endpoint URLs and database–endpoint pairs. Separate non-deprecated, deprecated and unresolved matches. A missing Wikidata cross-reference or exact-prefix match does not establish absence from Identifiers.org. This candidate records the user-guided workflow; historical counts are not a current catalog.",
+      "applicability": "Cross-check explicit mappings against registry namespaces and provider metadata; report lower bounds, aliases and deprecation separately.",
+      "competingExplanations": [
+        "Useful results depend on metadata coverage and current service behavior",
+        "User-provided hints shaped this trajectory; no autonomous discovery advantage established"
+      ],
+      "missingEvidence": [
+        "No independent transfer or causal benefit evidence",
+        "Voice corrections are frontend transcript excerpts",
+        "Tool displays may be bounded; agent summaries do not establish scientific truth"
+      ],
+      "revalidateWhen": "Provider behavior, registry mappings, ontology definitions or Wikidata statements change",
+      "citations": [
+        {
+          "corpus": {
+            "path": "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+            "sha256": "d1104d39084b1331acfda8baa65ff98710c931b39fbe160ff95eb4e6f47a11e6",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "unitId": "registry-crosswalk-lower-bound",
+          "evidenceIds": [
+            "selected-trajectory",
+            "retained-projection"
+          ],
+          "eventIds": [
+            "event-1",
+            "event-14",
+            "event-15",
+            "event-16",
+            "event-17"
+          ],
+          "operationIds": []
+        }
+      ],
+      "relations": {
+        "supersedes": [],
+        "contradicts": []
+      }
+    }
+  ]
+}

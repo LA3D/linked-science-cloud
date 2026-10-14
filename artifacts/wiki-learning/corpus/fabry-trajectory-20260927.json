@@ -1,0 +1,419 @@
+{
+  "schemaVersion": "1.1.0",
+  "id": "fabry-trajectory-20260927",
+  "episode": {
+    "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/episode.json",
+    "sha256": "e118e9cbbfc6e267c651629d691d259e472464f274e10890e899f0013fb72140",
+    "hashDomain": "file-bytes",
+    "pointer": ""
+  },
+  "review": {
+    "classification": "scientific",
+    "basis": "Acting assistant inspected selected scientific actions and reports. Later memory maintenance/engineering is excluded. Original standing user guidance is preserved; delegated corrections are not falsely typed as direct user messages. No human approval or generalized learning benefit asserted.",
+    "scientificObjectiveIds": [
+      "fabry-scientific-continuation"
+    ],
+    "excludedObjectiveIds": []
+  },
+  "units": [
+    {
+      "id": "ontology-bounded-federation",
+      "objectiveId": "fabry-scientific-continuation",
+      "anchors": [
+        "https://sparql.uniprot.org/sparql"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "agent-report"
+        },
+        {
+          "eventId": "event-5",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-6",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-7",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-8",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-9",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-10",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+          "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Use source domain and direction semantics, preserve biological entity, and label evidence-derived SERVICE VALUES bounds.",
+      "scope": "Selected scientific process; reports remain reports and no direct-runtime result certification claimed.",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "predicate-probe",
+        "bounded-result",
+        "initial-timeout"
+      ],
+      "freshness": {
+        "asOf": "2026-09-27",
+        "revalidateWhen": "Source versions, experimental context, endpoint behavior, query scope or presentation intent changes."
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    },
+    {
+      "id": "coordinator-failure-localization",
+      "objectiveId": "fabry-scientific-continuation",
+      "anchors": [
+        "https://www.bgee.org:443/sparql/"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-2",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-3",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+          "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Audit exact query and compare coordinator response details before diagnosing broker, coordinator or downstream failure.",
+      "scope": "Selected scientific process; reports remain reports and no direct-runtime result certification claimed.",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "curl-exception",
+        "query-audit",
+        "failure-comparison"
+      ],
+      "freshness": {
+        "asOf": "2026-09-27",
+        "revalidateWhen": "Source versions, experimental context, endpoint behavior, query scope or presentation intent changes."
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    },
+    {
+      "id": "renal-claim-evidence",
+      "objectiveId": "fabry-scientific-continuation",
+      "anchors": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-11",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-12",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-13",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-14",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-15",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+          "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Attach support at the claim/edge level and distinguish human cases, model measurements, background claims and derived selection.",
+      "scope": "Selected scientific process; reports remain reports and no direct-runtime result certification claimed.",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "renal-evidence",
+        "rule-audit"
+      ],
+      "freshness": {
+        "asOf": "2026-09-27",
+        "revalidateWhen": "Source versions, experimental context, endpoint behavior, query scope or presentation intent changes."
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    },
+    {
+      "id": "saved-scientific-handoff",
+      "objectiveId": "fabry-scientific-continuation",
+      "anchors": [
+        "https://sparql.rhea-db.org/sparql"
+      ],
+      "actionWitnesses": [
+        {
+          "eventId": "event-1",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "user-guidance"
+        },
+        {
+          "eventId": "event-4",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "agent-report"
+        },
+        {
+          "eventId": "event-8",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-13",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        },
+        {
+          "eventId": "event-16",
+          "exchange": {
+            "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+            "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+            "hashDomain": "file-bytes",
+            "pointer": ""
+          },
+          "outputIndex": 0,
+          "key": "",
+          "kind": "tool-exchange"
+        }
+      ],
+      "outcomeWitness": {
+        "eventId": "event-17",
+        "exchange": {
+          "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+          "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+          "hashDomain": "file-bytes",
+          "pointer": ""
+        },
+        "outputIndex": 0,
+        "key": "",
+        "kind": "agent-report"
+      },
+      "outcome": "partial",
+      "lessonKind": "procedure",
+      "evidenceBasis": "trajectory-procedure",
+      "claim": "Preserve the scientific subject and an explanatory saved handoff; distinguish prior execution, optional replay and live residency.",
+      "scope": "Selected scientific process; reports remain reports and no direct-runtime result certification claimed.",
+      "sourceEvidenceIds": [
+        "selected-trajectory",
+        "saved-handoff",
+        "bounded-result",
+        "rule-audit"
+      ],
+      "freshness": {
+        "asOf": "2026-09-27",
+        "revalidateWhen": "Source versions, experimental context, endpoint behavior, query scope or presentation intent changes."
+      },
+      "validation": "candidate-not-generalized",
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    }
+  ]
+}

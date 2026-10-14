@@ -6,6 +6,7 @@ This directory holds a small queue of material work that is ready, active, or de
 
 | Task | Status | Outcome sought | Exact next action |
 | --- | --- | --- | --- |
+| [Scientific checkpoint runtime debugging](checkpoint-runtime-debugging.md) | Fixes delivered; provider diagnostics reconciled | I1–I3/I5 fixed; I4 provider absence diagnosed, P1 deferred. | I1–I3/I5 delivered in 485cb27; preserve existing sessions. Provider integration and performance work remain separate. |
 | [Large resources and durable artifacts](large-resource-artifacts.md) | Implemented; acceptance acquisition verified | Disk-backed handles, bounded computation and durable local artifact handoff. | Restart existing Desktop broker for new APIs; viewer playback awaits independent workspace-root binding repair. |
 | [Scoped data bridge](scoped-data-bridge.md) | E4 semantic round trips verified | Three scoped model runs returned correct findings into owner state; no-relay audit remains partial. | E5 bounded scale/recovery remains unrun. |
 | [Portable MCP startup](portable-mcp-startup.md) | Per-checkout setup | Derive Node and checkout paths for another machine; preserve approvals. | Run setup and verify live activation on the laptop. |

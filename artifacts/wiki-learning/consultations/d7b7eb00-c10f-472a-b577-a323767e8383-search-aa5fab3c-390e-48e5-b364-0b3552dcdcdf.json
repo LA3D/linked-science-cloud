@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "d7b7eb00-c10f-472a-b577-a323767e8383",
+  "recordedAt": "2026-09-24T18:17:34.783Z",
+  "mode": "on",
+  "querySha256": "69250ea16fabb0e5c0ed78146fa930ac8a20fb66c989fe87ecfbf2369fa6656e",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "registry-crosswalk-lower-bounds",
+      "title": "Treat registry overlap as a verified lower bound when crosswalks are incomplete",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "registry",
+        "crosswalk"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "wikidata-service-crosswalk",
+      "title": "Discover candidate scientific services through Wikidata relationships",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "service",
+        "crosswalk"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

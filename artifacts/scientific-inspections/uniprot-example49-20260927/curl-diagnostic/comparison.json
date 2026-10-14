@@ -1,0 +1,98 @@
+[
+  {
+    "name": "bgee-coordinator",
+    "httpStatus": 500,
+    "curlExitCode": 0,
+    "seconds": 0.410951,
+    "redirectCount": 0,
+    "effectiveUrl": "https://www.bgee.org/sparql/?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT+DISTINCT+%3fchebi+%3freaction+%3fprotein+%3fensemblGene+%3fanatomicEntity+%3fanatomicEntityLabel+WHERE+%7b%0a+SERVICE+%3chttps%3a%2f%2fsparql.uniprot.org%2fsparql%3e+%7b%0a+VALUES+%3fprotein+%7b%3chttp%3a%2f%2fpurl.uniprot.org%2funiprot%2fP22680%3e%7d%0a+%3fprotein+up%3aorganism+taxon%3a9606%3b+up%3aannotation+%3fa%3b+rdfs%3aseeAlso%2fup%3atranscribedFrom+%3fensemblGeneVersioned+.%0a+%3fa+a+up%3aCatalytic_Activity_Annotation%3b+up%3acatalyticActivity%2fup%3acatalyzedReaction+%3freaction+.%0a+BIND%28IRI%28REPLACE%28STR%28%3fensemblGeneVersioned%29%2c+%22%5b.%5d%5b0-9%5d%2b%24%22%2c+%22%22%29%29+AS+%3fensemblGene%29%0a+%7d%0a+SERVICE+%3chttps%3a%2f%2fsparql.rhea-db.org%2fsparql%3e+%7b%0a+VALUES+%3freaction+%7b%3chttp%3a%2f%2frdf.rhea-db.org%2f21812%3e%7d%0a+%3freaction+rdfs%3asubClassOf+rh%3aReaction%3b+rh%3aequation+%3fequation%3b+rh%3aside%2frh%3acontains%2frh%3acompound%2frh%3achebi+%3fchebi+.%0a+%3fchebi+rdfs%3asubClassOf%2a+CHEBI%3a16113+.%0a+%7d%0a+%7b%0a+VALUES+%3fensemblGene+%7b%3chttp%3a%2f%2frdf.ebi.ac.uk%2fresource%2fensembl%2fENSG00000167910%3e%7d%0a+%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene%3b+genex%3aisExpressedIn+%3fanatomicEntity+.%0a+%3fanatomicEntity+rdfs%3alabel+%3fanatomicEntityLabel+.%0a+%7d%0a%7d%0a&format=json",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-coordinator-body.txt",
+    "rawBodyBytes": 1531,
+    "rawBodySha256": "600b05390450d8686e4204a55825f0a3dc83b6650b6635b350c49da264249d4f",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-coordinator-headers.txt"
+  },
+  {
+    "name": "bgee-service-access-noformat",
+    "httpStatus": 400,
+    "curlExitCode": 0,
+    "seconds": 0.4961,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql/?query=SELECT+%3fok+WHERE+%7b+SERVICE+%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b+BIND%281+AS+%3fok%29+%7d+%7d%0a",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-access-noformat-body.txt",
+    "rawBodyBytes": 0,
+    "rawBodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-access-noformat-headers.txt"
+  },
+  {
+    "name": "bgee-service-real-pattern-noformat",
+    "httpStatus": 400,
+    "curlExitCode": 0,
+    "seconds": 0.643331,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql/?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT+%3fentity+WHERE+%7b+SERVICE+%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b+VALUES+%3fensemblGene+%7b%3chttp%3a%2f%2frdf.ebi.ac.uk%2fresource%2fensembl%2fENSG00000180316%3e%7d+%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene%3b+genex%3aisExpressedIn+%3fentity+.+%7d+%7d%0a",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-real-pattern-noformat-body.txt",
+    "rawBodyBytes": 0,
+    "rawBodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-real-pattern-noformat-headers.txt"
+  },
+  {
+    "name": "bounded-service",
+    "httpStatus": 400,
+    "curlExitCode": 0,
+    "seconds": 0.507158,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT+%3fentity+WHERE+%7b+SERVICE+%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b+VALUES+%3fensemblGene+%7b%3chttp%3a%2f%2frdf.ebi.ac.uk%2fresource%2fensembl%2fENSG00000180316%3e%7d+%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene%3b+genex%3aisExpressedIn+%3fentity+.+%7d+%7d%0a&format=json",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bounded-service-body.txt",
+    "rawBodyBytes": 0,
+    "rawBodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bounded-service-headers.txt"
+  },
+  {
+    "name": "direct-bgee",
+    "httpStatus": 200,
+    "curlExitCode": 0,
+    "seconds": 0.800059,
+    "redirectCount": 0,
+    "effectiveUrl": "https://www.bgee.org/sparql/?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT+%3fgene+%3fensemblGene+%3fanatomicEntity+%3fanatomicEntityLabel+WHERE+%7b+VALUES+%3fensemblGene+%7b%3chttp%3a%2f%2frdf.ebi.ac.uk%2fresource%2fensembl%2fENSG00000180316%3e+%3chttp%3a%2f%2frdf.ebi.ac.uk%2fresource%2fensembl%2fENSG00000180316.13%3e%7d+%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene%3b+genex%3aisExpressedIn+%3fanatomicEntity+.+%3fanatomicEntity+rdfs%3alabel+%3fanatomicEntityLabel+.+%7d%0a&format=json",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/direct-bgee-body.txt",
+    "rawBodyBytes": 92384,
+    "rawBodySha256": "f3ade063a8a01294f2675b5ff094155288c4f491b1c410c4f92ed0069ba0dd45",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/direct-bgee-headers.txt"
+  },
+  {
+    "name": "minimal-service",
+    "httpStatus": 400,
+    "curlExitCode": 0,
+    "seconds": 0.555887,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql?query=SELECT+%3fok+WHERE+%7b+SERVICE+%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b+BIND%281+AS+%3fok%29+%7d+%7d%0a&format=json",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/minimal-service-body.txt",
+    "rawBodyBytes": 0,
+    "rawBodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/minimal-service-headers.txt"
+  },
+  {
+    "name": "original",
+    "httpStatus": 0,
+    "curlExitCode": 6,
+    "seconds": 0.001389,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql/?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT%0a++DISTINCT%0a++++%3fchebi%0a++++%3freaction%0a++++%3fprotein+%3fensemblGene%0a++++%3fanatomicEntityLabel%0a++++%3fanatomicEntity%0aWHERE+%7b%0a++SERVICE+%3chttps%3a%2f%2fsparql.rhea-db.org%2fsparql%3e+%7b%0a++++%3freaction+rdfs%3asubClassOf+rh%3aReaction+.%0a++++%3freaction+rh%3aequation+%3freactionEquation+.%0a++++%3freaction+rh%3aside+%3freactionSide+.%0a++++%3freactionSide+rh%3acontains+%3fparticipant+.%0a++++%3fparticipant+rh%3acompound+%3fcompound+.%0a++++%3fcompound+rh%3achebi+%3fchebi+.%0a++++%3fchebi+rdfs%3asubClassOf%2a+CHEBI%3a52639%0a%7d%0a++%3fprotein+up%3aorganism+taxon%3a9606+.%0a++%3fprotein+up%3aannotation+%3fa+.%0a++%3fa+a+up%3aCatalytic_Activity_Annotation+.%0a++%3fa+up%3acatalyticActivity+%3fca+.%0a++%3fca+up%3acatalyzedReaction+%3freaction+.%0a++%3fprotein+rdfs%3aseeAlso+%2f+up%3atranscribedFrom+%3fensemblGene+.%0a++SERVICE++%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b%0a++++%3fgene+genex%3aisExpressedIn+%3fanatomicEntity+.%0a++++%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene+.%0a++++%3fanatomicEntity+rdfs%3alabel+%3fanatomicEntityLabel+.%0a++%7d%0a%7d",
+    "rawBodyPath": null,
+    "rawBodyBytes": null,
+    "rawBodySha256": null,
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-headers.txt"
+  },
+  {
+    "name": "original-network",
+    "httpStatus": 400,
+    "curlExitCode": 0,
+    "seconds": 1.259029,
+    "redirectCount": 0,
+    "effectiveUrl": "https://sparql.uniprot.org/sparql/?query=PREFIX+CHEBI%3a+%3chttp%3a%2f%2fpurl.obolibrary.org%2fobo%2fCHEBI_%3e%0aPREFIX+genex%3a+%3chttp%3a%2f%2fpurl.org%2fgenex%23%3e%0aPREFIX+lscr%3a+%3chttp%3a%2f%2fpurl.org%2flscr%23%3e%0aPREFIX+rdfs%3a+%3chttp%3a%2f%2fwww.w3.org%2f2000%2f01%2frdf-schema%23%3e%0aPREFIX+rh%3a+%3chttp%3a%2f%2frdf.rhea-db.org%2f%3e%0aPREFIX+taxon%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2ftaxonomy%2f%3e%0aPREFIX+up%3a+%3chttp%3a%2f%2fpurl.uniprot.org%2fcore%2f%3e%0aSELECT%0a++DISTINCT%0a++++%3fchebi%0a++++%3freaction%0a++++%3fprotein+%3fensemblGene%0a++++%3fanatomicEntityLabel%0a++++%3fanatomicEntity%0aWHERE+%7b%0a++SERVICE+%3chttps%3a%2f%2fsparql.rhea-db.org%2fsparql%3e+%7b%0a++++%3freaction+rdfs%3asubClassOf+rh%3aReaction+.%0a++++%3freaction+rh%3aequation+%3freactionEquation+.%0a++++%3freaction+rh%3aside+%3freactionSide+.%0a++++%3freactionSide+rh%3acontains+%3fparticipant+.%0a++++%3fparticipant+rh%3acompound+%3fcompound+.%0a++++%3fcompound+rh%3achebi+%3fchebi+.%0a++++%3fchebi+rdfs%3asubClassOf%2a+CHEBI%3a52639%0a%7d%0a++%3fprotein+up%3aorganism+taxon%3a9606+.%0a++%3fprotein+up%3aannotation+%3fa+.%0a++%3fa+a+up%3aCatalytic_Activity_Annotation+.%0a++%3fa+up%3acatalyticActivity+%3fca+.%0a++%3fca+up%3acatalyzedReaction+%3freaction+.%0a++%3fprotein+rdfs%3aseeAlso+%2f+up%3atranscribedFrom+%3fensemblGene+.%0a++SERVICE++%3chttps%3a%2f%2fwww.bgee.org%2fsparql%2f%3e+%7b%0a++++%3fgene+genex%3aisExpressedIn+%3fanatomicEntity+.%0a++++%3fgene+lscr%3axrefEnsemblGene+%3fensemblGene+.%0a++++%3fanatomicEntity+rdfs%3alabel+%3fanatomicEntityLabel+.%0a++%7d%0a%7d",
+    "rawBodyPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-body.txt",
+    "rawBodyBytes": 90112,
+    "rawBodySha256": "2779f465b42cb571560c354bcaa1f56312ba00dda6b5cfc857eeaab811a48877",
+    "headersPath": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-headers.txt"
+  }
+]

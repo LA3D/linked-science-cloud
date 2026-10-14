@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "22e8ac33-7fdc-46b2-a2ce-a645244f5023",
+  "recordedAt": "2026-09-30T17:35:17.256Z",
+  "mode": "on",
+  "querySha256": "341eb58e75aaa668dcb1071de1a0388ddb752c7cd19f7b9090356ebdeb75bc7c",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "pubchem-ontology-egfr-20260921",
+      "title": "PubChem ontology and EGFR evidence snapshot (2026-09-21)",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 7,
+      "matchedTerms": [
+        "pubchem",
+        "qlever",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

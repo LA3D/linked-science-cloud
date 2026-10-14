@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "161c639f-e7df-424c-8816-2560000d9ba3",
+  "recordedAt": "2026-09-30T12:07:33.920Z",
+  "assessment": "unknown",
+  "note": "Consulted saved-demo guidance; preserved historical versus freshly executed distinctions. Incremental benefit not measured.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "saved-scientific-demo-handoff"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

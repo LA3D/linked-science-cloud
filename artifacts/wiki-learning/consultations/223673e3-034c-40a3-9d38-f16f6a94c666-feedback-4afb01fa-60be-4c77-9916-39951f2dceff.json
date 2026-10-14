@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "223673e3-034c-40a3-9d38-f16f6a94c666",
+  "recordedAt": "2026-09-25T10:52:27.561Z",
+  "assessment": "unknown",
+  "note": "Consulted proposed cross-reference guidance and preserved organism, isoform, relationship and assay qualifications. No controlled attribution of benefit was attempted.",
+  "evidence": [],
+  "consultedPatternIds": [
+    "protein-assay-crosswalk-context"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

@@ -1,0 +1,1 @@
+PREFIX owl:<http://www.w3.org/2002/07/owl#> PREFIX dct:<http://purl.org/dc/terms/> SELECT ?s ?p ?v WHERE { VALUES ?s { <http://rdf.ebi.ac.uk/resource/chembl> <http://rdf.ebi.ac.uk/dataset/chembl> } VALUES ?p {owl:versionInfo dct:hasVersion dct:issued} ?s ?p ?v }

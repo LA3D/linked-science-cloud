@@ -1,0 +1,171 @@
+{
+  "name": "protein-example-label",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT ?protein ?name WHERE { VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>} ?protein up:recommendedName/up:fullName ?name . }",
+  "startedAt": "2026-09-27T13:13:48.323Z",
+  "elapsedMs": 470,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-onPTHi/content/protein-example-label.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-onPTHi/content/receipt.json",
+    "bytes": 354,
+    "sha256": "7f16c38110e4c54ce9861fcd993dcb36912b1944324204cfdd75428eb0f0788c",
+    "createdAt": "2026-09-27T13:13:48.779Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "ed15c9763aa37f03bf426e766289202413735e16d5f851fa855e2a19a9d6bd81",
+        "responseSha256": "7f16c38110e4c54ce9861fcd993dcb36912b1944324204cfdd75428eb0f0788c",
+        "bytes": 354,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "354",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:13:48.324Z",
+        "finishedAt": "2026-09-27T13:13:48.763Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-90c71fe2386a74fd9caeabbe",
+        "startedAt": "2026-09-27T13:13:48.324Z",
+        "finishedAt": "2026-09-27T13:13:48.763Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 354,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "ed15c9763aa37f03bf426e766289202413735e16d5f851fa855e2a19a9d6bd81",
+            "responseSha256": "7f16c38110e4c54ce9861fcd993dcb36912b1944324204cfdd75428eb0f0788c",
+            "bytes": 354,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "354",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fprotein%20%3Fname%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP22680%3E%7D%20%3Fprotein%20up%3ArecommendedName%2Fup%3AfullName%20%3Fname%20.%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:13:48.324Z",
+            "finishedAt": "2026-09-27T13:13:48.763Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 354,
+          "totalBytes": 354,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645141241856,
+            "reserveBytes": 268435456,
+            "retainedBytes": 872823,
+            "availableBytes": 644872806400
+          },
+          "elapsedMs": 439,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 1
+}

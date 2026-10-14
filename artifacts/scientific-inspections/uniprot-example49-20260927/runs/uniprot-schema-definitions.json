@@ -1,0 +1,171 @@
+{
+  "name": "uniprot-schema-definitions",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT ?term ?label ?comment WHERE { VALUES ?term {up:catalyzedReaction up:catalyticActivity up:transcribedFrom} OPTIONAL {?term rdfs:label ?label} OPTIONAL {?term rdfs:comment ?comment} }",
+  "startedAt": "2026-09-27T13:13:48.793Z",
+  "elapsedMs": 171,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-btXKwW/content/uniprot-schema-definitions.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-btXKwW/content/receipt.json",
+    "bytes": 856,
+    "sha256": "e027971122016072a6c46c706bc729da9ae6b74fb2e8ed622ffe17342ebde6c6",
+    "createdAt": "2026-09-27T13:13:48.953Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "810a2f2c4cc3c6898bbdb653abcd97b7d4865f34e75f3220040fae1ed470a077",
+        "responseSha256": "e027971122016072a6c46c706bc729da9ae6b74fb2e8ed622ffe17342ebde6c6",
+        "bytes": 856,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "856",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:13:48.794Z",
+        "finishedAt": "2026-09-27T13:13:48.940Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-c1b9b3828ba50f3cfc3b3d0a",
+        "startedAt": "2026-09-27T13:13:48.793Z",
+        "finishedAt": "2026-09-27T13:13:48.940Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 856,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "810a2f2c4cc3c6898bbdb653abcd97b7d4865f34e75f3220040fae1ed470a077",
+            "responseSha256": "e027971122016072a6c46c706bc729da9ae6b74fb2e8ed622ffe17342ebde6c6",
+            "bytes": 856,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "856",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20%3Fterm%20%3Flabel%20%3Fcomment%20WHERE%20%7B%20VALUES%20%3Fterm%20%7Bup%3AcatalyzedReaction%20up%3AcatalyticActivity%20up%3AtranscribedFrom%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Alabel%20%3Flabel%7D%20OPTIONAL%20%7B%3Fterm%20rdfs%3Acomment%20%3Fcomment%7D%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:13:48.794Z",
+            "finishedAt": "2026-09-27T13:13:48.940Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 856,
+          "totalBytes": 856,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645141217280,
+            "reserveBytes": 268435456,
+            "retainedBytes": 873177,
+            "availableBytes": 644872781824
+          },
+          "elapsedMs": 147,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 3
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "7a1a06ef-3a52-41e3-8057-21f25c60f25a",
+  "recordedAt": "2026-10-01T17:12:44.807Z",
+  "mode": "on",
+  "querySha256": "8f0c8e5c688335a67fc285c40f40985102df0fae9fcda8b6ed9aeffb64fd3211",
+  "revision": "0d15ee85f7ff899d53aeba25ec44fe212201fc7266e7b612b0083004e562466a",
+  "candidates": [
+    {
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 2,
+      "matchedTerms": [
+        "local",
+        "rdf"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

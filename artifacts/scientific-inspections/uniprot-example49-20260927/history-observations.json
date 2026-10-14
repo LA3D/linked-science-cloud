@@ -1,0 +1,718 @@
+[
+  {
+    "name": "bgee-tutorial",
+    "url": "https://www.bgee.org/support/tutorial-query-bgee-knowledge-graph-sparql",
+    "status": "failed",
+    "elapsedMs": 80,
+    "error": {
+      "code": "MEDIATOR_HTTP_ERROR",
+      "message": "Linked Data request failed with status 403",
+      "receipt": {
+        "status": "failed",
+        "stage": "resource-read",
+        "code": "MEDIATOR_HTTP_ERROR",
+        "operationId": "op-000025",
+        "traversalId": "traversal-ca7bd1d30230c6506518bc4c",
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "aborted",
+          "traversalId": "traversal-ca7bd1d30230c6506518bc4c",
+          "startedAt": "2026-09-27T13:23:23.433Z",
+          "finishedAt": "2026-09-27T13:23:23.512Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5553,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "http-error",
+              "requestedUrl": "https://www.bgee.org/support/tutorial-query-bgee-knowledge-graph-sparql",
+              "finalUrl": "https://www.bgee.org/support/tutorial-query-bgee-knowledge-graph-sparql",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 403,
+              "requestSha256": "04cd5dac5d6c66dfaa57dab6d656dca5143989e9a115befa33036d895ec8aafc",
+              "responseSha256": "d1d2ed3231d32db610bd0e5254cbd2046f8186eb613ebd32d70bb71cb9f9984a",
+              "bytes": 5553,
+              "mediaType": "text/html",
+              "headers": {
+                "content-length": "5553",
+                "content-type": "text/html; charset=UTF-8"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://www.bgee.org/support/tutorial-query-bgee-knowledge-graph-sparql",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:23:23.433Z",
+              "finishedAt": "2026-09-27T13:23:23.512Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 5553,
+            "totalBytes": 5553,
+            "state": "failed",
+            "capacity": {
+              "freeBytes": 645122953216,
+              "reserveBytes": 268435456,
+              "retainedBytes": 874033,
+              "availableBytes": 644854517760
+            },
+            "elapsedMs": 79,
+            "maxBytes": 1000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag",
+          "failure": {
+            "code": "resource-failed"
+          }
+        },
+        "attempt": {
+          "kind": "linked-science-resource-attempt",
+          "index": 25,
+          "status": "failed",
+          "operationId": "op-000025",
+          "traversalId": "traversal-ca7bd1d30230c6506518bc4c",
+          "method": "GET",
+          "url": "https://www.bgee.org/support/tutorial-query-bgee-knowledge-graph-sparql",
+          "startedAt": "2026-09-27T13:23:23.432Z",
+          "endedAt": "2026-09-27T13:23:23.512Z",
+          "durationMs": 80,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5553,
+            "retries": 0
+          },
+          "failureCode": "MEDIATOR_HTTP_ERROR",
+          "hiddenRetries": 0
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "cause": "Error: Linked Data request failed with status 403"
+      }
+    }
+  },
+  {
+    "name": "bgee-news",
+    "url": "https://www.bgee.org/about/news",
+    "status": "failed",
+    "elapsedMs": 27,
+    "error": {
+      "code": "MEDIATOR_HTTP_ERROR",
+      "message": "Linked Data request failed with status 403",
+      "receipt": {
+        "status": "failed",
+        "stage": "resource-read",
+        "code": "MEDIATOR_HTTP_ERROR",
+        "operationId": "op-000026",
+        "traversalId": "traversal-69e2e0ca0a3bc4e6bf193520",
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "aborted",
+          "traversalId": "traversal-69e2e0ca0a3bc4e6bf193520",
+          "startedAt": "2026-09-27T13:23:23.513Z",
+          "finishedAt": "2026-09-27T13:23:23.539Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5369,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "http-error",
+              "requestedUrl": "https://www.bgee.org/about/news",
+              "finalUrl": "https://www.bgee.org/about/news",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 403,
+              "requestSha256": "db8adf5bda4581dcef883aa185582235d458078ac0d4d3c8b3f352eed8f3e9f6",
+              "responseSha256": "3d2db436bd2e3ab1bc4d1c5be8685d0259efbd35e9aefd07a92d71125eba247d",
+              "bytes": 5369,
+              "mediaType": "text/html",
+              "headers": {
+                "content-length": "5369",
+                "content-type": "text/html; charset=UTF-8"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://www.bgee.org/about/news",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:23:23.513Z",
+              "finishedAt": "2026-09-27T13:23:23.539Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 5369,
+            "totalBytes": 5369,
+            "state": "failed",
+            "capacity": {
+              "freeBytes": 645122977792,
+              "reserveBytes": 268435456,
+              "retainedBytes": 874033,
+              "availableBytes": 644854542336
+            },
+            "elapsedMs": 26,
+            "maxBytes": 1000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag",
+          "failure": {
+            "code": "resource-failed"
+          }
+        },
+        "attempt": {
+          "kind": "linked-science-resource-attempt",
+          "index": 26,
+          "status": "failed",
+          "operationId": "op-000026",
+          "traversalId": "traversal-69e2e0ca0a3bc4e6bf193520",
+          "method": "GET",
+          "url": "https://www.bgee.org/about/news",
+          "startedAt": "2026-09-27T13:23:23.513Z",
+          "endedAt": "2026-09-27T13:23:23.539Z",
+          "durationMs": 26,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 5369,
+            "retries": 0
+          },
+          "failureCode": "MEDIATOR_HTTP_ERROR",
+          "hiddenRetries": 0
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "cause": "Error: Linked Data request failed with status 403"
+      }
+    }
+  },
+  {
+    "name": "bgee-repository",
+    "url": "https://api.github.com/repos/BgeeDB/bgee_apps",
+    "status": "success",
+    "artifact": {
+      "kind": "linked-science-resource-artifact",
+      "version": "1.0.0",
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-MKmGE6/content/bgee-repository.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-MKmGE6/content/receipt.json",
+      "bytes": 6160,
+      "sha256": "1d0a51e87e01b711e8b50e7df9c85443fbad206b1d31f49ada28031a4cb24cf1",
+      "createdAt": "2026-09-27T13:23:23.930Z",
+      "durability": "independent-of-kernel-and-handle",
+      "source": {
+        "exchange": {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+          "finalUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+          "redirected": false,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "cb67f5087f0fcc60f66dc32fe8cda68f192d8ca53233b791b19e37dceb0425c0",
+          "responseSha256": "1d0a51e87e01b711e8b50e7df9c85443fbad206b1d31f49ada28031a4cb24cf1",
+          "bytes": 6160,
+          "mediaType": "application/json",
+          "headers": {
+            "content-length": "6160",
+            "content-type": "application/json; charset=utf-8",
+            "etag": "W/\"289098650e9a3161c269b83360100ab34308b8fd37bea34248bbd412e289b2c6\"",
+            "last-modified": "Wed, 18 Feb 2026 14:45:19 GMT",
+            "vary": "Accept,Accept-Encoding, Accept, X-Requested-With"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-27T13:23:23.539Z",
+          "finishedAt": "2026-09-27T13:23:23.924Z",
+          "retries": 0
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-944197c124639b488f8261be",
+          "startedAt": "2026-09-27T13:23:23.539Z",
+          "finishedAt": "2026-09-27T13:23:23.924Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 6160,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+              "finalUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "cb67f5087f0fcc60f66dc32fe8cda68f192d8ca53233b791b19e37dceb0425c0",
+              "responseSha256": "1d0a51e87e01b711e8b50e7df9c85443fbad206b1d31f49ada28031a4cb24cf1",
+              "bytes": 6160,
+              "mediaType": "application/json",
+              "headers": {
+                "content-length": "6160",
+                "content-type": "application/json; charset=utf-8",
+                "etag": "W/\"289098650e9a3161c269b83360100ab34308b8fd37bea34248bbd412e289b2c6\"",
+                "last-modified": "Wed, 18 Feb 2026 14:45:19 GMT",
+                "vary": "Accept,Accept-Encoding, Accept, X-Requested-With"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://api.github.com/repos/BgeeDB/bgee_apps",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:23:23.539Z",
+              "finishedAt": "2026-09-27T13:23:23.924Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 6160,
+            "totalBytes": 6160,
+            "state": "complete",
+            "capacity": {
+              "freeBytes": 645122977792,
+              "reserveBytes": 268435456,
+              "retainedBytes": 874033,
+              "availableBytes": 644854542336
+            },
+            "elapsedMs": 385,
+            "maxBytes": 1000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        }
+      }
+    },
+    "elapsedMs": 396
+  },
+  {
+    "name": "bgee-recent-commits",
+    "url": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+    "status": "success",
+    "artifact": {
+      "kind": "linked-science-resource-artifact",
+      "version": "1.0.0",
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-rnh6oF/content/bgee-recent-commits.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-rnh6oF/content/receipt.json",
+      "bytes": 33422,
+      "sha256": "8377905cbd48194d60b480ef5d599dc271238c726370f67f1cfa567d3d88ebdb",
+      "createdAt": "2026-09-27T13:23:24.230Z",
+      "durability": "independent-of-kernel-and-handle",
+      "source": {
+        "exchange": {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+          "finalUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+          "redirected": false,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "c3c064dfb7c9a6d57bffdf9c6a5a79a7c290048694f0a6f1986addcb38dcd5d5",
+          "responseSha256": "8377905cbd48194d60b480ef5d599dc271238c726370f67f1cfa567d3d88ebdb",
+          "bytes": 33422,
+          "mediaType": "application/json",
+          "headers": {
+            "content-type": "application/json; charset=utf-8",
+            "etag": "W/\"ff10ba7591b130f71b7ac58cd86a0e762584dc3c28f9d8a06c90c34240cc30f7\"",
+            "last-modified": "Wed, 18 Feb 2026 14:39:48 GMT",
+            "link": "<https://api.github.com/repositories/267027132/commits?per_page=10&page=2>; rel=\"next\", <https://api.github.com/repositories/267027132/commits?per_page=10&page=493>; rel=\"last\"",
+            "vary": "Accept,Accept-Encoding, Accept, X-Requested-With"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+            "links": [
+              {
+                "target": "https://api.github.com/repositories/267027132/commits?per_page=10&page=2",
+                "relations": [
+                  "next"
+                ]
+              },
+              {
+                "target": "https://api.github.com/repositories/267027132/commits?per_page=10&page=493",
+                "relations": [
+                  "last"
+                ]
+              }
+            ],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-27T13:23:23.936Z",
+          "finishedAt": "2026-09-27T13:23:24.224Z",
+          "retries": 0
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-6d1247bfbd53665401751262",
+          "startedAt": "2026-09-27T13:23:23.935Z",
+          "finishedAt": "2026-09-27T13:23:24.224Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 1000000,
+            "maxTotalBytes": 1000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 33422,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+              "finalUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "c3c064dfb7c9a6d57bffdf9c6a5a79a7c290048694f0a6f1986addcb38dcd5d5",
+              "responseSha256": "8377905cbd48194d60b480ef5d599dc271238c726370f67f1cfa567d3d88ebdb",
+              "bytes": 33422,
+              "mediaType": "application/json",
+              "headers": {
+                "content-type": "application/json; charset=utf-8",
+                "etag": "W/\"ff10ba7591b130f71b7ac58cd86a0e762584dc3c28f9d8a06c90c34240cc30f7\"",
+                "last-modified": "Wed, 18 Feb 2026 14:39:48 GMT",
+                "link": "<https://api.github.com/repositories/267027132/commits?per_page=10&page=2>; rel=\"next\", <https://api.github.com/repositories/267027132/commits?per_page=10&page=493>; rel=\"last\"",
+                "vary": "Accept,Accept-Encoding, Accept, X-Requested-With"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://api.github.com/repos/BgeeDB/bgee_apps/commits?per_page=10",
+                "links": [
+                  {
+                    "target": "https://api.github.com/repositories/267027132/commits?per_page=10&page=2",
+                    "relations": [
+                      "next"
+                    ]
+                  },
+                  {
+                    "target": "https://api.github.com/repositories/267027132/commits?per_page=10&page=493",
+                    "relations": [
+                      "last"
+                    ]
+                  }
+                ],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:23:23.936Z",
+              "finishedAt": "2026-09-27T13:23:24.224Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 33422,
+            "totalBytes": null,
+            "state": "complete",
+            "capacity": {
+              "freeBytes": 645122945024,
+              "reserveBytes": 268435456,
+              "retainedBytes": 880193,
+              "availableBytes": 644854509568
+            },
+            "elapsedMs": 289,
+            "maxBytes": 1000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        }
+      }
+    },
+    "elapsedMs": 300
+  }
+]

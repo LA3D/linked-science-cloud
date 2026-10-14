@@ -1,0 +1,11 @@
+{
+  "resourceHashesVerified": 2,
+  "publications": 3,
+  "openFullTexts": 1,
+  "chemicalAnchorRows": 1,
+  "distinctCausalEdges": 4,
+  "chainRows": 5,
+  "ontologyRows": 4,
+  "interpretation": "Main chain ends at renal injury; autophagy branch support qualified.",
+  "fullRegistryValidation": "pre-existing unregistered docs/experiments/scientific-trajectory-evidence.md"
+}

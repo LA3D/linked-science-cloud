@@ -1,0 +1,1 @@
+PREFIX app: <urn:fabry-demo:> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?mechanism ?label ?evidence ?reference ?evidenceSource WHERE { ?mechanism a app:KidneyCellEvidenceSelectionCandidate; rdfs:label ?label; app:hasEvidence ?evidence . ?evidence app:reference ?reference; app:supports "SUPPORT"; app:evidenceSource ?evidenceSource . }

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "42609b75-cefe-43f6-904a-64251edbad42",
+  "recordedAt": "2026-09-24T18:40:18.679Z",
+  "mode": "on",
+  "querySha256": "ec76a33204230aabcf9e878d28fac67fff7361e9dc62d465c556d3ac94013153",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "pubchem-ontology-egfr-20260921",
+      "title": "PubChem ontology and EGFR evidence snapshot (2026-09-21)",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 6,
+      "matchedTerms": [
+        "pubchem",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "schema",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "schema",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 1,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

@@ -1,0 +1,171 @@
+{
+  "name": "fabry-catalytic-links",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT DISTINCT ?protein ?ca ?reaction ?p ?o WHERE { VALUES ?protein {<http://purl.uniprot.org/uniprot/P06280>} ?protein up:organism taxon:9606; up:annotation/up:catalyticActivity ?ca . ?ca up:catalyzedReaction ?reaction; ?p ?o . }",
+  "startedAt": "2026-09-27T13:28:51.035Z",
+  "elapsedMs": 783,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-zRzR4H/content/fabry-catalytic-links.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-zRzR4H/content/receipt.json",
+    "bytes": 2626,
+    "sha256": "bf890ddd82894d5bcb38e41023a8487fbf7d753810da31e5fd1a3b0ef03c168d",
+    "createdAt": "2026-09-27T13:28:51.801Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "7ef18474ef1566ffcec36d3cb7b992ed8bcd66685e744d0cc6c298434fb06162",
+        "responseSha256": "bf890ddd82894d5bcb38e41023a8487fbf7d753810da31e5fd1a3b0ef03c168d",
+        "bytes": 2626,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "2626",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:28:51.035Z",
+        "finishedAt": "2026-09-27T13:28:51.783Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-e10955d72f0b63532d10f6f2",
+        "startedAt": "2026-09-27T13:28:51.035Z",
+        "finishedAt": "2026-09-27T13:28:51.783Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 2626,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "7ef18474ef1566ffcec36d3cb7b992ed8bcd66685e744d0cc6c298434fb06162",
+            "responseSha256": "bf890ddd82894d5bcb38e41023a8487fbf7d753810da31e5fd1a3b0ef03c168d",
+            "bytes": 2626,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "2626",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20CHEBI%3A%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_%3E%0APREFIX%20genex%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23%3E%0APREFIX%20lscr%3A%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Fca%20%3Freaction%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fprotein%20%7B%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%7D%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%2Fup%3AcatalyticActivity%20%3Fca%20.%20%3Fca%20up%3AcatalyzedReaction%20%3Freaction%3B%20%3Fp%20%3Fo%20.%20%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:28:51.035Z",
+            "finishedAt": "2026-09-27T13:28:51.783Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 2626,
+          "totalBytes": 2626,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645120815104,
+            "reserveBytes": 268435456,
+            "retainedBytes": 928447,
+            "availableBytes": 644852379648
+          },
+          "elapsedMs": 748,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 4
+}

@@ -1,0 +1,1564 @@
+{
+  "anchor": {
+    "columns": [
+      "mechanism",
+      "name",
+      "chemical"
+    ],
+    "total": 1,
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Lysosomal%20Gb3%20and%20lyso-Gb3%20accumulation"
+        },
+        "name": {
+          "termType": "Literal",
+          "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "chemical": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000005",
+      "querySha256": "8894285ed1d9230a15d32d8c900c9ca71c211b569d0f9c355857fe53c819e943",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "chain": {
+    "columns": [
+      "e",
+      "sourceName",
+      "edge",
+      "targetName",
+      "type",
+      "description",
+      "intermediate",
+      "reference",
+      "evidenceSource",
+      "snippet"
+    ],
+    "total": 5,
+    "rows": [
+      {
+        "e": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0%2Fevidence%2F0"
+        },
+        "sourceName": {
+          "termType": "Literal",
+          "value": "Alpha-galactosidase A deficiency",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "edge": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0"
+        },
+        "targetName": {
+          "termType": "Literal",
+          "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "DIRECT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "Reduced alpha-galactosidase A activity prevents normal lysosomal clearance of Gb3 and related glycosphingolipids.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "intermediate": null,
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:36334424",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "OTHER",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "Fabry disease (FD) is a rare lysosomal storage disorder, characterized by a reduction in α-galactosidase A enzyme activity and the progressive accumulation of globotriaosylceramide (GL3) and its metabolites in the cells of various organs.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "e": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2%2Fevidence%2F0"
+        },
+        "sourceName": {
+          "termType": "Literal",
+          "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "edge": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2"
+        },
+        "targetName": {
+          "termType": "Literal",
+          "value": "Tissue-specific glycosphingolipid storage",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "DIRECT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "The shared lysosomal storage lesion occurs in multiple organ systems and must be interpreted in local tissue contexts.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "intermediate": null,
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:36334424",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "OTHER",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "Accumulation of GL3 in the kidney, heart, vasculature, neurons, skin, gastrointestinal tract and auditory system correlates to cellular damage and irreversible organ damage",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "e": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0%2Fevidence%2F0"
+        },
+        "sourceName": {
+          "termType": "Literal",
+          "value": "Tissue-specific glycosphingolipid storage",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "edge": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0"
+        },
+        "targetName": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "DIRECT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "Kidney and podocyte substrate accumulation defines the renal branch and is the context for renal GL-3 tissue readouts.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "intermediate": null,
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:27129690",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "HUMAN_CLINICAL",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "e": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+        },
+        "sourceName": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "edge": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+        },
+        "targetName": {
+          "termType": "Literal",
+          "value": "Autophagy impairment",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "INDIRECT_KNOWN_INTERMEDIATES",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "intermediate": {
+          "termType": "Literal",
+          "value": "lysosomal dysfunction in GLA-edited podocytes",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:39100494",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "IN_VITRO",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "e": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+        },
+        "sourceName": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "edge": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+        },
+        "targetName": {
+          "termType": "Literal",
+          "value": "Autophagy impairment",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "INDIRECT_KNOWN_INTERMEDIATES",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "intermediate": {
+          "termType": "Literal",
+          "value": "podocyte cellular stress response",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:39100494",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "IN_VITRO",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000007",
+      "querySha256": "fd006217e53364705fb415237e6e368af93a2d3f6228d1571932a360f6fc60cf",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "ontology": {
+    "columns": [
+      "mechanism",
+      "cell",
+      "cellLabel",
+      "cellParent",
+      "parentLabel",
+      "location",
+      "locationLabel",
+      "reference",
+      "support",
+      "snippet"
+    ],
+    "total": 4,
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+        },
+        "cell": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "cellLabel": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "cellParent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002522"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "renal filtration cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "location": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+        },
+        "locationLabel": {
+          "termType": "Literal",
+          "value": "kidney",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:27129690",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "support": {
+          "termType": "Literal",
+          "value": "SUPPORT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+        },
+        "cell": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "cellLabel": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "cellParent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002522"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "renal filtration cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "location": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+        },
+        "locationLabel": {
+          "termType": "Literal",
+          "value": "kidney",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:36334424",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "support": {
+          "termType": "Literal",
+          "value": "SUPPORT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "Damage leads to renal dysfunction and end-stage renal disease",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+        },
+        "cell": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "cellLabel": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "cellParent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000450"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of glomerular capsule",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "location": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+        },
+        "locationLabel": {
+          "termType": "Literal",
+          "value": "kidney",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:27129690",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "support": {
+          "termType": "Literal",
+          "value": "SUPPORT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+        },
+        "cell": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "cellLabel": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "cellParent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000450"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of glomerular capsule",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "location": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+        },
+        "locationLabel": {
+          "termType": "Literal",
+          "value": "kidney",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "Literal",
+          "value": "PMID:36334424",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "support": {
+          "termType": "Literal",
+          "value": "SUPPORT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "snippet": {
+          "termType": "Literal",
+          "value": "Damage leads to renal dysfunction and end-stage renal disease",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000009",
+      "querySha256": "b49b9e3d030e7dc4cf6a67ace8f12ae0468e91274ac7ff5fac18b93bb9188f83",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "exact": {
+    "columns": [
+      "m",
+      "name",
+      "cell",
+      "label"
+    ],
+    "total": 0,
+    "rows": [],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000015",
+      "querySha256": "886f24f7221d72e4b9a35fb5c96ec4250377a8dbac868c6298025db4fcb87d0b",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "expanded": {
+    "columns": [
+      "m",
+      "name",
+      "cell",
+      "label"
+    ],
+    "total": 1,
+    "rows": [
+      {
+        "m": {
+          "termType": "NamedNode",
+          "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+        },
+        "name": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "cell": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000017",
+      "querySha256": "b15dd9a85e60c20fccc5c7f3707da6421d803306cca24c3240d8bcfc9b67ad62",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "path": {
+    "columns": [
+      "child",
+      "childLabel",
+      "parent",
+      "parentLabel"
+    ],
+    "total": 8,
+    "rows": [
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0000653"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "podocyte",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000450"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of glomerular capsule",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000450"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of glomerular capsule",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000510"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "kidney glomerular epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000510"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "kidney glomerular epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000746"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "glomerular cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000746"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "glomerular cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000612"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "kidney corpuscule cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000612"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "kidney corpuscule cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002584"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "renal cortical epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000612"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "kidney corpuscule cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000449"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of nephron",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002584"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "renal cortical epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002518"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "kidney epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "child": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_1000449"
+        },
+        "childLabel": {
+          "termType": "Literal",
+          "value": "epithelial cell of nephron",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "parent": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CL_0002518"
+        },
+        "parentLabel": {
+          "termType": "Literal",
+          "value": "kidney epithelial cell",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000019",
+      "querySha256": "b1fa96a175cff38a73eaf01afb6ea2a8f1dd0b574a5e03540c350adcab556ca7",
+      "sourceFingerprints": [
+        "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+        "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+        "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+        "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+      ],
+      "localOnly": true
+    }
+  },
+  "ruleEvidence": {
+    "columns": [
+      "mechanism",
+      "label",
+      "evidence",
+      "reference",
+      "evidenceSource"
+    ],
+    "total": 2,
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:renal"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidence": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:evidence0"
+        },
+        "reference": {
+          "termType": "NamedNode",
+          "value": "https://pubmed.ncbi.nlm.nih.gov/27129690/"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "HUMAN_CLINICAL",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:renal"
+        },
+        "label": {
+          "termType": "Literal",
+          "value": "Renal glycosphingolipid storage and podocyte injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "evidence": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:evidence1"
+        },
+        "reference": {
+          "termType": "NamedNode",
+          "value": "https://pubmed.ncbi.nlm.nih.gov/36334424/"
+        },
+        "evidenceSource": {
+          "termType": "Literal",
+          "value": "OTHER",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000025",
+      "querySha256": "1c65552f96c91cd5762b1072ee8af314b222c7fb6386097b0faf99cae64157dc",
+      "sourceFingerprints": [
+        "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+        "7997abbc1402448c91d3ea8b58174e79af83f1e62b52f8a79138d239ca550265"
+      ],
+      "localOnly": true
+    }
+  },
+  "controls": {
+    "columns": [
+      "mechanism",
+      "selected"
+    ],
+    "total": 3,
+    "rows": [
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:renal"
+        },
+        "selected": {
+          "termType": "Literal",
+          "value": "true",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:controlOtherOrgan"
+        },
+        "selected": {
+          "termType": "Literal",
+          "value": "false",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
+      },
+      {
+        "mechanism": {
+          "termType": "NamedNode",
+          "value": "urn:fabry-demo:controlKidneyNoCell"
+        },
+        "selected": {
+          "termType": "Literal",
+          "value": "false",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000027",
+      "querySha256": "b0dead31e09dd712fb27f1737fab016a5dceab99619f08892e5175947b1b317b",
+      "sourceFingerprints": [
+        "7997abbc1402448c91d3ea8b58174e79af83f1e62b52f8a79138d239ca550265"
+      ],
+      "localOnly": true
+    }
+  },
+  "schema": {
+    "columns": [
+      "domain",
+      "annotation",
+      "reaction",
+      "physiological"
+    ],
+    "total": 2,
+    "rows": [
+      {
+        "domain": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/core/Catalytic_Activity_Annotation"
+        },
+        "annotation": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280#SIP1B77654195D3F73D"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiological": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21113"
+        }
+      },
+      {
+        "domain": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/core/Catalytic_Activity_Annotation"
+        },
+        "annotation": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280#SIP74F5FFE78F9EF22E"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiological": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48021"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000011",
+      "querySha256": "f149990ee4f5b154f697835b73a3e244d51c37ae836943b72162742e58a3f2f2",
+      "localOnly": false
+    }
+  },
+  "chemistry": {
+    "columns": [
+      "protein",
+      "reaction",
+      "physiologicalReaction",
+      "equation",
+      "role",
+      "participant",
+      "chebi",
+      "chemicalName"
+    ],
+    "total": 8,
+    "rows": [
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_2037"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_17950"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-N-acylsphingosine",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_5513"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "D-galactopyranose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_1283"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "water",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_2214"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosylceramide",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_5513"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "D-galactopyranose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_11977"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_79208"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_1283"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "water",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "termType": "Literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "role": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "termType": "NamedNode",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_11976"
+        },
+        "chebi": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_88154"
+        },
+        "chemicalName": {
+          "termType": "Literal",
+          "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000013",
+      "querySha256": "6e41f965e1a230f6717963107a55ae24f5b4c5382717b181160bbeb8a1f8ce56",
+      "localOnly": false
+    }
+  },
+  "assay": {
+    "columns": [
+      "activity",
+      "assay",
+      "description",
+      "document",
+      "molecule",
+      "originalUnit",
+      "originalValue",
+      "protein",
+      "relation",
+      "species",
+      "target",
+      "type",
+      "unit",
+      "value"
+    ],
+    "total": 1,
+    "rows": [
+      {
+        "activity": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782"
+        },
+        "assay": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670"
+        },
+        "description": {
+          "termType": "Literal",
+          "value": "Inhibitory concentration against human alpha-galactosidase",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "document": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/document/CHEMBL1142734"
+        },
+        "molecule": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+        },
+        "originalUnit": {
+          "termType": "Literal",
+          "value": "uM",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "originalValue": {
+          "termType": "Literal",
+          "value": "0.07",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+        },
+        "protein": {
+          "termType": "NamedNode",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "relation": {
+          "termType": "Literal",
+          "value": "=",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "species": {
+          "termType": "Literal",
+          "value": "Homo sapiens",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "IC50",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "unit": {
+          "termType": "Literal",
+          "value": "nM",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "value": {
+          "termType": "Literal",
+          "value": "70.0",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+        }
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000029",
+      "querySha256": "5f78509163ea46b19538952c6105132f2e6d9106c814a1fab7255ae72426bcd3",
+      "localOnly": false
+    }
+  },
+  "pubchem": {
+    "columns": [
+      "substance",
+      "molecule",
+      "compound",
+      "descriptor",
+      "type",
+      "typeLabel",
+      "value",
+      "unit",
+      "unitLabel"
+    ],
+    "total": 2,
+    "rows": [
+      {
+        "substance": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID103329495"
+        },
+        "molecule": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+        },
+        "compound": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/CID176077_Molecular_Weight"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "http://semanticscience.org/resource/CHEMINF_000334"
+        },
+        "typeLabel": {
+          "termType": "Literal",
+          "value": "molecular weight calculated by the pubchem software library",
+          "language": "en",
+          "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        },
+        "value": {
+          "termType": "Literal",
+          "value": "163.17",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+        },
+        "unit": {
+          "termType": "NamedNode",
+          "value": "http://purl.obolibrary.org/obo/UO_0000055"
+        },
+        "unitLabel": {
+          "termType": "Literal",
+          "value": "molar mass unit",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+      },
+      {
+        "substance": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID103329495"
+        },
+        "molecule": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+        },
+        "compound": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077"
+        },
+        "descriptor": {
+          "termType": "NamedNode",
+          "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/CID176077_Molecular_Formula"
+        },
+        "type": {
+          "termType": "NamedNode",
+          "value": "http://semanticscience.org/resource/CHEMINF_000335"
+        },
+        "typeLabel": {
+          "termType": "Literal",
+          "value": "molecular formula calculated by the pubchem software library",
+          "language": "en",
+          "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        },
+        "value": {
+          "termType": "Literal",
+          "value": "C6H13NO4",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "unit": null,
+        "unitLabel": null
+      }
+    ],
+    "complete": true,
+    "provenance": {
+      "operationId": "op-000030",
+      "querySha256": "3ef03cd21479b7fa52d093a4b05f488872eb3c3f4eea6dd52d500e6c361bb312",
+      "localOnly": false
+    }
+  }
+}

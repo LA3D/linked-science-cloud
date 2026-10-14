@@ -1,0 +1,680 @@
+{
+  "kind": "linked-science-mediated-attempt-history",
+  "attempts": [
+    {
+      "kind": "linked-science-mediated-attempt",
+      "index": 12,
+      "status": "success",
+      "operationId": "op-000012",
+      "traversalId": "traversal-4894aad5f8999255e9bd9a77",
+      "queryType": "SELECT",
+      "querySha256": "d832f3f6ba5be0ee273a8e3311ae0a25f2a9887620b0e4714a7c1b5316847cd9",
+      "sources": [
+        {
+          "type": "sparql",
+          "value": "https://sparql.uniprot.org/sparql"
+        }
+      ],
+      "evidenceHandles": [],
+      "startedAt": "2026-09-25T10:43:55.969Z",
+      "endedAt": "2026-09-25T10:43:56.861Z",
+      "durationMs": 892,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 123111,
+        "retries": 0
+      },
+      "resultItems": 465,
+      "hiddenRetries": 0,
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 15,
+      "status": "success",
+      "operationId": "op-000016",
+      "traversalId": "traversal-817d430f8489fbdc49fee584",
+      "method": "GET",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71593",
+      "startedAt": "2026-09-25T10:44:13.632Z",
+      "endedAt": "2026-09-25T10:44:13.781Z",
+      "durationMs": 149,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 10375,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 14,
+      "status": "success",
+      "operationId": "op-000015",
+      "traversalId": "traversal-ad267c1edcd9fb276b957a42",
+      "method": "GET",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71552",
+      "startedAt": "2026-09-25T10:44:13.632Z",
+      "endedAt": "2026-09-25T10:44:13.824Z",
+      "durationMs": 192,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 10049,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 17,
+      "status": "success",
+      "operationId": "op-000018",
+      "traversalId": "traversal-32a1548a866bf5063ea07b4f",
+      "method": "GET",
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P35573",
+      "startedAt": "2026-09-25T10:44:13.632Z",
+      "endedAt": "2026-09-25T10:44:13.879Z",
+      "durationMs": 247,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 13779,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 13,
+      "status": "success",
+      "operationId": "op-000014",
+      "traversalId": "traversal-029a78847957540762f5c73d",
+      "method": "GET",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/8ZEQ/1",
+      "startedAt": "2026-09-25T10:44:13.632Z",
+      "endedAt": "2026-09-25T10:44:14.144Z",
+      "durationMs": 512,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 57938,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 16,
+      "status": "success",
+      "operationId": "op-000017",
+      "traversalId": "traversal-af0715b981fe86d16b15a30c",
+      "method": "GET",
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.json",
+      "startedAt": "2026-09-25T10:44:13.632Z",
+      "endedAt": "2026-09-25T10:44:14.389Z",
+      "durationMs": 757,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 67075,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-mediated-attempt",
+      "index": 18,
+      "status": "success",
+      "operationId": "op-000020",
+      "traversalId": "traversal-f73b02f2e250042511c0d121",
+      "queryType": "SELECT",
+      "querySha256": "e7b0488c214c2a08b2c84f7e788834c068d9abc1249912a0bbf99612d45e0295",
+      "sources": [
+        {
+          "type": "sparql",
+          "value": "https://sparql.uniprot.org/sparql"
+        }
+      ],
+      "evidenceHandles": [],
+      "startedAt": "2026-09-25T10:45:06.077Z",
+      "endedAt": "2026-09-25T10:45:06.627Z",
+      "durationMs": 550,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 13604,
+        "retries": 0
+      },
+      "resultItems": 37,
+      "hiddenRetries": 0,
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 21,
+      "status": "success",
+      "operationId": "op-000024",
+      "traversalId": "traversal-6165178e80ba73a7de49e4a9",
+      "method": "GET",
+      "url": "https://reactome.org/ContentService/data/query/71550",
+      "startedAt": "2026-09-25T10:45:27.049Z",
+      "endedAt": "2026-09-25T10:45:27.168Z",
+      "durationMs": 119,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 1256,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 19,
+      "status": "success",
+      "operationId": "op-000022",
+      "traversalId": "traversal-4bb61b83ed6a5b2212e2563b",
+      "method": "GET",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity_instance/8ZEQ/A",
+      "startedAt": "2026-09-25T10:45:27.049Z",
+      "endedAt": "2026-09-25T10:45:27.292Z",
+      "durationMs": 243,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 76262,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 22,
+      "status": "success",
+      "operationId": "op-000025",
+      "traversalId": "traversal-dcb102e4742a08efb5f72a91",
+      "method": "GET",
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.ttl",
+      "startedAt": "2026-09-25T10:45:27.049Z",
+      "endedAt": "2026-09-25T10:45:28.287Z",
+      "durationMs": 1238,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 174800,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 20,
+      "status": "success",
+      "operationId": "op-000023",
+      "traversalId": "traversal-1e04438e5e69aefbd9d4606f",
+      "method": "GET",
+      "url": "https://www.nature.com/articles/s41467-025-61077-6",
+      "startedAt": "2026-09-25T10:45:27.049Z",
+      "endedAt": "2026-09-25T10:45:28.414Z",
+      "durationMs": 1365,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 524816,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-mediated-attempt",
+      "index": 23,
+      "status": "success",
+      "operationId": "op-000027",
+      "traversalId": "traversal-51b020c845b5445f8be7dd4d",
+      "queryType": "SELECT",
+      "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+      "sources": [
+        {
+          "type": "sparql",
+          "value": "https://sparql.uniprot.org/sparql"
+        }
+      ],
+      "evidenceHandles": [
+        "h-000010",
+        "h-000016"
+      ],
+      "startedAt": "2026-09-25T10:47:03.852Z",
+      "endedAt": "2026-09-25T10:47:10.171Z",
+      "durationMs": 6319,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 300000,
+        "maxRequestMs": 20000,
+        "maxRequests": 16,
+        "maxFanOut": 8,
+        "maxConcurrency": 4,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 10000000,
+        "maxResultItems": 500
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 1893,
+        "retries": 0
+      },
+      "resultItems": 7,
+      "hiddenRetries": 0,
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 26,
+      "status": "success",
+      "operationId": "op-000031",
+      "traversalId": "traversal-dbc1786939aa3748fed36fae",
+      "method": "GET",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71545",
+      "startedAt": "2026-09-25T10:47:10.172Z",
+      "endedAt": "2026-09-25T10:47:10.311Z",
+      "durationMs": 139,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 9537,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 27,
+      "status": "success",
+      "operationId": "op-000032",
+      "traversalId": "traversal-1d8a1d9e187cd2bcb3bb3c3b",
+      "method": "GET",
+      "url": "https://api.github.com/repos/yongwangCPH/papers/contents/2024/GDE",
+      "startedAt": "2026-09-25T10:47:10.172Z",
+      "endedAt": "2026-09-25T10:47:10.449Z",
+      "durationMs": 277,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 3635,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 24,
+      "status": "success",
+      "operationId": "op-000029",
+      "traversalId": "traversal-c308f19102a26e8a2a9541fe",
+      "method": "GET",
+      "url": "https://files.rcsb.org/download/8ZEQ.pdb",
+      "startedAt": "2026-09-25T10:47:10.172Z",
+      "endedAt": "2026-09-25T10:47:10.724Z",
+      "durationMs": 552,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 1028214,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 25,
+      "status": "success",
+      "operationId": "op-000030",
+      "traversalId": "traversal-3695822ff09e4a2700db6c6d",
+      "method": "GET",
+      "url": "https://alphafold.ebi.ac.uk/files/AF-P35573-F1-model_v6.pdb",
+      "startedAt": "2026-09-25T10:47:10.172Z",
+      "endedAt": "2026-09-25T10:47:10.876Z",
+      "durationMs": 704,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 1010717,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 30,
+      "status": "success",
+      "operationId": "op-000035",
+      "traversalId": "traversal-57e892ad1b910a4a1b572dd7",
+      "method": "GET",
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20%3Fdatabase%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20rdfs%3AseeAlso%20%3Flink%20.%20%3Flink%20up%3Adatabase%20%3Fdatabase%20.%20FILTER(%3Fdatabase%20IN%20(%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FPDB%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FReactome%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FHGNC%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FMIM%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FAlphaFoldDB%3E))%20%7D",
+      "startedAt": "2026-09-25T10:47:40.166Z",
+      "endedAt": "2026-09-25T10:47:40.580Z",
+      "durationMs": 414,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 1893,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 29,
+      "status": "success",
+      "operationId": "op-000034",
+      "traversalId": "traversal-4c27d56947f140db83a9c23c",
+      "method": "GET",
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D",
+      "startedAt": "2026-09-25T10:47:40.166Z",
+      "endedAt": "2026-09-25T10:47:40.699Z",
+      "durationMs": 533,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 13604,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 28,
+      "status": "success",
+      "operationId": "op-000033",
+      "traversalId": "traversal-936f963e6ac4639f57f25a22",
+      "method": "GET",
+      "url": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D",
+      "startedAt": "2026-09-25T10:47:40.166Z",
+      "endedAt": "2026-09-25T10:47:40.970Z",
+      "durationMs": 804,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 123111,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    },
+    {
+      "kind": "linked-science-resource-attempt",
+      "index": 31,
+      "status": "success",
+      "operationId": "op-000038",
+      "traversalId": "traversal-8c3c4c37483ccccfe45d9519",
+      "method": "GET",
+      "url": "https://raw.githubusercontent.com/yongwangCPH/papers/main/2024/GDE/README",
+      "startedAt": "2026-09-25T10:48:28.666Z",
+      "endedAt": "2026-09-25T10:48:28.979Z",
+      "durationMs": 313,
+      "budgets": {
+        "maxQueryChars": 16384,
+        "maxRequestBodyBytes": 64000,
+        "maxDurationMs": 20000,
+        "maxRequestMs": 20000,
+        "maxRequests": 1,
+        "maxFanOut": 8,
+        "maxConcurrency": 1,
+        "maxResponseBytes": 2000000,
+        "maxTotalBytes": 2000000,
+        "maxResultItems": 1000
+      },
+      "usage": {
+        "requests": 1,
+        "fanOut": 1,
+        "bytes": 188,
+        "retries": 0
+      },
+      "hiddenRetries": 0
+    }
+  ],
+  "truncated": true,
+  "retained": 31,
+  "total": 31,
+  "limit": 20
+}

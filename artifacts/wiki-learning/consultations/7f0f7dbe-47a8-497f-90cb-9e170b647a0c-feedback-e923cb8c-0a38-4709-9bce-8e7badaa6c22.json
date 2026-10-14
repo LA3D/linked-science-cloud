@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "feedback",
+  "consultationId": "7f0f7dbe-47a8-497f-90cb-9e170b647a0c",
+  "recordedAt": "2026-09-28T14:57:38.638Z",
+  "assessment": "unknown",
+  "note": "Lesson explicitly informed the predicate-domain check; execution succeeded. Prior history already contained the lesson, so incremental benefit is unknown.",
+  "evidence": [
+    {
+      "path": "artifacts/scientific-inspections/fabry-memory-use-20260928/receipt.json",
+      "sha256": "0f6c1d5744971c7130e5c404116795fe197cf8f3f5af34253b29a617c6b12aea",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    }
+  ],
+  "consultedPatternIds": [
+    "ontology-symbolic-context-selective-imports"
+  ],
+  "scope": "agent-reported-assessment-not-causal-benefit"
+}

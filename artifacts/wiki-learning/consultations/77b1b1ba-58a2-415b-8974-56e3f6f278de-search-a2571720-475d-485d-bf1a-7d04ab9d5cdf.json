@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "77b1b1ba-58a2-415b-8974-56e3f6f278de",
+  "recordedAt": "2026-09-21T13:15:49.610Z",
+  "mode": "on",
+  "querySha256": "3348a06d6d4aac3726b68d74d8a4d1ee276e92474c4ee663e503e82a316161ce",
+  "revision": "eeafaa1e552ac9b4fd5befb4cbce6e8a3e802d5038b85af84f5779e490f2c4f2",
+  "candidates": [
+    {
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "ontology",
+        "schema"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

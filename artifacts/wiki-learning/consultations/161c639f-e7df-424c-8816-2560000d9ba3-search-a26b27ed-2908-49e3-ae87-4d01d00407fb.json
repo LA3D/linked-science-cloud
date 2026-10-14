@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "161c639f-e7df-424c-8816-2560000d9ba3",
+  "recordedAt": "2026-09-30T12:02:45.209Z",
+  "mode": "on",
+  "querySha256": "5525c35fcb20f8705ce4f70906fa72f5ff77a8b4ca671e92692255b086d0df54",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "saved-scientific-demo-handoff",
+      "title": "Preserve the scientific subject and explain saved investigations without rerunning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "saved",
+        "demo"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

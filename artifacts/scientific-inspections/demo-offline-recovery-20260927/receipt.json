@@ -1,0 +1,1641 @@
+{
+  "format": "linked-science-offline-demo-recovery/v1",
+  "recordedAt": "2026-09-27T21:48:24.141Z",
+  "runId": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f",
+  "mode": "fresh local execution over saved historical source bytes; no remote requests",
+  "identity": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "external-context",
+    "rlm": {
+      "kind": "cleanroom-rlm-capabilities",
+      "version": "1.0.0",
+      "architecture": "recursive-language-model",
+      "controlEnvironment": "persistent-javascript",
+      "externalContext": {
+        "available": true,
+        "persistence": "kernel-epoch",
+        "maxContextBytes": 2097152,
+        "operations": [
+          "registerContext",
+          "context",
+          "inspect"
+        ]
+      },
+      "recursion": {
+        "available": false,
+        "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+        "providerAttachment": "none",
+        "interface": "nodeRepl.rlm.query",
+        "lifecycleOwner": "cleanroom-host",
+        "lifecycle": "bounded-one-shot-compatibility",
+        "durable": false,
+        "asynchronousHandle": false,
+        "hardMaxDepth": 4,
+        "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+      }
+    },
+    "project": {
+      "id": "@linked-science/runtime",
+      "role": "authoritative-production-implementation",
+      "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+    },
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    },
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+    "dependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+      "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+      "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+      "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+    },
+    "traversalMediator": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    },
+    "resultStorage": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    }
+  },
+  "inputs": [
+    {
+      "path": "artifacts/scientific-inspections/sai-gsd3-20260925/receipt.json",
+      "bytes": 51743,
+      "sha256": "05c2774230c99aa8f23974bfbd310d46f53da1fa3866524e6a8b325becf22f21",
+      "priorHashVerified": false
+    },
+    {
+      "path": "artifacts/resources/resource-mVuRP2/content/pdbEntry.json",
+      "bytes": 11925,
+      "sha256": "2c401940e137a88ef96ebb3a8dea9c418ade7b698d960a293ad4b2781d52552f",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-t2Lnuw/content/hgnc.json",
+      "bytes": 1262,
+      "sha256": "ccd5ad220a2031df1ccbde00082c7c25ed3c840ccc4a7ca3ec724662c9f882c8",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-AsDUqo/content/reactome.json",
+      "bytes": 18010,
+      "sha256": "d6dc80983148200decb2bc2e66a37913f0c3d82989f0586399b1045466f172a0",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-aoaNYP/content/mondo.json",
+      "bytes": 14172,
+      "sha256": "f6e501eb570e0196fadebbc1bed0cc066da5599364d0f879d4d92a4cd86a86fa",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-paKuFe/content/uniprotOntology.txt",
+      "bytes": 6577,
+      "sha256": "6c81c8502868afa88ea3139a62aa63fab92e19b6b63bbd62604f7ab6a55e66cb",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-KdE2EB/content/reactomeHydrolysis.json",
+      "bytes": 10375,
+      "sha256": "aba56852b67573ea7ffe9b45ab501893c31f7dfe02b56e3574d0c84413f308e7",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-dfEKe1/content/reactomeTransfer.json",
+      "bytes": 10049,
+      "sha256": "8096927d6d1cec058078cf8cfa13577ccda65d49d4f1585025defb5f4a0d3f27",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-rssdxm/content/alphafoldSaved.json",
+      "bytes": 13779,
+      "sha256": "ab478e2c08868e63aa4dc39178bcf7a8cf5fc4ddef8e2ddae56e0fc3a7cc117f",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-xe71to/content/pdbEntity.json",
+      "bytes": 57938,
+      "sha256": "50c948b1da62c6dcbdbd595d49fed2e5716fe51df177841fd037838b9047d47b",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-VKn3rJ/content/uniprotSaved.json",
+      "bytes": 67075,
+      "sha256": "6b0b52f08ce9c6dc82039c59cddd9374f1d8ed6724d0db02bac8156c5eca5c5e",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-X4ZmqO/content/catalyst.json",
+      "bytes": 1256,
+      "sha256": "9e79702cc8f789314a6db88346066d2b0d26c51fa506f5d577580fb6c1a511bd",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-jzwjAQ/content/pdbInstance.json",
+      "bytes": 76262,
+      "sha256": "90ecfd1dfa84f81a4fced8020ea3eaf6403d792b5ff57e96f3a234b940288345",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-E0Ovlk/content/uniprotRdf.txt",
+      "bytes": 174800,
+      "sha256": "4fb68846e4e8eb16541021c0a4c8ed576141ad2e03ea5d0a09589bb8712aa435",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-UmJHCS/content/paper.txt",
+      "bytes": 524816,
+      "sha256": "d03cb051f0bc58061ee3862402fa5c307f41ccac196933751b6690aa7e18253c",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-avs4MR/content/reactomeProtein.json",
+      "bytes": 9537,
+      "sha256": "b44ba4209b7ea33ab8adc927b8305b191e0144ce29f5c27b0f96a5e8d944bcdc",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-aiyhru/content/mdMetadata.json",
+      "bytes": 3635,
+      "sha256": "43846665093e0ff54f69114420f0bbee1e292172eb930fddc3a776c13b0447fe",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-qLGrQ0/content/experimentalPdb.txt",
+      "bytes": 1028214,
+      "sha256": "ec707991864f041dcd6352fd8fc5f08f88418b9662feadfae01e2d54cb047834",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-n1C1AR/content/predictedPdb.txt",
+      "bytes": 1010717,
+      "sha256": "76642e52c13901daef2279e236a3fcc6e056b9a2e552e3d25f7d67cff50ed88c",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-yCTN7R/content/sparqlCrossrefs.txt",
+      "bytes": 1893,
+      "sha256": "275afe54da390289c7848ed364d4c3ff3db01ba13831fb4629942d9eb532bcc6",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-xUW6nZ/content/sparqlSchema.txt",
+      "bytes": 13604,
+      "sha256": "9327275a01735f6f1d953d3ca2987d66383e30f588db5a5ccea9daf7e42477fa",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-NHq7LT/content/sparqlProtein.txt",
+      "bytes": 123111,
+      "sha256": "20e7f08f03322115d30b3198d03f50b29d29e7f86bbedd9e7cd54deeccb36db3",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/resources/resource-r3FnRN/content/mdReadme.txt",
+      "bytes": 188,
+      "sha256": "88609bf761841c1bf92c318e22342bf05ce0dd342b9605d9c3c448cab817cbd5",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/file-manifest.json",
+      "bytes": 2227,
+      "sha256": "374ca54f85437fb0264b2e6adea576a1a5e8ac2127a4d9edcdfcdd9dc9e5cdd3",
+      "priorHashVerified": false
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/fabry-generated.ttl",
+      "bytes": 253863,
+      "sha256": "1a43e9d6b86f486ee050cb53909def288264c74248c991bc422ad8d424d4ba6b",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/application-links.ttl",
+      "bytes": 11814,
+      "sha256": "f4349ff35abfbdaa15035f6db4772ebadbf0cd1f73f9efb0776e30b6a451b72e",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/cl-excerpt.ttl",
+      "bytes": 8522,
+      "sha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/uberon-excerpt.ttl",
+      "bytes": 8982,
+      "sha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee",
+      "priorHashVerified": true
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-renal-literature-20260927/anchor.rq",
+      "bytes": 346,
+      "sha256": "8894285ed1d9230a15d32d8c900c9ca71c211b569d0f9c355857fe53c819e943",
+      "priorHashVerified": false
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-renal-literature-20260927/chain.rq",
+      "bytes": 1043,
+      "sha256": "fd006217e53364705fb415237e6e368af93a2d3f6228d1571932a360f6fc60cf",
+      "priorHashVerified": false
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-renal-literature-20260927/ontology.rq",
+      "bytes": 697,
+      "sha256": "b49b9e3d030e7dc4cf6a67ace8f12ae0468e91274ac7ff5fac18b93bb9188f83",
+      "priorHashVerified": false
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-gla-federation-20260927/saved-result.json",
+      "bytes": 8773,
+      "sha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+      "priorHashVerified": false
+    }
+  ],
+  "gsd": {
+    "inventory": {
+      "kind": "linked-science-inventory",
+      "contextKey": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3",
+      "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+      "total": 2,
+      "residentGraphQuads": 3981,
+      "handles": [
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000001",
+          "type": "instance-data",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+          "label": "recovered-p35573"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000002",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+          "label": "query-result"
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "bytes": 712,
+        "maxBytes": 32768
+      }
+    },
+    "graphProfile": {
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000001",
+        "type": "instance-data",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+        "label": "recovered-p35573"
+      },
+      "type": "instance-data",
+      "count": 3981,
+      "fingerprints": [
+        "7a583653544e13344c83a88c0e1990edc031f3275e08236bf96ffb89adb31397"
+      ],
+      "lineage": {
+        "kind": "materialized-local-graph",
+        "operationId": "op-000001"
+      },
+      "provenance": {
+        "operationId": "op-000001",
+        "source": {
+          "kind": "local-synthetic",
+          "id": "recovered-p35573"
+        },
+        "sourceFingerprint": "7a583653544e13344c83a88c0e1990edc031f3275e08236bf96ffb89adb31397",
+        "localOnly": true
+      },
+      "residency": {
+        "kind": "resident-rdf-dataset",
+        "indexed": true,
+        "scope": "workspace-epoch"
+      },
+      "bounds": {
+        "bytes": 735,
+        "maxBytes": 32768
+      }
+    },
+    "query": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?link ?database WHERE { <http://purl.uniprot.org/uniprot/P35573> rdfs:seeAlso ?link . ?link up:database ?database . FILTER(?database IN (<http://purl.uniprot.org/database/PDB>,<http://purl.uniprot.org/database/Reactome>,<http://purl.uniprot.org/database/HGNC>,<http://purl.uniprot.org/database/MIM>,<http://purl.uniprot.org/database/AlphaFoldDB>)) }",
+    "result": {
+      "kind": "linked-science-page",
+      "operationId": "op-000003",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000002",
+        "type": "bindings",
+        "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-gsd3:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "link",
+        "database"
+      ],
+      "offset": 0,
+      "total": 7,
+      "provenance": {
+        "operationId": "op-000002",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001"
+        ],
+        "sourceFingerprints": [
+          "7a583653544e13344c83a88c0e1990edc031f3275e08236bf96ffb89adb31397"
+        ]
+      },
+      "rows": [
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://rdf.wwpdb.org/pdb/8ZEQ"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/PDB"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/alphafolddb/P35573"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/AlphaFoldDB"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/hgnc/321"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/HGNC"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/mim/232400"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/MIM"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/mim/610860"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/MIM"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://identifiers.org/reactome/R-HSA-6798695"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/Reactome"
+          }
+        },
+        {
+          "link": {
+            "termType": "NamedNode",
+            "value": "http://identifiers.org/reactome/R-HSA-70221"
+          },
+          "database": {
+            "termType": "NamedNode",
+            "value": "http://purl.uniprot.org/database/Reactome"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 7,
+        "maxRows": 10,
+        "cells": 14,
+        "maxCells": 100,
+        "bytes": 2069,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "fabry": {
+    "inventory": {
+      "kind": "linked-science-inventory",
+      "contextKey": "demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry",
+      "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+      "total": 7,
+      "residentGraphQuads": 3194,
+      "handles": [
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000001",
+          "type": "instance-data",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-disease"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000002",
+          "type": "instance-data",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-links"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000003",
+          "type": "ontology",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-cl"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000004",
+          "type": "ontology",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-uberon"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000005",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000006",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        },
+        {
+          "kind": "linked-science-handle",
+          "id": "h-000007",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "bytes": 1705,
+        "maxBytes": 32768
+      }
+    },
+    "graphs": {
+      "disease": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000001",
+          "type": "instance-data",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-disease"
+        },
+        "type": "instance-data",
+        "count": 2834,
+        "fingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e"
+        ],
+        "lineage": {
+          "kind": "materialized-local-graph",
+          "operationId": "op-000001"
+        },
+        "provenance": {
+          "operationId": "op-000001",
+          "source": {
+            "kind": "local-synthetic",
+            "id": "recovered-disease"
+          },
+          "sourceFingerprint": "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "localOnly": true
+        },
+        "residency": {
+          "kind": "resident-rdf-dataset",
+          "indexed": true,
+          "scope": "workspace-epoch"
+        },
+        "bounds": {
+          "bytes": 738,
+          "maxBytes": 32768
+        }
+      },
+      "links": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000002",
+          "type": "instance-data",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-links"
+        },
+        "type": "instance-data",
+        "count": 65,
+        "fingerprints": [
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+        ],
+        "lineage": {
+          "kind": "materialized-local-graph",
+          "operationId": "op-000002"
+        },
+        "provenance": {
+          "operationId": "op-000002",
+          "source": {
+            "kind": "local-synthetic",
+            "id": "recovered-links"
+          },
+          "sourceFingerprint": "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "localOnly": true
+        },
+        "residency": {
+          "kind": "resident-rdf-dataset",
+          "indexed": true,
+          "scope": "workspace-epoch"
+        },
+        "bounds": {
+          "bytes": 732,
+          "maxBytes": 32768
+        }
+      },
+      "cl": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000003",
+          "type": "ontology",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-cl"
+        },
+        "type": "ontology",
+        "count": 154,
+        "fingerprints": [
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf"
+        ],
+        "lineage": {
+          "kind": "materialized-local-graph",
+          "operationId": "op-000003"
+        },
+        "provenance": {
+          "operationId": "op-000003",
+          "source": {
+            "kind": "local-synthetic",
+            "id": "recovered-cl"
+          },
+          "sourceFingerprint": "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "localOnly": true
+        },
+        "residency": {
+          "kind": "resident-rdf-dataset",
+          "indexed": true,
+          "scope": "workspace-epoch"
+        },
+        "bounds": {
+          "bytes": 717,
+          "maxBytes": 32768
+        }
+      },
+      "uberon": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000004",
+          "type": "ontology",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "recovered-uberon"
+        },
+        "type": "ontology",
+        "count": 141,
+        "fingerprints": [
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ],
+        "lineage": {
+          "kind": "materialized-local-graph",
+          "operationId": "op-000004"
+        },
+        "provenance": {
+          "operationId": "op-000004",
+          "source": {
+            "kind": "local-synthetic",
+            "id": "recovered-uberon"
+          },
+          "sourceFingerprint": "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934",
+          "localOnly": true
+        },
+        "residency": {
+          "kind": "resident-rdf-dataset",
+          "indexed": true,
+          "scope": "workspace-epoch"
+        },
+        "bounds": {
+          "bytes": 725,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "queries": {
+      "anchor": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?name ?chemical WHERE { VALUES ?chemical {obo:CHEBI_18313} ?mechanism dm:chemical_entities/dm:term ?chemical; app:sourceName ?name . }\n",
+      "chain": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?e ?sourceName ?edge ?targetName ?type ?description ?intermediate ?reference ?evidenceSource ?snippet WHERE { VALUES (?sourceName ?targetName) { (\"Alpha-galactosidase A deficiency\" \"Lysosomal Gb3 and lyso-Gb3 accumulation\") (\"Lysosomal Gb3 and lyso-Gb3 accumulation\" \"Tissue-specific glycosphingolipid storage\") (\"Tissue-specific glycosphingolipid storage\" \"Renal glycosphingolipid storage and podocyte injury\") (\"Renal glycosphingolipid storage and podocyte injury\" \"Autophagy impairment\") } ?source app:sourceName ?sourceName; dm:downstream ?edge . ?edge dm:target ?targetName; app:resolvedTarget ?target; dm:causal_link_type ?type; dm:description ?description . OPTIONAL {?edge dm:intermediate_mechanisms ?intermediate} OPTIONAL {?edge dm:evidence ?e . ?e dm:reference ?reference; dm:evidence_source ?evidenceSource; dm:snippet ?snippet} }\n",
+      "ontology": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?cell ?cellLabel ?cellParent ?parentLabel ?location ?locationLabel ?reference ?support ?snippet WHERE { ?mechanism a dm:Pathophysiology; dm:cell_types/dm:term ?cell; dm:locations/dm:term ?location; dm:evidence ?e . FILTER(?cell=obo:CL_0000653 && ?location=obo:UBERON_0002113) ?e dm:reference ?reference; dm:supports ?support; dm:snippet ?snippet . ?cell rdfs:label ?cellLabel; rdfs:subClassOf ?cellParent . ?cellParent rdfs:label ?parentLabel . ?location rdfs:label ?locationLabel . }\n\n"
+    },
+    "results": {
+      "anchor": {
+        "kind": "linked-science-page",
+        "operationId": "op-000006",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000005",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        },
+        "columns": [
+          "mechanism",
+          "name",
+          "chemical"
+        ],
+        "offset": 0,
+        "total": 1,
+        "provenance": {
+          "operationId": "op-000005",
+          "localOnly": true,
+          "queryType": "SELECT",
+          "querySha256": "8894285ed1d9230a15d32d8c900c9ca71c211b569d0f9c355857fe53c819e943",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sourceHandles": [
+            "h-000001",
+            "h-000002",
+            "h-000003",
+            "h-000004"
+          ],
+          "sourceFingerprints": [
+            "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+            "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+            "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+            "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+          ]
+        },
+        "rows": [
+          {
+            "mechanism": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/name/Lysosomal%20Gb3%20and%20lyso-Gb3%20accumulation"
+            },
+            "name": {
+              "termType": "Literal",
+              "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "chemical": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 1,
+          "maxRows": 10,
+          "cells": 3,
+          "maxCells": 100,
+          "bytes": 1516,
+          "maxBytes": 32768
+        }
+      },
+      "chain": {
+        "kind": "linked-science-page",
+        "operationId": "op-000008",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000006",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        },
+        "columns": [
+          "e",
+          "sourceName",
+          "edge",
+          "targetName",
+          "type",
+          "description",
+          "intermediate",
+          "reference",
+          "evidenceSource",
+          "snippet"
+        ],
+        "offset": 0,
+        "total": 5,
+        "provenance": {
+          "operationId": "op-000007",
+          "localOnly": true,
+          "queryType": "SELECT",
+          "querySha256": "fd006217e53364705fb415237e6e368af93a2d3f6228d1571932a360f6fc60cf",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sourceHandles": [
+            "h-000001",
+            "h-000002",
+            "h-000003",
+            "h-000004"
+          ],
+          "sourceFingerprints": [
+            "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+            "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+            "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+            "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+          ]
+        },
+        "rows": [
+          {
+            "e": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0%2Fevidence%2F0"
+            },
+            "sourceName": {
+              "termType": "Literal",
+              "value": "Alpha-galactosidase A deficiency",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "edge": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0"
+            },
+            "targetName": {
+              "termType": "Literal",
+              "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "DIRECT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Reduced alpha-galactosidase A activity prevents normal lysosomal clearance of Gb3 and related glycosphingolipids.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "intermediate": null,
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:36334424",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "evidenceSource": {
+              "termType": "Literal",
+              "value": "OTHER",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "Fabry disease (FD) is a rare lysosomal storage disorder, characterized by a reduction in α-galactosidase A enzyme activity and the progressive accumulation of globotriaosylceramide (GL3) and its metabolites in the cells of various organs.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "e": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2%2Fevidence%2F0"
+            },
+            "sourceName": {
+              "termType": "Literal",
+              "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "edge": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2"
+            },
+            "targetName": {
+              "termType": "Literal",
+              "value": "Tissue-specific glycosphingolipid storage",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "DIRECT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "The shared lysosomal storage lesion occurs in multiple organ systems and must be interpreted in local tissue contexts.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "intermediate": null,
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:36334424",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "evidenceSource": {
+              "termType": "Literal",
+              "value": "OTHER",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "Accumulation of GL3 in the kidney, heart, vasculature, neurons, skin, gastrointestinal tract and auditory system correlates to cellular damage and irreversible organ damage",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "e": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0%2Fevidence%2F0"
+            },
+            "sourceName": {
+              "termType": "Literal",
+              "value": "Tissue-specific glycosphingolipid storage",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "edge": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0"
+            },
+            "targetName": {
+              "termType": "Literal",
+              "value": "Renal glycosphingolipid storage and podocyte injury",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "DIRECT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Kidney and podocyte substrate accumulation defines the renal branch and is the context for renal GL-3 tissue readouts.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "intermediate": null,
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:27129690",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "evidenceSource": {
+              "termType": "Literal",
+              "value": "HUMAN_CLINICAL",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "e": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+            },
+            "sourceName": {
+              "termType": "Literal",
+              "value": "Renal glycosphingolipid storage and podocyte injury",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "edge": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+            },
+            "targetName": {
+              "termType": "Literal",
+              "value": "Autophagy impairment",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "INDIRECT_KNOWN_INTERMEDIATES",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "intermediate": {
+              "termType": "Literal",
+              "value": "lysosomal dysfunction in GLA-edited podocytes",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:39100494",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "evidenceSource": {
+              "termType": "Literal",
+              "value": "IN_VITRO",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "e": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+            },
+            "sourceName": {
+              "termType": "Literal",
+              "value": "Renal glycosphingolipid storage and podocyte injury",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "edge": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+            },
+            "targetName": {
+              "termType": "Literal",
+              "value": "Autophagy impairment",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "type": {
+              "termType": "Literal",
+              "value": "INDIRECT_KNOWN_INTERMEDIATES",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "description": {
+              "termType": "Literal",
+              "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "intermediate": {
+              "termType": "Literal",
+              "value": "podocyte cellular stress response",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:39100494",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "evidenceSource": {
+              "termType": "Literal",
+              "value": "IN_VITRO",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 5,
+          "maxRows": 10,
+          "cells": 50,
+          "maxCells": 100,
+          "bytes": 8793,
+          "maxBytes": 32768
+        }
+      },
+      "ontology": {
+        "kind": "linked-science-page",
+        "operationId": "op-000010",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000007",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:demo-offline-8ef9c088-9cf0-4eb0-ae93-dcda8fa10a1f-fabry:1",
+          "label": "query-result"
+        },
+        "columns": [
+          "mechanism",
+          "cell",
+          "cellLabel",
+          "cellParent",
+          "parentLabel",
+          "location",
+          "locationLabel",
+          "reference",
+          "support",
+          "snippet"
+        ],
+        "offset": 0,
+        "total": 4,
+        "provenance": {
+          "operationId": "op-000009",
+          "localOnly": true,
+          "queryType": "SELECT",
+          "querySha256": "b49b9e3d030e7dc4cf6a67ace8f12ae0468e91274ac7ff5fac18b93bb9188f83",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sourceHandles": [
+            "h-000001",
+            "h-000002",
+            "h-000003",
+            "h-000004"
+          ],
+          "sourceFingerprints": [
+            "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+            "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+            "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+            "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+          ]
+        },
+        "rows": [
+          {
+            "mechanism": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+            },
+            "cell": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0000653"
+            },
+            "cellLabel": {
+              "termType": "Literal",
+              "value": "podocyte",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "cellParent": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0002522"
+            },
+            "parentLabel": {
+              "termType": "Literal",
+              "value": "renal filtration cell",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "location": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+            },
+            "locationLabel": {
+              "termType": "Literal",
+              "value": "kidney",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:27129690",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "support": {
+              "termType": "Literal",
+              "value": "SUPPORT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "mechanism": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+            },
+            "cell": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0000653"
+            },
+            "cellLabel": {
+              "termType": "Literal",
+              "value": "podocyte",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "cellParent": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0002522"
+            },
+            "parentLabel": {
+              "termType": "Literal",
+              "value": "renal filtration cell",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "location": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+            },
+            "locationLabel": {
+              "termType": "Literal",
+              "value": "kidney",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:36334424",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "support": {
+              "termType": "Literal",
+              "value": "SUPPORT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "Damage leads to renal dysfunction and end-stage renal disease",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "mechanism": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+            },
+            "cell": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0000653"
+            },
+            "cellLabel": {
+              "termType": "Literal",
+              "value": "podocyte",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "cellParent": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_1000450"
+            },
+            "parentLabel": {
+              "termType": "Literal",
+              "value": "epithelial cell of glomerular capsule",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "location": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+            },
+            "locationLabel": {
+              "termType": "Literal",
+              "value": "kidney",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:27129690",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "support": {
+              "termType": "Literal",
+              "value": "SUPPORT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "mechanism": {
+              "termType": "NamedNode",
+              "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+            },
+            "cell": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_0000653"
+            },
+            "cellLabel": {
+              "termType": "Literal",
+              "value": "podocyte",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "cellParent": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/CL_1000450"
+            },
+            "parentLabel": {
+              "termType": "Literal",
+              "value": "epithelial cell of glomerular capsule",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "location": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+            },
+            "locationLabel": {
+              "termType": "Literal",
+              "value": "kidney",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "reference": {
+              "termType": "Literal",
+              "value": "PMID:36334424",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "support": {
+              "termType": "Literal",
+              "value": "SUPPORT",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "snippet": {
+              "termType": "Literal",
+              "value": "Damage leads to renal dysfunction and end-stage renal disease",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 4,
+          "maxRows": 10,
+          "cells": 40,
+          "maxCells": 100,
+          "bytes": 6383,
+          "maxBytes": 32768
+        }
+      }
+    }
+  },
+  "savedFederation": {
+    "count": 8,
+    "status": "historical saved response; not rerun",
+    "rows": [
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_2037"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_17950"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-N-acylsphingosine"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_5513"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "D-galactopyranose"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_1283"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "water"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21112"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/21113"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_21112_compound_2214"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosylceramide"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_5513"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "D-galactopyranose"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/products"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_11977"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_79208"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_1283"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "water"
+        }
+      },
+      {
+        "protein": {
+          "type": "uri",
+          "value": "http://purl.uniprot.org/uniprot/P06280"
+        },
+        "reaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48020"
+        },
+        "physiologicalReaction": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/48021"
+        },
+        "equation": {
+          "type": "literal",
+          "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+        },
+        "role": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/substrates"
+        },
+        "participant": {
+          "type": "uri",
+          "value": "http://rdf.rhea-db.org/Participant_48020_compound_11976"
+        },
+        "chebi": {
+          "type": "uri",
+          "value": "http://purl.obolibrary.org/obo/CHEBI_88154"
+        },
+        "chemicalName": {
+          "type": "literal",
+          "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide"
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "New workspace epochs and handles, not original kernel restoration.",
+    "Saved source dates remain September 25–27, 2026; no current remote freshness claim.",
+    "EYE reasoning/proof remain saved historical evidence; not rerun.",
+    "Disease causal assertions and model/clinical evidence retain the original handoff qualifications."
+  ]
+}

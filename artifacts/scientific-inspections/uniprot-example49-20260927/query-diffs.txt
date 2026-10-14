@@ -1,0 +1,789 @@
+### bgee-access.rq
+--- published-original
++++ bgee-access.rq
+@@ -1,36 +1 @@
+-PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
+-PREFIX genex: <http://purl.org/genex#>
+-PREFIX lscr: <http://purl.org/lscr#>
+-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+-PREFIX rh: <http://rdf.rhea-db.org/>
+-PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+-PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT (1 AS ?ok) WHERE {}
+### bgee-gene-mapping.rq
+--- published-original
++++ bgee-gene-mapping.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?gene ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000180316> <http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000180316.13>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity . ?anatomicEntity rdfs:label ?anatomicEntityLabel . }
+### bgee-schema-labels.rq
+--- published-original
++++ bgee-schema-labels.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?term ?label ?comment WHERE { VALUES ?term {genex:isExpressedIn lscr:xrefEnsemblGene} OPTIONAL {?term rdfs:label ?label} OPTIONAL {?term rdfs:comment ?comment} }
+### bgee-service-access.rq
+--- published-original
++++ bgee-service-access.rq
+@@ -1,36 +1 @@
+-PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
+-PREFIX genex: <http://purl.org/genex#>
+-PREFIX lscr: <http://purl.org/lscr#>
+-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+-PREFIX rh: <http://rdf.rhea-db.org/>
+-PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+-PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?ok WHERE { SERVICE <https://www.bgee.org/sparql/> { BIND(1 AS ?ok) } }
+### bgee-service-no-www-probe.rq
+--- published-original
++++ bgee-service-no-www-probe.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?entity WHERE { SERVICE <https://bgee.org/sparql/> { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000180316>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?entity . } }
+### bgee-service-real-pattern.rq
+--- published-original
++++ bgee-service-real-pattern.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?entity WHERE { SERVICE <https://www.bgee.org/sparql/> { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000180316>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?entity . } }
+### bounded-bgee-coordinator-federation.rq
+--- published-original
++++ bounded-bgee-coordinator-federation.rq
+@@ -5,32 +5,21 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
++SELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ SERVICE <https://sparql.uniprot.org/sparql> {
++ VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}
++ ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .
++ ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .
++ BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
++ }
++ SERVICE <https://sparql.rhea-db.org/sparql> {
++ VALUES ?reaction {<http://rdf.rhea-db.org/21812>}
++ ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .
++ ?chebi rdfs:subClassOf* CHEBI:16113 .
++ }
++ {
++ VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}
++ ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .
++ ?anatomicEntity rdfs:label ?anatomicEntityLabel .
++ }
+ }
+### bounded-multisource-concurrency6.rq
+--- published-original
++++ bounded-multisource-concurrency6.rq
+@@ -5,32 +5,21 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
++SELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ SERVICE <https://sparql.uniprot.org/sparql> {
++ VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}
++ ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .
++ ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .
++ BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
++ }
++ SERVICE <https://sparql.rhea-db.org/sparql> {
++ VALUES ?reaction {<http://rdf.rhea-db.org/21812>}
++ ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .
++ ?chebi rdfs:subClassOf* CHEBI:16113 .
++ }
++ SERVICE <https://www.bgee.org/sparql/> {
++ VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}
++ ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .
++ ?anatomicEntity rdfs:label ?anatomicEntityLabel .
++ }
+ }
+### bounded-multisource-federation.rq
+--- published-original
++++ bounded-multisource-federation.rq
+@@ -5,32 +5,21 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
++SELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ SERVICE <https://sparql.uniprot.org/sparql> {
++ VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}
++ ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .
++ ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .
++ BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
++ }
++ SERVICE <https://sparql.rhea-db.org/sparql> {
++ VALUES ?reaction {<http://rdf.rhea-db.org/21812>}
++ ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .
++ ?chebi rdfs:subClassOf* CHEBI:16113 .
++ }
++ SERVICE <https://www.bgee.org/sparql/> {
++ VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}
++ ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .
++ ?anatomicEntity rdfs:label ?anatomicEntityLabel .
++ }
+ }
+### bounded-subselect-federation.rq
+--- published-original
++++ bounded-subselect-federation.rq
+@@ -5,32 +5,21 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ SERVICE <https://sparql.uniprot.org/sparql> { SELECT DISTINCT ?protein ?reaction ?ensemblGene WHERE {
++ VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}
++ ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .
++ ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .
++ BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
++ }
++ } SERVICE <https://sparql.rhea-db.org/sparql> { SELECT DISTINCT ?reaction ?chebi WHERE {
++ VALUES ?reaction {<http://rdf.rhea-db.org/21812>}
++ ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .
++ VALUES ?chebi { CHEBI:16113 }
++ }
++ } SERVICE <https://www.bgee.org/sparql/> { SELECT DISTINCT ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}
++ ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .
++ ?anatomicEntity rdfs:label ?anatomicEntityLabel .
++ }
++}}
+### bounded-three-service-delegated-post.rq
+--- published-original
++++ bounded-three-service-delegated-post.rq
+@@ -5,32 +5,21 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
++SELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {
++ SERVICE <https://sparql.uniprot.org/sparql> {
++ VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}
++ ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .
++ ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .
++ BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
++ }
++ SERVICE <https://sparql.rhea-db.org/sparql> {
++ VALUES ?reaction {<http://rdf.rhea-db.org/21812>}
++ ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .
++ ?chebi rdfs:subClassOf* CHEBI:16113 .
++ }
++ SERVICE <https://www.bgee.org/sparql/> {
++ VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}
++ ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .
++ ?anatomicEntity rdfs:label ?anatomicEntityLabel .
++ }
+ }
+### chemical-definition.rq
+--- published-original
++++ chemical-definition.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?term ?label WHERE { ?term rdfs:label ?label . FILTER(LCASE(STR(?label))="cholesterol") }
+### cholesterol-bgee-component.rq
+--- published-original
++++ cholesterol-bgee-component.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT DISTINCT ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE { VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910> <http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910.4>} ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity . ?anatomicEntity rdfs:label ?anatomicEntityLabel . }
+### cholesterol-normalized-federation.rq
+--- published-original
++++ cholesterol-normalized-federation.rq
+@@ -20,14 +20,15 @@
+     ?reactionSide rh:contains ?participant .
+     ?participant rh:compound ?compound .
+     ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
++    ?chebi rdfs:subClassOf* CHEBI:16113
+ }
+   ?protein up:organism taxon:9606 .
+   ?protein up:annotation ?a .
+   ?a a up:Catalytic_Activity_Annotation .
+   ?a up:catalyticActivity ?ca .
+   ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
++  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGeneVersioned .
++  BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), "[.][0-9]+$", "")) AS ?ensemblGene)
+   SERVICE  <https://www.bgee.org/sparql/> {
+     ?gene genex:isExpressedIn ?anatomicEntity .
+     ?gene lscr:xrefEnsemblGene ?ensemblGene .
+
+### cholesterol-rhea-uniprot.rq
+--- published-original
++++ cholesterol-rhea-uniprot.rq
+@@ -10,8 +10,6 @@
+     ?chebi
+     ?reaction
+     ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+ WHERE {
+   SERVICE <https://sparql.rhea-db.org/sparql> {
+     ?reaction rdfs:subClassOf rh:Reaction .
+@@ -20,7 +18,7 @@
+     ?reactionSide rh:contains ?participant .
+     ?participant rh:compound ?compound .
+     ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
++    ?chebi rdfs:subClassOf* CHEBI:16113
+ }
+   ?protein up:organism taxon:9606 .
+   ?protein up:annotation ?a .
+@@ -28,9 +26,4 @@
+   ?a up:catalyticActivity ?ca .
+   ?ca up:catalyzedReaction ?reaction .
+   ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+ }
+### protein-example-label.rq
+--- published-original
++++ protein-example-label.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?protein ?name WHERE { VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>} ?protein up:recommendedName/up:fullName ?name . }
+### published-original-canonical.rq
+
+### published-original.rq
+
+### published-rhea-uniprot.rq
+--- published-original
++++ published-rhea-uniprot.rq
+@@ -10,8 +10,6 @@
+     ?chebi
+     ?reaction
+     ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+ WHERE {
+   SERVICE <https://sparql.rhea-db.org/sparql> {
+     ?reaction rdfs:subClassOf rh:Reaction .
+@@ -28,9 +26,4 @@
+   ?a up:catalyticActivity ?ca .
+   ?ca up:catalyzedReaction ?reaction .
+   ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+ }
+### rhea-component.rq
+--- published-original
++++ rhea-component.rq
+@@ -5,15 +5,7 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
++SELECT DISTINCT ?chebi ?label ?reaction ?reactionEquation WHERE {
+     ?reaction rdfs:subClassOf rh:Reaction .
+     ?reaction rh:equation ?reactionEquation .
+     ?reaction rh:side ?reactionSide .
+@@ -21,16 +13,4 @@
+     ?participant rh:compound ?compound .
+     ?compound rh:chebi ?chebi .
+     ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+ OPTIONAL {?chebi rdfs:label ?label} }
+### uniprot-access.rq
+--- published-original
++++ uniprot-access.rq
+@@ -1,36 +1 @@
+-PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
+-PREFIX genex: <http://purl.org/genex#>
+-PREFIX lscr: <http://purl.org/lscr#>
+-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+-PREFIX rh: <http://rdf.rhea-db.org/>
+-PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+-PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT (1 AS ?ok) WHERE {}
+### uniprot-schema-definitions.rq
+--- published-original
++++ uniprot-schema-definitions.rq
+@@ -5,32 +5,4 @@
+ PREFIX rh: <http://rdf.rhea-db.org/>
+ PREFIX taxon: <http://purl.uniprot.org/taxonomy/>
+ PREFIX up: <http://purl.uniprot.org/core/>
+-SELECT
+-  DISTINCT
+-    ?chebi
+-    ?reaction
+-    ?protein ?ensemblGene
+-    ?anatomicEntityLabel
+-    ?anatomicEntity
+-WHERE {
+-  SERVICE <https://sparql.rhea-db.org/sparql> {
+-    ?reaction rdfs:subClassOf rh:Reaction .
+-    ?reaction rh:equation ?reactionEquation .
+-    ?reaction rh:side ?reactionSide .
+-    ?reactionSide rh:contains ?participant .
+-    ?participant rh:compound ?compound .
+-    ?compound rh:chebi ?chebi .
+-    ?chebi rdfs:subClassOf* CHEBI:52639
+-}
+-  ?protein up:organism taxon:9606 .
+-  ?protein up:annotation ?a .
+-  ?a a up:Catalytic_Activity_Annotation .
+-  ?a up:catalyticActivity ?ca .
+-  ?ca up:catalyzedReaction ?reaction .
+-  ?protein rdfs:seeAlso / up:transcribedFrom ?ensemblGene .
+-  SERVICE  <https://www.bgee.org/sparql/> {
+-    ?gene genex:isExpressedIn ?anatomicEntity .
+-    ?gene lscr:xrefEnsemblGene ?ensemblGene .
+-    ?anatomicEntity rdfs:label ?anatomicEntityLabel .
+-  }
+-}+SELECT ?term ?label ?comment WHERE { VALUES ?term {up:catalyzedReaction up:catalyticActivity up:transcribedFrom} OPTIONAL {?term rdfs:label ?label} OPTIONAL {?term rdfs:comment ?comment} }

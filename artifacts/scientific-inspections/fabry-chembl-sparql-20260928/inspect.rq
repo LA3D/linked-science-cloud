@@ -1,0 +1,1 @@
+SELECT ?s ?p ?o WHERE { VALUES ?s { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> <http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524> } ?s ?p ?o }

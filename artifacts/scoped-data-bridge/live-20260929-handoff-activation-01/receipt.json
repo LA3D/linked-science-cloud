@@ -1,0 +1,20 @@
+{
+  "format": "linked-science-live-handoff-activation-record/v1",
+  "date": "2026-09-29",
+  "outcome": "partial",
+  "evidenceLevel": "machine-receipt",
+  "workerTask": "/root/live_handoff_check",
+  "workerReport": "Owner-created synthetic graph read rejected twice by automatic approval review; worker attachment and scratch persistence verified; no read or deposit.",
+  "ownerToolResult": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  format: 'linked-science-live-handoff-activation/v1',\n  session: { sessionId: 'linked-science-20260929-handoff-verification', epoch: 1, role: 'owner' },\n  capabilities: {\n    available: true,\n    version: 1,\n    durability: 'explicit-snapshot',\n    maxDataBytes: 131072,\n    maxItems: 10000,\n    maxLedgerBytes: 33554432,\n    modelExecution: false,\n    retention: 'until-explicit-remove',\n    limitsScope: 'registered-protocol-only'\n  },\n  activity: '40d1e6fa-1f92-44ca-bb1a-d5b69e329ed1',\n  computation: 'a627efb3-8a66-49fd-a375-fa0a10d474f8',\n  request: '9f0fa02f-a438-4199-b161-a6fdea859936',\n  cancellation: {\n    id: '9f0fa02f-a438-4199-b161-a6fdea859936',\n    activity: '40d1e6fa-1f92-44ca-bb1a-d5b69e329ed1',\n    computation: 'a627efb3-8a66-49fd-a375-fa0a10d474f8',\n    parentRequest: null,\n    inputs: [\n      {\n        id: '29d4781a-9e4e-4448-a6d2-83f99dc98743',\n        version: '932d16e91c10f1df214ebf4fa42ef481609030ff76525953c0ed22b10c395e0b'\n      }\n    ],\n    context: {\n      evidence: [\n        {\n          id: '29d4781a-9e4e-4448-a6d2-83f99dc98743',\n          version: '932d16e91c10f1df214ebf4fa42ef481609030ff76525953c0ed22b10c395e0b'\n        }\n      ],\n      question: 'Read the granted synthetic RDF. Report both measurements and their sum; label the result synthetic.'\n    },\n    contract: { maxBytes: 2048, properties: { text: 'string' }, required: [ 'text' ], type: 'object' },\n    status: 'cancelled',\n    revision: 1,\n    createdAt: 1790684881812,\n    events: [\n      { kind: 'prepared', at: 1790684881812 },\n      { kind: 'dispatch-intent-recorded', at: 1790684890416 },\n      { kind: 'child-report-recorded', at: 1790684927913 },\n      { kind: 'cancelled', at: 1790685012061 }\n    ],\n    child: { id: 'live_handoff_check', evidence: 'caller-reported-unverified' },\n    cleanup: 'complete'\n  },\n  pending: { total: 0, items: [], nextOffset: null },\n  scope: 'local-synthetic-two-triple-fixture',\n  workerOutcome: 'attached; read rejected by automatic approval review; no deposit',\n  limitations: [ 'Live worker read/deposit/accept/resume not completed', 'Service restart recovery not exercised' ]\n}"
+      }
+    ]
+  },
+  "limitations": [
+    "No completed live worker round trip",
+    "No live service restart recovery"
+  ]
+}

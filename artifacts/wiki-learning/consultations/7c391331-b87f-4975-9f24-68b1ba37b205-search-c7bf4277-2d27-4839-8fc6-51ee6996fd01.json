@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "7c391331-b87f-4975-9f24-68b1ba37b205",
+  "recordedAt": "2026-09-23T13:29:22.123Z",
+  "mode": "on",
+  "querySha256": "a61c930b30e5b3c1c4f43942201e18e6ff0a82cf2589e0f23e1a9bb64ae11a6a",
+  "revision": "96fe304f3a67bbdc779a3441e89f8981cd079fce33f6ab3007cec5531d6384b3",
+  "candidates": [
+    {
+      "id": "uniprot-service-metadata-discovery",
+      "title": "Discover UniProt graph identities through service metadata",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "service",
+        "discovery"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "identifiers",
+        "ontology"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

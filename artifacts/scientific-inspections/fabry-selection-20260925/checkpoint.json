@@ -1,0 +1,811 @@
+{
+  "format": "linked-science-selection-checkpoint/v1",
+  "recordedAt": "2026-09-25T11:20:07.816Z",
+  "runtime": {
+    "runtime": "cleanroom_node_repl",
+    "mode": "external-context",
+    "rlm": {
+      "kind": "cleanroom-rlm-capabilities",
+      "version": "1.0.0",
+      "architecture": "recursive-language-model",
+      "controlEnvironment": "persistent-javascript",
+      "externalContext": {
+        "available": true,
+        "persistence": "kernel-epoch",
+        "maxContextBytes": 2097152,
+        "operations": [
+          "registerContext",
+          "context",
+          "inspect"
+        ]
+      },
+      "recursion": {
+        "available": false,
+        "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+        "providerAttachment": "none",
+        "interface": "nodeRepl.rlm.query",
+        "lifecycleOwner": "cleanroom-host",
+        "lifecycle": "bounded-one-shot-compatibility",
+        "durable": false,
+        "asynchronousHandle": false,
+        "hardMaxDepth": 4,
+        "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+      }
+    },
+    "project": {
+      "id": "@linked-science/runtime",
+      "role": "authoritative-production-implementation",
+      "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+    },
+    "broker": {
+      "packageName": "@linked-science/cleanroom-node-repl",
+      "packageRoot": "packages/cleanroom-node-repl",
+      "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+      "mcpServer": "cleanroom_node_repl",
+      "tools": [
+        "js",
+        "js_reset",
+        "js_add_node_module_dir"
+      ]
+    },
+    "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+    "dependencies": {
+      "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+      "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+      "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+      "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+      "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+      "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+    },
+    "traversalMediator": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    },
+    "resultStorage": {
+      "available": true,
+      "owner": "cleanroom-broker",
+      "exposure": "private-runtime-only"
+    }
+  },
+  "capabilities": {
+    "engine": {
+      "name": "eyeron",
+      "version": "0.5.13",
+      "sha256": "d97a3e9e35d4c12960a46570eb20ab32287ef8d07e88dc7aa04c0c1b70fbd88d",
+      "transformedSha256": "17c69aeb703a5e17c16ced2f01e4eef628d03300b5d634aa4f77e75b0969c10a"
+    },
+    "inputFormat": "N-Triples",
+    "graphPolicy": "default-only",
+    "rulesFormat": "N3",
+    "outputFormat": "Turtle",
+    "proofFormat": "N3",
+    "deterministic": true,
+    "hostIO": false,
+    "clock": "rejected",
+    "builtinProfile": "deterministic-n3-v1",
+    "profileRestrictions": [
+      "No IO, imports, clocks, log:outputString or log:query",
+      "No log:uri, log:parsedAsN3 or dynamic unquote; only enumerated SWAP builtins",
+      "Rules must also parse with N3.js; reserved builtin IRIs rejected in all input positions"
+    ],
+    "memoryPolicy": "bounded-wasm-linear-memory-and-worker-heap",
+    "limits": {
+      "timeoutMs": 10000,
+      "maxInputBytes": 1048576,
+      "maxRulesBytes": 262144,
+      "maxRules": 1000,
+      "maxOutputBytes": 1048576,
+      "maxProofBytes": 1048576,
+      "wasmMemoryMiB": 128,
+      "workerHeapMiB": 64
+    },
+    "defaults": {
+      "timeoutMs": 10000,
+      "maxInputBytes": 1048576,
+      "maxRulesBytes": 262144,
+      "maxRules": 1000,
+      "maxOutputBytes": 1048576,
+      "maxProofBytes": 1048576,
+      "wasmMemoryMiB": 128,
+      "workerHeapMiB": 64
+    },
+    "ceilings": {
+      "timeoutMs": 60000,
+      "maxInputBytes": 8388608,
+      "maxRulesBytes": 1048576,
+      "maxRules": 10000,
+      "maxOutputBytes": 8388608,
+      "maxProofBytes": 8388608,
+      "wasmMemoryMiB": 256,
+      "workerHeapMiB": 128
+    },
+    "available": true
+  },
+  "sourceArtifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-JkbM96/content/Fabry_Disease.yaml",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-JkbM96/content/receipt.json",
+    "bytes": 146859,
+    "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+    "createdAt": "2026-09-25T11:18:22.061Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+        "finalUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "acf362d963c37f9ad2f381df74e4b639501d8d9f21a0ae1c491ba0430f14bb39",
+        "responseSha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+        "bytes": 146859,
+        "mediaType": "text/plain",
+        "headers": {
+          "content-length": "146859",
+          "content-type": "text/plain; charset=utf-8",
+          "etag": "\"9a50432ef79a5bdda2ce3810c92d8430715ea36053473187db167b9c1078a24c\"",
+          "vary": "Authorization,Accept-Encoding"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-25T11:18:21.741Z",
+        "finishedAt": "2026-09-25T11:18:22.054Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-d5bad2e04f43f25a69395182",
+        "startedAt": "2026-09-25T11:18:21.741Z",
+        "finishedAt": "2026-09-25T11:18:22.054Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 20000,
+          "maxRequestMs": 20000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 1000000,
+          "maxTotalBytes": 1000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 146859,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+            "finalUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "acf362d963c37f9ad2f381df74e4b639501d8d9f21a0ae1c491ba0430f14bb39",
+            "responseSha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+            "bytes": 146859,
+            "mediaType": "text/plain",
+            "headers": {
+              "content-length": "146859",
+              "content-type": "text/plain; charset=utf-8",
+              "etag": "\"9a50432ef79a5bdda2ce3810c92d8430715ea36053473187db167b9c1078a24c\"",
+              "vary": "Authorization,Accept-Encoding"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-25T11:18:21.741Z",
+            "finishedAt": "2026-09-25T11:18:22.054Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 146859,
+          "totalBytes": 146859,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 646324051968,
+            "reserveBytes": 268435456,
+            "retainedBytes": 3179195,
+            "availableBytes": 646055616512
+          },
+          "elapsedMs": 313,
+          "maxBytes": 1000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "sourceNode": {
+    "name": "Renal glycosphingolipid storage and podocyte injury",
+    "cell": "CL:0000653",
+    "location": "UBERON:0002113",
+    "evidence": [
+      {
+        "reference": "PMID:27129690",
+        "supports": "SUPPORT",
+        "evidenceSource": "HUMAN_CLINICAL",
+        "title": "Significant improvement in Fabry disease podocytopathy after 3 years of treatment with agalsidase beta.",
+        "snippet": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm."
+      },
+      {
+        "reference": "PMID:36334424",
+        "supports": "SUPPORT",
+        "evidenceSource": "OTHER",
+        "title": "Clinical relevance of globotriaosylceramide accumulation in Fabry disease and the effect of agalsidase beta in affected tissues.",
+        "snippet": "Damage leads to renal dysfunction and end-stage renal disease"
+      }
+    ]
+  },
+  "sourceBlock": "- name: Renal glycosphingolipid storage and podocyte injury\n  description: >\n    GL-3 accumulation in kidney cells, especially podocytes, injures the glomerular filtration barrier. Podocyte storage\n    connects the shared Fabry substrate burden to renal GL-3 biopsy readouts, proteinuria, and progressive chronic kidney\n    disease.\n  evidence:\n  - reference: PMID:27129690\n    reference_title: \"Significant improvement in Fabry disease podocytopathy after 3 years of treatment with agalsidase beta.\"\n    supports: SUPPORT\n    evidence_source: HUMAN_CLINICAL\n    snippet: \"renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.\"\n    explanation: Human biopsy evidence directly supports renal podocyte GL-3 accumulation and podocyte structural injury.\n  - reference: PMID:36334424\n    reference_title: \"Clinical relevance of globotriaosylceramide accumulation in Fabry disease and the effect of agalsidase beta in affected tissues.\"\n    supports: SUPPORT\n    evidence_source: OTHER\n    snippet: \"Damage leads to renal dysfunction and end-stage renal disease\"\n    explanation: The GL3 clinical relevance review links storage-associated tissue damage to renal dysfunction.\n  cell_types:\n  - preferred_term: podocyte\n    term:\n      id: CL:0000653\n      label: podocyte\n  locations:\n  - preferred_term: kidney\n    term:\n      id: UBERON:0002113\n      label: kidney\n  downstream:\n  - target: Autophagy impairment\n    description: Fabry podocyte injury includes lysosomal and autophagy dysfunction.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    intermediate_mechanisms:\n    - lysosomal dysfunction in GLA-edited podocytes\n    - podocyte cellular stress response\n    evidence:\n    - reference: PMID:39100494\n      reference_title: \"Genome-wide expression analysis in a Fabry disease human podocyte cell line.\"\n      supports: SUPPORT\n      evidence_source: IN_VITRO\n      snippet: The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.\n      explanation: Fabry podocyte-model evidence links the renal cellular disease context to altered autophagy.\n  - target: Mitochondrial dysfunction and oxidative stress\n    description: Fabry podocyte models show oxidative-stress and mitochondrial-abnormality pathways downstream of GLA deficiency.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    intermediate_mechanisms:\n    - GLA-edited podocyte stress-response changes\n    - mitochondrial abnormalities\n    evidence:\n    - reference: PMID:39100494\n      reference_title: \"Genome-wide expression analysis in a Fabry disease human podocyte cell line.\"\n      supports: SUPPORT\n      evidence_source: IN_VITRO\n      snippet: Functional analysis of differentially expressed genes showed their involvement in various pathways related to oxidative stress, inflammation, fatty acid metabolism, collagen and extracellular matrix homeostasis, kidney injury, apoptosis, autophagy, and cellular stress response.\n      explanation: Transcriptomic analysis of Fabry podocytes supports oxidative-stress and cellular-stress pathways downstream of podocyte dysfunction.\n  - target: Proteinuria\n    description: Podocyte injury damages the filtration barrier and contributes to proteinuria.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    intermediate_mechanisms:\n    - podocyte foot-process injury\n    - slit-diaphragm dysfunction\n    - glomerular filtration barrier injury\n    evidence:\n    - reference: PMID:28613767\n      reference_title: \"Fabry Disease.\"\n      supports: SUPPORT\n      evidence_source: OTHER\n      snippet: Ocular involvement includes corneal and lenticular abnormalities, while progressive renal involvement leads to proteinuria and eventual end-stage renal disease.\n      explanation: The clinical review supports proteinuria as a consequence of progressive renal involvement in Fabry disease.\n  - target: Chronic kidney disease\n    description: Persistent renal cellular injury contributes to Fabry nephropathy progression.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    intermediate_mechanisms:\n    - progressive renal cellular injury\n    - glomerular and interstitial damage\n    evidence:\n    - reference: PMID:36334424\n      reference_title: \"Clinical relevance of globotriaosylceramide accumulation in Fabry disease and the effect of agalsidase beta in affected tissues.\"\n      supports: SUPPORT\n      evidence_source: OTHER\n      snippet: Damage leads to renal dysfunction and end-stage renal disease\n      explanation: The GL3 clinical-relevance review links storage-associated renal damage to renal dysfunction and end-stage renal disease.\n  - target: Nephrotic syndrome\n    description: Podocyte injury and filtration-barrier disruption can manifest as nephrotic syndrome.\n    causal_link_type: DIRECT\n    evidence:\n    - reference: ORPHA:324\n      reference_title: \"Fabry disease\"\n      supports: SUPPORT\n      evidence_source: OTHER\n      snippet: \"HP:0000100 | Nephrotic syndrome | Very frequent (99-80%)\"\n      explanation: Orphanet records nephrotic syndrome as a very frequent Fabry phenotype.\n  - target: Renal Globotriaosylceramide Inclusions\n    description: Renal podocyte GL-3 storage can be observed as biopsy-level renal globotriaosylceramide inclusions.\n    causal_link_type: DIRECT\n    evidence:\n    - reference: PMID:27129690\n      reference_title: \"Significant improvement in Fabry disease podocytopathy after 3 years of treatment with agalsidase beta.\"\n      supports: SUPPORT\n      evidence_source: HUMAN_CLINICAL\n      snippet: Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.\n      explanation: Human biopsy evidence supports renal GL-3 inclusions as a direct tissue readout of the renal podocyte storage branch.",
+  "projectionTTL": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\napp:renal a app:Mechanism; rdfs:label \"Renal glycosphingolipid storage and podocyte injury\"; app:cellType obo:CL_0000653; app:location obo:UBERON_0002113; app:projectedFrom <https://raw.githubusercontent.com/monarch-initiative/dismech/main/kb/disorders/Fabry_Disease.yaml> .\napp:renal app:hasEvidence app:evidence0 .\napp:evidence0 app:reference <https://pubmed.ncbi.nlm.nih.gov/27129690/>; app:supports \"SUPPORT\"; app:evidenceSource \"HUMAN_CLINICAL\"; rdfs:label \"Significant improvement in Fabry disease podocytopathy after 3 years of treatment with agalsidase beta.\"; app:sourceSnippet \"renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.\" .\napp:renal app:hasEvidence app:evidence1 .\napp:evidence1 app:reference <https://pubmed.ncbi.nlm.nih.gov/36334424/>; app:supports \"SUPPORT\"; app:evidenceSource \"OTHER\"; rdfs:label \"Clinical relevance of globotriaosylceramide accumulation in Fabry disease and the effect of agalsidase beta in affected tissues.\"; app:sourceSnippet \"Damage leads to renal dysfunction and end-stage renal disease\" .",
+  "controlsTTL": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\napp:controlOtherOrgan a app:Mechanism, app:SyntheticControl; app:cellType app:syntheticCell; app:location app:syntheticOtherOrgan .\napp:controlKidneyNoCell a app:Mechanism, app:SyntheticControl; app:location obo:UBERON_0002113 .\n",
+  "rule": {
+    "id": "kidney-cell-evidence-selection",
+    "version": "1",
+    "text": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n{ ?m a app:Mechanism; app:cellType ?cell; app:location obo:UBERON_0002113 . } => { ?m a app:KidneyCellEvidenceSelectionCandidate . } ."
+  },
+  "run": {
+    "kind": "linked-science-reasoning-run",
+    "operationId": "op-000005",
+    "complete": true,
+    "semantics": "explicit-n3-rules",
+    "graphPolicy": "default-graph-only",
+    "rules": {
+      "id": "kidney-cell-evidence-selection",
+      "version": "1",
+      "sha256": "ef5bfb9db2047dbdcd6a6ffc35289939531ab4e6e16ba9f036a6f6ff5cb3f0b1",
+      "authority": "caller-supplied-premises"
+    },
+    "inputs": [
+      {
+        "id": "h-000004",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+        "fingerprints": [
+          "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+          "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+        ]
+      }
+    ],
+    "inputSha256": "95bcd3bcb637c3847316ca1f186c91e567fa4b1467bfd53605c7d67905f2981d",
+    "outputSha256": "899a6ce1a1b4f4b711a8d755a6711645c1ea0e771bac015d38c24621044b20c9",
+    "engine": {
+      "name": "eyeron",
+      "version": "0.5.13",
+      "sha256": "d97a3e9e35d4c12960a46570eb20ab32287ef8d07e88dc7aa04c0c1b70fbd88d",
+      "transformedSha256": "17c69aeb703a5e17c16ced2f01e4eef628d03300b5d634aa4f77e75b0969c10a"
+    },
+    "elapsedMs": 58.39954200014472,
+    "limits": {
+      "timeoutMs": 10000,
+      "maxInputBytes": 1048576,
+      "maxRulesBytes": 262144,
+      "maxRules": 1000,
+      "maxOutputBytes": 1048576,
+      "maxProofBytes": 1048576,
+      "wasmMemoryMiB": 128,
+      "workerHeapMiB": 64
+    },
+    "usage": {
+      "inputBytes": 2760,
+      "rulesBytes": 272,
+      "outputBytes": 89,
+      "proofBytes": 936,
+      "wasmLinearMemoryBytes": 1638400,
+      "memoryPolicy": {
+        "kind": "bounded-wasm-linear-memory-and-worker-heap",
+        "wasmMaximumBytes": 134217728,
+        "workerOldGenerationMiB": 64,
+        "workerYoungGenerationMiB": 8,
+        "workerStackMiB": 4,
+        "processRssCeiling": false
+      }
+    },
+    "count": 1,
+    "proof": {
+      "available": true,
+      "verified": false,
+      "sha256": "39d5a2b0d056b7549532db9ce7a2a587e57188b15ca501741ed21f576ab5c2e5",
+      "bytes": 936
+    },
+    "validity": "source-dependent-workspace-epoch",
+    "blankNodes": "source-scoped-inputs"
+  },
+  "derived": "<urn:fabry-demo:renal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <urn:fabry-demo:KidneyCellEvidenceSelectionCandidate> .\n",
+  "proof": {
+    "kind": "linked-science-proof-excerpt",
+    "operationId": "op-000005",
+    "format": "N3",
+    "verified": false,
+    "selectedConclusion": false,
+    "truncated": false,
+    "text": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix pe: <https://eyereasoner.github.io/pe#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\napp:renal a app:KidneyCellEvidenceSelectionCandidate .\n\n{ app:renal a app:KidneyCellEvidenceSelectionCandidate . } pe:why {\n  { app:renal a app:KidneyCellEvidenceSelectionCandidate . }\n    pe:by [ pe:rule \"session-program\"; pe:line 4 ];\n    pe:binding\n      [ pe:var \"cell\"; pe:value obo:CL_0000653 ],\n      [ pe:var \"m\"; pe:value app:renal ];\n    pe:uses\n      { app:renal a app:Mechanism . },\n      { app:renal app:cellType obo:CL_0000653 . },\n      { app:renal app:location obo:UBERON_0002113 . }.\n\n  { app:renal a app:Mechanism . }\n    pe:by [ pe:fact \"<unknown>\" ].\n\n  { app:renal app:cellType obo:CL_0000653 . }\n    pe:by [ pe:fact \"<unknown>\" ].\n\n  { app:renal app:location obo:UBERON_0002113 . }\n    pe:by [ pe:fact \"<unknown>\" ].\n}.\n"
+  },
+  "query": "PREFIX app: <urn:fabry-demo:> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?mechanism ?label ?evidence ?reference ?evidenceSource WHERE { ?mechanism a app:KidneyCellEvidenceSelectionCandidate; rdfs:label ?label; app:hasEvidence ?evidence . ?evidence app:reference ?reference; app:supports \"SUPPORT\"; app:evidenceSource ?evidenceSource . }",
+  "queryRows": [
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:renal"
+      },
+      "label": {
+        "termType": "Literal",
+        "value": "Renal glycosphingolipid storage and podocyte injury",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "evidence": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:evidence0"
+      },
+      "reference": {
+        "termType": "NamedNode",
+        "value": "https://pubmed.ncbi.nlm.nih.gov/27129690/"
+      },
+      "evidenceSource": {
+        "termType": "Literal",
+        "value": "HUMAN_CLINICAL",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:renal"
+      },
+      "label": {
+        "termType": "Literal",
+        "value": "Renal glycosphingolipid storage and podocyte injury",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      "evidence": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:evidence1"
+      },
+      "reference": {
+        "termType": "NamedNode",
+        "value": "https://pubmed.ncbi.nlm.nih.gov/36334424/"
+      },
+      "evidenceSource": {
+        "termType": "Literal",
+        "value": "OTHER",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    }
+  ],
+  "controlQuery": "PREFIX app: <urn:fabry-demo:> SELECT ?mechanism ?selected WHERE { VALUES ?mechanism { app:renal app:controlOtherOrgan app:controlKidneyNoCell } BIND(EXISTS { ?mechanism a app:KidneyCellEvidenceSelectionCandidate } AS ?selected) }",
+  "controlRows": [
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:renal"
+      },
+      "selected": {
+        "termType": "Literal",
+        "value": "true",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:controlOtherOrgan"
+      },
+      "selected": {
+        "termType": "Literal",
+        "value": "false",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "mechanism": {
+        "termType": "NamedNode",
+        "value": "urn:fabry-demo:controlKidneyNoCell"
+      },
+      "selected": {
+        "termType": "Literal",
+        "value": "false",
+        "language": "",
+        "datatype": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    }
+  ],
+  "sourceProfile": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000002",
+      "type": "instance-data",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+      "label": "fabry-projection"
+    },
+    "type": "instance-data",
+    "count": 17,
+    "fingerprints": [
+      "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014"
+    ],
+    "lineage": {
+      "kind": "materialized-local-graph",
+      "operationId": "op-000002"
+    },
+    "provenance": {
+      "operationId": "op-000002",
+      "source": {
+        "kind": "local-synthetic",
+        "id": "fabry-projection"
+      },
+      "sourceFingerprint": "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+      "localOnly": true
+    },
+    "residency": {
+      "kind": "resident-rdf-dataset",
+      "indexed": true,
+      "scope": "workspace-epoch"
+    },
+    "bounds": {
+      "bytes": 710,
+      "maxBytes": 32768
+    }
+  },
+  "controlsProfile": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000003",
+      "type": "instance-data",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+      "label": "fabry-synthetic-controls"
+    },
+    "type": "instance-data",
+    "count": 7,
+    "fingerprints": [
+      "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+    ],
+    "lineage": {
+      "kind": "materialized-local-graph",
+      "operationId": "op-000003"
+    },
+    "provenance": {
+      "operationId": "op-000003",
+      "source": {
+        "kind": "local-synthetic",
+        "id": "fabry-synthetic-controls"
+      },
+      "sourceFingerprint": "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7",
+      "localOnly": true
+    },
+    "residency": {
+      "kind": "resident-rdf-dataset",
+      "indexed": true,
+      "scope": "workspace-epoch"
+    },
+    "bounds": {
+      "bytes": 725,
+      "maxBytes": 32768
+    }
+  },
+  "mergedInputProfile": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000004",
+      "type": "quads",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+      "label": "query-result"
+    },
+    "type": "quads",
+    "count": 24,
+    "columns": [
+      "subject",
+      "predicate",
+      "object",
+      "graph"
+    ],
+    "fingerprints": [
+      "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+      "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+    ],
+    "lineage": {
+      "kind": "communica-query",
+      "operationId": "op-000004",
+      "sourceHandles": [
+        "h-000002",
+        "h-000003"
+      ],
+      "querySha256": "a9505e216ad17c8beb6eb7c05ac7eb109bbe698dcdf61195c3eb17c80b8ab75e",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    "provenance": {
+      "operationId": "op-000004",
+      "localOnly": true,
+      "queryType": "CONSTRUCT",
+      "querySha256": "a9505e216ad17c8beb6eb7c05ac7eb109bbe698dcdf61195c3eb17c80b8ab75e",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "sourceHandles": [
+        "h-000002",
+        "h-000003"
+      ],
+      "sourceFingerprints": [
+        "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+        "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+      ]
+    },
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "bounds": {
+      "bytes": 1561,
+      "maxBytes": 32768
+    }
+  },
+  "derivedProfile": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000005",
+      "type": "inferred-graph",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+      "label": "reasoning-derived"
+    },
+    "type": "inferred-graph",
+    "count": 1,
+    "fingerprints": [
+      "7997abbc1402448c91d3ea8b58174e79af83f1e62b52f8a79138d239ca550265"
+    ],
+    "lineage": {
+      "kind": "deterministic-inference",
+      "operationId": "op-000005",
+      "sources": [
+        "h-000004"
+      ]
+    },
+    "provenance": {
+      "operationId": "op-000005",
+      "localOnly": true,
+      "completion": {
+        "complete": true
+      },
+      "reasoning": {
+        "kind": "linked-science-reasoning-run",
+        "operationId": "op-000005",
+        "complete": true,
+        "semantics": "explicit-n3-rules",
+        "graphPolicy": "default-graph-only",
+        "rules": {
+          "id": "kidney-cell-evidence-selection",
+          "version": "1",
+          "sha256": "ef5bfb9db2047dbdcd6a6ffc35289939531ab4e6e16ba9f036a6f6ff5cb3f0b1",
+          "authority": "caller-supplied-premises"
+        },
+        "inputs": [
+          {
+            "id": "h-000004",
+            "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+            "fingerprints": [
+              "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+              "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+            ]
+          }
+        ],
+        "inputSha256": "95bcd3bcb637c3847316ca1f186c91e567fa4b1467bfd53605c7d67905f2981d",
+        "outputSha256": "899a6ce1a1b4f4b711a8d755a6711645c1ea0e771bac015d38c24621044b20c9",
+        "engine": {
+          "name": "eyeron",
+          "version": "0.5.13",
+          "sha256": "d97a3e9e35d4c12960a46570eb20ab32287ef8d07e88dc7aa04c0c1b70fbd88d",
+          "transformedSha256": "17c69aeb703a5e17c16ced2f01e4eef628d03300b5d634aa4f77e75b0969c10a"
+        },
+        "elapsedMs": 58.39954200014472,
+        "limits": {
+          "timeoutMs": 10000,
+          "maxInputBytes": 1048576,
+          "maxRulesBytes": 262144,
+          "maxRules": 1000,
+          "maxOutputBytes": 1048576,
+          "maxProofBytes": 1048576,
+          "wasmMemoryMiB": 128,
+          "workerHeapMiB": 64
+        },
+        "usage": {
+          "inputBytes": 2760,
+          "rulesBytes": 272,
+          "outputBytes": 89,
+          "proofBytes": 936,
+          "wasmLinearMemoryBytes": 1638400,
+          "memoryPolicy": {
+            "kind": "bounded-wasm-linear-memory-and-worker-heap",
+            "wasmMaximumBytes": 134217728,
+            "workerOldGenerationMiB": 64,
+            "workerYoungGenerationMiB": 8,
+            "workerStackMiB": 4,
+            "processRssCeiling": false
+          }
+        },
+        "count": 1,
+        "proof": {
+          "available": true,
+          "verified": false,
+          "sha256": "39d5a2b0d056b7549532db9ce7a2a587e57188b15ca501741ed21f576ab5c2e5",
+          "bytes": 936
+        },
+        "validity": "source-dependent-workspace-epoch",
+        "blankNodes": "source-scoped-inputs"
+      }
+    },
+    "completion": {
+      "complete": true
+    },
+    "residency": {
+      "kind": "resident-rdf-dataset",
+      "indexed": true,
+      "scope": "workspace-epoch"
+    },
+    "bounds": {
+      "bytes": 2366,
+      "maxBytes": 32768
+    }
+  },
+  "queryProfile": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000007",
+      "type": "bindings",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:fabry-kidney-selection-20260925:1",
+      "label": "query-result"
+    },
+    "type": "bindings",
+    "count": 2,
+    "columns": [
+      "mechanism",
+      "label",
+      "evidence",
+      "reference",
+      "evidenceSource"
+    ],
+    "fingerprints": [
+      "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+      "7997abbc1402448c91d3ea8b58174e79af83f1e62b52f8a79138d239ca550265"
+    ],
+    "lineage": {
+      "kind": "communica-query",
+      "operationId": "op-000006",
+      "sourceHandles": [
+        "h-000002",
+        "h-000005"
+      ],
+      "querySha256": "29d2a7f7a2bf07af0b651a5c8791f37049ddfd9303faf1bf3514fa39114b8284",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      }
+    },
+    "provenance": {
+      "operationId": "op-000006",
+      "localOnly": true,
+      "queryType": "SELECT",
+      "querySha256": "29d2a7f7a2bf07af0b651a5c8791f37049ddfd9303faf1bf3514fa39114b8284",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "sourceHandles": [
+        "h-000002",
+        "h-000005"
+      ],
+      "sourceFingerprints": [
+        "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+        "7997abbc1402448c91d3ea8b58174e79af83f1e62b52f8a79138d239ca550265"
+      ]
+    },
+    "completion": {
+      "kind": "linked-science-result-completion",
+      "status": "complete",
+      "complete": true,
+      "truncated": false,
+      "scope": "submitted-query",
+      "materialization": "atomic-before-handle-publication"
+    },
+    "bounds": {
+      "bytes": 1584,
+      "maxBytes": 32768
+    }
+  }
+}
+

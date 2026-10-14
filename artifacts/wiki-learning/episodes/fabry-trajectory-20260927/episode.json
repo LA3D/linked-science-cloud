@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.2.0",
+  "id": "fabry-trajectory-20260927",
+  "host": {
+    "hostId": "local",
+    "taskId": "01a0d826-8c76-75a0-83fc-a2316b2d423f",
+    "version": "Codex selected local rollout; build not attested",
+    "observableEvents": {
+      "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+      "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+      "hashDomain": "file-bytes",
+      "pointer": ""
+    },
+    "memory": {
+      "use": "unknown",
+      "generation": "unknown",
+      "basis": "No global memory inspected; this capture does not certify baseline skill use."
+    }
+  },
+  "capture": {
+    "kind": "selected-trajectory",
+    "completeness": "partial",
+    "gaps": [
+      "Selected process evidence only; not direct-runtime machine certification.",
+      "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+      "No independent transfer or controlled performance study.",
+      "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+    ]
+  },
+  "runtime": {
+    "projectId": "@linked-science/runtime",
+    "version": "not-observed",
+    "sessionState": "not-observed"
+  },
+  "skillBaseline": {
+    "manifestPath": "artifacts/wiki-learning/baselines/repl-20260919-phase0/manifest.json",
+    "digest": "db33fd189034abd4c14d2d6d7f2043014e5f508965e6c47852dc1e1ceacbfe03",
+    "discovery": "not-observed",
+    "loading": "not-observed"
+  },
+  "events": [
+    {
+      "id": "event-1",
+      "turnId": "01a0d826-8ef4-73f2-99a7-acd586bd4a6c",
+      "itemId": "msg_01a0d826-96b5-7f63-9d5b-a5696cd984dc",
+      "kind": "userMessage",
+      "sequence": 1,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-2",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_jOuIvQ5bFHGnQtdjZHQt3w40",
+      "kind": "toolCall",
+      "sequence": 2,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-3",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "msg_05f037d0ef6a381a016ab917ae367487d1aa77e7c16c61ffa5",
+      "kind": "agentMessage",
+      "sequence": 3,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-4",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "msg_05f037d0ef6a381a016ab919f3d89487d1a6171637243925a0",
+      "kind": "agentMessage",
+      "sequence": 4,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-5",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_GZXovvTQjbdm649ajk8GOh2D",
+      "kind": "toolCall",
+      "sequence": 5,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-6",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_mErT5Utir7kJXl57rwnj6qhL",
+      "kind": "toolCall",
+      "sequence": 6,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-7",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_11qnXj7YbVW7a6qMHGGpARYl",
+      "kind": "toolCall",
+      "sequence": 7,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-8",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_69I1vtvbrhAok0sPhlGFDHgP",
+      "kind": "toolCall",
+      "sequence": 8,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-9",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "call_UTW5piIn5KuWcvmZe2ezAoRP",
+      "kind": "toolCall",
+      "sequence": 9,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-10",
+      "turnId": "01a0e2fb-abbc-73f0-96ab-62b9627abdc6",
+      "itemId": "msg_05f037d0ef6a381a016ab91aa6973087d1a924eebddebc637f",
+      "kind": "agentMessage",
+      "sequence": 10,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-11",
+      "turnId": "01a0e314-d10a-7952-ab36-d2b6deb174a6",
+      "itemId": "call_ob9FPay4dS3dnxctuqQSj5GQ",
+      "kind": "toolCall",
+      "sequence": 11,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-12",
+      "turnId": "01a0e314-d10a-7952-ab36-d2b6deb174a6",
+      "itemId": "call_Wf50EN79Ev6oOvzig7OBCEgz",
+      "kind": "toolCall",
+      "sequence": 12,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-13",
+      "turnId": "01a0e314-d10a-7952-ab36-d2b6deb174a6",
+      "itemId": "call_NSFujwNrXarb1EuCDAU2lb6t",
+      "kind": "toolCall",
+      "sequence": 13,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-14",
+      "turnId": "01a0e314-d10a-7952-ab36-d2b6deb174a6",
+      "itemId": "call_vMrlx54yKSxIYfCZnIa6ii7b",
+      "kind": "toolCall",
+      "sequence": 14,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-15",
+      "turnId": "01a0e314-d10a-7952-ab36-d2b6deb174a6",
+      "itemId": "msg_05f037d0ef6a381a016ab91c86983c87d1ba59295788db914e",
+      "kind": "agentMessage",
+      "sequence": 15,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-16",
+      "turnId": "01a0e319-cf62-7773-9697-5f3ce182f18c",
+      "itemId": "call_imNDGX0v17EriQatjbtDFbu7",
+      "kind": "toolCall",
+      "sequence": 16,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    },
+    {
+      "id": "event-17",
+      "turnId": "01a0e319-cf62-7773-9697-5f3ce182f18c",
+      "itemId": "msg_05f037d0ef6a381a016ab91d7ebc4c87d1ba5dc631fe214563",
+      "kind": "agentMessage",
+      "sequence": 17,
+      "objectiveIds": [
+        "fabry-scientific-continuation"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "fabry-scientific-continuation",
+      "previousId": null,
+      "eventId": "event-1",
+      "statement": "Inspect Fabry enzyme chemistry, renal evidence and scientific query failure paths while separating sources, query results, selection rules and synthesis.",
+      "acceptance": [
+        "Preserve source/entity scope and dated evidence",
+        "Retain failures, schema inspection, bounded query changes and edge-specific evidence limits",
+        "Prepare saved explanatory handoff without claiming a new live execution"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "selected-trajectory",
+      "kind": "durable-artifact",
+      "description": "Original selected user epistemic guidance, scientific tool exchanges and agent reports, typed separately.",
+      "artifact": {
+        "path": "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+        "sha256": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "codex-task:01a0d826-8c76-75a0-83fc-a2316b2d423f",
+        "revision": "1b3056e2e72a8398194bad8fa58136dcc0a551622daf71c29ee89ae3911a71b5",
+        "representation": "linked-science-codex-trajectory/v1"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "predicate-probe",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-physiological-schema.json",
+        "sha256": "924b29fa0937639877c2a0d5a4e2db068c3c5cbde092b3ffd34fa6956a166994",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-physiological-schema.json",
+        "revision": "924b29fa0937639877c2a0d5a4e2db068c3c5cbde092b3ffd34fa6956a166994",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "bounded-result",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-bounded-federation.json",
+        "sha256": "d94129c76700a73830dfcf9affd8a9285f088ddd869decc1a769f2057a524f9c",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-bounded-federation.json",
+        "revision": "d94129c76700a73830dfcf9affd8a9285f088ddd869decc1a769f2057a524f9c",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "initial-timeout",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-directional-federation.json",
+        "sha256": "6934eef566b3c46f6147b6b1c4a1af3e03c9f30210eeab966e86cb71caead6f5",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-directional-federation.json",
+        "revision": "6934eef566b3c46f6147b6b1c4a1af3e03c9f30210eeab966e86cb71caead6f5",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "curl-exception",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-exception.json",
+        "sha256": "9a86ccf06b2d9d9f4283e3018a323f77b29691fa0bce038164cfcf349ea1a2af",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-exception.json",
+        "revision": "9a86ccf06b2d9d9f4283e3018a323f77b29691fa0bce038164cfcf349ea1a2af",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "query-audit",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/uniprot-example49-20260927/query-extraction-audit.json",
+        "sha256": "0d1ccadd61c1f59a151ba93ecdfcd07b1f18643f2950e51bfce47c4accf8772f",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/uniprot-example49-20260927/query-extraction-audit.json",
+        "revision": "0d1ccadd61c1f59a151ba93ecdfcd07b1f18643f2950e51bfce47c4accf8772f",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "failure-comparison",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/comparison.json",
+        "sha256": "2694638b905ef005b605efc4b34b9fda93fde6f22284a3ee2c9d55902b6866e0",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/comparison.json",
+        "revision": "2694638b905ef005b605efc4b34b9fda93fde6f22284a3ee2c9d55902b6866e0",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "renal-evidence",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/fabry-renal-literature-20260927/checkpoint.json",
+        "sha256": "c68c483a3aa3042c8a2d4fd38dd5da6b03add1392e71fa89ecd37ef27b783530",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/fabry-renal-literature-20260927/checkpoint.json",
+        "revision": "c68c483a3aa3042c8a2d4fd38dd5da6b03add1392e71fa89ecd37ef27b783530",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "rule-audit",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/scientific-inspections/fabry-selection-20260925/checkpoint.json",
+        "sha256": "796f15b72cfd01d2da73f1fc210640c3a467022baf3bd3d41a1f2ac8ce39099c",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/scientific-inspections/fabry-selection-20260925/checkpoint.json",
+        "revision": "796f15b72cfd01d2da73f1fc210640c3a467022baf3bd3d41a1f2ac8ce39099c",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "id": "saved-handoff",
+      "kind": "durable-artifact",
+      "description": "Saved supporting artifact from this trajectory; no original exchange or operation join asserted.",
+      "artifact": {
+        "path": "artifacts/wiki-learning/scientific/fabry-trajectory-20260927/handoff-reference.json",
+        "sha256": "11d802c5ef4920db5f8e54dbf259a77443ce26a8e54c82a6da84a9d5a33d29b3",
+        "hashDomain": "file-bytes",
+        "pointer": ""
+      },
+      "historicalHandle": null,
+      "source": {
+        "identity": "project-artifact:artifacts/wiki-learning/scientific/fabry-trajectory-20260927/handoff-reference.json",
+        "revision": "11d802c5ef4920db5f8e54dbf259a77443ce26a8e54c82a6da84a9d5a33d29b3",
+        "representation": "saved receipt or scientific handoff"
+      },
+      "completion": "partial",
+      "missingEvidence": [
+        "Supporting artifact, not independent scientific truth or direct-runtime witness."
+      ]
+    }
+  ],
+  "joins": [],
+  "outcomes": [
+    {
+      "schemaVersion": "1.0.0",
+      "id": "scoped-guided-process",
+      "objectiveId": "fabry-scientific-continuation",
+      "kind": "agent-judgment",
+      "status": "partial",
+      "claim": "Selected process supports provisional lessons on schema-directed queries, bounded federation, failure localization, claim-level evidence and saved handoffs; no autonomous benefit or machine-certified result asserted by this corpus.",
+      "evidenceIds": [
+        "selected-trajectory",
+        "predicate-probe",
+        "bounded-result",
+        "initial-timeout",
+        "curl-exception",
+        "query-audit",
+        "failure-comparison",
+        "renal-evidence",
+        "rule-audit",
+        "saved-handoff"
+      ],
+      "missingEvidence": [
+        "Selected process evidence only; not direct-runtime machine certification.",
+        "Standing user epistemic guidance is selected; later detailed task directions arrived as delegated task messages and are not relabeled as original human messages.",
+        "No independent transfer or controlled performance study.",
+        "Tool output can be bounded; supporting result artifacts have no invented original-operation join."
+      ]
+    }
+  ]
+}

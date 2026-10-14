@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "22e8ac33-7fdc-46b2-a2ce-a645244f5023",
+  "recordedAt": "2026-09-30T17:35:22.948Z",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "patternId": "pubchem-ontology-egfr-20260921",
+  "patternSha256": "3190c242529867c182818c2ba7058853c33bd3656ca574c30c34ec2cbfce4fda",
+  "helpfulness": "unknown"
+}

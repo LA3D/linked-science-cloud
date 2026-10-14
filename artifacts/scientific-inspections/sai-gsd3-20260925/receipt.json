@@ -1,0 +1,1188 @@
+{
+  "format": "linked-science-demo-validation/v1",
+  "recordedAt": "2026-09-25T10:51:28.057Z",
+  "question": "GSD III to human AGL function, structures, glycogen pathways and mechanistic follow-up",
+  "readiness": {
+    "cwd": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+    "environment": {
+      "runtime": "cleanroom_node_repl",
+      "mode": "external-context",
+      "rlm": {
+        "kind": "cleanroom-rlm-capabilities",
+        "version": "1.0.0",
+        "architecture": "recursive-language-model",
+        "controlEnvironment": "persistent-javascript",
+        "externalContext": {
+          "available": true,
+          "persistence": "kernel-epoch",
+          "maxContextBytes": 2097152,
+          "operations": [
+            "registerContext",
+            "context",
+            "inspect"
+          ]
+        },
+        "recursion": {
+          "available": false,
+          "reasonCode": "RLM_PROVIDER_UNAVAILABLE",
+          "providerAttachment": "none",
+          "interface": "nodeRepl.rlm.query",
+          "lifecycleOwner": "cleanroom-host",
+          "lifecycle": "bounded-one-shot-compatibility",
+          "durable": false,
+          "asynchronousHandle": false,
+          "hardMaxDepth": 4,
+          "recovery": "Continue with local external-context operations. Recursion requires a host-owned KernelBroker provider callback; the default stdio launcher does not attach one."
+        }
+      },
+      "project": {
+        "id": "@linked-science/runtime",
+        "role": "authoritative-production-implementation",
+        "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+      },
+      "broker": {
+        "packageName": "@linked-science/cleanroom-node-repl",
+        "packageRoot": "packages/cleanroom-node-repl",
+        "entrypoint": "packages/cleanroom-node-repl/src/cleanroom-mcp.mjs",
+        "mcpServer": "cleanroom_node_repl",
+        "tools": [
+          "js",
+          "js_reset",
+          "js_add_node_module_dir"
+        ]
+      },
+      "projectRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud",
+      "moduleRoot": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules",
+      "dependencies": {
+        "@comunica/query-sparql": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/@comunica/query-sparql/lib/index.js",
+        "http-link-header": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/http-link-header/lib/link.js",
+        "n3": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/n3/lib/index.js",
+        "rdfxml-streaming-parser": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/rdfxml-streaming-parser/index.js",
+        "sparqlalgebrajs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqlalgebrajs/index.js",
+        "sparqljs": "file:///Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/node_modules/sparqljs/sparql.js"
+      },
+      "traversalMediator": {
+        "available": true,
+        "owner": "cleanroom-broker",
+        "exposure": "private-runtime-only"
+      },
+      "resultStorage": {
+        "available": true,
+        "owner": "cleanroom-broker",
+        "exposure": "private-runtime-only"
+      }
+    },
+    "persistenceToken": "sai-20260925",
+    "offlineVerify": "passed"
+  },
+  "artifacts": {
+    "pdbEntry": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-mVuRP2/content/pdbEntry.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-mVuRP2/content/receipt.json",
+      "sha256": "2c401940e137a88ef96ebb3a8dea9c418ade7b698d960a293ad4b2781d52552f",
+      "bytes": 11925,
+      "url": "https://data.rcsb.org/rest/v1/core/entry/8ZEQ"
+    },
+    "hgnc": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-t2Lnuw/content/hgnc.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-t2Lnuw/content/receipt.json",
+      "sha256": "ccd5ad220a2031df1ccbde00082c7c25ed3c840ccc4a7ca3ec724662c9f882c8",
+      "bytes": 1262,
+      "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:321"
+    },
+    "reactome": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-AsDUqo/content/reactome.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-AsDUqo/content/receipt.json",
+      "sha256": "d6dc80983148200decb2bc2e66a37913f0c3d82989f0586399b1045466f172a0",
+      "bytes": 18010,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-70221"
+    },
+    "mondo": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-aoaNYP/content/mondo.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-aoaNYP/content/receipt.json",
+      "sha256": "f6e501eb570e0196fadebbc1bed0cc066da5599364d0f879d4d92a4cd86a86fa",
+      "bytes": 14172,
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/mondo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009291"
+    },
+    "uniprotOntology": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-paKuFe/content/uniprotOntology.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-paKuFe/content/receipt.json",
+      "sha256": "6c81c8502868afa88ea3139a62aa63fab92e19b6b63bbd62604f7ab6a55e66cb",
+      "bytes": 6577,
+      "url": "https://www.uniprot.org/core/"
+    },
+    "reactomeHydrolysis": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KdE2EB/content/reactomeHydrolysis.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-KdE2EB/content/receipt.json",
+      "sha256": "aba56852b67573ea7ffe9b45ab501893c31f7dfe02b56e3574d0c84413f308e7",
+      "bytes": 10375,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71593"
+    },
+    "reactomeTransfer": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dfEKe1/content/reactomeTransfer.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-dfEKe1/content/receipt.json",
+      "sha256": "8096927d6d1cec058078cf8cfa13577ccda65d49d4f1585025defb5f4a0d3f27",
+      "bytes": 10049,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71552"
+    },
+    "alphafoldSaved": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-rssdxm/content/alphafoldSaved.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-rssdxm/content/receipt.json",
+      "sha256": "ab478e2c08868e63aa4dc39178bcf7a8cf5fc4ddef8e2ddae56e0fc3a7cc117f",
+      "bytes": 13779,
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P35573"
+    },
+    "pdbEntity": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xe71to/content/pdbEntity.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xe71to/content/receipt.json",
+      "sha256": "50c948b1da62c6dcbdbd595d49fed2e5716fe51df177841fd037838b9047d47b",
+      "bytes": 57938,
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/8ZEQ/1"
+    },
+    "uniprotSaved": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-VKn3rJ/content/uniprotSaved.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-VKn3rJ/content/receipt.json",
+      "sha256": "6b0b52f08ce9c6dc82039c59cddd9374f1d8ed6724d0db02bac8156c5eca5c5e",
+      "bytes": 67075,
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.json"
+    },
+    "catalyst": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-X4ZmqO/content/catalyst.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-X4ZmqO/content/receipt.json",
+      "sha256": "9e79702cc8f789314a6db88346066d2b0d26c51fa506f5d577580fb6c1a511bd",
+      "bytes": 1256,
+      "url": "https://reactome.org/ContentService/data/query/71550"
+    },
+    "pdbInstance": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-jzwjAQ/content/pdbInstance.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-jzwjAQ/content/receipt.json",
+      "sha256": "90ecfd1dfa84f81a4fced8020ea3eaf6403d792b5ff57e96f3a234b940288345",
+      "bytes": 76262,
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity_instance/8ZEQ/A"
+    },
+    "uniprotRdf": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-E0Ovlk/content/uniprotRdf.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-E0Ovlk/content/receipt.json",
+      "sha256": "4fb68846e4e8eb16541021c0a4c8ed576141ad2e03ea5d0a09589bb8712aa435",
+      "bytes": 174800,
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.ttl"
+    },
+    "paper": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-UmJHCS/content/paper.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-UmJHCS/content/receipt.json",
+      "sha256": "d03cb051f0bc58061ee3862402fa5c307f41ccac196933751b6690aa7e18253c",
+      "bytes": 524816,
+      "url": "https://www.nature.com/articles/s41467-025-61077-6"
+    },
+    "reactomeProtein": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-avs4MR/content/reactomeProtein.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-avs4MR/content/receipt.json",
+      "sha256": "b44ba4209b7ea33ab8adc927b8305b191e0144ce29f5c27b0f96a5e8d944bcdc",
+      "bytes": 9537,
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71545"
+    },
+    "mdMetadata": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-aiyhru/content/mdMetadata.json",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-aiyhru/content/receipt.json",
+      "sha256": "43846665093e0ff54f69114420f0bbee1e292172eb930fddc3a776c13b0447fe",
+      "bytes": 3635,
+      "url": "https://api.github.com/repos/yongwangCPH/papers/contents/2024/GDE"
+    },
+    "experimentalPdb": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-qLGrQ0/content/experimentalPdb.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-qLGrQ0/content/receipt.json",
+      "sha256": "ec707991864f041dcd6352fd8fc5f08f88418b9662feadfae01e2d54cb047834",
+      "bytes": 1028214,
+      "url": "https://files.rcsb.org/download/8ZEQ.pdb"
+    },
+    "predictedPdb": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-n1C1AR/content/predictedPdb.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-n1C1AR/content/receipt.json",
+      "sha256": "76642e52c13901daef2279e236a3fcc6e056b9a2e552e3d25f7d67cff50ed88c",
+      "bytes": 1010717,
+      "url": "https://alphafold.ebi.ac.uk/files/AF-P35573-F1-model_v6.pdb"
+    },
+    "sparqlCrossrefs": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-yCTN7R/content/sparqlCrossrefs.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-yCTN7R/content/receipt.json",
+      "sha256": "275afe54da390289c7848ed364d4c3ff3db01ba13831fb4629942d9eb532bcc6",
+      "bytes": 1893,
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20%3Fdatabase%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20rdfs%3AseeAlso%20%3Flink%20.%20%3Flink%20up%3Adatabase%20%3Fdatabase%20.%20FILTER(%3Fdatabase%20IN%20(%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FPDB%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FReactome%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FHGNC%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FMIM%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FAlphaFoldDB%3E))%20%7D"
+    },
+    "sparqlSchema": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xUW6nZ/content/sparqlSchema.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-xUW6nZ/content/receipt.json",
+      "sha256": "9327275a01735f6f1d953d3ca2987d66383e30f588db5a5ccea9daf7e42477fa",
+      "bytes": 13604,
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D"
+    },
+    "sparqlProtein": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-NHq7LT/content/sparqlProtein.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-NHq7LT/content/receipt.json",
+      "sha256": "20e7f08f03322115d30b3198d03f50b29d29e7f86bbedd9e7cd54deeccb36db3",
+      "bytes": 123111,
+      "url": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D"
+    },
+    "mdReadme": {
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-r3FnRN/content/mdReadme.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-r3FnRN/content/receipt.json",
+      "sha256": "88609bf761841c1bf92c318e22342bf05ce0dd342b9605d9c3c448cab817cbd5",
+      "bytes": 188,
+      "url": "https://raw.githubusercontent.com/yongwangCPH/papers/main/2024/GDE/README"
+    }
+  },
+  "operations": [
+    {
+      "key": "uniprot",
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.json",
+      "kind": "public-resource-GET"
+    },
+    {
+      "key": "alphafold",
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P35573",
+      "kind": "public-resource-GET"
+    },
+    {
+      "key": "hgnc",
+      "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:321",
+      "kind": "public-resource-GET"
+    },
+    {
+      "key": "uniprotSchema",
+      "url": "https://www.uniprot.org/core/",
+      "kind": "public-resource-GET"
+    },
+    {
+      "key": "mondo",
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/mondo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009291",
+      "accept": "application/json",
+      "kind": "API-GET",
+      "status": "failed",
+      "error": {
+        "code": "LS_RESOURCE_PREFLIGHT",
+        "message": "Negotiation may contain only accept, acceptProfile, and prefer"
+      }
+    },
+    {
+      "key": "hgnc",
+      "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:321",
+      "accept": "application/json",
+      "kind": "API-GET",
+      "status": "failed",
+      "error": {
+        "code": "LS_RESOURCE_PREFLIGHT",
+        "message": "Negotiation may contain only accept, acceptProfile, and prefer"
+      }
+    },
+    {
+      "key": "pdbEntry",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/8ZEQ",
+      "accept": "application/json",
+      "kind": "API-GET",
+      "status": "failed",
+      "error": {
+        "code": "LS_RESOURCE_PREFLIGHT",
+        "message": "Negotiation may contain only accept, acceptProfile, and prefer"
+      }
+    },
+    {
+      "key": "reactome",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-70221",
+      "accept": "application/json",
+      "kind": "API-GET",
+      "status": "failed",
+      "error": {
+        "code": "LS_RESOURCE_PREFLIGHT",
+        "message": "Negotiation may contain only accept, acceptProfile, and prefer"
+      }
+    },
+    {
+      "key": "mondo",
+      "url": "https://www.ebi.ac.uk/ols4/api/ontologies/mondo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009291",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "hgnc",
+      "url": "https://rest.genenames.org/fetch/hgnc_id/HGNC:321",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "pdbEntry",
+      "url": "https://data.rcsb.org/rest/v1/core/entry/8ZEQ",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "reactome",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-70221",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "uniprotOntology",
+      "url": "https://www.uniprot.org/core/",
+      "accept": "application/rdf+xml",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "kind": "SPARQL",
+      "query": "SELECT ?p ?o WHERE { <http://purl.uniprot.org/uniprot/P35573> ?p ?o }"
+    },
+    {
+      "key": "pdbEntity",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/8ZEQ/1",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "reactomeTransfer",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71552",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "reactomeHydrolysis",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71593",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "uniprotSaved",
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.json",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "alphafoldSaved",
+      "url": "https://alphafold.ebi.ac.uk/api/prediction/P35573",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "kind": "SPARQL-schema",
+      "query": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?term ?p ?o WHERE { VALUES ?term { up:encodedBy up:organism up:database up:Disease_Annotation up:range up:sequence } ?term ?p ?o }"
+    },
+    {
+      "key": "pdbInstance",
+      "url": "https://data.rcsb.org/rest/v1/core/polymer_entity_instance/8ZEQ/A",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "paper",
+      "url": "https://www.nature.com/articles/s41467-025-61077-6",
+      "accept": "text/html",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "catalyst",
+      "url": "https://reactome.org/ContentService/data/query/71550",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "uniprotRdf",
+      "url": "https://rest.uniprot.org/uniprotkb/P35573.ttl",
+      "accept": "text/turtle",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "kind": "SPARQL-cross-references",
+      "query": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?link ?database WHERE { <http://purl.uniprot.org/uniprot/P35573> rdfs:seeAlso ?link . ?link up:database ?database . FILTER(?database IN (<http://purl.uniprot.org/database/PDB>,<http://purl.uniprot.org/database/Reactome>,<http://purl.uniprot.org/database/HGNC>,<http://purl.uniprot.org/database/MIM>,<http://purl.uniprot.org/database/AlphaFoldDB>)) }"
+    },
+    {
+      "key": "experimentalPdb",
+      "url": "https://files.rcsb.org/download/8ZEQ.pdb",
+      "accept": "text/plain",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "predictedPdb",
+      "url": "https://alphafold.ebi.ac.uk/files/AF-P35573-F1-model_v6.pdb",
+      "accept": "text/plain",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "reactomeProtein",
+      "url": "https://reactome.org/ContentService/data/query/R-HSA-71545",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "mdMetadata",
+      "url": "https://api.github.com/repos/yongwangCPH/papers/contents/2024/GDE",
+      "accept": "application/json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "sparqlProtein",
+      "url": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D",
+      "accept": "application/sparql-results+json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "sparqlSchema",
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D",
+      "accept": "application/sparql-results+json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "sparqlCrossrefs",
+      "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Flink%20%3Fdatabase%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20rdfs%3AseeAlso%20%3Flink%20.%20%3Flink%20up%3Adatabase%20%3Fdatabase%20.%20FILTER(%3Fdatabase%20IN%20(%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FPDB%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FReactome%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FHGNC%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FMIM%3E%2C%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fdatabase%2FAlphaFoldDB%3E))%20%7D",
+      "accept": "application/sparql-results+json",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    },
+    {
+      "key": "mdReadme",
+      "url": "https://raw.githubusercontent.com/yongwangCPH/papers/main/2024/GDE/README",
+      "accept": "text/plain",
+      "kind": "resource-GET",
+      "status": "succeeded"
+    }
+  ],
+  "queries": [
+    {
+      "name": "protein",
+      "sparql": "SELECT ?p ?o WHERE { <http://purl.uniprot.org/uniprot/P35573> ?p ?o }",
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000010",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:sai-gsd3-demo-20260925:1",
+        "label": "traversal-result"
+      },
+      "count": 465,
+      "fingerprints": [
+        "5c1f50331c35966e278ea08c1ecdbe6893e389da1730c07d29115dba7bb80f90"
+      ],
+      "lineage": {
+        "kind": "communica-mediated-traversal",
+        "operationId": "op-000012",
+        "traversalId": "traversal-4894aad5f8999255e9bd9a77",
+        "querySha256": "d832f3f6ba5be0ee273a8e3311ae0a25f2a9887620b0e4714a7c1b5316847cd9",
+        "evidenceHandles": [],
+        "payloadSha256": "5c1f50331c35966e278ea08c1ecdbe6893e389da1730c07d29115dba7bb80f90",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000012",
+        "localOnly": false,
+        "mediatedTraversal": true,
+        "queryType": "SELECT",
+        "querySha256": "d832f3f6ba5be0ee273a8e3311ae0a25f2a9887620b0e4714a7c1b5316847cd9",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "negotiation": {},
+        "attempt": {
+          "kind": "linked-science-mediated-attempt",
+          "index": 12,
+          "status": "success",
+          "operationId": "op-000012",
+          "traversalId": "traversal-4894aad5f8999255e9bd9a77",
+          "queryType": "SELECT",
+          "querySha256": "d832f3f6ba5be0ee273a8e3311ae0a25f2a9887620b0e4714a7c1b5316847cd9",
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "startedAt": "2026-09-25T10:43:55.969Z",
+          "endedAt": "2026-09-25T10:43:56.861Z",
+          "durationMs": 892,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 123111,
+            "retries": 0
+          },
+          "resultItems": 465,
+          "hiddenRetries": 0,
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-4894aad5f8999255e9bd9a77",
+          "startedAt": "2026-09-25T10:43:55.969Z",
+          "finishedAt": "2026-09-25T10:43:56.859Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 123111,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D",
+              "finalUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "fe35832a9444b65c1a014ef9e422927a60aa5ecd23e35be72e1908ec41dea369",
+              "responseSha256": "20e7f08f03322115d30b3198d03f50b29d29e7f86bbedd9e7cd54deeccb36db3",
+              "bytes": 123111,
+              "mediaType": "application/sparql-results+json",
+              "headers": {
+                "content-type": "application/sparql-results+json",
+                "etag": "W/\"2026_03\"",
+                "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP35573%3E%20%3Fp%20%3Fo%20%7D",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-25T10:43:56.009Z",
+              "finishedAt": "2026-09-25T10:43:56.828Z",
+              "retries": 0
+            }
+          ],
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "payloadSha256": "5c1f50331c35966e278ea08c1ecdbe6893e389da1730c07d29115dba7bb80f90"
+      }
+    },
+    {
+      "name": "schema",
+      "sparql": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?term ?p ?o WHERE { VALUES ?term { up:encodedBy up:organism up:database up:Disease_Annotation up:range up:sequence } ?term ?p ?o }",
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000016",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:sai-gsd3-demo-20260925:1",
+        "label": "traversal-result"
+      },
+      "count": 37,
+      "fingerprints": [
+        "6494dc1accd0128f22fc9acee28cfa4040dced787a9fc6a460d2ef3f632b4786"
+      ],
+      "lineage": {
+        "kind": "communica-mediated-traversal",
+        "operationId": "op-000020",
+        "traversalId": "traversal-f73b02f2e250042511c0d121",
+        "querySha256": "e7b0488c214c2a08b2c84f7e788834c068d9abc1249912a0bbf99612d45e0295",
+        "evidenceHandles": [],
+        "payloadSha256": "6494dc1accd0128f22fc9acee28cfa4040dced787a9fc6a460d2ef3f632b4786",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000020",
+        "localOnly": false,
+        "mediatedTraversal": true,
+        "queryType": "SELECT",
+        "querySha256": "e7b0488c214c2a08b2c84f7e788834c068d9abc1249912a0bbf99612d45e0295",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "negotiation": {},
+        "attempt": {
+          "kind": "linked-science-mediated-attempt",
+          "index": 18,
+          "status": "success",
+          "operationId": "op-000020",
+          "traversalId": "traversal-f73b02f2e250042511c0d121",
+          "queryType": "SELECT",
+          "querySha256": "e7b0488c214c2a08b2c84f7e788834c068d9abc1249912a0bbf99612d45e0295",
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [],
+          "startedAt": "2026-09-25T10:45:06.077Z",
+          "endedAt": "2026-09-25T10:45:06.627Z",
+          "durationMs": 550,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 13604,
+            "retries": 0
+          },
+          "resultItems": 37,
+          "hiddenRetries": 0,
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-f73b02f2e250042511c0d121",
+          "startedAt": "2026-09-25T10:45:06.077Z",
+          "finishedAt": "2026-09-25T10:45:06.626Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 13604,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D",
+              "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "ac3ee38715294530c8cb65ac7e39b9d16255b51ba8f5f734a8f2c50d011e26df",
+              "responseSha256": "9327275a01735f6f1d953d3ca2987d66383e30f588db5a5ccea9daf7e42477fa",
+              "bytes": 13604,
+              "mediaType": "application/sparql-results+json",
+              "headers": {
+                "content-length": "13604",
+                "content-type": "application/sparql-results+json",
+                "etag": "W/\"2026_03\"",
+                "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fterm%20%3Fp%20%3Fo%20WHERE%20%7B%20VALUES%20%3Fterm%20%7B%20up%3AencodedBy%20up%3Aorganism%20up%3Adatabase%20up%3ADisease_Annotation%20up%3Arange%20up%3Asequence%20%7D%20%3Fterm%20%3Fp%20%3Fo%20%7D",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-25T10:45:06.084Z",
+              "finishedAt": "2026-09-25T10:45:06.619Z",
+              "retries": 0
+            }
+          ],
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "payloadSha256": "6494dc1accd0128f22fc9acee28cfa4040dced787a9fc6a460d2ef3f632b4786"
+      }
+    },
+    {
+      "name": "crossrefs",
+      "sparql": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?link ?database WHERE { <http://purl.uniprot.org/uniprot/P35573> rdfs:seeAlso ?link . ?link up:database ?database . FILTER(?database IN (<http://purl.uniprot.org/database/PDB>,<http://purl.uniprot.org/database/Reactome>,<http://purl.uniprot.org/database/HGNC>,<http://purl.uniprot.org/database/MIM>,<http://purl.uniprot.org/database/AlphaFoldDB>)) }",
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000022",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:sai-gsd3-demo-20260925:1",
+        "label": "traversal-result"
+      },
+      "count": 7,
+      "fingerprints": [
+        "5c1f50331c35966e278ea08c1ecdbe6893e389da1730c07d29115dba7bb80f90",
+        "6494dc1accd0128f22fc9acee28cfa4040dced787a9fc6a460d2ef3f632b4786",
+        "131c4bd468a7da8c4aba0d9d6690725d1ac5139a9845c7eb668fc95140917542"
+      ],
+      "lineage": {
+        "kind": "communica-mediated-traversal",
+        "operationId": "op-000027",
+        "traversalId": "traversal-51b020c845b5445f8be7dd4d",
+        "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+        "evidenceHandles": [
+          "h-000010",
+          "h-000016"
+        ],
+        "payloadSha256": "131c4bd468a7da8c4aba0d9d6690725d1ac5139a9845c7eb668fc95140917542",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000027",
+        "localOnly": false,
+        "mediatedTraversal": true,
+        "queryType": "SELECT",
+        "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [
+          "h-000010",
+          "h-000016"
+        ],
+        "negotiation": {},
+        "attempt": {
+          "kind": "linked-science-mediated-attempt",
+          "index": 23,
+          "status": "success",
+          "operationId": "op-000027",
+          "traversalId": "traversal-51b020c845b5445f8be7dd4d",
+          "queryType": "SELECT",
+          "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://sparql.uniprot.org/sparql"
+            }
+          ],
+          "evidenceHandles": [
+            "h-000010",
+            "h-000016"
+          ],
+          "startedAt": "2026-09-25T10:47:03.852Z",
+          "endedAt": "2026-09-25T10:47:10.171Z",
+          "durationMs": 6319,
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 1893,
+            "retries": 0
+          },
+          "resultItems": 7,
+          "hiddenRetries": 0,
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-51b020c845b5445f8be7dd4d",
+          "startedAt": "2026-09-25T10:47:03.852Z",
+          "finishedAt": "2026-09-25T10:47:10.170Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 300000,
+            "maxRequestMs": 20000,
+            "maxRequests": 16,
+            "maxFanOut": 8,
+            "maxConcurrency": 4,
+            "maxResponseBytes": 2000000,
+            "maxTotalBytes": 10000000,
+            "maxResultItems": 500
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 1893,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://sparql.uniprot.org/sparql",
+              "finalUrl": "https://sparql.uniprot.org/sparql",
+              "redirected": false,
+              "method": "POST",
+              "httpStatus": 200,
+              "requestSha256": "4b6fedecd632e331f54c5f9ac8cce378aff834ab315abd0539cf0fef19e5238a",
+              "responseSha256": "275afe54da390289c7848ed364d4c3ff3db01ba13831fb4629942d9eb532bcc6",
+              "bytes": 1893,
+              "mediaType": "application/sparql-results+json",
+              "headers": {
+                "content-length": "1893",
+                "content-type": "application/sparql-results+json"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://sparql.uniprot.org/sparql",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "queryType": "SELECT",
+              "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+              "startedAt": "2026-09-25T10:47:03.866Z",
+              "finishedAt": "2026-09-25T10:47:10.162Z",
+              "retries": 0
+            }
+          ],
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        },
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "evidenceStatus": "observed-advertisements",
+          "instructionAuthority": false,
+          "candidates": [],
+          "profileDeclarations": [],
+          "truncated": false,
+          "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+        },
+        "payloadSha256": "131c4bd468a7da8c4aba0d9d6690725d1ac5139a9845c7eb668fc95140917542"
+      }
+    },
+    {
+      "name": "local-crossrefs",
+      "sparql": "PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?link ?database WHERE { <http://purl.uniprot.org/uniprot/P35573> rdfs:seeAlso ?link . ?link up:database ?database . FILTER(?database IN (<http://purl.uniprot.org/database/PDB>,<http://purl.uniprot.org/database/Reactome>,<http://purl.uniprot.org/database/HGNC>,<http://purl.uniprot.org/database/MIM>,<http://purl.uniprot.org/database/AlphaFoldDB>)) }",
+      "handle": {
+        "kind": "linked-science-handle",
+        "id": "h-000030",
+        "type": "bindings",
+        "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:sai-gsd3-demo-20260925:1",
+        "label": "query-result"
+      },
+      "count": 7,
+      "fingerprints": [
+        "4fb68846e4e8eb16541021c0a4c8ed576141ad2e03ea5d0a09589bb8712aa435",
+        "7a583653544e13344c83a88c0e1990edc031f3275e08236bf96ffb89adb31397"
+      ],
+      "lineage": {
+        "kind": "communica-query",
+        "operationId": "op-000036",
+        "sourceHandles": [
+          "h-000021"
+        ],
+        "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "provenance": {
+        "operationId": "op-000036",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "eb39ef681126e60b32135f6288ed82b7bfd1562c8bf61c1ff1444a67e3953956",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000021"
+        ],
+        "sourceFingerprints": [
+          "4fb68846e4e8eb16541021c0a4c8ed576141ad2e03ea5d0a09589bb8712aa435",
+          "7a583653544e13344c83a88c0e1990edc031f3275e08236bf96ffb89adb31397"
+        ]
+      }
+    }
+  ],
+  "graph": {
+    "handle": {
+      "kind": "linked-science-handle",
+      "id": "h-000021",
+      "type": "instance-data",
+      "epoch": "bdfdecda-b0bd-4a45-a79b-9c0d6daec34b:sai-gsd3-demo-20260925:1",
+      "label": "p35573-complete-record"
+    },
+    "count": 3981
+  },
+  "limitations": [
+    "OMIM/Orphanet destination records not independently fetched; MONDO mappings verified.",
+    "Paper 3.23 Angstrom versus PDB 3.36 Angstrom unresolved.",
+    "Coordinate coverage and L620/R1147 identity checked; no structural alignment or refinement.",
+    "Durable SPARQL responses are separate GET replays; native originals remain resident.",
+    "Selected exact call log, not full conversation transcript.",
+    "No simulation execution or clinical prediction."
+  ]
+}

@@ -1,0 +1,1 @@
+PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> SELECT ?owner ?slot ?descriptor ?gene WHERE { ?owner ?slot ?descriptor . ?descriptor dm:term ?gene . FILTER(CONTAINS(LCASE(STR(?gene)),"hgnc")) }

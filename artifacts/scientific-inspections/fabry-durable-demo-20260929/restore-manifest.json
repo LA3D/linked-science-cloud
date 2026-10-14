@@ -1,0 +1,65 @@
+{
+  "format": "fabry-durable-restore-manifest/v1",
+  "sessionId": "linked-science-20260929-handoff-verification",
+  "socketPath": "/private/tmp/linked-science-session/session.sock",
+  "activityId": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+  "snapshots": {
+    "anchor": {
+      "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+      "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+    },
+    "chain": {
+      "id": "4be06f58-0b8b-4bd6-9dd6-aa4eb0e3a6d1",
+      "version": "125f138fdf57fd889a5692b69e8445db9bcbb59367f401a5aab81757b68f74d6"
+    },
+    "ontology": {
+      "id": "1c697f05-5273-4eca-89f0-3c7af2ccb446",
+      "version": "dd49faec8736ccdb67f566dcfe4f3e662fd9ded9a858e52dd7ab0973a48561d2"
+    },
+    "schema": {
+      "id": "44d58be1-ae66-42ad-8609-d83ffdcbb42f",
+      "version": "63814443dcc5dba91074bcba3d417ae781ecc563e5a9158f8f4e520062eb00f7"
+    },
+    "chemistry": {
+      "id": "a6037d1c-a958-49c9-8c03-776f87a25306",
+      "version": "ea2cda3d5ac675f7f90ce1c569b8044f1a19c1b76d779abbfc91a2ac0dcb2f98"
+    },
+    "exact": {
+      "id": "7fa341df-33d5-4305-8108-09b98d21dc3d",
+      "version": "dcb105b459604b83e61a957165df41ec430fde38e41acca89635db95c5dec060"
+    },
+    "expanded": {
+      "id": "206baa80-90dc-4f27-a23b-b8f9ffa1f981",
+      "version": "4bb770118f30226d7bb2d8ec9fa3ee0a891e32c60f1abdcdd774357ecbd1f91c"
+    },
+    "path": {
+      "id": "66aae782-81c6-4237-a848-960f4967f9cc",
+      "version": "95547c8b5dad85231acfc6a99fd3e1c5a2ae05dbe80322f4d545cc4f0f46fcf2"
+    },
+    "ruleEvidence": {
+      "id": "0b4d8ce4-0d9f-41f6-94d7-80270a82e39a",
+      "version": "172f0a8b806e3879d577e96df4eac38feb3e0576ec83361cf0550c513c0778f9"
+    },
+    "controls": {
+      "id": "ed9bd5e6-cce4-4515-914a-f36befe3ebe2",
+      "version": "cb92e1e80e60883a7ce4b8ab0df590c3563f5d86b5239593bb4e757cdeb22f90"
+    },
+    "assay": {
+      "id": "0f38c5ec-4100-4dbf-99d4-e14a6d59476b",
+      "version": "b563102c29f4f945faa35e1e62a93bc6e3018c2978c3246530d7c56b2e16cab8"
+    },
+    "pubchem": {
+      "id": "2ab15601-e94a-40db-b977-29c92e44e0a4",
+      "version": "9493821baaa0df173283185e89a4f1c8f3655462c68835aebf0a26f67a81141d"
+    },
+    "literature": {
+      "id": "41094a87-0614-417c-bf50-5bb104387516",
+      "version": "b450f983ccdcd555ffe5a87cdf91996132bf1e380e53c752e102720f7f8cef09"
+    },
+    "provenance": {
+      "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+      "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+    }
+  },
+  "scope": "Only the explicit Fabry activity; no historical activity auto-selection"
+}

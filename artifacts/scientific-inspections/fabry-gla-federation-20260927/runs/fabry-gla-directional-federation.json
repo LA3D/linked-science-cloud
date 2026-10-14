@@ -1,0 +1,160 @@
+{
+  "name": "fabry-gla-directional-federation",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "PREFIX up: <http://purl.uniprot.org/core/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?protein ?reaction ?physiologicalReaction ?equation ?role ?participant ?chebi ?chemicalName\nWHERE {\n  VALUES ?protein { <http://purl.uniprot.org/uniprot/P06280> }\n  ?protein up:organism taxon:9606; up:annotation ?annotation .\n  ?annotation a up:Catalytic_Activity_Annotation;\n    up:catalyticActivity/up:catalyzedReaction ?reaction;\n    up:catalyzedPhysiologicalReaction ?physiologicalReaction .\n  SERVICE <https://sparql.rhea-db.org/sparql> {\n    ?reaction rh:status rh:Approved;\n      rh:directionalReaction ?physiologicalReaction .\n    ?physiologicalReaction rh:equation ?equation; ?role ?side .\n    VALUES ?role { rh:substrates rh:products }\n    ?side rh:contains ?participant .\n    ?participant rh:compound ?compound .\n    ?compound rh:chebi ?chebi .\n    OPTIONAL { ?chebi rdfs:label ?chemicalName }\n  }\n}\nORDER BY ?reaction ?role ?chebi",
+  "startedAt": "2026-09-27T13:29:50.065Z",
+  "elapsedMs": 45004,
+  "status": "failed",
+  "error": {
+    "code": "MEDIATOR_REQUEST_TIMEOUT",
+    "message": "Request deadline elapsed",
+    "receipt": {
+      "status": "failed",
+      "stage": "resource-read",
+      "code": "MEDIATOR_REQUEST_TIMEOUT",
+      "operationId": "op-000033",
+      "traversalId": "traversal-51632024866aa62742ba8eb7",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-51632024866aa62742ba8eb7",
+        "startedAt": "2026-09-27T13:29:50.066Z",
+        "finishedAt": "2026-09-27T13:30:35.068Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "failure",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+            "method": "GET",
+            "requestSha256": "bfad4e9a18aca2dfb5472addfb019d1303873a8fd0c39c57652af9cec54a05ba",
+            "bytes": 0,
+            "startedAt": "2026-09-27T13:29:50.066Z",
+            "finishedAt": "2026-09-27T13:30:35.067Z",
+            "retries": 0,
+            "failure": {
+              "code": "MEDIATOR_REQUEST_TIMEOUT"
+            }
+          }
+        ],
+        "progress": {
+          "bytes": 0,
+          "totalBytes": null,
+          "state": "failed",
+          "capacity": {
+            "freeBytes": 645130403840,
+            "reserveBytes": 268435456,
+            "retainedBytes": 948143,
+            "availableBytes": 644861968384
+          },
+          "elapsedMs": 45002,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "resource-failed"
+        }
+      },
+      "attempt": {
+        "kind": "linked-science-resource-attempt",
+        "index": 33,
+        "status": "failed",
+        "operationId": "op-000033",
+        "traversalId": "traversal-51632024866aa62742ba8eb7",
+        "method": "GET",
+        "url": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+        "startedAt": "2026-09-27T13:29:50.065Z",
+        "endedAt": "2026-09-27T13:30:35.069Z",
+        "durationMs": 45004,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 0,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_REQUEST_TIMEOUT",
+        "hiddenRetries": 0
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "cause": "Error: Request deadline elapsed"
+    }
+  }
+}

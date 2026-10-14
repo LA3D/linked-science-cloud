@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "d7b7eb00-c10f-472a-b577-a323767e8383",
+  "recordedAt": "2026-09-24T18:18:12.950Z",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "patternId": "registry-crosswalk-lower-bounds",
+  "patternSha256": "e26484a6109ac75a0a0c9fee5c8010e399aa4d903f8d5923c7799b37b935c5ca",
+  "helpfulness": "unknown"
+}

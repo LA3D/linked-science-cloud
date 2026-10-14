@@ -1,0 +1,472 @@
+{
+  "kind": "fabry-gla-live-federation-demo",
+  "recordedAt": "2026-09-27T13:30:55.173Z",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "elapsedMs": 888,
+  "resultCount": 8,
+  "protein": "http://purl.uniprot.org/uniprot/P06280",
+  "reactionPairs": [
+    [
+      "21112",
+      "21113"
+    ],
+    [
+      "48020",
+      "48021"
+    ]
+  ],
+  "rawResultSha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+  "originalArtifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-NCwGuZ/content/fabry-gla-bounded-federation.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-NCwGuZ/content/receipt.json",
+    "bytes": 8773,
+    "sha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+    "createdAt": "2026-09-27T13:30:56.048Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "9bff586f425cafbaca9f1db328bb68127a98669e15bf9892a30972abb8e1ea9c",
+        "responseSha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+        "bytes": 8773,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "8773",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"8C93258C7973C185DF1695912C2CDDA2\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:30:55.174Z",
+        "finishedAt": "2026-09-27T13:30:56.031Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-5bafea45a9370481cd44e3d4",
+        "startedAt": "2026-09-27T13:30:55.173Z",
+        "finishedAt": "2026-09-27T13:30:56.031Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 8773,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "9bff586f425cafbaca9f1db328bb68127a98669e15bf9892a30972abb8e1ea9c",
+            "responseSha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+            "bytes": 8773,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "8773",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"8C93258C7973C185DF1695912C2CDDA2\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%0APREFIX%20taxon%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E%0APREFIX%20rh%3A%20%3Chttp%3A%2F%2Frdf.rhea-db.org%2F%3E%0APREFIX%20rdfs%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0ASELECT%20DISTINCT%20%3Fprotein%20%3Freaction%20%3FphysiologicalReaction%20%3Fequation%20%3Frole%20%3Fparticipant%20%3Fchebi%20%3FchemicalName%0AWHERE%20%7B%0A%20%20VALUES%20%3Fprotein%20%7B%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20%7D%0A%20%20%3Fprotein%20up%3Aorganism%20taxon%3A9606%3B%20up%3Aannotation%20%3Fannotation%20.%0A%20%20%3Fannotation%20a%20up%3ACatalytic_Activity_Annotation%3B%0A%20%20%20%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%3B%0A%20%20%20%20up%3AcatalyzedPhysiologicalReaction%20%3FphysiologicalReaction%20.%0A%20%20SERVICE%20%3Chttps%3A%2F%2Fsparql.rhea-db.org%2Fsparql%3E%20%7B%0A%20%20%20%20VALUES%20(%3Freaction%20%3FphysiologicalReaction)%20%7B%20(rh%3A21112%20rh%3A21113)%20(rh%3A48020%20rh%3A48021)%20%7D%0A%20%20%20%20%3Freaction%20rh%3Astatus%20rh%3AApproved%3B%0A%20%20%20%20%20%20rh%3AdirectionalReaction%20%3FphysiologicalReaction%20.%0A%20%20%20%20%3FphysiologicalReaction%20rh%3Aequation%20%3Fequation%3B%20%3Frole%20%3Fside%20.%0A%20%20%20%20VALUES%20%3Frole%20%7B%20rh%3Asubstrates%20rh%3Aproducts%20%7D%0A%20%20%20%20%3Fside%20rh%3Acontains%20%3Fparticipant%20.%0A%20%20%20%20%3Fparticipant%20rh%3Acompound%20%3Fcompound%20.%0A%20%20%20%20%3Fcompound%20rh%3Achebi%20%3Fchebi%20.%0A%20%20%20%20OPTIONAL%20%7B%20%3Fchebi%20rdfs%3Alabel%20%3FchemicalName%20%7D%0A%20%20%7D%0A%7D%0AORDER%20BY%20%3Freaction%20%3Frole%20%3Fchebi&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:30:55.174Z",
+            "finishedAt": "2026-09-27T13:30:56.031Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 8773,
+          "totalBytes": 8773,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645129183232,
+            "reserveBytes": 268435456,
+            "retainedBytes": 948143,
+            "availableBytes": 644860747776
+          },
+          "elapsedMs": 858,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "querySha256": "6e41f965e1a230f6717963107a55ae24f5b4c5382717b181160bbeb8a1f8ce56",
+  "sourceDiseaseEvidence": "artifacts/scientific-inspections/fabry-full-graph-20260925/README.md",
+  "sourceProteinMapping": "artifacts/scientific-inspections/fabry-protein-extension-20260925/README.md",
+  "publishedPattern": "https://sparql.uniprot.org/.well-known/sparql-examples/?offset=43",
+  "adaptations": [
+    "Start with verified human GLA P06280, not chemical class.",
+    "Remove Bgee/Ensembl-expression branch.",
+    "Use UniProt catalytic-activity annotation physiological-reaction link and Rhea substrates/products to preserve roles.",
+    "Restrict SERVICE to both currently verified GLA reaction/direction pairs after unbounded-service attempt timed out."
+  ],
+  "limitations": [
+    "Snapshot-bounded reaction values need refreshing if UniProt mappings change.",
+    "Class-specific and broader Gb3Cer reactions are not two successive pathway steps.",
+    "Disease-specific consequences remain DisMech assertions, not deductions from enzyme chemistry.",
+    "Participant query does not retrieve stoichiometric coefficients, evidence qualifiers or full ontology closure."
+  ],
+  "execution": "One REPL-mediated HTTP GET to UniProt coordinator containing Rhea SERVICE; successful raw result retained.",
+  "examples": [
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21112"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21113"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/products"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_21112_compound_2037"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_17950"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-N-acylsphingosine"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21112"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21113"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/products"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_21112_compound_5513"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "D-galactopyranose"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21112"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21113"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/substrates"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_21112_compound_1283"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "water"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21112"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/21113"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer (d18:1(4E)) + H2O => a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/substrates"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_21112_compound_2214"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosylceramide"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48020"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48021"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/products"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_48020_compound_5513"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_4139"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "D-galactopyranose"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48020"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48021"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/products"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_48020_compound_11977"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_79208"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48020"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48021"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/substrates"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_48020_compound_1283"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_15377"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "water"
+      }
+    },
+    {
+      "protein": {
+        "type": "uri",
+        "value": "http://purl.uniprot.org/uniprot/P06280"
+      },
+      "reaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48020"
+      },
+      "physiologicalReaction": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/48021"
+      },
+      "equation": {
+        "type": "literal",
+        "value": "a globoside Gb3Cer + H2O => a beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide + D-galactose"
+      },
+      "role": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/substrates"
+      },
+      "participant": {
+        "type": "uri",
+        "value": "http://rdf.rhea-db.org/Participant_48020_compound_11976"
+      },
+      "chebi": {
+        "type": "uri",
+        "value": "http://purl.obolibrary.org/obo/CHEBI_88154"
+      },
+      "chemicalName": {
+        "type": "literal",
+        "value": "alpha-D-galactosyl-(1->4)-beta-D-galactosyl-(1->4)-beta-D-glucosyl-(1<->1)-ceramide"
+      }
+    }
+  ]
+}

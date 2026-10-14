@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "71dee279-eed1-4c4c-a7bc-e3304f9a057b",
+  "recordedAt": "2026-09-25T11:37:47.922Z",
+  "mode": "on",
+  "querySha256": "ff85383a9c84a975a62a1f627a80c6a9b1b4620dfe076954e0d122c7fba9d032",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 7,
+      "matchedTerms": [
+        "ontology",
+        "schema",
+        "imports"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "ontology",
+        "schema"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "ontology",
+        "schema"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

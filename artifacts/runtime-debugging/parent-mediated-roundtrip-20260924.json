@@ -1,0 +1,109 @@
+{
+  "kind": "parent-mediated-codex-child-roundtrip",
+  "version": 1,
+  "date": "2026-09-24",
+  "outcome": "passed",
+  "runId": "parent-mediated-20260924-1790279438842",
+  "parentTask": "01a0d47f-8875-7270-82d6-0e8e95b1d78b",
+  "epoch": "a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1",
+  "source": {
+    "kind": "synthetic",
+    "bytes": 16703,
+    "selectedBytes": 93,
+    "fullDocumentEmitted": false
+  },
+  "child": {
+    "id": "/root/roundtrip_child",
+    "forkTurns": "none",
+    "exactPrompt": "You are the actual child in an authorized synthetic plumbing test. Answer solely from the selected excerpt below. Do not use tools, access any REPL, inspect files, delegate, or retrieve anything. Return only a JSON object with keys total (number), difference (nonnegative number), larger (sample name), assertionIds (array of IDs used). Calculate combined tokens, absolute token difference, and which sample has more. Keep output under 2048 bytes. Selected excerpt (93 UTF-8 bytes):\nSYNTHETIC FIXTURE; not scientific evidence.\nA1: amber has 7 tokens.\nA2: violet has 11 tokens.",
+    "actualResponse": "{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"]}",
+    "responseBytes": 72
+  },
+  "independentCheck": {
+    "expected": {
+      "total": 18,
+      "difference": 4,
+      "larger": "violet",
+      "assertionIds": [
+        "A1",
+        "A2"
+      ]
+    },
+    "method": "Python arithmetic from fixture counts, before child completion; also compared against independently retained in-REPL oracle.",
+    "passed": true
+  },
+  "checks": {
+    "sameEpochAndSentinel": true,
+    "sourceStillRetained": true,
+    "resultReadBackInSeparateCall": true,
+    "blockingReplDuringDelegation": false,
+    "rlmQueryInvoked": false,
+    "recursionAvailable": false,
+    "providerEnabled": false,
+    "restart": false
+  },
+  "trajectory": [
+    {
+      "step": 1,
+      "tool": "cleanroom_node_repl.js",
+      "code": "var cp2Run = 'parent-mediated-20260924-' + Date.now();\nvar cp2Workspace = linkedScience.open({contextKey:cp2Run});\nvar cp2Source = {\n kind:'synthetic-plumbing-fixture', runId:cp2Run,\n records:[{id:'A1',sample:'amber',count:7},{id:'A2',sample:'violet',count:11}],\n unrelated:Array.from({length:160},(_,i)=>({id:'background-'+i,text:'Synthetic unrelated filler record '+i+'; excluded from selected evidence.'}))\n};\nvar cp2Selected = 'SYNTHETIC FIXTURE; not scientific evidence.\\n' + cp2Source.records.map(r=>r.id+': '+r.sample+' has '+r.count+' tokens.').join('\\n');\nvar cp2Document = cp2Selected + '\\n--- unselected appendix ---\\n' + JSON.stringify(cp2Source.unrelated);\nvar cp2Oracle = {total:cp2Source.records.reduce((n,r)=>n+r.count,0),difference:Math.abs(cp2Source.records[1].count-cp2Source.records[0].count),larger:cp2Source.records.reduce((a,b)=>a.count>b.count?a:b).sample,assertionIds:cp2Source.records.map(r=>r.id)};\nvar cp2Registration = nodeRepl.rlm.registerContext(cp2Run,cp2Document);\nvar cp2Projection = nodeRepl.rlm.inspect(cp2Run,{start:0,end:cp2Selected.length});\nvar cp2Sentinel = cp2Run + ':same-kernel';\nnodeRepl.write(JSON.stringify({runId:cp2Run,sentinel:cp2Sentinel,cwd:nodeRepl.cwd,project:linkedScience.capabilities().environment.project,workspace:cp2Workspace.inventory(),registration:cp2Registration,selected:cp2Projection,selectedBytes:Buffer.byteLength(cp2Projection.text),documentBytes:Buffer.byteLength(cp2Document),recursion:nodeRepl.rlm.capabilities().recursion.available}));",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"runId\":\"parent-mediated-20260924-1790279438842\",\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"cwd\":\"/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud\",\"project\":{\"id\":\"@linked-science/runtime\",\"role\":\"authoritative-production-implementation\",\"bootstrapEntrypoint\":\"lib/cleanroom-linked-science-bootstrap.mjs\"},\"workspace\":{\"kind\":\"linked-science-inventory\",\"contextKey\":\"parent-mediated-20260924-1790279438842\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"total\":0,\"residentGraphQuads\":0,\"handles\":[],\"truncated\":false,\"bounds\":{\"bytes\":281,\"maxBytes\":32768}},\"registration\":{\"contextId\":\"parent-mediated-20260924-1790279438842\",\"registered\":true},\"selected\":{\"contextId\":\"parent-mediated-20260924-1790279438842\",\"start\":0,\"end\":93,\"totalLength\":16703,\"text\":\"SYNTHETIC FIXTURE; not scientific evidence.\\nA1: amber has 7 tokens.\\nA2: violet has 11 tokens.\"},\"selectedBytes\":93,\"documentBytes\":16703,\"recursion\":false}"
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "tool": "collaboration.spawn_agent",
+      "arguments": {
+        "task_name": "roundtrip_child",
+        "fork_turns": "none",
+        "message": "You are the actual child in an authorized synthetic plumbing test. Answer solely from the selected excerpt below. Do not use tools, access any REPL, inspect files, delegate, or retrieve anything. Return only a JSON object with keys total (number), difference (nonnegative number), larger (sample name), assertionIds (array of IDs used). Calculate combined tokens, absolute token difference, and which sample has more. Keep output under 2048 bytes. Selected excerpt (93 UTF-8 bytes):\nSYNTHETIC FIXTURE; not scientific evidence.\nA1: amber has 7 tokens.\nA2: violet has 11 tokens."
+      },
+      "toolResult": {
+        "task_name": "/root/roundtrip_child"
+      },
+      "completion": {
+        "type": "FINAL_ANSWER",
+        "sender": "/root/roundtrip_child",
+        "text": "{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"]}"
+      }
+    },
+    {
+      "step": 3,
+      "tool": "cleanroom_node_repl.js",
+      "code": "var cp2ChildText = '{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"]}';\nif(Buffer.byteLength(cp2ChildText)>2048) throw new Error('child result exceeds bound');\nvar cp2ChildResult = JSON.parse(cp2ChildText);\nif(Object.keys(cp2ChildResult).sort().join(',') !== 'assertionIds,difference,larger,total' || !Number.isInteger(cp2ChildResult.total) || !Number.isInteger(cp2ChildResult.difference) || !Array.isArray(cp2ChildResult.assertionIds)) throw new Error('invalid child result');\nvar cp2Check = JSON.stringify(cp2ChildResult) === JSON.stringify(cp2Oracle);\nif(!cp2Check) throw new Error('child differs from independent retained oracle');\nvar cp2RetainedResult = {runId:cp2Run,childId:'/root/roundtrip_child',selectedInput:cp2Projection.text,result:cp2ChildResult,evidenceClass:'synthetic-model-synthesis',expectedAnswerPassed:cp2Check};\nvar cp2ResultRegistration = nodeRepl.rlm.registerContext(cp2Run+':result',cp2RetainedResult);\nnodeRepl.write(JSON.stringify({runId:cp2Run,sentinel:cp2Sentinel,epoch:cp2Workspace.inventory().epoch,result:cp2RetainedResult,registration:cp2ResultRegistration,resultBytes:Buffer.byteLength(cp2ChildText),fullDocumentStillRetained:nodeRepl.rlm.inspect(cp2Run,{start:0,end:0}).totalLength===cp2Document.length,recursion:nodeRepl.rlm.capabilities().recursion.available}));",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"runId\":\"parent-mediated-20260924-1790279438842\",\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"result\":{\"runId\":\"parent-mediated-20260924-1790279438842\",\"childId\":\"/root/roundtrip_child\",\"selectedInput\":\"SYNTHETIC FIXTURE; not scientific evidence.\\nA1: amber has 7 tokens.\\nA2: violet has 11 tokens.\",\"result\":{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"]},\"evidenceClass\":\"synthetic-model-synthesis\",\"expectedAnswerPassed\":true},\"registration\":{\"contextId\":\"parent-mediated-20260924-1790279438842:result\",\"registered\":true},\"resultBytes\":72,\"fullDocumentStillRetained\":true,\"recursion\":false}"
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "tool": "cleanroom_node_repl.js",
+      "code": "nodeRepl.write(JSON.stringify({runId:cp2Run,sentinel:cp2Sentinel,epoch:cp2Workspace.inventory().epoch,retainedResult:nodeRepl.rlm.inspect(cp2Run+':result',{start:0,end:2048}),sourceLength:nodeRepl.rlm.inspect(cp2Run,{start:0,end:0}).totalLength,independentOracle:cp2Oracle,recursion:nodeRepl.rlm.capabilities().recursion.available}));",
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"runId\":\"parent-mediated-20260924-1790279438842\",\"sentinel\":\"parent-mediated-20260924-1790279438842:same-kernel\",\"epoch\":\"a497d3c1-29c1-41cb-9825-8409cfd07052:parent-mediated-20260924-1790279438842:1\",\"retainedResult\":{\"contextId\":\"parent-mediated-20260924-1790279438842:result\",\"start\":0,\"end\":352,\"totalLength\":352,\"text\":\"{\\\"runId\\\":\\\"parent-mediated-20260924-1790279438842\\\",\\\"childId\\\":\\\"/root/roundtrip_child\\\",\\\"selectedInput\\\":\\\"SYNTHETIC FIXTURE; not scientific evidence.\\\\nA1: amber has 7 tokens.\\\\nA2: violet has 11 tokens.\\\",\\\"result\\\":{\\\"total\\\":18,\\\"difference\\\":4,\\\"larger\\\":\\\"violet\\\",\\\"assertionIds\\\":[\\\"A1\\\",\\\"A2\\\"]},\\\"evidenceClass\\\":\\\"synthetic-model-synthesis\\\",\\\"expectedAnswerPassed\\\":true}\"},\"sourceLength\":16703,\"independentOracle\":{\"total\":18,\"difference\":4,\"larger\":\"violet\",\"assertionIds\":[\"A1\",\"A2\"]},\"recursion\":false}"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Parent-observed exact tool calls/responses and child completion retained; no separate child-internal tool trace API was available, so no independently audited zero-tool claim.",
+    "No child REPL access was requested or needed by the task; prompt-only isolation is not an enforced tool sandbox.",
+    "No automatic rlm.query adapter, callback cancellation, native-child token budget, cross-process persistence or shared-session child attachment tested.",
+    "Generated full synthetic appendix stayed resident; generator retained here, not the full expanded appendix."
+  ]
+}

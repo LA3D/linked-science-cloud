@@ -1,0 +1,167 @@
+{
+  "name": "bgee-access",
+  "endpoint": "https://www.bgee.org/sparql/",
+  "query": "SELECT (1 AS ?ok) WHERE {}",
+  "startedAt": "2026-09-27T13:10:49.529Z",
+  "elapsedMs": 594,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-e46gaN/content/bgee-access.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-e46gaN/content/receipt.json",
+    "bytes": 224,
+    "sha256": "73092955218161cee2fdfe0adffd81097979b1902f5f857f04871511f90bbd5c",
+    "createdAt": "2026-09-27T13:10:50.113Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+        "finalUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "e96ff6a6a70fdfa1f4378bb8555a363911f42a77012917f98f3ce826181d4731",
+        "responseSha256": "73092955218161cee2fdfe0adffd81097979b1902f5f857f04871511f90bbd5c",
+        "bytes": 224,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "224",
+          "content-type": "application/sparql-results+json"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:10:49.531Z",
+        "finishedAt": "2026-09-27T13:10:50.099Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-47c97ae0cd9da1867035bfe7",
+        "startedAt": "2026-09-27T13:10:49.530Z",
+        "finishedAt": "2026-09-27T13:10:50.099Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 224,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+            "finalUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "e96ff6a6a70fdfa1f4378bb8555a363911f42a77012917f98f3ce826181d4731",
+            "responseSha256": "73092955218161cee2fdfe0adffd81097979b1902f5f857f04871511f90bbd5c",
+            "bytes": 224,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "224",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://www.bgee.org/sparql/?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:10:49.531Z",
+            "finishedAt": "2026-09-27T13:10:50.099Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 224,
+          "totalBytes": 224,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645152329728,
+            "reserveBytes": 268435456,
+            "retainedBytes": 172996,
+            "availableBytes": 644883894272
+          },
+          "elapsedMs": 569,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 1
+}

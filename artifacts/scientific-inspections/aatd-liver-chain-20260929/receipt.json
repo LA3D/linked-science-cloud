@@ -1,0 +1,315 @@
+{
+  "selection": {
+    "activityId": "b5ef1199-74d0-4f75-ad95-04f1eb3e2827",
+    "snapshots": [
+      {
+        "name": "edges",
+        "ref": {
+          "id": "7eb7778f-1204-4ab4-9af0-231112653837",
+          "version": "a87848b5aa32e018391046f466078a7902c8effdd22ce54df4f48922719651f3"
+        }
+      },
+      {
+        "name": "query",
+        "ref": {
+          "id": "cebf95d4-3329-4423-a857-60c6fafe71f2",
+          "version": "386780a581e2508f8859076d2b78c7cc40d5ebf48e1c704556623d5710a3ce5d"
+        }
+      },
+      {
+        "name": "evidence",
+        "ref": {
+          "id": "dbd6395b-c24f-4d94-9af1-910662ba10ac",
+          "version": "97e28aa4f02b33b2fb66e88f9f4cd2da4c6999908db4f3c06c73883d516e902f"
+        }
+      },
+      {
+        "name": "synthesis",
+        "ref": {
+          "id": "5bcc046f-a09f-4081-a94b-9241cd6ad36a",
+          "version": "475bd22cd517ea0c40c1329bd4f0c6c1d6595a46fa44152f298635e7bac7415b"
+        }
+      }
+    ]
+  },
+  "session": {
+    "sessionId": "aatd-liver-chain-20260929",
+    "instanceId": "13e01696-e684-46e0-b41e-717d104d8287",
+    "kernelAlive": true,
+    "epoch": 1,
+    "role": "owner"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/monarch-initiative/dismech/0b51b757ca06177aecd5164e68279944fa785ca7/kb/disorders/Alpha_1_Antitrypsin_Deficiency.yaml",
+    "commit": "0b51b757ca06177aecd5164e68279944fa785ca7"
+  },
+  "edges": [
+    {
+      "source": "Hepatic Protein Aggregation",
+      "target": "ER Stress and Unfolded Protein Response",
+      "type": null,
+      "references": [],
+      "sourceText": "  - target: ER Stress and Unfolded Protein Response\n    description: >-\n      Intracellular Z-AAT retention provokes hepatocyte proteostasis stress."
+    },
+    {
+      "source": "ER Stress and Unfolded Protein Response",
+      "target": "Hepatocyte Injury",
+      "type": "INDIRECT_KNOWN_INTERMEDIATES",
+      "references": [
+        "PMID:28752441"
+      ],
+      "sourceText": "  - target: Hepatocyte Injury\n    description: ER-stress-associated signaling proceeds to mitochondrial and caspase-linked hepatocyte injury.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    evidence:\n    - reference: PMID:28752441\n      reference_title: Pathophysiology of Alpha-1 Antitrypsin Deficiency Liver Disease.\n      supports: SUPPORT\n      evidence_source: OTHER\n      snippet: \"This intracellular death cascade appears to involve ER stress, mitochondrial depolarization, and caspase cleavage, and is possibly linked to autophagy and redox injury.\"\n      explanation: The review links ER stress with mitochondrial and caspase components of hepatocyte injury."
+    },
+    {
+      "source": "Hepatocyte Injury",
+      "target": "Hepatic Stellate Cell Activation",
+      "type": "INDIRECT_KNOWN_INTERMEDIATES",
+      "references": [
+        "PMID:28752441"
+      ],
+      "sourceText": "  - target: Hepatic Stellate Cell Activation\n    description: Chronic hepatocyte death and compensatory regeneration activate hepatic stellate cells.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES\n    evidence:\n    - reference: PMID:28752441\n      reference_title: Pathophysiology of Alpha-1 Antitrypsin Deficiency Liver Disease.\n      supports: SUPPORT\n      evidence_source: OTHER\n      snippet: \"This chronic cycle of cell death and regeneration activates hepatic stellate cells and initiates the process of hepatic fibrosis.\"\n      explanation: The review links chronic hepatocyte death and regeneration to stellate-cell activation."
+    },
+    {
+      "source": "Hepatic Stellate Cell Activation",
+      "target": "Hepatic Fibrosis",
+      "type": "DIRECT",
+      "references": [],
+      "sourceText": "  - target: Hepatic Fibrosis\n    description: Stellate cell activation and collagen deposition produce hepatic fibrosis.\n    causal_link_type: DIRECT"
+    },
+    {
+      "source": "Hepatic Stellate Cell Activation",
+      "target": "Liver Cirrhosis",
+      "type": "INDIRECT_KNOWN_INTERMEDIATES",
+      "references": [],
+      "sourceText": "  - target: Liver Cirrhosis\n    description: Progressive bridging fibrosis produces cirrhosis.\n    causal_link_type: INDIRECT_KNOWN_INTERMEDIATES"
+    }
+  ],
+  "query": "PREFIX a: <urn:aatd:liver-chain:> SELECT ?source ?target ?type ?reference WHERE { ?e a:sourceName ?source; a:targetName ?target; a:causalLinkType ?type . OPTIONAL { ?e a:reference ?reference } }",
+  "queryPage": {
+    "kind": "linked-science-page",
+    "operationId": "op-000009",
+    "source": {
+      "kind": "linked-science-handle",
+      "id": "h-000006",
+      "type": "bindings",
+      "epoch": "a34389e6-5082-436c-a2a3-5edabee75a8a:aatd-liver-chain-20260929:1",
+      "label": "query-result"
+    },
+    "columns": [
+      "source",
+      "target",
+      "type",
+      "reference"
+    ],
+    "offset": 0,
+    "total": 5,
+    "provenance": {
+      "operationId": "op-000007",
+      "localOnly": true,
+      "queryType": "SELECT",
+      "querySha256": "e5503854f5a53478587c27e3121178ab9811aba04976db95c47f0f8d1ab5c280",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "sourceHandles": [
+        "h-000005"
+      ],
+      "sourceFingerprints": [
+        "1256d3063b72565cdf33cbf7c98f3aa680b5262d65298c65add4177f367a1d64"
+      ]
+    },
+    "rows": [
+      {
+        "source": {
+          "termType": "Literal",
+          "value": "Hepatic Protein Aggregation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "Literal",
+          "value": "ER Stress and Unfolded Protein Response",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "UNSPECIFIED",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": null
+      },
+      {
+        "source": {
+          "termType": "Literal",
+          "value": "ER Stress and Unfolded Protein Response",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "Literal",
+          "value": "Hepatocyte Injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "INDIRECT_KNOWN_INTERMEDIATES",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "NamedNode",
+          "value": "https://pubmed.ncbi.nlm.nih.gov/28752441/"
+        }
+      },
+      {
+        "source": {
+          "termType": "Literal",
+          "value": "Hepatocyte Injury",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "Literal",
+          "value": "Hepatic Stellate Cell Activation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "INDIRECT_KNOWN_INTERMEDIATES",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": {
+          "termType": "NamedNode",
+          "value": "https://pubmed.ncbi.nlm.nih.gov/28752441/"
+        }
+      },
+      {
+        "source": {
+          "termType": "Literal",
+          "value": "Hepatic Stellate Cell Activation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "Literal",
+          "value": "Hepatic Fibrosis",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "DIRECT",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": null
+      },
+      {
+        "source": {
+          "termType": "Literal",
+          "value": "Hepatic Stellate Cell Activation",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "target": {
+          "termType": "Literal",
+          "value": "Liver Cirrhosis",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "type": {
+          "termType": "Literal",
+          "value": "INDIRECT_KNOWN_INTERMEDIATES",
+          "language": "",
+          "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "reference": null
+      }
+    ],
+    "truncated": false,
+    "bounds": {
+      "rows": 5,
+      "maxRows": 10,
+      "cells": 20,
+      "maxCells": 100,
+      "bytes": 3131,
+      "maxBytes": 32768
+    }
+  },
+  "acceptance": {
+    "id": "466cbe58-43da-4d42-a284-671a242f8e6c",
+    "request": "e4d1b444-fb65-474a-a04f-c2fd4cd87427",
+    "activity": "b5ef1199-74d0-4f75-ad95-04f1eb3e2827",
+    "resultDigest": "fa148b5cf5406bfb25e8163d13d67f8700c2381bfc30d29c0499d26e9e9309fe",
+    "continuationRevision": 2,
+    "acceptedAt": 1790691442125,
+    "evidence": "host-committed-model-synthesis",
+    "cleanup": "complete"
+  },
+  "computations": {
+    "total": 1,
+    "items": [
+      {
+        "id": "8cf44057-f551-4623-9185-996a32c2c482",
+        "status": "complete",
+        "revision": 3,
+        "step": {
+          "digest": "4123789e8200d8a23d78117e0b1baf383f9a63b45e5a60d067759504508fefba",
+          "name": "aatd-compose",
+          "version": "1"
+        },
+        "parentRequest": null,
+        "request": "e4d1b444-fb65-474a-a04f-c2fd4cd87427",
+        "createdAt": 1790691400809
+      }
+    ],
+    "nextOffset": null
+  },
+  "synthesis": {
+    "text": "The selected DisMech AATD hepatic branch links Z-AAT aggregation to ER-stress/UPR, hepatocyte injury, stellate-cell activation and fibrosis/cirrhosis. Five selected edges are source assertions, not five experiments. Aggregation-to-ER-stress has no explicit causal-link type or edge citation. ER-stress-to-injury and injury-to-stellate-activation are indirect-known-intermediates edges citing the same PMID28752441 review. Stellate-to-fibrosis is labeled direct and stellate-to-cirrhosis indirect, both without edge-level citations. The independently retrieved review abstract supports polymer retention, cell death/regeneration and stellate-mediated fibrosis, but qualifies ER stress involvement and possible autophagy/redox links. It does not independently establish canonical UPR activation or every causal arrow. Hepatic proteotoxic gain of function remains distinct from pulmonary antiprotease loss of function. No Fabry evidence was loaded."
+  },
+  "persistenceMarker": "aatd-recovery-20260929",
+  "recovery": {
+    "restore": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"restored\":true,\"binding\":\"sessionRecovery_03127b50b9b941f4aabc0f762f245b40\",\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\\"binding\\\":\\\"sessionRecovery_03127b50b9b941f4aabc0f762f245b40\\\",\\\"activityId\\\":\\\"b5ef1199-74d0-4f75-ad95-04f1eb3e2827\\\",\\\"loaded\\\":[\\\"edges\\\",\\\"query\\\",\\\"evidence\\\",\\\"synthesis\\\"],\\\"pending\\\":{\\\"total\\\":0,\\\"items\\\":[],\\\"nextOffset\\\":null},\\\"computations\\\":{\\\"total\\\":1,\\\"items\\\":[{\\\"id\\\":\\\"8cf44057-f551-4623-9185-996a32c2c482\\\",\\\"status\\\":\\\"complete\\\",\\\"revision\\\":3,\\\"step\\\":{\\\"digest\\\":\\\"4123789e8200d8a23d78117e0b1baf383f9a63b45e5a60d067759504508fefba\\\",\\\"name\\\":\\\"aatd-compose\\\",\\\"version\\\":\\\"1\\\"},\\\"parentRequest\\\":null,\\\"request\\\":\\\"e4d1b444-fb65-474a-a04f-c2fd4cd87427\\\",\\\"createdAt\\\":1790691400809}],\\\"nextOffset\\\":null}}\"}]}}"
+        }
+      ]
+    },
+    "check": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"sameRows\":true,\"rows\":5,\"originalHandle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000005\",\"type\":\"instance-data\",\"epoch\":\"a34389e6-5082-436c-a2a3-5edabee75a8a:aatd-liver-chain-20260929:1\",\"label\":\"aatd-selected-liver-edges\"},\"restoredHandle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000001\",\"type\":\"instance-data\",\"epoch\":\"a34389e6-5082-436c-a2a3-5edabee75a8a:sessionrecovery-03127b50b9b941f4aabc0f762f245b40:1\",\"label\":\"aatd-selected-liver-edges\"},\"loadedNames\":[\"edges\",\"query\",\"evidence\",\"synthesis\"],\"synthesis\":{\"text\":\"The selected DisMech AATD hepatic branch links Z-AAT aggregation to ER-stress/UPR, hepatocyte injury, stellate-cell activation and fibrosis/cirrhosis. Five selected edges are source assertions, not five experiments. Aggregation-to-ER-stress has no explicit causal-link type or edge citation. ER-stress-to-injury and injury-to-stellate-activation are indirect-known-intermediates edges citing the same PMID28752441 review. Stellate-to-fibrosis is labeled direct and stellate-to-cirrhosis indirect, both without edge-level citations. The independently retrieved review abstract supports polymer retention, cell death/regeneration and stellate-mediated fibrosis, but qualifies ER stress involvement and possible autophagy/redox links. It does not independently establish canonical UPR activation or every causal arrow. Hepatic proteotoxic gain of function remains distinct from pulmonary antiprotease loss of function. No Fabry evidence was loaded.\"}}"
+        }
+      ]
+    },
+    "serviceRestartTested": false
+  },
+  "verification": {
+    "targetedTests": {
+      "passed": 14,
+      "failed": 0
+    },
+    "offlineIdentity": "passed",
+    "liveReconnect": "preserved instance, epoch and marker; no replay",
+    "scope": "Primary-agent synthesis; no subagent or worker grant",
+    "failures": [
+      "GitHub default Accept returned HTTP 415; fixed with lowercase headers.accept",
+      "yaml and js-yaml imports unavailable; selected source-text projection used",
+      "Initial handoff accept before dispatch rejected HANDOFF_STATE; repaired with separate dispatch"
+    ]
+  }
+}

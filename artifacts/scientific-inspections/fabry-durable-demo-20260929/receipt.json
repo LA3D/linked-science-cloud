@@ -1,0 +1,1300 @@
+{
+  "format": "fabry-durable-demo/v1",
+  "recordedAt": "2026-09-29T12:41:45.879Z",
+  "identity": {
+    "id": "@linked-science/runtime",
+    "role": "authoritative-production-implementation",
+    "bootstrapEntrypoint": "lib/cleanroom-linked-science-bootstrap.mjs"
+  },
+  "session": {
+    "sessionId": "linked-science-20260929-handoff-verification",
+    "epoch": 1,
+    "role": "owner"
+  },
+  "activity": {
+    "id": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+    "epoch": "d2dbc58f-7e6b-44ac-a17e-47be13d131d3"
+  },
+  "sourceInputs": [
+    {
+      "file": "fabry-generated.ttl",
+      "sha256": "1a43e9d6b86f486ee050cb53909def288264c74248c991bc422ad8d424d4ba6b",
+      "count": 2834,
+      "sourceStatus": "saved-20260925"
+    },
+    {
+      "file": "application-links.ttl",
+      "sha256": "f4349ff35abfbdaa15035f6db4772ebadbf0cd1f73f9efb0776e30b6a451b72e",
+      "count": 65,
+      "sourceStatus": "saved-20260925"
+    },
+    {
+      "file": "cl-excerpt.ttl",
+      "sha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a",
+      "count": 154,
+      "sourceStatus": "saved-20260925"
+    },
+    {
+      "file": "uberon-excerpt.ttl",
+      "sha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee",
+      "count": 141,
+      "sourceStatus": "saved-20260925"
+    }
+  ],
+  "queryCounts": {
+    "anchor": 1,
+    "chain": 5,
+    "ontology": 4,
+    "schema": 2,
+    "chemistry": 8,
+    "exact": 0,
+    "expanded": 1,
+    "path": 8,
+    "ruleEvidence": 2,
+    "controls": 3,
+    "assay": 1,
+    "pubchem": 2
+  },
+  "saved": {
+    "anchor": {
+      "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+      "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+    },
+    "chain": {
+      "id": "4be06f58-0b8b-4bd6-9dd6-aa4eb0e3a6d1",
+      "version": "125f138fdf57fd889a5692b69e8445db9bcbb59367f401a5aab81757b68f74d6"
+    },
+    "ontology": {
+      "id": "1c697f05-5273-4eca-89f0-3c7af2ccb446",
+      "version": "dd49faec8736ccdb67f566dcfe4f3e662fd9ded9a858e52dd7ab0973a48561d2"
+    },
+    "schema": {
+      "id": "44d58be1-ae66-42ad-8609-d83ffdcbb42f",
+      "version": "63814443dcc5dba91074bcba3d417ae781ecc563e5a9158f8f4e520062eb00f7"
+    },
+    "chemistry": {
+      "id": "a6037d1c-a958-49c9-8c03-776f87a25306",
+      "version": "ea2cda3d5ac675f7f90ce1c569b8044f1a19c1b76d779abbfc91a2ac0dcb2f98"
+    },
+    "exact": {
+      "id": "7fa341df-33d5-4305-8108-09b98d21dc3d",
+      "version": "dcb105b459604b83e61a957165df41ec430fde38e41acca89635db95c5dec060"
+    },
+    "expanded": {
+      "id": "206baa80-90dc-4f27-a23b-b8f9ffa1f981",
+      "version": "4bb770118f30226d7bb2d8ec9fa3ee0a891e32c60f1abdcdd774357ecbd1f91c"
+    },
+    "path": {
+      "id": "66aae782-81c6-4237-a848-960f4967f9cc",
+      "version": "95547c8b5dad85231acfc6a99fd3e1c5a2ae05dbe80322f4d545cc4f0f46fcf2"
+    },
+    "ruleEvidence": {
+      "id": "0b4d8ce4-0d9f-41f6-94d7-80270a82e39a",
+      "version": "172f0a8b806e3879d577e96df4eac38feb3e0576ec83361cf0550c513c0778f9"
+    },
+    "controls": {
+      "id": "ed9bd5e6-cce4-4515-914a-f36befe3ebe2",
+      "version": "cb92e1e80e60883a7ce4b8ab0df590c3563f5d86b5239593bb4e757cdeb22f90"
+    },
+    "assay": {
+      "id": "0f38c5ec-4100-4dbf-99d4-e14a6d59476b",
+      "version": "b563102c29f4f945faa35e1e62a93bc6e3018c2978c3246530d7c56b2e16cab8"
+    },
+    "pubchem": {
+      "id": "2ab15601-e94a-40db-b977-29c92e44e0a4",
+      "version": "9493821baaa0df173283185e89a4f1c8f3655462c68835aebf0a26f67a81141d"
+    },
+    "literature": {
+      "id": "41094a87-0614-417c-bf50-5bb104387516",
+      "version": "b450f983ccdcd555ffe5a87cdf91996132bf1e380e53c752e102720f7f8cef09"
+    },
+    "provenance": {
+      "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+      "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+    }
+  },
+  "restore": {
+    "scope": "fresh workspace reload from explicit durable snapshots; no service restart",
+    "chemistrySameRows": true,
+    "chainSameRows": true,
+    "freshHandles": true,
+    "chemistryRows": 8,
+    "chainRows": 5
+  },
+  "reasoning": {
+    "kind": "linked-science-reasoning-run",
+    "operationId": "op-000024",
+    "complete": true,
+    "semantics": "explicit-n3-rules",
+    "graphPolicy": "default-graph-only",
+    "rules": {
+      "id": "kidney-cell-evidence-selection",
+      "version": "1",
+      "sha256": "ef5bfb9db2047dbdcd6a6ffc35289939531ab4e6e16ba9f036a6f6ff5cb3f0b1",
+      "authority": "caller-supplied-premises"
+    },
+    "inputs": [
+      {
+        "id": "h-000015",
+        "epoch": "4ed51605-af1b-46df-a509-c35a20b0692c:fabry-durable-demo-20260929:1",
+        "fingerprints": [
+          "381f9275d3d64ffbb223ccd95d137d4dcda6fb9b537dee45c172390ca39a5014",
+          "da804991591f0a06948b521e24eb7bc3240caeb12b72fb46907c75c59d817bc7"
+        ]
+      }
+    ],
+    "inputSha256": "95bcd3bcb637c3847316ca1f186c91e567fa4b1467bfd53605c7d67905f2981d",
+    "outputSha256": "899a6ce1a1b4f4b711a8d755a6711645c1ea0e771bac015d38c24621044b20c9",
+    "engine": {
+      "name": "eyeron",
+      "version": "0.5.13",
+      "sha256": "d97a3e9e35d4c12960a46570eb20ab32287ef8d07e88dc7aa04c0c1b70fbd88d",
+      "transformedSha256": "17c69aeb703a5e17c16ced2f01e4eef628d03300b5d634aa4f77e75b0969c10a"
+    },
+    "elapsedMs": 68.75899999996182,
+    "limits": {
+      "timeoutMs": 10000,
+      "maxInputBytes": 1048576,
+      "maxRulesBytes": 262144,
+      "maxRules": 1000,
+      "maxOutputBytes": 1048576,
+      "maxProofBytes": 1048576,
+      "wasmMemoryMiB": 128,
+      "workerHeapMiB": 64
+    },
+    "usage": {
+      "inputBytes": 2760,
+      "rulesBytes": 272,
+      "outputBytes": 89,
+      "proofBytes": 936,
+      "wasmLinearMemoryBytes": 1638400,
+      "memoryPolicy": {
+        "kind": "bounded-wasm-linear-memory-and-worker-heap",
+        "wasmMaximumBytes": 134217728,
+        "workerOldGenerationMiB": 64,
+        "workerYoungGenerationMiB": 8,
+        "workerStackMiB": 4,
+        "processRssCeiling": false
+      }
+    },
+    "count": 1,
+    "proof": {
+      "available": true,
+      "verified": false,
+      "sha256": "39d5a2b0d056b7549532db9ce7a2a587e57188b15ca501741ed21f576ab5c2e5",
+      "bytes": 936
+    },
+    "validity": "source-dependent-workspace-epoch",
+    "blankNodes": "source-scoped-inputs"
+  },
+  "rule": {
+    "id": "kidney-cell-evidence-selection",
+    "version": "1",
+    "text": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n{ ?m a app:Mechanism; app:cellType ?cell; app:location obo:UBERON_0002113 . } => { ?m a app:KidneyCellEvidenceSelectionCandidate . } ."
+  },
+  "proof": {
+    "kind": "linked-science-proof-excerpt",
+    "operationId": "op-000024",
+    "format": "N3",
+    "verified": false,
+    "selectedConclusion": false,
+    "truncated": false,
+    "text": "@prefix app: <urn:fabry-demo:> .\n@prefix obo: <http://purl.obolibrary.org/obo/> .\n@prefix pe: <https://eyereasoner.github.io/pe#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n\napp:renal a app:KidneyCellEvidenceSelectionCandidate .\n\n{ app:renal a app:KidneyCellEvidenceSelectionCandidate . } pe:why {\n  { app:renal a app:KidneyCellEvidenceSelectionCandidate . }\n    pe:by [ pe:rule \"session-program\"; pe:line 4 ];\n    pe:binding\n      [ pe:var \"cell\"; pe:value obo:CL_0000653 ],\n      [ pe:var \"m\"; pe:value app:renal ];\n    pe:uses\n      { app:renal a app:Mechanism . },\n      { app:renal app:cellType obo:CL_0000653 . },\n      { app:renal app:location obo:UBERON_0002113 . }.\n\n  { app:renal a app:Mechanism . }\n    pe:by [ pe:fact \"<unknown>\" ].\n\n  { app:renal app:cellType obo:CL_0000653 . }\n    pe:by [ pe:fact \"<unknown>\" ].\n\n  { app:renal app:location obo:UBERON_0002113 . }\n    pe:by [ pe:fact \"<unknown>\" ].\n}.\n"
+  },
+  "queries": {
+    "anchor": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?name ?chemical WHERE { VALUES ?chemical {obo:CHEBI_18313} ?mechanism dm:chemical_entities/dm:term ?chemical; app:sourceName ?name . }\n",
+    "chain": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?e ?sourceName ?edge ?targetName ?type ?description ?intermediate ?reference ?evidenceSource ?snippet WHERE { VALUES (?sourceName ?targetName) { (\"Alpha-galactosidase A deficiency\" \"Lysosomal Gb3 and lyso-Gb3 accumulation\") (\"Lysosomal Gb3 and lyso-Gb3 accumulation\" \"Tissue-specific glycosphingolipid storage\") (\"Tissue-specific glycosphingolipid storage\" \"Renal glycosphingolipid storage and podocyte injury\") (\"Renal glycosphingolipid storage and podocyte injury\" \"Autophagy impairment\") } ?source app:sourceName ?sourceName; dm:downstream ?edge . ?edge dm:target ?targetName; app:resolvedTarget ?target; dm:causal_link_type ?type; dm:description ?description . OPTIONAL {?edge dm:intermediate_mechanisms ?intermediate} OPTIONAL {?edge dm:evidence ?e . ?e dm:reference ?reference; dm:evidence_source ?evidenceSource; dm:snippet ?snippet} }\n",
+    "ontology": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?cell ?cellLabel ?cellParent ?parentLabel ?location ?locationLabel ?reference ?support ?snippet WHERE { ?mechanism a dm:Pathophysiology; dm:cell_types/dm:term ?cell; dm:locations/dm:term ?location; dm:evidence ?e . FILTER(?cell=obo:CL_0000653 && ?location=obo:UBERON_0002113) ?e dm:reference ?reference; dm:supports ?support; dm:snippet ?snippet . ?cell rdfs:label ?cellLabel; rdfs:subClassOf ?cellParent . ?cellParent rdfs:label ?parentLabel . ?location rdfs:label ?locationLabel . }\n\n",
+    "schema": "PREFIX up:<http://purl.uniprot.org/core/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?domain ?annotation ?reaction ?physiological WHERE { up:catalyzedPhysiologicalReaction rdfs:domain ?domain . <http://purl.uniprot.org/uniprot/P06280> up:annotation ?annotation . ?annotation up:catalyzedPhysiologicalReaction ?physiological; up:catalyticActivity/up:catalyzedReaction ?reaction }",
+    "chemistry": "PREFIX up: <http://purl.uniprot.org/core/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nSELECT DISTINCT ?protein ?reaction ?physiologicalReaction ?equation ?role ?participant ?chebi ?chemicalName\nWHERE {\n  VALUES ?protein { <http://purl.uniprot.org/uniprot/P06280> }\n  ?protein up:organism taxon:9606; up:annotation ?annotation .\n  ?annotation a up:Catalytic_Activity_Annotation;\n    up:catalyticActivity/up:catalyzedReaction ?reaction;\n    up:catalyzedPhysiologicalReaction ?physiologicalReaction .\n  SERVICE <https://sparql.rhea-db.org/sparql> {\n    VALUES (?reaction ?physiologicalReaction) { (rh:21112 rh:21113) (rh:48020 rh:48021) }\n    ?reaction rh:status rh:Approved;\n      rh:directionalReaction ?physiologicalReaction .\n    ?physiologicalReaction rh:equation ?equation; ?role ?side .\n    VALUES ?role { rh:substrates rh:products }\n    ?side rh:contains ?participant .\n    ?participant rh:compound ?compound .\n    ?compound rh:chebi ?chebi .\n    OPTIONAL { ?chebi rdfs:label ?chemicalName }\n  }\n}\nORDER BY ?reaction ?role ?chebi\n",
+    "exact": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?m ?name ?cell ?label WHERE { ?m app:sourceName ?name; dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113 . VALUES ?cell {obo:CL_0002518} ?cell rdfs:label ?label }",
+    "expanded": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT DISTINCT ?m ?name ?cell ?label WHERE { ?m app:sourceName ?name; dm:cell_types/dm:term ?cell; dm:locations/dm:term obo:UBERON_0002113 . ?cell rdfs:subClassOf* obo:CL_0002518 . ?cell rdfs:label ?label }",
+    "path": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?child ?childLabel ?parent ?parentLabel WHERE { obo:CL_0000653 rdfs:subClassOf* ?child . ?child rdfs:subClassOf ?parent; rdfs:label ?childLabel . ?parent rdfs:subClassOf* obo:CL_0002518; rdfs:label ?parentLabel . }",
+    "ruleEvidence": "PREFIX app: <urn:fabry-demo:> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?mechanism ?label ?evidence ?reference ?evidenceSource WHERE { ?mechanism a app:KidneyCellEvidenceSelectionCandidate; rdfs:label ?label; app:hasEvidence ?evidence . ?evidence app:reference ?reference; app:supports \"SUPPORT\"; app:evidenceSource ?evidenceSource . }\n",
+    "controls": "PREFIX app: <urn:fabry-demo:> SELECT ?mechanism ?selected WHERE { VALUES ?mechanism { app:renal app:controlOtherOrgan app:controlKidneyNoCell } BIND(EXISTS { ?mechanism a app:KidneyCellEvidenceSelectionCandidate } AS ?selected) }\n",
+    "assay": "PREFIX c: <http://rdf.ebi.ac.uk/terms/chembl#> PREFIX dct: <http://purl.org/dc/terms/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { VALUES ?protein {<http://purl.uniprot.org/uniprot/P06280>} VALUES ?target {<http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524>} ?protein rdfs:seeAlso ?target . SERVICE <https://idsm.elixir-czech.cz/sparql/endpoint/idsm> { VALUES ?target {<http://rdf.ebi.ac.uk/resource/chembl/target/CHEMBL2524>} VALUES ?activity { <http://rdf.ebi.ac.uk/resource/chembl/activity/CHEMBL_ACT_1405782> } VALUES ?assay { <http://rdf.ebi.ac.uk/resource/chembl/assay/CHEMBL831670> } ?assay c:hasActivity ?activity; c:hasTarget ?target; c:organismName ?species; dct:description ?description . ?activity c:hasMolecule ?molecule; c:hasDocument ?document; c:standardType ?type; c:standardValue ?value; c:standardUnits ?unit; c:standardRelation ?relation; c:value ?originalValue; c:units ?originalUnit .} }\n",
+    "pubchem": "PREFIX sio:<http://semanticscience.org/resource/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?substance ?molecule ?compound ?descriptor ?type ?typeLabel ?value ?unit ?unitLabel WHERE { VALUES ?compound {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077>} VALUES ?molecule {<http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458>} ?substance sio:CHEMINF_000477 ?compound; rdfs:seeAlso ?molecule . ?compound sio:SIO_000008 ?descriptor . VALUES ?type {sio:CHEMINF_000334 sio:CHEMINF_000335} ?descriptor a ?type; sio:SIO_000300 ?value . ?type rdfs:label ?typeLabel . OPTIONAL {?descriptor sio:SIO_000221 ?unit . ?unit rdfs:label ?unitLabel} }\n"
+  },
+  "modelControl": "Codex; explicit yield and resume; two child computations beneath one parent request",
+  "literatureStatus": "historical excerpts retrieved 2026-09-27; not refreshed this run",
+  "limitations": [
+    "Full raw graphs not in durable snapshots: only explicit complete bounded query results and selected JSON evidence saved.",
+    "No service restart performed.",
+    "Historical disease and literature source dates are not refreshed by local execution.",
+    "No independent proof verification or full OWL reasoning."
+  ],
+  "outcome": "passed",
+  "handoff": {
+    "computations": {
+      "root": {
+        "id": "6726dc1f-954e-4c2d-9585-b135c06d5ae8",
+        "parentRequest": null,
+        "depth": 0,
+        "status": "complete",
+        "revision": 3,
+        "step": {
+          "digest": "0a6926979bfce7823c8e2725027a07d761d46a25e553e5e54d9504e3cf7d7c70",
+          "name": "fabry-review-compose",
+          "version": "1"
+        },
+        "inputs": [
+          {
+            "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+            "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+          },
+          {
+            "id": "4be06f58-0b8b-4bd6-9dd6-aa4eb0e3a6d1",
+            "version": "125f138fdf57fd889a5692b69e8445db9bcbb59367f401a5aab81757b68f74d6"
+          },
+          {
+            "id": "1c697f05-5273-4eca-89f0-3c7af2ccb446",
+            "version": "dd49faec8736ccdb67f566dcfe4f3e662fd9ded9a858e52dd7ab0973a48561d2"
+          },
+          {
+            "id": "44d58be1-ae66-42ad-8609-d83ffdcbb42f",
+            "version": "63814443dcc5dba91074bcba3d417ae781ecc563e5a9158f8f4e520062eb00f7"
+          },
+          {
+            "id": "a6037d1c-a958-49c9-8c03-776f87a25306",
+            "version": "ea2cda3d5ac675f7f90ce1c569b8044f1a19c1b76d779abbfc91a2ac0dcb2f98"
+          },
+          {
+            "id": "7fa341df-33d5-4305-8108-09b98d21dc3d",
+            "version": "dcb105b459604b83e61a957165df41ec430fde38e41acca89635db95c5dec060"
+          },
+          {
+            "id": "206baa80-90dc-4f27-a23b-b8f9ffa1f981",
+            "version": "4bb770118f30226d7bb2d8ec9fa3ee0a891e32c60f1abdcdd774357ecbd1f91c"
+          },
+          {
+            "id": "66aae782-81c6-4237-a848-960f4967f9cc",
+            "version": "95547c8b5dad85231acfc6a99fd3e1c5a2ae05dbe80322f4d545cc4f0f46fcf2"
+          },
+          {
+            "id": "0b4d8ce4-0d9f-41f6-94d7-80270a82e39a",
+            "version": "172f0a8b806e3879d577e96df4eac38feb3e0576ec83361cf0550c513c0778f9"
+          },
+          {
+            "id": "ed9bd5e6-cce4-4515-914a-f36befe3ebe2",
+            "version": "cb92e1e80e60883a7ce4b8ab0df590c3563f5d86b5239593bb4e757cdeb22f90"
+          },
+          {
+            "id": "0f38c5ec-4100-4dbf-99d4-e14a6d59476b",
+            "version": "b563102c29f4f945faa35e1e62a93bc6e3018c2978c3246530d7c56b2e16cab8"
+          },
+          {
+            "id": "2ab15601-e94a-40db-b977-29c92e44e0a4",
+            "version": "9493821baaa0df173283185e89a4f1c8f3655462c68835aebf0a26f67a81141d"
+          },
+          {
+            "id": "41094a87-0614-417c-bf50-5bb104387516",
+            "version": "b450f983ccdcd555ffe5a87cdf91996132bf1e380e53c752e102720f7f8cef09"
+          },
+          {
+            "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+            "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+          }
+        ],
+        "value": {
+          "kind": "model-synthesis",
+          "question": "Connect GLA chemistry to Fabry renal evidence and the measured inhibitor example; compose qualified findings after the two scoped reviews complete.",
+          "text": "The Fabry route runs successfully through the durable yield-and-resume structure. Fresh UniProt\u2013Rhea federation links human GLA/P06280 to two differently specified Gb3 hydrolysis representations, yielding eight participant rows. CHEBI:18313 is an explicit substrate and also anchors the saved DisMech accumulation mechanism; this joins source assertions, not measured tissue flux. Fresh local queries over hash-verified September 25 disease and ontology graphs return one anchor, five edge-evidence rows and four ontology rows. The main curated chain runs from GLA deficiency through lysosomal accumulation and tissue-specific storage to renal storage/podocyte injury. Five edge-evidence rows do not mean five independent studies; the autophagy edge repeats one citation across two intermediates. Exact kidney-epithelial matching returns zero while explicit subclass traversal finds the podocyte mechanism. Separately, Eyeron executes the kidney-location plus cell-annotation selection rule and selects one candidate while excluding both controls; it does not establish causality or full OWL closure. Two Codex workers reviewed scoped immutable snapshots, returned deposits, and completed their nested continuations before this synthesis. Historical literature remains dated September 27: the biopsy case, review and engineered-cell experiment provide different kinds of evidence. Retained passages do not show that the engineered-cell paper directly measured autophagic flux or establish injury-to-autophagy causal direction. Fresh UniProt\u2013ChEMBL federation reproduces activity1405782: human GLA IC50=70 nM (0.07 micromolar), an inhibition measurement rather than binding affinity or clinical benefit. Fresh PubChem results associate the ChEMBL molecule with CID176077 and calculated formula C6H13NO4 and molecular-weight descriptor163.17; normalization/seeAlso is not owl:sameAs, and the returned unit is a generic molar-mass class. Fourteen bounded result/JSON snapshots are durable. Chemistry and renal-chain snapshots restored into a fresh workspace with identical rows and new handles. Full source graphs remain native live state plus preexisting saved artifacts; no service restart recovery was tested in this run."
+        },
+        "receipt": {
+          "id": "48b41cf6-8be5-4499-85bd-a575248570c1",
+          "request": "fde48eaf-939d-46b3-b426-4443b1f0a61c",
+          "activity": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+          "resultDigest": "a04d10b39f43c5f056454d47cd5fc1f0fb4bc8a4c4ec7a2e87a0295744aa5b6e",
+          "continuationRevision": 2,
+          "acceptedAt": 1790685791427,
+          "evidence": "host-committed-model-synthesis",
+          "cleanup": "complete"
+        }
+      },
+      "chemistry": {
+        "id": "1d7f51cf-5e93-42fa-a445-155292ba575e",
+        "parentRequest": "fde48eaf-939d-46b3-b426-4443b1f0a61c",
+        "depth": 1,
+        "status": "complete",
+        "revision": 3,
+        "step": {
+          "digest": "0a6926979bfce7823c8e2725027a07d761d46a25e553e5e54d9504e3cf7d7c70",
+          "name": "fabry-review-compose",
+          "version": "1"
+        },
+        "inputs": [
+          {
+            "id": "44d58be1-ae66-42ad-8609-d83ffdcbb42f",
+            "version": "63814443dcc5dba91074bcba3d417ae781ecc563e5a9158f8f4e520062eb00f7"
+          },
+          {
+            "id": "a6037d1c-a958-49c9-8c03-776f87a25306",
+            "version": "ea2cda3d5ac675f7f90ce1c569b8044f1a19c1b76d779abbfc91a2ac0dcb2f98"
+          },
+          {
+            "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+            "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+          },
+          {
+            "id": "0f38c5ec-4100-4dbf-99d4-e14a6d59476b",
+            "version": "b563102c29f4f945faa35e1e62a93bc6e3018c2978c3246530d7c56b2e16cab8"
+          },
+          {
+            "id": "2ab15601-e94a-40db-b977-29c92e44e0a4",
+            "version": "9493821baaa0df173283185e89a4f1c8f3655462c68835aebf0a26f67a81141d"
+          },
+          {
+            "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+            "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+          }
+        ],
+        "value": {
+          "kind": "model-synthesis",
+          "question": "Review normal GLA chemistry, shared disease substrate, human GLA inhibitor measurement and PubChem crosswalk. Explain what these joins establish and do not establish, preserving reaction direction, chemical specificity and assay endpoint semantics.",
+          "text": "I read five granted native bindings datasets (schema 2 rows, chemistry 8, disease anchor 1, assay 1, PubChem 2) and the provenance object through the scoped session bridge.\n\nFresh remote UniProt/Rhea results connect human GLA protein P06280 through two catalytic activity annotations to Rhea 21112 (physiological direction 21113) and 48020 (physiological direction 48021). Both equations describe hydrolysis of Gb3Cer plus water to a lactosylceramide representation plus D-galactose. The first specifies the d18:1(4E) ceramide form, while the second uses a broader ceramide representation. These are two reaction representations supported by the annotations, not evidence of two consecutive pathway steps. Eight rows enumerate substrates/products across these representations; they are not eight different reactions.\n\nThe saved Fabry disease graph's mechanism labelled \u201cLysosomal Gb3 and lyso-Gb3 accumulation\u201d is linked to CHEBI_18313. That exact IRI is also a substrate in the newly retrieved 21112 reaction, establishing a precise cross-source substrate join. The generic 48020 substrate is CHEBI_88154, a different IRI. The data do not establish owl:sameAs between those substrate classes, nor independently demonstrate lyso-Gb3 as a participant in either returned reaction. The disease-side anchor was queried afresh over a historical saved graph; it was not freshly retrieved disease evidence.\n\nThe ChEMBL result links CHEMBL110458 to human target CHEMBL2524/P06280 via activity CHEMBL_ACT_1405782, assay CHEMBL831670 and document CHEMBL1142734. The recorded equality IC50 is 70.0 nM, consistent with original 0.07 uM. Its description is \u201cInhibitory concentration against human alpha-galactosidase\u201d. This is a source-reported inhibitory assay measurement, not a binding-affinity constant, proof of physiological efficacy, or clinical benefit. The supplied result does not itself establish a drug name, detailed assay conditions, variant-specific response, or a therapeutic recommendation.\n\nThe returned PubChem crosswalk associates that ChEMBL molecule with substance SID103329495 and compound CID176077. Compound descriptors give formula C6H13NO4 and a PubChem-calculated molecular-weight value of 163.17 with UO_0000055 labelled \u201cmolar mass unit\u201d. This supplies a source crosswalk and descriptive chemical evidence. A deposited substance record, standardized compound record and ChEMBL molecule are distinct source entities; the crosswalk does not license merging them by owl:sameAs or assuming every salt/formulation is identical.\n\nProvenance marks schema, chemistry, assay and PubChem as fresh remote outputs. The anchor belongs to fresh local queries over saved 2026-09-25 RDF (source commit 090fcc12aafac22e5e2b8454aab44ce6735579cb). The supplied Eyeron run pertains to a kidney-cell evidence-selection rule, with proof available but verified:false; it is not independent proof of the chemical or clinical conclusions. This text is qualified model synthesis over those scoped evidence results."
+        },
+        "receipt": {
+          "id": "a984913f-b80c-4f02-b2fc-967790b1f73e",
+          "request": "66eaa743-e3ea-4358-8f00-a08a8fb3e3d8",
+          "activity": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+          "resultDigest": "a68d0123dcb28d9523d9403149b846279e11f39b7b47c70167ddfaa73180e089",
+          "continuationRevision": 2,
+          "acceptedAt": 1790685680372,
+          "evidence": "host-committed-model-synthesis",
+          "cleanup": "complete"
+        }
+      },
+      "renal": {
+        "id": "b0ff4161-b44b-4208-87b4-8ffaeae82ab7",
+        "parentRequest": "fde48eaf-939d-46b3-b426-4443b1f0a61c",
+        "depth": 1,
+        "status": "complete",
+        "revision": 3,
+        "step": {
+          "digest": "0a6926979bfce7823c8e2725027a07d761d46a25e553e5e54d9504e3cf7d7c70",
+          "name": "fabry-review-compose",
+          "version": "1"
+        },
+        "inputs": [
+          {
+            "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+            "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+          },
+          {
+            "id": "4be06f58-0b8b-4bd6-9dd6-aa4eb0e3a6d1",
+            "version": "125f138fdf57fd889a5692b69e8445db9bcbb59367f401a5aab81757b68f74d6"
+          },
+          {
+            "id": "1c697f05-5273-4eca-89f0-3c7af2ccb446",
+            "version": "dd49faec8736ccdb67f566dcfe4f3e662fd9ded9a858e52dd7ab0973a48561d2"
+          },
+          {
+            "id": "7fa341df-33d5-4305-8108-09b98d21dc3d",
+            "version": "dcb105b459604b83e61a957165df41ec430fde38e41acca89635db95c5dec060"
+          },
+          {
+            "id": "206baa80-90dc-4f27-a23b-b8f9ffa1f981",
+            "version": "4bb770118f30226d7bb2d8ec9fa3ee0a891e32c60f1abdcdd774357ecbd1f91c"
+          },
+          {
+            "id": "66aae782-81c6-4237-a848-960f4967f9cc",
+            "version": "95547c8b5dad85231acfc6a99fd3e1c5a2ae05dbe80322f4d545cc4f0f46fcf2"
+          },
+          {
+            "id": "0b4d8ce4-0d9f-41f6-94d7-80270a82e39a",
+            "version": "172f0a8b806e3879d577e96df4eac38feb3e0576ec83361cf0550c513c0778f9"
+          },
+          {
+            "id": "ed9bd5e6-cce4-4515-914a-f36befe3ebe2",
+            "version": "cb92e1e80e60883a7ce4b8ab0df590c3563f5d86b5239593bb4e757cdeb22f90"
+          },
+          {
+            "id": "41094a87-0614-417c-bf50-5bb104387516",
+            "version": "b450f983ccdcd555ffe5a87cdf91996132bf1e380e53c752e102720f7f8cef09"
+          },
+          {
+            "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+            "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+          }
+        ],
+        "value": {
+          "kind": "model-synthesis",
+          "question": "Review the substrate-to-renal injury chain, ontology traversal and Eyeron controls, then critically appraise the attached historical literature passages. Separate curated causal assertions, rule selection, human observations and engineered-cell evidence; assess the autophagy claim without upgrading background statements to direct measurements.",
+          "text": "Fresh local queries over hash-verified saved public DisMech/CL/Uberon graphs anchor CHEBI:18313 to the Gb3/lyso-Gb3 accumulation mechanism and recover the asserted chain: alpha-galactosidase A deficiency \u2192 accumulation \u2192 tissue-specific storage \u2192 renal glycosphingolipid storage/podocyte injury \u2192 autophagy impairment. This is recovery of curated assertions, not experimental confirmation of all edges. The last edge is explicitly INDIRECT_KNOWN_INTERMEDIATES, with lysosomal dysfunction in GLA-edited podocytes and a cellular stress response; its two query rows are the same evidence/edge expanded for two intermediates, not independent support. Exact kidney-epithelial-cell matching returned zero; named subclass traversal returned the podocyte renal mechanism. The loaded CL excerpt explicitly connects podocyte through glomerular capsule epithelium and kidney glomerular epithelium to kidney epithelial cell. This scoped positive traversal is not full OWL closure, and exact zero does not establish biological absence. Actual Eyeron 0.5.13 executed caller-supplied explicit N3 selection, deriving one candidate: renal=true, other-organ control=false, kidney-without-cell control=false. Rule tests kidney location plus any cell annotation; it does not itself infer renal causation, epithelial ancestry, or require a supporting paper. Subsequent query linked the selected node to PMID27129690 and PMID36334424. Proof exists but is unverified. Historical literature excerpts (retrieved 2026-09-27, not refreshed) distinguish public human-biopsy association (PMID27129690), clinical review context (PMID36334424), and engineered immortalized GLA-edited podocyte experiment (PMID39100494/PMC11295972). The last study measured reduced alpha-gal A activity and increased Gb3 and analyzed differential gene expression, including autophagy-related genes. Its discussion of disrupted autophagic flux cites prior literature; retained excerpts do not show direct flux measurements or establish injury causes autophagy impairment. Clinical generalization and a validated causal direction would overstate these records. All granted native bindings and both JSON objects were read before synthesis; no new external retrieval was performed by this worker."
+        },
+        "receipt": {
+          "id": "d8c20443-6be1-4789-bcae-99d567b9ee0d",
+          "request": "06724c52-b27a-4002-9834-18843046c019",
+          "activity": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+          "resultDigest": "1815f2889bc660c6cbfc6e5d091e9d4e4c0798ac74300fae2ba72cf17250db4a",
+          "continuationRevision": 2,
+          "acceptedAt": 1790685764140,
+          "evidence": "host-committed-model-synthesis",
+          "cleanup": "complete"
+        }
+      }
+    },
+    "pending": {
+      "total": 0,
+      "items": [],
+      "nextOffset": null
+    },
+    "duplicateAcceptanceSame": true,
+    "map": {
+      "total": 14,
+      "items": [
+        {
+          "ref": {
+            "id": "43e91de6-ac4e-4148-83b5-84fd7de73d6f",
+            "version": "f1c8d03af4c7470154b00736170c3ec7dfe80e5c2bf4cb1646ff279db860629e"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509033
+        },
+        {
+          "ref": {
+            "id": "4be06f58-0b8b-4bd6-9dd6-aa4eb0e3a6d1",
+            "version": "125f138fdf57fd889a5692b69e8445db9bcbb59367f401a5aab81757b68f74d6"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "loaded",
+          "savedAt": 1790685509042
+        },
+        {
+          "ref": {
+            "id": "1c697f05-5273-4eca-89f0-3c7af2ccb446",
+            "version": "dd49faec8736ccdb67f566dcfe4f3e662fd9ded9a858e52dd7ab0973a48561d2"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509050
+        },
+        {
+          "ref": {
+            "id": "44d58be1-ae66-42ad-8609-d83ffdcbb42f",
+            "version": "63814443dcc5dba91074bcba3d417ae781ecc563e5a9158f8f4e520062eb00f7"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509054
+        },
+        {
+          "ref": {
+            "id": "a6037d1c-a958-49c9-8c03-776f87a25306",
+            "version": "ea2cda3d5ac675f7f90ce1c569b8044f1a19c1b76d779abbfc91a2ac0dcb2f98"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "loaded",
+          "savedAt": 1790685509061
+        },
+        {
+          "ref": {
+            "id": "7fa341df-33d5-4305-8108-09b98d21dc3d",
+            "version": "dcb105b459604b83e61a957165df41ec430fde38e41acca89635db95c5dec060"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509064
+        },
+        {
+          "ref": {
+            "id": "206baa80-90dc-4f27-a23b-b8f9ffa1f981",
+            "version": "4bb770118f30226d7bb2d8ec9fa3ee0a891e32c60f1abdcdd774357ecbd1f91c"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509067
+        },
+        {
+          "ref": {
+            "id": "66aae782-81c6-4237-a848-960f4967f9cc",
+            "version": "95547c8b5dad85231acfc6a99fd3e1c5a2ae05dbe80322f4d545cc4f0f46fcf2"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509070
+        },
+        {
+          "ref": {
+            "id": "0b4d8ce4-0d9f-41f6-94d7-80270a82e39a",
+            "version": "172f0a8b806e3879d577e96df4eac38feb3e0576ec83361cf0550c513c0778f9"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509073
+        },
+        {
+          "ref": {
+            "id": "ed9bd5e6-cce4-4515-914a-f36befe3ebe2",
+            "version": "cb92e1e80e60883a7ce4b8ab0df590c3563f5d86b5239593bb4e757cdeb22f90"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509075
+        },
+        {
+          "ref": {
+            "id": "0f38c5ec-4100-4dbf-99d4-e14a6d59476b",
+            "version": "b563102c29f4f945faa35e1e62a93bc6e3018c2978c3246530d7c56b2e16cab8"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509079
+        },
+        {
+          "ref": {
+            "id": "2ab15601-e94a-40db-b977-29c92e44e0a4",
+            "version": "9493821baaa0df173283185e89a4f1c8f3655462c68835aebf0a26f67a81141d"
+          },
+          "kind": "bindings",
+          "semantics": "bag-sequence",
+          "status": "saved",
+          "savedAt": 1790685509083
+        },
+        {
+          "ref": {
+            "id": "41094a87-0614-417c-bf50-5bb104387516",
+            "version": "b450f983ccdcd555ffe5a87cdf91996132bf1e380e53c752e102720f7f8cef09"
+          },
+          "kind": "json",
+          "semantics": "json",
+          "status": "saved",
+          "savedAt": 1790685509086
+        },
+        {
+          "ref": {
+            "id": "0f7a051d-82fd-4d38-b32a-9a93821f5cf0",
+            "version": "3d1f8fdb8b6398e3fc03847c7473ee941b9b779586248034851bc29df506064e"
+          },
+          "kind": "json",
+          "semantics": "json",
+          "status": "saved",
+          "savedAt": 1790685509089
+        }
+      ],
+      "nextOffset": null
+    }
+  },
+  "remote": {
+    "schema": {
+      "querySha256": "f149990ee4f5b154f697835b73a3e244d51c37ae836943b72162742e58a3f2f2",
+      "payloadSha256": "5a9dcdb7fec67a73220ca024ee2fdfead96e82c200a09c3cfdc92bab3d8736c9",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 1,
+        "status": "success",
+        "operationId": "op-000011",
+        "traversalId": "traversal-aa399c08e638c3d98fe275b6",
+        "queryType": "SELECT",
+        "querySha256": "f149990ee4f5b154f697835b73a3e244d51c37ae836943b72162742e58a3f2f2",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-29T12:36:21.105Z",
+        "endedAt": "2026-09-29T12:36:21.851Z",
+        "durationMs": 746,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 1212,
+          "retries": 0
+        },
+        "resultItems": 2,
+        "hiddenRetries": 0,
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "receipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-aa399c08e638c3d98fe275b6",
+        "startedAt": "2026-09-29T12:36:21.106Z",
+        "finishedAt": "2026-09-29T12:36:21.850Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 1212,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "9cb764e502a73b274ec88a8051eda37b652e9c92c75b119b95c5238fe293d3d5",
+            "responseSha256": "0f4c4fba509bbff285303d91cbc1139cd74f407a47a5e14cb46bc4c75d7891c8",
+            "bytes": 1212,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "1212",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%20SELECT%20%3Fdomain%20%3Fannotation%20%3Freaction%20%3Fphysiological%20WHERE%20%7B%20up%3AcatalyzedPhysiologicalReaction%20rdfs%3Adomain%20%3Fdomain%20.%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Funiprot%2FP06280%3E%20up%3Aannotation%20%3Fannotation%20.%20%3Fannotation%20up%3AcatalyzedPhysiologicalReaction%20%3Fphysiological%3B%20up%3AcatalyticActivity%2Fup%3AcatalyzedReaction%20%3Freaction%20%7D",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-29T12:36:21.174Z",
+            "finishedAt": "2026-09-29T12:36:21.838Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    },
+    "chemistry": {
+      "querySha256": "6e41f965e1a230f6717963107a55ae24f5b4c5382717b181160bbeb8a1f8ce56",
+      "payloadSha256": "3503ee8b28dfc9a59260c62c33b223cd0df8790f9112029ded89794e4ed2a938",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 2,
+        "status": "success",
+        "operationId": "op-000013",
+        "traversalId": "traversal-742ac7d79622ccab6cf73b49",
+        "queryType": "SELECT",
+        "querySha256": "6e41f965e1a230f6717963107a55ae24f5b4c5382717b181160bbeb8a1f8ce56",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-29T12:36:50.494Z",
+        "endedAt": "2026-09-29T12:36:51.342Z",
+        "durationMs": 848,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 8773,
+          "retries": 0
+        },
+        "resultItems": 8,
+        "hiddenRetries": 0,
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "receipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-742ac7d79622ccab6cf73b49",
+        "startedAt": "2026-09-29T12:36:50.494Z",
+        "finishedAt": "2026-09-29T12:36:51.341Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 8773,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql",
+            "finalUrl": "https://sparql.uniprot.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "15247b18736194376feb741cd234cec9f633a27e63c0c22c0f55d0afaf9fec0e",
+            "responseSha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+            "bytes": 8773,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "8773",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "6e41f965e1a230f6717963107a55ae24f5b4c5382717b181160bbeb8a1f8ce56",
+            "startedAt": "2026-09-29T12:36:50.526Z",
+            "finishedAt": "2026-09-29T12:36:51.336Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    },
+    "assay": {
+      "querySha256": "5f78509163ea46b19538952c6105132f2e6d9106c814a1fab7255ae72426bcd3",
+      "payloadSha256": "afcdc8724d1cbe8c932e1f5aec58c00b041af3544dfa89654a093b8bc8d97de8",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 3,
+        "status": "success",
+        "operationId": "op-000029",
+        "traversalId": "traversal-e1ec0b2c53347b4c60959410",
+        "queryType": "SELECT",
+        "querySha256": "5f78509163ea46b19538952c6105132f2e6d9106c814a1fab7255ae72426bcd3",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-29T12:38:03.993Z",
+        "endedAt": "2026-09-29T12:38:04.836Z",
+        "durationMs": 843,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 2084,
+          "retries": 0
+        },
+        "resultItems": 1,
+        "hiddenRetries": 0,
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "receipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-e1ec0b2c53347b4c60959410",
+        "startedAt": "2026-09-29T12:38:03.996Z",
+        "finishedAt": "2026-09-29T12:38:04.835Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 2084,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql",
+            "finalUrl": "https://sparql.uniprot.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "589bf041fad3e780ef27d5ee166331ac254a3533d104e46a4ecd8413b2e0d5fd",
+            "responseSha256": "b677930f0f9fa6dc3ead4d2814acebab869cdbd5528d2cdbb32ac9d269e26635",
+            "bytes": 2084,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "2084",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "5f78509163ea46b19538952c6105132f2e6d9106c814a1fab7255ae72426bcd3",
+            "startedAt": "2026-09-29T12:38:04.056Z",
+            "finishedAt": "2026-09-29T12:38:04.828Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    },
+    "pubchem": {
+      "querySha256": "3ef03cd21479b7fa52d093a4b05f488872eb3c3f4eea6dd52d500e6c361bb312",
+      "payloadSha256": "8cdcd6d0d56c57260ebd9317d6372df1d68ab09e830999e855c2faa8dfc5026c",
+      "completion": {
+        "kind": "linked-science-result-completion",
+        "status": "complete",
+        "complete": true,
+        "truncated": false,
+        "scope": "submitted-query",
+        "materialization": "atomic-before-handle-publication"
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 4,
+        "status": "success",
+        "operationId": "op-000030",
+        "traversalId": "traversal-a05b96aeff247385d4052b1d",
+        "queryType": "SELECT",
+        "querySha256": "3ef03cd21479b7fa52d093a4b05f488872eb3c3f4eea6dd52d500e6c361bb312",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://qlever.dev/api/pubchem"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-29T12:38:03.996Z",
+        "endedAt": "2026-09-29T12:38:08.051Z",
+        "durationMs": 4055,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 1658,
+          "retries": 0
+        },
+        "resultItems": 2,
+        "hiddenRetries": 0,
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        }
+      },
+      "receipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-a05b96aeff247385d4052b1d",
+        "startedAt": "2026-09-29T12:38:03.997Z",
+        "finishedAt": "2026-09-29T12:38:08.051Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 1658,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://qlever.dev/api/pubchem",
+            "finalUrl": "https://qlever.dev/api/pubchem",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "7b8ae472918dab75b297593206c114bc519caa7ab99f2be15078a3a4ecb6cbe7",
+            "responseSha256": "83b28a762b555e37f5efc6526820278426c4c992a60df7a94b9d9720a7ef1740",
+            "bytes": 1658,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://qlever.dev/api/pubchem",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "3ef03cd21479b7fa52d093a4b05f488872eb3c3f4eea6dd52d500e6c361bb312",
+            "startedAt": "2026-09-29T12:38:04.060Z",
+            "finishedAt": "2026-09-29T12:38:08.045Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "memory": {
+    "consultationId": "f501cb7a-7a65-431c-b569-472dbba6bd30",
+    "pattern": "ontology-symbolic-context-selective-imports",
+    "status": "proposed",
+    "application": "Freshly checked predicate domain and GLA annotation attachment before repeating the Rhea federation.",
+    "incrementalBenefit": "unknown"
+  },
+  "operationalRepairs": [
+    "Unknown documentation route resources repaired to resources.inspect.",
+    "Unsupported 60000ms REPL execution bound rejected before evaluation; retried with default.",
+    "PubChem query succeeded; local display projection assumed all bindings bound and was repaired to preserve nulls without requery.",
+    "Renal worker initial approval rejection resolved by verifying public source provenance; same scoped read then succeeded.",
+    "Receipt presentation exceeded output cap; recaptured in bounded groups without rerunning scientific operations."
+  ],
+  "validation": {
+    "registry": "Registry schema passed; full repository validator still fails on preexisting missing status for docs/experiments/scientific-trajectory-evidence.md.",
+    "serviceRestart": "Not performed",
+    "restoreHelper": "Executed via fresh project MCP owner after original session closed:14 loaded snapshots,3 complete computations,0 pending,rows and columns match.",
+    "ownerAdapter": "Original chat adapter remains bound to closed session; new owner connection created by recovery worker. No in-place detach/reconnect API."
+  },
+  "sessionLossRecovery": {
+    "format": "fabry-durable-recovery-check/v1",
+    "recordedAt": "2026-09-29T13:37:34.453Z",
+    "recoveryMode": "new-owner-session-after-expiry",
+    "serviceProcessRestarted": false,
+    "session": {
+      "sessionId": "linked-science-20260929-handoff-verification",
+      "epoch": 1,
+      "role": "owner"
+    },
+    "activityId": "e2f0d74c-afdf-4c4b-b0e1-7a3adfd4ec9e",
+    "activityEpoch": "59bad13d-e842-48a2-821a-09890ed0ea8e",
+    "workspaceEpoch": "fd33d966-7ec6-4129-94ce-fe792a3b6258:fabry-restored-8c69d4fa-9f52-4f6f-b59d-3eb90e4f8a3f:1",
+    "persistenceVerified": true,
+    "snapshots": {
+      "expected": 14,
+      "mapTotal": 14,
+      "loaded": 14,
+      "inventoryTotal": 14
+    },
+    "results": {
+      "chemistry": {
+        "total": 8,
+        "rowsEqual": true,
+        "columnsEqual": true
+      },
+      "chain": {
+        "total": 5,
+        "rowsEqual": true,
+        "columnsEqual": true
+      }
+    },
+    "computations": {
+      "total": 3,
+      "complete": 3
+    },
+    "pendingTotal": 0,
+    "networkReads": 0,
+    "scope": "Explicit Fabry activity only; result comparisons use runtime-restored pages against saved prior rows, not substituted artifact outputs",
+    "limitations": [
+      "No service process restart tested",
+      "No computation was replayed; completed computation records were recovered",
+      "Read-only restore of saved bounded snapshots; no new scientific retrieval"
+    ]
+  }
+}

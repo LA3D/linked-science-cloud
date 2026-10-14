@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "b7dfcdaf-448e-44ca-aeb5-5ea2d5a399cc",
+  "recordedAt": "2026-09-30T17:14:31.552Z",
+  "mode": "on",
+  "querySha256": "1844cf70a99becd793845ed636fbcf2679ac5d411d4e3beda0b9c2928e2b6ceb",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "federation-failure-hop-diagnosis",
+      "title": "Locate federation failures at the broker, coordinator or downstream hop",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 4,
+      "matchedTerms": [
+        "federation",
+        "sparql"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "schema-meaning-versus-endpoint-usage",
+      "title": "Test endpoint term usage separately from schema meaning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 2,
+      "matchedTerms": [
+        "federation",
+        "sparql"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "wikipathways-example-query-adaptation",
+      "title": "Adapt WikiPathways examples with ontology checks",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 2,
+      "matchedTerms": [
+        "sparql",
+        "exploration"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

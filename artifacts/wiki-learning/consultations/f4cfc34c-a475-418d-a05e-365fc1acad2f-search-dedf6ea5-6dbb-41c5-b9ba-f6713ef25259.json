@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "f4cfc34c-a475-418d-a05e-365fc1acad2f",
+  "recordedAt": "2026-09-28T14:55:02.735Z",
+  "mode": "on",
+  "querySha256": "865db44c01abacffe450a696fb9f42f311827ef5a1fdaa705f4db3130b45704d",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 5,
+      "matchedTerms": [
+        "ontology",
+        "physiological",
+        "reaction"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "hemoglobin-go-overlap-20260919",
+      "title": "Asserted GO overlap in two saved UniProt representations",
+      "status": "proposed",
+      "lessonKind": "scientific-finding",
+      "score": 2,
+      "matchedTerms": [
+        "ontology",
+        "annotation"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

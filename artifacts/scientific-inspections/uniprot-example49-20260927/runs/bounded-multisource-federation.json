@@ -1,0 +1,317 @@
+{
+  "name": "bounded-multisource-federation",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {\n SERVICE <https://sparql.uniprot.org/sparql> {\n VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}\n ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .\n ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .\n BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), \"[.][0-9]+$\", \"\")) AS ?ensemblGene)\n }\n SERVICE <https://sparql.rhea-db.org/sparql> {\n VALUES ?reaction {<http://rdf.rhea-db.org/21812>}\n ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .\n ?chebi rdfs:subClassOf* CHEBI:16113 .\n }\n SERVICE <https://www.bgee.org/sparql/> {\n VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}\n ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .\n ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n }\n}",
+  "startedAt": "2026-09-27T13:21:15.035Z",
+  "elapsedMs": 4423,
+  "status": "failed",
+  "error": {
+    "code": "LS_TRAVERSAL_QUERY",
+    "message": "Traversal concurrency bound is exhausted",
+    "receipt": {
+      "status": "failed",
+      "stage": "traversal-query",
+      "code": "LS_TRAVERSAL_QUERY",
+      "operationId": "op-000022",
+      "traversalId": "traversal-7e46f3a97b9854a282983def",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-7e46f3a97b9854a282983def",
+        "startedAt": "2026-09-27T13:21:15.039Z",
+        "finishedAt": "2026-09-27T13:21:19.458Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 9,
+          "fanOut": 3,
+          "bytes": 220956,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 2,
+            "status": "http-error",
+            "requestedUrl": "https://www.bgee.org/sparql/",
+            "finalUrl": "https://www.bgee.org/sparql/",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 403,
+            "requestSha256": "dc1128f5577876aeda676e2e66c79267c3eb6e8786269048933e8dfa5b67498f",
+            "responseSha256": "78ebdbb43e3a5549e8186c03c3812be742c41aa6b76ae9d7460694cda08cfd27",
+            "bytes": 5637,
+            "mediaType": "text/html",
+            "headers": {
+              "content-length": "5637",
+              "content-type": "text/html; charset=UTF-8"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://www.bgee.org/sparql/",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:21:15.057Z",
+            "finishedAt": "2026-09-27T13:21:15.192Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "fd64527ce5d7c93d2fe11a09a38be9ecfd78a290ceca97f996db2e17a58b0928",
+            "responseSha256": "b65dfc0998549f1d61f9e1885e6e01e505d10e23817787508be9abd5cd6f3d64",
+            "bytes": 214555,
+            "mediaType": "application/n-triples",
+            "headers": {
+              "content-type": "application/n-triples",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:21:15.056Z",
+            "finishedAt": "2026-09-27T13:21:15.968Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 5,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20(%20COUNT(%20*%20)%20AS%20%3Fcount%20)%20WHERE%20%7B%20%3Fs%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+            "finalUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20(%20COUNT(%20*%20)%20AS%20%3Fcount%20)%20WHERE%20%7B%20%3Fs%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "af2db64915a925a4b05a87e8f5cf16b53ec983c9fa4f42e58141cbb136887bd0",
+            "responseSha256": "77b19ffa0d3115b6e1fd9ea7e0bb914d380ea56a5eed6b2f25b0801cb249c07e",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20(%20COUNT(%20*%20)%20AS%20%3Fcount%20)%20WHERE%20%7B%20%3Fs%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:21:16.033Z",
+            "finishedAt": "2026-09-27T13:21:16.505Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 4,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "a4e3769162bda75ec0e115623bd6d887b9183e2560d652c017fe768ddb8e1c4e",
+            "responseSha256": "252cd7849603a90317beb251cd7f8642423387a26984e3b91e2e9ed9380adb01",
+            "bytes": 272,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "272",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "cc72e80a3fa6e629aef6d46085a9348a1a35eee79446574861612c8d24fd369f",
+            "startedAt": "2026-09-27T13:21:16.027Z",
+            "finishedAt": "2026-09-27T13:21:17.854Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 7,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20%3Fb%20WHERE%20%7B%20%3Fb%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+            "finalUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20%3Fb%20WHERE%20%7B%20%3Fb%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "80e67db661cd9655336f117f20a7a9780288859933a8604f68655b038d818c4a",
+            "responseSha256": "690289ff1961745327d995a0cafd5823625fd2cfcf3132a68181274d889a89e1",
+            "bytes": 224,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "224",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql?query=SELECT%20%3Fb%20WHERE%20%7B%20%3Fb%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23subClassOf%3E%20%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_16113%3E%20.%20%7D",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:21:19.031Z",
+            "finishedAt": "2026-09-27T13:21:19.445Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "query-failed"
+        }
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 22,
+        "status": "failed",
+        "operationId": "op-000022",
+        "traversalId": "traversal-7e46f3a97b9854a282983def",
+        "queryType": "SELECT",
+        "querySha256": "6d96352ba5867ad4bc7e42db320e4974fa8e13063dd9281cc2892462e9a6344a",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          },
+          {
+            "type": "sparql",
+            "value": "https://sparql.rhea-db.org/sparql"
+          },
+          {
+            "type": "sparql",
+            "value": "https://www.bgee.org/sparql/"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-27T13:21:15.039Z",
+        "endedAt": "2026-09-27T13:21:19.458Z",
+        "durationMs": 4419,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 4,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 9,
+          "fanOut": 3,
+          "bytes": 220956,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_CONCURRENCY_LIMIT",
+        "hiddenRetries": 0
+      },
+      "cause": "Error: Traversal concurrency bound is exhausted"
+    }
+  }
+}

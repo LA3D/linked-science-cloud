@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "208e092e-f9ec-4614-aa32-a57b0b58bf2e",
+  "recordedAt": "2026-09-25T11:18:22.228Z",
+  "mode": "on",
+  "querySha256": "09c41e46f3da2d16a48b8758d11dccf7978024a0b139723cd27d9204317e5b3f",
+  "revision": "31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb",
+  "candidates": [],
+  "status": "available",
+  "omitted": 0,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

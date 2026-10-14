@@ -1,0 +1,1 @@
+PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> SELECT DISTINCT ?id ?type ?label WHERE { ?id a ?type . FILTER(isIRI(?id) && (CONTAINS(STR(?id),"HGNC") || CONTAINS(STR(?id),"uniprot") || CONTAINS(STR(?id),"CHEBI_") || CONTAINS(STR(?id),"GO_"))) OPTIONAL { ?id dm:label ?label } }

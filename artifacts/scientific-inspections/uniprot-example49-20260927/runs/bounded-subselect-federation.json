@@ -1,0 +1,593 @@
+{
+  "name": "bounded-subselect-federation",
+  "query": "PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>\nPREFIX genex: <http://purl.org/genex#>\nPREFIX lscr: <http://purl.org/lscr#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rh: <http://rdf.rhea-db.org/>\nPREFIX taxon: <http://purl.uniprot.org/taxonomy/>\nPREFIX up: <http://purl.uniprot.org/core/>\nSELECT DISTINCT ?chebi ?reaction ?protein ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {\n SERVICE <https://sparql.uniprot.org/sparql> { SELECT DISTINCT ?protein ?reaction ?ensemblGene WHERE {\n VALUES ?protein {<http://purl.uniprot.org/uniprot/P22680>}\n ?protein up:organism taxon:9606; up:annotation ?a; rdfs:seeAlso/up:transcribedFrom ?ensemblGeneVersioned .\n ?a a up:Catalytic_Activity_Annotation; up:catalyticActivity/up:catalyzedReaction ?reaction .\n BIND(IRI(REPLACE(STR(?ensemblGeneVersioned), \"[.][0-9]+$\", \"\")) AS ?ensemblGene)\n }\n } SERVICE <https://sparql.rhea-db.org/sparql> { SELECT DISTINCT ?reaction ?chebi WHERE {\n VALUES ?reaction {<http://rdf.rhea-db.org/21812>}\n ?reaction rdfs:subClassOf rh:Reaction; rh:equation ?equation; rh:side/rh:contains/rh:compound/rh:chebi ?chebi .\n VALUES ?chebi { CHEBI:16113 }\n }\n } SERVICE <https://www.bgee.org/sparql/> { SELECT DISTINCT ?ensemblGene ?anatomicEntity ?anatomicEntityLabel WHERE {\n VALUES ?ensemblGene {<http://rdf.ebi.ac.uk/resource/ensembl/ENSG00000167910>}\n ?gene lscr:xrefEnsemblGene ?ensemblGene; genex:isExpressedIn ?anatomicEntity .\n ?anatomicEntity rdfs:label ?anatomicEntityLabel .\n }\n}}",
+  "startedAt": "2026-09-27T13:22:37.645Z",
+  "elapsedMs": 12850,
+  "status": "failed",
+  "error": {
+    "code": "LS_TRAVERSAL_QUERY",
+    "message": "Traversal has active requests",
+    "receipt": {
+      "status": "failed",
+      "stage": "traversal-query",
+      "code": "LS_TRAVERSAL_QUERY",
+      "operationId": "op-000024",
+      "traversalId": "traversal-d6ef665c21fb6126594c862b",
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "aborted",
+        "traversalId": "traversal-d6ef665c21fb6126594c862b",
+        "startedAt": "2026-09-27T13:22:37.650Z",
+        "finishedAt": "2026-09-27T13:22:50.494Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 6,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 14,
+          "fanOut": 3,
+          "bytes": 246636,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "fd64527ce5d7c93d2fe11a09a38be9ecfd78a290ceca97f996db2e17a58b0928",
+            "responseSha256": "b65dfc0998549f1d61f9e1885e6e01e505d10e23817787508be9abd5cd6f3d64",
+            "bytes": 214555,
+            "mediaType": "application/n-triples",
+            "headers": {
+              "content-type": "application/n-triples",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:22:37.656Z",
+            "finishedAt": "2026-09-27T13:22:38.558Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 3,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "1838de04e9f8d44f78f9ff106376907249f1153788413aa2d5de028a2e0392e5",
+            "responseSha256": "252cd7849603a90317beb251cd7f8642423387a26984e3b91e2e9ed9380adb01",
+            "bytes": 272,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "272",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "8acd5c275168a8da8db611e40afc85e08dba7d0963e6bcb36ef74c48e4f96c2c",
+            "startedAt": "2026-09-27T13:22:38.611Z",
+            "finishedAt": "2026-09-27T13:22:40.255Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 4,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql",
+            "finalUrl": "https://sparql.uniprot.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "7c6fc312a6e6843e79c6f157b11ddbc9d8b8a071759d73e01117904d619a90c7",
+            "responseSha256": "4b90525b7c0b3d7fc11f7101d91dd92ec6bef284bd4bd6ce795058619fa066e3",
+            "bytes": 5880,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "5880",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "bfcd8653c6f81f863be448dee457c9baad439e19b7983ca6ffd86ca4d3a2fdf5",
+            "startedAt": "2026-09-27T13:22:41.628Z",
+            "finishedAt": "2026-09-27T13:22:42.035Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 5,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "c8db6fd2f8b0f4a5f31050113fb2f8315b88189054bbd064a419335289f443b3",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "d3425ab096930abc8b183ac19f8dcdcb67a6fb8fce90f3bd3381d0358a63e1c8",
+            "startedAt": "2026-09-27T13:22:42.054Z",
+            "finishedAt": "2026-09-27T13:22:42.446Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 7,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "d61d25de1e7b49b389bf716df5f4b81c3882e503fd66dc8a132a6e4324474540",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "6c477818570564bf4638c29cf4cbcd8ea8872b3ccc44f1465cc0055d2fb9895c",
+            "startedAt": "2026-09-27T13:22:42.693Z",
+            "finishedAt": "2026-09-27T13:22:42.823Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 6,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "e690dcee38db3c296902ec699fe97bc85eae4a68ffd2f33e54481d14c28e5db7",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "9206277de5ae5bbbb9923fde9726f9e52c8b40ad2f65230886c9d3b09dbfa639",
+            "startedAt": "2026-09-27T13:22:42.374Z",
+            "finishedAt": "2026-09-27T13:22:42.837Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 8,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "83da16142cc01acf0a4b5f2edf19da6ebbde818ea2ef28e99fc13c648df8d99d",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "4cace40c4bf70ff60755660d40c0a1f6460e95394346f1ac87f0c3248a974fd5",
+            "startedAt": "2026-09-27T13:22:43.012Z",
+            "finishedAt": "2026-09-27T13:22:43.138Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 9,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "04d493a9c6abd54e751a850d11255c0ce3d514bef0ee9466261dcebba58e7b77",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "bfae12561af1170301db5bd8109e6b9ffa6c8f002b5c197a4fa102ec99e3bc5f",
+            "startedAt": "2026-09-27T13:22:43.341Z",
+            "finishedAt": "2026-09-27T13:22:43.489Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 10,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "b6559b162d045dc705d1ee323d41c8b603f79bcc7cd8600f99c5ea9133f6c1d4",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "6ee1f947c474055d33b571806f289e3d8042f65b9c957dc55b9b17a37d88cb48",
+            "startedAt": "2026-09-27T13:22:43.664Z",
+            "finishedAt": "2026-09-27T13:22:43.795Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 11,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "9bcaf6365262182e65b82ab3c2890360ffd3225aa9d7140f243e54ba438ef828",
+            "responseSha256": "c267a969ef34b07b8f99f1ab17d7068dc512f4f3b69c26ef53c47a16c19f20b0",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "6c7fe793670593d5d551bb157eceee0769c9a215340c08d8787f05baef74fe7d",
+            "startedAt": "2026-09-27T13:22:43.986Z",
+            "finishedAt": "2026-09-27T13:22:44.271Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 12,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "cbdb73309c4aa3f12120d7ccb4c38a3433e9972dedbd846ebaaca8946f239cfb",
+            "responseSha256": "77b19ffa0d3115b6e1fd9ea7e0bb914d380ea56a5eed6b2f25b0801cb249c07e",
+            "bytes": 268,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "268",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "9f8c43dff239d74a8660580d6d72648601215184a8dc6145759b50dd8bb0d4ca",
+            "startedAt": "2026-09-27T13:22:44.293Z",
+            "finishedAt": "2026-09-27T13:22:44.421Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 13,
+            "status": "success",
+            "requestedUrl": "https://sparql.rhea-db.org/sparql",
+            "finalUrl": "https://sparql.rhea-db.org/sparql",
+            "redirected": false,
+            "method": "POST",
+            "httpStatus": 200,
+            "requestSha256": "f56e0c1d865ee96cca20f1d734a229eafa692b7a6ba67ae6ff60eb794b0ae766",
+            "responseSha256": "4184c269a7c6f2291258e42656fc1ad2f7416a2bd33bcbdf00b4b7e4c9716d5e",
+            "bytes": 882,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "882",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.rhea-db.org/sparql",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "queryType": "SELECT",
+            "querySha256": "e3f68189e5e423d3a9124c5aed6a5cf6585884bb9edc193c523df15cb31c3394",
+            "startedAt": "2026-09-27T13:22:44.600Z",
+            "finishedAt": "2026-09-27T13:22:44.726Z",
+            "retries": 0
+          },
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 14,
+            "status": "success",
+            "requestedUrl": "https://www.bgee.org/sparql/?query=SELECT%20%3Fgene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23xrefEnsemblGene%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20.%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23isExpressedIn%3E%20%3FanatomicEntity%20.%20%3FanatomicEntity%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E%20%3FanatomicEntityLabel%20.%20%7D",
+            "finalUrl": "https://www.bgee.org/sparql/?query=SELECT%20%3Fgene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23xrefEnsemblGene%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20.%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23isExpressedIn%3E%20%3FanatomicEntity%20.%20%3FanatomicEntity%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E%20%3FanatomicEntityLabel%20.%20%7D",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "6cafeec457d0d70f04ad445d82f9fc2cccb06261339cbfc7bfa9b3270a674323",
+            "responseSha256": "4c5e5477b5f0e171d6ec24889abd5a58bf3c22055eea98ed68303e6c966ce038",
+            "bytes": 22903,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "22903",
+              "content-type": "application/sparql-results+json"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://www.bgee.org/sparql/?query=SELECT%20%3Fgene%20%3FanatomicEntity%20%3FanatomicEntityLabel%20WHERE%20%7B%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Flscr%23xrefEnsemblGene%3E%20%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fensembl%2FENSG00000167910%3E%20.%20%3Fgene%20%3Chttp%3A%2F%2Fpurl.org%2Fgenex%23isExpressedIn%3E%20%3FanatomicEntity%20.%20%3FanatomicEntity%20%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label%3E%20%3FanatomicEntityLabel%20.%20%7D",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:22:50.175Z",
+            "finishedAt": "2026-09-27T13:22:50.474Z",
+            "retries": 0
+          }
+        ],
+        "redirectEvidence": "requested-final-and-redirected-flag",
+        "failure": {
+          "code": "query-failed"
+        }
+      },
+      "navigation": {
+        "kind": "linked-data-navigation-evidence",
+        "evidenceStatus": "observed-advertisements",
+        "instructionAuthority": false,
+        "candidates": [],
+        "profileDeclarations": [],
+        "truncated": false,
+        "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+      },
+      "attempt": {
+        "kind": "linked-science-mediated-attempt",
+        "index": 24,
+        "status": "failed",
+        "operationId": "op-000024",
+        "traversalId": "traversal-d6ef665c21fb6126594c862b",
+        "queryType": "SELECT",
+        "querySha256": "14fed974cf54c27ffe3155b02f78dead9d243f2ed0b07c473abf4615609c5b4e",
+        "sources": [
+          {
+            "type": "sparql",
+            "value": "https://sparql.uniprot.org/sparql"
+          },
+          {
+            "type": "sparql",
+            "value": "https://www.bgee.org/sparql/"
+          }
+        ],
+        "evidenceHandles": [],
+        "startedAt": "2026-09-27T13:22:37.650Z",
+        "endedAt": "2026-09-27T13:22:50.494Z",
+        "durationMs": 12844,
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 300000,
+          "maxRequestMs": 20000,
+          "maxRequests": 16,
+          "maxFanOut": 8,
+          "maxConcurrency": 6,
+          "maxResponseBytes": 2000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 500
+        },
+        "usage": {
+          "requests": 14,
+          "fanOut": 3,
+          "bytes": 246636,
+          "retries": 0
+        },
+        "failureCode": "MEDIATOR_TRAVERSAL_BUSY",
+        "hiddenRetries": 0
+      },
+      "cause": "Error: Traversal has active requests"
+    }
+  }
+}

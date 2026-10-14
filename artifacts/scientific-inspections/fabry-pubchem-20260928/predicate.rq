@@ -1,0 +1,1 @@
+SELECT ?p ?o WHERE {<http://semanticscience.org/resource/CHEMINF_000477> ?p ?o}

@@ -1,0 +1,649 @@
+{
+  "converter": "LinkML RDFLibDumper with checkpoint-local subclass",
+  "runtimeVersion": "1.8.3",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "rdflibVersion": "7.1.0",
+  "schemaClasses": 151,
+  "schemaSlots": 467,
+  "triples": 2834,
+  "sourceScalarLeaves": 1984,
+  "typedScalarLeaves": 1985,
+  "sourceToTypedChanges": [],
+  "fieldAuditEntries": 2527,
+  "fieldAuditFailures": 0,
+  "sourceMechanisms": 16,
+  "sourceCausalEdges": 49,
+  "causalTargetAudit": [
+    {
+      "source": "Alpha-galactosidase A deficiency",
+      "target": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Lysosomal%20Gb3%20and%20lyso-Gb3%20accumulation"
+      ],
+      "edge": "N136cd49168cd477a899fc0b5afaa5d11"
+    },
+    {
+      "source": "Alpha-galactosidase A deficiency",
+      "target": "Endoplasmic reticulum stress and unfolded protein response",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Endoplasmic%20reticulum%20stress%20and%20unfolded%20protein%20response"
+      ],
+      "edge": "Ne58b0ff4a395491584f86d9b6e536c9a"
+    },
+    {
+      "source": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+      "target": "Lyso-Gb3",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Lyso-Gb3"
+      ],
+      "edge": "N508404782c8c49cda9eb243ca506556c"
+    },
+    {
+      "source": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+      "target": "Elevated circulating globotriaosylceramide concentration",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Elevated%20circulating%20globotriaosylceramide%20concentration"
+      ],
+      "edge": "N1a1bb0bf505249bfa6aeea1c0f08f15c"
+    },
+    {
+      "source": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+      "target": "Tissue-specific glycosphingolipid storage",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Tissue-specific%20glycosphingolipid%20storage"
+      ],
+      "edge": "N55a63cdd1d1c460c97d3f95031c9fca6"
+    },
+    {
+      "source": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+      "target": "Innate immune activation and inflammation",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Innate%20immune%20activation%20and%20inflammation"
+      ],
+      "edge": "N0ec9e0608f994f87aad50b3228f7cff5"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Renal glycosphingolipid storage and podocyte injury",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      ],
+      "edge": "Ne6b745720be946a088ecb57f37fffa50"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Cardiac glycosphingolipid storage and myocardial remodeling",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cardiac%20glycosphingolipid%20storage%20and%20myocardial%20remodeling"
+      ],
+      "edge": "N27edf91b44e841d8956bb3e345203867"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Vascular%20endothelial%20glycosphingolipid%20storage%20and%20dysfunction"
+      ],
+      "edge": "Nc9c7f38f7212453ab5d553bff3aab6a8"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Peripheral%20small-fiber%20and%20autonomic%20glycosphingolipid%20storage"
+      ],
+      "edge": "N689d934e826e4ddca4683948b440aa04"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Ocular glycosphingolipid deposition",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Ocular%20glycosphingolipid%20deposition"
+      ],
+      "edge": "Nd7e0fea08dfa44519a22ff0a8dc80f93"
+    },
+    {
+      "source": "Tissue-specific glycosphingolipid storage",
+      "target": "Cutaneous vascular glycosphingolipid storage",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cutaneous%20vascular%20glycosphingolipid%20storage"
+      ],
+      "edge": "Nb1a8d466247d4cb2a1cfe93897bf3f2a"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Autophagy impairment",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Autophagy%20impairment"
+      ],
+      "edge": "Nbd38a47aa77941f691c389f26ee065b3"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Mitochondrial dysfunction and oxidative stress",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Mitochondrial%20dysfunction%20and%20oxidative%20stress"
+      ],
+      "edge": "N8b4ecbe503844d3db97e46450ccc7466"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Proteinuria",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Proteinuria"
+      ],
+      "edge": "Ne7a7c783800240be8312afdde699ceda"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Chronic kidney disease",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Chronic%20kidney%20disease"
+      ],
+      "edge": "N435f44887efa421bb95a8580d8769ad0"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Nephrotic syndrome",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Nephrotic%20syndrome"
+      ],
+      "edge": "Neb8ca2e13ece42128ad17e036ca7ad5c"
+    },
+    {
+      "source": "Renal glycosphingolipid storage and podocyte injury",
+      "target": "Renal Globotriaosylceramide Inclusions",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Renal%20Globotriaosylceramide%20Inclusions"
+      ],
+      "edge": "N7b70d76e962d4891ad2bc6e341570e65"
+    },
+    {
+      "source": "Cardiac glycosphingolipid storage and myocardial remodeling",
+      "target": "Fibrosis and extracellular matrix remodeling",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Fibrosis%20and%20extracellular%20matrix%20remodeling"
+      ],
+      "edge": "N94e69c0d6ded4fbfb64a3bee823b9c9e"
+    },
+    {
+      "source": "Cardiac glycosphingolipid storage and myocardial remodeling",
+      "target": "Cardiomyocyte autophagy impairment and oxidative stress",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cardiomyocyte%20autophagy%20impairment%20and%20oxidative%20stress"
+      ],
+      "edge": "N674806799613415ba1fb6463dfa637c3"
+    },
+    {
+      "source": "Cardiac glycosphingolipid storage and myocardial remodeling",
+      "target": "Atrial cardiomyocyte electrophysiological remodeling",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Atrial%20cardiomyocyte%20electrophysiological%20remodeling"
+      ],
+      "edge": "N810b36be81bf45ab8646bda5d9a72e22"
+    },
+    {
+      "source": "Cardiac glycosphingolipid storage and myocardial remodeling",
+      "target": "Congestive heart failure",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Congestive%20heart%20failure"
+      ],
+      "edge": "N104bbfae87fc4aa4b1a9215dd9dc28ad"
+    },
+    {
+      "source": "Cardiomyocyte autophagy impairment and oxidative stress",
+      "target": "Left ventricular hypertrophy",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Left%20ventricular%20hypertrophy"
+      ],
+      "edge": "N493d9688ddd84281ad870f7d2f0b6890"
+    },
+    {
+      "source": "Atrial cardiomyocyte electrophysiological remodeling",
+      "target": "Early atrial ECG changes",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Early%20atrial%20ECG%20changes"
+      ],
+      "edge": "N1d2cf2210dd044fd9717712cab27da87"
+    },
+    {
+      "source": "Atrial cardiomyocyte electrophysiological remodeling",
+      "target": "Cardiac arrhythmia",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cardiac%20arrhythmia"
+      ],
+      "edge": "Nf517f0a45d5141cfb22386099d2dbf50"
+    },
+    {
+      "source": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "target": "Stroke",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Stroke"
+      ],
+      "edge": "N98c7c701322a4d678ff9299891a4705d"
+    },
+    {
+      "source": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "target": "Transient ischemic attack",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Transient%20ischemic%20attack"
+      ],
+      "edge": "Nfc45f8560d9a40da90a9777a2aad499f"
+    },
+    {
+      "source": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "target": "Hearing impairment",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Hearing%20impairment"
+      ],
+      "edge": "Na990590100c54459a6e6589a500adff6"
+    },
+    {
+      "source": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "target": "Tinnitus",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Tinnitus"
+      ],
+      "edge": "N56086e916eb34dfbaf7e5e815c416f1f"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Acroparesthesia",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Acroparesthesia"
+      ],
+      "edge": "Nc8f3f75d7da34ca69e6c62682d63353d"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Neuropathic pain",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Neuropathic%20pain"
+      ],
+      "edge": "N2df7e95271614019baaba116befeb545"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Hypohidrosis",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Hypohidrosis"
+      ],
+      "edge": "N2691f00394fe4bb7bb2b2070308cb293"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Heat intolerance",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Heat%20intolerance"
+      ],
+      "edge": "N548d6ac536594a849ae141ee36781713"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Abdominal pain",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Abdominal%20pain"
+      ],
+      "edge": "N4ce6ad2d6bee4ab2b7c507c9585cdd90"
+    },
+    {
+      "source": "Peripheral small-fiber and autonomic glycosphingolipid storage",
+      "target": "Nausea and vomiting",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Nausea%20and%20vomiting"
+      ],
+      "edge": "N120bf899998b458fb6a4c53fa8fe7dbe"
+    },
+    {
+      "source": "Ocular glycosphingolipid deposition",
+      "target": "Cornea verticillata",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cornea%20verticillata"
+      ],
+      "edge": "N580628ece2414d928648d750199b2107"
+    },
+    {
+      "source": "Ocular glycosphingolipid deposition",
+      "target": "Corneal opacity",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Corneal%20opacity"
+      ],
+      "edge": "N78104f6175de4012a0f3867222ac807b"
+    },
+    {
+      "source": "Ocular glycosphingolipid deposition",
+      "target": "Cataract",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cataract"
+      ],
+      "edge": "Ncea687a93af04b7f8d41c0a950c25085"
+    },
+    {
+      "source": "Ocular glycosphingolipid deposition",
+      "target": "Conjunctival telangiectasia",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Conjunctival%20telangiectasia"
+      ],
+      "edge": "Nc0b4bb3e6e93470c908f919674da2e7a"
+    },
+    {
+      "source": "Cutaneous vascular glycosphingolipid storage",
+      "target": "Angiokeratomas",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Angiokeratomas"
+      ],
+      "edge": "Ne5f4828b3495437f82a0b4f8ad59870c"
+    },
+    {
+      "source": "Endoplasmic reticulum stress and unfolded protein response",
+      "target": "Innate immune activation and inflammation",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Innate%20immune%20activation%20and%20inflammation"
+      ],
+      "edge": "Nd174005665c64ba086515fec267c4dbd"
+    },
+    {
+      "source": "Autophagy impairment",
+      "target": "Proteinuria",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Proteinuria"
+      ],
+      "edge": "N009c931524ad4fdeafd089a78106d5a6"
+    },
+    {
+      "source": "Autophagy impairment",
+      "target": "Chronic kidney disease",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Chronic%20kidney%20disease"
+      ],
+      "edge": "Nadb5bb04cc704e0c9f9cbcd94a162b46"
+    },
+    {
+      "source": "Innate immune activation and inflammation",
+      "target": "Renal glycosphingolipid storage and podocyte injury",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+      ],
+      "edge": "Nea9038df2b4746eca7e5520281fa16e0"
+    },
+    {
+      "source": "Innate immune activation and inflammation",
+      "target": "Vascular endothelial glycosphingolipid storage and dysfunction",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Vascular%20endothelial%20glycosphingolipid%20storage%20and%20dysfunction"
+      ],
+      "edge": "N10f78def342b42fea31d070c26baea0f"
+    },
+    {
+      "source": "Innate immune activation and inflammation",
+      "target": "Fibrosis and extracellular matrix remodeling",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Fibrosis%20and%20extracellular%20matrix%20remodeling"
+      ],
+      "edge": "N27e95302d7bb4299b985fb1d20562934"
+    },
+    {
+      "source": "Fibrosis and extracellular matrix remodeling",
+      "target": "Chronic kidney disease",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Chronic%20kidney%20disease"
+      ],
+      "edge": "N3095176557754351b6b27a7253127135"
+    },
+    {
+      "source": "Fibrosis and extracellular matrix remodeling",
+      "target": "Left ventricular hypertrophy",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Left%20ventricular%20hypertrophy"
+      ],
+      "edge": "Nee560d67580d47e785bf8171199c61b2"
+    },
+    {
+      "source": "Fibrosis and extracellular matrix remodeling",
+      "target": "Cardiac arrhythmia",
+      "matches": [
+        "https://example.org/fabry-checkpoint/name/Cardiac%20arrhythmia"
+      ],
+      "edge": "Nf39a4ef379d84ccbbff94696ca1a0b72"
+    }
+  ],
+  "applicationLinkTriples": 65,
+  "skolemizedBlankNodes": 363,
+  "adapterAnomalies": [
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "1 in 100,000"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "1 in 1,250"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "0.01-0.05"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "0.0001-0.0009"
+    },
+    {
+      "kind": "undeclared-enum-value-preserved-as-literal",
+      "range": "PhaseTerm",
+      "value": "Onset"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "1 in 100,000"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "1 in 1,250"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "0.01-0.05"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "0.0001-0.0009"
+    },
+    {
+      "kind": "undeclared-enum-value-preserved-as-literal",
+      "range": "PhaseTerm",
+      "value": "Onset"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "OCCASIONAL"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    },
+    {
+      "kind": "scalar-without-identifier-slot-preserved-as-literal",
+      "value": "VERY_FREQUENT"
+    }
+  ],
+  "modulePaths": {
+    "curies": "/Users/cvardema/.cache/uv/archive-v0/1KDlQlnstU541Eb2kru0H/curies/__init__.py",
+    "linkml_runtime": "/Users/cvardema/.cache/uv/archive-v0/ydFhPhjFCPPVX8mzvuMxK/linkml_runtime/__init__.py",
+    "pydantic": "/Users/cvardema/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/pydantic/__init__.py",
+    "rdflib": "/Users/cvardema/.cache/uv/archive-v0/Jo9RcprxJcBwj8goRT-G-/rdflib/__init__.py",
+    "yaml": "/Users/cvardema/.cache/uv/archive-v0/-wUK5OfmSmgnJMnmaE08h/yaml/__init__.py"
+  },
+  "sourceSha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+  "rdfSha256": "1a43e9d6b86f486ee050cb53909def288264c74248c991bc422ad8d424d4ba6b"
+}

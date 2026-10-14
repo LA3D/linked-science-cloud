@@ -1,0 +1,53 @@
+{
+  "kind": "isolated-depth-one-codex-probe",
+  "date": "2026-09-24T20:01:25.746Z",
+  "error": "app-server exited",
+  "timedOut": false,
+  "events": [
+    {
+      "event": "process-exit",
+      "code": 1,
+      "signal": null
+    }
+  ],
+  "gateEvents": [
+    {
+      "code": "ADMITTED",
+      "parent": "root",
+      "id": "leaf-1",
+      "depth": 1,
+      "total": 1,
+      "active": 1
+    },
+    {
+      "code": "RELEASED",
+      "id": "leaf-1",
+      "total": 1,
+      "active": 0
+    }
+  ],
+  "overrides": {
+    "agents.enabled": false,
+    "web_search": "disabled",
+    "sqlite_home": "/tmp/linked-science-depth-one/sqlite",
+    "log_dir": "/tmp/linked-science-depth-one/logs",
+    "project_doc_max_bytes": 0,
+    "features.multi_agent": false,
+    "features.shell_tool": false,
+    "features.unified_exec": false,
+    "features.apps": false,
+    "features.plugins": false,
+    "features.remote_plugin": false,
+    "features.browser_use": false,
+    "features.computer_use": false,
+    "features.in_app_browser": false,
+    "features.code_mode": false,
+    "features.code_mode_host": false,
+    "features.hooks": false,
+    "features.memories": false,
+    "mcp_servers.node_repl.enabled": false,
+    "mcp_servers.computer-use.enabled": false
+  },
+  "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\nError: Operation not permitted (os error 1)\n",
+  "classification": "Sandbox startup failed before any thread or model turn; not counted as a model-child invocation."
+}

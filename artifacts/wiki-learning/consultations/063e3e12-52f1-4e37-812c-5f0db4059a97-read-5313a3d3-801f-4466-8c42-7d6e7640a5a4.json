@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "read",
+  "consultationId": "063e3e12-52f1-4e37-812c-5f0db4059a97",
+  "recordedAt": "2026-10-02T17:20:51.643Z",
+  "revision": "0d15ee85f7ff899d53aeba25ec44fe212201fc7266e7b612b0083004e562466a",
+  "patternId": "industry-screening-versus-emissions",
+  "patternSha256": "5604aabb5df57321a8140acab0c79e80658efe8b65e56631bf23a224691be736",
+  "helpfulness": "unknown"
+}

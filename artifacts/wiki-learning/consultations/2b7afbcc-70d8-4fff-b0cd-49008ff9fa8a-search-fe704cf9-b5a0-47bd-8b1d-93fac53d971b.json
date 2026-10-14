@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "search",
+  "consultationId": "2b7afbcc-70d8-4fff-b0cd-49008ff9fa8a",
+  "recordedAt": "2026-09-27T14:04:33.652Z",
+  "mode": "on",
+  "querySha256": "8287ff355f7f0f2689d3f123294b1e81549eea504405928002f046ed2f8a6de5",
+  "revision": "2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0",
+  "candidates": [
+    {
+      "id": "federation-failure-hop-diagnosis",
+      "title": "Locate federation failures at the broker, coordinator or downstream hop",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 7,
+      "matchedTerms": [
+        "service",
+        "coordinator",
+        "failure"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "saved-scientific-demo-handoff",
+      "title": "Preserve the scientific subject and explain saved investigations without rerunning",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 6,
+      "matchedTerms": [
+        "saved",
+        "handoff"
+      ],
+      "interpretation": "hypothesis-only"
+    },
+    {
+      "id": "ontology-symbolic-context-selective-imports",
+      "title": "Resolve scientific terms in symbolic context and inspect relevant ontology imports",
+      "status": "proposed",
+      "lessonKind": "procedure",
+      "score": 5,
+      "matchedTerms": [
+        "ontology",
+        "reaction",
+        "direction"
+      ],
+      "interpretation": "hypothesis-only"
+    }
+  ],
+  "status": "available",
+  "omitted": 5,
+  "helpfulness": "unknown",
+  "scope": "advisory-memory-not-authority-or-live-state"
+}

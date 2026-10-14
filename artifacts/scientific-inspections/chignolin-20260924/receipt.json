@@ -1,0 +1,573 @@
+{
+  "kind": "bounded-scientific-inspection",
+  "date": "2026-09-24",
+  "scope": "Exact chignolin GYDPETGTWG; public experimental context for Chris Sweet's reported prediction",
+  "captureNote": "Selected actual MCP requests/responses and derived resource metadata. Not a native transport envelope. Full coordinate resource retained in live REPL; saved snapshot is bounded.",
+  "evidence": {
+    "sequence": "GYDPETGTWG",
+    "entry": {
+      "id": "1UAO",
+      "title": "NMR Structure of designed protein, Chignolin, consisting of only ten amino acids (Ensembles)",
+      "method": [
+        {
+          "method": "SOLUTION NMR"
+        }
+      ],
+      "citation": {
+        "country": "UK",
+        "id": "primary",
+        "journal_abbrev": "Structure",
+        "journal_id_ASTM": "STRUE6",
+        "journal_id_CSD": "2005",
+        "journal_id_ISSN": "0969-2126",
+        "journal_volume": "12",
+        "page_first": "1507",
+        "page_last": "1518",
+        "pdbx_database_id_DOI": "10.1016/j.str.2004.05.022",
+        "pdbx_database_id_PubMed": 15296744,
+        "rcsb_ORCID_identifiers": [
+          "?",
+          "?",
+          "?",
+          "?"
+        ],
+        "rcsb_authors": [
+          "Honda, S.",
+          "Yamasaki, K.",
+          "Sawada, Y.",
+          "Morii, H."
+        ],
+        "rcsb_journal_abbrev": "Structure",
+        "title": "10 residue folded peptide designed by segment statistics",
+        "year": 2004
+      },
+      "related": [
+        {
+          "content_type": "unspecified",
+          "db_id": "5694",
+          "db_name": "BMRB",
+          "details": "NMR STRUCTURE OF DESIGNED PROTEIN, CHIGNOLIN, ONSISTING OF ONLY TEN AMINO ACIDS"
+        },
+        {
+          "content_type": "unspecified",
+          "db_id": "2RVD",
+          "db_name": "PDB",
+          "details": "NMR STRUCTURE OF A MUTANT OF CHIGNOLIN, CLN025"
+        },
+        {
+          "content_type": "unspecified",
+          "db_id": "5AWL",
+          "db_name": "PDB",
+          "details": "CRYSTAL STRUCTURE OF A MUTANT OF CHIGNOLIN, CLN025"
+        }
+      ],
+      "conditions": [
+        {
+          "conditions_id": "1",
+          "ionic_strength": "20mM sodium phosohate",
+          "pH": "5.5",
+          "pressure": "AMBIENT",
+          "temperature": "277",
+          "temperature_units": "K"
+        }
+      ],
+      "ensemble": {
+        "conformer_selection_criteria": "structures with the lowest energy",
+        "conformers_calculated_total_number": 50,
+        "conformers_submitted_total_number": 18
+      }
+    },
+    "entity": {
+      "sequence": "GYDPETGTWG",
+      "identifiers": {
+        "asym_ids": [
+          "A"
+        ],
+        "auth_asym_ids": [
+          "A"
+        ],
+        "chem_comp_monomers": [
+          "ASP",
+          "GLU",
+          "GLY",
+          "PRO",
+          "THR",
+          "TRP",
+          "TYR"
+        ],
+        "entity_id": "1",
+        "entry_id": "1UAO",
+        "rcsb_id": "1UAO_1"
+      },
+      "source": [
+        {
+          "details": "The Sequence was designed on the basis of statistics derived from numerous protein segments.",
+          "pdbx_alt_source_flag": "sample",
+          "pdbx_src_id": 1
+        }
+      ]
+    },
+    "variant": {
+      "key": "variant",
+      "entity": {
+        "nstd_linkage": "no",
+        "nstd_monomer": "no",
+        "pdbx_seq_one_letter_code": "YYDPETGTWY",
+        "pdbx_seq_one_letter_code_can": "YYDPETGTWY",
+        "pdbx_strand_id": "A",
+        "rcsb_artifact_monomer_count": 0,
+        "rcsb_conflict_count": 0,
+        "rcsb_deletion_count": 0,
+        "rcsb_entity_polymer_type": "Protein",
+        "rcsb_insertion_count": 0,
+        "rcsb_mutation_count": 0,
+        "rcsb_non_std_monomer_count": 0,
+        "rcsb_sample_sequence_length": 10,
+        "type": "polypeptide(L)"
+      },
+      "description": "CLN025"
+    },
+    "coordinateSummary": {
+      "status": "fulfilled",
+      "value": {
+        "key": "coordinates",
+        "models": 18,
+        "seqres": [
+          "SEQRES   1 A   10  GLY TYR ASP PRO GLU THR GLY THR TRP GLY                      "
+        ],
+        "atomsFirstModel": 138,
+        "headers": [
+          "TITLE     NMR STRUCTURE OF DESIGNED PROTEIN, CHIGNOLIN, CONSISTING OF ONLY TEN  ",
+          "TITLE    2 AMINO ACIDS (ENSEMBLES)                                              ",
+          "EXPDTA    SOLUTION NMR                                                          ",
+          "JRNL        AUTH   S.HONDA,K.YAMASAKI,Y.SAWADA,H.MORII                          ",
+          "JRNL        TITL   10 RESIDUE FOLDED PEPTIDE DESIGNED BY SEGMENT STATISTICS     ",
+          "JRNL        REF    STRUCTURE                     V.  12  1507 2004              ",
+          "JRNL        REFN                   ISSN 0969-2126                               ",
+          "JRNL        PMID   15296744                                                     ",
+          "JRNL        DOI    10.1016/J.STR.2004.05.022                                    ",
+          "REMARK 210                                                                      ",
+          "REMARK 210 EXPERIMENTAL DETAILS                                                 ",
+          "REMARK 210  EXPERIMENT TYPE                : NMR                                ",
+          "REMARK 210  TEMPERATURE           (KELVIN) : 277                                ",
+          "REMARK 210  PH                             : 5.5                                ",
+          "REMARK 210  IONIC STRENGTH                 : 20MM SODIUM PHOSOHATE              ",
+          "REMARK 210  PRESSURE                       : AMBIENT                            ",
+          "REMARK 210  SAMPLE CONTENTS                : 2MM CHIGNOLIN                      ",
+          "REMARK 210                                                                      ",
+          "REMARK 210  NMR EXPERIMENTS CONDUCTED      : 2D NOESY; 2D ROESY; DQF-COSY; 2D   ",
+          "REMARK 210                                   TOCSY                              ",
+          "REMARK 210  SPECTROMETER FIELD STRENGTH    : 500 MHZ                            ",
+          "REMARK 210  SPECTROMETER MODEL             : AMX                                ",
+          "REMARK 210  SPECTROMETER MANUFACTURER      : BRUKER                             ",
+          "REMARK 210                                                                      "
+        ]
+      }
+    },
+    "metadata": {
+      "deck": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000001",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://la3d.github.io/WGRA/talks/quarto/agentic-research-workflows.html",
+        "redirected": false,
+        "headers": {
+          "content-length": "83006",
+          "content-type": "text/html; charset=utf-8",
+          "etag": "\"6ab13f8f-1443e\"",
+          "last-modified": "Mon, 21 Sep 2026 14:30:39 GMT",
+          "vary": "Accept-Encoding"
+        },
+        "mediaType": "text/html",
+        "bytes": 83006,
+        "sha256": "735f9ae9aea7d4e647eb39a7fc1df2f49deaf129deed5150302cc99a629116c7",
+        "provenance": {
+          "operationId": "op-000001",
+          "payloadSha256": "735f9ae9aea7d4e647eb39a7fc1df2f49deaf129deed5150302cc99a629116c7",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 872,
+          "maxBytes": 2200
+        }
+      },
+      "pdbEntry": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000002",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://data.rcsb.org/rest/v1/core/entry/1UAO",
+        "redirected": false,
+        "headers": {
+          "content-type": "application/json",
+          "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+        },
+        "mediaType": "application/json",
+        "bytes": 8792,
+        "sha256": "ff197aa5d84d44ea9126463ac7455e78436c5c1f08d83e450c62af403d58d174",
+        "provenance": {
+          "operationId": "op-000002",
+          "payloadSha256": "ff197aa5d84d44ea9126463ac7455e78436c5c1f08d83e450c62af403d58d174",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 810,
+          "maxBytes": 2200
+        }
+      },
+      "pdbEntity": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000003",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/1UAO/1",
+        "redirected": false,
+        "headers": {
+          "content-type": "application/json",
+          "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+        },
+        "mediaType": "application/json",
+        "bytes": 2965,
+        "sha256": "cbc27f4b0ff8e6947b68f2a713de473d63c4b25ed209fa152d462c670201aef5",
+        "provenance": {
+          "operationId": "op-000003",
+          "payloadSha256": "cbc27f4b0ff8e6947b68f2a713de473d63c4b25ed209fa152d462c670201aef5",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 821,
+          "maxBytes": 2200
+        }
+      },
+      "wiki": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000004",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://raw.githubusercontent.com/wiki/chrissweet/codex-llm-wiki-test/Chignolin-AlphaFold-Prediction.md",
+        "redirected": false,
+        "headers": {
+          "content-length": "3858",
+          "content-type": "text/plain; charset=utf-8",
+          "etag": "\"65f8effbddd4af7b3316738ab676c427e239f8529f01a48bceae657531adcce3\"",
+          "vary": "Authorization,Accept-Encoding"
+        },
+        "mediaType": "text/plain",
+        "bytes": 3858,
+        "sha256": "87fc41e1920eb7c7fdae605aaf4606c3592968a1b67ecc88d6895444145316cb",
+        "provenance": {
+          "operationId": "op-000004",
+          "payloadSha256": "87fc41e1920eb7c7fdae605aaf4606c3592968a1b67ecc88d6895444145316cb",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 919,
+          "maxBytes": 2200
+        }
+      },
+      "afHelp": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000005",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://alphafold.ebi.ac.uk/faq",
+        "redirected": false,
+        "headers": {
+          "content-type": "text/html;charset=UTF-8"
+        },
+        "mediaType": "text/html",
+        "bytes": 79827,
+        "sha256": "3487992cd70ab8e44f32416328fb61a5ff46d7e839f7e01b271127e32e5a66d6",
+        "provenance": {
+          "operationId": "op-000010",
+          "payloadSha256": "3487992cd70ab8e44f32416328fb61a5ff46d7e839f7e01b271127e32e5a66d6",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 704,
+          "maxBytes": 2200
+        }
+      },
+      "variant": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000006",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://data.rcsb.org/rest/v1/core/polymer_entity/2RVD/1",
+        "redirected": false,
+        "headers": {
+          "content-type": "application/json",
+          "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+        },
+        "mediaType": "application/json",
+        "bytes": 3937,
+        "sha256": "b2506867552a6b5ff317596f4f665bbc05d1ac9393803ebbefd7939a4506518b",
+        "provenance": {
+          "operationId": "op-000009",
+          "payloadSha256": "b2506867552a6b5ff317596f4f665bbc05d1ac9393803ebbefd7939a4506518b",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 821,
+          "maxBytes": 2200
+        }
+      },
+      "repo": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000007",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://api.github.com/repos/chrissweet/codex-llm-wiki-test",
+        "redirected": false,
+        "headers": {
+          "content-length": "5558",
+          "content-type": "application/json; charset=utf-8",
+          "etag": "W/\"e01f452bbf9f564d7f814873fc9988c86f9f1625bb355c42a0d250c6e2a4f0c4\"",
+          "last-modified": "Mon, 14 Sep 2026 15:16:16 GMT",
+          "vary": "Accept,Accept-Encoding, Accept, X-Requested-With"
+        },
+        "mediaType": "application/json",
+        "bytes": 5558,
+        "sha256": "05d32ce58a63ad656afa6c04fc1c9fa374c91364939b8db5bdb112499461e3cd",
+        "provenance": {
+          "operationId": "op-000007",
+          "payloadSha256": "05d32ce58a63ad656afa6c04fc1c9fa374c91364939b8db5bdb112499461e3cd",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 956,
+          "maxBytes": 2200
+        }
+      },
+      "uniprotName": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000008",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://rest.uniprot.org/uniprotkb/search?query=chignolin&format=json&size=25",
+        "redirected": false,
+        "headers": {
+          "content-type": "application/json",
+          "vary": "accept,accept-encoding,x-uniprot-release,x-api-deployment-date, User-Agent"
+        },
+        "mediaType": "application/json",
+        "bytes": 14,
+        "sha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+        "provenance": {
+          "operationId": "op-000008",
+          "payloadSha256": "5021e624e752b001ce3e3846e8f158ed4aeb93a4c9a72fdb35a0c5b14a0eea84",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 831,
+          "maxBytes": 2200
+        }
+      },
+      "afSequence": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000009",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://alphafold.ebi.ac.uk/search/sequence/GYDPETGTWG",
+        "redirected": false,
+        "headers": {
+          "content-type": "text/html;charset=UTF-8"
+        },
+        "mediaType": "text/html",
+        "bytes": 8462,
+        "sha256": "d9d141f90fbdbb2461140f321a3382c62ba383d900cab650a3d50e770e384666",
+        "provenance": {
+          "operationId": "op-000012",
+          "payloadSha256": "d9d141f90fbdbb2461140f321a3382c62ba383d900cab650a3d50e770e384666",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 726,
+          "maxBytes": 2200
+        }
+      },
+      "coordinates": {
+        "kind": "linked-science-resource-inspection",
+        "representation": "metadata",
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000010",
+          "type": "resource",
+          "epoch": "9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1",
+          "label": "resource-response"
+        },
+        "ok": true,
+        "status": 200,
+        "statusText": "",
+        "url": "https://files.rcsb.org/download/1UAO.pdb",
+        "redirected": false,
+        "headers": {
+          "content-type": "text/plain",
+          "vary": "accept-encoding, Origin"
+        },
+        "mediaType": "text/plain",
+        "bytes": 217080,
+        "sha256": "e827fae677f8e96d1320688694b3db96bcc73050f81c6f842efc2e0ce9937e1e",
+        "provenance": {
+          "operationId": "op-000011",
+          "payloadSha256": "e827fae677f8e96d1320688694b3db96bcc73050f81c6f842efc2e0ce9937e1e",
+          "mediatedTraversal": true
+        },
+        "bounds": {
+          "bytes": 735,
+          "maxBytes": 2200
+        }
+      }
+    }
+  },
+  "operations": [
+    {
+      "code": "var chigEntityRes = await chigWs.resources.get('https://data.rcsb.org/rest/v1/core/polymer_entity/1UAO/1',{headers:{accept:'application/json'}}); chigResources.pdbEntity=chigEntityRes; var chigEntity=await chigEntityRes.json(); var chigWikiRes=await chigWs.resources.get('https://raw.githubusercontent.com/wiki/chrissweet/codex-llm-wiki-test/Chignolin-AlphaFold-Prediction.md'); chigResources.wiki=chigWikiRes; var chigWiki=await chigWikiRes.text(); nodeRepl.write(JSON.stringify({entity:chigEntity,wiki:chigWiki,entryIds:chigPdb.rcsb_entry_container_identifiers}));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"entity\":{\"entity_poly\":{\"nstd_linkage\":\"no\",\"nstd_monomer\":\"no\",\"pdbx_seq_one_letter_code\":\"GYDPETGTWG\",\"pdbx_seq_one_letter_code_can\":\"GYDPETGTWG\",\"pdbx_strand_id\":\"A\",\"rcsb_artifact_monomer_count\":0,\"rcsb_conflict_count\":0,\"rcsb_deletion_count\":0,\"rcsb_entity_polymer_type\":\"Protein\",\"rcsb_insertion_count\":0,\"rcsb_mutation_count\":0,\"rcsb_non_std_monomer_count\":0,\"rcsb_sample_sequence_length\":10,\"type\":\"polypeptide(L)\"},\"pdbx_entity_src_syn\":[{\"details\":\"The Sequence was designed on the basis of statistics derived from numerous protein segments.\",\"pdbx_alt_source_flag\":\"sample\",\"pdbx_src_id\":1}],\"rcsb_entity_source_organism\":[{\"pdbx_src_id\":1,\"provenance_source\":\"Primary Data\",\"source_type\":\"synthetic\"}],\"rcsb_polymer_entity\":{\"formula_weight\":1.082,\"pdbx_description\":\"Chignolin\",\"pdbx_number_of_molecules\":1,\"rcsb_multiple_source_flag\":\"N\",\"rcsb_source_part_count\":1,\"rcsb_source_taxonomy_count\":0,\"src_method\":\"syn\",\"rcsb_macromolecular_names_combined\":[{\"name\":\"Chignolin\",\"provenance_code\":\"ECO:0000304\",\"provenance_source\":\"PDB Preferred Name\"}],\"rcsb_polymer_name_combined\":{\"names\":[\"Chignolin\"],\"provenance_source\":\"PDB Preferred Name\"}},\"rcsb_polymer_entity_container_identifiers\":{\"asym_ids\":[\"A\"],\"auth_asym_ids\":[\"A\"],\"chem_comp_monomers\":[\"ASP\",\"GLU\",\"GLY\",\"PRO\",\"THR\",\"TRP\",\"TYR\"],\"entity_id\":\"1\",\"entry_id\":\"1UAO\",\"rcsb_id\":\"1UAO_1\"},\"rcsb_polymer_entity_feature\":[{\"name\":\"Hydropathy values\",\"provenance_source\":\"biojava-7.2.4\",\"type\":\"hydropathy\",\"feature_positions\":[{\"beg_seq_id\":5,\"values\":[-1.44,-1.44]}]},{\"name\":\"Disordered regions\",\"provenance_source\":\"IUPred2(short)\",\"type\":\"disorder\",\"feature_positions\":[{\"beg_seq_id\":1,\"values\":[0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96]}]},{\"name\":\"Disordered binding sites\",\"provenance_source\":\"Anchor2\",\"type\":\"disorder_binding\",\"feature_positions\":[{\"beg_seq_id\":1,\"values\":[0.53,0.53,0.54,0.55,0.57,0.57,0.58,0.6,0.62,0.62]}]}],\"rcsb_polymer_entity_group_membership\":[{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"153378_30\",\"similarity_cutoff\":30,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]},{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"382185_95\",\"similarity_cutoff\":95,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]},{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"421931_70\",\"similarity_cutoff\":70,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]},{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"414708_100\",\"similarity_cutoff\":100,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]},{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"367493_90\",\"similarity_cutoff\":90,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]},{\"aggregation_method\":\"sequence_identity\",\"group_id\":\"212903_50\",\"similarity_cutoff\":50,\"aligned_regions\":[{\"entity_beg_seq_id\":1,\"length\":10,\"ref_beg_seq_id\":1}]}],\"rcsb_id\":\"1UAO_1\"},\"wiki\":\"---\\ntype: synthesis\\nup: \\\"[[AlphaFold-Protein-Structure-2021]]\\\"\\nsupports: \\\"[[AlphaFold-Limitations-and-Inference]]\\\"\\ntags: [experiment, chignolin, alphafold, protein-folding]\\n---\\n\\n# Chignolin AlphaFold prediction\\n\\nThis experiment tested AlphaFold2 on the ten-residue chignolin sequence as a small folding-model case.\\n\\n## Question\\n\\nCan AlphaFold2 produce a useful structure prediction for the small foldable peptide chignolin (`GYDPETGTWG`)?\\n\\n## Configuration\\n\\n- Input: `GYDPETGTWG` (ten residues), supplied as `experiments/chignolin-prediction/chignolin.fasta`.\\n- Software: ColabFold 1.6.2, AlphaFold2 pTM models, CPU backend.\\n- MSA: `single_sequence`, with `max_msa=1:1`; no evolutionary homologues were supplied.\\n- Five models, seed 0, three recycling iterations.\\n- Results: [experiment results directory](../experiments/chignolin-prediction/results).\\n\\n## Result\\n\\nThe run completed and produced five ranked PDB structures. The best-ranked model was AlphaFold2 pTM model 1.\\n\\n| Output | Best-ranked value |\\n|---|---:|\\n| Mean pLDDT (mean of 10 residue scores) | 93.4 |\\n| pTM | 0.06 |\\n| Maximum predicted aligned error | 5.35 Å |\\n\\nThe high local pLDDT and very low pTM are the measured outputs of this run, not a claim that the peptide was correctly folded. The result indicates confident local geometry but poor global-fold confidence under this single-sequence configuration. The pTM score is especially relevant because chignolin is a short peptide with no informative MSA in this setup. This result supports the caution in [AlphaFold limitations and inference](AlphaFold-Limitations-and-Inference) that accuracy is conditional on input information and that AlphaFold predicts a static structure rather than a folding trajectory.\\n\\n## Images\\n\\nThe following images are stored with this wiki page.\\n\\n![Illustrative unfolded and folded chignolin](images/Chignolin-AlphaFold/chignolin-before-after.png)\\n\\nThe before/after image is an explanatory illustration generated for this experiment. It is not a rendering of the predicted PDB and does not represent a measured trajectory.\\n\\n![Per-residue pLDDT confidence](images/Chignolin-AlphaFold/chignolin-plddt.png)\\n\\n![Predicted aligned error](images/Chignolin-AlphaFold/chignolin-pae.png)\\n\\n## Interpretation and limits\\n\\nThis was a structure-prediction check, not a folding simulation. It does not estimate folded-state populations, transition rates, or a free-energy surface. The single-sequence MSA removes the evolutionary signal that AlphaFold normally exploits, and the capped Ace–chignolin–Nme molecule was not modeled: the input was the ten-residue sequence alone. Absence of caps means this output should not be treated as a prediction for the capped experimental molecule.\\n\\nThe AlphaFold paper reports pLDDT as a per-residue accuracy estimate and pTM as a global superposition estimate; neither is an experimental measurement for this peptide. A meaningful folding study would require an explicit capped molecular model and molecular-dynamics or enhanced-sampling trajectories, with validation against a reference structure or free-energy landscape.\\n\\n## Reproducibility\\n\\nThe FASTA, configuration, logs, PDB files, score JSON files and confidence plots are in [the experiment results directory](../experiments/chignolin-prediction/results). The top model is [the rank-001 PDB](../experiments/chignolin-prediction/results/chignolin_unrelaxed_rank_001_alphafold2_ptm_model_1_seed_000.pdb). The source workspace contains the generated [before/after image](../experiments/chignolin-prediction/chignolin-before-after.png).\\n\\nSee also: [AlphaFold protein structure paper (2021)](AlphaFold-Protein-Structure-2021), [AlphaFold architecture](AlphaFold-Architecture), [AlphaFold evaluation and confidence](AlphaFold-Evaluation-and-Confidence), [AlphaFold limitations and inference](AlphaFold-Limitations-and-Inference).\\n\",\"entryIds\":{\"assembly_ids\":[\"1\"],\"entity_ids\":[\"1\"],\"entry_id\":\"1UAO\",\"model_ids\":[1,10,11,12,13,14,15,16,17,18,2,3,4,5,6,7,8,9],\"polymer_entity_ids\":[\"1\"],\"pubmed_id\":15296744,\"rcsb_id\":\"1UAO\"}}"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var chigRepoRes=await chigWs.resources.get('https://api.github.com/repos/chrissweet/codex-llm-wiki-test/contents/experiments/chignolin-prediction/results',{headers:{accept:'application/vnd.github+json'}}); chigResources.repoResults=chigRepoRes; var chigRepoFiles=await chigRepoRes.json(); nodeRepl.write(JSON.stringify(chigRepoFiles)); nodeRepl.write(linkedScience.documentation.get('traversal'));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"MEDIATOR_HTTP_ERROR\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"Linked Data request failed with status 404\",\"stage\":\"resource-read\",\"recoveryDocument\":\"recovery\",\"retryable\":false,\"receipt\":{\"status\":\"failed\",\"stage\":\"resource-read\",\"code\":\"MEDIATOR_HTTP_ERROR\",\"operationId\":\"op-000005\",\"traversalId\":\"traversal-9c815355899c326b3cc41524\",\"traversalReceipt\":{\"kind\":\"linked-science-traversal-receipt\",\"version\":\"3.2.0\",\"authority\":{\"class\":\"anonymous-linked-data-read\",\"version\":\"1.0.0\",\"anonymous\":true,\"destinationPolicy\":\"dynamic-anonymous-http-https\",\"endpointAllowlist\":false,\"schemes\":[\"http\",\"https\"],\"methods\":[\"GET\",\"HEAD\",\"SPARQL_POST\"],\"queryTypes\":[\"SELECT\",\"ASK\",\"CONSTRUCT\",\"DESCRIBE\"],\"effects\":[\"public-resource-read\",\"rdf-document-read\",\"sparql-read\",\"linked-data-dereference\",\"local-communica-federation\"],\"prohibited\":[\"ambient-identity\",\"url-credentials\",\"sparql-update\",\"arbitrary-post\",\"filesystem-write\",\"authority-expansion\",\"automatic-context-promotion\"]},\"status\":\"aborted\",\"traversalId\":\"traversal-9c815355899c326b3cc41524\",\"startedAt\":\"2026-09-24T17:11:07.845Z\",\"finishedAt\":\"2026-09-24T17:11:08.084Z\",\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":127,\"retries\":0},\"exchanges\":[{\"kind\":\"linked-science-fetch-exchange\",\"version\":\"3.2.0\",\"index\":1,\"status\":\"http-error\",\"requestedUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/contents/experiments/chignolin-prediction/results\",\"finalUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/contents/experiments/chignolin-prediction/results\",\"redirected\":false,\"method\":\"GET\",\"httpStatus\":404,\"requestSha256\":\"2738e63e16d9976bae4374d4921f445da5f8d390514e5f9574790f390437b883\",\"responseSha256\":\"e45906ce02e79f16fb87a838d86bb4e497e37a9591f97608fa013bbcd8b9cbc2\",\"bytes\":127,\"mediaType\":\"application/json\",\"headers\":{\"content-length\":\"127\",\"content-type\":\"application/json; charset=utf-8\",\"vary\":\"Accept-Encoding, Accept, X-Requested-With\"},\"responseHeadersTruncated\":false,\"navigation\":{\"kind\":\"linked-data-navigation-evidence\",\"responseUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/contents/experiments/chignolin-prediction/results\",\"links\":[],\"profiles\":[],\"profileDeclarations\":[],\"malformedLinkHeader\":false,\"truncated\":false,\"trust\":\"untrusted-candidate-evidence\"},\"startedAt\":\"2026-09-24T17:11:07.845Z\",\"finishedAt\":\"2026-09-24T17:11:08.084Z\",\"retries\":0}],\"redirectEvidence\":\"requested-final-and-redirected-flag\",\"failure\":{\"code\":\"resource-failed\"}},\"attempt\":{\"kind\":\"linked-science-resource-attempt\",\"index\":5,\"status\":\"failed\",\"operationId\":\"op-000005\",\"traversalId\":\"traversal-9c815355899c326b3cc41524\",\"method\":\"GET\",\"url\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/contents/experiments/chignolin-prediction/results\",\"startedAt\":\"2026-09-24T17:11:07.845Z\",\"endedAt\":\"2026-09-24T17:11:08.084Z\",\"durationMs\":239,\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":127,\"retries\":0},\"failureCode\":\"MEDIATOR_HTTP_ERROR\",\"hiddenRetries\":0},\"navigation\":{\"kind\":\"linked-data-navigation-evidence\",\"evidenceStatus\":\"observed-advertisements\",\"instructionAuthority\":false,\"candidates\":[],\"profileDeclarations\":[],\"truncated\":false,\"use\":\"Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved.\"},\"cause\":\"Error: Linked Data request failed with status 404\"}}}"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "code": "var chigQuery='PREFIX up: <http://purl.uniprot.org/core/> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT ?protein ?sequence WHERE { ?protein a up:Protein ; up:sequence ?sequence . ?sequence rdf:value \"GYDPETGTWG\" . }'; var chigUniHandle=await chigWs.traversal.query({sources:[{type:'sparql',value:'https://sparql.uniprot.org/sparql'}],sparql:chigQuery}); nodeRepl.write(await chigWs.results.page(chigUniHandle,{offset:0,limit:10}));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":false,\"error\":{\"code\":\"LS_TRAVERSAL_QUERY\",\"name\":\"LinkedScienceRuntimeError\",\"message\":\"Standards Fetch failed before a response completed\",\"stage\":\"traversal-query\",\"recoveryDocument\":\"recovery\",\"retryable\":false,\"receipt\":{\"status\":\"failed\",\"stage\":\"traversal-query\",\"code\":\"LS_TRAVERSAL_QUERY\",\"operationId\":\"op-000006\",\"traversalId\":\"traversal-2140d020d98c1efd2fa3590c\",\"traversalReceipt\":{\"kind\":\"linked-science-traversal-receipt\",\"version\":\"3.2.0\",\"authority\":{\"class\":\"anonymous-linked-data-read\",\"version\":\"1.0.0\",\"anonymous\":true,\"destinationPolicy\":\"dynamic-anonymous-http-https\",\"endpointAllowlist\":false,\"schemes\":[\"http\",\"https\"],\"methods\":[\"GET\",\"HEAD\",\"SPARQL_POST\"],\"queryTypes\":[\"SELECT\",\"ASK\",\"CONSTRUCT\",\"DESCRIBE\"],\"effects\":[\"public-resource-read\",\"rdf-document-read\",\"sparql-read\",\"linked-data-dereference\",\"local-communica-federation\"],\"prohibited\":[\"ambient-identity\",\"url-credentials\",\"sparql-update\",\"arbitrary-post\",\"filesystem-write\",\"authority-expansion\",\"automatic-context-promotion\"]},\"status\":\"aborted\",\"traversalId\":\"traversal-2140d020d98c1efd2fa3590c\",\"startedAt\":\"2026-09-24T17:11:19.238Z\",\"finishedAt\":\"2026-09-24T17:11:29.787Z\",\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":0,\"retries\":0},\"exchanges\":[{\"kind\":\"linked-science-fetch-exchange\",\"version\":\"3.2.0\",\"index\":1,\"status\":\"failure\",\"requestedUrl\":\"https://sparql.uniprot.org/sparql?query=PREFIX%20up%3A%20%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E%20PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%20SELECT%20%3Fprotein%20%3Fsequence%20WHERE%20%7B%20%3Fprotein%20a%20up%3AProtein%20%3B%20up%3Asequence%20%3Fsequence%20.%20%3Fsequence%20rdf%3Avalue%20%22GYDPETGTWG%22%20.%20%7D\",\"method\":\"GET\",\"requestSha256\":\"3e92a2c46e2ddbeb1cc581796f8eb197b41945a34ee45ccfb39aefdafa6ac392\",\"bytes\":0,\"startedAt\":\"2026-09-24T17:11:19.280Z\",\"finishedAt\":\"2026-09-24T17:11:29.786Z\",\"retries\":0,\"failure\":{\"code\":\"MEDIATOR_FETCH_FAILED\"}}],\"redirectEvidence\":\"requested-final-and-redirected-flag\",\"failure\":{\"code\":\"query-failed\"}},\"navigation\":{\"kind\":\"linked-data-navigation-evidence\",\"evidenceStatus\":\"observed-advertisements\",\"instructionAuthority\":false,\"candidates\":[],\"profileDeclarations\":[],\"truncated\":false,\"use\":\"Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved.\"},\"attempt\":{\"kind\":\"linked-science-mediated-attempt\",\"index\":6,\"status\":\"failed\",\"operationId\":\"op-000006\",\"traversalId\":\"traversal-2140d020d98c1efd2fa3590c\",\"queryType\":\"SELECT\",\"querySha256\":\"f9adf4723e5424ab4da928aa87f82373ab4b4b70b9ba18d81e38b7c184c280ac\",\"sources\":[{\"type\":\"sparql\",\"value\":\"https://sparql.uniprot.org/sparql\"}],\"evidenceHandles\":[],\"startedAt\":\"2026-09-24T17:11:19.238Z\",\"endedAt\":\"2026-09-24T17:11:29.787Z\",\"durationMs\":10549,\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":0,\"retries\":0},\"failureCode\":\"MEDIATOR_FETCH_FAILED\",\"hiddenRetries\":0},\"cause\":\"Error: Standards Fetch failed before a response completed\"}}}"
+          }
+        ],
+        "isError": true
+      }
+    },
+    {
+      "code": "var chigChecks=await Promise.allSettled([['repo','https://api.github.com/repos/chrissweet/codex-llm-wiki-test'],['uniprotName','https://rest.uniprot.org/uniprotkb/search?query=chignolin&format=json&size=25'],['variant','https://data.rcsb.org/rest/v1/core/polymer_entity/2RVD/1'],['afHelp','https://alphafold.ebi.ac.uk/faq']].map(async ([key,url])=>{var r=await chigWs.resources.get(url,{headers:{accept:key==='afHelp'?'text/html':'application/json'}});chigResources[key]=r;var t=await r.text();if(key==='afHelp'){var matches=t.match(/.{0,150}(?:UniProt|sequence search|API).{0,250}/gi);return {key,matches:matches?.slice(0,15)}}var j=JSON.parse(t);if(key==='repo')return {key,default_branch:j.default_branch,html_url:j.html_url}; if(key==='uniprotName'){var exact=(j.results||[]).filter(x=>x.sequence?.value==='GYDPETGTWG');return{key,count:j.results?.length,exact:exact.map(x=>x.primaryAccession),entries:j.results?.map(x=>({accession:x.primaryAccession,sequence:x.sequence?.value,name:x.proteinDescription}))}} return {key,entity:j.entity_poly,description:j.rcsb_polymer_entity?.pdbx_description};}));nodeRepl.write(JSON.stringify(chigChecks));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "[{\"status\":\"fulfilled\",\"value\":{\"key\":\"repo\",\"default_branch\":\"main\",\"html_url\":\"https://github.com/chrissweet/codex-llm-wiki-test\"}},{\"status\":\"fulfilled\",\"value\":{\"key\":\"uniprotName\",\"count\":0,\"exact\":[],\"entries\":[]}},{\"status\":\"fulfilled\",\"value\":{\"key\":\"variant\",\"entity\":{\"nstd_linkage\":\"no\",\"nstd_monomer\":\"no\",\"pdbx_seq_one_letter_code\":\"YYDPETGTWY\",\"pdbx_seq_one_letter_code_can\":\"YYDPETGTWY\",\"pdbx_strand_id\":\"A\",\"rcsb_artifact_monomer_count\":0,\"rcsb_conflict_count\":0,\"rcsb_deletion_count\":0,\"rcsb_entity_polymer_type\":\"Protein\",\"rcsb_insertion_count\":0,\"rcsb_mutation_count\":0,\"rcsb_non_std_monomer_count\":0,\"rcsb_sample_sequence_length\":10,\"type\":\"polypeptide(L)\"},\"description\":\"CLN025\"}},{\"status\":\"fulfilled\",\"value\":{\"key\":\"afHelp\",\"matches\":[\"inkactive=\\\"active\\\" href=\\\"/download\\\" class jsaction=\\\"click:;\\\">Downloads</a></li><li _ngcontent-ng-c1826996153><a _ngcontent-ng-c1826996153 routerlink=\\\"api-docs\\\" routerlinkactive=\\\"active\\\" href=\\\"/api-docs\\\" class jsaction=\\\"click:;\\\">API</a></li><li _ngcontent-ng-c1826996153><a _ngcontent-ng-c1826996153 routerlink=\\\"collaborators\\\" routerlinkactive=\\\"active\\\" href=\\\"/collaborators\\\" class jsaction=\\\"click:;\\\">Coll\",\"form__label vf-u-sr-only | vf-search__label\\\">Search</label><input _ngcontent-ng-c3909318369 autocomplete=\\\"off\\\" placeholder=\\\"Search for protein, gene, UniProt accession or organism or sequence search\\\" id=\\\"searchitem\\\" class=\\\"vf-form__input pdbeAutoCompleteSearchBox\\\" jsaction=\\\"keyup:;\\\"><!----><!----><!----></div><button _ngcontent-ng-c3909318369 id=\\\"searchButton\\\" class=\\\"vf-search__button | vf-button vf-butt\",\"ence/MENFQKVEKIGEGTYGVVYKARNKLTGEVVALKKIRLDTETEGVPSTAIREIS\\\" class=\\\"search-ex-link\\\">MENFQKVEKIGEGTYGV...</a><a _ngcontent-ng-c3909318369 href=\\\"/search/uniprotDescription/Free fatty acid receptor 2\\\" class=\\\"search-ex-link\\\">Free fatty acid receptor 2</a><a _ngcontent-ng-c3909318369 href=\\\"/search/text/At1g58602\\\" class=\\\"search-ex-link\\\">At1g58602</a><a _ngcontent-ng-c3909318369 href=\\\"/search/text/Q9I1F6\\\" class=\"]}}]"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var chigMore=await Promise.allSettled([['coordinates','https://files.rcsb.org/download/1UAO.pdb'],['afSequence','https://alphafold.ebi.ac.uk/search/sequence/GYDPETGTWG'],['repoTree','https://api.github.com/repos/chrissweet/codex-llm-wiki-test/git/trees/main?recursive=1']].map(async([key,url])=>{var r=await chigWs.resources.get(url);chigResources[key]=r;var t=await r.text();if(key==='coordinates'){var lines=t.split('\\n');var models=lines.filter(x=>x.startsWith('MODEL'));var seqres=lines.filter(x=>x.startsWith('SEQRES'));var first=t.split('ENDMDL')[0];return{key,models:models.length,seqres,atomsFirstModel:first.split('\\n').filter(x=>x.startsWith('ATOM')).length,headers:lines.filter(x=>/^(TITLE |EXPDTA|JRNL |REMARK 210)/.test(x)).slice(0,24)}}if(key==='repoTree'){var j=JSON.parse(t);return{key,truncated:j.truncated,matches:j.tree?.filter(x=>/chignolin|\\.pdb$|scores.*json$/i.test(x.path)).map(x=>({path:x.path,size:x.size})),sha:j.sha}}var clean=t.replace(/<[^>]*>/g,' ').replace(/\\s+/g,' ');return{key,evidence:clean.match(/.{0,100}(?:too short|minimum|no results|No proteins|GYDPETGTWG|sequence length|characters|residues).{0,160}/gi)?.slice(0,15),bytes:t.length};}));nodeRepl.write(JSON.stringify(chigMore));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "[{\"status\":\"fulfilled\",\"value\":{\"key\":\"coordinates\",\"models\":18,\"seqres\":[\"SEQRES   1 A   10  GLY TYR ASP PRO GLU THR GLY THR TRP GLY                      \"],\"atomsFirstModel\":138,\"headers\":[\"TITLE     NMR STRUCTURE OF DESIGNED PROTEIN, CHIGNOLIN, CONSISTING OF ONLY TEN  \",\"TITLE    2 AMINO ACIDS (ENSEMBLES)                                              \",\"EXPDTA    SOLUTION NMR                                                          \",\"JRNL        AUTH   S.HONDA,K.YAMASAKI,Y.SAWADA,H.MORII                          \",\"JRNL        TITL   10 RESIDUE FOLDED PEPTIDE DESIGNED BY SEGMENT STATISTICS     \",\"JRNL        REF    STRUCTURE                     V.  12  1507 2004              \",\"JRNL        REFN                   ISSN 0969-2126                               \",\"JRNL        PMID   15296744                                                     \",\"JRNL        DOI    10.1016/J.STR.2004.05.022                                    \",\"REMARK 210                                                                      \",\"REMARK 210 EXPERIMENTAL DETAILS                                                 \",\"REMARK 210  EXPERIMENT TYPE                : NMR                                \",\"REMARK 210  TEMPERATURE           (KELVIN) : 277                                \",\"REMARK 210  PH                             : 5.5                                \",\"REMARK 210  IONIC STRENGTH                 : 20MM SODIUM PHOSOHATE              \",\"REMARK 210  PRESSURE                       : AMBIENT                            \",\"REMARK 210  SAMPLE CONTENTS                : 2MM CHIGNOLIN                      \",\"REMARK 210                                                                      \",\"REMARK 210  NMR EXPERIMENTS CONDUCTED      : 2D NOESY; 2D ROESY; DQF-COSY; 2D   \",\"REMARK 210                                   TOCSY                              \",\"REMARK 210  SPECTROMETER FIELD STRENGTH    : 500 MHZ                            \",\"REMARK 210  SPECTROMETER MODEL             : AMX                                \",\"REMARK 210  SPECTROMETER MANUFACTURER      : BRUKER                             \",\"REMARK 210                                                                      \"]}},{\"status\":\"fulfilled\",\"value\":{\"key\":\"afSequence\",\"bytes\":8461}},{\"status\":\"rejected\",\"reason\":{\"name\":\"LinkedScienceRuntimeError\",\"code\":\"MEDIATOR_HTTP_ERROR\",\"stage\":\"resource-read\",\"receipt\":{\"status\":\"failed\",\"stage\":\"resource-read\",\"code\":\"MEDIATOR_HTTP_ERROR\",\"operationId\":\"op-000013\",\"traversalId\":\"traversal-667b4cc24c87746793a607e0\",\"traversalReceipt\":{\"kind\":\"linked-science-traversal-receipt\",\"version\":\"3.2.0\",\"authority\":{\"class\":\"anonymous-linked-data-read\",\"version\":\"1.0.0\",\"anonymous\":true,\"destinationPolicy\":\"dynamic-anonymous-http-https\",\"endpointAllowlist\":false,\"schemes\":[\"http\",\"https\"],\"methods\":[\"GET\",\"HEAD\",\"SPARQL_POST\"],\"queryTypes\":[\"SELECT\",\"ASK\",\"CONSTRUCT\",\"DESCRIBE\"],\"effects\":[\"public-resource-read\",\"rdf-document-read\",\"sparql-read\",\"linked-data-dereference\",\"local-communica-federation\"],\"prohibited\":[\"ambient-identity\",\"url-credentials\",\"sparql-update\",\"arbitrary-post\",\"filesystem-write\",\"authority-expansion\",\"automatic-context-promotion\"]},\"status\":\"aborted\",\"traversalId\":\"traversal-667b4cc24c87746793a607e0\",\"startedAt\":\"2026-09-24T17:12:19.855Z\",\"finishedAt\":\"2026-09-24T17:12:20.059Z\",\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":342,\"retries\":0},\"exchanges\":[{\"kind\":\"linked-science-fetch-exchange\",\"version\":\"3.2.0\",\"index\":1,\"status\":\"http-error\",\"requestedUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/git/trees/main?recursive=1\",\"finalUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/git/trees/main?recursive=1\",\"redirected\":false,\"method\":\"GET\",\"httpStatus\":415,\"requestSha256\":\"c4fc9b8404e090a1665cd4554b168aaa5110328fe20a25dec88fae3239e7daf1\",\"responseSha256\":\"7db1511dbe28e7fc801567b19fdef390495235561c790414d992378090bbbe51\",\"bytes\":342,\"mediaType\":\"application/json\",\"headers\":{\"content-length\":\"342\",\"content-type\":\"application/json; charset=utf-8\",\"vary\":\"Accept-Encoding, Accept, X-Requested-With\"},\"responseHeadersTruncated\":false,\"navigation\":{\"kind\":\"linked-data-navigation-evidence\",\"responseUrl\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/git/trees/main?recursive=1\",\"links\":[],\"profiles\":[],\"profileDeclarations\":[],\"malformedLinkHeader\":false,\"truncated\":false,\"trust\":\"untrusted-candidate-evidence\"},\"startedAt\":\"2026-09-24T17:12:19.857Z\",\"finishedAt\":\"2026-09-24T17:12:20.058Z\",\"retries\":0}],\"redirectEvidence\":\"requested-final-and-redirected-flag\",\"failure\":{\"code\":\"resource-failed\"}},\"attempt\":{\"kind\":\"linked-science-resource-attempt\",\"index\":13,\"status\":\"failed\",\"operationId\":\"op-000013\",\"traversalId\":\"traversal-667b4cc24c87746793a607e0\",\"method\":\"GET\",\"url\":\"https://api.github.com/repos/chrissweet/codex-llm-wiki-test/git/trees/main?recursive=1\",\"startedAt\":\"2026-09-24T17:12:19.855Z\",\"endedAt\":\"2026-09-24T17:12:20.059Z\",\"durationMs\":204,\"budgets\":{\"maxQueryChars\":16384,\"maxRequestBodyBytes\":64000,\"maxDurationMs\":300000,\"maxRequestMs\":20000,\"maxRequests\":16,\"maxFanOut\":8,\"maxConcurrency\":4,\"maxResponseBytes\":2000000,\"maxTotalBytes\":10000000,\"maxResultItems\":500},\"usage\":{\"requests\":1,\"fanOut\":1,\"bytes\":342,\"retries\":0},\"failureCode\":\"MEDIATOR_HTTP_ERROR\",\"hiddenRetries\":0},\"navigation\":{\"kind\":\"linked-data-navigation-evidence\",\"evidenceStatus\":\"observed-advertisements\",\"instructionAuthority\":false,\"candidates\":[],\"profileDeclarations\":[],\"truncated\":false,\"use\":\"Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved.\"},\"cause\":\"Error: Linked Data request failed with status 415\"},\"recoveryDocument\":\"recovery\",\"retryable\":false}}]"
+          }
+        ]
+      }
+    },
+    {
+      "code": "var chigBmrbRes=await chigWs.resources.get(chigPdb.rcsb_external_references.find(x=>x.type==='BMRB').link,{headers:{accept:'text/html'}}); chigResources.bmrb=chigBmrbRes;var chigBmrbText=await chigBmrbRes.text();var chigBmrbClean=chigBmrbText.replace(/<[^>]*>/g,' ').replace(/\\s+/g,' ');nodeRepl.write(JSON.stringify({url:chigPdb.rcsb_external_references[0].link,excerpts:chigBmrbClean.match(/.{0,80}(?:GYDPETGTWG|Chignolin|chemical shift|5694|Honda).{0,180}/gi)?.slice(0,12),metadata:await chigWs.resources.inspect(chigBmrbRes,{as:'metadata',maxBytes:1800})}));",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"url\":\"https://bmrb.io/data_library/generate_summary.php?bmrbId=5694\",\"excerpts\":[\" \\\"postalCode\\\": \\\"53706\\\", \\\"streetAddress\\\": \\\"420 Henry Mall #B1118\\\" } } BMRB Entry 5694 { \\\"@context\\\": \\\"https://schema.org/\\\", \\\"@type\\\": \\\"Dataset\\\", \\\"@id\\\": \\\"https://doi.org/10.13018/BMR5694\\\", \\\"publisher\\\": {\\\"@type\\\" : \\\"Organization\\\", \\\"name\\\" : \\\"Biological Magnetic Resonance\",\"dified\\\": \\\"2004-09-14\\\", \\\"description\\\": \\\"Biological Magnetic Resonance Bank Entry 5694: 10-residue folded peptide designed by segment statistics \\\", \\\"version\\\": \\\"v1\\\", \\\"name\\\": \\\"10-residue folded peptide designed by segment statistics \\\", \\\"citation\\\": [\\\"10-residue folded \",\"tistics 2004\\\"], \\\"author\\\": [{\\\"@type\\\":\\\"Person\\\",\\\"givenName\\\":\\\"Shinya\\\",\\\"familyName\\\":\\\"Honda\\\"},{\\\"@type\\\":\\\"Person\\\",\\\"givenName\\\":\\\"Kazuhiko\\\",\\\"familyName\\\":\\\"Yamasaki\\\"}] } /* attach to jquery to make it global */ $( document ).ready( function() { /* because jQuery.text() returns \",\"eposit Search Visualize Analyze Data Learn BMRB Searches all entries BMRB Entry 5694 var accnum = \\\"5694\\\"; var pdbnum = \\\"1uao\\\"; var img_url = \\\"https://bmrb.io/ftp/pub/bmrb/entry_directories/bmr5694/1UAO.png\\\"; var show_jsmol = true; .jsonly { display: none } --> Cli\",\"ort in NRG-CING Chem Shift validation: AVS_full BMRB Entry DOI: doi:10.13018/BMR5694 MolProbity Validation Chart NMR-STAR file interactive viewer . NMR-STAR v3 text file . XML gzip file. RDF gzip file. All files associated with the entry Nicholas Rego and David Ko\",\"atistics Deposition date: 2003-02-13 Original release date: 2004-09-14 Authors: Honda, Shinya; Yamasaki, Kazuhiko Citation: Citation: Honda, Shinya; Yamasaki, Kazuhiko; Sawada, Yoshito; Morii, Hisayuki. \\\"10-residue folded peptide designed by segment statistics\\\"&nbs\",\"amb) 12, 1507-1518 (2004). PubMed: 15296744 Assembly members: Assembly members: chignolin , polymer, 10 residues, 1082 Da. Natural source: Natural source : &nbsp;&nbsp;Common Name: not available &nbsp;&nbsp;Taxonomy ID: not available &nbsp;&nbsp;Superkingdom: not avail\",\"method: chemical synthesis Entity Sequences (FASTA): Entity Sequences (FASTA) : chignolin : GYDPETGTWG Data sets: assigned_chemical_shifts shift_set_1 coupling_constants coupling_constants_set_1 Data type Count 1H chemical shifts 57 coupling constants 16 Additional met\",\"are Spectrometers Hide all Assembly: Entity Assembly ID Entity Name Entity ID 1 chignolin 1 Entities: Entity 1, chignolin 10 residues - 1082 Da. 1 &nbsp;&nbsp;&nbsp; GLY TYR ASP PRO GLU THR GLY THR TRP GLY Samples: sample_1: chignolin 2.0 mM ex-cond_1: pH: 5.5; tempera\"],\"metadata\":{\"kind\":\"linked-science-resource-inspection\",\"representation\":\"metadata\",\"handle\":{\"kind\":\"linked-science-handle\",\"id\":\"h-000011\",\"type\":\"resource\",\"epoch\":\"9ee2dc37-7d01-44f8-a625-d3fb86a73361:chignolin-demo-rehearsal:1\",\"label\":\"resource-response\"},\"ok\":true,\"status\":200,\"statusText\":\"OK\",\"url\":\"https://bmrb.io/data_library/summary/index.php?bmrbId=5694\",\"redirected\":true,\"headers\":{\"content-type\":\"text/html; charset=UTF-8\",\"vary\":\"Accept-Encoding\"},\"mediaType\":\"text/html\",\"bytes\":29246,\"sha256\":\"d341ac0c9615fb59513584d1e9969b532954be818c08218564c1e9ada7866e65\",\"provenance\":{\"operationId\":\"op-000014\",\"payloadSha256\":\"d341ac0c9615fb59513584d1e9969b532954be818c08218564c1e9ada7866e65\",\"mediatedTraversal\":true},\"bounds\":{\"bytes\":758,\"maxBytes\":1800}}}"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Chris's prediction was not independently inspected. Wiki prose retrieved, results directory HTTP404.",
+    "UniProt name search returned zero results; exact-sequence SPARQL failed before response, not an empty result.",
+    "AlphaFold sequence page returned HTML shell, no interpretable result set; no exact AFDB accession verified.",
+    "PDB 1UAO selected from assistant prior knowledge and then verified, not discovered through UniProt.",
+    "No coordinate comparison or molecular cap equivalence established."
+  ]
+}

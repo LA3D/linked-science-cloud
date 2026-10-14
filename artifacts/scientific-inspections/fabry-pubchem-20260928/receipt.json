@@ -1,0 +1,1970 @@
+{
+  "format": "fabry-pubchem-demo/v1",
+  "recordedAt": "2026-09-28T11:57:02.979Z",
+  "endpoint": "https://qlever.dev/api/pubchem",
+  "operator": "QLever service; UI credits QLever Authors / University of Freiburg",
+  "publisher": "PubChem RDF / NCBI",
+  "snapshot": "Not established from inspected UI",
+  "queries": {
+    "compound": "SELECT ?p ?o WHERE { <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> ?p ?o }",
+    "incoming": "SELECT ?s ?p WHERE {?s ?p <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> } LIMIT 25",
+    "descriptors": "SELECT ?a ?p ?o WHERE {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> <http://semanticscience.org/resource/SIO_000008> ?a . ?a ?p ?o }",
+    "crosswalk": "SELECT ?s ?p WHERE { ?s ?p <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> . FILTER(CONTAINS(LCASE(STR(?s)),\"chembl\")) }",
+    "substance": "SELECT ?s ?p ?q ?external WHERE { ?s ?p <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> . ?s ?q ?external . VALUES ?external {<http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458> <http://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL110458> <https://www.ebi.ac.uk/chembl/compound_report_card/CHEMBL110458/>} }",
+    "units": "SELECT ?s ?p ?o WHERE {VALUES ?s {<http://purl.obolibrary.org/obo/UO_0000055> <http://semanticscience.org/resource/CHEMINF_000334> <http://semanticscience.org/resource/CHEMINF_000335>} ?s ?p ?o }",
+    "demo": "PREFIX sio:<http://semanticscience.org/resource/> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?substance ?molecule ?compound ?descriptor ?type ?typeLabel ?value ?unit ?unitLabel WHERE { VALUES ?compound {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077>} VALUES ?molecule {<http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458>} ?substance sio:CHEMINF_000477 ?compound; rdfs:seeAlso ?molecule . ?compound sio:SIO_000008 ?descriptor . VALUES ?type {sio:CHEMINF_000334 sio:CHEMINF_000335} ?descriptor a ?type; sio:SIO_000300 ?value . ?type rdfs:label ?typeLabel . OPTIONAL {?descriptor sio:SIO_000221 ?unit . ?unit rdfs:label ?unitLabel} }",
+    "form": "PREFIX v:<http://rdf.ncbi.nlm.nih.gov/pubchem/vocabulary#> SELECT ?compound ?formula ?units WHERE {VALUES ?compound {<http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077> <http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID11644097>} ?compound v:molecular_formula ?formula; v:covalent_unit_count ?units }",
+    "predicate": "SELECT ?p ?o WHERE {<http://semanticscience.org/resource/CHEMINF_000477> ?p ?o}"
+  },
+  "results": {
+    "demo": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000008",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 2,
+        "columns": [
+          "substance",
+          "molecule",
+          "compound",
+          "descriptor",
+          "type",
+          "typeLabel",
+          "value",
+          "unit",
+          "unitLabel"
+        ],
+        "fingerprints": [
+          "8cdcd6d0d56c57260ebd9317d6372df1d68ab09e830999e855c2faa8dfc5026c"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000034",
+          "traversalId": "traversal-8cc3d33da255ebf79d78b830",
+          "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+          "evidenceHandles": [],
+          "payloadSha256": "8cdcd6d0d56c57260ebd9317d6372df1d68ab09e830999e855c2faa8dfc5026c",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000034",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 8,
+            "status": "success",
+            "operationId": "op-000034",
+            "traversalId": "traversal-8cc3d33da255ebf79d78b830",
+            "queryType": "SELECT",
+            "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:02.465Z",
+            "endedAt": "2026-09-28T11:56:06.721Z",
+            "durationMs": 4256,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1658,
+              "retries": 0
+            },
+            "resultItems": 2,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-8cc3d33da255ebf79d78b830",
+            "startedAt": "2026-09-28T11:56:02.465Z",
+            "finishedAt": "2026-09-28T11:56:06.720Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1658,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem",
+                "finalUrl": "https://qlever.dev/api/pubchem",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "99ee9692438240b3f0eae01d215487a738b6473130736a4e39b369cd557db429",
+                "responseSha256": "d7e077bcf324869b4c4297bac597dba98c80c428ffd47f61bcdc6c02ba15e12d",
+                "bytes": 1658,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+                "startedAt": "2026-09-28T11:56:02.474Z",
+                "finishedAt": "2026-09-28T11:56:06.717Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "8cdcd6d0d56c57260ebd9317d6372df1d68ab09e830999e855c2faa8dfc5026c"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5132,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000035",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000008",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "substance",
+          "molecule",
+          "compound",
+          "descriptor",
+          "type",
+          "typeLabel",
+          "value",
+          "unit",
+          "unitLabel"
+        ],
+        "offset": 0,
+        "total": 2,
+        "provenance": {
+          "operationId": "op-000034",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 8,
+            "status": "success",
+            "operationId": "op-000034",
+            "traversalId": "traversal-8cc3d33da255ebf79d78b830",
+            "queryType": "SELECT",
+            "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:02.465Z",
+            "endedAt": "2026-09-28T11:56:06.721Z",
+            "durationMs": 4256,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1658,
+              "retries": 0
+            },
+            "resultItems": 2,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-8cc3d33da255ebf79d78b830",
+            "startedAt": "2026-09-28T11:56:02.465Z",
+            "finishedAt": "2026-09-28T11:56:06.720Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 1658,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem",
+                "finalUrl": "https://qlever.dev/api/pubchem",
+                "redirected": false,
+                "method": "POST",
+                "httpStatus": 200,
+                "requestSha256": "99ee9692438240b3f0eae01d215487a738b6473130736a4e39b369cd557db429",
+                "responseSha256": "d7e077bcf324869b4c4297bac597dba98c80c428ffd47f61bcdc6c02ba15e12d",
+                "bytes": 1658,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "queryType": "SELECT",
+                "querySha256": "1eb9c085470ce2707535a3e7b9435205e6852b972b934e7f3db8b83898efb6f0",
+                "startedAt": "2026-09-28T11:56:02.474Z",
+                "finishedAt": "2026-09-28T11:56:06.717Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "8cdcd6d0d56c57260ebd9317d6372df1d68ab09e830999e855c2faa8dfc5026c"
+        },
+        "rows": [
+          {
+            "substance": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID103329495"
+            },
+            "molecule": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+            },
+            "compound": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077"
+            },
+            "descriptor": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/CID176077_Molecular_Weight"
+            },
+            "type": {
+              "termType": "NamedNode",
+              "value": "http://semanticscience.org/resource/CHEMINF_000334"
+            },
+            "typeLabel": {
+              "termType": "Literal",
+              "value": "molecular weight calculated by the pubchem software library",
+              "language": "en",
+              "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+            },
+            "value": {
+              "termType": "Literal",
+              "value": "163.17",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#decimal"
+            },
+            "unit": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/UO_0000055"
+            },
+            "unitLabel": {
+              "termType": "Literal",
+              "value": "molar mass unit",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "substance": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID103329495"
+            },
+            "molecule": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+            },
+            "compound": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077"
+            },
+            "descriptor": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/descriptor/CID176077_Molecular_Formula"
+            },
+            "type": {
+              "termType": "NamedNode",
+              "value": "http://semanticscience.org/resource/CHEMINF_000335"
+            },
+            "typeLabel": {
+              "termType": "Literal",
+              "value": "molecular formula calculated by the pubchem software library",
+              "language": "en",
+              "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+            },
+            "value": {
+              "termType": "Literal",
+              "value": "C6H13NO4",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "unit": null,
+            "unitLabel": null
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 2,
+          "maxRows": 10,
+          "cells": 18,
+          "maxCells": 100,
+          "bytes": 6389,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "form": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000009",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 2,
+        "columns": [
+          "compound",
+          "formula",
+          "units"
+        ],
+        "fingerprints": [
+          "cee6bee3b0133cc7dba00e175e2b8fcdef1876890095f9a19936516efe8ec61e"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000036",
+          "traversalId": "traversal-512217c60262d9036f906d18",
+          "querySha256": "b20f754e9a2bc24b437829223cd5ce3e770c01587dccc8d55d30029e13ded631",
+          "evidenceHandles": [],
+          "payloadSha256": "cee6bee3b0133cc7dba00e175e2b8fcdef1876890095f9a19936516efe8ec61e",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000036",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "b20f754e9a2bc24b437829223cd5ce3e770c01587dccc8d55d30029e13ded631",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 9,
+            "status": "success",
+            "operationId": "op-000036",
+            "traversalId": "traversal-512217c60262d9036f906d18",
+            "queryType": "SELECT",
+            "querySha256": "b20f754e9a2bc24b437829223cd5ce3e770c01587dccc8d55d30029e13ded631",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:21.339Z",
+            "endedAt": "2026-09-28T11:56:22.802Z",
+            "durationMs": 1463,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 588,
+              "retries": 0
+            },
+            "resultItems": 2,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-512217c60262d9036f906d18",
+            "startedAt": "2026-09-28T11:56:21.339Z",
+            "finishedAt": "2026-09-28T11:56:22.802Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 588,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "e3e87d44e7cf281212ccd39f4dd1956680a6b99b046c9afb25a36b5c50c7e25e",
+                "responseSha256": "2f6d8b5a219a671d9d7379b4a11924e1d86ac85570a464274d36d5d4c7efd683",
+                "bytes": 588,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:56:21.343Z",
+                "finishedAt": "2026-09-28T11:56:22.799Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "cee6bee3b0133cc7dba00e175e2b8fcdef1876890095f9a19936516efe8ec61e"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6225,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000037",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000009",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "compound",
+          "formula",
+          "units"
+        ],
+        "offset": 0,
+        "total": 2,
+        "provenance": {
+          "operationId": "op-000036",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "b20f754e9a2bc24b437829223cd5ce3e770c01587dccc8d55d30029e13ded631",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 9,
+            "status": "success",
+            "operationId": "op-000036",
+            "traversalId": "traversal-512217c60262d9036f906d18",
+            "queryType": "SELECT",
+            "querySha256": "b20f754e9a2bc24b437829223cd5ce3e770c01587dccc8d55d30029e13ded631",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:21.339Z",
+            "endedAt": "2026-09-28T11:56:22.802Z",
+            "durationMs": 1463,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 588,
+              "retries": 0
+            },
+            "resultItems": 2,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-512217c60262d9036f906d18",
+            "startedAt": "2026-09-28T11:56:21.339Z",
+            "finishedAt": "2026-09-28T11:56:22.802Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 588,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "e3e87d44e7cf281212ccd39f4dd1956680a6b99b046c9afb25a36b5c50c7e25e",
+                "responseSha256": "2f6d8b5a219a671d9d7379b4a11924e1d86ac85570a464274d36d5d4c7efd683",
+                "bytes": 588,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=PREFIX%20v%3A%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fvocabulary%23%3E%20SELECT%20%3Fcompound%20%3Fformula%20%3Funits%20WHERE%20%7BVALUES%20%3Fcompound%20%7B%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID11644097%3E%7D%20%3Fcompound%20v%3Amolecular_formula%20%3Fformula%3B%20v%3Acovalent_unit_count%20%3Funits%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:56:21.343Z",
+                "finishedAt": "2026-09-28T11:56:22.799Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "cee6bee3b0133cc7dba00e175e2b8fcdef1876890095f9a19936516efe8ec61e"
+        },
+        "rows": [
+          {
+            "compound": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID11644097"
+            },
+            "formula": {
+              "termType": "Literal",
+              "value": "C6H14ClNO4",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "units": {
+              "termType": "Literal",
+              "value": "2",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#int"
+            }
+          },
+          {
+            "compound": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/compound/CID176077"
+            },
+            "formula": {
+              "termType": "Literal",
+              "value": "C6H13NO4",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            },
+            "units": {
+              "termType": "Literal",
+              "value": "1",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#int"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 2,
+          "maxRows": 10,
+          "cells": 6,
+          "maxCells": 100,
+          "bytes": 6233,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "predicate": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000010",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 4,
+        "columns": [
+          "p",
+          "o"
+        ],
+        "fingerprints": [
+          "fc71f88d50efcb55b5ba974dc1903943046c254794010ce5880f66c8323f6134"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000038",
+          "traversalId": "traversal-7de2f33f0a37d5489db0b7ae",
+          "querySha256": "5b3b1cc9817955e0deeab69e4bc59a7fb4c75d72689eedde9507e6c605977fa8",
+          "evidenceHandles": [],
+          "payloadSha256": "fc71f88d50efcb55b5ba974dc1903943046c254794010ce5880f66c8323f6134",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000038",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "5b3b1cc9817955e0deeab69e4bc59a7fb4c75d72689eedde9507e6c605977fa8",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 10,
+            "status": "success",
+            "operationId": "op-000038",
+            "traversalId": "traversal-7de2f33f0a37d5489db0b7ae",
+            "queryType": "SELECT",
+            "querySha256": "5b3b1cc9817955e0deeab69e4bc59a7fb4c75d72689eedde9507e6c605977fa8",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:22.804Z",
+            "endedAt": "2026-09-28T11:56:22.953Z",
+            "durationMs": 149,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 760,
+              "retries": 0
+            },
+            "resultItems": 4,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-7de2f33f0a37d5489db0b7ae",
+            "startedAt": "2026-09-28T11:56:22.804Z",
+            "finishedAt": "2026-09-28T11:56:22.953Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 760,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "ce2a3dd532e3d257e672ad6175d8b07e1eeb529f335d073300e09986236cebb2",
+                "responseSha256": "88fe4fdb5725acb8eef060c7f34256fbf16ead6053903b3f31001ac8066b9b2a",
+                "bytes": 760,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:56:22.811Z",
+                "finishedAt": "2026-09-28T11:56:22.950Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "fc71f88d50efcb55b5ba974dc1903943046c254794010ce5880f66c8323f6134"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 5313,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000039",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000010",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "p",
+          "o"
+        ],
+        "offset": 0,
+        "total": 4,
+        "provenance": {
+          "operationId": "op-000038",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "5b3b1cc9817955e0deeab69e4bc59a7fb4c75d72689eedde9507e6c605977fa8",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 10,
+            "status": "success",
+            "operationId": "op-000038",
+            "traversalId": "traversal-7de2f33f0a37d5489db0b7ae",
+            "queryType": "SELECT",
+            "querySha256": "5b3b1cc9817955e0deeab69e4bc59a7fb4c75d72689eedde9507e6c605977fa8",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:56:22.804Z",
+            "endedAt": "2026-09-28T11:56:22.953Z",
+            "durationMs": 149,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 760,
+              "retries": 0
+            },
+            "resultItems": 4,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-7de2f33f0a37d5489db0b7ae",
+            "startedAt": "2026-09-28T11:56:22.804Z",
+            "finishedAt": "2026-09-28T11:56:22.953Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 760,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "ce2a3dd532e3d257e672ad6175d8b07e1eeb529f335d073300e09986236cebb2",
+                "responseSha256": "88fe4fdb5725acb8eef060c7f34256fbf16ead6053903b3f31001ac8066b9b2a",
+                "bytes": 760,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fp%20%3Fo%20WHERE%20%7B%3Chttp%3A%2F%2Fsemanticscience.org%2Fresource%2FCHEMINF_000477%3E%20%3Fp%20%3Fo%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:56:22.811Z",
+                "finishedAt": "2026-09-28T11:56:22.950Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "fc71f88d50efcb55b5ba974dc1903943046c254794010ce5880f66c8323f6134"
+        },
+        "rows": [
+          {
+            "p": {
+              "termType": "NamedNode",
+              "value": "http://purl.obolibrary.org/obo/IAO_0000115"
+            },
+            "o": {
+              "termType": "Literal",
+              "value": "This connects a molecule to its normalized counterpart according to the PubChem specification.",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "p": {
+              "termType": "NamedNode",
+              "value": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+            },
+            "o": {
+              "termType": "NamedNode",
+              "value": "http://www.w3.org/2002/07/owl#ObjectProperty"
+            }
+          },
+          {
+            "p": {
+              "termType": "NamedNode",
+              "value": "http://www.w3.org/2000/01/rdf-schema#label"
+            },
+            "o": {
+              "termType": "Literal",
+              "value": "has PubChem normalized counterpart",
+              "language": "",
+              "datatype": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          },
+          {
+            "p": {
+              "termType": "NamedNode",
+              "value": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf"
+            },
+            "o": {
+              "termType": "NamedNode",
+              "value": "http://semanticscience.org/resource/CHEMINF_000457"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 4,
+          "maxRows": 10,
+          "cells": 8,
+          "maxCells": 100,
+          "bytes": 5520,
+          "maxBytes": 32768
+        }
+      }
+    },
+    "substance": {
+      "profile": {
+        "handle": {
+          "kind": "linked-science-handle",
+          "id": "h-000006",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "type": "bindings",
+        "count": 1,
+        "columns": [
+          "s",
+          "p",
+          "q",
+          "external"
+        ],
+        "fingerprints": [
+          "3eaf8abab1cbd3b589ddbebbc0e4e93c4b18a58447378a3a69b2c6ded44d10d3"
+        ],
+        "lineage": {
+          "kind": "communica-mediated-traversal",
+          "operationId": "op-000030",
+          "traversalId": "traversal-83491d549902bf6da9f31899",
+          "querySha256": "7248835305bb8ecfd36867e839708d891c2c6f8540719fa1159dfb16d50d55a2",
+          "evidenceHandles": [],
+          "payloadSha256": "3eaf8abab1cbd3b589ddbebbc0e4e93c4b18a58447378a3a69b2c6ded44d10d3",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          }
+        },
+        "provenance": {
+          "operationId": "op-000030",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "7248835305bb8ecfd36867e839708d891c2c6f8540719fa1159dfb16d50d55a2",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 6,
+            "status": "success",
+            "operationId": "op-000030",
+            "traversalId": "traversal-83491d549902bf6da9f31899",
+            "queryType": "SELECT",
+            "querySha256": "7248835305bb8ecfd36867e839708d891c2c6f8540719fa1159dfb16d50d55a2",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:55:35.852Z",
+            "endedAt": "2026-09-28T11:55:36.396Z",
+            "durationMs": 544,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 457,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-83491d549902bf6da9f31899",
+            "startedAt": "2026-09-28T11:55:35.852Z",
+            "finishedAt": "2026-09-28T11:55:36.396Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 457,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "1fb9d21b53b9f0dd1b3ad8bbf9c1549e491a179ea8d40bac1e9ef96c59ecd536",
+                "responseSha256": "3e86cdd9ceb35ed753821543c8df2c5a9d6a26c800af3a6df20b7d0334d1f82c",
+                "bytes": 457,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:55:35.858Z",
+                "finishedAt": "2026-09-28T11:55:36.393Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "3eaf8abab1cbd3b589ddbebbc0e4e93c4b18a58447378a3a69b2c6ded44d10d3"
+        },
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "bounds": {
+          "bytes": 6362,
+          "maxBytes": 32768
+        }
+      },
+      "page": {
+        "kind": "linked-science-page",
+        "operationId": "op-000031",
+        "source": {
+          "kind": "linked-science-handle",
+          "id": "h-000006",
+          "type": "bindings",
+          "epoch": "699878d2-5c16-48df-94c5-9994a15e523f:fabry-pubchem-migalastat-20260928:1",
+          "label": "traversal-result"
+        },
+        "columns": [
+          "s",
+          "p",
+          "q",
+          "external"
+        ],
+        "offset": 0,
+        "total": 1,
+        "provenance": {
+          "operationId": "op-000030",
+          "localOnly": false,
+          "mediatedTraversal": true,
+          "queryType": "SELECT",
+          "querySha256": "7248835305bb8ecfd36867e839708d891c2c6f8540719fa1159dfb16d50d55a2",
+          "completion": {
+            "kind": "linked-science-result-completion",
+            "status": "complete",
+            "complete": true,
+            "truncated": false,
+            "scope": "submitted-query",
+            "materialization": "atomic-before-handle-publication"
+          },
+          "sources": [
+            {
+              "type": "sparql",
+              "value": "https://qlever.dev/api/pubchem"
+            }
+          ],
+          "evidenceHandles": [],
+          "negotiation": {},
+          "attempt": {
+            "kind": "linked-science-mediated-attempt",
+            "index": 6,
+            "status": "success",
+            "operationId": "op-000030",
+            "traversalId": "traversal-83491d549902bf6da9f31899",
+            "queryType": "SELECT",
+            "querySha256": "7248835305bb8ecfd36867e839708d891c2c6f8540719fa1159dfb16d50d55a2",
+            "sources": [
+              {
+                "type": "sparql",
+                "value": "https://qlever.dev/api/pubchem"
+              }
+            ],
+            "evidenceHandles": [],
+            "startedAt": "2026-09-28T11:55:35.852Z",
+            "endedAt": "2026-09-28T11:55:36.396Z",
+            "durationMs": 544,
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 457,
+              "retries": 0
+            },
+            "resultItems": 1,
+            "hiddenRetries": 0,
+            "completion": {
+              "kind": "linked-science-result-completion",
+              "status": "complete",
+              "complete": true,
+              "truncated": false,
+              "scope": "submitted-query",
+              "materialization": "atomic-before-handle-publication"
+            }
+          },
+          "traversalReceipt": {
+            "kind": "linked-science-traversal-receipt",
+            "version": "3.2.0",
+            "authority": {
+              "class": "anonymous-linked-data-read",
+              "version": "1.0.0",
+              "anonymous": true,
+              "destinationPolicy": "dynamic-anonymous-http-https",
+              "endpointAllowlist": false,
+              "schemes": [
+                "http",
+                "https"
+              ],
+              "methods": [
+                "GET",
+                "HEAD",
+                "SPARQL_POST"
+              ],
+              "queryTypes": [
+                "SELECT",
+                "ASK",
+                "CONSTRUCT",
+                "DESCRIBE"
+              ],
+              "effects": [
+                "public-resource-read",
+                "rdf-document-read",
+                "sparql-read",
+                "linked-data-dereference",
+                "local-communica-federation"
+              ],
+              "prohibited": [
+                "ambient-identity",
+                "url-credentials",
+                "sparql-update",
+                "arbitrary-post",
+                "filesystem-write",
+                "authority-expansion",
+                "automatic-context-promotion"
+              ]
+            },
+            "status": "complete",
+            "traversalId": "traversal-83491d549902bf6da9f31899",
+            "startedAt": "2026-09-28T11:55:35.852Z",
+            "finishedAt": "2026-09-28T11:55:36.396Z",
+            "budgets": {
+              "maxQueryChars": 16384,
+              "maxRequestBodyBytes": 64000,
+              "maxDurationMs": 300000,
+              "maxRequestMs": 20000,
+              "maxRequests": 16,
+              "maxFanOut": 8,
+              "maxConcurrency": 4,
+              "maxResponseBytes": 2000000,
+              "maxTotalBytes": 10000000,
+              "maxResultItems": 500
+            },
+            "usage": {
+              "requests": 1,
+              "fanOut": 1,
+              "bytes": 457,
+              "retries": 0
+            },
+            "exchanges": [
+              {
+                "kind": "linked-science-fetch-exchange",
+                "version": "3.2.0",
+                "index": 1,
+                "status": "success",
+                "requestedUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                "finalUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                "redirected": false,
+                "method": "GET",
+                "httpStatus": 200,
+                "requestSha256": "1fb9d21b53b9f0dd1b3ad8bbf9c1549e491a179ea8d40bac1e9ef96c59ecd536",
+                "responseSha256": "3e86cdd9ceb35ed753821543c8df2c5a9d6a26c800af3a6df20b7d0334d1f82c",
+                "bytes": 457,
+                "mediaType": "application/sparql-results+json",
+                "headers": {
+                  "content-type": "application/sparql-results+json"
+                },
+                "responseHeadersTruncated": false,
+                "navigation": {
+                  "kind": "linked-data-navigation-evidence",
+                  "responseUrl": "https://qlever.dev/api/pubchem?query=SELECT%20%3Fs%20%3Fp%20%3Fq%20%3Fexternal%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Chttp%3A%2F%2Frdf.ncbi.nlm.nih.gov%2Fpubchem%2Fcompound%2FCID176077%3E%20.%20%3Fs%20%3Fq%20%3Fexternal%20.%20VALUES%20%3Fexternal%20%7B%3Chttp%3A%2F%2Frdf.ebi.ac.uk%2Fresource%2Fchembl%2Fmolecule%2FCHEMBL110458%3E%20%3Chttp%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound%2Finspect%2FCHEMBL110458%3E%20%3Chttps%3A%2F%2Fwww.ebi.ac.uk%2Fchembl%2Fcompound_report_card%2FCHEMBL110458%2F%3E%7D%20%7D",
+                  "links": [],
+                  "profiles": [],
+                  "profileDeclarations": [],
+                  "malformedLinkHeader": false,
+                  "truncated": false,
+                  "trust": "untrusted-candidate-evidence"
+                },
+                "startedAt": "2026-09-28T11:55:35.858Z",
+                "finishedAt": "2026-09-28T11:55:36.393Z",
+                "retries": 0
+              }
+            ],
+            "redirectEvidence": "requested-final-and-redirected-flag"
+          },
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "evidenceStatus": "observed-advertisements",
+            "instructionAuthority": false,
+            "candidates": [],
+            "profileDeclarations": [],
+            "truncated": false,
+            "use": "Use relation and declaration evidence to choose a relevant subsequent mediated action; advertised targets remain untried until retrieved."
+          },
+          "payloadSha256": "3eaf8abab1cbd3b589ddbebbc0e4e93c4b18a58447378a3a69b2c6ded44d10d3"
+        },
+        "rows": [
+          {
+            "s": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ncbi.nlm.nih.gov/pubchem/substance/SID103329495"
+            },
+            "p": {
+              "termType": "NamedNode",
+              "value": "http://semanticscience.org/resource/CHEMINF_000477"
+            },
+            "q": {
+              "termType": "NamedNode",
+              "value": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+            },
+            "external": {
+              "termType": "NamedNode",
+              "value": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+            }
+          }
+        ],
+        "truncated": false,
+        "bounds": {
+          "rows": 1,
+          "maxRows": 10,
+          "cells": 4,
+          "maxCells": 100,
+          "bytes": 6087,
+          "maxBytes": 32768
+        }
+      }
+    }
+  },
+  "localJoin": {
+    "matched": true,
+    "operation": "local JavaScript IRI equality across separately retrieved SPARQL results; no SERVICE federation",
+    "molecule": "http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL110458"
+  },
+  "limits": [
+    "Crosswalk is substance normalization plus rdfs:seeAlso, not owl:sameAs.",
+    "Molecular weight RDF supplies only generic molar mass unit UO:0000055, not explicit g/mol.",
+    "Descriptor type identifies PubChem software calculation; per-value calculation version/date not retrieved.",
+    "Presentation mapping initially failed on unbound optional units; completed query remained intact and null-safe display succeeded."
+  ]
+}

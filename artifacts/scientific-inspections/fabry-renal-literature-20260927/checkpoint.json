@@ -1,0 +1,1080 @@
+{
+  "recordedAt": "2026-09-27T13:39:36.820Z",
+  "context": "fabry-renal-literature-20260927",
+  "graphs": {
+    "disease": {
+      "kind": "linked-science-handle",
+      "id": "h-000001",
+      "type": "instance-data",
+      "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+      "label": "renal-disease"
+    },
+    "links": {
+      "kind": "linked-science-handle",
+      "id": "h-000002",
+      "type": "instance-data",
+      "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+      "label": "renal-links"
+    },
+    "cl": {
+      "kind": "linked-science-handle",
+      "id": "h-000003",
+      "type": "ontology",
+      "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+      "label": "renal-cl"
+    },
+    "uberon": {
+      "kind": "linked-science-handle",
+      "id": "h-000004",
+      "type": "ontology",
+      "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+      "label": "renal-uberon"
+    }
+  },
+  "rehydratedFrom": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/scientific-inspections/fabry-full-graph-20260925/",
+  "queries": {
+    "anchor": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?name ?chemical WHERE { VALUES ?chemical {obo:CHEBI_18313} ?mechanism dm:chemical_entities/dm:term ?chemical; app:sourceName ?name . }",
+    "chain": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?e ?sourceName ?edge ?targetName ?type ?description ?intermediate ?reference ?evidenceSource ?snippet WHERE { VALUES (?sourceName ?targetName) { (\"Alpha-galactosidase A deficiency\" \"Lysosomal Gb3 and lyso-Gb3 accumulation\") (\"Lysosomal Gb3 and lyso-Gb3 accumulation\" \"Tissue-specific glycosphingolipid storage\") (\"Tissue-specific glycosphingolipid storage\" \"Renal glycosphingolipid storage and podocyte injury\") (\"Renal glycosphingolipid storage and podocyte injury\" \"Autophagy impairment\") } ?source app:sourceName ?sourceName; dm:downstream ?edge . ?edge dm:target ?targetName; app:resolvedTarget ?target; dm:causal_link_type ?type; dm:description ?description . OPTIONAL {?edge dm:intermediate_mechanisms ?intermediate} OPTIONAL {?edge dm:evidence ?e . ?e dm:reference ?reference; dm:evidence_source ?evidenceSource; dm:snippet ?snippet} }",
+    "ontology": "PREFIX dm: <https://w3id.org/monarch-initiative/dismech/> PREFIX obo: <http://purl.obolibrary.org/obo/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX app: <urn:fabry-full-graph:> SELECT ?mechanism ?cell ?cellLabel ?cellParent ?parentLabel ?location ?locationLabel ?reference ?support ?snippet WHERE { ?mechanism a dm:Pathophysiology; dm:cell_types/dm:term ?cell; dm:locations/dm:term ?location; dm:evidence ?e . FILTER(?cell=obo:CL_0000653 && ?location=obo:UBERON_0002113) ?e dm:reference ?reference; dm:supports ?support; dm:snippet ?snippet . ?cell rdfs:label ?cellLabel; rdfs:subClassOf ?cellParent . ?cellParent rdfs:label ?parentLabel . ?location rdfs:label ?locationLabel . }\n"
+  },
+  "results": {
+    "anchor": {
+      "kind": "linked-science-page",
+      "operationId": "op-000016",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000011",
+        "type": "bindings",
+        "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "mechanism",
+        "name",
+        "chemical"
+      ],
+      "offset": 0,
+      "total": 1,
+      "provenance": {
+        "operationId": "op-000015",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "f24d6380de761b37f565f81283514e8a10c48d8a4c4e729a08355efb0630a7df",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+        ]
+      },
+      "rows": [
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Lysosomal%20Gb3%20and%20lyso-Gb3%20accumulation"
+          },
+          "name": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "chemical": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CHEBI_18313"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 1,
+        "maxRows": 10,
+        "cells": 3,
+        "maxCells": 100,
+        "bytes": 1336,
+        "maxBytes": 32768
+      }
+    },
+    "chain": {
+      "kind": "linked-science-page",
+      "operationId": "op-000014",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000010",
+        "type": "bindings",
+        "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "e",
+        "sourceName",
+        "edge",
+        "targetName",
+        "type",
+        "description",
+        "intermediate",
+        "reference",
+        "evidenceSource",
+        "snippet"
+      ],
+      "offset": 0,
+      "total": 5,
+      "provenance": {
+        "operationId": "op-000013",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "eea34600d3272207cd48b1557f40d674d35c7c5bd0668aa800f5f339b610ee5b",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759"
+        ]
+      },
+      "rows": [
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Alpha-galactosidase A deficiency",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F0%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Reduced alpha-galactosidase A activity prevents normal lysosomal clearance of Gb3 and related glycosphingolipids.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "OTHER",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Fabry disease (FD) is a rare lysosomal storage disorder, characterized by a reduction in α-galactosidase A enzyme activity and the progressive accumulation of globotriaosylceramide (GL3) and its metabolites in the cells of various organs.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Lysosomal Gb3 and lyso-Gb3 accumulation",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F1%2Fdownstream%2F2"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "The shared lysosomal storage lesion occurs in multiple organ systems and must be interpreted in local tissue contexts.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "OTHER",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Accumulation of GL3 in the kidney, heart, vasculature, neurons, skin, gastrointestinal tract and auditory system correlates to cellular damage and irreversible organ damage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Tissue-specific glycosphingolipid storage",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F2%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "DIRECT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Kidney and podocyte substrate accumulation defines the renal branch and is the context for renal GL-3 tissue readouts.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": null,
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "HUMAN_CLINICAL",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Despite normal renal function and urinalysis, renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Autophagy impairment",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": {
+            "termType": "Literal",
+            "value": "lysosomal dysfunction in GLA-edited podocytes",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39100494",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "IN_VITRO",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "e": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0%2Fevidence%2F0"
+          },
+          "sourceName": {
+            "termType": "Literal",
+            "value": "Renal glycosphingolipid storage and podocyte injury",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "edge": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/node/%2Fpathophysiology%2F3%2Fdownstream%2F0"
+          },
+          "targetName": {
+            "termType": "Literal",
+            "value": "Autophagy impairment",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "type": {
+            "termType": "Literal",
+            "value": "INDIRECT_KNOWN_INTERMEDIATES",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "description": {
+            "termType": "Literal",
+            "value": "Fabry podocyte injury includes lysosomal and autophagy dysfunction.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "intermediate": {
+            "termType": "Literal",
+            "value": "podocyte cellular stress response",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:39100494",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "evidenceSource": {
+            "termType": "Literal",
+            "value": "IN_VITRO",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "The complex pathogenesis of FD involves lysosomal dysfunction, altered autophagy, and mitochondrial abnormalities.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 5,
+        "maxRows": 10,
+        "cells": 50,
+        "maxCells": 100,
+        "bytes": 8613,
+        "maxBytes": 32768
+      }
+    },
+    "ontology": {
+      "kind": "linked-science-page",
+      "operationId": "op-000012",
+      "source": {
+        "kind": "linked-science-handle",
+        "id": "h-000009",
+        "type": "bindings",
+        "epoch": "b98681c8-3667-4ebb-a607-8ec2fde78e57:fabry-renal-literature-20260927:1",
+        "label": "query-result"
+      },
+      "columns": [
+        "mechanism",
+        "cell",
+        "cellLabel",
+        "cellParent",
+        "parentLabel",
+        "location",
+        "locationLabel",
+        "reference",
+        "support",
+        "snippet"
+      ],
+      "offset": 0,
+      "total": 4,
+      "provenance": {
+        "operationId": "op-000011",
+        "localOnly": true,
+        "queryType": "SELECT",
+        "querySha256": "0b271edef7deed213bce8d2557a85e59f2d416bf68447c73e0d406f3a8e4d743",
+        "completion": {
+          "kind": "linked-science-result-completion",
+          "status": "complete",
+          "complete": true,
+          "truncated": false,
+          "scope": "submitted-query",
+          "materialization": "atomic-before-handle-publication"
+        },
+        "sourceHandles": [
+          "h-000001",
+          "h-000002",
+          "h-000003",
+          "h-000004"
+        ],
+        "sourceFingerprints": [
+          "68371c5317d570458712efe4bcdb5e3d80dcb26c5f87078c510e920e9824c19e",
+          "1310a3a711938a2e3181f011738789196210d591ce5396d673cafd3489eb0759",
+          "3f1c14979353013fb63ca0e614faa5bbffa2fcb89b4de4da410d1a4c2e3b5eaf",
+          "159077fa740e9a17783ac2b657e29c9bcd4847b3a3d80acc4072302370dcf934"
+        ]
+      },
+      "rows": [
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+          },
+          "cell": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "cellLabel": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "cellParent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002522"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "renal filtration cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "location": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+          },
+          "locationLabel": {
+            "termType": "Literal",
+            "value": "kidney",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+          },
+          "cell": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "cellLabel": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "cellParent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0002522"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "renal filtration cell",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "location": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+          },
+          "locationLabel": {
+            "termType": "Literal",
+            "value": "kidney",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Damage leads to renal dysfunction and end-stage renal disease",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+          },
+          "cell": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "cellLabel": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "cellParent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000450"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of glomerular capsule",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "location": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+          },
+          "locationLabel": {
+            "termType": "Literal",
+            "value": "kidney",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:27129690",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "renal biopsy showed abnormal structure, with marked accumulation of GL-3 in podocytes, partial effacement of foot processes and irregularly reduced expression of nephrin in the slit diaphragm.",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        },
+        {
+          "mechanism": {
+            "termType": "NamedNode",
+            "value": "https://example.org/fabry-checkpoint/name/Renal%20glycosphingolipid%20storage%20and%20podocyte%20injury"
+          },
+          "cell": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_0000653"
+          },
+          "cellLabel": {
+            "termType": "Literal",
+            "value": "podocyte",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "cellParent": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/CL_1000450"
+          },
+          "parentLabel": {
+            "termType": "Literal",
+            "value": "epithelial cell of glomerular capsule",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "location": {
+            "termType": "NamedNode",
+            "value": "http://purl.obolibrary.org/obo/UBERON_0002113"
+          },
+          "locationLabel": {
+            "termType": "Literal",
+            "value": "kidney",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "reference": {
+            "termType": "Literal",
+            "value": "PMID:36334424",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "support": {
+            "termType": "Literal",
+            "value": "SUPPORT",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "snippet": {
+            "termType": "Literal",
+            "value": "Damage leads to renal dysfunction and end-stage renal disease",
+            "language": "",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+          }
+        }
+      ],
+      "truncated": false,
+      "bounds": {
+        "rows": 4,
+        "maxRows": 10,
+        "cells": 40,
+        "maxCells": 100,
+        "bytes": 6359,
+        "maxBytes": 32768
+      }
+    }
+  },
+  "publications": [
+    {
+      "pmid": "39100494",
+      "pmcid": "PMC11295972",
+      "title": "Genome-wide expression analysis in a Fabry disease human podocyte cell line.",
+      "year": "2024",
+      "doi": "10.1016/j.heliyon.2024.e34357",
+      "isOpenAccess": "Y"
+    },
+    {
+      "pmid": "36334424",
+      "title": "Clinical relevance of globotriaosylceramide accumulation in Fabry disease and the effect of agalsidase beta in affected tissues.",
+      "year": "2022",
+      "doi": "10.1016/j.ymgme.2022.10.005",
+      "isOpenAccess": "N"
+    },
+    {
+      "pmid": "27129690",
+      "title": "Significant improvement in Fabry disease podocytopathy after 3 years of treatment with agalsidase beta.",
+      "year": "2016",
+      "doi": "10.1007/s00467-016-3387-4",
+      "isOpenAccess": "N"
+    }
+  ],
+  "resources": {
+    "publications": {
+      "kind": "linked-science-resource-artifact",
+      "version": "1.0.0",
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-QNaVeL/content/publications.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-QNaVeL/content/receipt.json",
+      "bytes": 22440,
+      "sha256": "493a3d0b7c699a28aca53a1fb52e71d7b67e0db0385d60b319755591a65b9018",
+      "createdAt": "2026-09-27T13:37:55.341Z",
+      "durability": "independent-of-kernel-and-handle",
+      "source": {
+        "exchange": {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+          "finalUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+          "redirected": false,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "2c0b07e686fb69ad968c657c98a42a4c40c324a7d0a6f38ae4a0e7819ac503db",
+          "responseSha256": "493a3d0b7c699a28aca53a1fb52e71d7b67e0db0385d60b319755591a65b9018",
+          "bytes": 22440,
+          "mediaType": "application/json",
+          "headers": {
+            "content-type": "application/json;charset=UTF-8",
+            "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-27T13:37:54.641Z",
+          "finishedAt": "2026-09-27T13:37:55.329Z",
+          "retries": 0
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-b0194bd6f8f4c630bbfe6204",
+          "startedAt": "2026-09-27T13:37:54.641Z",
+          "finishedAt": "2026-09-27T13:37:55.329Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 5000000,
+            "maxTotalBytes": 5000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 22440,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+              "finalUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "2c0b07e686fb69ad968c657c98a42a4c40c324a7d0a6f38ae4a0e7819ac503db",
+              "responseSha256": "493a3d0b7c699a28aca53a1fb52e71d7b67e0db0385d60b319755591a65b9018",
+              "bytes": 22440,
+              "mediaType": "application/json",
+              "headers": {
+                "content-type": "application/json;charset=UTF-8",
+                "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=(EXT_ID%3A27129690%20OR%20EXT_ID%3A36334424%20OR%20EXT_ID%3A39100494)%20AND%20SRC%3AMED&format=json&resultType=core",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:37:54.641Z",
+              "finishedAt": "2026-09-27T13:37:55.329Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 22440,
+            "totalBytes": null,
+            "state": "complete",
+            "capacity": {
+              "freeBytes": 645131104256,
+              "reserveBytes": 268435456,
+              "retainedBytes": 956916,
+              "availableBytes": 644862668800
+            },
+            "elapsedMs": 688,
+            "maxBytes": 5000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        }
+      }
+    },
+    "podocyte-fulltext": {
+      "kind": "linked-science-resource-artifact",
+      "version": "1.0.0",
+      "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-IlKprM/content/podocyte-fulltext.txt",
+      "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-IlKprM/content/receipt.json",
+      "bytes": 146594,
+      "sha256": "f0143ae3e5aa15c0b4f53696cfcde9706ab31c4f4121bedb3252384e9c27ca90",
+      "createdAt": "2026-09-27T13:38:17.764Z",
+      "durability": "independent-of-kernel-and-handle",
+      "source": {
+        "exchange": {
+          "kind": "linked-science-fetch-exchange",
+          "version": "3.2.0",
+          "index": 1,
+          "status": "success",
+          "requestedUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+          "finalUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+          "redirected": false,
+          "method": "GET",
+          "httpStatus": 200,
+          "requestSha256": "72aaeb46745d605e71fc598f015b8d781bbc7e8bfb6aae0af8ced1dfcd37482e",
+          "responseSha256": "f0143ae3e5aa15c0b4f53696cfcde9706ab31c4f4121bedb3252384e9c27ca90",
+          "bytes": 146594,
+          "mediaType": "application/xml",
+          "headers": {
+            "content-type": "application/xml",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "responseHeadersTruncated": false,
+          "navigation": {
+            "kind": "linked-data-navigation-evidence",
+            "responseUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+            "links": [],
+            "profiles": [],
+            "profileDeclarations": [],
+            "malformedLinkHeader": false,
+            "truncated": false,
+            "trust": "untrusted-candidate-evidence"
+          },
+          "startedAt": "2026-09-27T13:38:16.612Z",
+          "finishedAt": "2026-09-27T13:38:17.751Z",
+          "retries": 0
+        },
+        "traversalReceipt": {
+          "kind": "linked-science-traversal-receipt",
+          "version": "3.2.0",
+          "authority": {
+            "class": "anonymous-linked-data-read",
+            "version": "1.0.0",
+            "anonymous": true,
+            "destinationPolicy": "dynamic-anonymous-http-https",
+            "endpointAllowlist": false,
+            "schemes": [
+              "http",
+              "https"
+            ],
+            "methods": [
+              "GET",
+              "HEAD",
+              "SPARQL_POST"
+            ],
+            "queryTypes": [
+              "SELECT",
+              "ASK",
+              "CONSTRUCT",
+              "DESCRIBE"
+            ],
+            "effects": [
+              "public-resource-read",
+              "rdf-document-read",
+              "sparql-read",
+              "linked-data-dereference",
+              "local-communica-federation"
+            ],
+            "prohibited": [
+              "ambient-identity",
+              "url-credentials",
+              "sparql-update",
+              "arbitrary-post",
+              "filesystem-write",
+              "authority-expansion",
+              "automatic-context-promotion"
+            ]
+          },
+          "status": "complete",
+          "traversalId": "traversal-a68d0c3f1c931bc80eeebacc",
+          "startedAt": "2026-09-27T13:38:16.611Z",
+          "finishedAt": "2026-09-27T13:38:17.751Z",
+          "budgets": {
+            "maxQueryChars": 16384,
+            "maxRequestBodyBytes": 64000,
+            "maxDurationMs": 20000,
+            "maxRequestMs": 20000,
+            "maxRequests": 1,
+            "maxFanOut": 8,
+            "maxConcurrency": 1,
+            "maxResponseBytes": 5000000,
+            "maxTotalBytes": 5000000,
+            "maxResultItems": 1000
+          },
+          "usage": {
+            "requests": 1,
+            "fanOut": 1,
+            "bytes": 146594,
+            "retries": 0
+          },
+          "exchanges": [
+            {
+              "kind": "linked-science-fetch-exchange",
+              "version": "3.2.0",
+              "index": 1,
+              "status": "success",
+              "requestedUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+              "finalUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+              "redirected": false,
+              "method": "GET",
+              "httpStatus": 200,
+              "requestSha256": "72aaeb46745d605e71fc598f015b8d781bbc7e8bfb6aae0af8ced1dfcd37482e",
+              "responseSha256": "f0143ae3e5aa15c0b4f53696cfcde9706ab31c4f4121bedb3252384e9c27ca90",
+              "bytes": 146594,
+              "mediaType": "application/xml",
+              "headers": {
+                "content-type": "application/xml",
+                "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+              },
+              "responseHeadersTruncated": false,
+              "navigation": {
+                "kind": "linked-data-navigation-evidence",
+                "responseUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11295972/fullTextXML",
+                "links": [],
+                "profiles": [],
+                "profileDeclarations": [],
+                "malformedLinkHeader": false,
+                "truncated": false,
+                "trust": "untrusted-candidate-evidence"
+              },
+              "startedAt": "2026-09-27T13:38:16.612Z",
+              "finishedAt": "2026-09-27T13:38:17.751Z",
+              "retries": 0
+            }
+          ],
+          "progress": {
+            "bytes": 146594,
+            "totalBytes": null,
+            "state": "complete",
+            "capacity": {
+              "freeBytes": 645131010048,
+              "reserveBytes": 268435456,
+              "retainedBytes": 979356,
+              "availableBytes": 644862574592
+            },
+            "elapsedMs": 1140,
+            "maxBytes": 5000000
+          },
+          "redirectEvidence": "requested-final-and-redirected-flag"
+        }
+      }
+    }
+  },
+  "sourceFulltextPassages": [
+    {
+      "index": 10,
+      "text": "Our study used human immortalized podocytes kindly provided by Dr. Weisz's team [ 36 ]. The immortalized human podocytes were collected from a 1-month-old normal woman's kidney. Half of the podocytes (n = 9) were then edited using CRISPR/Cas9 technology targeting the first and the seventh exons of GLA on both X chromosomes. The other (n = 9) were used as controls. Podocytes were utilized for CRISPR/Cas9 method at passage number of 9 from the primarily immortalized podocytes. Two groups of cells were numbered: control podocytes (C1 to C9) and CRISPR/Cas9 modified podocytes (F1 to F9). The cells were incubated at 37 °C with 5 % CO2 in Dulbecco's modified Eagles Medium: Nutrient Mixture F-12 or DMEM/F-12 (PAN BIOTECH, P04-41450) supplemented with 10 % fetal bovine serum – FBS (Eurobio, CVFSVF00-01), 1 % glutamine 200 nM (Eurobio, CSTGLU00-0U), 1 % penicillin 100 UI/ml and streptomycin 100 μg/ml (Sigma-Aldrich, P0781), and 0.1 % ITS cell culture supplement (PAN BIOTECH, P07-03110). Medium was exchanged every 2–3 days. Trypsin was used to detach adherent cells, then was deactivated using culture medium. Cells were seeded at a density of 10,000 cells per cm 2 in fresh cell culture dishes. After 72 h of incubation, the cells were harvested by centrifugation. Cell pellets and supernatants were frozen at −80 °C. HPLC Plus grade water was added, and the cell pellets were sonicated for further analysis."
+    },
+    {
+      "index": 16,
+      "text": "The mass spectrometry-based analysis exhibited that the total Gb3 level was significantly higher in CRISPR/Cas9-modified podocytes compared to the controls (Wilcoxon–Mann–Whitney test, p-value = 5.74x10 −4 ) ( Supplementary Fig. 1 ). The enzyme activity examination using a fluorometric assay showed that almost no α-gal A activity was observed in GLA-edited podocytes with a median of 0.44 μkat/kg while the figure for controls was 18.43 μkat/kg (Wilcoxon–Mann–Whitney test, p-value = 4.01x10 −4 ) ( Supplementary Fig. 1 ). These results indicated that the CRISPR/Cas9-edited podocytes were valuable in presenting the genotype and phenotype of Fabry disease."
+    },
+    {
+      "index": 20,
+      "text": "To visualize the expression trends, we generated violin plots to show the top 10 upregulated and 10 downregulated genes' expression levels ( Fig. 3 A). In addition, Fig. 3 B shows the functional analysis of the top differentially expressed genes that are mainly involved in the following pathways: Oxidative stress ( CBR3, DHRS4L2, SIL1, SMG1, TIA1 ), NAD/NADP-dependent oxidoreductase ( CBR3, DHRS4L2 ), inflammation ( CBR3, ITGB3, QPCTL, SMG1 ), fatty acid metabolism ( CBR3, CCDC80, DHRS4L2 ), collagen and extracellular matrix homeostasis ( CCDC80, COL7A1, ITGB3 ), Wnt signaling pathway ( CCDC80, STRN ), kidney injury ( COL7A1, ITGB3, MAGEH1 ), apoptosis ( EBP, MAGEH1, PLEKHO1, SMG1, TIA1 ), Hippo signaling pathway ( ITGB3, MOB1A, PLEKHO1, STRN ), autophagy (ITGB3, SIL1, STRN, TIA1 ), and endoplasmic reticulum (ER) stress ( SIL1 )."
+    },
+    {
+      "index": 30,
+      "text": "Autophagy, a process maintaining cellular homeostasis and preventing harmful material accumulation was also revealed. In Fabry disease, disruption of autophagic flux has been demonstrated, with altered autophagosome maturation contributing to the pathophysiology of the disease [ 77 ]. Additionally, there is a loss of mTOR kinase activity [ 78 ], which further affects the regulation of autophagy. Autophagy disruption may lead to the accumulation of misfolded proteins and damaged organelles within podocytes [ 79 ]. Consequently, this impairment may contribute to podocyte injury and the subsequent proteinuria, hallmark of kidney dysfunction [ 78 ]. Among the top upregulated genes, SIL1 (Silver homolog) is primarily known for its role in protein folding and ER homeostasis. However, recent studies have implicated SIL1 in regulating autophagy and the clearance of misfolded proteins through the ER-associated degradation (ERAD) pathway [ 80 ]."
+    }
+  ]
+}

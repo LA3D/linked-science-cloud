@@ -1,0 +1,171 @@
+{
+  "name": "uniprot-access",
+  "endpoint": "https://sparql.uniprot.org/sparql",
+  "query": "SELECT (1 AS ?ok) WHERE {}",
+  "startedAt": "2026-09-27T13:10:33.238Z",
+  "elapsedMs": 420,
+  "status": "success",
+  "artifact": {
+    "kind": "linked-science-resource-artifact",
+    "version": "1.0.0",
+    "path": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Qe1Pk2/content/uniprot-access.json",
+    "receiptPath": "/Users/cvardema/dev/git/LA3D/agents/linked-science-cloud/artifacts/resources/resource-Qe1Pk2/content/receipt.json",
+    "bytes": 258,
+    "sha256": "5af92a6f739b55943d59c7dbf4af727ff9bda9de26334047c7028a6b9d651367",
+    "createdAt": "2026-09-27T13:10:33.650Z",
+    "durability": "independent-of-kernel-and-handle",
+    "source": {
+      "exchange": {
+        "kind": "linked-science-fetch-exchange",
+        "version": "3.2.0",
+        "index": 1,
+        "status": "success",
+        "requestedUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+        "finalUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+        "redirected": false,
+        "method": "GET",
+        "httpStatus": 200,
+        "requestSha256": "1c36f7df7ca6d4497ffa409c9bd4ebfc7f19f022f65429860eb37d08f54fb289",
+        "responseSha256": "5af92a6f739b55943d59c7dbf4af727ff9bda9de26334047c7028a6b9d651367",
+        "bytes": 258,
+        "mediaType": "application/sparql-results+json",
+        "headers": {
+          "content-length": "258",
+          "content-type": "application/sparql-results+json",
+          "etag": "W/\"2026_03\"",
+          "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+        },
+        "responseHeadersTruncated": false,
+        "navigation": {
+          "kind": "linked-data-navigation-evidence",
+          "responseUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+          "links": [],
+          "profiles": [],
+          "profileDeclarations": [],
+          "malformedLinkHeader": false,
+          "truncated": false,
+          "trust": "untrusted-candidate-evidence"
+        },
+        "startedAt": "2026-09-27T13:10:33.239Z",
+        "finishedAt": "2026-09-27T13:10:33.640Z",
+        "retries": 0
+      },
+      "traversalReceipt": {
+        "kind": "linked-science-traversal-receipt",
+        "version": "3.2.0",
+        "authority": {
+          "class": "anonymous-linked-data-read",
+          "version": "1.0.0",
+          "anonymous": true,
+          "destinationPolicy": "dynamic-anonymous-http-https",
+          "endpointAllowlist": false,
+          "schemes": [
+            "http",
+            "https"
+          ],
+          "methods": [
+            "GET",
+            "HEAD",
+            "SPARQL_POST"
+          ],
+          "queryTypes": [
+            "SELECT",
+            "ASK",
+            "CONSTRUCT",
+            "DESCRIBE"
+          ],
+          "effects": [
+            "public-resource-read",
+            "rdf-document-read",
+            "sparql-read",
+            "linked-data-dereference",
+            "local-communica-federation"
+          ],
+          "prohibited": [
+            "ambient-identity",
+            "url-credentials",
+            "sparql-update",
+            "arbitrary-post",
+            "filesystem-write",
+            "authority-expansion",
+            "automatic-context-promotion"
+          ]
+        },
+        "status": "complete",
+        "traversalId": "traversal-41f09ca34f2b3711f34f57eb",
+        "startedAt": "2026-09-27T13:10:33.238Z",
+        "finishedAt": "2026-09-27T13:10:33.640Z",
+        "budgets": {
+          "maxQueryChars": 16384,
+          "maxRequestBodyBytes": 64000,
+          "maxDurationMs": 45000,
+          "maxRequestMs": 45000,
+          "maxRequests": 1,
+          "maxFanOut": 8,
+          "maxConcurrency": 1,
+          "maxResponseBytes": 10000000,
+          "maxTotalBytes": 10000000,
+          "maxResultItems": 1000
+        },
+        "usage": {
+          "requests": 1,
+          "fanOut": 1,
+          "bytes": 258,
+          "retries": 0
+        },
+        "exchanges": [
+          {
+            "kind": "linked-science-fetch-exchange",
+            "version": "3.2.0",
+            "index": 1,
+            "status": "success",
+            "requestedUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+            "finalUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+            "redirected": false,
+            "method": "GET",
+            "httpStatus": 200,
+            "requestSha256": "1c36f7df7ca6d4497ffa409c9bd4ebfc7f19f022f65429860eb37d08f54fb289",
+            "responseSha256": "5af92a6f739b55943d59c7dbf4af727ff9bda9de26334047c7028a6b9d651367",
+            "bytes": 258,
+            "mediaType": "application/sparql-results+json",
+            "headers": {
+              "content-length": "258",
+              "content-type": "application/sparql-results+json",
+              "etag": "W/\"2026_03\"",
+              "vary": "Negotiate,Accept,Accept-Encoding,Content-Type"
+            },
+            "responseHeadersTruncated": false,
+            "navigation": {
+              "kind": "linked-data-navigation-evidence",
+              "responseUrl": "https://sparql.uniprot.org/sparql?query=SELECT%20(1%20AS%20%3Fok)%20WHERE%20%7B%7D&format=json",
+              "links": [],
+              "profiles": [],
+              "profileDeclarations": [],
+              "malformedLinkHeader": false,
+              "truncated": false,
+              "trust": "untrusted-candidate-evidence"
+            },
+            "startedAt": "2026-09-27T13:10:33.239Z",
+            "finishedAt": "2026-09-27T13:10:33.640Z",
+            "retries": 0
+          }
+        ],
+        "progress": {
+          "bytes": 258,
+          "totalBytes": 258,
+          "state": "complete",
+          "capacity": {
+            "freeBytes": 645152571392,
+            "reserveBytes": 268435456,
+            "retainedBytes": 172738,
+            "availableBytes": 644884135936
+          },
+          "elapsedMs": 402,
+          "maxBytes": 10000000
+        },
+        "redirectEvidence": "requested-final-and-redirected-flag"
+      }
+    }
+  },
+  "count": 1
+}
