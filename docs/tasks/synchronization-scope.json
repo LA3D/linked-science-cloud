@@ -1,0 +1,1956 @@
+{
+  "startingMain": "e2e973bcde7b5ffa0edd0fa7182cfff799a78fc9",
+  "savedLaptopHead": "892cd7667d78b287782c731960289038a8c08319",
+  "includedWorkingPaths": [
+    ".agents/skills/scientific-wiki-maintainer/SKILL.md",
+    ".agents/skills/scientific-wiki-maintainer/references/revisions.md",
+    "artifacts/experiment-results/registry.json",
+    "docs/agent/runtime-discovery.md",
+    "docs/tasks/README.md",
+    "lib/wiki-learning/contracts.mjs",
+    "lib/wiki-learning/corpus.mjs",
+    "lib/wiki-learning/evidence.mjs",
+    "packages/cleanroom-node-repl/src/repl-kernel-child.mjs",
+    "packages/cleanroom-node-repl/test/cleanroom-mcp.test.mjs",
+    "schemas/wiki-learning/corpus.schema.json",
+    "schemas/wiki-learning/episode.schema.json",
+    "test/wiki-learning/retrieval.test.mjs",
+    "wiki/HEAD",
+    "artifacts/proposals/mosaic-2026-10-12/MOSAIC-Figure-1.pdf",
+    "artifacts/proposals/mosaic-2026-10-12/MOSAIC-Figure-1.png",
+    "artifacts/proposals/mosaic-2026-10-12/MOSAIC-Figure-1.svg",
+    "artifacts/proposals/mosaic-2026-10-12/Section-2.1.md",
+    "artifacts/runtime-debugging/alphafold-request-path-20260924.json",
+    "artifacts/runtime-debugging/codex-mcp-boundary-20260924.json",
+    "artifacts/runtime-debugging/depth-one-codex-probe-20260924.json",
+    "artifacts/runtime-debugging/depth-one-dispatcher-failure-20260924.json",
+    "artifacts/runtime-debugging/depth-one-source-exchanges-20260924.json",
+    "artifacts/runtime-debugging/depth-one-sources-repl-20260924.json",
+    "artifacts/runtime-debugging/depth-one-startup-failure-20260924.json",
+    "artifacts/runtime-debugging/parent-mediated-roundtrip-20260924.json",
+    "artifacts/runtime-debugging/recursive-provider-mounted-capabilities-20260924.json",
+    "artifacts/scientific-inspections/aatd-liver-chain-20260929/host.mjs",
+    "artifacts/scientific-inspections/aatd-liver-chain-20260929/receipt.json",
+    "artifacts/scientific-inspections/aatd-liver-chain-20260929/restore-manifest.json",
+    "artifacts/scientific-inspections/aspirin-human-reactome-20260924/receipt.json",
+    "artifacts/scientific-inspections/chignolin-20260924/README.md",
+    "artifacts/scientific-inspections/chignolin-20260924/receipt.json",
+    "artifacts/scientific-inspections/chignolin-extension-20260924/demo.md",
+    "artifacts/scientific-inspections/chignolin-extension-20260924/receipt.json",
+    "artifacts/scientific-inspections/demo-offline-recovery-20260927/README.md",
+    "artifacts/scientific-inspections/demo-offline-recovery-20260927/VALIDATION.md",
+    "artifacts/scientific-inspections/demo-offline-recovery-20260927/receipt.json",
+    "artifacts/scientific-inspections/demo-offline-recovery-20260927/recover.mjs",
+    "artifacts/scientific-inspections/demo-offline-recovery-20260927/rehearsal.json",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/crosslink.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/federation.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/graph.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/inspect.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/measurement.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/receipt.json",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/schema.rq",
+    "artifacts/scientific-inspections/fabry-chembl-sparql-20260928/version.rq",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/README.md",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/c2sim-owl-rl-subset.json",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/c2sim-synthetic-validation.json",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/feedback.json",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/receipt.json",
+    "artifacts/scientific-inspections/fabry-demo-readiness-20260930/rule-rerun.json",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/README.md",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/VALIDATION.md",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/memory-feedback.json",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/receipt.json",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/recovery-check.json",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/restore-manifest.json",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/restore.mjs",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/results.json",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/evidence.rq",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/exact.rq",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/expanded.rq",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/nodeEvidence.rq",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/path.rq",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/receipt.json",
+    "artifacts/scientific-inspections/fabry-epithelial-check-20260928/terms.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/README.md",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/causal.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/checkpoint.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/commit-metadata.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/conversion-report.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/convert.py",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/counts.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/field-audit.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/file-manifest.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/kidney.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/ontology-excerpts.py",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/ontology-report.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/query-results.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/renal.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/replay-load.js",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/resolution.rq",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/validation.json",
+    "artifacts/scientific-inspections/fabry-full-graph-20260925/wiki-feedback.json",
+    "artifacts/scientific-inspections/fabry-gla-assay-20260928/receipt.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/README.md",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-catalytic-links.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-gla-bounded-federation.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-gla-directional-federation.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-physiological-schema.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-rhea-participant-schema.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/queries/fabry-rhea-schema-probe.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/query.rq",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/receipt.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/replay.js",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-catalytic-links.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-bounded-federation.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-gla-directional-federation.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-physiological-schema.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-rhea-participant-schema.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/runs/fabry-rhea-schema-probe.json",
+    "artifacts/scientific-inspections/fabry-gla-federation-20260927/validation.json",
+    "artifacts/scientific-inspections/fabry-memory-use-20260928/anchor.rq",
+    "artifacts/scientific-inspections/fabry-memory-use-20260928/feedback.json",
+    "artifacts/scientific-inspections/fabry-memory-use-20260928/receipt.json",
+    "artifacts/scientific-inspections/fabry-memory-use-20260928/renal.rq",
+    "artifacts/scientific-inspections/fabry-memory-use-20260928/schema.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/README.md",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/checkpoint.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/local-hgnc-join.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/local-shared-go.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/operations.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/remote-crossrefs.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/replay-cells.js",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/README.md",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-command.sh",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-result.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-unrestricted-result.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/reaction.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/receipt.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/replay.js",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/source-identifiers.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/source-relationships.rq",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/validation.json",
+    "artifacts/scientific-inspections/fabry-protein-extension-20260925/wiki-feedback.json",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/compound.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/crosswalk.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/demo.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/descriptors.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/form.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/incoming.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/predicate.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/receipt.json",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/substance.rq",
+    "artifacts/scientific-inspections/fabry-pubchem-20260928/units.rq",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/PRESENTATION-HANDOFF.md",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/README.md",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/anchor.rq",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/chain.rq",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/checkpoint.json",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/ontology.rq",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/validation.json",
+    "artifacts/scientific-inspections/fabry-renal-literature-20260927/wiki-feedback.json",
+    "artifacts/scientific-inspections/fabry-selection-20260925/README.md",
+    "artifacts/scientific-inspections/fabry-selection-20260925/checkpoint.json",
+    "artifacts/scientific-inspections/fabry-selection-20260925/controls-query.rq",
+    "artifacts/scientific-inspections/fabry-selection-20260925/evidence-query.rq",
+    "artifacts/scientific-inspections/fabry-selection-20260925/replay-cells.js",
+    "artifacts/scientific-inspections/sai-gsd3-20260925/README.md",
+    "artifacts/scientific-inspections/sai-gsd3-20260925/operations-log.json",
+    "artifacts/scientific-inspections/sai-gsd3-20260925/receipt.json",
+    "artifacts/scientific-inspections/sai-gsd3-20260925/traversal-history.json",
+    "artifacts/scientific-inspections/sai-gsd3-20260925/wiki-feedback.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/README.md",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/ROOT-CAUSE.md",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/checkpoint.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-coordinator-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-access-noformat-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-real-pattern-noformat-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bounded-service-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/comparison.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/direct-bgee-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/minimal-service-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-exception.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-meta.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/replay.sh",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/history-observations.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/opening-demo/README.md",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/opening-demo/query.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/opening-demo/receipt.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/opening-demo/replay.js",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/original-exact.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-access.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-gene-mapping.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-schema-labels.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-service-access.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-service-no-www-probe.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bgee-service-real-pattern.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bounded-bgee-coordinator-federation.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bounded-multisource-concurrency6.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bounded-multisource-federation.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bounded-subselect-federation.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/bounded-three-service-delegated-post.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/chemical-definition.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/cholesterol-bgee-component.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/cholesterol-normalized-federation.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/cholesterol-rhea-uniprot.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/protein-example-label.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/published-original-canonical.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/published-original.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/published-rhea-uniprot.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/rhea-component.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/uniprot-access.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/queries/uniprot-schema-definitions.rq",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/query-diffs.txt",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/query-extraction-audit.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/replay.js",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-access.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-gene-mapping.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-schema-labels.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-service-access.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-service-no-www-probe.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bgee-service-real-pattern.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bounded-bgee-coordinator-federation.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bounded-multisource-concurrency6.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bounded-multisource-federation.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bounded-subselect-federation.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/bounded-three-service-delegated-post.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/chemical-definition.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/cholesterol-bgee-component.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/cholesterol-normalized-federation.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/cholesterol-rhea-uniprot.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/protein-example-label.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/published-original-canonical.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/published-original.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/published-rhea-uniprot.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/rhea-component.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/uniprot-access.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/runs/uniprot-schema-definitions.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/validation.json",
+    "artifacts/scientific-inspections/uniprot-example49-20260927/wiki-feedback.json",
+    "artifacts/scoped-data-bridge/live-20260929-handoff-activation-01/receipt.json",
+    "artifacts/scoped-data-bridge/live-20260929-handoff-activation-02/receipt.json",
+    "artifacts/wiki-learning/consultations/0600b225-d7dc-4fa4-829d-50c04a34e11f-feedback-f3591934-aaa0-4c58-bbb8-73633a644d8f.json",
+    "artifacts/wiki-learning/consultations/0600b225-d7dc-4fa4-829d-50c04a34e11f-read-74fe2f3c-2d3b-4b9f-9a70-9d7c0180ce01.json",
+    "artifacts/wiki-learning/consultations/0600b225-d7dc-4fa4-829d-50c04a34e11f-search-ffaf76b6-922b-43a9-8bc1-ebe15224f014.json",
+    "artifacts/wiki-learning/consultations/063e3e12-52f1-4e37-812c-5f0db4059a97-read-5313a3d3-801f-4466-8c42-7d6e7640a5a4.json",
+    "artifacts/wiki-learning/consultations/063e3e12-52f1-4e37-812c-5f0db4059a97-search-48c42ea8-15e1-4f65-bb02-c77693e72f42.json",
+    "artifacts/wiki-learning/consultations/0c9dc75f-39b2-48b4-a22a-367a5f3eb126-read-c791c76b-bcfb-405a-8141-e57f22ddb8e6.json",
+    "artifacts/wiki-learning/consultations/0c9dc75f-39b2-48b4-a22a-367a5f3eb126-search-ce7ddad6-03d9-49da-b54d-c56e1a447c82.json",
+    "artifacts/wiki-learning/consultations/10affcc4-563d-4599-beb8-cb3a01b40095-read-58bed6cb-e524-446e-802c-5c89bbd5ee8a.json",
+    "artifacts/wiki-learning/consultations/10affcc4-563d-4599-beb8-cb3a01b40095-search-7cc11131-379d-4b84-90b3-b9c881e07775.json",
+    "artifacts/wiki-learning/consultations/161c639f-e7df-424c-8816-2560000d9ba3-feedback-1690c782-be34-43b6-a553-d131e8ddea58.json",
+    "artifacts/wiki-learning/consultations/161c639f-e7df-424c-8816-2560000d9ba3-read-5a0621a9-a0c9-4f89-abc5-1a6881d17126.json",
+    "artifacts/wiki-learning/consultations/161c639f-e7df-424c-8816-2560000d9ba3-search-a26b27ed-2908-49e3-ae87-4d01d00407fb.json",
+    "artifacts/wiki-learning/consultations/208e092e-f9ec-4614-aa32-a57b0b58bf2e-search-cf92397e-d164-49a5-95d3-d882a245c1ad.json",
+    "artifacts/wiki-learning/consultations/223673e3-034c-40a3-9d38-f16f6a94c666-feedback-4afb01fa-60be-4c77-9916-39951f2dceff.json",
+    "artifacts/wiki-learning/consultations/223673e3-034c-40a3-9d38-f16f6a94c666-read-6582b358-d4d4-48db-9473-261d5c88aa9b.json",
+    "artifacts/wiki-learning/consultations/223673e3-034c-40a3-9d38-f16f6a94c666-search-756b56ef-498f-4229-a9a5-c064e4ebe9bf.json",
+    "artifacts/wiki-learning/consultations/22e8ac33-7fdc-46b2-a2ce-a645244f5023-read-63d3be08-b145-4310-b7ce-ed602534168e.json",
+    "artifacts/wiki-learning/consultations/22e8ac33-7fdc-46b2-a2ce-a645244f5023-search-bdf18be3-c22f-474a-92f4-020218d4f639.json",
+    "artifacts/wiki-learning/consultations/2b713dae-4e0a-4073-ae1e-61861c878fec-feedback-84e63dd9-4744-4a82-95ab-250e21b3c2e5.json",
+    "artifacts/wiki-learning/consultations/2b713dae-4e0a-4073-ae1e-61861c878fec-search-d9d7cc9c-827f-451d-9af2-62720765f07b.json",
+    "artifacts/wiki-learning/consultations/2b7afbcc-70d8-4fff-b0cd-49008ff9fa8a-search-fe704cf9-b5a0-47bd-8b1d-93fac53d971b.json",
+    "artifacts/wiki-learning/consultations/2eb90e1f-e680-4587-ac5a-e20d42ad4546-read-133a021f-4bc9-4b86-b20f-dfa90430d6d2.json",
+    "artifacts/wiki-learning/consultations/2eb90e1f-e680-4587-ac5a-e20d42ad4546-search-b804a53e-d013-43c3-86fc-7219b2de965b.json",
+    "artifacts/wiki-learning/consultations/35f09602-aaa5-4739-a7e3-9eb727222fd8-search-64664c71-e1c9-40c1-b680-6c2af1c2fe8c.json",
+    "artifacts/wiki-learning/consultations/3eae2041-8733-4e57-b35f-489cb8d52459-feedback-b8a8e91b-1043-4346-a77d-fdcbdf43af52.json",
+    "artifacts/wiki-learning/consultations/3eae2041-8733-4e57-b35f-489cb8d52459-read-8acaf73a-f2ac-4787-a48d-e6295c00b6f1.json",
+    "artifacts/wiki-learning/consultations/3eae2041-8733-4e57-b35f-489cb8d52459-read-8bd502c6-08b0-499a-a6d3-fbfc1feb1598.json",
+    "artifacts/wiki-learning/consultations/3eae2041-8733-4e57-b35f-489cb8d52459-read-a6c54e7e-8182-49ed-9d62-672694d3ece7.json",
+    "artifacts/wiki-learning/consultations/3eae2041-8733-4e57-b35f-489cb8d52459-search-dfbc6bb3-21c0-4aaf-b5e8-b6819508291a.json",
+    "artifacts/wiki-learning/consultations/3fd1ffa7-6cf9-481c-9ca6-26406b0cc32a-search-264ecb89-ce1a-4b0e-961d-45ca3c5358f7.json",
+    "artifacts/wiki-learning/consultations/42609b75-cefe-43f6-904a-64251edbad42-read-2ee7e127-ebd4-41ba-9f2b-cdad64bf62bb.json",
+    "artifacts/wiki-learning/consultations/42609b75-cefe-43f6-904a-64251edbad42-search-2b66820e-978a-4466-960e-8f86e740736a.json",
+    "artifacts/wiki-learning/consultations/472b5e2e-89ff-4419-a499-550611f9cc12-search-0c4fd673-8053-4d54-a86b-c2d775b25456.json",
+    "artifacts/wiki-learning/consultations/4798f886-9607-440d-8c35-70606aa5c7ec-search-7c9d0896-1f66-4662-876e-29061cec101c.json",
+    "artifacts/wiki-learning/consultations/4cd91bfc-aedc-4f0b-9c8b-b1c7c73edd97-search-c4e9f536-6b7e-4522-945b-a3998edf6042.json",
+    "artifacts/wiki-learning/consultations/5608e8c3-e177-4611-9c57-13bd359e69e0-search-64a77c0a-38a4-4445-bb3e-f9849d095003.json",
+    "artifacts/wiki-learning/consultations/5865eae5-2d98-457b-a0a4-9666d49ddc5d-feedback-91bece27-2080-4a28-acd4-4d77f4ab8be5.json",
+    "artifacts/wiki-learning/consultations/5865eae5-2d98-457b-a0a4-9666d49ddc5d-read-b55a14bf-f5a2-4403-a231-2413cdf4c589.json",
+    "artifacts/wiki-learning/consultations/5865eae5-2d98-457b-a0a4-9666d49ddc5d-search-f7386370-753f-4c6a-bc83-4c535b67923d.json",
+    "artifacts/wiki-learning/consultations/600b0223-1f87-49f2-8681-3233122a331e-search-e796f1ad-d3ba-4aef-954d-ff8907231e61.json",
+    "artifacts/wiki-learning/consultations/64908eba-3a95-4b20-a036-bb764413bfe1-feedback-7b103aa2-4438-433b-828f-a4fdb1fb2c67.json",
+    "artifacts/wiki-learning/consultations/64908eba-3a95-4b20-a036-bb764413bfe1-search-9d7ba18c-5282-4ef9-b963-2b48bd491bfe.json",
+    "artifacts/wiki-learning/consultations/6cf9f74e-42a5-4f9b-82d2-2a4c08705053-search-9c99f39f-726d-418c-9c26-46ec6dc91a93.json",
+    "artifacts/wiki-learning/consultations/71dee279-eed1-4c4c-a7bc-e3304f9a057b-feedback-b370f685-64f6-49d1-9def-83e8e6cb0f9b.json",
+    "artifacts/wiki-learning/consultations/71dee279-eed1-4c4c-a7bc-e3304f9a057b-read-ff0f8568-f56a-4899-8def-173c69efa174.json",
+    "artifacts/wiki-learning/consultations/71dee279-eed1-4c4c-a7bc-e3304f9a057b-search-e2d0fa44-6241-49d6-a76c-af04e8dd10d9.json",
+    "artifacts/wiki-learning/consultations/75e11da7-267c-4e4b-bdd8-f0a281935b12-search-538198b0-7ef4-48e4-a123-7143a6f95b92.json",
+    "artifacts/wiki-learning/consultations/77b1b1ba-58a2-415b-8974-56e3f6f278de-search-a2571720-475d-485d-bf1a-7d04ab9d5cdf.json",
+    "artifacts/wiki-learning/consultations/78f6f61e-cb83-4307-8e29-ecacd116412a-search-d779365d-c043-4f78-95c5-34c81aea4486.json",
+    "artifacts/wiki-learning/consultations/7a1a06ef-3a52-41e3-8057-21f25c60f25a-search-25ce68df-1470-4f9c-b67a-5b21096d2873.json",
+    "artifacts/wiki-learning/consultations/7c391331-b87f-4975-9f24-68b1ba37b205-search-c7bf4277-2d27-4839-8fc6-51ee6996fd01.json",
+    "artifacts/wiki-learning/consultations/7f0f7dbe-47a8-497f-90cb-9e170b647a0c-feedback-e923cb8c-0a38-4709-9bce-8e7badaa6c22.json",
+    "artifacts/wiki-learning/consultations/7f0f7dbe-47a8-497f-90cb-9e170b647a0c-read-014bdd95-d28c-4d28-a4d6-16d8639c1d92.json",
+    "artifacts/wiki-learning/consultations/7f0f7dbe-47a8-497f-90cb-9e170b647a0c-search-9b5d189d-9043-423e-b800-821ff83d8f66.json",
+    "artifacts/wiki-learning/consultations/8c495ce4-91d8-4ff7-8790-39366d0ec351-feedback-1073dfb9-6bd3-4bf0-8b94-0f31134bcc85.json",
+    "artifacts/wiki-learning/consultations/8c495ce4-91d8-4ff7-8790-39366d0ec351-search-0380da13-a8db-4676-bf91-688e76c28ecd.json",
+    "artifacts/wiki-learning/consultations/97d4b5d0-90ce-452c-be53-e5be9a57b5ed-feedback-701e4d19-0da0-4a7a-a296-ab91a10c3fc5.json",
+    "artifacts/wiki-learning/consultations/97d4b5d0-90ce-452c-be53-e5be9a57b5ed-read-b7c9533b-b2f3-4fba-b36b-0c6607482f12.json",
+    "artifacts/wiki-learning/consultations/97d4b5d0-90ce-452c-be53-e5be9a57b5ed-search-b1564b31-dde6-4d99-80b8-28472a6dc3b3.json",
+    "artifacts/wiki-learning/consultations/a2e863bb-48c1-41fc-8d0d-9c84cc20f784-search-d562fe9d-65d9-4369-9358-c1f5234b57a8.json",
+    "artifacts/wiki-learning/consultations/a33a33e6-7e2d-4064-b293-2474e8cf51a2-search-68e5fe8b-6492-4c13-93a8-342438c3122a.json",
+    "artifacts/wiki-learning/consultations/b7dfcdaf-448e-44ca-aeb5-5ea2d5a399cc-search-53107cfc-aae8-4f6a-8d74-40e505e977f5.json",
+    "artifacts/wiki-learning/consultations/c0319c55-dc5a-4673-b8f6-0e7b43ff1742-search-66392b7f-f89b-4331-aa0f-2e94497b8924.json",
+    "artifacts/wiki-learning/consultations/c38aec6a-98be-4d48-85a1-f860a8463b7c-read-6480a207-4a85-4649-bc74-8185435e693f.json",
+    "artifacts/wiki-learning/consultations/c38aec6a-98be-4d48-85a1-f860a8463b7c-search-452e2a91-22d0-4730-a7c0-eba5fadaee69.json",
+    "artifacts/wiki-learning/consultations/checkpoint-one-01a0d47f-feedback-input.json",
+    "artifacts/wiki-learning/consultations/chignolin-one-hop-feedback-input.json",
+    "artifacts/wiki-learning/consultations/d7730495-a700-409b-8c99-a06fc915c62a-search-ed0f020b-689d-4c42-82ad-b0e2d359d040.json",
+    "artifacts/wiki-learning/consultations/d7b7eb00-c10f-472a-b577-a323767e8383-feedback-984786fe-9115-48af-906c-1aee064303f4.json",
+    "artifacts/wiki-learning/consultations/d7b7eb00-c10f-472a-b577-a323767e8383-read-d24b7316-8817-4726-91dc-bf56e9a73a29.json",
+    "artifacts/wiki-learning/consultations/d7b7eb00-c10f-472a-b577-a323767e8383-read-dc151b08-e169-476f-a5d2-217f5d21ef8c.json",
+    "artifacts/wiki-learning/consultations/d7b7eb00-c10f-472a-b577-a323767e8383-search-aa5fab3c-390e-48e5-b364-0b3552dcdcdf.json",
+    "artifacts/wiki-learning/consultations/de2e21ae-fb7e-4256-bca3-c10df23f9cf2-search-d952aec6-f265-4c45-82ed-24a4c0403639.json",
+    "artifacts/wiki-learning/consultations/de85f8d2-e7a2-4850-bda7-118d75d50607-search-78efed66-06e9-4a44-9362-c09d0d1ccee6.json",
+    "artifacts/wiki-learning/consultations/e359252a-896f-4977-9c85-2e91def4535c-search-0389e852-74c8-4450-82db-ae904679dcbd.json",
+    "artifacts/wiki-learning/consultations/e9606cbb-c73a-4e3d-9f60-a89ac06c6d62-search-1d15717e-113b-403d-a9ec-4941eb82b4a3.json",
+    "artifacts/wiki-learning/consultations/f06f0bf3-a05b-4840-ab03-61037edc622a-feedback-c942c907-3b18-4c27-a967-84c12737bf76.json",
+    "artifacts/wiki-learning/consultations/f06f0bf3-a05b-4840-ab03-61037edc622a-read-da75bdd6-f39d-42f0-b650-713da861bcaf.json",
+    "artifacts/wiki-learning/consultations/f06f0bf3-a05b-4840-ab03-61037edc622a-search-52bb5065-8777-47ba-84ac-683aa1b68b26.json",
+    "artifacts/wiki-learning/consultations/f4cfc34c-a475-418d-a05e-365fc1acad2f-read-c8217eb0-e02e-4b25-ae9d-2201b0390e55.json",
+    "artifacts/wiki-learning/consultations/f4cfc34c-a475-418d-a05e-365fc1acad2f-search-dedf6ea5-6dbb-41c5-b9ba-f6713ef25259.json",
+    "artifacts/wiki-learning/consultations/f501cb7a-7a65-431c-b569-472dbba6bd30-feedback-003c6559-6bca-491f-b54f-b0c8e47fc4ac.json",
+    "artifacts/wiki-learning/consultations/f501cb7a-7a65-431c-b569-472dbba6bd30-read-326cd772-9ce7-4205-8403-6624eb086360.json",
+    "artifacts/wiki-learning/consultations/f501cb7a-7a65-431c-b569-472dbba6bd30-search-433d9431-6a1f-4c2e-bfeb-6aa4585e188b.json",
+    "artifacts/wiki-learning/consultations/f57f47d6-c850-4461-bb18-63183df4d82c-feedback-b5c15454-c1c6-4c08-a83f-c8081ff48ee2.json",
+    "artifacts/wiki-learning/consultations/f57f47d6-c850-4461-bb18-63183df4d82c-read-5f78e34b-5474-44db-b613-0b14e5c5817e.json",
+    "artifacts/wiki-learning/consultations/f57f47d6-c850-4461-bb18-63183df4d82c-search-c1ab62f8-49c9-4638-8289-93d9aa1ebc86.json",
+    "artifacts/wiki-learning/consultations/fe7f1da5-91b8-4015-a9aa-155b3e65c004-search-528eba3f-0ce7-4a7b-8993-52d99dd9fa24.json",
+    "artifacts/wiki-learning/consultations/function-pdb-demo-feedback-input.json",
+    "artifacts/wiki-learning/consultations/p35573-feedback.json",
+    "artifacts/wiki-learning/corpus/discovery-trajectory-20260923.json",
+    "artifacts/wiki-learning/corpus/fabry-trajectory-20260927.json",
+    "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/episode.json",
+    "artifacts/wiki-learning/episodes/discovery-trajectory-20260923/trajectory.json",
+    "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/episode.json",
+    "artifacts/wiki-learning/episodes/fabry-trajectory-20260927/trajectory.json",
+    "artifacts/wiki-learning/proposals/discovery-trajectory-20260923.json",
+    "artifacts/wiki-learning/proposals/fabry-trajectory-20260927.json",
+    "artifacts/wiki-learning/scientific/discovery-trajectory-20260923/desktop-retained-evidence.json",
+    "artifacts/wiki-learning/scientific/fabry-trajectory-20260927/VALIDATION.md",
+    "artifacts/wiki-learning/scientific/fabry-trajectory-20260927/changed-paths.json",
+    "artifacts/wiki-learning/scientific/fabry-trajectory-20260927/handoff-reference.json",
+    "artifacts/wiki-learning/scientific/fabry-trajectory-20260927/selection.json",
+    "docs/experiments/chignolin-investigation-rehearsal.md",
+    "docs/experiments/scientific-trajectory-evidence.md",
+    "docs/tasks/checkpoint-runtime-debugging.md",
+    "docs/tasks/demo-offline-recovery-20260927.md",
+    "docs/tasks/depth-one-recursion-experiment.md",
+    "docs/tasks/fabry-chembl-sparql-20260928.md",
+    "docs/tasks/fabry-epithelial-check-20260928.md",
+    "docs/tasks/fabry-full-graph-checkpoint.md",
+    "docs/tasks/fabry-gla-assay-20260928.md",
+    "docs/tasks/fabry-gla-federation-20260927.md",
+    "docs/tasks/fabry-memory-use-20260928.md",
+    "docs/tasks/fabry-protein-extension-checkpoint.md",
+    "docs/tasks/fabry-pubchem-20260928.md",
+    "docs/tasks/fabry-renal-literature-20260927.md",
+    "docs/tasks/fabry-selection-checkpoint.md",
+    "docs/tasks/recursive-provider-boundary-checkpoint.md",
+    "docs/tasks/sai-gsd3-demo-validation.md",
+    "docs/tasks/uniprot-example49-20260927.md",
+    "lib/wiki-learning/trajectory-corpus.mjs",
+    "lib/wiki-learning/trajectory-import.mjs",
+    "scripts/experiments/depth-one-codex-probe.mjs",
+    "scripts/experiments/depth-one-gate.mjs",
+    "scripts/wiki-learning/import-trajectory.mjs",
+    "test/depth-one-gate.test.mjs",
+    "test/wiki-learning/trajectory.test.mjs",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/evolution.jsonl",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/index.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/federation-failure-hop-diagnosis.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/hemoglobin-go-overlap-20260919.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/ontology-symbolic-context-selective-imports.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/protein-assay-crosswalk-context.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/pubchem-ontology-egfr-20260921.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/registry-crosswalk-lower-bounds.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/retained-query-after-display-limit.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/saved-scientific-demo-handoff.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/schema-meaning-versus-endpoint-usage.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/uniprot-catalog-display-bound.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/uniprot-named-graphs-20260920.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/uniprot-service-metadata-discovery.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikidata-service-crosswalk.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikipathways-example-query-adaptation.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikipathways-identifier-mapping-context.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikipathways-membership-explicit-interactions.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikipathways-ontology-tag-selection.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/patterns/wikipathways-tp53-20260920.md",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/proposal.json",
+    "wiki/revisions/2ab0a6be0322fec55ce00ea11f321b8e13ca7ee74db8c221ad4253fb67c207d0/state.json",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/evolution.jsonl",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/index.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/hemoglobin-go-overlap-20260919.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/ontology-symbolic-context-selective-imports.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/protein-assay-crosswalk-context.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/pubchem-ontology-egfr-20260921.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/registry-crosswalk-lower-bounds.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/retained-query-after-display-limit.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/schema-meaning-versus-endpoint-usage.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/uniprot-catalog-display-bound.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/uniprot-named-graphs-20260920.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/uniprot-service-metadata-discovery.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikidata-service-crosswalk.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikipathways-example-query-adaptation.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikipathways-identifier-mapping-context.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikipathways-membership-explicit-interactions.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikipathways-ontology-tag-selection.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/patterns/wikipathways-tp53-20260920.md",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/proposal.json",
+    "wiki/revisions/31f9c578797f5cf32420aeac8762388836d4ddf9943a832831f0b4656d346deb/state.json"
+  ],
+  "excludedPreservedPaths": [
+    {
+      "path": ".codex/config.toml",
+      "reason": "machine-local setup",
+      "sha256": "9519200836520f7e37f5cb18c0dcd6c6291ff509a3370cf47de9bfb749389708",
+      "bytes": 437
+    },
+    {
+      "path": "artifacts/local-installation/eyeron-laptop-20260920.json",
+      "reason": "machine-local setup",
+      "sha256": "8cf1acabdd9e54c29c0e0e8e926c29f66da2fee6fc966b56ec1a63ba18b2d245",
+      "bytes": 1381
+    },
+    {
+      "path": "artifacts/resources/resource-08lESN/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "daa0ad129c012467b3ca8870be84d6cb9bc81be0ef2d0ea4a0d345f8c38d4321",
+      "bytes": 8943
+    },
+    {
+      "path": "artifacts/resources/resource-08lESN/content/uberonObo.obo",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b27618d347df171d0dbbfc6178217487b98b96424641b8c8b4ece77256e67a14",
+      "bytes": 12078648
+    },
+    {
+      "path": "artifacts/resources/resource-0Byf5u/content/fabry-physiological-schema.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0e0a68931b9f65286cf2371841179309dc6477d4a1e047c6310c070c62d8298f",
+      "bytes": 2455
+    },
+    {
+      "path": "artifacts/resources/resource-0Byf5u/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f7ce0d81a7289cbf16fed4f869382bcada5a0e972e5ff91e3c7e1e5f4ab684df",
+      "bytes": 10733
+    },
+    {
+      "path": "artifacts/resources/resource-1FsBTp/content/pdbChain.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ac02415682a2a4ab54c55c797ed95f3e356fec4e153149367208b68172dfead7",
+      "bytes": 59175
+    },
+    {
+      "path": "artifacts/resources/resource-1FsBTp/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "1d37ecb5e19dda6e9eaec8af3a1c53e795c62e81691a5ab85e9d50e77910e681",
+      "bytes": 5480
+    },
+    {
+      "path": "artifacts/resources/resource-1ueO0f/content/import-icimd.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6631e019502247f7eec55d6b2979c996ebefb86ae7d611b31ecb4c623e4ff4da",
+      "bytes": 27678
+    },
+    {
+      "path": "artifacts/resources/resource-1ueO0f/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c4be4a6cc7c1d697889061407734405599085a47b1df05852acde1317fbf9dd0",
+      "bytes": 6127
+    },
+    {
+      "path": "artifacts/resources/resource-6GLFv9/content/bgee-gene-mapping.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f3ade063a8a01294f2675b5ff094155288c4f491b1c410c4f92ed0069ba0dd45",
+      "bytes": 92384
+    },
+    {
+      "path": "artifacts/resources/resource-6GLFv9/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f69c2cc59ac4438326989c26a3e5633e6fb5e005e8a06722c0b2df1cf02433d5",
+      "bytes": 10810
+    },
+    {
+      "path": "artifacts/resources/resource-6IEkZH/content/catalyst.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "8032595181ced193b0f2f0bcf7598a259281c071d0eb9a2431866287ef6a2856",
+      "bytes": 958
+    },
+    {
+      "path": "artifacts/resources/resource-6IEkZH/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d906d92e9b919ce2ac6f21c3630cc96a356ca7ae0a0892585cf90a781f45fd8d",
+      "bytes": 5291
+    },
+    {
+      "path": "artifacts/resources/resource-6eefVz/content/fabry-rhea-participant-schema.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6ce71841fed84fb5623927b44b18373d19c803666a1260d7e502139cde1a108a",
+      "bytes": 14615
+    },
+    {
+      "path": "artifacts/resources/resource-6eefVz/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "95decbb93431717032d627c57f06c480b6836004bbf4a5f4f7c4d0926d1676d4",
+      "bytes": 9652
+    },
+    {
+      "path": "artifacts/resources/resource-7bgXFE/content/pdbEntity.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "9cc9d3e6a20c75b37ab4f612af8de647af33c96e9abc6fef953c2d8a39e9b1e3",
+      "bytes": 41928
+    },
+    {
+      "path": "artifacts/resources/resource-7bgXFE/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "67b2c109a3d1ae70a9bfccd3d34b3c2e1c817dd4f30ea85fa61be92bee6346d0",
+      "bytes": 5427
+    },
+    {
+      "path": "artifacts/resources/resource-9rvPV7/content/clObo.obo",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "73996c6349283e7a8cbd8183367a1cb810d0077e9c291ae0c72bd31e869f8c1c",
+      "bytes": 3347518
+    },
+    {
+      "path": "artifacts/resources/resource-9rvPV7/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "020decfc1b27b851fc45be8fa869281b3fab74e0f2680f26ecad3d558ba53b5e",
+      "bytes": 8937
+    },
+    {
+      "path": "artifacts/resources/resource-9vGjoZ/content/datamodel.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "cffc8113388ecc8bdea744c14a162d33f6c3ffa6297821481b82f9fb92ec9e99",
+      "bytes": 866211
+    },
+    {
+      "path": "artifacts/resources/resource-9vGjoZ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "cce69efa1a041dddab33c30bbacf341550ae091c41e27054e4cbd95542dae88b",
+      "bytes": 6055
+    },
+    {
+      "path": "artifacts/resources/resource-Ab1xvI/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0b4634c4b335bcaf42e53a81b5ccea051f0a5e46ccb27e0325043b39c8a00e45",
+      "bytes": 5444
+    },
+    {
+      "path": "artifacts/resources/resource-Ab1xvI/content/uniprot.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ab78ce755dada219e378672846d1dfec78f39f6378e4c248ca51d934c01a4719",
+      "bytes": 185818
+    },
+    {
+      "path": "artifacts/resources/resource-AsDUqo/content/reactome.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d6dc80983148200decb2bc2e66a37913f0c3d82989f0586399b1045466f172a0",
+      "bytes": 18010
+    },
+    {
+      "path": "artifacts/resources/resource-AsDUqo/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "00eb748715a4e3b20ec79d622ded5bdf0583fcc3219d61a6f23f97c54145b8be",
+      "bytes": 5250
+    },
+    {
+      "path": "artifacts/resources/resource-DGEWGx/content/activities.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "2717c9a001dfca9225b7dcd4dd232211557dfa6b3a78a756154741053be2250b",
+      "bytes": 4560
+    },
+    {
+      "path": "artifacts/resources/resource-DGEWGx/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d0f63cf966b47b736978fb72703e91d3ef1b33645383637305628ed2b0f0e2f6",
+      "bytes": 5567
+    },
+    {
+      "path": "artifacts/resources/resource-DnH1WN/content/pathwayProtein.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "076a8ac7f15d59d235bb2039e902076d43347475ab468fd6fed1e1e1b504a4dd",
+      "bytes": 7134
+    },
+    {
+      "path": "artifacts/resources/resource-DnH1WN/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "1b5cc89fcd34d0879aa6ec54153fa101d6c8a0f07de895fb2d378136b5b3ee8e",
+      "bytes": 5305
+    },
+    {
+      "path": "artifacts/resources/resource-E0Ovlk/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "4b1bbadab2bfc76eca6290658ceb76aab7446dee548d764f9c83577603fcc5d8",
+      "bytes": 5334
+    },
+    {
+      "path": "artifacts/resources/resource-E0Ovlk/content/uniprotRdf.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "4fb68846e4e8eb16541021c0a4c8ed576141ad2e03ea5d0a09589bb8712aa435",
+      "bytes": 174800
+    },
+    {
+      "path": "artifacts/resources/resource-FUO1Lu/content/import-phenotype_category.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f565c5da9fbb4016823024f17f3e651f90381399517380b2d541b859eb9347b0",
+      "bytes": 4819
+    },
+    {
+      "path": "artifacts/resources/resource-FUO1Lu/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5f9ec4921758ae23cd94643293fa7b89b285ac513cb871788df4a51b8529eed6",
+      "bytes": 6211
+    },
+    {
+      "path": "artifacts/resources/resource-FUlF5Q/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "25f66297a03de050351dd778d680b4c5ddc5e9d90b3607744f20063b3ec5a78b",
+      "bytes": 5848
+    },
+    {
+      "path": "artifacts/resources/resource-FUlF5Q/content/repoRoot.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "4ea5082c3fda6525127307227b7d05bf955787fe71aa6ec0e43bf7f29c84caa5",
+      "bytes": 15369
+    },
+    {
+      "path": "artifacts/resources/resource-GNc7Y0/content/import-nih_research_priorities.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f10a6385fb6bd357cff5107b1f9eaead0d871297b2e4eae684c8dc359771efb9",
+      "bytes": 22673
+    },
+    {
+      "path": "artifacts/resources/resource-GNc7Y0/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f0c53b7e3cd154f1f898cfb41e9467a028ed0d59dfae13ec71ae8cdd5c715edb",
+      "bytes": 6253
+    },
+    {
+      "path": "artifacts/resources/resource-H8M19I/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0841e10c67394cd6949e2ebe58612ad0efcec0e8f59c39af77560f6b6e37e368",
+      "bytes": 11817
+    },
+    {
+      "path": "artifacts/resources/resource-H8M19I/content/rhea-component.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "11e2675693729a71354ccc4bb5d013daf4a9f142c28cd019e458e16e1f04571c",
+      "bytes": 96472
+    },
+    {
+      "path": "artifacts/resources/resource-I8sw0o/content/pathway.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "24752e0fd0fa70ccda126b366765ecdca95f866aa49a7d5304b1fb840b971f9a",
+      "bytes": 25315
+    },
+    {
+      "path": "artifacts/resources/resource-I8sw0o/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "025d5d8a413304b0a2cd2c44147c259a19087f45cf878ab858d858d81dca79e9",
+      "bytes": 5267
+    },
+    {
+      "path": "artifacts/resources/resource-I9VQ4Q/content/pdb.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "da744bc2228590a67458da791f476ac2f9947aa253701cabe5b2dd03e2d8784c",
+      "bytes": 18759
+    },
+    {
+      "path": "artifacts/resources/resource-I9VQ4Q/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d282cfe6216591719e589a9dd5a5f9e0ba25557e2c134bdbf8ab54cbb4b35361",
+      "bytes": 5355
+    },
+    {
+      "path": "artifacts/resources/resource-IKrGKi/content/protein.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ab78ce755dada219e378672846d1dfec78f39f6378e4c248ca51d934c01a4719",
+      "bytes": 185818
+    },
+    {
+      "path": "artifacts/resources/resource-IKrGKi/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "80be9a716ebbc979df8886f4f4c749af29cf9d0d7cecd925ca690bf96ad4ccdc",
+      "bytes": 5353
+    },
+    {
+      "path": "artifacts/resources/resource-IlKprM/content/podocyte-fulltext.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f0143ae3e5aa15c0b4f53696cfcde9706ab31c4f4121bedb3252384e9c27ca90",
+      "bytes": 146594
+    },
+    {
+      "path": "artifacts/resources/resource-IlKprM/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0319cf97b20f781bd3227b67d8f0862e7771a03b556b9a2c915b0ede23bc76ee",
+      "bytes": 5503
+    },
+    {
+      "path": "artifacts/resources/resource-JkbM96/content/Fabry_Disease.yaml",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+      "bytes": 146859
+    },
+    {
+      "path": "artifacts/resources/resource-JkbM96/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "382ca41a776d8500df1648a40ce54ab1fc9ed3cc784f2492659fe0c81a5fe852",
+      "bytes": 5838
+    },
+    {
+      "path": "artifacts/resources/resource-KFRPRw/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d13acea66dbfa87cc4d7cf9d328b48d004d6dd6c58545630fbc28250ac3070cc",
+      "bytes": 10689
+    },
+    {
+      "path": "artifacts/resources/resource-KFRPRw/content/remoteResult.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0b9e20b9886004c7b0873f2f65e0529e3a073dbe511d86c48e2957ee6903258b",
+      "bytes": 20293
+    },
+    {
+      "path": "artifacts/resources/resource-KGPrv2/content/import-mechanistic_nosology.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c659f3426e79f3ed2e3db3ebd354ce74cfd55cdb4f1395cdef447ba6309c3c6a",
+      "bytes": 2463
+    },
+    {
+      "path": "artifacts/resources/resource-KGPrv2/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "602065d200caeddb9f6ee2930ce416b513887193a42dd5767b215136785dbec2",
+      "bytes": 6225
+    },
+    {
+      "path": "artifacts/resources/resource-KdE2EB/content/reactomeHydrolysis.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "aba56852b67573ea7ffe9b45ab501893c31f7dfe02b56e3574d0c84413f308e7",
+      "bytes": 10375
+    },
+    {
+      "path": "artifacts/resources/resource-KdE2EB/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3f285b500e00b0ec4cae6e2eb89ae56f94fe79651e0b42ae42058119b5eb2b4c",
+      "bytes": 5264
+    },
+    {
+      "path": "artifacts/resources/resource-MKmGE6/content/bgee-repository.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "1d0a51e87e01b711e8b50e7df9c85443fbad206b1d31f49ada28031a4cb24cf1",
+      "bytes": 6160
+    },
+    {
+      "path": "artifacts/resources/resource-MKmGE6/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "99f6ee07810c50d04eb975518f884a8cd1d98385d688af7ec90f0f9d833be4e8",
+      "bytes": 5696
+    },
+    {
+      "path": "artifacts/resources/resource-MlHyEo/content/hgnc.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "8328827b1beaba7b69df174d92797afc14ff974b04d12ce42558289ebb68dbaf",
+      "bytes": 1147
+    },
+    {
+      "path": "artifacts/resources/resource-MlHyEo/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "47e0433582d159a9d17a2ce81e24670641d36524a969006041f4e7c5c190583e",
+      "bytes": 5199
+    },
+    {
+      "path": "artifacts/resources/resource-NCwGuZ/content/fabry-gla-bounded-federation.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+      "bytes": 8773
+    },
+    {
+      "path": "artifacts/resources/resource-NCwGuZ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "be062fc9e1109829dc844113ec108128e88dc3c0c3c5c1c3859cf58240cac5f7",
+      "bytes": 15645
+    },
+    {
+      "path": "artifacts/resources/resource-NHq7LT/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3fa731c37d6b17ed4e93ffa37ceea384000c7e29038ece7a8580da8f87d03abf",
+      "bytes": 6059
+    },
+    {
+      "path": "artifacts/resources/resource-NHq7LT/content/sparqlProtein.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "20e7f08f03322115d30b3198d03f50b29d29e7f86bbedd9e7cd54deeccb36db3",
+      "bytes": 123111
+    },
+    {
+      "path": "artifacts/resources/resource-QNaVeL/content/publications.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "493a3d0b7c699a28aca53a1fb52e71d7b67e0db0385d60b319755591a65b9018",
+      "bytes": 22440
+    },
+    {
+      "path": "artifacts/resources/resource-QNaVeL/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "e87be254dc3017f69abcc8019b821183cc06954e482b36159c777c57b47b5d87",
+      "bytes": 6182
+    },
+    {
+      "path": "artifacts/resources/resource-QZ0BIJ/content/import-harrisons_chapters.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "740a48013d3cfddc878edcf3f01f296a16027f4fa12bd3e320314520d879d5ac",
+      "bytes": 10063
+    },
+    {
+      "path": "artifacts/resources/resource-QZ0BIJ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "7d440fed23e203547ed7d1c281600c3f277f38d000967d09277c8ca1458f971f",
+      "bytes": 6218
+    },
+    {
+      "path": "artifacts/resources/resource-Qe1Pk2/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c0dba28457baaeaf643f74b1daa9e81279ed51a07a695fc3f4440dc8dbf72fda",
+      "bytes": 5775
+    },
+    {
+      "path": "artifacts/resources/resource-Qe1Pk2/content/uniprot-access.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5af92a6f739b55943d59c7dbf4af727ff9bda9de26334047c7028a6b9d651367",
+      "bytes": 258
+    },
+    {
+      "path": "artifacts/resources/resource-Rfjiir/content/import-eu_occupational_schedule.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f6af22f6a7955f94bd5810f544f58fdecaa51d643a6cf0ef936e69ac5ecb58dc",
+      "bytes": 39234
+    },
+    {
+      "path": "artifacts/resources/resource-Rfjiir/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "45f5e0ac84286f2a00046cb05219c80dc982b75990c9ace266089b97025f2cdc",
+      "bytes": 6260
+    },
+    {
+      "path": "artifacts/resources/resource-TITxAg/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5bb18b0a4736e711a58673764c8d42cd0b3d5e08d67f719b78445393721c98d2",
+      "bytes": 5323
+    },
+    {
+      "path": "artifacts/resources/resource-TITxAg/content/sparqlHelp.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "fac9ae9256c199b3a26a8d1e5b4535b691af9faa2abdd36a1a17ed094d70704d",
+      "bytes": 28634
+    },
+    {
+      "path": "artifacts/resources/resource-UmJHCS/content/paper.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d03cb051f0bc58061ee3862402fa5c307f41ccac196933751b6690aa7e18253c",
+      "bytes": 524816
+    },
+    {
+      "path": "artifacts/resources/resource-UmJHCS/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f7ba257f0dff959b31f4f98179249b13e6a3df3753d422318ccbcea49cc2a155",
+      "bytes": 5607
+    },
+    {
+      "path": "artifacts/resources/resource-UoWBSc/content/import-coarse_phenotype_terms.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a4fcf5d7e2bf438cee662c781a27d3d604636ea3620cf784abb37d1b8228ebd4",
+      "bytes": 7739
+    },
+    {
+      "path": "artifacts/resources/resource-UoWBSc/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "495a75ed75ca1def0e71f0c15adbc42f3bac20179975ab2b40c2c9a41f37d270",
+      "bytes": 6239
+    },
+    {
+      "path": "artifacts/resources/resource-VKn3rJ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "66c43edd95bffb3ecff34b48a7ba1ed349157b51aac78fb35ed49bbae4a4e33e",
+      "bytes": 5350
+    },
+    {
+      "path": "artifacts/resources/resource-VKn3rJ/content/uniprotSaved.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6b0b52f08ce9c6dc82039c59cddd9374f1d8ed6724d0db02bac8156c5eca5c5e",
+      "bytes": 67075
+    },
+    {
+      "path": "artifacts/resources/resource-WDG77v/content/clTerm.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ce4ac0e8c136f92d2b75ed03be1df050481711fc4278a8c05eea5f78e283c561",
+      "bytes": 10759
+    },
+    {
+      "path": "artifacts/resources/resource-WDG77v/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d5e2798ea7837be38b710d501c3e5f340700ebdf74da892af69a3e793383cd0c",
+      "bytes": 5695
+    },
+    {
+      "path": "artifacts/resources/resource-WKx97d/content/reaction.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0c5eb044639440e0e6a02abb01384115408358b5121e65e16c60b011ee7083b1",
+      "bytes": 9850
+    },
+    {
+      "path": "artifacts/resources/resource-WKx97d/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "373c89500e4457094ac234da31cd8b8c508f34a74d1f07b8aee7173476cabade",
+      "bytes": 5263
+    },
+    {
+      "path": "artifacts/resources/resource-X4ZmqO/content/catalyst.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "9e79702cc8f789314a6db88346066d2b0d26c51fa506f5d577580fb6c1a511bd",
+      "bytes": 1256
+    },
+    {
+      "path": "artifacts/resources/resource-X4ZmqO/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "7cb9b636e7010170e27c3dd1547633a34f224829cd07630bed647ed11e833fbf",
+      "bytes": 5286
+    },
+    {
+      "path": "artifacts/resources/resource-XomfaK/content/complex.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "63dde3ed45915d340bd5aacee27bbd50051bc093b7bdd5970f20718a6c22bc62",
+      "bytes": 3371
+    },
+    {
+      "path": "artifacts/resources/resource-XomfaK/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6991470c31c6f1048c35047f7ccde81204f4be3ff5e220833a498bfd64f1f27e",
+      "bytes": 5334
+    },
+    {
+      "path": "artifacts/resources/resource-a317NT/content/buildConfig.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "796bd61bf470a84ce00c412a54de0c93951e8b6991d3e832e465ddc06cffbb06",
+      "bytes": 1445
+    },
+    {
+      "path": "artifacts/resources/resource-a317NT/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a0a9fb8adae1488e4ea7279f7c260cf91aabc0a6208ec66b21d651f3e2d6dbee",
+      "bytes": 5915
+    },
+    {
+      "path": "artifacts/resources/resource-a9Ktql/content/import-lysosomal_storage.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "dba9cf2028d8a3163e9ea28f387d23bf0b1ea0fb62a0e1ef88e871d12368d632",
+      "bytes": 1687
+    },
+    {
+      "path": "artifacts/resources/resource-a9Ktql/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c08cb303d0971b0ac86570e54fd84e88f2cbdd66a18cb65e104ff6fed69f141e",
+      "bytes": 6204
+    },
+    {
+      "path": "artifacts/resources/resource-aMygJp/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "43a511e722ecb3f77788fbe09e97f13bc9a11a1740666a89475cd609297aa7ee",
+      "bytes": 5395
+    },
+    {
+      "path": "artifacts/resources/resource-aMygJp/content/target.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b92af4d7346961d9b136251ab79782927699f97cd2c8f067bbf6e16824d32312",
+      "bytes": 9500
+    },
+    {
+      "path": "artifacts/resources/resource-aiyhru/content/mdMetadata.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "43846665093e0ff54f69114420f0bbee1e292172eb930fddc3a776c13b0447fe",
+      "bytes": 3635
+    },
+    {
+      "path": "artifacts/resources/resource-aiyhru/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bf29adcd5c8e51ebfea223b045e2be607eac9800f54e32033e0c38ba6d267bfa",
+      "bytes": 5762
+    },
+    {
+      "path": "artifacts/resources/resource-aoaNYP/content/mondo.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f6e501eb570e0196fadebbc1bed0cc066da5599364d0f879d4d92a4cd86a86fa",
+      "bytes": 14172
+    },
+    {
+      "path": "artifacts/resources/resource-aoaNYP/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a3771e4c8377f66d533f58a4b0a9a10a4f83f932942becb7a0f8bb85de47af80",
+      "bytes": 5725
+    },
+    {
+      "path": "artifacts/resources/resource-avs4MR/content/reactomeProtein.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b44ba4209b7ea33ab8adc927b8305b191e0144ce29f5c27b0f96a5e8d944bcdc",
+      "bytes": 9537
+    },
+    {
+      "path": "artifacts/resources/resource-avs4MR/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "42e79b27fdd6b15a906c38e35687c13349f40a2674ef959b82156231fbafdf40",
+      "bytes": 5257
+    },
+    {
+      "path": "artifacts/resources/resource-bILc2n/content/import-isds_skeletal_nosology.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "75008bd4fc1fb1aef8d76d7589ad995ef296156b35beba621e3ac652d3690c36",
+      "bytes": 53239
+    },
+    {
+      "path": "artifacts/resources/resource-bILc2n/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "67a20977091afe23735be6526c423bf7a389145ef263e88dd28c607785daa46d",
+      "bytes": 6246
+    },
+    {
+      "path": "artifacts/resources/resource-btXKwW/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "e718ce89dcedeb8663a59de7a3bd31beca8f594ed0d4cd79e53bb1ffbd18ed5e",
+      "bytes": 9957
+    },
+    {
+      "path": "artifacts/resources/resource-btXKwW/content/uniprot-schema-definitions.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "e027971122016072a6c46c706bc729da9ae6b74fb2e8ed622ffe17342ebde6c6",
+      "bytes": 856
+    },
+    {
+      "path": "artifacts/resources/resource-dNoWjr/content/bgee-schema-labels.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bc65d861726db6e50496e0cec5b84e5e9ddc3c9e1f15032614ad98de7f336a7d",
+      "bytes": 2482
+    },
+    {
+      "path": "artifacts/resources/resource-dNoWjr/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "10d5c64905c19c48aa90ca975f843558a322afb78778ff224ed8dee0cdfefcb0",
+      "bytes": 9579
+    },
+    {
+      "path": "artifacts/resources/resource-dfEKe1/content/reactomeTransfer.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "8096927d6d1cec058078cf8cfa13577ccda65d49d4f1585025defb5f4a0d3f27",
+      "bytes": 10049
+    },
+    {
+      "path": "artifacts/resources/resource-dfEKe1/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "61a827d328393d37b588b8809c6a877a399c25a4de94fbdd9f13b396d8f60e96",
+      "bytes": 5262
+    },
+    {
+      "path": "artifacts/resources/resource-dy2jJg/content/published-rhea-uniprot.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "491f17b07bda11eebe2b79a5769cde3e74aa7670b9c842ecc5fdc3a55a103e92",
+      "bytes": 398732
+    },
+    {
+      "path": "artifacts/resources/resource-dy2jJg/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "e8bc4ba3211280184c4c20f452d1a7b709ca5b6215712ab9be1464ca6ba0f3fe",
+      "bytes": 14361
+    },
+    {
+      "path": "artifacts/resources/resource-e46gaN/content/bgee-access.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "73092955218161cee2fdfe0adffd81097979b1902f5f857f04871511f90bbd5c",
+      "bytes": 224
+    },
+    {
+      "path": "artifacts/resources/resource-e46gaN/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6f715dbb83df06f520b02818a8a7d38299f916351b31642309966ebbce9d7ab7",
+      "bytes": 5538
+    },
+    {
+      "path": "artifacts/resources/resource-eGst1o/content/commitMetadata.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "234402ef5e9bbaeced032dd26f8158d13072691c4cb417ac39e98b0655769e3a",
+      "bytes": 1110139
+    },
+    {
+      "path": "artifacts/resources/resource-eGst1o/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "50a59b0a83d8fab7b7ccbbd8f4ee31162e567066de1dca2146c9eea9ef12239c",
+      "bytes": 5778
+    },
+    {
+      "path": "artifacts/resources/resource-etRIgz/content/pyproject-toml.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c405aea7cf8e4887ed876d00a15d763a39d0101818193da341399eb0cb880087",
+      "bytes": 9522
+    },
+    {
+      "path": "artifacts/resources/resource-etRIgz/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "4dd4ea9c5ea14eaf73285f00ab8371a6a565510e6ad495f0da5556049ce5d795",
+      "bytes": 5936
+    },
+    {
+      "path": "artifacts/resources/resource-gUSlJq/content/cholesterol-rhea-uniprot.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b981d05f3ae652bb3d9529504d1531559efa7f9c19754a931f80678864aef2b2",
+      "bytes": 182334
+    },
+    {
+      "path": "artifacts/resources/resource-gUSlJq/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "85163e1c97ab336735231e2a85ca1c270bf4be063caf9a9555fd3223f20a5adf",
+      "bytes": 14363
+    },
+    {
+      "path": "artifacts/resources/resource-i2dqY2/content/justfile.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c9c5ddbf8094076e6db794bf0edf53af5adf7dff744f47b0aaea042fe2f0fa38",
+      "bytes": 14814
+    },
+    {
+      "path": "artifacts/resources/resource-i2dqY2/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "4bb692dd3fee20a3766e82f689454db6f49c3361ae226c54e79a51520ffa12c7",
+      "bytes": 5902
+    },
+    {
+      "path": "artifacts/resources/resource-ijaKUz/content/import-iuis_immunodeficiency.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "49aaf4ee5ac4a1cfb9164c59a1f9705c36e2585cc3cf8e6134d42700a59f7517",
+      "bytes": 2380
+    },
+    {
+      "path": "artifacts/resources/resource-ijaKUz/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "db72d7656186e04bdd3ff4fc2620723456d837b01c396f7ac76e57658bd1eb7f",
+      "bytes": 6232
+    },
+    {
+      "path": "artifacts/resources/resource-j8hVln/content/fabry.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+      "bytes": 146859
+    },
+    {
+      "path": "artifacts/resources/resource-j8hVln/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bb4233d04ec7b2454b72f39c5e2586bd842e105dd9b5cfe61558870a37176336",
+      "bytes": 6045
+    },
+    {
+      "path": "artifacts/resources/resource-jzwjAQ/content/pdbInstance.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "90ecfd1dfa84f81a4fced8020ea3eaf6403d792b5ff57e96f3a234b940288345",
+      "bytes": 76262
+    },
+    {
+      "path": "artifacts/resources/resource-jzwjAQ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "dbdc566a916c55213d7d3a68cbc763ce3193a4a035e6414aa576205871e4c1b0",
+      "bytes": 5482
+    },
+    {
+      "path": "artifacts/resources/resource-lkx8KB/content/chemical-definition.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f4320c53d84793fd3b9512b1b26031e3981c4003238778f80d8966498071415b",
+      "bytes": 346
+    },
+    {
+      "path": "artifacts/resources/resource-lkx8KB/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "99ceec1f5b48ca7cdf5856af5bb1ba554f1707140323ef44beb76a7612495661",
+      "bytes": 9171
+    },
+    {
+      "path": "artifacts/resources/resource-mVuRP2/content/pdbEntry.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "2c401940e137a88ef96ebb3a8dea9c418ade7b698d960a293ad4b2781d52552f",
+      "bytes": 11925
+    },
+    {
+      "path": "artifacts/resources/resource-mVuRP2/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "f6f5be85d09ea289dfa7448377fd7c0bd056dc9f68629e316de9667699acfa36",
+      "bytes": 5354
+    },
+    {
+      "path": "artifacts/resources/resource-mzfhvs/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "16d8ba39ddff2e4c15bb7c1820da99c51dd22c2cad33e14ecc9a1da66126022a",
+      "bytes": 5742
+    },
+    {
+      "path": "artifacts/resources/resource-mzfhvs/content/uberonTerm.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "efea8be75aca7097df4f57d397ae3743a1263fcd8c5e12ff753aabf8783e2572",
+      "bytes": 8653
+    },
+    {
+      "path": "artifacts/resources/resource-n1C1AR/content/predictedPdb.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "76642e52c13901daef2279e236a3fcc6e056b9a2e552e3d25f7d67cff50ed88c",
+      "bytes": 1010717
+    },
+    {
+      "path": "artifacts/resources/resource-n1C1AR/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "1603e7ed8f3a10503a8b684fd448425ac70520eb199990e0ccf773f1830f736f",
+      "bytes": 5592
+    },
+    {
+      "path": "artifacts/resources/resource-nA7idv/content/document.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "e7acddb0e45f452d77484d93fe82af3079ddf1aaa8351efc1725dafe6696582d",
+      "bytes": 3092
+    },
+    {
+      "path": "artifacts/resources/resource-nA7idv/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "7aa5391dfbb94d37b866c92e3778d6790d0088a2b25d207de0d822ba681e9930",
+      "bytes": 5427
+    },
+    {
+      "path": "artifacts/resources/resource-ogC3qo/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bf8f03530181ad3636f82f46c6503f0509106cba3d4d0adbb9ea4a320962613e",
+      "bytes": 5326
+    },
+    {
+      "path": "artifacts/resources/resource-ogC3qo/content/rheaSparqlDoc.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a612054b6777b0af8d041e5e16e95154791e888b46cad641628c107b3e1e6a87",
+      "bytes": 29278
+    },
+    {
+      "path": "artifacts/resources/resource-omqtwr/content/proteinRdf.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c8ef31d2207bfbbd183f71b6e6de64bb7810b5271d622eae96a04a391ec656f9",
+      "bytes": 340705
+    },
+    {
+      "path": "artifacts/resources/resource-omqtwr/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3531aa38de5059a0c305e7e3dd32c62622851fa223665cdd3d64e5804d632d99",
+      "bytes": 5336
+    },
+    {
+      "path": "artifacts/resources/resource-onPTHi/content/protein-example-label.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "7f16c38110e4c54ce9861fcd993dcb36912b1944324204cfdd75428eb0f0788c",
+      "bytes": 354
+    },
+    {
+      "path": "artifacts/resources/resource-onPTHi/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b1af44b69880ad4c9487e9eb1c36fefbe9d98977dcd8b3db4a72fe44db8c10a6",
+      "bytes": 9544
+    },
+    {
+      "path": "artifacts/resources/resource-oo6est/content/projectBuild.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d101fe134bb9a5d6e439337176bad2cd35ad46d42c35b6551d17789cafc5e07f",
+      "bytes": 178849
+    },
+    {
+      "path": "artifacts/resources/resource-oo6est/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "325f95b7f9fcca5ecb579a6058dcdf5b3d68873e30ec9d9367aaf05fc74b29a5",
+      "bytes": 5962
+    },
+    {
+      "path": "artifacts/resources/resource-oqHGJX/content/assays.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "405280557b9f15d6069102090974f2b4981bccef16faf5d1c2950c99d4496849",
+      "bytes": 3016
+    },
+    {
+      "path": "artifacts/resources/resource-oqHGJX/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0c77723f44d5533c2233c618909d25f9660e49890e9dbe9a8867f897c4013ea7",
+      "bytes": 5539
+    },
+    {
+      "path": "artifacts/resources/resource-p6kqMM/content/fabry-rhea-schema-probe.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6a01ac2f7109361fda9a633dfccd31f2097970ce4508fb243ba39b3d63a8749a",
+      "bytes": 14832
+    },
+    {
+      "path": "artifacts/resources/resource-p6kqMM/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d552113b37f6a10d8f7c529eb0e75b09787d167f0494a6448047741ed7610e6a",
+      "bytes": 9496
+    },
+    {
+      "path": "artifacts/resources/resource-pZer3z/content/import-icdo_morphology.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "987030c04dc3607a81348fc3e5f77efad53086f7767409a1e26c5ec1c0e9b452",
+      "bytes": 7779
+    },
+    {
+      "path": "artifacts/resources/resource-pZer3z/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "61c0acf2ad778836a87c40d48ccdfdfc91a07acbd307e87fba57c90dbbbea715",
+      "bytes": 6190
+    },
+    {
+      "path": "artifacts/resources/resource-paKuFe/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "76ad3942a4708f0943efe96ca6b2f3a79db5c11aa950be764bb3e1d03d694db5",
+      "bytes": 5360
+    },
+    {
+      "path": "artifacts/resources/resource-paKuFe/content/uniprotOntology.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "6c81c8502868afa88ea3139a62aa63fab92e19b6b63bbd62604f7ab6a55e66cb",
+      "bytes": 6577
+    },
+    {
+      "path": "artifacts/resources/resource-phNhe3/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "740bce0d8e378a33cc677a8b989c0bdb33432eed67d8be0f6bf96ffdc00dd30a",
+      "bytes": 6060
+    },
+    {
+      "path": "artifacts/resources/resource-phNhe3/content/srcTree.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3d8ca24f8bbee8c551510bf4beda60d9d7e4e0e6225c913007d19a1fd1d6b310",
+      "bytes": 48578
+    },
+    {
+      "path": "artifacts/resources/resource-qEDGWM/content/import-exposure_classification.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "c1c48dbdc8ff39cc9cf372eb384edebf1dafd07769624ed61a17135d8f27dba7",
+      "bytes": 20669
+    },
+    {
+      "path": "artifacts/resources/resource-qEDGWM/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "106cc2369ec0c12fdbe848dade5eaa1c68b379a9b27d97b5efe7a9c29e27fb53",
+      "bytes": 6254
+    },
+    {
+      "path": "artifacts/resources/resource-qLGrQ0/content/experimentalPdb.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ec707991864f041dcd6352fd8fc5f08f88418b9662feadfae01e2d54cb047834",
+      "bytes": 1028214
+    },
+    {
+      "path": "artifacts/resources/resource-qLGrQ0/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3ccb11ca5519aecc71d337a8b731713fac6cbb81671302322e9ed387498dfc9d",
+      "bytes": 5201
+    },
+    {
+      "path": "artifacts/resources/resource-r3FnRN/content/mdReadme.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "88609bf761841c1bf92c318e22342bf05ce0dd342b9605d9c3c448cab817cbd5",
+      "bytes": 188
+    },
+    {
+      "path": "artifacts/resources/resource-r3FnRN/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "2d73916681ef916850c9d38f75b0ac35a283fceb7d843a7e215f2ced4633084c",
+      "bytes": 5664
+    },
+    {
+      "path": "artifacts/resources/resource-rnh6oF/content/bgee-recent-commits.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "8377905cbd48194d60b480ef5d599dc271238c726370f67f1cfa567d3d88ebdb",
+      "bytes": 33422
+    },
+    {
+      "path": "artifacts/resources/resource-rnh6oF/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5d5fb07e45bfe362e7a716d0d976a5641f71ceb495f1e6e2452b1dab53e17017",
+      "bytes": 6969
+    },
+    {
+      "path": "artifacts/resources/resource-rssdxm/content/alphafoldSaved.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ab478e2c08868e63aa4dc39178bcf7a8cf5fc4ddef8e2ddae56e0fc3a7cc117f",
+      "bytes": 13779
+    },
+    {
+      "path": "artifacts/resources/resource-rssdxm/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "1a61a374c5333b89fc5f9aca7b59a66d34b58aac2f2992ab380eb1ffe5479d4a",
+      "bytes": 5253
+    },
+    {
+      "path": "artifacts/resources/resource-t2Lnuw/content/hgnc.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ccd5ad220a2031df1ccbde00082c7c25ed3c840ccc4a7ca3ec724662c9f882c8",
+      "bytes": 1262
+    },
+    {
+      "path": "artifacts/resources/resource-t2Lnuw/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "70b774d02e9e532b9fab2b81365030c613c4d6ee19b2c18d4d28ecd41baba35a",
+      "bytes": 5187
+    },
+    {
+      "path": "artifacts/resources/resource-uYXzj7/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0e185b92bf948f81c49cec6d2343ddf4f33f576c7b16a7f8acd237f5553936b7",
+      "bytes": 6046
+    },
+    {
+      "path": "artifacts/resources/resource-uYXzj7/content/schema.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a6116937381cb49d03e0b7165dfca425662653881a34cc1e9705c8dbae3b6e4f",
+      "bytes": 351418
+    },
+    {
+      "path": "artifacts/resources/resource-uaA2Zo/content/published-examples.html",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d08738295f2f7ad154e082ed0401a395857f9ff4d822f41de0953a6a8c0f090c",
+      "bytes": 76266
+    },
+    {
+      "path": "artifacts/resources/resource-uaA2Zo/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0ece99348bb3f154b4dd30e8a20645586548712d9c85b2965cba4a3debb22212",
+      "bytes": 5497
+    },
+    {
+      "path": "artifacts/resources/resource-uflGVX/content/import-channelopathies.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "a75369beaf209d0df90f8a7387e8a443fb542d5f3a577f0a232a8e0cbf360cd1",
+      "bytes": 1267
+    },
+    {
+      "path": "artifacts/resources/resource-uflGVX/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "852754c92fd0be4aef602533e968a6c444d75bc930d71d93c773bcfa0059d06e",
+      "bytes": 6190
+    },
+    {
+      "path": "artifacts/resources/resource-v4Uru2/content/pdbAssembly.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b9b363c863f2b7afa0529ee23b8de8ff47ca0e52b1e2a42d6395d4663602c7e8",
+      "bytes": 3141
+    },
+    {
+      "path": "artifacts/resources/resource-v4Uru2/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "2e02588fa7993cd48c4d0e7b95976b510bc0828be6749cf1fb3cf5e806f0841a",
+      "bytes": 5388
+    },
+    {
+      "path": "artifacts/resources/resource-vYCya8/content/alphafold.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "31f43ab66dea1decf68ac725685b7ba385a61d91d4bdb527092365ede52cede5",
+      "bytes": 2562
+    },
+    {
+      "path": "artifacts/resources/resource-vYCya8/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0d1b18a844d866a4f5878cb7af2cdc1cbf086be3bb9fc7572f8b7bb32f767fd8",
+      "bytes": 5242
+    },
+    {
+      "path": "artifacts/resources/resource-x6S6Xl/content/humanAssays.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "ef52fcbc251e4c7866e5e8bc20052a8ccc0b0b6cba5b1f690cadd8254426e80b",
+      "bytes": 2898
+    },
+    {
+      "path": "artifacts/resources/resource-x6S6Xl/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "90fe26832e6529bddf2878502918df36d6774e2276ef1073ba952435d35735ec",
+      "bytes": 5839
+    },
+    {
+      "path": "artifacts/resources/resource-xUW6nZ/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b8229e4f31af52c3faa4161179c9ed9d10b84ec73b2ca93b50b4daba2e45650a",
+      "bytes": 7580
+    },
+    {
+      "path": "artifacts/resources/resource-xUW6nZ/content/sparqlSchema.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "9327275a01735f6f1d953d3ca2987d66383e30f588db5a5ccea9daf7e42477fa",
+      "bytes": 13604
+    },
+    {
+      "path": "artifacts/resources/resource-xe71to/content/pdbEntity.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "50c948b1da62c6dcbdbd595d49fed2e5716fe51df177841fd037838b9047d47b",
+      "bytes": 57938
+    },
+    {
+      "path": "artifacts/resources/resource-xe71to/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "b3de633d6ad65fb3cc07012ce798f8f15c662d675b8f28a4aabfae699cf93c79",
+      "bytes": 5425
+    },
+    {
+      "path": "artifacts/resources/resource-y0J7J4/content/cholesterol-bgee-component.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "3867cb9bbd0d5d47fc2f7c0bcc6ba84b2751ea871b7ff5ec7a2fb8eef601d074",
+      "bytes": 23325
+    },
+    {
+      "path": "artifacts/resources/resource-y0J7J4/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "8ab219cbcf173da52ba3a89c0ae3621b262f2ec0ead22d763c14a38c53f06b9a",
+      "bytes": 10819
+    },
+    {
+      "path": "artifacts/resources/resource-yCTN7R/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "0eb5a198c2117370af7860c5bb5bfe4692d3736e896bd82ce1e3ec6fc60d2dbe",
+      "bytes": 9321
+    },
+    {
+      "path": "artifacts/resources/resource-yCTN7R/content/sparqlCrossrefs.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "275afe54da390289c7848ed364d4c3ff3db01ba13831fb4629942d9eb532bcc6",
+      "bytes": 1893
+    },
+    {
+      "path": "artifacts/resources/resource-zRzR4H/content/fabry-catalytic-links.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bf890ddd82894d5bcb38e41023a8487fbf7d753810da31e5fd1a3b0ef03c168d",
+      "bytes": 2626
+    },
+    {
+      "path": "artifacts/resources/resource-zRzR4H/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "fa703c793a074e50e4f40ee9898e10310116c21fb16126084c8208ad834a1ef0",
+      "bytes": 10398
+    },
+    {
+      "path": "artifacts/resources/resource-zjixGM/content/import-ilo_occupational_diseases.txt",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d9ccfb0da18c8a9aeb4d6dce411e587e1025df96b0d4fae6da00119efeab2964",
+      "bytes": 33925
+    },
+    {
+      "path": "artifacts/resources/resource-zjixGM/content/receipt.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5845a9fa10bdde4ca1c42d05a4408c1f13b71b9e52bcad69c158355d940b8045",
+      "bytes": 6268
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-demo-readiness-20260930/c2sim-owl-rl-proof.n3",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "766b8c0a3d464f77cd32cd56fc720014fb91d3a4c6a929d94e3e1e7f36137cc1",
+      "bytes": 25147
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-durable-demo-20260929/historical-literature.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "1af43715d5f7fe20280e99ce27c2b9e98219a15b83d9cf23009d9590b1f9f6c5",
+      "bytes": 5119
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/Fabry_Disease.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "9c804539eb3e6a465ec341a7d18399a07576988a2e9305cc0be6b4c19fcbacbc",
+      "bytes": 146859
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/__pycache__/dismech_model.cpython-312.pyc",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "3ecc05d64769e6091c5a5c14d6a457d9ff78ec8406d4206702fdb5393f94d2f0",
+      "bytes": 941700
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/application-links.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f4349ff35abfbdaa15035f6db4772ebadbf0cd1f73f9efb0776e30b6a451b72e",
+      "bytes": 11814
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/cl-excerpt.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a3b9d799fa72680fa00e7b9294f2953934c05ca62103959434c07ac61e72be5a",
+      "bytes": 8522
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/cl-selected-stanzas.obo",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "bab1aa17f7d34a1f9656e00376c5e655ae89d1a647d8047d70d94e03f023954f",
+      "bytes": 40767
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/dismech_model.py",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "cffc8113388ecc8bdea744c14a162d33f6c3ffa6297821481b82f9fb92ec9e99",
+      "bytes": 866211
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/fabry-generated.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "1a43e9d6b86f486ee050cb53909def288264c74248c991bc422ad8d424d4ba6b",
+      "bytes": 253863
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/fabry-linkml-raw.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "36cc00a77ae44c992999229c0d1501cbd9b339d20c418a8b0320fe0bf263907a",
+      "bytes": 203761
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/inputs.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "038997e76cd0133539f10cd55c56d3f84408329f5686a22b7ce051e8129e2023",
+      "bytes": 20614
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/channelopathies.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a75369beaf209d0df90f8a7387e8a443fb542d5f3a577f0a232a8e0cbf360cd1",
+      "bytes": 1267
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/coarse_phenotype_terms.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a4fcf5d7e2bf438cee662c781a27d3d604636ea3620cf784abb37d1b8228ebd4",
+      "bytes": 7739
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/eu_occupational_schedule.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f6af22f6a7955f94bd5810f544f58fdecaa51d643a6cf0ef936e69ac5ecb58dc",
+      "bytes": 39234
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/exposure_classification.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "c1c48dbdc8ff39cc9cf372eb384edebf1dafd07769624ed61a17135d8f27dba7",
+      "bytes": 20669
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/harrisons_chapters.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "740a48013d3cfddc878edcf3f01f296a16027f4fa12bd3e320314520d879d5ac",
+      "bytes": 10063
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/icdo_morphology.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "987030c04dc3607a81348fc3e5f77efad53086f7767409a1e26c5ec1c0e9b452",
+      "bytes": 7779
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/icimd.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "6631e019502247f7eec55d6b2979c996ebefb86ae7d611b31ecb4c623e4ff4da",
+      "bytes": 27678
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/ilo_occupational_diseases.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "d9ccfb0da18c8a9aeb4d6dce411e587e1025df96b0d4fae6da00119efeab2964",
+      "bytes": 33925
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/isds_skeletal_nosology.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "75008bd4fc1fb1aef8d76d7589ad995ef296156b35beba621e3ac652d3690c36",
+      "bytes": 53239
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/iuis_immunodeficiency.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "49aaf4ee5ac4a1cfb9164c59a1f9705c36e2585cc3cf8e6134d42700a59f7517",
+      "bytes": 2380
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/lysosomal_storage.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "dba9cf2028d8a3163e9ea28f387d23bf0b1ea0fb62a0e1ef88e871d12368d632",
+      "bytes": 1687
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/mechanistic_nosology.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "c659f3426e79f3ed2e3db3ebd354ce74cfd55cdb4f1395cdef447ba6309c3c6a",
+      "bytes": 2463
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/nih_research_priorities.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f10a6385fb6bd357cff5107b1f9eaead0d871297b2e4eae684c8dc359771efb9",
+      "bytes": 22673
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/classifications/phenotype_category.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f565c5da9fbb4016823024f17f3e651f90381399517380b2d541b859eb9347b0",
+      "bytes": 4819
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/schema/dismech.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a6116937381cb49d03e0b7165dfca425662653881a34cc1e9705c8dbae3b6e4f",
+      "bytes": 351418
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/skolem-map.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "0d018b5602f1f9f1f74bd5e6f06774494ebfc70cd4bbfdbc5524df509fc85dec",
+      "bytes": 45715
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/typed-record.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e9f19086267d647e17b7b5cdf5e0f02039b4741d34461762f4d11c697752e2ac",
+      "bytes": 182220
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/uberon-excerpt.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "6a1108671dc3af37dfed65c44cc3fa03cc878aa674d27598a3cd1c3ff8b621ee",
+      "bytes": 8982
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-full-graph-20260925/uberon-selected-stanzas.obo",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "ce2facea6db5f5dba0a0ada75ebda9aea0dd9f84997d4f444377afec9ff1a1ff",
+      "bytes": 56376
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-gla-federation-20260927/saved-result.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "0993620523774ac7d900722781f2e90cdeb28147808d49c046b3a36927661ffb",
+      "bytes": 8773
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-unrestricted-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "65315d153923c504479089fce22ab4235aeccc0cd1c5fc59730ccc5c62bb15b6",
+      "bytes": 5533
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-protein-extension-20260925/rhea-diagnostic/curl-unrestricted-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "0af605243802feea3bdb4b75c70968f73ae0012549777f3a65d061dfcf888563",
+      "bytes": 2230
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/derived.nt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "71d5b549bebde4ad9f1d321a9ec36035ad893e842c6d3dd6706f3e7d3617d5c8",
+      "bytes": 129
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/proof.n3",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "39d5a2b0d056b7549532db9ce7a2a587e57188b15ca501741ed21f576ab5c2e5",
+      "bytes": 936
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/rule.n3",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "ef5bfb9db2047dbdcd6a6ffc35289939531ab4e6e16ba9f036a6f6ff5cb3f0b1",
+      "bytes": 272
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/source-node.yaml",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "6f315c20bea96dcb9a938597cd0f0aec584b1cd8a7986656a654059e21549cfe",
+      "bytes": 6050
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/source-projection.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "4cb88a69a774ccebda5e7836fd0b0b55ffaa933d95ed3f68df479f34b34340d8",
+      "bytes": 1315
+    },
+    {
+      "path": "artifacts/scientific-inspections/fabry-selection-20260925/synthetic-controls.ttl",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a29e0a18309804e39cbd6a12f8356ec23f9e1d1e1286a2b7d379902843b2b35b",
+      "bytes": 367
+    },
+    {
+      "path": "artifacts/scientific-inspections/sai-gsd3-20260925/deck-text.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "216af19c8f299ac0782847367ce7d96f8581cc6c492663bc2004e9eb670c9911",
+      "bytes": 75793
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-coordinator-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "600b05390450d8686e4204a55825f0a3dc83b6650b6635b350c49da264249d4f",
+      "bytes": 1531
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-coordinator-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f8e2788c2f014daa21e0dc11af805be9d1163758e690e0c7fe5c89657c3d42e2",
+      "bytes": 830
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-access-noformat-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-access-noformat-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "970e35579e8a7672c4e9ec1c4e35bf8fc2e3698d729c315ee6098b838ed3cd35",
+      "bytes": 840
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-real-pattern-noformat-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bgee-service-real-pattern-noformat-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "638e83e9a8816a06e8b6fb1321434c65c16d32b33f8a2672ef322e0537e6dba9",
+      "bytes": 840
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bounded-service-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/bounded-service-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "a52b05da76ebfc81b5b8600cc5562ae4381cb95b96b5e09ab3f956c76540414d",
+      "bytes": 833
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/direct-bgee-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f3ade063a8a01294f2675b5ff094155288c4f491b1c410c4f92ed0069ba0dd45",
+      "bytes": 92384
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/direct-bgee-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "cc8d1812f9f8faea8efacd84c3ebbe4d03ab0bc837fdbf1ad108cd2c2978a2a5",
+      "bytes": 920
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/minimal-service-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/minimal-service-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "fdc103386fe3c4bce073eb17a13b5a18ff8617bf64ba14989c5799b3fc3bbbb6",
+      "bytes": 833
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-body.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "2779f465b42cb571560c354bcaa1f56312ba00dda6b5cfc857eeaab811a48877",
+      "bytes": 90112
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/curl-diagnostic/original-network-headers.txt",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "f42b1e224646305dd538c5adb457d43ae3156f0cbe7fd1d538e338485f7b5068",
+      "bytes": 827
+    },
+    {
+      "path": "artifacts/scientific-inspections/uniprot-example49-20260927/opening-demo/saved-result.json",
+      "reason": "scientific data, downloaded schema/model, source response or cache",
+      "sha256": "b981d05f3ae652bb3d9529504d1531559efa7f9c19754a931f80678864aef2b2",
+      "bytes": 182334
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-input.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "5620993237ebc8f24c9e8bd5ab46543453dbd335b7712edc8965113a923bbbcb",
+      "bytes": 401
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-01.png",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "78fb9d8080d435db3ae1c60d1685dbf65dd218fb2bcbae613da34d1e42a2bc6c",
+      "bytes": 16881
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-01.svg",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "bf088a0b285ed746602ab8a3814a1f144a49769fe663c80ef2d80ef7039dc5b3",
+      "bytes": 16615
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-02.png",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "dfe186b909f088e5532ebfa5ff5ac621122b2739ecadf1e1d694bd2edce48485",
+      "bytes": 16517
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-02.svg",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "d86c5b3b0bf0f052f3c8f6bb97ce205fa582655034f46f46932b08a5da3fefac",
+      "bytes": 20962
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-03.png",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "35424af32b1a629f50355752babd3280ec20802b1df2eb0a2d98b82082d264c3",
+      "bytes": 24275
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/compound-03.svg",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "7085c4444fcb0403904d33daea548c69219d60ff41d78660650577607309de64",
+      "bytes": 25992
+    },
+    {
+      "path": "artifacts/structure-cards/pfas-rdkit-20260930/manifest.json",
+      "reason": "scientific source or rendered scientific asset",
+      "sha256": "297ea6ba9e3a4e94872679e0b6c3d183c8d4efa28d4ad84c013a87660d84d796",
+      "bytes": 2024
+    }
+  ],
+  "note": "Scientific source files stay in saved laptop checkout. Receipts, bounded results, queries, authored reports and wiki evidence are candidate records; this manifest does not assert original source bytes are published.",
+  "candidateAdjustedPaths": [
+    "artifacts/experiment-results/registry.json",
+    "docs/agent/runtime-discovery.md",
+    "docs/tasks/README.md",
+    "lib/wiki-learning/contracts.mjs",
+    "artifacts/scientific-inspections/chignolin-20260924/README.md",
+    "artifacts/scientific-inspections/chignolin-extension-20260924/demo.md",
+    "artifacts/scientific-inspections/fabry-durable-demo-20260929/README.md",
+    "artifacts/scientific-inspections/fabry-selection-20260925/replay-cells.js",
+    "docs/tasks/checkpoint-runtime-debugging.md",
+    "lib/wiki-learning/trajectory-import.mjs",
+    "test/wiki-learning/trajectory.test.mjs"
+  ],
+  "additionalCandidatePaths": [
+    ".gitattributes",
+    "docs/agent/installation.md",
+    "scripts/configure-project-mcp.mjs",
+    "docs/tasks/synchronization-scope.json",
+    "docs/tasks/synchronization-20261014.md"
+  ]
+}
