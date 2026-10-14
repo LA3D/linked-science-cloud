@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {cp,mkdir,mkdtemp,readFile,writeFile,rm,realpath,symlink} from 'node:fs/promises';
+import {cp,mkdir,mkdtemp,readFile,readdir,writeFile,rm,realpath,symlink} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,dirname} from 'node:path';
 import {searchMemory,readMemory,recordFeedback,rankPatterns} from '../../lib/wiki-learning/retrieval.mjs';
 const repo=new URL('../../',import.meta.url);
 async function fixture(t) {
@@ -10,6 +10,17 @@ async function fixture(t) {
  t.after(()=>rm(root,{recursive:true,force:true}));
  await mkdir(join(root,'artifacts/wiki-learning'),{recursive:true});
  for(const dir of ['corpus','scientific','episodes'])await cp(new URL(`artifacts/wiki-learning/${dir}`,repo),join(root,'artifacts/wiki-learning',dir),{recursive:true});
+ // Episodes may cite existing scientific receipts outside the wiki capture area.
+ for(const file of await readdir(new URL('artifacts/wiki-learning/episodes/',repo),{recursive:true})) {
+  if(!file.endsWith('episode.json'))continue;
+  const episode=JSON.parse(await readFile(new URL(`artifacts/wiki-learning/episodes/${file}`,repo),'utf8'));
+  for(const evidence of episode.evidence??[]) {
+   const path=evidence.artifact?.path;
+   if(!path?.startsWith('artifacts/scientific-inspections/')||path.split('/').includes('..'))continue;
+   await mkdir(dirname(join(root,path)),{recursive:true});
+   await cp(new URL(path,repo),join(root,path));
+  }
+ }
  await cp(new URL('wiki',repo),join(root,'wiki'),{recursive:true});return root;
 }
 

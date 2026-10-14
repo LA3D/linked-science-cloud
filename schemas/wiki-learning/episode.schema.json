@@ -6,7 +6,8 @@
     "schemaVersion": {
       "enum": [
         "1.0.0",
-        "1.1.0"
+        "1.1.0",
+        "1.2.0"
       ]
     },
     "id": {
@@ -108,7 +109,8 @@
             "synthetic",
             "selected-import",
             "reconstructed",
-            "direct-runtime"
+            "direct-runtime",
+            "selected-trajectory"
           ]
         },
         "completeness": {
@@ -209,7 +211,8 @@
             "enum": [
               "userMessage",
               "agentMessage",
-              "mcpToolCall"
+              "mcpToolCall",
+              "toolCall"
             ]
           },
           "sequence": {
