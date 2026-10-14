@@ -48,7 +48,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   try {
     await import('node:sqlite');
     console.log(JSON.stringify(await configureProjectMcp(), null, 2));
-    console.log('Next: npm run linked-science:verify, then restart the desktop app. Keep these machine-specific paths local.');
+    console.log('Next: npm run linked-science:verify, then refresh the MCP connection using the supported host workflow and verify a fresh task. Preserve active scientific sessions; see docs/agent/installation.md. Keep these machine-specific paths local.');
   } catch (error) {
     console.error(`Project MCP setup failed: ${error.message}`);
     process.exitCode = 1;

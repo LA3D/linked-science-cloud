@@ -6,7 +6,7 @@ This guide is for a person or an agent installing the project-owned MCP server. 
 
 The automated registration script targets Codex's project `.codex/config.toml`. Official [OpenAI MCP documentation](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) describes project-scoped configuration in trusted projects and the stdio `command`, `args` and `cwd` fields. This guide verifies the repository's own setup, not every client/platform combination.
 
-The project user reports testing both ChatGPT Desktop and Codex. A reproducible project-specific ChatGPT Desktop registration and activation procedure is still missing from this repository. Identify the actual client and version before configuring it; do not assume Codex project configuration is loaded by a different client or invent a local stdio setup. For a ChatGPT Desktop request, establish its supported registration path from official documentation and verify it with the same identity/persistence checks below before claiming installation complete. There is no published plugin installer in this project yet.
+The current [official MCP documentation](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) states that ChatGPT Desktop, Codex CLI and the IDE extension share MCP configuration for the same Codex host; project configuration requires a trusted project. Identify the installed client/version and selected host, then verify the actual mounted identity and persistence below. The project user reports testing both desktop clients, but this repository has not recorded a reproducible project-specific ChatGPT Desktop installation run. There is no published plugin installer in this project yet. Current [plugin packaging guidance](https://developers.openai.com/plugins/build/plugins) supports root `plugin.json` with optional `skills/` and `mcp.json`, plus the legacy `.codex-plugin/plugin.json` fallback; packaging is a separate project task.
 
 For the supported Codex route:
 
@@ -62,9 +62,11 @@ The script preserves other settings, including tool approvals and the required-s
 
 The registered launcher automatically starts or reuses a separate persistent scientific service. Its first tool call selects the chat using Codex host metadata. See [managed scientific startup](../architecture/managed-scientific-startup.md) for identity, private reconnect storage, compatibility and explicit recovery limits. Existing manually launched sessions and handoffs remain separate.
 
-## Restart and reconnect
+## Reload and reconnect
 
-Fully restart the desktop application after project MCP configuration changes, then open the selected checkout as a trusted local project and start a fresh task. In clients with explicit connection management, reconnect the server as needed. An already-running broker does not reload saved broker code automatically. Do not disable the required-server setting merely to bypass a startup failure.
+Refresh the host MCP configuration after project settings change, then open the selected checkout as a trusted local project and verify a fresh task. The [official desktop workflow](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) uses Settings → MCP servers → Save → Restart. The [app-server API](https://learn.chatgpt.com/docs/app-server) also documents `config/mcpServer/reload`, which reloads disk configuration and queues refresh for loaded threads; verify installed-host support before using that route. A full application restart is a fallback, not the only documented refresh mechanism.
+
+Preserve active scientific sessions before reconnecting, refreshing or changing runtime source. A legacy stdio kernel can lose bindings when its process exits, and a surviving process can still import changed files lazily. Managed generation isolation does not retroactively pin legacy sessions or migrate their state. An already-running broker does not automatically reload saved code. Do not disable the required-server setting merely to bypass a startup failure.
 
 ## Verify the mounted server in two calls
 
@@ -108,12 +110,12 @@ Report installation complete only after the offline check **and** these mounted 
 
 | Symptom | Next action |
 | --- | --- |
-| Missing executable, entrypoint or cwd / “No such file or directory” | Check absolute paths in project config; rerun setup from the correct checkout with the intended Node executable, then restart |
+| Missing executable, entrypoint or cwd / “No such file or directory” | Check absolute paths in project config; rerun setup from the correct checkout with the intended Node executable, then refresh the MCP connection |
 | `node:sqlite` import fails | Select a compatible Node runtime; repeat prerequisite check before dependency/setup commands |
 | Missing dependencies / module import failure | Verify the package root and successful `npm ci`; inspect the actual error before changing module paths |
 | Setup rejects package identity or configuration fields | Check repository and config structure against the checked-in version; preserve unrelated edits and fix the specific mismatch |
 | Offline verification fails | Inspect its failing boundary/broker/synthetic stage; do not claim activation or hide the failure by disabling checks |
-| Tools missing after successful offline verification | Confirm trusted project, selected checkout, full restart and fresh task; inspect client startup errors |
+| Tools missing after successful offline verification | Confirm trusted project, selected checkout, MCP configuration refresh and fresh task; inspect client startup errors |
 | Generic REPL or unexpected cwd/identity | Stop the activation claim; reconnect the project-owned broker using [runtime discovery](runtime-discovery.md) |
 | Sentinel missing in second call | Check whether calls used the same connection and whether reset/process loss occurred; do not claim cross-call persistence |
 | Optional engine/provider unavailable | Report that capability separately; do not treat installation as proof of reasoning or model recursion |

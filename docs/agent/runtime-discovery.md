@@ -38,7 +38,7 @@ nodeRepl.write({
 
 The selected checkout owns this runtime. Its `.codex/config.toml` registers the project broker. The sibling experimental probe and bundled generic REPL cannot establish this project's identity or authority.
 
-Run `npm run linked-science:verify` for offline repository/MCP checks. Configuration and shell results do not prove task-level mounting. Restart an already-running broker after broker-code changes; after MCP configuration changes, fully restart Desktop and use a fresh Local task in the saved checkout.
+Run `npm run linked-science:verify` for offline repository/MCP checks. Configuration and shell results do not prove task-level mounting. After broker-code changes, verify a fresh connection using the intended runtime generation while preserving active scientific sessions. After MCP configuration changes, use the installed host’s supported refresh/reconnect route and a fresh Local task; see [reload and reconnect](installation.md#reload-and-reconnect). The official app-server API supports configuration reload; a full Desktop restart is a fallback and can destroy legacy stdio state.
 
 ## Explicit fallback bootstrap
 
@@ -66,3 +66,9 @@ The [API schema](../runtime/linked-science-api.schema.json), [route index](../ru
 A fresh project MCP connection uses the [managed scientific launcher](../architecture/managed-scientific-startup.md). It starts or reuses a compatible detached service; the first tool call selects the chat using verified Codex host `_meta.threadId`. Automatic selection never uses cwd as chat identity. Live bindings survive adapter/desktop restart while that service and epoch survive. Missing host identity, incompatible service, and lost epochs fail explicitly; service loss requires explicit recovery and selected durable restore.
 
 The standalone low-level adapter still starts in scratch and supports explicit create/attach. Workers attach with scoped grants and retain separate scratch namespaces. Verify role/epoch after attachment and a fresh worker read/deposit plus owner aggregation before claiming shared-worker activation. Managed startup does not migrate the existing manually launched service's sessions or handoffs.
+
+## Optional recursive provider
+
+The default stdio launcher creates a scientific-session adapter whose scratch `KernelBroker` has no recursive provider. Consequently `nodeRepl.rlm.capabilities().recursion.available` is false with reason code `RLM_PROVIDER_UNAVAILABLE`; external-context operations remain available. This is a host attachment limitation, not evidence about credentials or Codex subagent availability.
+
+The supported programmatic integration is a host-owned `new KernelBroker({ provider })` callback. The broker applies its bounded call contract. There is no provider activation switch in project configuration, and setting a child environment marker does not attach a provider. A host integration requires separate provider/credential authorization and verification; local stub tests establish only the callback contract.
