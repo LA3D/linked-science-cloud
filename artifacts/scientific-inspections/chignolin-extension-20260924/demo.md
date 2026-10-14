@@ -59,4 +59,3 @@ Candidate experiential patterns are preserved in receipt.json with candidate-not
 - [MDRepo paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC11701643/)
 
 No slides changed or publication performed.
-

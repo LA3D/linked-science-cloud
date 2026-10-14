@@ -1,0 +1,7 @@
+# PDFs are binary artifacts, even when their encoded bytes happen to be ASCII.
+*.pdf binary
+# Preserve byte-identified historical receipts and exact saved query inputs.
+artifacts/scientific-inspections/fabry-selection-20260925/checkpoint.json whitespace=-blank-at-eof
+artifacts/scientific-inspections/fabry-memory-use-20260928/anchor.rq whitespace=-blank-at-eof
+artifacts/scientific-inspections/fabry-memory-use-20260928/renal.rq whitespace=-blank-at-eof
+artifacts/scientific-inspections/fabry-renal-literature-20260927/ontology.rq whitespace=-blank-at-eof

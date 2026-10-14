@@ -31,4 +31,3 @@ The initial 1UAO candidate came from assistant prior knowledge; the entry, exact
 - [BMRB 5694](https://bmrb.io/data_library/summary/index.php?bmrbId=5694)
 - [Publication](https://doi.org/10.1016/j.str.2004.05.022)
 - [CLN025 entity](https://data.rcsb.org/rest/v1/core/polymer_entity/2RVD/1)
-
